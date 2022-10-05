@@ -1,0 +1,16 @@
+﻿Author of the code review: Lisha Nawani
+Date of the code review: 10/3/22
+Sprint number: 2
+Name of the .cs file being reviewed: LinkAttackingStates.cs
+Author of the .cs file being reviewed: DJ Young
+Specific comments on code quality: 
+	- link is not a public variable, which is a good thing
+	- includes comments to explain why certain method bodies are empty which makes it easier to understand
+	- uses a sprite factory so that the link state class does not need to know about the texture used or source/destination rectangles, which makes the code cleaner and easier to maintain
+	- the classes for all the directions look to have the same structure, so a change made in one of them can be pretty much directly copied to the others
+	- the only issue I can see is that the state classes have access to link's current sprite and current state fields, it may be better/safer to have the state classes change these using methods rather than directly being able to access them
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change:
+	- could potentially change link's behavior so that he is now able to move while attacking
+	- given different sprite/state classes for a link that is moving and attacking at the same time, the changes in LinkAttackingStates.cs would be simple
+	- 2 lines similar to the NoInput() method body would need to be added to each of the move functions to change link's sprite and state to match the behavior needed
+

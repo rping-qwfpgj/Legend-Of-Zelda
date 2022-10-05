@@ -1,0 +1,306 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Interfaces;
+using System;
+
+namespace Sprites
+{
+    public class LinkWalkingUpSprite : INonAttackingSprite
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private float xPosition;
+        private float yPosition;
+        
+        private bool isDamaged;
+
+        public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        {
+            this.texture = texture;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+            this.isDamaged = isDamaged;
+        }
+
+            public void Update()
+            {
+                // Update frames
+                currFrames += 100;
+
+                // If frames are past max, reset to 0
+                if (currFrames > maxFrames)
+                {
+                    currFrames = 0;
+                }
+
+                this.yPosition -= 2; // Remember that the Y's decrease as you move up the screen  in Monogame's coordinate system
+        }
+
+            // NOTE: All of these source Rectangles are using placeholder values for now
+            public void Draw(SpriteBatch spriteBatch)
+            {
+                // Create source and destination rectangles
+                Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
+                Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+
+                // Draw the first step of link walking up
+                if (currFrames >= 0 && currFrames <= 1000)
+                {
+                    sourceRectangle = new Rectangle(71, 11, 12, 16);
+
+                }
+                else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking up
+                {
+                    sourceRectangle = new Rectangle(88, 11, 12, 16);
+                }
+
+            // Draw the sprite
+            spriteBatch.Begin();
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+            spriteBatch.End();            
+        }
+
+            public Vector2 getPosition()
+            {
+                return new Vector2(this.xPosition, this.yPosition);
+            }
+        }
+
+    public class LinkWalkingDownSprite : INonAttackingSprite
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private float xPosition;
+        private float yPosition;
+
+        public bool isDamaged;
+
+        public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        {
+            this.texture = texture;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+            this.isDamaged = isDamaged;
+        }
+
+        public void Update()
+        {
+            // Update frames
+            currFrames += 100;
+
+            // If frames are past max, reset to 0
+            if (currFrames > maxFrames)
+            {
+                currFrames = 0;
+            }
+
+            this.yPosition += 2; // Remember that the Y's increases as you move down the screen  in Monogame's coordinate system
+        }
+
+        // NOTE: All of these source Rectangles are using placeholder values for now
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Create source and destination rectangles
+            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
+            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+
+            // Draw the first step of link walking down
+            if (currFrames >= 0 && currFrames <= 1000)
+            {
+                sourceRectangle = new Rectangle(1, 11, 15, 16);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
+            }
+            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking down
+            {
+                sourceRectangle = new Rectangle(19, 11, 13, 16);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            }
+
+            // Draw the sprite
+            spriteBatch.Begin();
+
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+            } else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+            spriteBatch.End();
+        }
+
+        public Vector2 getPosition()
+        {
+            return new Vector2(this.xPosition, this.yPosition);
+        }
+    }
+
+    public class LinkWalkingLeftSprite : INonAttackingSprite
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private float xPosition;
+        private float yPosition;
+
+        private bool isDamaged;
+
+        public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        {
+            this.texture = texture;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+            this.isDamaged = isDamaged;
+        }
+
+        public void Update()
+        {
+            // Update frames
+            currFrames += 100;
+
+            // If frames are past max, reset to 0
+            if (currFrames > maxFrames)
+            {
+                currFrames = 0;
+            }
+            
+            this.xPosition -= 2;
+        }
+
+        // NOTE: All of these source Rectangles are using placeholder values for now
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Create source and destination rectangles
+            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
+            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+
+            // Draw the first step of link walking side to side
+            if (currFrames >= 0 && currFrames <= 1000)
+            {
+                sourceRectangle = new Rectangle(35, 11, 15, 16);
+
+            }
+            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking side to side
+            {
+                sourceRectangle = new Rectangle(52, 12, 14, 15);
+            }
+
+            // Draw the sprite
+            spriteBatch.Begin();
+
+            if (isDamaged)
+            {
+                // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            } else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1); 
+            }
+            spriteBatch.End();
+        }
+
+        public Vector2 getPosition()
+        {
+            return new Vector2(this.xPosition, this.yPosition);
+        }
+    }
+
+    public class LinkWalkingRightSprite : INonAttackingSprite
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private float xPosition;
+        private float yPosition;
+
+        private bool isDamaged;
+
+        public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        {
+            this.texture = texture;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+            this.isDamaged = isDamaged;
+        }
+
+        public void Update()
+        {
+            // Update frames
+            currFrames += 100;
+
+            // If frames are past max, reset to 0
+            if (currFrames > maxFrames)
+            {
+                currFrames = 0;
+            }
+
+            this.xPosition += 2;
+        }
+
+        // NOTE: All of these source Rectangles are using placeholder values for now
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Create source and destination rectangles
+            Rectangle sourceRectangle = sourceRectangle = new Rectangle(35, 11, 15, 16);
+            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+
+            // Draw the first step of link walking side to side
+            if (currFrames >= 0 && currFrames <= 1000)
+            {
+                sourceRectangle = new Rectangle(35, 11, 15, 16);
+
+            }
+            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking side to side
+            {
+                sourceRectangle = new Rectangle(52, 12, 14, 15);
+            }
+
+            // Draw the sprite
+            spriteBatch.Begin();
+
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+            } else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White); 
+            }
+            spriteBatch.End();
+        }
+
+        public Vector2 getPosition()
+        {
+            return new Vector2(this.xPosition, this.yPosition);
+        }
+    }
+}
+

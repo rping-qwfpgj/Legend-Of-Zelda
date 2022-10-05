@@ -1,0 +1,11 @@
+Vishal Kumar
+10/3/2022
+Sprint 2
+Stalfos.cs (assessed on readability)
+minutes: 5
+
+Notes: A pretty simple and readable class. Stalfos has a few class variables sections: frames, textures
+and position/movment. The class contians update and draw, these are pretty self explanatory as updates to 
+position and current frame are handled in update and draw picks which frame to draw with simple 
+modulo math. As far as room for improvement goes, everything seems good and adding more comments
+seems unecessary.

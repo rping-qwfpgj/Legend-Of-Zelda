@@ -1,0 +1,23 @@
+@Author DJ Young
+Date: 10/3/2022
+Sprint2
+File under review: FireSprites.cs
+Author of file under review: Vishal Kumar
+
+*Reviewing for maintainability*
+
+This file is composed of four separate classes, one for each direction that Link can face.
+
+For FireUpSprite:
+
+Class is accurately named. The fields are a mix of private and public, though none of them need to be public. This is an easy change to implement. 
+
+There are also many magic numbers that hard to edit and change because their purpose is not clear. More specifically, the sourceRectangles and 
+destinationRectangles require many parameters, and it is hard to tell what the parameters represent when they are magic numbers without descriptive
+names. 
+
+The class uses integers that increment with every call to the Update() function. This functionality makes it easy to draw the sprites in the correct 
+position on screen using the local xPosition and yPosition variables. There is a public Vector2 getPosition() function that returns these two 
+floats to whatever class has an instance of the class, but this function is not called anywhere. It could be removed the getPosition definition were
+removed from the ISprite class, and put in a subinterface extending ISprite for the sprites that need to communicate their positions to the Link
+class. This would be relatively easy to implement. 

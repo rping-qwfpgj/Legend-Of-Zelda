@@ -1,0 +1,19 @@
+@author DJ Young
+
+Sprint2 Reflection
+
+The Sprint2 Burndown chart accurately shows the work schedule of the team. You can see that we did not begin work until five days
+after the sprint began. This lack of urgency came back later to haunt us, as we spent the last few days leading up to the 
+deadline implementing the majority of the functionality. This was not fun for the team and left us exhausted, decreasing our
+productivity. 
+
+Even after we started we failed to read the requirements in full, and failed to use AzureDevOps to delegate tasks between 
+team members or set deadlines for said tasks. Instead we spent a lot of time designing the Link class and making sure 
+that every team member understood the state machine design pattern. In reality we wasted our time as only two people ended 
+up working on the class and only they needed to understand the inner workings of the class. It was only towards the end
+of the sprint that the responsibilities were clearly delegated and that each team member became responsible for individual
+features and functionalities.
+
+For the next sprint we will be using AzureDevOps to transparently delegate the work required from each teammate and set deadlines
+according the recommended deadlines. We will also split the work in such a way that no one person will need to understand the 
+inner workings of every piece of the program.
