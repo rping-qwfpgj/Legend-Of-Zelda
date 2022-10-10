@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint0", "Sprint0.csproj", "{BB81D6EE-5331-43BD-ADA6-0D8451D07189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendofZelda", "LegendofZelda.csproj", "{90577EBE-EF65-4A5C-875A-C8D238B4602B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90577EBE-EF65-4A5C-875A-C8D238B4602B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90577EBE-EF65-4A5C-875A-C8D238B4602B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90577EBE-EF65-4A5C-875A-C8D238B4602B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90577EBE-EF65-4A5C-875A-C8D238B4602B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3C95AC25-56D5-423D-A500-4C18F31F5EC4}
+		SolutionGuid = {30E2DD20-0EDB-40BB-AFE6-557A9FB5B48E}
 	EndGlobalSection
 EndGlobal
