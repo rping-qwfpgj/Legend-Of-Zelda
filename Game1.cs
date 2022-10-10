@@ -23,8 +23,6 @@ public class Game1 : Game
         // Sprite sheet from which all sprites are obtained from
         public Texture2D linkSpriteSheet;
         public Texture2D blockSpriteSheet;
-
-        public Block currentBlock;
         public Item currentItem;
         public Texture2D itemSpriteSheet;
         public Enemy enemy;
@@ -79,7 +77,7 @@ public class Game1 : Game
             keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
         
             blockSpriteSheet = Content.Load<Texture2D>("blocks");
-            currentBlock = new Block(blockSpriteSheet);
+            
 
             itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
             currentItem = new Item(itemSpriteSheet);
@@ -132,8 +130,7 @@ public class Game1 : Game
 
             keyboardController.Update();
             link.Update();
-
-            currentBlock.Update();
+            
             currentItem.Update(); 
             enemy.Update();
             base.Update(gameTime);
@@ -143,7 +140,7 @@ public class Game1 : Game
         {
             GraphicsDevice.Clear(Color.BlueViolet);
             link.Draw(_spriteBatch);
-            currentBlock.Draw(_spriteBatch);
+            
             currentItem.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);           
             base.Draw(gameTime);
