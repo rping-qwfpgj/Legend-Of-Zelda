@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint0", "Sprint0.csproj", "{BB81D6EE-5331-43BD-ADA6-0D8451D07189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendofZelda", "LegendofZelda.csproj", "{BDC19100-67B1-43DE-850B-07D599365E26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB81D6EE-5331-43BD-ADA6-0D8451D07189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC19100-67B1-43DE-850B-07D599365E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC19100-67B1-43DE-850B-07D599365E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC19100-67B1-43DE-850B-07D599365E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC19100-67B1-43DE-850B-07D599365E26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3C95AC25-56D5-423D-A500-4C18F31F5EC4}
+		SolutionGuid = {2024CF30-C5E3-4B8E-8DD2-36EDA78F1788}
 	EndGlobalSection
 EndGlobal

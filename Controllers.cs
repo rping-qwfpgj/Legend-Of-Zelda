@@ -15,14 +15,14 @@ namespace Controllers
 	{
 		private Dictionary<Keys, ICommand> keyBindings = new Dictionary<Keys, ICommand>();
 		private ICommand noInput;
-		private ICommand currentCommand;
+		private ICommand previousCommand;
 		
 
         // Pass the noInput command into the keyboard controller in Game1's initialize function
         public KeyboardController(ICommand command) 
 		{
 			this.noInput = command;
-			this.currentCommand = command;
+			this.previousCommand = command;
 		}
 
 		public void AddCommand(Keys key, ICommand command)
@@ -38,7 +38,7 @@ namespace Controllers
 			if(kstate.GetPressedKeyCount() == 0)
 			{
 				this.noInput.Execute();
-				currentCommand = this.noInput;
+				previousCommand = this.noInput;
 			} 
 			else
 			{
@@ -47,12 +47,12 @@ namespace Controllers
                 {
                     if (kstate.IsKeyDown(key))
                     {
-						Type typeField = currentCommand.GetType();
+						Type typeField = previousCommand.GetType();
 						if (typeField != keyBindings[key].GetType())
 						{
 							keyBindings[key].Execute();
 						}
-                        currentCommand = keyBindings[key];
+                        previousCommand = keyBindings[key];
                     }
                 }
             }			
