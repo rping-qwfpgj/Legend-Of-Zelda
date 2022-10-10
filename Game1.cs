@@ -1,14 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
-using SharpDX.DirectWrite;
 using Commands;
 using Sprites;
 using SpriteFactories;
 using Controllers;
+using System.IO;
+using System.Xml.Linq;
+using LegendofZelda;
+using System.Collections.Generic;
 
 
 // Creator: Tuhin Patel
@@ -25,8 +27,11 @@ public class Game1 : Game
         public Texture2D itemSpriteSheet;
         public Enemy enemy;
         public Texture2D enemySpriteSheet;
+    
 
         private Link link;
+        public RoomLoader roomloader;
+        public List<Room> rooms;
 
         private KeyboardController keyboardController;
 
@@ -37,6 +42,7 @@ public class Game1 : Game
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
+        
         
         public Game1()
         {
@@ -53,6 +59,7 @@ public class Game1 : Game
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
+        
 
         link = new Link(new Vector2(400, 240), _graphics);
         // Initalize keyboard controller
@@ -90,33 +97,33 @@ public class Game1 : Game
             keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
             keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
 
-
             enemy = new Enemy();
             keyboardController.AddCommand(Keys.O, new PreviousEnemyCommand(enemy));
             keyboardController.AddCommand(Keys.P, new NextEnemyCommand(enemy));
             keyboardController.AddCommand(Keys.R, new ResetGameCommand(link, enemy, currentBlock, currentItem));
-            keyboardController.AddCommand(Keys.Q, new QuitCommand(this));        
+            keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
 
-            base.Initialize();
+
+            var filename = "room.xml";
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var purchaseOrderFilepath = Path.Combine(currentDirectory, filename);
+            XDocument xml = XDocument.Load(purchaseOrderFilepath);
+            roomloader = new(xml);
+            rooms = roomloader.Parse();
+
+        base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            // TODO: use this.Content to load your game content here
-            
+            _spriteBatch = new SpriteBatch(GraphicsDevice);   
             font = Content.Load<SpriteFont>("Times New Roman");
 
-            // The spritefactory's fields are now initialized before any sprite classes are able to call it. 
+            // The spritefactory's fields are now initialized before any sprite classes are able to call it.
 
-            // Initialize sprites
-            var screenCenter = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2); // All sprites start at center.
-            
-                                                                                
-        }
+    }
 
-        protected override void Update(GameTime gameTime)
+    protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -126,7 +133,6 @@ public class Game1 : Game
             
             currentItem.Update(); 
             enemy.Update();
-
             base.Update(gameTime);
         }
 
