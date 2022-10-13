@@ -20,6 +20,9 @@ namespace Sprites
         
         private bool isDamaged;
 
+        // Screen location
+        private Rectangle destinationRectangle;
+
         public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -72,11 +75,11 @@ namespace Sprites
             }
             spriteBatch.End();            
         }
-
-            public Vector2 getPosition()
-            {
-                return new Vector2(this.xPosition, this.yPosition);
-            }
+         public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+            
         }
 
     public class LinkWalkingDownSprite : INonAttackingSprite
@@ -93,6 +96,9 @@ namespace Sprites
         private float yPosition;
 
         public bool isDamaged;
+
+        // Screen location
+        private Rectangle destinationRectangle;
 
         public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -148,9 +154,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 
@@ -168,6 +174,8 @@ namespace Sprites
         private float yPosition;
 
         private bool isDamaged;
+
+        private Rectangle destinationRectangle;
 
         public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -223,9 +231,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 
@@ -243,6 +251,8 @@ namespace Sprites
         private float yPosition;
 
         private bool isDamaged;
+
+        private Rectangle destinationRectangle;
 
         public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -297,9 +307,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 }

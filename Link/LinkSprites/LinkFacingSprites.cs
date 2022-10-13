@@ -50,9 +50,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+         public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 
@@ -102,9 +102,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+       public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
     public class LinkFacingRightSprite : INonAttackingSprite
@@ -149,9 +149,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 
@@ -198,9 +198,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
     }
 }

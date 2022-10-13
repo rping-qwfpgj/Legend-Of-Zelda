@@ -27,6 +27,9 @@ namespace Sprites
         // Is current sprite done with one attack cycle
         private bool isAttack;
 
+        // Screen location
+        private Rectangle destinationRectangle;
+
         public LinkThrowingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -73,9 +76,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+         public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
 
         public bool isAttacking()
@@ -101,6 +104,9 @@ namespace Sprites
 
         // Represents if sprite is currently in a attack cycle
         private bool isAttack;
+
+        // Screen location
+        private Rectangle destinationRectangle;
 
         public LinkThrowingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -150,9 +156,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+         public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
 
         public bool isAttacking()
@@ -178,6 +184,9 @@ namespace Sprites
 
         // Represents if sprite is currently in an attacking cycle
         private bool isAttack;
+
+        // Screen location
+        private Rectangle destinationRectangle;
 
         public LinkThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -230,9 +239,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
 
         public bool isAttacking()
@@ -259,6 +268,8 @@ namespace Sprites
         // Represents if sprite is in an attack cycle
         private bool isAttack;
 
+        // Screen location
+        private Rectangle destinationRectangle;
         public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -308,9 +319,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+         public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return destinationRectangle;
         }
 
         public bool isAttacking()
