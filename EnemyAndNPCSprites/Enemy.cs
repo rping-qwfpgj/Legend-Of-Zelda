@@ -1,4 +1,6 @@
-﻿using Interfaces;
+﻿
+/*
+using Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -62,3 +64,4 @@ namespace Sprites
         }
     }
 }
+*/

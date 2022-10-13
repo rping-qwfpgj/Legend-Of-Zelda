@@ -10,6 +10,6 @@ namespace Interfaces
     {
         void Draw(SpriteBatch spriteBatch);
         void Update();
-        Vector2 getPosition();
+        Rectangle getHibox();
     }
 }

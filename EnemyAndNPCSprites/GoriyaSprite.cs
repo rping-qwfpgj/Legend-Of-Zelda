@@ -39,7 +39,7 @@ namespace Sprites
             if (counter > 0 && counter < speed)
             {
                 currentGoriya = movingUp;
-            }
+                }
             else if (counter >= speed && counter < speed*2)
             {
                 currentGoriya = movingDown;
