@@ -16,10 +16,13 @@ namespace Collision
 		private Room currRoom;
 		private List<ISprite> exclude;
 
+		
+
 		public CollisionDetector(Link link, List<ISprite> sprites, Room room)
 		{
 			this.currLink = link;
 			// this.CollsionHandler handler = handler;
+			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
 			this.objects.add(currLink.getLinkSprite);
@@ -35,16 +38,19 @@ namespace Collision
 			return objectRec.Intersects(otherRec);
 		}
 
-		// method to determine type of collision ie. top-bottom or side-side collision to pass to handler
-		void determineSide(ISprite obj, ISprite otherObj)
+		// method to determine type of collision to pass to handler
+		string determineSide(ISprite obj, ISprite otherObj)
 		{
-			
+		
+			// square square test
+				// return the side of the collision from the perspective of obj
+
 		}
 
 
 		public void update()
 		{
-			// refresh objects array with the current rooms objects and add link in there
+			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
 			objects.add(this.currLink);
 
@@ -66,7 +72,7 @@ namespace Collision
 						}
 					}
 				}
-				// now that we've checked all the possible collision interactins with this object, we don't need to agian for now
+				// now that we've checked all the possible collision interactions with this object, we don't need to agian for now
 				exclude.add(obj);
 			}
 
