@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using static Sprint0.Link;
+using System;
+using System.Collections.Generic;
+using Sprint0;
 using Interfaces;
 using Sprites;
+using LegendofZelda;
 
 namespace Collision
 {
@@ -11,10 +14,11 @@ namespace Collision
 	{
 
 		private Link currLink;
-		private List<ISprite> objects;
-		// private CollisionHandler handler;
 		private Room currRoom;
+		private List<ISprite> objects;
 		private List<ISprite> exclude;
+		// private CollisionHandler handler;
+
 
 		
 
@@ -22,37 +26,78 @@ namespace Collision
 		{
 			this.currLink = link;
 			// this.CollsionHandler handler = handler;
+
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
-			this.objects.add(currLink.getLinkSprite);
+			this.objects.add(currLink.currentLinkSprite);
 			this.exclude = new List<ISprite>();
 
 		}
 
-		public boolean detectCollision(ISprite obj, ISprite otherObj)
+		public bool detectCollision(ISprite obj, ISprite otherObj)
 		{
-			Rectangle objectRec = obj.getRectangle();
-			Rectangle otherRec = otherObj.getRectangle();
+			Rectangle objectRec = obj.getHitbox();
+			Rectangle otherRec = otherObj.getHitbox();
 
 			return objectRec.Intersects(otherRec);
 		}
 
-		// method to determine type of collision to pass to handler
 		string determineSide(ISprite obj, ISprite otherObj)
 		{
 		
-			// square square test
-				// return the side of the collision from the perspective of obj
+			Rectangle objectRec = obj.getHitbox();
+			Rectangle otherRec = otherObj.getHitbox();
+
+			// "square square" test
+			// return the side of the collision from the perspective of obj
+
+			
+			// first determine if top-bottom or left-right collision
+			string type = "";
+			Rectangle intersectionArea = Rectangle.Intersect(objectRec, otherRec);
+			
+			if(intersectionArea.Height < intersectionArea.Width)
+			{
+				type = "top-bottom";
+			} else
+			{
+				type = "left-right";
+			}
+
+			// then get obj's position in relation to otherObj to return side
+
+			if(type == "top-bottom")
+			{
+				if (objectRec.Location.Y < otherRec.Location.Y)
+				{
+					return "bottom";
+				} else
+				{
+					return "top";
+				}
+			} else if (type == "left-right")
+			{
+				if (objectRec.Location.X < otherRec.Location.X)
+				{
+					return "right";
+				} else
+				{
+					return "left";
+				}
+			}
 
 		}
 
-
+		/**
+		 *  Update method will constantly be checking all objects for a collision
+		 */
 		public void update()
 		{
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
 			objects.add(this.currLink);
+			this.exclude = new List<ISprite>();
 
 			
 			foreach (ISprite obj in this.objects)
