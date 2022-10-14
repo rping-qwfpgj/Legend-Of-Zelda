@@ -16,13 +16,13 @@ namespace Collision
 		private Link currLink;
 		private Room currRoom;
 		private List<ISprite> objects;
-		private List<ISprite> exclude;
+		private List<ISprite> alreadyChecked;
 		// private CollisionHandler handler;
 
 
 		
 
-		public CollisionDetector(Link link, List<ISprite> sprites, Room room)
+		public CollisionDetector(Link link, Room room)
 		{
 			this.currLink = link;
 			// this.CollsionHandler handler = handler;
@@ -31,7 +31,7 @@ namespace Collision
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
 			this.objects.add(currLink.currentLinkSprite);
-			this.exclude = new List<ISprite>();
+			this.alreadyChecked = new List<ISprite>();
 
 		}
 
@@ -96,8 +96,8 @@ namespace Collision
 		{
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			objects.add(this.currLink);
-			this.exclude = new List<ISprite>();
+			this.objects.add(this.currLink);
+			this.alreadyChecked.Clear();
 
 			
 			foreach (ISprite obj in this.objects)
@@ -109,7 +109,7 @@ namespace Collision
 						continue;
 					}
 
-					if (!exclude.contains(obj)) { // only check for collision if object is not in our blacklist (there may be a better way to do this?)
+					if (!exclude.contains(otherObj)) { // only check for collision if object is not in our blacklist (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
 							Console.WriteLine("collision detected!");
@@ -118,7 +118,7 @@ namespace Collision
 					}
 				}
 				// now that we've checked all the possible collision interactions with this object, we don't need to agian for now
-				exclude.add(obj);
+				this.alreadyChecked.add(obj);
 			}
 
 

@@ -11,6 +11,7 @@ using System.IO;
 using System.Xml.Linq;
 using LegendofZelda;
 using System.Collections.Generic;
+using Collision;
 
 
 // Creator: Tuhin Patel
@@ -32,6 +33,7 @@ public class Game1 : Game
         private Link link;
         public RoomLoader roomloader;
         public List<Room> rooms;
+        //private CollisionDetector collisionDetector;
 
         private KeyboardController keyboardController;
 
@@ -111,6 +113,8 @@ public class Game1 : Game
             roomloader = new(xml);
             rooms = roomloader.Parse();
 
+            //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+
         base.Initialize();
         }
 
@@ -133,6 +137,8 @@ public class Game1 : Game
             
             currentItem.Update(); 
             enemy.Update();
+
+            //collisionDetector.update();
             base.Update(gameTime);
         }
 
