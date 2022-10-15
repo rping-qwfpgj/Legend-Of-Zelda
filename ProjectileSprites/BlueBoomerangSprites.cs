@@ -28,6 +28,9 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
 
+        // On screen location
+        private Rectangle destinationRectangle;
+
         private static Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
             Vector2 origin = new(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
@@ -156,9 +159,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -178,6 +181,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         private static Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
@@ -309,9 +315,10 @@ namespace Sprites
 
             spriteBatch.End();
         }
-        public Vector2 getPosition()
+        
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -330,6 +337,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         private static Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
@@ -463,9 +473,9 @@ namespace Sprites
 
             spriteBatch.End();
         }
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -484,6 +494,8 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        private Rectangle destinationRectangle;
 
 
         private static Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
@@ -620,9 +632,9 @@ namespace Sprites
 
             spriteBatch.End();
         }
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 }

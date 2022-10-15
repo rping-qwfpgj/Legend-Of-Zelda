@@ -20,6 +20,8 @@ namespace Sprites {
         private bool movingHorizontally = true;
         private bool movingVertically = false;
 
+        private Rectangle destinationRectangle;
+
         public StalfosSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -72,9 +74,9 @@ namespace Sprites {
             spriteBatch.End();
     }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 }

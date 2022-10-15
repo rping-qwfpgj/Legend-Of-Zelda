@@ -24,9 +24,9 @@ namespace Sprites
         {
            //do Nothing
         }
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return new Rectangle(0,0,1,1);
         }
 
     }

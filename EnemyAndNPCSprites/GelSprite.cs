@@ -22,6 +22,9 @@ namespace Sprites
         private bool movingHorizontally = true;
         private bool movingVertically = false;
 
+        // On screen location
+        private Rectangle destinationRectangle;
+
         public GelSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -81,9 +84,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 }

@@ -17,6 +17,9 @@ namespace Sprites
         private float xPosition;
         private float yPosition;
 
+        // On screen position 
+        private Rectangle destinationRectangle;
+
         public FireUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -67,9 +70,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -86,6 +89,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition; 
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public FireRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -137,9 +143,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -157,6 +163,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
         
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public FireDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -207,9 +215,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -227,6 +235,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
      
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public FireLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -280,9 +290,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 }

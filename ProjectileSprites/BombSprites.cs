@@ -23,6 +23,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
         
 
         public BombUpSprite(Texture2D texture, float xPosition, float yPosition)
@@ -90,9 +93,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -110,6 +113,7 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
         
+        private Rectangle destinationRectangle;
 
         public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -177,9 +181,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -197,6 +201,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
         
         public BombRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -263,9 +270,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return this.destinationRectangle;
         }
     }
 
@@ -283,6 +290,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
         
 
         public BombLeftSprite(Texture2D texture, float xPosition, float yPosition)
@@ -352,9 +362,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0,0);
+            return this.destinationRectangle;
         }
     }
 

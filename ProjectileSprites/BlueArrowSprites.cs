@@ -23,6 +23,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
 
+        // On screen location
+        private Rectangle destinationRectangle
 
         public BlueArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -75,9 +77,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -95,6 +97,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
 
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public BlueArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -150,9 +154,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -170,6 +174,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
 
         public BlueArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
@@ -223,9 +230,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -244,6 +251,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
 
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public BlueArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -296,9 +305,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 }

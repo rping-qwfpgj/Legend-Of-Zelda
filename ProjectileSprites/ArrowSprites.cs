@@ -17,7 +17,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
-       
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public ArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -71,9 +73,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -91,6 +93,8 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
 
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public ArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -143,9 +147,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -164,6 +168,9 @@ namespace Sprites
         public float xPosition;
         public float yPosition;
         public bool isDamaged;
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public ArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -216,9 +223,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 
@@ -236,7 +243,9 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
-        
+
+        // On screen location
+        private Rectangle destinationRectangle;
 
         public ArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -289,9 +298,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return this.destinationRectangle;
         }
     }
 }

@@ -115,9 +115,10 @@ namespace Sprites
 
         }
 
-       public Vector2 getPosition()
+       public Rectangle getHitbox()
        {
-            return new Vector2(0, 0);
+            // TEMPORARY, working on what to put here
+            return this.attackOrbs[this.currOrb];
        }
     }
 }
