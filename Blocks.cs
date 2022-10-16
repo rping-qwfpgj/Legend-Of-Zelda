@@ -11,7 +11,7 @@ using Interfaces;
 //
 namespace Sprint0
 {
-    public class PlainTurqoiseBlock : ISprite
+    public class PlainTurqoiseBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -46,7 +46,7 @@ namespace Sprint0
         }
     }
 
-    public class DepthBlock : ISprite
+    public class DepthBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -81,7 +81,7 @@ namespace Sprint0
         }
     }
 
-    public class StatueOneBlock : ISprite
+    public class StatueOneBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -116,7 +116,7 @@ namespace Sprint0
         }
     }
 
-    public class StatueTwoBlock : ISprite
+    public class StatueTwoBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -151,7 +151,7 @@ namespace Sprint0
         }
     }
 
-    public class PlainBlackBlock : ISprite
+    public class PlainBlackBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -186,7 +186,7 @@ namespace Sprint0
         }
     }
 
-    public class PolkaDotBlock : ISprite
+    public class PolkaDotBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -221,7 +221,7 @@ namespace Sprint0
         }
     }
 
-    public class PlainDarkBlueBlock : ISprite
+    public class PlainDarkBlueBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -256,7 +256,7 @@ namespace Sprint0
         }
     }
 
-    public class StairsBlock : ISprite
+    public class StairsBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -291,7 +291,7 @@ namespace Sprint0
         }
     }
 
-    public class BricksBlock : ISprite
+    public class BricksBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -326,7 +326,7 @@ namespace Sprint0
         }
     }
 
-    public class StripedBlock : ISprite
+    public class StripedBlock : IBlockSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;

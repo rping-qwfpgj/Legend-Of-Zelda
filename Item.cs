@@ -5,7 +5,7 @@ using Interfaces;
 namespace Sprint0
 {
 
-    public class PurpleGemstone : ISprite
+    public class PurpleGemstone : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -40,7 +40,7 @@ namespace Sprint0
         }
     }
 
-    public class OrangeGemstone : ISprite
+    public class OrangeGemstone : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -75,7 +75,7 @@ namespace Sprint0
         }
     }
 
-    public class PurpleTriangle : ISprite
+    public class PurpleTriangle : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -110,7 +110,7 @@ namespace Sprint0
         }
     }
 
-    public class OrangeTriangle : ISprite
+    public class OrangeTriangle : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -146,7 +146,7 @@ namespace Sprint0
     }
 
 
-    public class OrangeMap : ISprite
+    public class OrangeMap : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -181,7 +181,7 @@ namespace Sprint0
         }
     }
 
-    public class SmallRedHeart : ISprite
+    public class SmallRedHeart : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -216,7 +216,7 @@ namespace Sprint0
         }
     }
 
-    public class SmallBlueHeart : ISprite
+    public class SmallBlueHeart : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -251,7 +251,7 @@ namespace Sprint0
         }
     }
 
-    public class BigHeart : ISprite
+    public class BigHeart : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -286,7 +286,7 @@ namespace Sprint0
         }
     }
 
-    public class Fairy : ISprite
+    public class Fairy : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -321,7 +321,7 @@ namespace Sprint0
         }
     }
 
-    public class Compass : ISprite
+    public class Compass : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -356,7 +356,7 @@ namespace Sprint0
         }
     }
 
-    public class Clock : ISprite
+    public class Clock : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -391,7 +391,7 @@ namespace Sprint0
         }
     }
 
-    public class Bow : ISprite
+    public class Bow : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -426,7 +426,7 @@ namespace Sprint0
         }
     }
 
-    public class Boomerang : ISprite
+    public class Boomerang : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -461,7 +461,7 @@ namespace Sprint0
         }
     }
 
-    public class Bomb : ISprite
+    public class Bomb : IItemSprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;

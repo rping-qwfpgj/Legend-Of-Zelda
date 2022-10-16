@@ -6,7 +6,7 @@ using System;
 
 namespace Sprites
 {
-    public class GelSprite : ISprite
+    public class GelSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;

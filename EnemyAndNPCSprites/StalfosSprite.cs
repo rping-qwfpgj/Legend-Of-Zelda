@@ -4,7 +4,7 @@ using Interfaces;
 using System;
 
 namespace Sprites {  
-    public class StalfosSprite : ISprite
+    public class StalfosSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;

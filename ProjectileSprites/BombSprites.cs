@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class BombUpSprite : ISprite
+    public class BombUpSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames
@@ -100,7 +100,7 @@ namespace Sprites
     }
 
 
-    public class BombDownSprite : ISprite
+    public class BombDownSprite : ILinkProjectileSprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -188,7 +188,7 @@ namespace Sprites
     }
 
 
-    public class BombRightSprite : ISprite
+    public class BombRightSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames
@@ -277,7 +277,7 @@ namespace Sprites
     }
 
 
-    public class BombLeftSprite : ISprite
+    public class BombLeftSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames
