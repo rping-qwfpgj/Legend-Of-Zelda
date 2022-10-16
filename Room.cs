@@ -14,10 +14,34 @@ namespace LegendofZelda
     public class Room
     {
         private List<ISprite> sprites;
+        private ISprite background;
+        private SpriteBatch spriteBatch;
         
-        public Room(List<ISprite> sprites)
+        public Room(List<ISprite> sprites, ISprite background,SpriteBatch spriteBatch )
         {
             this.sprites = sprites;
+            this.background = background;
+            this.spriteBatch = spriteBatch;
+        }
+
+        public void Initialize()
+        {
+
+            foreach (var sprite in sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
+
+            background.Draw(spriteBatch);
+        }
+
+        public void Draw()
+        {
+            foreach (var sprite in sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
+
         }
 
         public void Update()

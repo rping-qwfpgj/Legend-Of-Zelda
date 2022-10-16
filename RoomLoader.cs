@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Interfaces;
+using Microsoft.Xna.Framework;
+using SpriteFactories;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Formats.Asn1;
@@ -7,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+
 
 namespace LegendofZelda
 {
@@ -22,19 +26,27 @@ namespace LegendofZelda
             List<Room> returner = new List<Room>();
 
             // Query the data and write out a subset of contacts
-            var query = from c in xml.Root.Descendants("contact")
-                        where (int)c.Attribute("id") < 4
-                        select c.Element("firstName").Value + " " +
-                               c.Element("lastName").Value;
+            var blocks = from c in xml.Root.Descendants("Item")
+                         where c.Element("ObejctType").Value == "Block"
+                         select c;
 
 
-            foreach (string name in query)
+            foreach (var block in blocks)
             {
-                Console.WriteLine("Contact's Full Name: {0}", name);
+
+                string[] locationString = block.Element("Location").Value.Split(" ");
+                Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
+                switch (block.Element("ObjectName").Value)
+                {
+
+                  
+
+                }
+
+                Console.WriteLine("Contact's Full Name:");
             }
 
             
-
             return new List<Room>();
         }
     
