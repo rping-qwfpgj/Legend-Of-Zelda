@@ -96,7 +96,7 @@ namespace Collision
 		{
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			this.objects.Add(this.currLink);
+			this.objects.Add(this.currLink.currentLinkSprite);
 			this.alreadyChecked.Clear();
 
 			
@@ -109,7 +109,7 @@ namespace Collision
 						continue;
 					}
 
-					if (!alreadyChecked.contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
+					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
 							Console.WriteLine("collision detected!");

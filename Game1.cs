@@ -83,7 +83,7 @@ public class Game1 : Game
             
 
             itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
-            currentItem = new IItem(itemSpriteSheet);
+            currentItem = new Item(itemSpriteSheet);
 
             keyboardController.AddCommand(Keys.T, new PreviousBlockCommand(currentBlock));
             keyboardController.AddCommand(Keys.Y, new NextBlockCommand(currentBlock));
