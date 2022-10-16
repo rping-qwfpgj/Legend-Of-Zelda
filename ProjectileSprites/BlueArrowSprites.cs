@@ -81,6 +81,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
     public class BlueArrowDownSprite : ILinkProjectile
@@ -158,6 +163,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
 
@@ -234,6 +244,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
 
@@ -308,6 +323,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
         }
     }
 }

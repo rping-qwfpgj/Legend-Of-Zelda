@@ -12,5 +12,6 @@ namespace Interfaces
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
         new Rectangle getHitbox();
+        void collide();
     }
 }

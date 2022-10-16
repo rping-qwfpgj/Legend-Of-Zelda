@@ -29,5 +29,10 @@ namespace Sprites
             return new Rectangle(0,0,1,1);
         }
 
+        public void collide()
+        {
+            // do nothing
+        }
+
     }
 }

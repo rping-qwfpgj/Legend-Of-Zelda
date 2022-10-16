@@ -74,6 +74,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
+        }
     }
 
     public class FireRightSprite : ILinkProjectile
@@ -147,6 +152,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
+        }
     }
 
     public class FireDownSprite : ILinkProjectile
@@ -218,6 +228,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
         }
     }
 
@@ -293,6 +308,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
         }
     }
 }

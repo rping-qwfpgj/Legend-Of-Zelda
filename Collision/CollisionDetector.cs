@@ -49,7 +49,6 @@ namespace Collision
 			Rectangle objectRec = obj.getHitbox();
 			Rectangle otherRec = otherObj.getHitbox();
 
-			// "square square" test
 			// return the side of the collision from the perspective of obj
 
 			
@@ -89,7 +88,7 @@ namespace Collision
 
 		}
 
-		/**
+		/*
 		 *  Update method will constantly be checking all objects for a collision
 		 */
 		public void Update()
