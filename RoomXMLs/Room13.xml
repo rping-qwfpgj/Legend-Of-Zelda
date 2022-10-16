@@ -161,6 +161,13 @@
 			<ObjectName>StatueTwoBlock</ObjectName>
 			<Location>514 220</Location>
 		</Item>
+
+		<!--  Items  -->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>PurpleTriangle</ObjectName>
+			<Location>400 220</Location>
+		</Item>
 		
 		<!--  End Objects before first gap  -->
 	</Asset>

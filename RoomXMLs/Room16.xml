@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background16</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>406 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>352 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>460 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>298 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>StairsBlock</ObjectName>
+			<Location>406 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>514 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>352 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>460 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>406 308</Location>
+		</Item>
+		
+
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Trap</ObjectName>
+			<Location>150 150</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Trap</ObjectName>
+			<Location>180 130</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Trap</ObjectName>
+			<Location>550 180</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Trap</ObjectName>
+			<Location>560 320</Location>
+		</Item>
+
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>
