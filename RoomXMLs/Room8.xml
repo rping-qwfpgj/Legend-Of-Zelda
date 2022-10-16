@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background8</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Block  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>352 220</Location>
+		</Item>
+
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>

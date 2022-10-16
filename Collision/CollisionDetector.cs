@@ -21,7 +21,7 @@ namespace Collision
 
 
 		
-
+		
 		public CollisionDetector(Link link, Room room)
 		{
 			this.currLink = link;
@@ -92,7 +92,7 @@ namespace Collision
 		/**
 		 *  Update method will constantly be checking all objects for a collision
 		 */
-		public void update()
+		public void Update()
 		{
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();

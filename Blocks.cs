@@ -11,6 +11,356 @@ using Interfaces;
 //
 namespace Sprint0
 {
+    public class PlainTurqoiseBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public PlainTurqoiseBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(3, 11, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class DepthBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public DepthBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(20, 11, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class StatueOneBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public StatueOneBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(37, 11, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class StatueTwoBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public StatueTwoBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(54, 11, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class PlainBlackBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public PlainBlackBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(3, 28, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class PolkaDotBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public PolkaDotBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(20, 28, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class PlainDarkBlueBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public PlainDarkBlueBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(37, 28, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class StairsBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public StairsBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(54, 28, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class BricksBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public BricksBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(3, 45, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class StripedBlock : IBlockSprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int xPos;
+        private int yPos;
+        private int width = 16;
+        private int height = 16;
+
+        public StripedBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(20, 45, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
     //public class Block : ISprite
     //{
     //    private Texture2D texture;
@@ -84,355 +434,4 @@ namespace Sprint0
     //        return new Vector2(50, 50);
     //    }
     //}
-
-
-    public class PlainTurqoiseBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public PlainTurqoiseBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(3, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class DepthBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public DepthBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(20, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class StatueOneBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public StatueOneBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(37, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class StatueTwoBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public StatueTwoBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(54, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class PlainBlackBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public PlainBlackBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(3, 28, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class PolkaDotBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public PolkaDotBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(20, 28, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class PlainDarkBlueBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public PlainDarkBlueBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(37, 28, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class StairsBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public StairsBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(54, 28, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class BricksBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public BricksBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(3, 45, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
-
-    public class StripedBlock : ISprite
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int width = 16;
-        private int height = 16;
-
-        public StripedBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(20, 45, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle getHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
 }

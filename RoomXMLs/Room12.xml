@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background12</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Blocks  -->
+		<!--  Top Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>442 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>496 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>550 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 88</Location>
+		</Item>
+
+		<!--  Second Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>550 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 132</Location>
+		</Item>
+
+		<!--  Third Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 176</Location>
+		</Item>
+
+		<!--  Fourth Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 220</Location>
+		</Item>
+
+		<!--  Fifth Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>550 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 264</Location>
+		</Item>
+
+		<!--  Bottom Row  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>442 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>496 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>550 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>604 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>658 308</Location>
+		</Item>
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>

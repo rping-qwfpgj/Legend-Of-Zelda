@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class NoneSprite : ISprite
+    public class NoneSprite : ILinkProjectileSprite
     {
         public NoneSprite()
         {

@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class FireUpSprite : ISprite
+    public class FireUpSprite : ILinkProjectileSprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -76,7 +76,7 @@ namespace Sprites
         }
     }
 
-    public class FireRightSprite : ISprite
+    public class FireRightSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames
@@ -149,7 +149,7 @@ namespace Sprites
         }
     }
 
-    public class FireDownSprite : ISprite
+    public class FireDownSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames
@@ -221,7 +221,7 @@ namespace Sprites
         }
     }
 
-    public class FireLeftSprite : ISprite
+    public class FireLeftSprite : ILinkProjectileSprite
     {
 
         // Keep track of frames

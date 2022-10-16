@@ -7,7 +7,7 @@ using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
-    public class GoriyaSprite : ISprite
+    public class GoriyaSprite : IEnemySprite
     {
         private ISprite currentGoriya;
         private int counter = 0;
@@ -25,13 +25,14 @@ namespace Sprites
         {
             movingUp = new GoriyaMovingUpSprite(texture, xPosition, yPosition);
             movingDown = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
-            movingRight = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
+            movingRight = new GoriyaMovingRightSprite(texture, xPosition, yPosition);   
             movingLeft = new GoriyaMovingLeftSprite(texture,xPosition, yPosition);
             throwingRight = new GoriyaThrowingRightSprite(texture, xPosition, yPosition);
             throwingLeft = new GoriyaThrowingLeftSprite(texture, xPosition, yPosition);
             throwingUp = new GoriyaThrowingUpSprite(texture, xPosition, yPosition);
             throwingDown = new GoriyaThrowingDownSprite(texture, xPosition, yPosition);
         }
+
         public void Update()
         {
             counter++;
@@ -80,14 +81,13 @@ namespace Sprites
             currentGoriya.Draw(spriteBatch);
         }
 
-
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return currentGoriya.getHitbox();            
         }
     }
 
-    public class GoriyaMovingUpSprite : ISprite
+    public class GoriyaMovingUpSprite : IEnemySprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -128,13 +128,13 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(xPosition, yPosition);
+            return destinationRectangle;
         }
     }
 
-    public class GoriyaMovingDownSprite : ISprite
+    public class GoriyaMovingDownSprite : IEnemySprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -173,13 +173,13 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(xPosition, yPosition);
+            return destinationRectangle;
         }
     }
 
-    public class GoriyaMovingRightSprite : ISprite
+    public class GoriyaMovingRightSprite : IEnemySprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -215,14 +215,14 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(xPosition, yPosition);
+            return destinationRectangle;
         }
 
     }
 
-    public class GoriyaMovingLeftSprite : ISprite
+    public class GoriyaMovingLeftSprite : IEnemySprite
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -264,14 +264,14 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+       public Rectangle getHitbox()
         {
-            return new Vector2(xPosition, yPosition);
+            return destinationRectangle;
         }
 
     }
 
-    public class GoriyaThrowingRightSprite : ISprite
+    public class GoriyaThrowingRightSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -426,14 +426,14 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return destinationRectangle;
         }
 
     }
 
-    public class GoriyaThrowingLeftSprite : ISprite
+    public class GoriyaThrowingLeftSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -587,14 +587,14 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return destinationRectangle;
         }
 
     }
 
-    public class GoriyaThrowingDownSprite : ISprite
+    public class GoriyaThrowingDownSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -750,14 +750,14 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return destinationRectangle;
         }
 
     }
 
-    public class GoriyaThrowingUpSprite : ISprite
+    public class GoriyaThrowingUpSprite : IEnemySprite
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -914,9 +914,9 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
-            return new Vector2(0, 0);
+            return destinationRectangle;
         }
 
     }

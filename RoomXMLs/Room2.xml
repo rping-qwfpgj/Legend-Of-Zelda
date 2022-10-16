@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background2</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Left Group of Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>190 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>244 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>190 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>244 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>190 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>244 264</Location>
+		</Item>
+
+
+		<!--  Right Group of Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>504 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>558 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>504 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>558 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>504 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>558 264</Location>
+		</Item>
+
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>

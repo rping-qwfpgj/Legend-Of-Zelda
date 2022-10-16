@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background7</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Top Left Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>136 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>190 132</Location>
+		</Item>
+
+		<!--  Top Right Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>558 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>612 132</Location>
+		</Item>
+
+		<!--  Bottom Left Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>136 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>190 308</Location>
+		</Item>
+
+		<!--  Bottom Right Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>558 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>612 308</Location>
+		</Item>
+
+		<!--  Middle Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>352 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>406 220</Location>
+		</Item>
+
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>
