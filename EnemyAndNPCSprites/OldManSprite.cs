@@ -5,7 +5,7 @@ using System;
 
 namespace Sprites
 {
-    public class OldManSprite : ISprite
+    public class OldManSprite : IEnemySprite
     {
 
         // Texture to take sprites from

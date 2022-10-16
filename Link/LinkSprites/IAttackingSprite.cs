@@ -3,7 +3,6 @@ using System;
 using Microsoft.Xna.Framework;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
-using Interfaces;
 
 namespace Interfaces
 {
@@ -11,7 +10,7 @@ namespace Interfaces
     {
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
-        Vector2 getPosition();
+        new Rectangle getHitbox();
         bool isAttacking();
     }
 }

@@ -6,6 +6,7 @@ using SpriteFactories;
 using static System.Windows.Forms.LinkLabel;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Sprint0
 {
@@ -57,7 +58,8 @@ namespace Sprint0
 
         public void UpdatePosition()
         {
-            this.currentPosition = this.currentLinkSprite.getPosition();
+            Rectangle rectangle = this.currentLinkSprite.getHitbox();
+            this.currentPosition = new Vector2(rectangle.X, rectangle.Y);
         }
         public void Attack()
         {
