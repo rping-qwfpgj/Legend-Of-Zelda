@@ -18,6 +18,23 @@
 			<Location>352 220</Location>
 		</Item>
 
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Gel</ObjectName>
+			<Location>140 140</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Gel</ObjectName>
+			<Location>280 280</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Gel</ObjectName>
+			<Location>560 200</Location>
+		</Item>
+
 		<!--  End Objects before first gap  -->
 	</Asset>
 </XnaContent>
