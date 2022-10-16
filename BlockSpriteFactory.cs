@@ -1,92 +1,59 @@
-﻿//using Microsoft.Xna.Framework;
-//using Microsoft.Xna.Framework.Content;
-//using Microsoft.Xna.Framework.Graphics;
-//using sprites;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using static Sprint0.Link;
+using Interfaces;
+using Sprites;
+using Sprint0;
 
-//namespace Sprint0
-//{
-//    public class BlockSpriteFactory : ISpriteFactory
-//    {
-//        private Texture2D spriteSheet;
-//        private static BlockSpriteFactory instance = new BlockSpriteFactory();
-//        private Rectangle sourceRectangle;
-//        private Rectangle destinationRectangle = new Rectangle(50, 50, 64, 64);
+namespace SpriteFactories
+{
+    public class BlockSpriteFactory : ISpriteFactory
+    {
 
-//        public static BlockSpriteFactory Instance
-//        {
-//            get
-//            {
-//                return instance;
-//            }
-//        }
-//        private BlockSpriteFactory()
-//        {
-//        }
+        private Texture2D spriteSheet;
+        private readonly static BlockSpriteFactory instance = new();
 
-//        public void loadContent(ContentManager content)
-//        {
-//            spriteSheet = content.Load<Texture2D>("blocks");
+        public static BlockSpriteFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        private BlockSpriteFactory()
+        {
+        }
 
-//        }
+        public void loadContent(ContentManager content)
+        {
+            spriteSheet = content.Load<Texture2D>("BlockSprites");
+        }
 
-//        public void Initialize(Texture2D spriteSheet)
-//        {
-//            this.spriteSheet = spriteSheet;
-//        }
+        public ISprite CreateBlock(Vector2 location, string name)
+        {
 
-//        public ISprite CreateBlock(int blockNum)
-//        {
-//            switch (blockNum)
-//            {
-//                case 0:
-//                    sourceRectangle = new Rectangle(3, 11, 16, 16);
-//                    return new BlockZero(spriteSheet, sourceRectangle, destinationRectangle);
-//                    break;
-//                default:
-//            }
+            switch (name)
+            {
+                case "StatueOneBlock":
 
-//        }
-//    }
-//}
+                    return new StatueOneBlock(spriteSheet, (int)location.X, (int)location.Y);
+                  
+                case "StatueTwoBlock":
 
+                    return new StatueTwoBlock(spriteSheet, (int)location.X, (int)location.Y);
+            
+                   
+                case "PolkaDotBlock":
+                    return new PolkaDotBlock(spriteSheet, (int)location.X, (int)location.Y);
+                case "DepthBlock":
 
-//switch (currentBlockNum)
-//{
-//    case 0:
-//        sourceRectangle = new Rectangle(3, 11, 16, 16);
-//        break;
-//    case 1:
-//        sourceRectangle = new Rectangle(20, 11, 16, 16);
-//        break;
-//    case 2:
-//        sourceRectangle = new Rectangle(37, 11, 16, 16);
-//        break;
-//    case 3:
-//        sourceRectangle = new Rectangle(54, 11, 16, 16);
-//        break;
-//    case 4:
-//        sourceRectangle = new Rectangle(3, 28, 16, 16);
-//        break;
-//    case 5:
-//        sourceRectangle = new Rectangle(20, 28, 16, 16);
-//        break;
-//    case 6:
-//        sourceRectangle = new Rectangle(37, 28, 16, 16);
-//        break;
-//    case 7:
-//        sourceRectangle = new Rectangle(54, 28, 16, 16);
-//        break;
-//    case 8:
-//        sourceRectangle = new Rectangle(3, 45, 16, 16);
-//        break;
-//    case 9:
-//        sourceRectangle = new Rectangle(20, 45, 16, 16);
-//        break;
-//    default:
-//        break;
-//}
+                    return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y);
+             
+                default:
+                    return null;
+            }
+        }
+
+    }
+}

@@ -36,12 +36,8 @@ namespace LegendofZelda
 
                 string[] locationString = block.Element("Location").Value.Split(" ");
                 Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
-                switch (block.Element("ObjectName").Value)
-                {
 
-                  
-
-                }
+                BlockSpriteFactory.Instance.CreateBlock(location, block.Element("ObjectName").Value);
 
                 Console.WriteLine("Contact's Full Name:");
             }
