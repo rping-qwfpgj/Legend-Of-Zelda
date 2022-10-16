@@ -123,6 +123,14 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>658 308</Location>
 		</Item>
+
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>DragonBoss</ObjectName>
+			<Location>400 160</Location>
+		</Item>
+		
 		<!--  End Objects before first gap  -->
 	</Asset>
 </XnaContent>

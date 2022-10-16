@@ -9,8 +9,8 @@ namespace Interfaces
 {
     public interface IItem: ISprite
     {
-        new void Draw(SpriteBatch spriteBatch);
-        new void Update();
-        new Rectangle getHitbox();
+        void Draw(SpriteBatch spriteBatch);
+        void Update();
+        Rectangle getHitbox();
     }
 }

@@ -76,6 +76,33 @@
 			<Location>558 264</Location>
 		</Item>
 
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>300 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>130 120</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>320 230</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>570 130</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>550 270</Location>
+		</Item>
+
 		<!--  End Objects before first gap  -->
 	</Asset>
 </XnaContent>

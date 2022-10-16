@@ -112,6 +112,13 @@
 			<Location>622 308</Location>
 		</Item>
 
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Wallmaster</ObjectName>
+			<Location>90 200</Location>
+		</Item>
+
 		<!--  End Objects before first gap  -->
 	</Asset>
 </XnaContent>
