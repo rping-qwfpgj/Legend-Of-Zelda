@@ -16,14 +16,7 @@ namespace SpriteFactories
         }
     }
 
-    public class BlockSpriteFactory : ISpriteFactory
-    {
-        public void loadContent(ContentManager content)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
+  
     public class InteractableSpriteFactory : ISpriteFactory
     {
         public void loadContent(ContentManager content)
