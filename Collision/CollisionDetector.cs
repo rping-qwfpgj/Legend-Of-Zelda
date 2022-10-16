@@ -109,7 +109,7 @@ namespace Collision
 						continue;
 					}
 
-					if (!exclude.contains(otherObj)) { // only check for collision if object is not in our blacklist (there may be a better way to do this?)
+					if (!exclude.contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
 							Console.WriteLine("collision detected!");
