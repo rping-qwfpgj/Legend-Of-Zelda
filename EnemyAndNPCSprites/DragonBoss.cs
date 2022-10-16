@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Sprites
 {
-    public class DragonBossSprite : IEnemySprite
+    public class DragonBossSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;

@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class BoomerangUpSprite : ILinkProjectileSprite
+    public class BoomerangUpSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -163,7 +163,7 @@ namespace Sprites
 
 
 
-    public class BoomerangDownSprite : ILinkProjectileSprite
+    public class BoomerangDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -318,7 +318,7 @@ namespace Sprites
     }
 
 
-    public class BoomerangRightSprite : ILinkProjectileSprite
+    public class BoomerangRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -475,7 +475,7 @@ namespace Sprites
     }
 
 
-    public class BoomerangLeftSprite : ILinkProjectileSprite
+    public class BoomerangLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames

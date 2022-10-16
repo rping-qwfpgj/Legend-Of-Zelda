@@ -7,7 +7,7 @@ using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
-    public class GoriyaSprite : IEnemySprite
+    public class GoriyaSprite : IEnemy
     {
         private ISprite currentGoriya;
         private int counter = 0;
@@ -87,7 +87,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaMovingUpSprite : IEnemySprite
+    public class GoriyaMovingUpSprite : IEnemy
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -134,7 +134,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaMovingDownSprite : IEnemySprite
+    public class GoriyaMovingDownSprite : IEnemy
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -179,7 +179,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaMovingRightSprite : IEnemySprite
+    public class GoriyaMovingRightSprite : IEnemy
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -222,7 +222,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaMovingLeftSprite : IEnemySprite
+    public class GoriyaMovingLeftSprite : IEnemy
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -271,7 +271,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingRightSprite : IEnemySprite
+    public class GoriyaThrowingRightSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -433,7 +433,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingLeftSprite : IEnemySprite
+    public class GoriyaThrowingLeftSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -594,7 +594,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingDownSprite : IEnemySprite
+    public class GoriyaThrowingDownSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -757,7 +757,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingUpSprite : IEnemySprite
+    public class GoriyaThrowingUpSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;

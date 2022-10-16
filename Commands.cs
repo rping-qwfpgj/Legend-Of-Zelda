@@ -23,9 +23,9 @@ namespace Commands
 
 public class NextBlockCommand : ICommand
 {
-    private Block currentBlock;
+    private IBlock currentBlock;
 
-    public NextBlockCommand(Block block)
+    public NextBlockCommand(IBlock block)
     {
         this.currentBlock = block;
     }
@@ -45,9 +45,9 @@ public class NextBlockCommand : ICommand
 
     public class PreviousBlockCommand : ICommand
 {
-    private Block currentBlock;
+    private IBlock currentBlock;
 
-    public PreviousBlockCommand(Block block)
+    public PreviousBlockCommand(IBlock block)
     {
         this.currentBlock = block;
     }
@@ -70,9 +70,9 @@ public class NextBlockCommand : ICommand
 
 public class NextItemCommand : ICommand
 {
-    private Item currentItem;
+    private IItem currentItem;
 
-    public NextItemCommand(Item item)
+    public NextItemCommand(IItem item)
     {
         this.currentItem = item;
     }
@@ -95,9 +95,9 @@ public class NextItemCommand : ICommand
 
 public class PreviousItemCommand : ICommand
 {
-    private Item currentItem;
+    private IItem currentItem;
 
-    public PreviousItemCommand(Item item)
+    public PreviousItemCommand(IItem item)
     {
         this.currentItem = item;
     }
@@ -122,9 +122,9 @@ public class PreviousItemCommand : ICommand
 
 public class NextEnemyCommand : ICommand
 {
-    private Enemy currentEnemy;
+    private IEnemy currentEnemy;
 
-    public NextEnemyCommand(Enemy enemy)
+    public NextEnemyCommand(IEnemy enemy)
     {
         this.currentEnemy = enemy;
     }
@@ -147,9 +147,9 @@ public class NextEnemyCommand : ICommand
 
 public class PreviousEnemyCommand : ICommand
 {
-    private Enemy currentEnemy;
+    private IEnemy currentEnemy;
 
-    public PreviousEnemyCommand(Enemy enemy)
+    public PreviousEnemyCommand(IEnemy enemy)
     {
         this.currentEnemy = enemy;
     }
@@ -170,11 +170,11 @@ public class PreviousEnemyCommand : ICommand
 public class ResetGameCommand : ICommand
 {
     private Link currLink;
-    private Enemy currEnemy;
-    private Block currBlock;
-    private Item currItem;
+    private IEnemy currEnemy;
+    private IBlock currBlock;
+    private IItem currItem;
 
-    public ResetGameCommand(Link link, Enemy enemy, Block block, Item item)
+    public ResetGameCommand(Link link, IEnemy enemy, IBlock block, IItem item)
     {
        this.currLink = link;
        this.currEnemy = enemy;

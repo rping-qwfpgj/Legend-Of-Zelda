@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class ArrowUpSprite : ILinkProjectileSprite
+    public class ArrowUpSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -79,7 +79,7 @@ namespace Sprites
         }
     }
 
-    public class ArrowDownSprite : ILinkProjectileSprite
+    public class ArrowDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -154,7 +154,7 @@ namespace Sprites
     }
 
 
-    public class ArrowRightSprite : ILinkProjectileSprite
+    public class ArrowRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -230,7 +230,7 @@ namespace Sprites
     }
 
 
-    public class ArrowLeftSprite : ILinkProjectileSprite
+    public class ArrowLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
