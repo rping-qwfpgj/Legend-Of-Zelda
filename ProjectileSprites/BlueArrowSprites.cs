@@ -24,7 +24,7 @@ namespace Sprites
         public float yPosition;
 
         // On screen location
-        private Rectangle destinationRectangle
+        private Rectangle destinationRectangle;
 
         public BlueArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {

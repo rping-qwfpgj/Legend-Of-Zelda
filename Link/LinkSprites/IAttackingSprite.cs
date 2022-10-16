@@ -11,7 +11,7 @@ namespace Interfaces
     {
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
-        new Vector2 getPosition();
+        Vector2 getPosition();
         bool isAttacking();
     }
 }
