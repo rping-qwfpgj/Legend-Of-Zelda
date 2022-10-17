@@ -59,8 +59,7 @@ namespace LegendofZelda
 
                 string[] locationString = enemy.Element("Location").Value.Split(" ");
                 Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
-                //this code doesnt work because i would need a switchcase in enemy and NPC sprite factory to know which enemy needs to be created
-                //sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemy(location, enemy.Element("ObjectName").Value));
+                sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemy.Element("ObjectName").Value));
 
                 //testing purposes
                 Console.WriteLine("Check that it's getting all enemies{0}\n", enemy.Value);
