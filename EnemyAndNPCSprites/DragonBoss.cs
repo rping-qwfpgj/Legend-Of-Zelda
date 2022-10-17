@@ -122,8 +122,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -141,7 +141,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
             this.attackOrbs.Add(blueOrb);
@@ -202,8 +202,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -221,7 +221,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
             this.attackOrbs.Add(blueOrb);
@@ -282,8 +282,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -301,7 +301,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
             this.attackOrbs.Add(blueOrb);

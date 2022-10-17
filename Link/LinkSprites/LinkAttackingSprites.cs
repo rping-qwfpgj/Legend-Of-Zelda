@@ -26,7 +26,7 @@ namespace Sprites
         private bool isAttack;
 
         // Where this will be drawn on screen
-        private Rectangle desinationRectangle;
+        private Rectangle destinationRectangle;
 
         public LinkAttackUpSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
