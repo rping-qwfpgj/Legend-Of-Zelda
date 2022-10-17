@@ -30,13 +30,14 @@ public class Game1 : Game
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
     
-
     private Link link;
-    private List<Room> rooms;
-    private Room currentRoom;
+    public List<Room> rooms;
+    public Room currentRoom;
+    public int currentRoomIndex;
     //private CollisionDetector collisionDetector;
 
     private KeyboardController keyboardController;
+    private MouseController mouseController;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;
@@ -65,6 +66,11 @@ public class Game1 : Game
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
 
+        //Mouse Controller stuff
+        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
+             _graphics.PreferredBackBufferHeight / 2);
+        mouseController = new(this, center);
+
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
@@ -88,7 +94,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
 
         //ROOMLOADER STUFF
-        RoomLoader roomloader = new(_spriteBatch);
+        RoomLoader roomloader = new();
         string currentDirectory = Directory.GetCurrentDirectory();
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
@@ -102,6 +108,7 @@ public class Game1 : Game
 
         }
         currentRoom = rooms[0];
+        currentRoomIndex = 0;
 
         //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
         base.Initialize();
@@ -125,12 +132,8 @@ public class Game1 : Game
             Exit();
 
         keyboardController.Update();
+        mouseController.Update();
         link.Update();
-
-        //this will probably all be in room.update()?????
-        //currentItem.Update(); 
-        //enemy.Update();
-
         currentRoom.Update();
 
         //collisionDetector.update();
@@ -140,10 +143,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.BlueViolet);
-        currentRoom.Draw();
-        link.Draw(_spriteBatch);
-        currentItem.Draw(_spriteBatch);
-        enemy.Draw(_spriteBatch);           
+        currentRoom.Draw(_spriteBatch);
+        link.Draw(_spriteBatch);         
         base.Draw(gameTime);
     }
 }
