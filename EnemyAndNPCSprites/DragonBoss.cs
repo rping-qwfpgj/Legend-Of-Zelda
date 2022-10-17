@@ -21,6 +21,8 @@ namespace Sprites
         private float yPosition;
         private int direction = 1;
         
+        // On screen location
+        Rectangle dragonDestinationRectangle;
         // Projectile orbs
         private TopDragonAttackOrbSprite topAttackOrb;
         private MiddleDragonAttackOrbSprite middleAttackOrb;
@@ -71,7 +73,7 @@ namespace Sprites
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
             
 
-            Rectangle dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+            dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
             if (currFrames >= 0 && currFrames < 500)
             {
@@ -106,7 +108,7 @@ namespace Sprites
        public Rectangle getHitbox()
        {
             // TEMPORARY, working on what to put here
-            return this.attackOrbs[this.currOrb];
+            return this.dragonDestinationRectangle;
        }
     }
 
@@ -137,8 +139,8 @@ namespace Sprites
         public TopDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
@@ -217,8 +219,8 @@ namespace Sprites
         public MiddleDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
@@ -297,8 +299,8 @@ namespace Sprites
         public BottomDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
