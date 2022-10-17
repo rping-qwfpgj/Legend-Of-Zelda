@@ -9,7 +9,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class BlueArrowUpSprite : ISprite
+    public class BlueArrowUpSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -24,7 +24,7 @@ namespace Sprites
         public float yPosition;
 
         // On screen location
-        private Rectangle destinationRectangle
+        private Rectangle destinationRectangle;
 
         public BlueArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -81,9 +81,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
-    public class BlueArrowDownSprite : ISprite
+    public class BlueArrowDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -158,10 +163,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
 
-    public class BlueArrowRightSprite : ISprite
+    public class BlueArrowRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -234,10 +244,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
+        }
     }
 
 
-    public class BlueArrowLeftSprite : ISprite
+    public class BlueArrowLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -308,6 +323,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 6800;
         }
     }
 }

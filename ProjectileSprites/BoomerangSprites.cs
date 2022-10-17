@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class BoomerangUpSprite : ISprite
+    public class BoomerangUpSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -159,11 +159,16 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
 
-    public class BoomerangDownSprite : ISprite
+    public class BoomerangDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -315,10 +320,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
-    public class BoomerangRightSprite : ISprite
+    public class BoomerangRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -472,10 +482,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
-    public class BoomerangLeftSprite : ISprite
+    public class BoomerangLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -627,6 +641,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
         }
     }
 }

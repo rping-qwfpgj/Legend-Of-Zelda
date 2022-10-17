@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class NoneSprite : ISprite
+    public class NoneSprite : ILinkProjectile
     {
         public NoneSprite()
         {
@@ -27,6 +27,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return new Rectangle(0,0,1,1);
+        }
+
+        public void collide()
+        {
+            // do nothing
         }
 
     }

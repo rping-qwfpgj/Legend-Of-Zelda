@@ -5,7 +5,7 @@ using System;
 
 namespace Sprites
 {
-    public class OldManSprite : ISprite
+    public class OldManSprite : IEnemy
     {
 
         // Texture to take sprites from
@@ -41,6 +41,12 @@ namespace Sprites
         public Vector2 getPosition()
         {
             return new Vector2(this.xPosition, this.yPosition);
+        }
+        
+        public Rectangle getHitbox()
+        {
+            // change this to destination rectangle
+            return new Rectangle();
         }
     }
 }

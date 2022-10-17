@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
 using Commands;
+using Interfaces;
 using Sprites;
 using SpriteFactories;
 using Controllers;
@@ -24,9 +25,9 @@ public class Game1 : Game
         // Sprite sheet from which all sprites are obtained from
         public Texture2D linkSpriteSheet;
         public Texture2D blockSpriteSheet;
-        public Item currentItem;
+        public IItem currentItem;
         public Texture2D itemSpriteSheet;
-        public Enemy enemy;
+        public IEnemy enemy;
         public Texture2D enemySpriteSheet;
     
 

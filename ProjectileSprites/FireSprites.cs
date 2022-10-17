@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class FireUpSprite : ISprite
+    public class FireUpSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -74,9 +74,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
+        }
     }
 
-    public class FireRightSprite : ISprite
+    public class FireRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -147,9 +152,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
+        }
     }
 
-    public class FireDownSprite : ISprite
+    public class FireDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -219,9 +229,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
+        }
     }
 
-    public class FireLeftSprite : ISprite
+    public class FireLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -293,6 +308,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 2400;
         }
     }
 }

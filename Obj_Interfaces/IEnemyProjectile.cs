@@ -7,10 +7,11 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Interfaces
 {
-    public interface INonAttackingSprite: ISprite
+    public interface IEnemyProjectile: ISprite
     {
-        new void Draw(SpriteBatch spriteBatch);
-        new void Update();
-        new Rectangle getHitbox();
+        void Draw(SpriteBatch spriteBatch);
+        void Update();
+        Rectangle getHitbox();
+        void collide();
     }
 }

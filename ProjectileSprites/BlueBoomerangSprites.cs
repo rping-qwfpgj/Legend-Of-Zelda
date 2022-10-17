@@ -13,7 +13,7 @@ using Interfaces;
 namespace Sprites
 {
 
-    public class BlueBoomerangUpSprite : ISprite
+    public class BlueBoomerangUpSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -163,11 +163,16 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
 
-    public class BlueBoomerangDownSprite : ISprite
+    public class BlueBoomerangDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -320,10 +325,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
-    public class BlueBoomerangRightSprite : ISprite
+    public class BlueBoomerangRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -477,10 +487,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
+        }
     }
 
 
-    public class BlueBoomerangLeftSprite : ISprite
+    public class BlueBoomerangLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -635,6 +650,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = this.maxFrames/2;
         }
     }
 }

@@ -10,7 +10,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class BombUpSprite : ISprite
+    public class BombUpSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -97,10 +97,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 1800;
+        }
     }
 
 
-    public class BombDownSprite : ISprite
+    public class BombDownSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -185,10 +190,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 1800;
+        }
     }
 
 
-    public class BombRightSprite : ISprite
+    public class BombRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -274,10 +284,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 1800;
+        }
     }
 
 
-    public class BombLeftSprite : ISprite
+    public class BombLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -365,6 +380,11 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 1800;
         }
     }
 

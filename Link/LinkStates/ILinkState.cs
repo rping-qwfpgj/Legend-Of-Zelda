@@ -11,5 +11,6 @@ namespace Interfaces
         void MoveRight();
         void Redraw();
         void NoInput();
+        string Direction();
     }
 }

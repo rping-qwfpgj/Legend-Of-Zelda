@@ -33,6 +33,23 @@
 			<Location>558 264</Location>
 		</Item>
 
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Goriya</ObjectName>
+			<Location>130 130</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Goriya</ObjectName>
+			<Location>160 270</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Goriya</ObjectName>
+			<Location>230 150</Location>
+		</Item>
+
 		<!--  End Objects before first gap  -->
 	</Asset>
 </XnaContent>

@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class KeeseSprite : ISprite
+    public class KeeseSprite : IEnemy
     {
         // Keep track of frames
         private int currFrames = 0;

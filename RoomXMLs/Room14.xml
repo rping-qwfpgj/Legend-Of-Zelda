@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<!--  idk what asset type is supposed to be  -->
+	<Asset Type="MyDataTypes.LevelObjectData[]">
+		<!--  Start Objects before first gap  -->
+
+		<!--  Background  -->
+		<Item>
+			<ObjectType>Background</ObjectType>
+			<ObjectName>Background14</ObjectName>
+			<Location>0 0</Location>
+		</Item>
+
+		<!--  Blocks  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>82 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>136 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>136 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>190 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>244 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>244 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>298 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>352 264</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>406 176</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>460 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>514 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>514 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 220</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>568 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>622 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>622 352</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 88</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 132</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 176</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 308</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>676 352</Location>
+		</Item>
+		
+		
+		
+		
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>140 140</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>350 320</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Stalfos</ObjectName>
+			<Location>520 180</Location>
+		</Item>
+
+		<!--  End Objects before first gap  -->
+	</Asset>
+</XnaContent>

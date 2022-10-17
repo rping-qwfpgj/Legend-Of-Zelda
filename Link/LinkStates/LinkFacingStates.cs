@@ -70,6 +70,10 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(link.currentPosition,
                     link.isDamaged);
         }
+        public string Direction()
+        {
+            return "top";
+        }
     }
 
 
@@ -134,6 +138,10 @@ namespace States
         {
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(link.currentPosition,
                     link.isDamaged);
+        }
+        public string Direction()
+        {
+            return "bottom";
         }
     }
 
@@ -203,6 +211,10 @@ public class LinkFacingRightState : ILinkState
         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(link.currentPosition,
                 link.isDamaged);
     }
+    public string Direction()
+    {
+        return "right";
+    }
 }
 
 
@@ -267,6 +279,10 @@ public class LinkFacingLeftState : ILinkState
     {
         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(link.currentPosition,
                 link.isDamaged);
+    }
+    public string Direction()
+    {
+      return "left";
     }
 }
 

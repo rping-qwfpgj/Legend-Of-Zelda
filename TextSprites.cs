@@ -44,9 +44,9 @@ namespace Sprites
 
         }
 
-        public Vector2 getPosition()
+        public Rectangle getHitbox()
         {
             throw new NotImplementedException();
-        }
+        }        
     }
 }

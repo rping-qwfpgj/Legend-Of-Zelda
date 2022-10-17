@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Sprites
 {
-    public class ArrowUpSprite : ISprite
+    public class ArrowUpSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -77,9 +77,14 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 3200;
+        }
     }
 
-    public class ArrowDownSprite : ISprite
+    public class ArrowDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -151,10 +156,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 3200;
+        }
     }
 
 
-    public class ArrowRightSprite : ISprite
+    public class ArrowRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -227,10 +237,15 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void collide()
+        {
+            this.currFrames = 3200;
+        }
     }
 
 
-    public class ArrowLeftSprite : ISprite
+    public class ArrowLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -302,6 +317,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+        public void collide()
+        {
+            this.currFrames = 3200;
+        }
+
     }
 }
 

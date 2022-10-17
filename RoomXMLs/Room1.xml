@@ -10,6 +10,23 @@
 			<ObjectName>Background1</ObjectName>
 			<Location>0 0</Location>
 		</Item>
+
+		<!--  Enemies  -->
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Keese</ObjectName>
+			<Location>150 150</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Keese</ObjectName>
+			<Location>180 130</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Keese</ObjectName>
+			<Location>200 200</Location>
+		</Item>
 		
 		<!--  End Objects before first gap  -->
 	</Asset>

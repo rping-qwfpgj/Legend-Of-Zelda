@@ -7,32 +7,30 @@
 		<!--  Background  -->
 		<Item>
 			<ObjectType>Background</ObjectType>
-			<ObjectName>Background8</ObjectName>
+			<ObjectName>Background17</ObjectName>
 			<Location>0 0</Location>
-		</Item>
-
-		<!--  Block  -->
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>DepthBlock</ObjectName>
-			<Location>352 220</Location>
 		</Item>
 
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
-			<Location>140 140</Location>
+			<ObjectName>Keese</ObjectName>
+			<Location>150 150</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
-			<Location>280 280</Location>
+			<ObjectName>Keese</ObjectName>
+			<Location>180 130</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
-			<Location>560 200</Location>
+			<ObjectName>Keese</ObjectName>
+			<Location>200 200</Location>
+		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Keese</ObjectName>
+			<Location>200 200</Location>
 		</Item>
 
 		<!--  End Objects before first gap  -->
