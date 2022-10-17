@@ -18,7 +18,6 @@ namespace Collision
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
 		private CollisionDelegator handler;
-
 		
 		
 		public CollisionDetector(Link link, Room room)
