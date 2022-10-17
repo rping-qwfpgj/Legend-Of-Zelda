@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SpriteFactories;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,24 @@ namespace LegendofZelda
     public class RoomLoader
     {
         private XDocument xml;
-        public RoomLoader(XDocument xml)
+        private SpriteBatch spriteBatch;
+ 
+        public RoomLoader(XDocument xml, SpriteBatch spriteBatch)
         {
             this.xml = xml;
+            this.spriteBatch = spriteBatch;
         }
-        public List<Room> Parse()
-        {
-            List<Room> returner = new List<Room>();
 
-            // Query the data and write out a subset of contacts
+
+
+
+
+        public Room Parse()
+        {
+            
+            List<ISprite> sprites = new();
+            
+
             var blocks = from c in xml.Root.Descendants("Item")
                          where c.Element("ObejctType").Value == "Block"
                          select c;
@@ -36,14 +46,17 @@ namespace LegendofZelda
 
                 string[] locationString = block.Element("Location").Value.Split(" ");
                 Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
+                sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, block.Element("ObjectName").Value));
+                
 
-                BlockSpriteFactory.Instance.CreateBlock(location, block.Element("ObjectName").Value);
 
                 Console.WriteLine("Contact's Full Name:");
             }
 
-            
-            return new List<Room>();
+            Room returner = new(sprites, background, spriteBatch);
+
+
+            return returner;
         }
     
     }
