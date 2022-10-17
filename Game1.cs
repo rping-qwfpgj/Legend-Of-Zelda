@@ -16,9 +16,9 @@ using LegendofZelda.SpriteFactories;
 
 
 // Creator: Tuhin Patel
-//Brittaney Jin
+// Brittaney Jin
 // DJ "best ever teammate" Young
-//Lisha Nawani
+// Lisha Nawani
 // Vishal "good teamate" Kumar
 public class Game1 : Game
     {
