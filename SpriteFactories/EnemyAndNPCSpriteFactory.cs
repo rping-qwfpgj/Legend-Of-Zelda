@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Interfaces;
 using Sprites;
 
-namespace SpriteFactories
+namespace LegendofZelda.SpriteFactories
 {
     public class EnemyAndNPCSpriteFactory : ISpriteFactory
     {
@@ -26,7 +26,7 @@ namespace SpriteFactories
 
         public void Initialize(Texture2D spriteSheet)
         {
-            this.enemySpriteSheet = spriteSheet;
+            enemySpriteSheet = spriteSheet;
         }
 
         public ISprite CreateStalfos()

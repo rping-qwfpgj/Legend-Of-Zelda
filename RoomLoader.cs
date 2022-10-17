@@ -4,12 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
-using System.Formats.Asn1;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 
@@ -26,23 +21,20 @@ namespace LegendofZelda
             this.spriteBatch = spriteBatch;
         }
 
-
-
-
-
-        public Room Parse()
+        public Room ParseXML()
         {
             
             List<ISprite> sprites = new();
-
           
+            //parse background
             string backgroundString = xml.Root.Descendants("Item").Select(x => x.Element("Background").Value).FirstOrDefault();
             var backgroundSprite = BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), backgroundString);
 
+
+            //parse blocks
             var blocks = from c in xml.Root.Descendants("Item")
                          where c.Element("ObjectType").Value == "Block"
                          select c;
-
 
             foreach (var block in blocks)
             {
@@ -51,14 +43,32 @@ namespace LegendofZelda
                 Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
                 sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, block.Element("ObjectName").Value));
                 
-
                 //testing purposes
-                Console.WriteLine("Contact's Full Name:");
+                Console.WriteLine("Check that it's getting all blocks {0}\n", block.Value);
+                Console.WriteLine("Check that it's getting block types {0}\n", block.Element("ObjectName").Value);
+
             }
 
-            Room returner = new(sprites, backgroundSprite, spriteBatch);
+            //parse enemies and NPCs
+            var enemies = from c in xml.Root.Descendants("Item")
+                         where c.Element("ObjectType").Value == "Enemy"
+                         select c;
 
-            return returner;
+            foreach (var enemy in enemies)
+            {
+
+                string[] locationString = enemy.Element("Location").Value.Split(" ");
+                Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
+                //this code doesnt work because i would need a switchcase in enemy and NPC sprite factory to know which enemy needs to be created
+                //sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemy(location, enemy.Element("ObjectName").Value));
+
+                //testing purposes
+                Console.WriteLine("Check that it's getting all enemies{0}\n", enemy.Value);
+                Console.WriteLine("Check that it's getting enemy types {0}\n", enemy.Element("ObjectName").Value);
+            }
+
+            return new Room(sprites, backgroundSprite, spriteBatch);
+           
         }
     
     }

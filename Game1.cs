@@ -6,7 +6,6 @@ using Sprint0;
 using Commands;
 using Interfaces;
 using Sprites;
-using SpriteFactories;
 using Controllers;
 using System.IO;
 using System.Xml.Linq;
@@ -33,8 +32,9 @@ public class Game1 : Game
     
 
         private Link link;
-        public RoomLoader roomloader;
-        public List<Room> rooms;
+        private RoomLoader roomloader;
+        private List<Room> rooms;
+        private Room currentRoom;
         //private CollisionDetector collisionDetector;
 
         private KeyboardController keyboardController;
@@ -113,8 +113,7 @@ public class Game1 : Game
         roomloader = new(xml, _spriteBatch);
 
         for (int i = 0; i < 1; i++) { 
-            rooms.Add(roomloader.Parse());
-
+            rooms.Add(roomloader.ParseXML());
         }
 
             //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
@@ -137,10 +136,17 @@ public class Game1 : Game
                 Exit();
 
             keyboardController.Update();
-            link.Update();
+            //this will probably all be in room.update()?????
+            //link.Update();
             
-            currentItem.Update(); 
-            enemy.Update();
+            //currentItem.Update(); 
+            //enemy.Update();
+
+          
+            currentRoom.Update();
+
+            
+
 
             //collisionDetector.update();
             base.Update(gameTime);
