@@ -10,16 +10,17 @@ using LegendofZelda;
 
 namespace Collision
 {
-	public static class LinkProjectileBlockHandler
+	public static class EnemyBlockHandler
 	{		
-
-		public static void handleCollision(ILinkProjectile projectile, IBlock block, string side)
+		static EnemyBlockHandler()
 		{
-			// have the projectile set it's currFrame to its last frame of animation
-			projectile.collide();
+			
 		}
 
-        
-
+		public static void handleCollision(IEnemy enemy, IBlock block, string side)
+		{
+			// have the projectile set it's currFrame to its last frame of animation
+			//projectile.collide();
+		}        
 	}
 }

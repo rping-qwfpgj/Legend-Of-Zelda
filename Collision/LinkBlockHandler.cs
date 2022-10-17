@@ -10,15 +10,11 @@ using LegendofZelda;
 
 namespace Collision
 {
-	public class LinkBlockHandler
+	public static class LinkBlockHandler
 	{		
-		public LinkBlockHandler()
-		{
 		
-		}
-
-		public void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
-		{
+		public static void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
+		{ 
 			switch (side)
 			{
 				case "top":

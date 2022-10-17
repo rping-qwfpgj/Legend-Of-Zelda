@@ -1,6 +1,7 @@
 ﻿using System;
 using Interfaces;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 using Sprint0;
 
 namespace Collision
@@ -15,23 +16,53 @@ namespace Collision
 
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
+            string side = determineSide(obj, otherObj);
+
             if (obj is IEnemyProjectile) {
                 IEnemyProjectile projectile = obj as IEnemyProjectile;
                 if (otherObj is IBlock)
                 {
                     IBlock block = otherObj as IBlock;
-                    string side = determineSide(projectile, block);
                     EnemyProjectileBlockHandler.handleCollision(projectile, block, side);
                 }
+
             } else if (obj is ILinkProjectile)
             {
-
+                ILinkProjectile linkProjectile = obj as ILinkProjectile;
+                if(otherObj is IBlock)
+                {
+                    IBlock block = otherObj as IBlock;
+                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, side);
+                }else if (otherObj is IEnemy)
+                {
+                    IEnemy enemy = otherObj as IEnemy;                    
+                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side);
+                }
             } else if (obj is IEnemy)
             {
-
+                IEnemy enemy0 = obj as IEnemy;                
+                if(otherObj is IBlock)
+                {
+                    IBlock block = otherObj as IBlock; 
+                    EnemyBlockHandler.handleCollision(enemy0, block, side);
+                } else if (otherObj is IEnemy)
+                {
+                    IEnemy enemy1 = otherObj as IEnemy;                    
+                    EnemyEnemyHandler.handleCollision(enemy0, enemy1, side);
+                }
             } else // obj is Link's sprite
             {
-
+                if(otherObj is IEnemy)
+                {
+                    IEnemy enemy = otherObj as IEnemy;
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side);
+                } else if (otherObj is IBlock)
+                {
+                    IBlock block = otherObj as IBlock;
+                    Rectangle collisionRect = new Rectangle();
+                    collisionRectangle(ref obj, ref otherObj, ref collisionRect);
+                    LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
+                }
             }                                   			    
 		}
 
@@ -83,6 +114,13 @@ namespace Collision
                 }
             }
 
+        }
+
+        private void collisionRectangle(ref ISprite obj, ref ISprite otherObj, ref Rectangle collisionRect)
+        {
+            Rectangle rectangle1 = obj.getHitbox();
+            Rectangle rectangle2 = otherObj.getHitbox();
+            Rectangle.Intersect(ref rectangle1, ref rectangle2, out collisionRect);
         }
     }
 }
