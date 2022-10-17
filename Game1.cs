@@ -96,7 +96,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
 
         //ROOMLOADER STUFF
-        RoomLoader roomloader = new(_spriteBatch);
+        RoomLoader roomloader = new RoomLoader();
         // string currentDirectory = Directory.GetCurrentDirectory();
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
