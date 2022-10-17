@@ -65,6 +65,7 @@ public class Game1 : Game
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
+        BackgroundSpriteFactory.Instance.loadContent(Content);
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -99,7 +100,7 @@ public class Game1 : Game
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
        
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < 18; i++)
         { 
             var roomNumber = i.ToString();
             var purchaseOrderFilepath = Path.Combine(currentDirectory, fileFolder, roomNumber, xmlString);

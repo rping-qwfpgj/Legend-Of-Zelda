@@ -30,7 +30,7 @@ namespace LegendofZelda.SpriteFactories
             spriteSheet = content.Load<Texture2D>("allbackgrounds");
         }
 
-        public ISprite CreateBlock(Vector2 location, string name)
+        public ISprite CreateBackground(string name)
         {
 
             switch (name)
