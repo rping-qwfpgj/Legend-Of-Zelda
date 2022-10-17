@@ -27,7 +27,7 @@ namespace LegendofZelda.SpriteFactories
 
         public void loadContent(ContentManager content)
         {
-            spriteSheet = content.Load<Texture2D>("BlockSprites");
+            spriteSheet = content.Load<Texture2D>("blocks");
         }
 
         public ISprite CreateBlock(Vector2 location, string name)

@@ -137,8 +137,8 @@ namespace Sprites
         public TopDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition =xPosition;
+            this.yPosition =yPosition;
             this.destinationRectangle = (this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;

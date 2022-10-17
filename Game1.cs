@@ -63,26 +63,23 @@ public class Game1 : Game
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
+        BlockSpriteFactory.Instance.loadContent(Content);
 
+        
+        itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
 
         link = new Link(new Vector2(400, 240), _graphics);
+
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
         keyboardController.AddCommand(Keys.Up, new WalkUpCommand(link));
-
         keyboardController.AddCommand(Keys.S, new WalkDownCommand(link));
         keyboardController.AddCommand(Keys.Down, new WalkDownCommand(link));
-
         keyboardController.AddCommand(Keys.A, new WalkLeftCommand(link));
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(link));
-
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(link));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
-
-        blockSpriteSheet = Content.Load<Texture2D>("blocks");
-        itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
-
         keyboardController.AddCommand(Keys.U, new PreviousItemCommand(currentItem));
         keyboardController.AddCommand(Keys.I, new NextItemCommand(currentItem));
         keyboardController.AddCommand(Keys.V, new ThrowRightCommand(link));
@@ -117,10 +114,10 @@ public class Game1 : Game
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);   
-            font = Content.Load<SpriteFont>("Times New Roman");
+            
+          
 
-            // The spritefactory's fields are now initialized before any sprite classes are able to call it.
+           
 
         }
 
