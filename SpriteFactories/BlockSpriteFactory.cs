@@ -6,7 +6,7 @@ using Interfaces;
 using Sprites;
 using Sprint0;
 
-namespace SpriteFactories
+namespace LegendofZelda.SpriteFactories
 {
     public class BlockSpriteFactory : ISpriteFactory
     {
@@ -38,19 +38,25 @@ namespace SpriteFactories
                 case "StatueOneBlock":
 
                     return new StatueOneBlock(spriteSheet, (int)location.X, (int)location.Y);
-                  
+
                 case "StatueTwoBlock":
 
                     return new StatueTwoBlock(spriteSheet, (int)location.X, (int)location.Y);
-            
-                   
+
                 case "PolkaDotBlock":
+
                     return new PolkaDotBlock(spriteSheet, (int)location.X, (int)location.Y);
+
                 case "DepthBlock":
 
                     return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y);
-             
+
+                case "Background":
+
+                    return new BackgroundBlock(spriteSheet);
+
                 default:
+
                     return null;
             }
         }

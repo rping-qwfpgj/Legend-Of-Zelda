@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Sprint0;
-using SpriteFactories;
 using Interfaces;
 using States;
-
+using LegendofZelda.SpriteFactories;
 
 namespace States
 {

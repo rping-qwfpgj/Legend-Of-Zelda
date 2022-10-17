@@ -5,29 +5,29 @@ using static Sprint0.Link;
 using Interfaces;
 using Sprites;
 
-namespace SpriteFactories
+namespace LegendofZelda.SpriteFactories
 {
-        public class ProjectileSpriteFactory : ISpriteFactory
+    public class ProjectileSpriteFactory : ISpriteFactory
+    {
+
+        private Texture2D spriteSheet;
+        private readonly static ProjectileSpriteFactory instance = new();
+
+        public static ProjectileSpriteFactory Instance
         {
-
-            private Texture2D spriteSheet;
-            private readonly static ProjectileSpriteFactory instance = new();
-
-            public static ProjectileSpriteFactory Instance
+            get
             {
-                get
-                {
-                    return instance;
-                }
+                return instance;
             }
-            private ProjectileSpriteFactory()
-            {
-            }
+        }
+        private ProjectileSpriteFactory()
+        {
+        }
 
-            public void loadContent(ContentManager content)
-            {
-                spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
-            }
+        public void loadContent(ContentManager content)
+        {
+            spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
+        }
 
         public ISprite CreateThrowableUp(Vector2 linkPosition, Throwables throwable)
         {
@@ -57,7 +57,7 @@ namespace SpriteFactories
                 default:
                     return null;
             }
-              
+
         }
 
         public ISprite CreateThrowableDown(Vector2 linkPosition, Throwables throwable)

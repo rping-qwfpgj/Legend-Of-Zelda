@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Sprites;
 using Sprint0;
-using SpriteFactories;
 using States;
 using Interfaces;
+using LegendofZelda.SpriteFactories;
 
 namespace States
 {

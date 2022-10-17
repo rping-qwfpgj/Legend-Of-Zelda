@@ -8,13 +8,13 @@ using System.Runtime.CompilerServices;
 using Interfaces;
 using Sprites;
 
-namespace SpriteFactories
+namespace LegendofZelda.SpriteFactories
 {
     public class LinkSpriteFactory : ISpriteFactory
     {
         private Texture2D spriteSheet;
         private static LinkSpriteFactory instance = new LinkSpriteFactory();
-        
+
         public static LinkSpriteFactory Instance
         {
             get
@@ -58,7 +58,7 @@ namespace SpriteFactories
             return new LinkWalkingUpSprite(spriteSheet, linkPosition.X, linkPosition.Y, isDamaged);
         }
 
-      
+
         public ISprite CreateLinkWalkingDown(Vector2 linkPosition, bool isDamaged)
         {
             return new LinkWalkingDownSprite(spriteSheet, linkPosition.X, linkPosition.Y, isDamaged);
@@ -126,7 +126,7 @@ namespace SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
-        
+
         }
     }
 }

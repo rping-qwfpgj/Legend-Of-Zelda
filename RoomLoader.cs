@@ -1,7 +1,7 @@
 ﻿using Interfaces;
+using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SpriteFactories;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
@@ -17,8 +17,8 @@ namespace LegendofZelda
 {
     public class RoomLoader
     {
-        private XDocument xml;
-        private SpriteBatch spriteBatch;
+        private readonly XDocument xml;
+        private readonly SpriteBatch spriteBatch;
  
         public RoomLoader(XDocument xml, SpriteBatch spriteBatch)
         {
@@ -34,10 +34,13 @@ namespace LegendofZelda
         {
             
             List<ISprite> sprites = new();
-            
+
+          
+            string backgroundString = xml.Root.Descendants("Item").Select(x => x.Element("Background").Value).FirstOrDefault();
+            var backgroundSprite = BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), backgroundString);
 
             var blocks = from c in xml.Root.Descendants("Item")
-                         where c.Element("ObejctType").Value == "Block"
+                         where c.Element("ObjectType").Value == "Block"
                          select c;
 
 
@@ -49,12 +52,11 @@ namespace LegendofZelda
                 sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, block.Element("ObjectName").Value));
                 
 
-
+                //testing purposes
                 Console.WriteLine("Contact's Full Name:");
             }
 
-            Room returner = new(sprites, background, spriteBatch);
-
+            Room returner = new(sprites, backgroundSprite, spriDteBatch);
 
             return returner;
         }
