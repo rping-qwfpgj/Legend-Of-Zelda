@@ -143,7 +143,7 @@ public class Game1 : Game
         link.Update();
         currentRoom.Update();
 
-        collisionDetector.update();
+        collisionDetector.Update();
         base.Update(gameTime);
     }
 

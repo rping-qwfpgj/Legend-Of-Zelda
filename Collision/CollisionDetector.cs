@@ -23,7 +23,7 @@ namespace Collision
 		public CollisionDetector(Link link, Room room)
 		{
 			this.currLink = link;
-			this.delegator = new CollisionDelegator(link);
+			this.handler = new CollisionDelegator(link);
 
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
