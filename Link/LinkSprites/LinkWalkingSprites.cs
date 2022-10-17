@@ -50,7 +50,7 @@ namespace Sprites
             {
                 // Create source and destination rectangles
                 Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-                Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
 
                 // Draw the first step of link walking up
                 if (currFrames >= 0 && currFrames <= 1000)
@@ -67,17 +67,17 @@ namespace Sprites
             spriteBatch.Begin();
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             }
             spriteBatch.End();            
         }
          public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
             
         }
@@ -127,18 +127,18 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
 
             // Draw the first step of link walking down
             if (currFrames >= 0 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(1, 11, 15, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
             }
             else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking down
             {
                 sourceRectangle = new Rectangle(19, 11, 13, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             }
 
             // Draw the sprite
@@ -146,17 +146,17 @@ namespace Sprites
 
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             } else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             }
             spriteBatch.End();
         }
 
         public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
     }
 
@@ -204,7 +204,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
 
             // Draw the first step of link walking side to side
             if (currFrames >= 0 && currFrames <= 1000)
@@ -223,17 +223,17 @@ namespace Sprites
             if (isDamaged)
             {
                 // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             } else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1); 
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1); 
             }
             spriteBatch.End();
         }
 
         public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
     }
 
@@ -249,7 +249,6 @@ namespace Sprites
         // X and Y positions of the sprite
         private float xPosition;
         private float yPosition;
-
         private bool isDamaged;
 
         private Rectangle destinationRectangle;
@@ -281,7 +280,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = sourceRectangle = new Rectangle(35, 11, 15, 16);
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
 
             // Draw the first step of link walking side to side
             if (currFrames >= 0 && currFrames <= 1000)
@@ -299,17 +298,17 @@ namespace Sprites
 
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             } else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White); 
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White); 
             }
             spriteBatch.End();
         }
 
         public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
     }
 }

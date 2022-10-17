@@ -23,12 +23,12 @@ namespace Sprites
         
         // On screen location
         Rectangle dragonDestinationRectangle;
+
         // Projectile orbs
         private TopDragonAttackOrbSprite topAttackOrb;
         private MiddleDragonAttackOrbSprite middleAttackOrb;
         private BottomDragonAttackOrbSprite bottomAttackOrb;
-         // On Screen location
-        private Rectangle destinationRectangle;
+        
         public DragonBossSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -73,7 +73,7 @@ namespace Sprites
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
             
 
-            dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+            this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
             if (currFrames >= 0 && currFrames < 500)
             {
@@ -95,7 +95,7 @@ namespace Sprites
             }
             spriteBatch.Begin();
 
-            spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+            spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
             topAttackOrb.Draw(spriteBatch);
             middleAttackOrb.Draw(spriteBatch);
             bottomAttackOrb.Draw(spriteBatch);

@@ -50,7 +50,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
@@ -58,11 +58,11 @@ namespace Sprites
             {
 
                 if ((currFrames/100) % 2 == 0) {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 }
                     
             }
@@ -129,7 +129,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
@@ -139,10 +139,10 @@ namespace Sprites
 
                 if ((currFrames / 100) % 2 == 0)
                 {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
                 } else
                 {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 }
             }
             spriteBatch.End();
@@ -207,7 +207,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
@@ -215,11 +215,11 @@ namespace Sprites
             {
                 if ((currFrames / 100) % 2 == 0)
                 {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 }
             }
             spriteBatch.End();
@@ -284,7 +284,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
@@ -294,11 +294,11 @@ namespace Sprites
                 {
                     if ((currFrames / 100) % 2 == 0)
                     {
-                        spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                        spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
                     }
                     else
                     {
-                        spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                        spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                     }
                 }
             }

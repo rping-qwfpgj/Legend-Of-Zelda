@@ -63,13 +63,13 @@ namespace Sprites {
         {
         
             Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16); 
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
 
             spriteBatch.Begin();
             if ((currFrames / 100) % 2 != 0) {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             } else {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
     }
