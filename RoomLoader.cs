@@ -56,7 +56,7 @@ namespace LegendofZelda
                 Console.WriteLine("Contact's Full Name:");
             }
 
-            Room returner = new(sprites, backgroundSprite, spriDteBatch);
+            Room returner = new(sprites, backgroundSprite, spriteBatch);
 
             return returner;
         }

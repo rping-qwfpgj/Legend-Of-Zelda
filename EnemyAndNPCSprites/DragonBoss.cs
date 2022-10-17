@@ -62,7 +62,7 @@ namespace Sprites
             // Update the orbs
             topAttackOrb.Update();
             middleAttackOrb.Update();
-            bottomAttackOrb.Update()
+            bottomAttackOrb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -96,7 +96,7 @@ namespace Sprites
             spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
             topAttackOrb.Draw(spriteBatch);
             middleAttackOrb.Draw(spriteBatch);
-            bottomAttackOrb.Draw(spriteBatch)
+            bottomAttackOrb.Draw(spriteBatch);
            
             spriteBatch.End();
             

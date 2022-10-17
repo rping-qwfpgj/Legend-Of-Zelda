@@ -832,7 +832,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        public BoomerangGoingUpSprite(Texture2D texture, xPosition, yPosition)
+        public BoomerangGoingUpSprite(Texture2D texture, int xPosition, int yPosition)
         {
             this.texture = texture;
             this.xBoomerangPosition = xPosition;
