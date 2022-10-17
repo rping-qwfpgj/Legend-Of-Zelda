@@ -32,6 +32,10 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+
+            topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+            middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+            bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
@@ -167,7 +171,7 @@ namespace Sprites
             this.yPosition -= currFrames; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
 
         }
 
@@ -247,7 +251,7 @@ namespace Sprites
            
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
 
         }
 
@@ -327,7 +331,7 @@ namespace Sprites
             this.yPosition -= currFrames; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
 
         }
 
