@@ -47,7 +47,7 @@ namespace Sprites
                 this.yPosition -= 5;
             }
 
-            this.destinationRectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
 
             // Reset frames when at max
             if(currFrames == maxFrames)
@@ -60,7 +60,7 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // By default, draw the hand without the pinch
-            destinationRectangle sourceRectangle = new Rectangle(393, 11, 16, 16);
+            Rectangle sourceRectangle = new Rectangle(393, 11, 16, 16);
 
             // Otherwise, have it pinch
             if (currFrames > 2000)
