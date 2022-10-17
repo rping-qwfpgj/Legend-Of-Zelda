@@ -30,6 +30,7 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
+    public ISprite background;
     
     private Link link;
     public List<Room> rooms;
@@ -96,15 +97,18 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
 
         //ROOMLOADER STUFF
+
+        /*
         RoomLoader roomloader = new RoomLoader();
         // string currentDirectory = Directory.GetCurrentDirectory();
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
        
+      
         for (int i = 0; i < 18; i++)
         { 
             var roomNumber = i.ToString();
-            var purchaseOrderFilePath = fileFolder + roomNumber + xmlString;       
+            var purchaseOrderFilePath = "C:\\Users\\firep\\Source\\Repos\\Sprint3_LegendOfZelda\\roomXMLs\\Room" + roomNumber + ".xml";//fileFolder + roomNumber + xmlString;       
             // var purchaseOrderFilepath = Path.Combine(fileName);
             XDocument xml = XDocument.Load(purchaseOrderFilePath);
             rooms.Add(roomloader.ParseXML(xml));
@@ -112,11 +116,13 @@ public class Game1 : Game
         }
         currentRoom = rooms[0];
         currentRoomIndex = 0;
+        */
 
         //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+
         base.Initialize();
     }
-
+    
     protected override void LoadContent()
     {
 
@@ -126,6 +132,8 @@ public class Game1 : Game
         //EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         //BlockSpriteFactory.Instance.loadContent(Content);
         //ItemSpriteFactory.Instance.loadContent(Content);
+        background = BackgroundSpriteFactory.Instance.CreateBackground("Background9");
+
 
     }
 
@@ -137,7 +145,7 @@ public class Game1 : Game
         keyboardController.Update();
         mouseController.Update();
         link.Update();
-        currentRoom.Update();
+        //currentRoom.Update();
 
         //collisionDetector.update();
         base.Update(gameTime);
@@ -146,7 +154,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.BlueViolet);
-        currentRoom.Draw(_spriteBatch);
+        //currentRoom.Draw(_spriteBatch);
+        background.Draw(_spriteBatch);
         link.Draw(_spriteBatch);         
         base.Draw(gameTime);
     }
