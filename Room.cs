@@ -9,22 +9,17 @@ namespace LegendofZelda
     {
         private List<ISprite> sprites;
         private ISprite background;
-        private SpriteBatch spriteBatch;
         
-        public Room(List<ISprite> sprites, ISprite background,SpriteBatch spriteBatch )
+        public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;
             this.background = background;
-            this.spriteBatch = spriteBatch;
         }
 
-        public void DrawBackground()
+        public void Draw(SpriteBatch spriteBatch)
         {
+
             background.Draw(spriteBatch);
-        }
-
-        public void Draw()
-        {
             foreach (var sprite in sprites)
             {
                 sprite.Draw(spriteBatch);
@@ -34,14 +29,18 @@ namespace LegendofZelda
 
         public void Update()
         {
+
            foreach (var sprite in sprites)
             {
                 sprite.Update();
             }
+
         }
+
         public List<ISprite> ReturnObjects()
         {
             return sprites;
         }
+
     }
 }

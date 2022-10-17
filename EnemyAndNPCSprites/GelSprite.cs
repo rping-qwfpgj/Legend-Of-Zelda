@@ -67,20 +67,20 @@ namespace Sprites
         {
 
             Rectangle sourceRectangle;
-            Rectangle destinationRectangle;
+            
 
             spriteBatch.Begin();
             if ((currFrames / 100) % 2 != 0)
             {
                 sourceRectangle = new Rectangle(1, 16, 8, 8);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
             }
             else
             {
                 sourceRectangle = new Rectangle(11, 15, 6, 9);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 24, 36);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 24, 36);
             }
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
 

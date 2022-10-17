@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Sprites;
 using Interfaces;
 
-//
+
 namespace Sprint0
 {
     public class PlainTurqoiseBlock : IBlock

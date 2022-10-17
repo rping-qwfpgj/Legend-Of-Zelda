@@ -54,25 +54,25 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(1, 109, 16, 16); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
 
             // Frame logic
             if(currFrames >= 0 && currFrames <= 500)
             {
                 sourceRectangle = new Rectangle(1, 109, 16, 16);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64);
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64);
             } else if (currFrames > 500 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(18, 97, 16, 28);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos - 48, 64, 112); // Y position is current rectangle height - inital rectangle's height
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos - 48, 64, 112); // Y position is current rectangle height - inital rectangle's height
             } else if (currFrames > 1000 && currFrames <= 1500)
             {
                 sourceRectangle = new Rectangle(37, 98, 12, 27);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos - 44, 48, 108);
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos - 44, 48, 108);
             } else if (currFrames > 1500 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(54, 106, 12, 19);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos -12, 48, 76);
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos -12, 48, 76);
             }
 
             spriteBatch.Begin();
@@ -145,28 +145,28 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(1, 47, 16, 15); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
 
             // Frame logic
             if (currFrames >= 0 && currFrames <= 500)
             {
                 sourceRectangle = new Rectangle(1, 47, 16, 15);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 60); 
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 60); 
             }
             else if (currFrames > 500 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(18, 47, 16, 27);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 48, 64, 108); // Y position = yPos +(currRectangle height - originalRectangle height)
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 48, 64, 108); // Y position = yPos +(currRectangle height - originalRectangle height)
             }
             else if (currFrames > 1000 && currFrames <= 1500)
             {
                 sourceRectangle = new Rectangle(35, 47, 15, 23);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 32 , 60, 92);
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 32 , 60, 92);
             }
             else if (currFrames > 1500 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(53, 47, 13, 19);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 16, 52, 76); 
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos + 16, 52, 76); 
             }
             
             spriteBatch.Begin();
@@ -241,28 +241,28 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(1, 78, 15, 15); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
 
             // Frame logic
             if (currFrames >= 0 && currFrames <= 500)
             {
                 sourceRectangle = new Rectangle(1, 78, 15, 15);
-                destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 60, 60); 
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 60, 60); 
             }
             else if (currFrames > 500 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(18, 78, 27, 15);
-                destinationRectangle = new Rectangle((int)this.xPos - 48, (int)this.yPos, 108, 60); // xPos = xPos - (currRectangleWidth - originalRectangleWidth)
+                this.destinationRectangle = new Rectangle((int)this.xPos - 48, (int)this.yPos, 108, 60); // xPos = xPos - (currRectangleWidth - originalRectangleWidth)
             }
             else if (currFrames > 1000 && currFrames <= 1500)
             {
                 sourceRectangle = new Rectangle(46, 78, 23, 15);
-                destinationRectangle = new Rectangle((int)this.xPos - 32, (int)this.yPos, 92, 60);
+                this.destinationRectangle = new Rectangle((int)this.xPos - 32, (int)this.yPos, 92, 60);
             }
             else if (currFrames > 1500 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(70, 77, 19, 16);
-                destinationRectangle = new Rectangle((int)this.xPos - 16, (int)this.yPos, 76, 64); 
+                this.destinationRectangle = new Rectangle((int)this.xPos - 16, (int)this.yPos, 76, 64); 
             }
 
             spriteBatch.Begin();
@@ -281,7 +281,7 @@ namespace Sprites
 
         public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public bool isAttacking()
@@ -336,7 +336,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(-1, 47, 16, 15); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 64, 64); // Where to draw on screen
 
             // Frame logic
             if (currFrames >= 0 && currFrames <= 500)

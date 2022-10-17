@@ -66,6 +66,8 @@ public class Game1 : Game
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
+        BackgroundSpriteFactory.Instance.loadContent(Content);
+
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
              _graphics.PreferredBackBufferHeight / 2);
@@ -99,7 +101,7 @@ public class Game1 : Game
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
        
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < 18; i++)
         { 
             var roomNumber = i.ToString();
             var purchaseOrderFilePath = fileFolder + roomNumber + xmlString;       
@@ -135,11 +137,6 @@ public class Game1 : Game
         keyboardController.Update();
         mouseController.Update();
         link.Update();
-
-        //this will probably all be in room.update()?????
-        //currentItem.Update(); 
-        //enemy.Update();
-
         currentRoom.Update();
 
         //collisionDetector.update();
@@ -149,10 +146,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.BlueViolet);
-        currentRoom.Draw();
-        link.Draw(_spriteBatch);
-        currentItem.Draw(_spriteBatch);
-        enemy.Draw(_spriteBatch);           
+        currentRoom.Draw(_spriteBatch);
+        link.Draw(_spriteBatch);         
         base.Draw(gameTime);
     }
 }

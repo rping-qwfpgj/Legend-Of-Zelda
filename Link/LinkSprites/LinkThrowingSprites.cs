@@ -55,7 +55,7 @@ namespace Sprites
         {
           
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 4*16, 4*16); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 4*16, 4*16); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -68,17 +68,17 @@ namespace Sprites
 
             if (!isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             } else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             }
             spriteBatch.End();
         }
 
          public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public bool isAttacking()
@@ -134,7 +134,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 60); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -147,18 +147,18 @@ namespace Sprites
             spriteBatch.Begin();
             if (!isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             }
             spriteBatch.End();
         }
 
          public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public bool isAttacking()
@@ -215,7 +215,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -229,19 +229,19 @@ namespace Sprites
             if (isDamaged)
             {
                 // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             }
             else
             {
                 // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
         }
 
         public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public bool isAttacking()
@@ -297,7 +297,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -310,18 +310,18 @@ namespace Sprites
             spriteBatch.Begin();
             if (!isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
             }
             spriteBatch.End();
         }
 
          public Rectangle getHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public bool isAttacking()
