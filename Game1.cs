@@ -35,7 +35,7 @@ public class Game1 : Game
     public Room currentRoom;
     public int currentRoomIndex;
     public CollisionDetector collisionDetector;
-
+    public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
 
@@ -67,7 +67,7 @@ public class Game1 : Game
         BackgroundSpriteFactory.Instance.loadContent(Content);
 
         link = new Link(new Vector2(400, 240), _graphics);
-        // collisionDetector = new CollisionDetector();
+        
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -95,28 +95,35 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
+        background = BackgroundSpriteFactory.Instance.CreateBackground("Background1");
+        List<ISprite> roomSprites = new List<ISprite>();
+        roomSprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(200, 200), "DepthBlock"));
+        roomSprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2(600, 250), "OldMan"));
+        roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(300, 300), "PurpleTriangle"));
+        currentRoom = new Room(roomSprites, background);
+        collisionDetector = new CollisionDetector(link, currentRoom);
 
         //ROOMLOADER STUFF
 
-        
-        RoomLoader roomloader = new RoomLoader();
-        // string currentDirectory = Directory.GetCurrentDirectory();
-        string fileFolder = "Content/RoomXMLs/Room";
-        string xmlString = ".xml";
-       
-      
-        for (int i = 0; i < 18; i++)
-        { 
-            var roomNumber = i.ToString();
-            var purchaseOrderFilePath = fileFolder + roomNumber + ".xml";    
-            // var purchaseOrderFilepath = Path.Combine(fileName);
-            XDocument xml = XDocument.Load(purchaseOrderFilePath);
-            rooms.Add(roomloader.ParseXML(xml));
 
-        }
-        currentRoom = rooms[0];
-        currentRoomIndex = 0;
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+        //RoomLoader roomloader = new RoomLoader();
+        //// string currentDirectory = Directory.GetCurrentDirectory();
+        //string fileFolder = "Content/RoomXMLs/Room";
+        //string xmlString = ".xml";
+
+
+        //for (int i = 0; i < 18; i++)
+        //{ 
+        //    var roomNumber = i.ToString();
+        //    var purchaseOrderFilePath = fileFolder + roomNumber + ".xml";    
+        //    // var purchaseOrderFilepath = Path.Combine(fileName);
+        //    XDocument xml = XDocument.Load(purchaseOrderFilePath);
+        //    rooms.Add(roomloader.ParseXML(xml));
+
+        //}
+        //currentRoom = rooms[0];
+        //currentRoomIndex = 0;
+        //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
 
         base.Initialize();
     }

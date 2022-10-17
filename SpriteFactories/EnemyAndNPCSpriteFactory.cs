@@ -67,7 +67,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OldMan":
 
-                    return new OldManSprite(enemySpriteSheet, 600, 250);
+                    return new OldManSprite(oldManSpriteSheet, 600, 250);
 
                 default:
 

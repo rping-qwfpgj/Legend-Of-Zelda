@@ -74,10 +74,11 @@ namespace Collision
 				}
 				// now that we've checked all the possible collision interactions with this object, we don't need to agian for now
 				this.alreadyChecked.Add(obj);
+
 			}
+            this.objects.Remove(this.currLink.currentLinkSprite);
 
-
-		}
+        }
 
 
 
