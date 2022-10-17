@@ -26,7 +26,7 @@ namespace Collision
                 IAttackingSprite currLinkSprite = (IAttackingSprite)link.currentLinkSprite;
                 if (currLinkSprite.isAttacking() && link.currentState.Direction() == side )
                 {
-                    enemy.TakeDamage(); // may need to change this to whatever name Tuhin gives takeDamage method in enemy class
+                    // enemy.TakeDamage(); // may need to change this to whatever name Tuhin gives takeDamage method in enemy class
                     /*
 					 * for future:
 					 * if enemy.health <= 0

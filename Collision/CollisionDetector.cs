@@ -17,8 +17,7 @@ namespace Collision
 		private Room currRoom;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
-		// private CollisionHandler handler;
-
+		private CollisionDelegator handler;
 
 		
 		
@@ -32,6 +31,7 @@ namespace Collision
 			this.objects = room.ReturnObjects();
 			this.objects.Add(currLink.currentLinkSprite);
 			this.alreadyChecked = new List<ISprite>();
+			this.handler = new CollisionDelegator(link);
 		
 		}
 
@@ -42,51 +42,7 @@ namespace Collision
 
 			return objectRec.Intersects(otherRec);
 		}
-
-		string determineSide(ISprite obj, ISprite otherObj)
-		{
 		
-			Rectangle objectRec = obj.getHitbox();
-			Rectangle otherRec = otherObj.getHitbox();
-
-			// return the side of the collision from the perspective of obj
-
-			
-			// first determine if top-bottom or left-right collision
-			string type = "";
-			Rectangle intersectionArea = Rectangle.Intersect(objectRec, otherRec);
-			
-			if(intersectionArea.Height < intersectionArea.Width)
-			{
-				type = "top-bottom";
-			} else
-			{
-				type = "left-right";
-			}
-
-			// then get obj's position in relation to otherObj to return side
-
-			if(type == "top-bottom")
-			{
-				if (objectRec.Location.Y < otherRec.Location.Y)
-				{
-					return "bottom";
-				} else
-				{
-					return "top";
-				}
-			} else 
-			{
-				if (objectRec.Location.X < otherRec.Location.X)
-				{
-					return "right";
-				} else
-				{
-					return "left";
-				}
-			}
-
-		}
 
 		/*
 		 *  Update method will constantly be checking all objects for a collision
@@ -111,7 +67,8 @@ namespace Collision
 					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
-							Console.WriteLine("collision detected!");
+							Console.WriteLine("collision detected!");							
+							this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}
 					}
