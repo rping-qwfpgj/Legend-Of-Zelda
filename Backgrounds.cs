@@ -570,5 +570,40 @@ namespace Sprint0
         }
     }
 
-}
+    public class Background18 : ISprite
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        private int width = 256;
+        private int height = 176;
+
+        public Background18(Texture2D backgroundTexture)
+        {
+            this.texture = backgroundTexture;
+            this.sourceRectangle = new Rectangle(258, 886, width, height);
+            this.destinationRectangle = new Rectangle(0, 0, 800, 480);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+        public Rectangle getHitbox()
+        {
+            return destinationRectangle;
+        }
+
+    }
+
+
+
+    
+
+
 
