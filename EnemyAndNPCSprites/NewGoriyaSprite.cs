@@ -550,7 +550,7 @@ namespace Sprites
             // Texture to take sprites from
             private Texture2D texture;
 
-            public BoomerangGoingRightSprite(Texture2D texture, xPosition, yPosition)
+            public BoomerangGoingRightSprite(Texture2D texture, float xPosition, float yPosition)
             {
                 this.texture = texture;
                 this.xBoomerangPosition = xPosition;
@@ -691,7 +691,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        public BoomerangGoingLeftSprite(Texture2D texture, xPosition, yPosition)
+        public BoomerangGoingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xBoomerangPosition = xPosition;
@@ -973,7 +973,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        public BoomerangGoingDownSprite(Texture2D texture, xPosition, yPosition)
+        public BoomerangGoingDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xBoomerangPosition = xPosition;
