@@ -98,7 +98,7 @@ public class Game1 : Game
         //ROOMLOADER STUFF
         RoomLoader roomloader = new RoomLoader();
         // string currentDirectory = Directory.GetCurrentDirectory();
-        string fileFolder = "RoomXMLs/Room";
+        string fileFolder = "Content/RoomXMLs/Room";
         string xmlString = ".xml";
        
         for (int i = 0; i < 18; i++)
