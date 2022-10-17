@@ -29,14 +29,18 @@ namespace LegendofZelda
 
         public void Update()
         {
+
            foreach (var sprite in sprites)
             {
                 sprite.Update();
             }
+
         }
+
         public List<ISprite> ReturnObjects()
         {
             return sprites;
         }
+
     }
 }
