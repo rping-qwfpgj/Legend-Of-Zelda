@@ -13,6 +13,7 @@ using LegendofZelda;
 using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
+using System;
 
 
 // Creator: Tuhin Patel
@@ -94,15 +95,16 @@ public class Game1 : Game
 
         //ROOMLOADER STUFF
         RoomLoader roomloader = new(_spriteBatch);
-        string currentDirectory = Directory.GetCurrentDirectory();
+        // string currentDirectory = Directory.GetCurrentDirectory();
         string fileFolder = "RoomXMLs/Room";
         string xmlString = ".xml";
        
         for (int i = 0; i < 17; i++)
         { 
             var roomNumber = i.ToString();
-            var purchaseOrderFilepath = Path.Combine(currentDirectory, fileFolder, roomNumber, xmlString);
-            XDocument xml = XDocument.Load(purchaseOrderFilepath);
+            var purchaseOrderFilePath = fileFolder + roomNumber + xmlString;       
+            // var purchaseOrderFilepath = Path.Combine(fileName);
+            XDocument xml = XDocument.Load(purchaseOrderFilePath);
             rooms.Add(roomloader.ParseXML(xml));
 
         }

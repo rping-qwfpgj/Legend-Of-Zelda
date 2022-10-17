@@ -17,8 +17,7 @@ namespace Collision
 		private Room currRoom;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
-		// private CollisionHandler handler;
-
+		private CollisionDelegator handler;
 
 		
 		
@@ -32,6 +31,7 @@ namespace Collision
 			this.objects = room.ReturnObjects();
 			this.objects.Add(currLink.currentLinkSprite);
 			this.alreadyChecked = new List<ISprite>();
+			this.handler = new CollisionDelegator(link);
 		
 		}
 
@@ -68,7 +68,7 @@ namespace Collision
 						if (detectCollision(obj, otherObj))
 						{
 							Console.WriteLine("collision detected!");							
-							CollisionDelegator(obj, otherObj);
+							this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}
 					}

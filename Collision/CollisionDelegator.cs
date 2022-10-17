@@ -1,34 +1,38 @@
 ﻿using System;
 using Interfaces;
+using Microsoft.Xna.Framework;
+using Sprint0;
 
 namespace Collision
 {
 	public class CollisionDelegator
 	{
-		public CollisionDelegator()
-		{
+        Link link;
 
-		}
+        public CollisionDelegator(Link link) {
+            this.link = link;
+        }
 
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
-			switch (obj)
-			{
-                case obj is IEnemyProjectile:
-                    IEnemyProjevile newObj = obj as IEnemyProjectile;
+            if (obj is IEnemyProjectile) {
+                IEnemyProjectile projectile = obj as IEnemyProjectile;
+                if (otherObj is IBlock)
+                {
+                    IBlock block = otherObj as IBlock;
+                    string side = determineSide(projectile, block);
+                    EnemyProjectileBlockHandler.handleCollision(projectile, block, side);
+                }
+            } else if (obj is ILinkProjectile)
+            {
 
-                    // do something
-                    break;
-                case obj is ILinkProjectile:
-                    // do something else
-                    break;
-                case obj is IEnemy:
-                    // do another thing
-                    break;
-                default: // Case the sprite is Link's Sprite
-                    // do something
-                    break;                    	
-		    }
+            } else if (obj is IEnemy)
+            {
+
+            } else // obj is Link's sprite
+            {
+
+            }                                   			    
 		}
 
 
