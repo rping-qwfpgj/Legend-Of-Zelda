@@ -56,19 +56,19 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the first step of link  up
             if (currFrames >= 0 && currFrames <= 6800)
             {
                 sourceRectangle = new Rectangle(29, 185, 5, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4);
 
             }
             else if (currFrames >= 6800 && currFrames <= 7000)
             {
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
             }
 
             // Draw the sprite
@@ -138,24 +138,24 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the first step of link  up
             if (currFrames >= 0 && currFrames <= 6800)
             {
                 sourceRectangle = new Rectangle(29, 185, 5, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 5 * 4, 16 * 4);
 
             }
             else if (currFrames >= 6800 && currFrames <= 7000)
             {
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
             }
 
             // Draw the sprite
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
+            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
             spriteBatch.End();
         }
 
@@ -219,24 +219,24 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4); // Where to draw on screen
 
             // Draw the first step of link  up
             if (currFrames >= 0 && currFrames <= 6800)
             {
                 sourceRectangle = new Rectangle(36, 190, 16, 5);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4);
 
             }
             else if (currFrames >= 6800 && currFrames <= 7000)
             {
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
             }
 
             // Draw the sprite
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
 
@@ -299,24 +299,24 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4); // Where to draw on screen
 
             // Draw the first step of link  up
             if (currFrames >= 0 && currFrames <= 6800)
             {
                 sourceRectangle = new Rectangle(36, 190, 16, 5);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 5 * 4);
 
             }
             else if (currFrames >= 6800 && currFrames <= 7000)
             {
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 8 * 4, 8 * 4);
             }
 
             // Draw the sprite
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             spriteBatch.End();
         }
 
