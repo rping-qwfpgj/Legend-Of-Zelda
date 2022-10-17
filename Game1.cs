@@ -81,11 +81,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
 
         blockSpriteSheet = Content.Load<Texture2D>("blocks");
-
-
         itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
-        currentItem = new Item(itemSpriteSheet);
-
 
         keyboardController.AddCommand(Keys.U, new PreviousItemCommand(currentItem));
         keyboardController.AddCommand(Keys.I, new NextItemCommand(currentItem));
@@ -99,8 +95,6 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand(link));
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
-
-        enemy = new Enemy();
         keyboardController.AddCommand(Keys.O, new PreviousEnemyCommand(enemy));
         keyboardController.AddCommand(Keys.P, new NextEnemyCommand(enemy));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
@@ -136,17 +130,12 @@ public class Game1 : Game
                 Exit();
 
             keyboardController.Update();
+            link.Update();
             //this will probably all be in room.update()?????
-            //link.Update();
-            
             //currentItem.Update(); 
             //enemy.Update();
 
-          
             currentRoom.Update();
-
-            
-
 
             //collisionDetector.update();
             base.Update(gameTime);
@@ -156,7 +145,7 @@ public class Game1 : Game
         {
             GraphicsDevice.Clear(Color.BlueViolet);
             link.Draw(_spriteBatch);
-            
+            currentRoom.Draw();
             currentItem.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);           
             base.Draw(gameTime);
