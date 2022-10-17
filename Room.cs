@@ -18,14 +18,8 @@ namespace LegendofZelda
             this.spriteBatch = spriteBatch;
         }
 
-        public void Initialize()
+        public void DrawBackground()
         {
-
-            foreach (var sprite in sprites)
-            {
-                sprite.Draw(spriteBatch);
-            }
-
             background.Draw(spriteBatch);
         }
 

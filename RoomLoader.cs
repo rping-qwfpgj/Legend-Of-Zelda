@@ -15,13 +15,12 @@ namespace LegendofZelda
         private readonly XDocument xml;
         private readonly SpriteBatch spriteBatch;
  
-        public RoomLoader(XDocument xml, SpriteBatch spriteBatch)
+        public RoomLoader(SpriteBatch spriteBatch)
         {
-            this.xml = xml;
             this.spriteBatch = spriteBatch;
         }
 
-        public Room ParseXML()
+        public Room ParseXML(XDocument xml)
         {
             
             List<ISprite> sprites = new();

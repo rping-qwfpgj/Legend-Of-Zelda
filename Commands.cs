@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using Sprint0;
+﻿using Sprint0;
 using Interfaces;
-using Sprites;
+using LegendofZelda;
+using System.Collections.Generic;
 
 namespace Commands
 {
@@ -30,21 +29,82 @@ public class ResetGameCommand : ICommand
 
     public ResetGameCommand(Link link, IEnemy enemy, IBlock block, IItem item)
     {
-       this.currLink = link;
-       this.currEnemy = enemy;
-       this.currBlock = block;
-       this.currItem = item;
+        this.currLink = link;
+        this.currEnemy = enemy;
+        this.currBlock = block;
+        this.currItem = item;
     }
 
     public void Execute()
     {
         currLink.Reset();
-        currEnemy.Reset();
-        currBlock.Reset();
-        currItem.Reset();
     }
-    
-    
+
 }
+
+public class NextRoomCommand : ICommand
+{
+    private Room currentRoom;
+    private List<Room> rooms;
+    private int roomNumber;
+
+    public NextRoomCommand(Room currentRoom, List<Room> rooms, int roomNumber)
+    {
+        this.currentRoom = currentRoom;
+        this.rooms = rooms;
+        this.roomNumber =  roomNumber;
+
+    }
+
+    public void Execute()
+    {
+        if (roomNumber == 17)
+        {
+            roomNumber = 0;
+        }
+        else
+        {
+            roomNumber++;
+
+        }
+        currentRoom = rooms[roomNumber];
+    }
+
+
+}
+
+public class PreviousRoomCommand : ICommand
+{
+    private Room currentRoom;
+    private List<Room> rooms;
+    private int roomNumber;
+
+    public PreviousRoomCommand(Room currentRoom, List<Room> rooms,int roomNumber)
+    {
+        this.currentRoom = currentRoom;
+        this.rooms = rooms;
+        this.roomNumber = roomNumber;
+
+    }
+
+    public void Execute()
+    {
+
+        if (roomNumber == 0)
+        {
+            roomNumber = 17;
+        }
+        else
+        {
+            roomNumber--;
+
+        }
+        currentRoom = rooms[roomNumber];
+    }
+
+}
+
+
+
 
 

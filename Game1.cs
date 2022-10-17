@@ -21,54 +21,49 @@ using LegendofZelda.SpriteFactories;
 // Lisha Nawani
 // Vishal "good teamate" Kumar
 public class Game1 : Game
-    {
-        // Sprite sheet from which all sprites are obtained from
-        public Texture2D linkSpriteSheet;
-        public Texture2D blockSpriteSheet;
-        public IItem currentItem;
-        public Texture2D itemSpriteSheet;
-        public IEnemy enemy;
-        public Texture2D enemySpriteSheet;
+{
+    // Sprite sheet from which all sprites are obtained from
+    public Texture2D linkSpriteSheet;
+    public Texture2D blockSpriteSheet;
+    public IItem currentItem;
+    public Texture2D itemSpriteSheet;
+    public IEnemy enemy;
+    public Texture2D enemySpriteSheet;
     
 
-        private Link link;
-        private RoomLoader roomloader;
-        private List<Room> rooms;
-        private Room currentRoom;
-        //private CollisionDetector collisionDetector;
+    private Link link;
+    private List<Room> rooms;
+    private Room currentRoom;
+    //private CollisionDetector collisionDetector;
 
-        private KeyboardController keyboardController;
+    private KeyboardController keyboardController;
 
-        // Font for on screen text , the text to display and the class to store it in
-        public SpriteFont font;
-        public string onScreenText;
-        //public TextSprite textSprite;
+    // Font for on screen text , the text to display and the class to store it in
+    public SpriteFont font;
+    public string onScreenText;
+    //public TextSprite textSprite;
 
-        public GraphicsDeviceManager _graphics;
-        public SpriteBatch _spriteBatch;
+    public GraphicsDeviceManager _graphics;
+    public SpriteBatch _spriteBatch;
         
         
-        public Game1()
-        {
-            _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-        
-        }
+    public Game1()
+    {
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+        IsMouseVisible = true;
+    }
 
     protected override void Initialize()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        link = new Link(new Vector2(400, 240), _graphics);
 
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
-
-        
-        itemSpriteSheet = Content.Load<Texture2D>("itemsandweapons");
-
-        link = new Link(new Vector2(400, 240), _graphics);
+        ItemSpriteFactory.Instance.loadContent(Content);
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -80,8 +75,6 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(link));
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(link));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
-        keyboardController.AddCommand(Keys.U, new PreviousItemCommand(currentItem));
-        keyboardController.AddCommand(Keys.I, new NextItemCommand(currentItem));
         keyboardController.AddCommand(Keys.V, new ThrowRightCommand(link));
         keyboardController.AddCommand(Keys.E, new TakeDamageCommand(link));
         keyboardController.AddCommand(Keys.Z, new AttackCommand(link));
@@ -92,59 +85,65 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand(link));
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
-        keyboardController.AddCommand(Keys.O, new PreviousEnemyCommand(enemy));
-        keyboardController.AddCommand(Keys.P, new NextEnemyCommand(enemy));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
 
-
-        var filename = "room.xml";
-        var currentDirectory = Directory.GetCurrentDirectory();
-        var purchaseOrderFilepath = Path.Combine(currentDirectory, filename);
-        XDocument xml = XDocument.Load(purchaseOrderFilepath);
-        roomloader = new(xml, _spriteBatch);
-
-        for (int i = 0; i < 1; i++) { 
-            rooms.Add(roomloader.ParseXML());
-        }
-
-            //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
-
-            base.Initialize();
-        }
-
-        protected override void LoadContent()
-        {
-            
-          
-
-           
+        //ROOMLOADER STUFF
+        RoomLoader roomloader = new(_spriteBatch);
+        string currentDirectory = Directory.GetCurrentDirectory();
+        string fileFolder = "RoomXMLs/Room";
+        string xmlString = ".xml";
+       
+        for (int i = 0; i < 17; i++)
+        { 
+            var roomNumber = i.ToString();
+            var purchaseOrderFilepath = Path.Combine(currentDirectory, fileFolder, roomNumber, xmlString);
+            XDocument xml = XDocument.Load(purchaseOrderFilepath);
+            rooms.Add(roomloader.ParseXML(xml));
 
         }
+        currentRoom = rooms[0];
+
+        //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+        base.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+
+        //nothing in here?????LinkSpriteFactory.Instance.loadContent(Content);
+        //Try putting spritefactory stuff in load content
+        //ProjectileSpriteFactory.Instance.loadContent(Content);
+        //EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
+        //BlockSpriteFactory.Instance.loadContent(Content);
+        //ItemSpriteFactory.Instance.loadContent(Content);
+
+    }
 
     protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
 
-            keyboardController.Update();
-            link.Update();
-            //this will probably all be in room.update()?????
-            //currentItem.Update(); 
-            //enemy.Update();
+        keyboardController.Update();
+        link.Update();
 
-            currentRoom.Update();
+        //this will probably all be in room.update()?????
+        //currentItem.Update(); 
+        //enemy.Update();
 
-            //collisionDetector.update();
-            base.Update(gameTime);
-        }
+        currentRoom.Update();
 
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.BlueViolet);
-            link.Draw(_spriteBatch);
-            currentRoom.Draw();
-            currentItem.Draw(_spriteBatch);
-            enemy.Draw(_spriteBatch);           
-            base.Draw(gameTime);
-        }
+        //collisionDetector.update();
+        base.Update(gameTime);
     }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.BlueViolet);
+        currentRoom.Draw();
+        link.Draw(_spriteBatch);
+        currentItem.Draw(_spriteBatch);
+        enemy.Draw(_spriteBatch);           
+        base.Draw(gameTime);
+    }
+}
