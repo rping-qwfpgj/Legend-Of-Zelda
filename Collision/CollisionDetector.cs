@@ -7,6 +7,7 @@ using Sprint0;
 using Interfaces;
 using Sprites;
 using LegendofZelda;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -66,7 +67,7 @@ namespace Collision
 					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
-							Console.WriteLine("collision detected!");							
+							Debug.WriteLine("collision detected!");							
 							this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}

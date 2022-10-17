@@ -102,6 +102,7 @@ public class Game1 : Game
         roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(300, 300), "PurpleTriangle"));
         currentRoom = new Room(roomSprites, background);
         collisionDetector = new CollisionDetector(link, currentRoom);
+        Console.WriteLine("Hello World");
 
         //ROOMLOADER STUFF
 
