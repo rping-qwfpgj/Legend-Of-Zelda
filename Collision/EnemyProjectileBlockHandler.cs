@@ -20,7 +20,7 @@ namespace Collision
 		public void handleCollision(IEnemyProjectile projectile, IBlock block, string side)
 		{
 			// have the projectile set it's currFrame to its last frame of animation
-			projectile.collide();
+			//projectile.collide();
 		}
 
         
