@@ -57,9 +57,39 @@ namespace Controllers
                 }
             }			
 		}
-	}
+    }
 
+    public class MouseController : IController
+    {
+        private Vector2 center;
+        private Game1 myGame;
 
+        public MouseController(Game1 game, Vector2 vector)
+        {
+            center = vector;
+            myGame = game;
+        }
+
+        public void Update()
+        {
+            MouseState state = Mouse.GetState();
+
+            if (state.LeftButton == ButtonState.Pressed)
+            {
+                if (state.X < center.X) //upper left
+                {
+                    new PreviousRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
+                }
+                else if (state.X > center.X )//upper right
+                {
+                    new NextRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
+                }
+
+            }
+
+        }
+
+    }
 }
-	
+
 

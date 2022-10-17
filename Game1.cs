@@ -30,13 +30,14 @@ public class Game1 : Game
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
     
-
     private Link link;
-    private List<Room> rooms;
-    private Room currentRoom;
+    public List<Room> rooms;
+    public Room currentRoom;
+    public int currentRoomIndex;
     //private CollisionDetector collisionDetector;
 
     private KeyboardController keyboardController;
+    private MouseController mouseController;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;
@@ -64,6 +65,10 @@ public class Game1 : Game
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
+        //Mouse Controller stuff
+        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
+             _graphics.PreferredBackBufferHeight / 2);
+        mouseController = new(this, center);
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -102,6 +107,7 @@ public class Game1 : Game
 
         }
         currentRoom = rooms[0];
+        currentRoomIndex = 0;
 
         //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
         base.Initialize();
@@ -125,6 +131,7 @@ public class Game1 : Game
             Exit();
 
         keyboardController.Update();
+        mouseController.Update();
         link.Update();
 
         //this will probably all be in room.update()?????
