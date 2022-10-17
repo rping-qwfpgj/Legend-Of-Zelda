@@ -23,7 +23,7 @@ namespace LegendofZelda
 
             //parse background
             string backgroundString = xml.Root.Descendants("Item").Select(x => x.Element("Background").Value).FirstOrDefault();
-            var backgroundSprite = BackgroundSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), backgroundString);
+            var backgroundSprite = BackgroundSpriteFactory.Instance.CreateBackground(backgroundString);
 
             List<string> spriteStrings = new List<string>(new string[] { "Block", "Enemy", "Item" });
 

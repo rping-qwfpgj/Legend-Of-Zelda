@@ -58,7 +58,7 @@ public class NextRoomCommand : ICommand
 
     public void Execute()
     {
-        if (roomNumber == 17)
+        if (roomNumber == 18)
         {
             roomNumber = 0;
         }
@@ -92,7 +92,7 @@ public class PreviousRoomCommand : ICommand
 
         if (roomNumber == 0)
         {
-            roomNumber = 17;
+            roomNumber = 18;
         }
         else
         {
