@@ -30,13 +30,11 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
-    public ISprite background;
-    
     private Link link;
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
-    //private CollisionDetector collisionDetector;
+    public CollisionDetector collisionDetector;
 
     private KeyboardController keyboardController;
     private MouseController mouseController;
@@ -60,14 +58,16 @@ public class Game1 : Game
     protected override void Initialize()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        link = new Link(new Vector2(400, 240), _graphics);
-
+        
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+
+        link = new Link(new Vector2(400, 240), _graphics);
+        // collisionDetector = new CollisionDetector();
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -98,7 +98,7 @@ public class Game1 : Game
 
         //ROOMLOADER STUFF
 
-        /*
+        
         RoomLoader roomloader = new RoomLoader();
         // string currentDirectory = Directory.GetCurrentDirectory();
         string fileFolder = "Content/RoomXMLs/Room";
@@ -108,7 +108,7 @@ public class Game1 : Game
         for (int i = 0; i < 18; i++)
         { 
             var roomNumber = i.ToString();
-            var purchaseOrderFilePath = "C:\\Users\\firep\\Source\\Repos\\Sprint3_LegendOfZelda\\roomXMLs\\Room" + roomNumber + ".xml";//fileFolder + roomNumber + xmlString;       
+            var purchaseOrderFilePath = fileFolder + roomNumber + ".xml";    
             // var purchaseOrderFilepath = Path.Combine(fileName);
             XDocument xml = XDocument.Load(purchaseOrderFilePath);
             rooms.Add(roomloader.ParseXML(xml));
@@ -116,9 +116,7 @@ public class Game1 : Game
         }
         currentRoom = rooms[0];
         currentRoomIndex = 0;
-        */
-
-        //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+        this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
 
         base.Initialize();
     }
@@ -132,8 +130,6 @@ public class Game1 : Game
         //EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         //BlockSpriteFactory.Instance.loadContent(Content);
         //ItemSpriteFactory.Instance.loadContent(Content);
-        background = BackgroundSpriteFactory.Instance.CreateBackground("Background9");
-
 
     }
 
@@ -145,18 +141,17 @@ public class Game1 : Game
         keyboardController.Update();
         mouseController.Update();
         link.Update();
-        //currentRoom.Update();
+        currentRoom.Update();
 
-        //collisionDetector.update();
+        collisionDetector.update();
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.BlueViolet);
-        //currentRoom.Draw(_spriteBatch);
-        background.Draw(_spriteBatch);
-        link.Draw(_spriteBatch);         
+        currentRoom.Draw(_spriteBatch);
+        link.Draw(_spriteBatch);     
         base.Draw(gameTime);
     }
 }

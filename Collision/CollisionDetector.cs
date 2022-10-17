@@ -17,14 +17,14 @@ namespace Collision
 		private Room currRoom;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
-		private CollisionDelegator handler;
+		private CollisionDelegator delegator;
 
 		
 		
 		public CollisionDetector(Link link, Room room)
 		{
 			this.currLink = link;
-			// this.CollsionHandler handler = handler;
+			this.delegator = new CollisionDelegator(link);
 
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;

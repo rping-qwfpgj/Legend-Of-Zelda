@@ -40,7 +40,7 @@ namespace LegendofZelda.SpriteFactories
         }
 
 
-        public ISprite CreateEnemyOrNPC(Vector2 location, string name)
+        public IEnemy CreateEnemyOrNPC(Vector2 location, string name)
         {
 
             switch (name)
