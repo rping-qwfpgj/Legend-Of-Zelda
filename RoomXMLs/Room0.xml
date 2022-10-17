@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-	<!--  idk what asset type is supposed to be  -->
-	<Asset Type="MyDataTypes.LevelObjectData[]">
-		<!--  Start Objects before first gap  -->
 		
 		<!--  Background  -->
 		<Item>
@@ -136,6 +133,4 @@
 			<ObjectName>PolkaDotBlock</ObjectName>
 			<Location>508 356</Location>
 		</Item>
-		<!--  End Objects before first gap  -->
-	</Asset>
 </XnaContent>

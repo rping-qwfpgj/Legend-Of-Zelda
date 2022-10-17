@@ -569,4 +569,4 @@ namespace Sprint0
             return destinationRectangle;
         }
     }
-}
+
