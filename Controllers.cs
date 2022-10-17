@@ -57,6 +57,10 @@ namespace Controllers
                 }
             }			
 		}
+
+
+
+
     }
 
     public class MouseController : IController
@@ -76,18 +80,18 @@ namespace Controllers
 
             if (state.LeftButton == ButtonState.Pressed)
             {
-                if (state.X < center.X) //upper left
+                if (state.X < center.X) 
                 {
                     new PreviousRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
                 }
-                else if (state.X > center.X )//upper right
+                else if (state.X > center.X)
                 {
                     new NextRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
                 }
-
             }
-
         }
+
+
 
     }
 }

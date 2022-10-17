@@ -12,12 +12,8 @@ namespace LegendofZelda
 {
     public class RoomLoader
     {
-        private readonly XDocument xml;
-        private readonly SpriteBatch spriteBatch;
- 
-        public RoomLoader(SpriteBatch spriteBatch)
+        public RoomLoader()
         {
-            this.spriteBatch = spriteBatch;
         }
 
         public Room ParseXML(XDocument xml)
@@ -65,9 +61,8 @@ namespace LegendofZelda
                 Console.WriteLine("Check that it's getting enemy types {0}\n", enemy.Element("ObjectName").Value);
             }
 
-            return new Room(sprites, backgroundSprite, spriteBatch);
+            return new Room(sprites, backgroundSprite);
            
         }
-    
     }
 }
