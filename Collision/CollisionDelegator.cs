@@ -50,7 +50,7 @@ namespace Collision
                     IEnemy enemy1 = otherObj as IEnemy;                    
                     EnemyEnemyHandler.handleCollision(enemy0, enemy1, side);
                 }
-            } else // obj is Link's sprite
+            } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
             {
                 if(otherObj is IEnemy)
                 {
@@ -63,9 +63,28 @@ namespace Collision
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
                     LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
                 }
-            }                                   			    
-		}
+            } else 
+            {   
+                side = determineSide(otherObj, obj);
+                if(otherObj is IEnemy)
+                {   
+                    if(obj is ILinkProjectile)
+                    {
 
+                    }
+
+                } else if (otherObj is IBlock)
+                {
+
+                } else if (otherObj is IEnemyProjectile)
+                {
+
+                } else if (otherObj is IItem)
+                {
+
+                }
+            }                                                                        
+		}
 
         private string determineSide(ISprite obj, ISprite otherObj)
         {
