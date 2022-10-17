@@ -357,8 +357,6 @@ namespace Sprites
             this.texture = texture;
             xGoriyaPosition = (int)xPosition;
             yGoriyaPosition = (int)yPosition;
-            xBoomerangPosition = (int)xPosition;
-            yBoomerangPosition = (int)yPosition;
             leftBoomerang = new BoomerangGoingLeftSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -425,8 +423,6 @@ namespace Sprites
             this.texture = texture;
             xGoriyaPosition = (int)xPosition;
             yGoriyaPosition = (int)yPosition;
-            xBoomerangPosition = (int)xPosition;
-            yBoomerangPosition = (int)yPosition;
             downBoomerang = new BoomerangGoingDownSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -485,8 +481,6 @@ namespace Sprites
             this.texture = texture;
             xGoriyaPosition = (int)xPosition;
             yGoriyaPosition = (int)yPosition;
-            xBoomerangPosition = (int)xPosition;
-            yBoomerangPosition = (int)yPosition;
             upBoomerang = new BoomerangGoingUpSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -553,8 +547,8 @@ namespace Sprites
             public BoomerangGoingRightSprite(Texture2D texture, float xPosition, float yPosition)
             {
                 this.texture = texture;
-                this.xBoomerangPosition = xPosition;
-                this.yBoomerangPosition = yPosition;
+                this.xBoomerangPosition = (int)xPosition;
+                this.yBoomerangPosition = (int)yPosition;
             }
 
             private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
@@ -694,8 +688,8 @@ namespace Sprites
         public BoomerangGoingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xBoomerangPosition = xPosition;
-            this.yBoomerangPosition = yPosition;
+            this.xBoomerangPosition = (int)xPosition;
+            this.yBoomerangPosition = (int)yPosition;
         }
 
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
@@ -976,8 +970,8 @@ namespace Sprites
         public BoomerangGoingDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xBoomerangPosition = xPosition;
-            this.yBoomerangPosition = yPosition;
+            this.xBoomerangPosition = (int)xPosition;
+            this.yBoomerangPosition = (int)yPosition;
         }
 
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
