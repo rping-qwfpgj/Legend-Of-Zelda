@@ -134,7 +134,7 @@ namespace Sprites
         // On Screen location
         private Rectangle destinationRectangle;
 
-        public dragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
+        public TopDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
@@ -214,7 +214,7 @@ namespace Sprites
         // On Screen location
         private Rectangle destinationRectangle;
 
-        public dragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
+        public MiddleDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
@@ -294,7 +294,7 @@ namespace Sprites
         // On Screen location
         private Rectangle destinationRectangle;
 
-        public dragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
+        public BottomDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
