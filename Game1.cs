@@ -98,11 +98,11 @@ public class Game1 : Game
         background = BackgroundSpriteFactory.Instance.CreateBackground("Background1");
         List<ISprite> roomSprites = new List<ISprite>();
         roomSprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(200, 200), "DepthBlock"));
-        roomSprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2(600, 250), "OldMan"));
-        roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(300, 300), "PurpleTriangle"));
+        roomSprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2(600, 250), "Stalfos"));
+        roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(100, 100), "PurpleGemstone"));
         currentRoom = new Room(roomSprites, background);
         collisionDetector = new CollisionDetector(link, currentRoom);
-        Console.WriteLine("Hello World");
+        
 
         //ROOMLOADER STUFF
 
