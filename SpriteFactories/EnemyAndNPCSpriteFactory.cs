@@ -40,7 +40,7 @@ namespace LegendofZelda.SpriteFactories
         }
 
 
-        public ISprite CreateEnemyOrNPC(Vector2 location, string name)
+        public IEnemy CreateEnemyOrNPC(Vector2 location, string name)
         {
 
             switch (name)
@@ -63,11 +63,11 @@ namespace LegendofZelda.SpriteFactories
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(enemySpriteSheet, 600, 250);
+                    return new DragonBossSprite(bossSpriteSheet, 600, 250);
 
                 case "OldMan":
 
-                    return new OldManSprite(enemySpriteSheet, 600, 250);
+                    return new OldManSprite(oldManSpriteSheet, 600, 250);
 
                 default:
 

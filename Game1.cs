@@ -30,13 +30,12 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
-    
     private Link link;
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
-    //private CollisionDetector collisionDetector;
-
+    public CollisionDetector collisionDetector;
+    public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
 
@@ -59,14 +58,16 @@ public class Game1 : Game
     protected override void Initialize()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        link = new Link(new Vector2(400, 240), _graphics);
-
+        
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+
+        link = new Link(new Vector2(400, 240), _graphics);
+        
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -94,29 +95,40 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
+        background = BackgroundSpriteFactory.Instance.CreateBackground("Background1");
+        List<ISprite> roomSprites = new List<ISprite>();
+        roomSprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(200, 200), "DepthBlock"));
+        roomSprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2(600, 250), "Stalfos"));
+        roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(100, 100), "PurpleGemstone"));
+        currentRoom = new Room(roomSprites, background);
+        collisionDetector = new CollisionDetector(link, currentRoom);
+        
 
         //ROOMLOADER STUFF
-        RoomLoader roomloader = new RoomLoader();
-        // string currentDirectory = Directory.GetCurrentDirectory();
-        string fileFolder = "Content/RoomXMLs/Room";
-        string xmlString = ".xml";
-       
-        for (int i = 0; i < 18; i++)
-        { 
-            var roomNumber = i.ToString();
-            var purchaseOrderFilePath = fileFolder + roomNumber + xmlString;       
-            // var purchaseOrderFilepath = Path.Combine(fileName);
-            XDocument xml = XDocument.Load(purchaseOrderFilePath);
-            rooms.Add(roomloader.ParseXML(xml));
 
-        }
-        currentRoom = rooms[0];
-        currentRoomIndex = 0;
 
+        //RoomLoader roomloader = new RoomLoader();
+        //// string currentDirectory = Directory.GetCurrentDirectory();
+        //string fileFolder = "Content/RoomXMLs/Room";
+        //string xmlString = ".xml";
+
+
+        //for (int i = 0; i < 18; i++)
+        //{ 
+        //    var roomNumber = i.ToString();
+        //    var purchaseOrderFilePath = fileFolder + roomNumber + ".xml";    
+        //    // var purchaseOrderFilepath = Path.Combine(fileName);
+        //    XDocument xml = XDocument.Load(purchaseOrderFilePath);
+        //    rooms.Add(roomloader.ParseXML(xml));
+
+        //}
+        //currentRoom = rooms[0];
+        //currentRoomIndex = 0;
         //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+
         base.Initialize();
     }
-
+    
     protected override void LoadContent()
     {
 
@@ -139,7 +151,7 @@ public class Game1 : Game
         link.Update();
         currentRoom.Update();
 
-        //collisionDetector.update();
+        collisionDetector.Update();
         base.Update(gameTime);
     }
 
@@ -147,7 +159,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.BlueViolet);
         currentRoom.Draw(_spriteBatch);
-        link.Draw(_spriteBatch);         
+        link.Draw(_spriteBatch);     
         base.Draw(gameTime);
     }
 }

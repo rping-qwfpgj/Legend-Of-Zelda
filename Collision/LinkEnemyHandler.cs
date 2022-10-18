@@ -11,14 +11,10 @@ using LegendofZelda;
 
 namespace Collision
 {
-	public class LinkEnemyHandler
+	public static class LinkEnemyHandler
 	{		
-		public LinkEnemyHandler()
-		{
-		
-		}
 
-		public void handleCollision(Link link, IEnemy enemy, string side)
+		public static void handleCollision(Link link, IEnemy enemy, string side)
 		{
 
 			if(link.currentLinkSprite is IAttackingSprite)

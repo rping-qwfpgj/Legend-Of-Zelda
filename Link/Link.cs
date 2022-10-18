@@ -40,7 +40,7 @@ namespace Sprint0
             this.graphics = graphics;
             this.isDamaged = false;
             this.currentState = new LinkFacingUpState(this);
-            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
+            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable);
         }
