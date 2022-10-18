@@ -12,5 +12,6 @@ namespace Interfaces
         void Draw(SpriteBatch spriteBatch);
         void Update();
         Rectangle getHitbox();
+        // void TakeDamage();
     }
 }
