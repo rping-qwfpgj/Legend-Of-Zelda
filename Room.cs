@@ -1,4 +1,4 @@
-﻿using Interfaces;
+﻿using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 

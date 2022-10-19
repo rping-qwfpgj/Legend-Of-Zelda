@@ -4,17 +4,20 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Sprint0;
-using Interfaces;
 using Sprites;
 using LegendofZelda;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public static class EnemyProjectileLinkHandler
+    public class EnemyProjectileLinkHandler
 	{		
+		public EnemyProjectileLinkHandler()
+		{
+		
+		}
 
-
-		public static void handleCollision(IEnemyProjectile projectile, Link link, string side)
+		public void handleCollision(IEnemyProjectile projectile, Link link, string side)
 		{
             // have the projectile set it's currFrame to its last frame of animation
             // projectile.collide();

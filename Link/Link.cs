@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
 using System.Drawing;
 using LegendofZelda.SpriteFactories;
+using LegendofZelda.Interfaces;
 
 namespace Sprint0
 {

@@ -5,8 +5,8 @@ using Sprint0;
 using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using Interfaces;
 using Sprites;
+using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.SpriteFactories
 {

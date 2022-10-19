@@ -1,12 +1,13 @@
 ﻿using System;
 using Interfaces;
+using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
 using Sprint0;
 
 namespace Collision
 {
-	public class CollisionDelegator
+    public class CollisionDelegator
 	{
         Link link;
 
@@ -62,66 +63,32 @@ namespace Collision
                     Rectangle collisionRect = new Rectangle();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
                     LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
-                } else if (otherObj is IEnemyProjectile)
-                {
-                    IEnemyProjectile projectile = otherObj as IEnemyProjectile;
-                    EnemyProjectileLinkHandler.handleCollision(projectile, this.link, side);
-                } else if (otherObj is IItem)
-                {
-                    IItem item = otherObj as IItem;
-                    LinkItemHandler.handleCollision(this.link, item, side);
                 }
             } else 
-            {                   
+            {   
                 side = determineSide(otherObj, obj);
-                if(obj is IEnemy)
+                if(otherObj is IEnemy)
                 {   
-                    IEnemy enemy = obj as IEnemy;
-                    if(otherObj is ILinkProjectile)
+                    IEnemy enemy = otherObj as IEnemy;
+                    if(obj is ILinkProjectile)
                     {
-                        ILinkProjectile linkProjectile = otherObj as ILinkProjectile;
+                        ILinkProjectile linkProjectile = obj as ILinkProjectile;
                         LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side);
 
                     }else if (obj is INonAttackingSprite || obj is IAttackingSprite)
                     {
-                        LinkEnemyHandler.handleCollision(this.link, enemy, side);
+
                     }
 
-                } else if (obj is IBlock)
+                } else if (otherObj is IBlock)
                 {
-                    IBlock block = obj as IBlock;
-                    if(otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // otherObj is Link
-                    {
-                        Rectangle collisionRect = new Rectangle();
-                        collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
-                        LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
-                    } else if (otherObj is IEnemyProjectile)
-                    {
-                        IEnemyProjectile projectile = otherObj as IEnemyProjectile;
-                        EnemyProjectileBlockHandler.handleCollision(projectile, block, side);
-                    } else if (otherObj is ILinkProjectile)
-                    {
-                        ILinkProjectile projectile = obj as ILinkProjectile;
-                        LinkProjectileBlockHandler.handleCollision(projectile, block, side);
-                    } else if (otherObj is IEnemy)
-                    {
-                        IEnemy enemy = otherObj as IEnemy;
-                        EnemyBlockHandler.handleCollision(enemy, block, side);
-                    }
-                } else if (obj is IEnemyProjectile)
+
+                } else if (otherObj is IEnemyProjectile)
                 {
-                    IEnemyProjectile projectile = obj as IEnemyProjectile;
-                    if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite)
-                    {
-                        EnemyProjectileLinkHandler.handleCollision(projectile, this.link, side);
-                    }
-                } else if (obj is IItem)
+
+                } else if (otherObj is IItem)
                 {
-                    IItem item = obj as IItem;
-                    if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite)
-                    {
-                        LinkItemHandler.handleCollision(this.link, item, side);
-                    }
+
                 }
             }                                                                        
 		}

@@ -1,4 +1,4 @@
-﻿using Interfaces;
+﻿using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,8 +7,8 @@ using Sprint0;
 
 namespace LegendofZelda.SpriteFactories
 {
-   
-        public class ItemSpriteFactory : ISpriteFactory
+
+    public class ItemSpriteFactory : ISpriteFactory
         {
 
             private Texture2D spriteSheet;

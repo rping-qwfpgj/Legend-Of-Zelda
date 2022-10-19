@@ -1,10 +1,9 @@
 ﻿
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Interfaces;
 using Sprites;
 using Microsoft.Xna.Framework;
-
+using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.SpriteFactories
 {

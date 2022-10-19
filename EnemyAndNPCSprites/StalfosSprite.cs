@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Interfaces;
 using System;
+using LegendofZelda.Interfaces;
 
-namespace Sprites {  
+namespace Sprites
+{
     public class StalfosSprite : IEnemy
     {
         // Keep track of frames

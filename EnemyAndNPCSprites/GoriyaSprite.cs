@@ -1,5 +1,5 @@
 using System;
-using Interfaces;
+using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct2D1;
