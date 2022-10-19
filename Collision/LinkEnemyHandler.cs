@@ -31,6 +31,7 @@ namespace Collision
                 }
             } else
 			{
+				
 				link.TakeDamage();
                 /*
 				 * for future:

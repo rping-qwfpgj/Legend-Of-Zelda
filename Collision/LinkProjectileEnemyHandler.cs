@@ -24,9 +24,6 @@ namespace Collision
 			 * game/room.remove(enemy)
 			 */
 			
-		}
-
-        
-
+		}        
 	}
 }
