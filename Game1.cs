@@ -86,8 +86,6 @@ public class Game1 : Game
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
 
       
-
-
         for (int i = 0; i < 18; i++)
         {
             var roomNumber = i.ToString();
@@ -96,8 +94,9 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
 
         }
-        currentRoom = rooms[6];
+       
         currentRoomIndex = 0;
+        currentRoom = rooms[currentRoomIndex];
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -120,7 +119,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.R, new NextRoomCommand(currentRoom, rooms, currentRoomIndex));
+        keyboardController.AddCommand(Keys.R, new NextRoomCommand(this));
+        keyboardController.AddCommand(Keys.T, new PreviousRoomCommand(this));
         //this.collisionDetector = new CollisionDetector(this.link, this.rooms[3]);
 
         base.Initialize();

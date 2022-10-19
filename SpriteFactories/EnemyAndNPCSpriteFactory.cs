@@ -3,11 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Interfaces;
 using Sprites;
-using System.Data.Common;
 using Microsoft.Xna.Framework;
-using System.Runtime.CompilerServices;
-using Sprint0;
-using System.Xml.Linq;
+
 
 namespace LegendofZelda.SpriteFactories
 {
