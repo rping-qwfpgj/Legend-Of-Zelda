@@ -35,9 +35,9 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
 
-            topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
-            middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
-            bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
+            this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+            this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+            this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
@@ -62,9 +62,9 @@ namespace Sprites
             this.xPosition += 2 * direction;
 
             // Update the orbs
-            topAttackOrb.Update();
-            middleAttackOrb.Update();
-            bottomAttackOrb.Update();
+            this.topAttackOrb.Update();
+            this.middleAttackOrb.Update();
+            this.bottomAttackOrb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -96,11 +96,12 @@ namespace Sprites
             spriteBatch.Begin();
 
             spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-            topAttackOrb.Draw(spriteBatch);
-            middleAttackOrb.Draw(spriteBatch);
-            bottomAttackOrb.Draw(spriteBatch);
-           
             spriteBatch.End();
+            this.topAttackOrb.Draw(spriteBatch);
+            this.middleAttackOrb.Draw(spriteBatch);
+            this.bottomAttackOrb.Draw(spriteBatch);
+           
+            //spriteBatch.End();
             
 
         }
@@ -125,6 +126,10 @@ namespace Sprites
         private int xPosition;
         private int yPosition;
 
+        // Original positions to reset to
+        private int originalX;
+        private int originalY;
+
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
         private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
@@ -141,6 +146,8 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            this.originalX = this.xPosition;
+            this.originalY = this.yPosition;
             this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
@@ -155,6 +162,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
+                this.xPosition = this.originalX;
+                this.yPosition = this.originalY;
             }
             else
             {
@@ -169,8 +178,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= currFrames; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition -= currFrames; 
+            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.yPosition -= 10; 
 
             // Update the full location of the orb
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
@@ -179,9 +188,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
+            spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            //spriteBatch.End();
+            spriteBatch.End();
         }
 
         public Rectangle getHitbox()
@@ -205,6 +214,10 @@ namespace Sprites
         private int xPosition;
         private int yPosition;
 
+        // Original positions to reset to
+        private int originalX;
+        private int originalY;
+
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
         private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
@@ -221,6 +234,8 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            this.originalX = this.xPosition;
+            this.originalY = this.yPosition;
             this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
@@ -235,6 +250,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
+                this.xPosition = this.originalX;
+                this.yPosition = this.originalY;
             }
             else
             {
@@ -249,7 +266,7 @@ namespace Sprites
             } 
             
             // Update just x so that this orb goes towards the left in a horizontal line
-            this.xPosition -= currFrames; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
            
 
             // Update the full location of the orb
@@ -259,9 +276,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
+            spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            //spriteBatch.End();
+            spriteBatch.End();
         }
 
         public Rectangle getHitbox()
@@ -285,6 +302,10 @@ namespace Sprites
         private int xPosition;
         private int yPosition;
 
+         // Original positions to reset to
+        private int originalX;
+        private int originalY;
+
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
         private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
@@ -301,6 +322,8 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            this.originalX = this.xPosition;
+            this.originalY = this.yPosition;
             this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
 
             this.currOrb = 0;
@@ -315,6 +338,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
+                this.xPosition = this.originalX;
+                this.yPosition = this.originalY;
             }
             else
             {
@@ -329,8 +354,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= currFrames; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition -= currFrames; 
+            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.yPosition += 10; 
 
             // Update the full location of the orb
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
@@ -339,9 +364,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
+            spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            //spriteBatch.End();
+            spriteBatch.End();
         }
 
         public Rectangle getHitbox()
