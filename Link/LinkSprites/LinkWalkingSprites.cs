@@ -29,6 +29,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
         }
 
             public void Update()
@@ -43,14 +44,15 @@ namespace Sprites
                 }
 
                 this.yPosition -= 2; // Remember that the Y's decrease as you move up the screen  in Monogame's coordinate system
-        }
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+        }      
 
             // NOTE: All of these source Rectangles are using placeholder values for now
             public void Draw(SpriteBatch spriteBatch)
             {
                 // Create source and destination rectangles
                 Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+               
 
                 // Draw the first step of link walking up
                 if (currFrames >= 0 && currFrames <= 1000)
@@ -106,6 +108,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
         }
 
         public void Update()
@@ -120,6 +123,7 @@ namespace Sprites
             }
 
             this.yPosition += 2; // Remember that the Y's increases as you move down the screen  in Monogame's coordinate system
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -127,7 +131,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+           
 
             // Draw the first step of link walking down
             if (currFrames >= 0 && currFrames <= 1000)
@@ -183,6 +187,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
         }
 
         public void Update()
@@ -197,6 +202,7 @@ namespace Sprites
             }
             
             this.xPosition -= 2;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -204,7 +210,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+           
 
             // Draw the first step of link walking side to side
             if (currFrames >= 0 && currFrames <= 1000)
@@ -259,6 +265,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
         }
 
         public void Update()
@@ -273,6 +280,7 @@ namespace Sprites
             }
 
             this.xPosition += 2;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -280,7 +288,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = sourceRectangle = new Rectangle(35, 11, 15, 16);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+           
 
             // Draw the first step of link walking side to side
             if (currFrames >= 0 && currFrames <= 1000)
