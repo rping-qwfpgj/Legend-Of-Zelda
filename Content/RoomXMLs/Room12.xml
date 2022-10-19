@@ -96,10 +96,10 @@
 		</Item>
 
 		<!--  Enemies  -->
-		<!--<Item>
+		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>DragonBoss</ObjectName>
 			<Location>400 160</Location>
-		</Item>-->
+		</Item>
 	
 </XnaContent>
