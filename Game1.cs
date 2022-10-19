@@ -82,17 +82,17 @@ public class Game1 : Game
         rooms = new();
         RoomLoader roomloader = new RoomLoader();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
-        string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        Debug.WriteLine(directory);
+        var enviroment = Environment.CurrentDirectory;
+        string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
+
+      
+
 
         for (int i = 0; i < 18; i++)
         {
             var roomNumber = i.ToString();
-            string fileName = "Room" + roomNumber + ".xml";
-            FileInfo f = new FileInfo(fileName);
-            string fullname = f.FullName;
-            //var FilePath = directory+fileFolder+ roomNumber + ".xml";
-            XDocument xml = XDocument.Load(fullname);
+            var FilePath = directory+fileFolder+ roomNumber + ".xml";
+            XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
 
         }
