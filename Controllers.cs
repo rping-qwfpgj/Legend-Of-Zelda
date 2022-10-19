@@ -5,13 +5,13 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Sprint0;
-using Interfaces;
 using SharpDX.Direct3D9;
 using Commands;
+using LegendofZelda.Interfaces;
 
 namespace Controllers
 {
-	public class KeyboardController : IController
+    public class KeyboardController : IController
 	{
 		private Dictionary<Keys, ICommand> keyBindings = new Dictionary<Keys, ICommand>();
 		private ICommand noInput;

@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using static Sprint0.Link;
-using Interfaces;
 using Sprites;
 using Sprint0;
+using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.SpriteFactories
 {

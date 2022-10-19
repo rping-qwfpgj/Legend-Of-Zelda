@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
 using Commands;
-using Interfaces;
 using Sprites;
 using Controllers;
 using System.IO;
@@ -17,6 +16,7 @@ using System;
 using System.Reflection;
 using System.Diagnostics;
 using System.Windows.Forms.Design;
+using LegendofZelda.Interfaces;
 
 
 // Creator: Tuhin Patel

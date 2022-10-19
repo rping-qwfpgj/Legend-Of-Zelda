@@ -1,10 +1,10 @@
 ﻿using Sprint0;
-using Interfaces;
 using LegendofZelda;
 using System.Collections.Generic;
 using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using LegendofZelda.Interfaces;
 
 namespace Commands
 {

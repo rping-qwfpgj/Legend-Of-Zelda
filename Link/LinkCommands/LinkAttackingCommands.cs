@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sprint0;
-using Interfaces;
+using LegendofZelda.Interfaces;
 
 namespace Commands
 {

@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Sprint0;
-using Interfaces;
 using Sprites;
 using LegendofZelda;
 using System.Diagnostics;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public class CollisionDetector
+    public class CollisionDetector
 	{
 
 		private Link currLink;
@@ -30,6 +30,7 @@ namespace Collision
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
+			this.objects.Add(currLink.currentLinkSprite);
 			this.alreadyChecked = new List<ISprite>();
 			this.handler = new CollisionDelegator(link);
 		
