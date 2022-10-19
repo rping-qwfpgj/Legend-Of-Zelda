@@ -30,7 +30,7 @@
 			<Location>558 264</Location>
 		</Item>
 
-		<!--  Enemies  -->
+		  Enemies  
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>

@@ -63,7 +63,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(enemySpriteSheet, 600, 250);
+                    return new DragonBossSprite(bossSpriteSheet, 600, 250);
 
                 case "OldMan":
 

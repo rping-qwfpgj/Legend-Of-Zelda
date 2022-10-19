@@ -37,63 +37,63 @@ namespace LegendofZelda.SpriteFactories
                 {
                     case "PurpleGemstone":
 
-                        return new StatueOneBlock(spriteSheet, (int)location.X, (int)location.Y);
+                        return new PurpleGemstone(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "OrangeGemstone":
 
-                        return new StatueTwoBlock(spriteSheet, (int)location.X, (int)location.Y);
+                        return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "PurpleTriangle":
 
-                        return new PolkaDotBlock(spriteSheet, (int)location.X, (int)location.Y);
+                        return new PurpleTriangle(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "OrangeTriangle":
 
-                        return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y);
+                        return new OrangeTriangle(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "OrangeMap":
 
-                        return new BackgroundBlock(spriteSheet);
+                        return new OrangeMap(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "SmallRedHeart":
 
-                        return new BackgroundBlock(spriteSheet);
+                        return new SmallRedHeart(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "SmallBlueHeart":
 
-                        return new BackgroundBlock(spriteSheet);
+                        return new SmallBlueHeart(spriteSheet, (int)location.X, (int)location.Y);
 
                     case "BigHeart":
 
-                        return new BackgroundBlock(spriteSheet);
+                        return new BigHeart(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "Fairy":
+                    case "Fairy":
 
-                    return new BackgroundBlock(spriteSheet);
+                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y); return new BackgroundBlock(spriteSheet);
 
-                case "Compass":
+                    case "Compass":
 
-                    return new BackgroundBlock(spriteSheet);
-
-
-                case "CLock":
-
-                    return new BackgroundBlock(spriteSheet);
-
-                case "Bow":
-
-                    return new BackgroundBlock(spriteSheet);
+                        return new Compass(spriteSheet, (int)location.X, (int)location.Y);
 
 
-                case "Boomerang":
+                    case "Clock":
 
-                    return new BackgroundBlock(spriteSheet);
+                        return new Clock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "Bomb":
+                    case "Bow":
 
-                    return new BackgroundBlock(spriteSheet);
+                        return new Bow(spriteSheet, (int)location.X, (int)location.Y);
 
-                default:
+
+                    case "Boomerang":
+
+                        return new Boomerang(spriteSheet, (int)location.X, (int)location.Y);
+
+                    case "Bomb":
+
+                        return new Bomb(spriteSheet, (int)location.X, (int)location.Y);
+
+                    default:
 
                         return null;
                 }

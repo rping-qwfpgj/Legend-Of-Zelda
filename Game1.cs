@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
+using System.Reflection;
 
 
 // Creator: Tuhin Patel
@@ -58,7 +59,7 @@ public class Game1 : Game
     protected override void Initialize()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        
+
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
@@ -95,49 +96,31 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        background = BackgroundSpriteFactory.Instance.CreateBackground("Background1");
-        List<ISprite> roomSprites = new List<ISprite>();
-        roomSprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(200, 200), "DepthBlock"));
-        roomSprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2(600, 250), "OldMan"));
-        roomSprites.Add(ItemSpriteFactory.Instance.CreateItem(new Vector2(300, 300), "PurpleTriangle"));
-        currentRoom = new Room(roomSprites, background);
-        collisionDetector = new CollisionDetector(link, currentRoom);
-        Console.WriteLine("Hello World");
+
 
         //ROOMLOADER STUFF
+        rooms = new();
+        RoomLoader roomloader = new RoomLoader();
+        string fileFolder = "C:\\Users\\golde\\source\\repos\\Sprint3\\Content\\RoomXMLs\\Room";
 
+        for (int i = 0; i < 18; i++)
+        {
+            var roomNumber = i.ToString();
+            var FilePath = fileFolder + roomNumber + ".xml";
+            XDocument xml = XDocument.Load(FilePath);
+            rooms.Add(roomloader.ParseXML(xml));
 
-        //RoomLoader roomloader = new RoomLoader();
-        //// string currentDirectory = Directory.GetCurrentDirectory();
-        //string fileFolder = "Content/RoomXMLs/Room";
-        //string xmlString = ".xml";
+        }
 
-
-        //for (int i = 0; i < 18; i++)
-        //{ 
-        //    var roomNumber = i.ToString();
-        //    var purchaseOrderFilePath = fileFolder + roomNumber + ".xml";    
-        //    // var purchaseOrderFilepath = Path.Combine(fileName);
-        //    XDocument xml = XDocument.Load(purchaseOrderFilePath);
-        //    rooms.Add(roomloader.ParseXML(xml));
-
-        //}
-        //currentRoom = rooms[0];
-        //currentRoomIndex = 0;
-        //this.collisionDetector = new CollisionDetector(this.link, this.rooms[0]);
+        currentRoom = rooms[3];
+        currentRoomIndex = 0;
+        this.collisionDetector = new CollisionDetector(this.link, this.rooms[3]);
 
         base.Initialize();
     }
     
     protected override void LoadContent()
     {
-
-        //nothing in here?????LinkSpriteFactory.Instance.loadContent(Content);
-        //Try putting spritefactory stuff in load content
-        //ProjectileSpriteFactory.Instance.loadContent(Content);
-        //EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
-        //BlockSpriteFactory.Instance.loadContent(Content);
-        //ItemSpriteFactory.Instance.loadContent(Content);
 
     }
 
