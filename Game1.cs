@@ -80,7 +80,7 @@ public class Game1 : Game
         //ROOMLOADER STUFF
         rooms = new();
         RoomLoader roomloader = new RoomLoader();
-        string fileFolder = "\\Content\\Rooms\\Room";
+        string fileFolder = "\\Content\\RoomXMLs\\Room";
         string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         Debug.WriteLine(directory);
 
