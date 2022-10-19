@@ -16,6 +16,7 @@ using LegendofZelda.SpriteFactories;
 using System;
 using System.Reflection;
 using System.Diagnostics;
+using System.Windows.Forms.Design;
 
 
 // Creator: Tuhin Patel
@@ -87,8 +88,11 @@ public class Game1 : Game
         for (int i = 0; i < 18; i++)
         {
             var roomNumber = i.ToString();
-            var FilePath = directory+fileFolder+ roomNumber + ".xml";
-            XDocument xml = XDocument.Load(FilePath);
+            string fileName = "Room" + roomNumber + ".xml";
+            FileInfo f = new FileInfo(fileName);
+            string fullname = f.FullName;
+            //var FilePath = directory+fileFolder+ roomNumber + ".xml";
+            XDocument xml = XDocument.Load(fullname);
             rooms.Add(roomloader.ParseXML(xml));
 
         }
