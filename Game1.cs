@@ -96,7 +96,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
 
         }
-        currentRoom = rooms[9];
+        currentRoom = rooms[12];
         currentRoomIndex = 0;
 
         // Initalize keyboard controller
