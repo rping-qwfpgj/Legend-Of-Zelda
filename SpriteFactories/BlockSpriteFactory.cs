@@ -51,9 +51,18 @@ namespace LegendofZelda.SpriteFactories
 
                     return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "Background":
 
-                    return new BackgroundBlock(spriteSheet);
+                case "PlainDarkBlueBlock":
+
+                    return new PlainDarkBlueBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "PlainBlackBlock":
+
+                    return new PlainBlackBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "PlainTurqoiseBlock":
+
+                    return new PlainTurqoiseBlock(spriteSheet, (int)location.X, (int)location.Y);
 
                 default:
 
