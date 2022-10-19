@@ -11,32 +11,32 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>348 176</Location>
+			<Location>350 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>402 176</Location>
+			<Location>400 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>348 220</Location>
+			<Location>350 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>402 220</Location>
+			<Location>400 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>348 264</Location>
+			<Location>350 260</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>402 264</Location>
+			<Location>400 260</Location>
 		</Item>
 
 

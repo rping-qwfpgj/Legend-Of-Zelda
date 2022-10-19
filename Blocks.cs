@@ -18,16 +18,18 @@ namespace Sprint0
         private Rectangle destinationRectangle;
         private int xPos;
         private int yPos;
-        private int width = 16;
-        private int height = 16;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
 
         public PlainTurqoiseBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(3, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(3, 11, sourceWidth, sourceWidth);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 
         public void Update()
@@ -53,16 +55,18 @@ namespace Sprint0
         private Rectangle destinationRectangle;
         private int xPos;
         private int yPos;
-        private int width = 16;
-        private int height = 16;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
 
         public DepthBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(20, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(20, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 
         public void Update()
@@ -88,16 +92,18 @@ namespace Sprint0
         private Rectangle destinationRectangle;
         private int xPos;
         private int yPos;
-        private int width = 16;
-        private int height = 16;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
 
         public StatueOneBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(37, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(37, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 
         public void Update()
@@ -123,16 +129,18 @@ namespace Sprint0
         private Rectangle destinationRectangle;
         private int xPos;
         private int yPos;
-        private int width = 16;
-        private int height = 16;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
 
         public StatueTwoBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(54, 11, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(54, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 
         public void Update()
