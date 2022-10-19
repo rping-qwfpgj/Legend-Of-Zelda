@@ -2,6 +2,8 @@
 using Interfaces;
 using LegendofZelda;
 using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 
 namespace Commands
 {
@@ -58,6 +60,7 @@ public class NextRoomCommand : ICommand
 
     public void Execute()
     {
+        Debug.WriteLine("hi\n");
         if (roomNumber == 17)
         {
             roomNumber = 0;
@@ -65,7 +68,6 @@ public class NextRoomCommand : ICommand
         else
         {
             roomNumber++;
-
         }
         currentRoom = rooms[roomNumber];
     }
