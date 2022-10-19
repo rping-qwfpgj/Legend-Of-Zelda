@@ -3,11 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Interfaces;
 using Sprites;
-using System.Data.Common;
 using Microsoft.Xna.Framework;
-using System.Runtime.CompilerServices;
-using Sprint0;
-using System.Xml.Linq;
+
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -47,27 +44,34 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "Goriya":
 
-                    return new GoriyaSprite(enemySpriteSheet, 600, 250);
+                    return new GoriyaSprite(enemySpriteSheet, location.X, location.Y);
 
                 case "Keese":
 
-                    return new KeeseSprite(enemySpriteSheet, 600, 250);
+                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y);
 
                 case "Stalfos":
 
-                    return new StalfosSprite(enemySpriteSheet, 600, 250);
+                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y);
 
                 case "Gel":
 
-                    return new GelSprite(enemySpriteSheet, 600, 250);
+                    return new GelSprite(enemySpriteSheet, location.X, location.Y);
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(bossSpriteSheet, 600, 250);
+                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y);
 
                 case "OldMan":
 
-                    return new OldManSprite(oldManSpriteSheet, 600, 250);
+                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y);
+
+                case "Wallmaster":
+
+                    return new WallMasterSprite(enemySpriteSheet, location.X, location.Y);
+                case "Trap":
+
+                    return new TrapSprite(enemySpriteSheet, location.X, location.Y);
 
                 default:
 

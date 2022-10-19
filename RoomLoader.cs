@@ -12,8 +12,11 @@ namespace LegendofZelda
 {
     public class RoomLoader
     {
+
+       
         public RoomLoader()
         {
+           
         }
 
         public Room ParseXML(XDocument xml)

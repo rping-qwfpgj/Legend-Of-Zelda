@@ -12,125 +12,65 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>136 132</Location>
+			<Location>150 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>294 132</Location>
+			<Location>300 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>136 222</Location>
+			<Location>150 218</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>294 222</Location>
+			<Location>300 218</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>136 310</Location>
+			<Location>150 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>294 310</Location>
+			<Location>300 306</Location>
 		</Item>
 
 		<!--  Statue Two Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>454 132</Location>
+			<Location>450 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>610 132</Location>
+			<Location>600 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>454 222</Location>
+			<Location>450 218</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>610 222</Location>
+			<Location>600 218</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>454 310</Location>
+			<Location>450 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>610, 310</Location>
+			<Location>600 306</Location>
 		</Item>
 
-		<!--  Polka Dot Blocks  -->
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>346 268</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>400 268</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>346 312</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>400 312</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>240 312</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>508 312</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>240 356</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>294 356</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>346 356</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>400 356</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>454 356</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PolkaDotBlock</ObjectName>
-			<Location>508 356</Location>
-		</Item>
+		
 </XnaContent>

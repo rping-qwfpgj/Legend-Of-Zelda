@@ -9,7 +9,7 @@ namespace LegendofZelda
     {
         private List<ISprite> sprites;
         private ISprite background;
-        
+       
         public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;
@@ -29,7 +29,6 @@ namespace LegendofZelda
 
         public void Update()
         {
-
            foreach (var sprite in sprites)
             {
                 sprite.Update();
