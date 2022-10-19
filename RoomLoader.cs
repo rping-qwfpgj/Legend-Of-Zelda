@@ -22,7 +22,7 @@ namespace LegendofZelda
             List<ISprite> sprites = new();
 
             //parse background
-            string backgroundString = xml.Root.Descendants("Item").Select(x => x.Element("Background").Value).FirstOrDefault();
+            string backgroundString = xml.Root.Descendants("Item").First().Element("ObjectName").Value;
             var backgroundSprite = BackgroundSpriteFactory.Instance.CreateBackground(backgroundString);
 
             List<string> spriteStrings = new List<string>(new string[] { "Block", "Enemy", "Item" });
@@ -41,7 +41,19 @@ namespace LegendofZelda
 
                     string[] locationString = spriteToCreate.Element("Location").Value.Split(" ");
                     Vector2 location = new((float)Convert.ToDouble(locationString[0]), (float)Convert.ToDouble(locationString[1]));
-                    sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, spriteToCreate.Element("ObjectName").Value));
+                    if (spriteString == "Block")
+                    {
+                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, spriteToCreate.Element("ObjectName").Value));
+                    }
+                    else if(spriteString == "Enemy")
+                    {
+                        sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, spriteToCreate.Element("ObjectName").Value));
+                    }
+                    else if (spriteString == "Item")
+                    {
+                        sprites.Add(ItemSpriteFactory.Instance.CreateItem(location, spriteToCreate.Element("ObjectName").Value));
+                    }
+
 
                     //testing purposes
                     Console.WriteLine("Check that it's getting all sprites{0}\n", spriteToCreate.Value);
