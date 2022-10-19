@@ -15,6 +15,7 @@ using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
 using System.Reflection;
+using System.Diagnostics;
 
 
 // Creator: Tuhin Patel
@@ -75,6 +76,25 @@ public class Game1 : Game
              _graphics.PreferredBackBufferHeight / 2);
         mouseController = new(this, center);
 
+
+        //ROOMLOADER STUFF
+        rooms = new();
+        RoomLoader roomloader = new RoomLoader();
+        string fileFolder = "\\Content\\RoomXMLs\\Room";
+        string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        Debug.WriteLine(directory);
+
+        for (int i = 0; i < 18; i++)
+        {
+            var roomNumber = i.ToString();
+            var FilePath = directory+fileFolder+ roomNumber + ".xml";
+            XDocument xml = XDocument.Load(FilePath);
+            rooms.Add(roomloader.ParseXML(xml));
+
+        }
+        currentRoom = rooms[6];
+        currentRoomIndex = 0;
+
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
@@ -96,24 +116,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-
-
-        //ROOMLOADER STUFF
-        rooms = new();
-        RoomLoader roomloader = new RoomLoader();
-        string fileFolder = "C:\\Users\\golde\\source\\repos\\Sprint3\\Content\\RoomXMLs\\Room";
-
-        for (int i = 0; i < 18; i++)
-        {
-            var roomNumber = i.ToString();
-            var FilePath = fileFolder + roomNumber + ".xml";
-            XDocument xml = XDocument.Load(FilePath);
-            rooms.Add(roomloader.ParseXML(xml));
-        }
-
-        currentRoom = rooms[3];
-        currentRoomIndex = 0;
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[3]);
+        keyboardController.AddCommand(Keys.R, new NextRoomCommand(currentRoom, rooms, currentRoomIndex));
+        //this.collisionDetector = new CollisionDetector(this.link, this.rooms[3]);
 
         base.Initialize();
     }
@@ -133,7 +137,7 @@ public class Game1 : Game
         link.Update();
         currentRoom.Update();
 
-        collisionDetector.Update();
+       // collisionDetector.Update();
         base.Update(gameTime);
     }
 
