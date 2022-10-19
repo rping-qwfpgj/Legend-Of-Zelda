@@ -12,124 +12,124 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>136 132</Location>
+			<Location>150 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>190 132</Location>
+			<Location>200 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>244 132</Location>
+			<Location>250 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>136 176</Location>
+			<Location>150 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>136 220</Location>
+			<Location>150 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>136 264</Location>
+			<Location>150 260</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>136 308</Location>
+			<Location>150 304</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>190 308</Location>
+			<Location>200 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>244 308</Location>
-		</Item>
-
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>514 132</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>568 132</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>622 132</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>622 176</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>622 220</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>622 264</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>622 308</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>514 308</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>568 308</Location>
+			<Location>250 306</Location>
 		</Item>
 
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>244 220</Location>
+			<Location>500 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>298 220</Location>
+			<Location>550 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>352 220</Location>
+			<Location>600 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>406 220</Location>
+			<Location>600 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>460 220</Location>
+			<Location>600 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PlainDarkBlueBlock</ObjectName>
-			<Location>514 220</Location>
+			<Location>600 260</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>600 304</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>500 304</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>550 304</Location>
+		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>250 216</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>300 216</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>350 216</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>400 216</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>450 216</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PlainDarkBlueBlock</ObjectName>
+			<Location>500 216</Location>
 		</Item>
 
 		<!--  Enemies  -->

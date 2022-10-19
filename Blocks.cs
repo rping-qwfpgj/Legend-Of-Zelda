@@ -236,16 +236,18 @@ namespace Sprint0
         private Rectangle destinationRectangle;
         private int xPos;
         private int yPos;
-        private int width = 16;
-        private int height = 16;
+        private int sourceWidth = 15;
+        private int sourceHeight = 15;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
 
         public PlainDarkBlueBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(37, 28, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(38, 29, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 
         public void Update()

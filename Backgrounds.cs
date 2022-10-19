@@ -550,7 +550,7 @@ namespace Sprint0
         public Background17(Texture2D backgroundTexture)
         {
             this.texture = backgroundTexture;
-            this.sourceRectangle = new Rectangle(772, 532, width, height);
+            this.sourceRectangle = new Rectangle(1, 1, width, height);
             this.destinationRectangle = new Rectangle(0, 0, 800, 480);
         }
 
