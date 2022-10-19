@@ -109,7 +109,6 @@ public class Game1 : Game
             var FilePath = fileFolder + roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
-
         }
 
         currentRoom = rooms[3];
