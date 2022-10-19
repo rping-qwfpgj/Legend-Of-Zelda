@@ -4,6 +4,7 @@ using LegendofZelda;
 using System.Collections.Generic;
 using System;
 using System.Diagnostics;
+using Microsoft.Xna.Framework;
 
 namespace Commands
 {
@@ -46,61 +47,52 @@ public class ResetGameCommand : ICommand
 
 public class NextRoomCommand : ICommand
 {
-    private Room currentRoom;
-    private List<Room> rooms;
-    private int roomNumber;
+    private Game1 myGame;
 
-    public NextRoomCommand(Room currentRoom, List<Room> rooms, int roomNumber)
+    public NextRoomCommand(Game1 myGame)
     {
-        this.currentRoom = currentRoom;
-        this.rooms = rooms;
-        this.roomNumber =  roomNumber;
-
+        this.myGame = myGame;
     }
 
     public void Execute()
     {
-        Debug.WriteLine("hi\n");
-        if (roomNumber == 17)
+      
+        if (myGame.currentRoomIndex == 17)
         {
-            roomNumber = 0;
+            myGame.currentRoomIndex = 0;
         }
         else
         {
-            roomNumber++;
+            myGame.currentRoomIndex++;
         }
-        currentRoom = rooms[roomNumber];
+
+        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
     }
-
-
 }
 
 public class PreviousRoomCommand : ICommand
 {
-    private Room currentRoom;
-    private List<Room> rooms;
-    private int roomNumber;
+    private Game1 myGame;
 
-    public PreviousRoomCommand(Room currentRoom, List<Room> rooms,int roomNumber)
+    public PreviousRoomCommand(Game1 myGame)
     {
-        this.currentRoom = currentRoom;
-        this.rooms = rooms;
-        this.roomNumber = roomNumber;
+        this.myGame=myGame;
 
     }
 
     public void Execute()
     {
 
-        if (roomNumber == 0)
+        if (myGame.currentRoomIndex == 0)
         {
-            roomNumber = 17;
+            myGame.currentRoomIndex = 17;
         }
         else
         {
-            roomNumber--;
+            myGame.currentRoomIndex--;
         }
-        currentRoom = rooms[roomNumber];
+
+        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
     }
 
 }
