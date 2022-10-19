@@ -179,9 +179,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
 
         public Rectangle getHitbox()
@@ -259,9 +259,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
 
         public Rectangle getHitbox()
@@ -339,9 +339,9 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
 
         public Rectangle getHitbox()

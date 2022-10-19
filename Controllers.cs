@@ -82,11 +82,11 @@ namespace Controllers
             {
                 if (state.X < center.X) 
                 {
-                    new PreviousRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
+                    new PreviousRoomCommand(myGame).Execute();
                 }
                 else if (state.X > center.X)
                 {
-                    new NextRoomCommand(myGame.currentRoom, myGame.rooms, myGame.currentRoomIndex).Execute();
+                    new NextRoomCommand(myGame).Execute();
                 }
             }
         }
