@@ -64,6 +64,10 @@ namespace LegendofZelda.SpriteFactories
 
                     return new PlainTurqoiseBlock(spriteSheet, (int)location.X, (int)location.Y);
 
+                case "StairsBlock":
+
+                    return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y);
+
                 default:
 
                     return null;

@@ -69,6 +69,7 @@ namespace LegendofZelda.SpriteFactories
                 case "Wallmaster":
 
                     return new WallMasterSprite(enemySpriteSheet, location.X, location.Y);
+
                 case "Trap":
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y);
