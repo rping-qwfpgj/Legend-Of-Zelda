@@ -30,7 +30,6 @@ namespace Collision
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
-			this.objects.Add(currLink.currentLinkSprite);
 			this.alreadyChecked = new List<ISprite>();
 			this.handler = new CollisionDelegator(link);
 		
@@ -68,8 +67,8 @@ namespace Collision
 					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
-							Debug.WriteLine(i + "collision detected!");
-							i++; //used to check that debug is working
+							//Debug.WriteLine(i + "collision detected!");
+							//i++; //used to check that debug is working
 							this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}
