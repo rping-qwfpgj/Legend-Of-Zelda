@@ -95,7 +95,7 @@ public class Game1 : Game
 
         }
        
-        currentRoomIndex = 0;
+        currentRoomIndex = 12;
         currentRoom = rooms[currentRoomIndex];
 
         // Initalize keyboard controller
@@ -141,7 +141,7 @@ public class Game1 : Game
         link.Update();
         currentRoom.Update();
 
-        collisionDetector.Update();
+        //collisionDetector.Update();
         base.Update(gameTime);
     }
 
