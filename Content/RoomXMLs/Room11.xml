@@ -110,10 +110,10 @@
 		</Item>
 
 		<!--  Enemies  -->
-		<!--<Item>
+		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Wallmaster</ObjectName>
 			<Location>90 200</Location>
-		</Item>-->
+		</Item>
 
 </XnaContent>
