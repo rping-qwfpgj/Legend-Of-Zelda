@@ -21,7 +21,7 @@ namespace Sprites
         private ISprite throwingUp;
         private ISprite throwingDown;
 
-        public GoriyaSprite(Texture2D texture, int xPosition, int yPosition)
+        public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
         {
             movingUp = new GoriyaMovingUpSprite(texture, xPosition, yPosition);
             movingDown = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
