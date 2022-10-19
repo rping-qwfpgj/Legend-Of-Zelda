@@ -12,150 +12,150 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>136 132</Location>
+			<Location>150 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>136 176</Location>
+			<Location>150 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>136 220</Location>
+			<Location>150 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>136 264</Location>
+			<Location>150 260</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>136 308</Location>
+			<Location>150 306</Location>
 		</Item>
 
 		<!--  Right Column  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>622 132</Location>
+			<Location>600 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>622 176</Location>
+			<Location>600 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>622 220</Location>
+			<Location>600 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>622 264</Location>
+			<Location>600 260</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>622 308</Location>
+			<Location>600 206</Location>
 		</Item>
 
 		<!--  Top Row  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>190 132</Location>
+			<Location>200 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>244 132</Location>
+			<Location>250 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>298 132</Location>
+			<Location>300 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>352 132</Location>
+			<Location>350 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>406 132</Location>
+			<Location>400 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>460 132</Location>
+			<Location>450 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>514 132</Location>
+			<Location>500 132</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>568 132</Location>
+			<Location>500 132</Location>
 		</Item>
 
 		<!--  Bottom Row  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>190 308</Location>
+			<Location>200 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>244 308</Location>
+			<Location>250 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>298 308</Location>
+			<Location>300 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>460 308</Location>
+			<Location>450 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>514 308</Location>
+			<Location>500 306</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>568 308</Location>
+			<Location>550 306</Location>
 		</Item>
 
 		<!--  Statue Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>298 176</Location>
+			<Location>300 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueOneBlock</ObjectName>
-			<Location>244 220</Location>
+			<Location>250 216</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>460 176</Location>
+			<Location>450 174</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>StatueTwoBlock</ObjectName>
-			<Location>514 220</Location>
+			<Location>500 216</Location>
 		</Item>
 
 		<!--  Items  -->
