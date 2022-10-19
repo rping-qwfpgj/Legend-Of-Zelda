@@ -68,7 +68,13 @@ namespace Collision
                 side = determineSide(otherObj, obj);
                 if(otherObj is IEnemy)
                 {   
+                    IEnemy enemy = otherObj as IEnemy;
                     if(obj is ILinkProjectile)
+                    {
+                        ILinkProjectile linkProjectile = obj as ILinkProjectile;
+                        LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side);
+
+                    }else if (obj is INonAttackingSprite || obj is IAttackingSprite)
                     {
 
                     }
