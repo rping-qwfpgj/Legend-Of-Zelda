@@ -4,13 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Sprint0;
-using Interfaces;
 using Sprites;
 using LegendofZelda;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public static class EnemyBlockHandler
+    public static class EnemyBlockHandler
 	{		
 		static EnemyBlockHandler()
 		{

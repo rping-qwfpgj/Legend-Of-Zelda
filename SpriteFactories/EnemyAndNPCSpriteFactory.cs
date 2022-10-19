@@ -1,10 +1,9 @@
 ﻿
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Interfaces;
 using Sprites;
 using Microsoft.Xna.Framework;
-
+using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -69,6 +68,7 @@ namespace LegendofZelda.SpriteFactories
                 case "Wallmaster":
 
                     return new WallMasterSprite(enemySpriteSheet, location.X, location.Y);
+
                 case "Trap":
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y);

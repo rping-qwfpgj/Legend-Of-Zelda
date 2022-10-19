@@ -4,13 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Sprint0;
-using Interfaces;
 using Sprites;
 using LegendofZelda;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public static class LinkProjectileEnemyHandler
+    public static class LinkProjectileEnemyHandler
 	{		
 		
 		public static void handleCollision(ILinkProjectile projectile, IEnemy enemy, string side)
@@ -24,6 +24,9 @@ namespace Collision
 			 * game/room.remove(enemy)
 			 */
 			
-		}        
+		}
+
+        
+
 	}
 }

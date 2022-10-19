@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Interfaces;
 using System;
+using LegendofZelda.Interfaces;
 
 namespace Sprites
 {

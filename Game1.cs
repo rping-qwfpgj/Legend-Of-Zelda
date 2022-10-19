@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
 using Commands;
-using Interfaces;
 using Sprites;
 using Controllers;
 using System.IO;
@@ -17,6 +16,7 @@ using System;
 using System.Reflection;
 using System.Diagnostics;
 using System.Windows.Forms.Design;
+using LegendofZelda.Interfaces;
 
 
 // Creator: Tuhin Patel
@@ -95,7 +95,7 @@ public class Game1 : Game
 
         }
        
-        currentRoomIndex = 17;
+        currentRoomIndex = 16;
         currentRoom = rooms[currentRoomIndex];
 
         // Initalize keyboard controller
@@ -121,7 +121,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.R, new NextRoomCommand(this));
         keyboardController.AddCommand(Keys.T, new PreviousRoomCommand(this));
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[3]);
+        this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex]);
 
         base.Initialize();
     }
@@ -141,7 +141,7 @@ public class Game1 : Game
         link.Update();
         currentRoom.Update();
 
-        //collisionDetector.Update();
+        collisionDetector.Update();
         base.Update(gameTime);
     }
 

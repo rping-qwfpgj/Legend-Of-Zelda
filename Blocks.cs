@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprites;
-using Interfaces;
-
+using LegendofZelda.Interfaces;
 
 namespace Sprint0
 {
@@ -177,7 +176,6 @@ namespace Sprint0
             this.sourceRectangle = new Rectangle(3, 28, width, height);
             this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
         }
-
         public void Update()
         {
         }

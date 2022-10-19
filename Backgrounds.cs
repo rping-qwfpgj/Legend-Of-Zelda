@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprites;
-using Interfaces;
-
+using LegendofZelda.Interfaces;
 
 namespace Sprint0
 {

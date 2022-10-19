@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Sprint0;
-using Interfaces;
 using Sprites;
 using LegendofZelda;
 using System.Diagnostics;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public class CollisionDetector
+    public class CollisionDetector
 	{
 
 		private Link currLink;
@@ -68,8 +68,8 @@ namespace Collision
 					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
 						if (detectCollision(obj, otherObj))
 						{
-							Debug.WriteLine(i + "collision detected!");
-							i++; //used to check that debug is working
+							//Debug.WriteLine(i + "collision detected!");
+							//i++; //used to check that debug is working
 							this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}

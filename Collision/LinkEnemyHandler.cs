@@ -8,10 +8,11 @@ using Interfaces;
 using Sprites;
 
 using LegendofZelda;
+using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-	public static class LinkEnemyHandler
+    public static class LinkEnemyHandler
 	{		
 
 		public static void handleCollision(Link link, IEnemy enemy, string side)

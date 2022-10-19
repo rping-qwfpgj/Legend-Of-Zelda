@@ -5,13 +5,13 @@ using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 
-namespace Interfaces
+namespace LegendofZelda.Interfaces
 {
-    public interface IEnemy: ISprite
+    public interface IEnemyProjectile : ISprite
     {
         void Draw(SpriteBatch spriteBatch);
         void Update();
         Rectangle getHitbox();
-        // void TakeDamage();
+        // void collide();
     }
 }

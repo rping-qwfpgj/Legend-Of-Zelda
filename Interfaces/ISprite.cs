@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace Interfaces
+namespace LegendofZelda.Interfaces
 {
     public interface ISprite
     {

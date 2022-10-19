@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using static Sprint0.Link;
-using Interfaces;
 using Sprites;
 using Sprint0;
+using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -63,6 +63,10 @@ namespace LegendofZelda.SpriteFactories
                 case "PlainTurqoiseBlock":
 
                     return new PlainTurqoiseBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "StairsBlock":
+
+                    return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y);
 
                 default:
 
