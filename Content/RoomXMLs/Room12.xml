@@ -95,11 +95,43 @@
 			<Location>650 306</Location>
 		</Item>
 
-	<!--  Enemies  -->
+		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>DragonBoss</ObjectName>
 			<Location>400 160</Location>
+		</Item>
+
+		<!--  Bounding  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightHalfBoundingBlock</ObjectName>
+			<Location>700 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightHalfBoundingBlock</ObjectName>
+			<Location>700 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>50 392</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>435 392</Location>
 		</Item>
 	
 </XnaContent>

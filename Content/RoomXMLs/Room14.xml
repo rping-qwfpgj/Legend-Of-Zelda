@@ -251,9 +251,6 @@
 			<Location>650 348</Location>
 		</Item>
 		
-		
-		
-		
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
@@ -269,5 +266,37 @@
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Stalfos</ObjectName>
 			<Location>520 180</Location>
+		</Item>
+
+		<!--  Bounding  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightBoundingBlock</ObjectName>
+			<Location>700 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopHalfBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopHalfBoundingBlock</ObjectName>
+			<Location>435 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>50 392</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>435 392</Location>
 		</Item>
 </XnaContent>

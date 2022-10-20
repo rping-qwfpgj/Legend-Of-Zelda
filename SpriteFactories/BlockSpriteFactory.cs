@@ -68,6 +68,42 @@ namespace LegendofZelda.SpriteFactories
 
                     return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y);
 
+                case "LeftBoundingBlock":
+
+                    return new LeftBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "RightBoundingBlock":
+
+                    return new RightBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "TopBoundingBlock":
+
+                    return new TopBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "BottomBoundingBlock":
+
+                    return new BottomBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "BoundingBlock":
+
+                    return new BoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "LeftHalfBoundingBlock":
+
+                    return new LeftHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "RightHalfBoundingBlock":
+
+                    return new RightHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "TopHalfBoundingBlock":
+
+                    return new TopHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
+                case "BottomHalfBoundingBlock":
+
+                    return new BottomHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+
                 default:
 
                     return null;

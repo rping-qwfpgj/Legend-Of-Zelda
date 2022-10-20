@@ -101,4 +101,47 @@
 			<ObjectName>OrangeMap</ObjectName>
 			<Location>550 210</Location>
 		</Item>
+
+
+		<!--  Bounding  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<Location>50 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightHalfBoundingBlock</ObjectName>
+			<Location>700 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightHalfBoundingBlock</ObjectName>
+			<Location>700 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopHalfBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopHalfBoundingBlock</ObjectName>
+			<Location>435 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>65 392</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomHalfBoundingBlock</ObjectName>
+			<Location>425 392</Location>
+		</Item>
 </XnaContent>

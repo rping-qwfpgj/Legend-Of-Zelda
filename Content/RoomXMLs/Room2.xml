@@ -98,4 +98,32 @@
 			<ObjectName>Stalfos</ObjectName>
 			<Location>550 270</Location>
 		</Item>
+
+		<!--  Bounding  -->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<Location>50 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>RightBoundingBlock</ObjectName>
+			<Location>700 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>TopBoundingBlock</ObjectName>
+			<Location>50 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BottomBoundingBlock</ObjectName>
+			<Location>50 392</Location>
+		</Item>
+	
 </XnaContent>

@@ -75,4 +75,38 @@
 			<ObjectName>Keese</ObjectName>
 			<Location>340 290</Location>
 		</Item>
+
+
+	<!--  Bounding  -->
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<Location>50 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<Location>50 264</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>RightBoundingBlock</ObjectName>
+		<Location>700 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>TopHalfBoundingBlock</ObjectName>
+		<Location>65 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>TopHalfBoundingBlock</ObjectName>
+		<Location>425 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>BottomBoundingBlock</ObjectName>
+		<Location>50 392</Location>
+	</Item>
+	
 </XnaContent>
