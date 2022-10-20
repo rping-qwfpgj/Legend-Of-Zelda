@@ -95,7 +95,7 @@ public class Game1 : Game
 
         }
        
-        currentRoomIndex = 16;
+        currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
 
         // Initalize keyboard controller
