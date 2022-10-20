@@ -30,7 +30,7 @@ namespace Collision
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
-			this.objects.Add(currLink.currentLinkSprite);
+			
 			this.alreadyChecked = new List<ISprite>();
 			this.handler = new CollisionDelegator(link);
 		
