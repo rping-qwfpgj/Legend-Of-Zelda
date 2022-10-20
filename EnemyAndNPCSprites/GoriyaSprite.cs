@@ -323,7 +323,7 @@ namespace Sprites
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
             this.rightBoomerang.Draw(spriteBatch);
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle getHitbox()
@@ -389,7 +389,7 @@ namespace Sprites
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             this.leftBoomerang.Draw(spriteBatch);
             
-            spriteBatch.End();
+           
         }
 
         public Rectangle getHitbox()
@@ -450,7 +450,7 @@ namespace Sprites
 
             this.downBoomerang.Draw(spriteBatch);
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle getHitbox()
@@ -506,9 +506,10 @@ namespace Sprites
 
             }
 
+
             this.upBoomerang.Draw(spriteBatch);
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle getHitbox()
@@ -586,7 +587,7 @@ namespace Sprites
 
             public void Draw(SpriteBatch spriteBatch)
             {
-                spriteBatch.Begin();
+                
 
                 // 1
                 if (currFrames >= 0 && currFrames <= maxFrames / 8)
@@ -727,7 +728,7 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
 
             // 1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
@@ -868,7 +869,7 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
 
             // 1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
@@ -1009,7 +1010,7 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
 
             // 1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
