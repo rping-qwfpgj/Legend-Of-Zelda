@@ -3,22 +3,30 @@ using Interfaces;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
+using System.Diagnostics;
 using Sprint0;
 
 namespace Collision
 {
     public class CollisionDelegator
-	{
+	{   
         Link link;
 
         public CollisionDelegator(Link link) {
             this.link = link;
         }
 
+        // method which will assign the object pair to it's pairwise handler
+        /*
+         * 9 cases
+         * 
+         * 
+         * 
+         */
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
             string side = determineSide(obj, otherObj);
-
+            
             if (obj is IEnemyProjectile) {
                 IEnemyProjectile projectile = obj as IEnemyProjectile;
                 if (otherObj is IBlock)
