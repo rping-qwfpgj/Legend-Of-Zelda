@@ -119,27 +119,32 @@
 		<!--  Bounding  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 			<Location>50 44</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>LeftHalfBoundingBlock</ObjectName>
+			<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 			<Location>50 264</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>RightBoundingBlock</ObjectName>
+			<ObjectName>VerticalBoundingBlock</ObjectName>
 			<Location>700 44</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>TopBoundingBlock</ObjectName>
+			<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 			<Location>50 44</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>BottomBoundingBlock</ObjectName>
+			<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+			<Location>435 44</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>HorizontalBoundingBlock</ObjectName>
 			<Location>50 392</Location>
 		</Item>
 
