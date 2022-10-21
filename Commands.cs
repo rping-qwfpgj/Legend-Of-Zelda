@@ -57,7 +57,7 @@ public class NextRoomCommand : ICommand
     public void Execute()
     {
       
-        if (myGame.currentRoomIndex == 17)
+        if (myGame.currentRoomIndex == 18)
         {
             myGame.currentRoomIndex = 0;
         }
@@ -85,7 +85,7 @@ public class PreviousRoomCommand : ICommand
 
         if (myGame.currentRoomIndex == 0)
         {
-            myGame.currentRoomIndex = 17;
+            myGame.currentRoomIndex = 18;
         }
         else
         {

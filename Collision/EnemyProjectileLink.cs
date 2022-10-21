@@ -10,14 +10,10 @@ using LegendofZelda.Interfaces;
 
 namespace Collision
 {
-    public class EnemyProjectileLinkHandler
+    public static class EnemyProjectileLinkHandler
 	{		
-		public EnemyProjectileLinkHandler()
-		{
-		
-		}
 
-		public void handleCollision(IEnemyProjectile projectile, Link link, string side)
+		public static void handleCollision(IEnemyProjectile projectile, Link link, string side)
 		{
             // have the projectile set it's currFrame to its last frame of animation
             // projectile.collide();

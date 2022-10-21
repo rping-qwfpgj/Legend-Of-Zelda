@@ -32,22 +32,22 @@
 
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>100 0</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>100 115</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>200 0</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>200 115</Location>
 	</Item>
 	<Item>
@@ -58,48 +58,48 @@
 	
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>BottomBoundingBlock</ObjectName>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
 		<Location>100 384</Location>
 	</Item>
 	
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>BottomHalfBoundingBlock</ObjectName>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>600 240</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>BottomHalfBoundingBlock</ObjectName>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>230 240</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>700 240</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>50 240</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>350 90</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LeftHalfBoundingBlock</ObjectName>
+		<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 		<Location>700 90</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>BottomHalfBoundingBlock</ObjectName>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>350 50</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>BottomHalfBoundingBlock</ObjectName>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>550 50</Location>
 	</Item>
 	

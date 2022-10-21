@@ -86,7 +86,7 @@ public class Game1 : Game
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
 
       
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i <= 18; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory+fileFolder+ roomNumber + ".xml";
@@ -95,7 +95,7 @@ public class Game1 : Game
 
         }
        
-        currentRoomIndex = 17;
+        currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
 
         // Initalize keyboard controller
