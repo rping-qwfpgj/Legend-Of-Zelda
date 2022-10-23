@@ -13,8 +13,12 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
+        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
-        
+        public float YPosition { get => yPosition; set => yPosition = value; }
+        private int direction = 1;
+        public int Direction { get => direction; set => direction = value; }
+
         public OldManSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -43,10 +47,15 @@ namespace Sprites
             return new Vector2(this.xPosition, this.yPosition);
         }
         
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             // change this to destination rectangle
             return new Rectangle();
+        }
+
+        public void TakeDamage(string side)
+        {
+
         }
     }
 }

@@ -11,7 +11,11 @@ namespace LegendofZelda.Interfaces
     {
         void Draw(SpriteBatch spriteBatch);
         void Update();
-        Rectangle getHitbox();
-        // void TakeDamage();
+        Rectangle GetHitbox();
+        void TakeDamage(string side);
+
+        public float XPosition { get; set; }
+        public float YPosition { get; set; }
+        public int Direction { get; set; }
     }
 }

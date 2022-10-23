@@ -44,7 +44,7 @@ namespace Sprites
 
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             throw new NotImplementedException();
         }        

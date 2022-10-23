@@ -1,3 +1,10 @@
+#Sprint 3
+
+Controls: WASD and arrow keys are used to move. V is used to shoot a projectile, number keys 1-6 are used to switch between link's projectiles. Clicking on the
+right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room. Keys Z and N are used to attack.
+
+
+
 # Sprint2
 
 Logic for Link: 
@@ -25,4 +32,10 @@ The Dragon boss proved to be slightly challenging to implenet due to the need to
 which was accomplished by giving it its own list to swap between which version of the attack orbs to draw. However, the largest hurdle
 regarding enemies was the Goriya, due to the need to implement its boomerang throw. This resulted in a sprite class that is quite long,
 and will likely be refactored in the future to be shorter.
+
+
+
+
+
+
 

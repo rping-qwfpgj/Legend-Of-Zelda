@@ -7,7 +7,6 @@ using Sprint0;
 
 namespace LegendofZelda.SpriteFactories
 {
-
     public class ItemSpriteFactory : ISpriteFactory
         {
 

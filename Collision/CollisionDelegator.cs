@@ -1,9 +1,7 @@
-﻿using System;
+﻿
 using Interfaces;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
-using SharpDX.Direct3D9;
-using System.Diagnostics;
 using Sprint0;
 
 namespace Collision
@@ -78,8 +76,8 @@ namespace Collision
                     this.link.currentLinkSprite = LinkSpriteFactory.Instance.createLinkIdleWalkingSprite(this.link.currentPosition, this.link.isDamaged, this.side);
                    
                     IBlock block = otherObj as IBlock;
-                    Rectangle collisionRect = new Rectangle();
-                    collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                    Rectangle collisionRect = new();
+                    collisionRectangle(ref obj, ref otherObj, ref collisionRect);
                     LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
                 }
             } else 
@@ -143,14 +141,14 @@ namespace Collision
         private string determineSide(ISprite obj, ISprite otherObj)
         {
 
-            Rectangle objectRec = obj.getHitbox();
-            Rectangle otherRec = otherObj.getHitbox();
+            Rectangle objectRec = obj.GetHitbox();
+            Rectangle otherRec = otherObj.GetHitbox();
 
             // return the side of the collision from the perspective of obj
 
 
             // first determine if top-bottom or left-right collision
-            string type = "";
+            string type;
             Rectangle intersectionArea = Rectangle.Intersect(objectRec, otherRec);
 
             if (intersectionArea.Height < intersectionArea.Width)
@@ -191,8 +189,8 @@ namespace Collision
 
         private void collisionRectangle(ref ISprite obj, ref ISprite otherObj, ref Rectangle collisionRect)
         {
-            Rectangle rectangle1 = obj.getHitbox();
-            Rectangle rectangle2 = otherObj.getHitbox();
+            Rectangle rectangle1 = obj.GetHitbox();
+            Rectangle rectangle2 = otherObj.GetHitbox();
             Rectangle.Intersect(ref rectangle1, ref rectangle2, out collisionRect);
         }
     }

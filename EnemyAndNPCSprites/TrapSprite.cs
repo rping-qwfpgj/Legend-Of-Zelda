@@ -13,7 +13,11 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
+        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
+        public float YPosition { get => yPosition; set => yPosition = value; }
+        private int direction = 1;
+        public int Direction { get => direction; set => direction = value; }
 
         // Location on screen
         Rectangle destinationRectangle;
@@ -34,16 +38,21 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            Rectangle sourceRectangle = new Rectangle(16, 59, 16, 16);
+            Rectangle sourceRectangle = new Rectangle(164, 59, 16, 16);
            
             spriteBatch.Begin();
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+
         }
     }
 }

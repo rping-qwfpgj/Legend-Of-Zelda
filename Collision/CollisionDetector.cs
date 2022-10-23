@@ -37,8 +37,8 @@ namespace Collision
 
 		public bool detectCollision(ISprite obj, ISprite otherObj)
 		{
-			Rectangle objectRec = obj.getHitbox();
-			Rectangle otherRec = otherObj.getHitbox();
+			Rectangle objectRec = obj.GetHitbox();
+			Rectangle otherRec = otherObj.GetHitbox();
 
 			return objectRec.Intersects(otherRec);
 		}
