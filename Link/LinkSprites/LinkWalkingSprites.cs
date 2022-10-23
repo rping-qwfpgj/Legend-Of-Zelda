@@ -21,7 +21,7 @@ namespace Sprites
         private bool isDamaged;
 
         // Screen location
-        private Rectangle destinationRectangle;
+        public Rectangle destinationRectangle;
 
         public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -100,7 +100,7 @@ namespace Sprites
         public bool isDamaged;
 
         // Screen location
-        private Rectangle destinationRectangle;
+        public Rectangle destinationRectangle;
 
         public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -179,7 +179,7 @@ namespace Sprites
 
         private bool isDamaged;
 
-        private Rectangle destinationRectangle;
+        public Rectangle destinationRectangle;
 
         public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -257,7 +257,8 @@ namespace Sprites
         private float yPosition;
         private bool isDamaged;
 
-        private Rectangle destinationRectangle;
+       public Rectangle destinationRectangle;
+       
 
         public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {

@@ -140,7 +140,6 @@ public class Game1 : Game
         mouseController.Update();
         link.Update();
         currentRoom.Update();
-
         collisionDetector.Update();
         base.Update(gameTime);
     }

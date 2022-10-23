@@ -56,7 +56,7 @@ namespace Sprint0
             this.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable);
 
         }
-
+        
         public void UpdatePosition()
         {
             Microsoft.Xna.Framework.Rectangle rectangle = this.currentLinkSprite.getHitbox();
@@ -126,6 +126,7 @@ namespace Sprint0
             this.currentLinkSprite.Update();
             this.currentProjectile.Update();
             this.UpdatePosition();
+
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
             {

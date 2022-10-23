@@ -7,6 +7,8 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
+using Interfaces;
 
 namespace Collision
 {
@@ -27,7 +29,15 @@ namespace Collision
 					link.currentPosition.X += collisionRect.Width;
                     break;
                 case "right":
+					Debug.WriteLine(" case 2 Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
+					
 					link.currentPosition.X -= collisionRect.Width;
+					if (link.currentLinkSprite is LinkWalkingRightSprite)
+					{
+						LinkWalkingRightSprite lonk = link.currentLinkSprite as LinkWalkingRightSprite;
+						lonk.destinationRectangle = new Rectangle((int)link.currentPosition.X, (int)link.currentPosition.Y, 48, 64);
+						
+					}
                     break;
                 default:
                     break;
