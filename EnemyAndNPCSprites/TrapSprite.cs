@@ -13,7 +13,11 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
+        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
+        public float YPosition { get => yPosition; set => yPosition = value; }
+        private int direction = 1;
+        public int Direction { get => direction; set => direction = value; }
 
         // Location on screen
         Rectangle destinationRectangle;
