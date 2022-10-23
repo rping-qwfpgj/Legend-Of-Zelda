@@ -35,7 +35,7 @@ namespace Collision
 					if (link.currentLinkSprite is LinkWalkingRightSprite)
 					{
 						LinkWalkingRightSprite lonk = link.currentLinkSprite as LinkWalkingRightSprite;
-						lonk.destinationRectangle = new Rectangle((int)link.currentPosition.X, (int)link.currentPosition.Y, 48, 64);
+						lonk.DestinationRectangle = new Rectangle((int)link.currentPosition.X, (int)link.currentPosition.Y, 48, 64);
 						
 					}
                     break;
