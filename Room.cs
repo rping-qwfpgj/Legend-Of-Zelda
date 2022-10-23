@@ -1,4 +1,5 @@
-﻿using LegendofZelda.Interfaces;
+﻿using Interfaces;
+using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -9,7 +10,6 @@ namespace LegendofZelda
     {
         private List<ISprite> sprites;
         private ISprite background;
-       
         public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;

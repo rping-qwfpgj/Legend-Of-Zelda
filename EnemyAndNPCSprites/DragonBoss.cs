@@ -105,7 +105,7 @@ namespace Sprites
 
         }
 
-       public Rectangle getHitbox()
+       public Rectangle GetHitbox()
        {
             // TEMPORARY, working on what to put here
             return this.dragonDestinationRectangle;
@@ -192,7 +192,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
@@ -280,7 +280,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
@@ -368,7 +368,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 

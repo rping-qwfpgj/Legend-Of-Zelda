@@ -59,7 +59,7 @@ namespace Sprint0
         
         public void UpdatePosition()
         {
-            Microsoft.Xna.Framework.Rectangle rectangle = this.currentLinkSprite.getHitbox();
+            Microsoft.Xna.Framework.Rectangle rectangle = this.currentLinkSprite.GetHitbox();
             this.currentPosition = new Vector2(rectangle.X, rectangle.Y);
         }
         public void Attack()

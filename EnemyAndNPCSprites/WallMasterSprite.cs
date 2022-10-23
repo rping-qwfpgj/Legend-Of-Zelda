@@ -79,7 +79,7 @@ namespace Sprites
             return new Vector2(this.xPosition, this.yPosition);
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }

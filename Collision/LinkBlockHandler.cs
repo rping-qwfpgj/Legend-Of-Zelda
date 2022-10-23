@@ -17,22 +17,58 @@ namespace Collision
 		
 		public static void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
 		{ 
+			Debug.WriteLine("Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
 			switch (side)
 			{
 				case "top":
 					link.currentPosition.Y += collisionRect.Height;
+					if(link.currentLinkSprite is IAttackingSprite)
+					{
+						IAttackingSprite attackingSprite = (IAttackingSprite)link.currentLinkSprite;
+						attackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					} else
+					{
+						INonAttackingSprite nonAttackingSprite = (INonAttackingSprite)link.currentLinkSprite;
+						nonAttackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					}
 					break;
 				case "bottom":
 					link.currentPosition.Y -= collisionRect.Height;
+					if(link.currentLinkSprite is IAttackingSprite)
+					{
+						IAttackingSprite attackingSprite = (IAttackingSprite)link.currentLinkSprite;
+						attackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					} else
+					{
+						INonAttackingSprite nonAttackingSprite = (INonAttackingSprite)link.currentLinkSprite;
+						nonAttackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					}
                     break;
 				case "left":
 					link.currentPosition.X += collisionRect.Width;
+					if(link.currentLinkSprite is IAttackingSprite)
+					{
+						IAttackingSprite attackingSprite = (IAttackingSprite)link.currentLinkSprite;
+						attackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					} else
+					{
+						INonAttackingSprite nonAttackingSprite = (INonAttackingSprite)link.currentLinkSprite;
+						nonAttackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					}
                     break;
                 case "right":
-					Debug.WriteLine(" case 2 Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
 					
 					link.currentPosition.X -= collisionRect.Width;
-					link.currentLinkSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					if(link.currentLinkSprite is IAttackingSprite)
+					{
+						IAttackingSprite attackingSprite = (IAttackingSprite)link.currentLinkSprite;
+						attackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					} else
+					{
+						INonAttackingSprite nonAttackingSprite = (INonAttackingSprite)link.currentLinkSprite;
+						nonAttackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+					}
+					
 
                     break;
                 default:

@@ -43,7 +43,7 @@ namespace Sprites
             return new Vector2(this.xPosition, this.yPosition);
         }
         
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             // change this to destination rectangle
             return new Rectangle();

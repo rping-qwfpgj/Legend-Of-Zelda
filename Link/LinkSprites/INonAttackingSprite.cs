@@ -7,10 +7,11 @@ using LegendofZelda.Interfaces;
 
 namespace Interfaces
 {
-    public interface INonAttackingSprite: ILink
+    public interface INonAttackingSprite: ISprite
     {
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
-        new Rectangle getHitbox();
+        new Rectangle GetHitbox();
+        public Rectangle DestinationRectangle { get; set; }
     }
 }
