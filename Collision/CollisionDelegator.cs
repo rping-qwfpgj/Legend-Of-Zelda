@@ -71,7 +71,7 @@ namespace Collision
                     LinkEnemyHandler.handleCollision(this.link, enemy, side);
                 } else if (otherObj is IBlock) // link block
                 {
-                    Debug.WriteLine("case 1 Link-Block detected on side: " + side);
+                    //Debug.WriteLine("case 1 Link-Block detected on side: " + side);
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);

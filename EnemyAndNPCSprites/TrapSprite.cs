@@ -38,7 +38,7 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            Rectangle sourceRectangle = new Rectangle(16, 59, 16, 16);
+            Rectangle sourceRectangle = new Rectangle(164, 59, 16, 16);
            
             spriteBatch.Begin();
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
@@ -48,6 +48,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+
         }
     }
 }

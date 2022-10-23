@@ -113,6 +113,11 @@ namespace Sprites
             // TEMPORARY, working on what to put here
             return this.dragonDestinationRectangle;
        }
+
+       public void TakeDamage(string side)
+        {
+
+        }
     }
 
     public class TopDragonAttackOrbSprite: IEnemyProjectile 
@@ -374,6 +379,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+
+        }
+
+        public void TakeDamage(string side)
+        {
 
         }
 
