@@ -29,6 +29,7 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkThrowingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -107,6 +108,7 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkThrowingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -187,6 +189,7 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -270,6 +273,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
         public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;

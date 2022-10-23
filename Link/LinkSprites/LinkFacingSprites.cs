@@ -20,7 +20,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -69,7 +72,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         private bool isDamaged;
 
@@ -120,7 +126,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+       // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -168,7 +177,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
