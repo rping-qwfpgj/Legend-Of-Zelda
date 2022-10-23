@@ -3,6 +3,7 @@ using Interfaces;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Sprint0;
+using System.Diagnostics;
 
 namespace Collision
 {

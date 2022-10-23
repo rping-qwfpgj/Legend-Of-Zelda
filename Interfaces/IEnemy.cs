@@ -9,9 +9,6 @@ namespace LegendofZelda.Interfaces
 {
     public interface IEnemy:ISprite
     {
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
-        Rectangle GetHitbox();
         // void TakeDamage();
     }
 }
