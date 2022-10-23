@@ -32,12 +32,8 @@ namespace Collision
 					Debug.WriteLine(" case 2 Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
 					
 					link.currentPosition.X -= collisionRect.Width;
-					if (link.currentLinkSprite is LinkWalkingRightSprite)
-					{
-						LinkWalkingRightSprite lonk = link.currentLinkSprite as LinkWalkingRightSprite;
-						lonk.DestinationRectangle = new Rectangle((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
-						
-					}
+					link.currentLinkSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
+
                     break;
                 default:
                     break;

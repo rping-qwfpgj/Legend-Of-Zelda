@@ -7,7 +7,7 @@ using LegendofZelda.Interfaces;
 
 namespace Interfaces
 {
-    public interface IAttackingSprite : ISprite
+    public interface IAttackingSprite : ILink
     {
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
