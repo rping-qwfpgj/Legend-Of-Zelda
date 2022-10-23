@@ -85,6 +85,11 @@ namespace Sprites
         {
             return currentGoriya.getHitbox();
         }
+
+        public void TakeDamage(string side)
+        {
+            currentGoriya.TakeDamage(side);
+        }
     }
 
     public class GoriyaMovingUpSprite : IEnemy
@@ -132,7 +137,28 @@ namespace Sprites
         {
             return destinationRectangle;
         }
-    }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
+        }
+   }
 
     public class GoriyaMovingDownSprite : IEnemy
     {
@@ -177,6 +203,27 @@ namespace Sprites
         {
             return destinationRectangle;
         }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public class GoriyaMovingRightSprite : IEnemy
@@ -219,6 +266,27 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return destinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
@@ -268,6 +336,27 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return destinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -329,6 +418,27 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
@@ -397,6 +507,27 @@ namespace Sprites
             return this.goriyaDestinationRectangle;
         }
 
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     public class GoriyaThrowingDownSprite : IEnemy
@@ -458,6 +589,27 @@ namespace Sprites
             return this.goriyaDestinationRectangle;
         }
 
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     public class GoriyaThrowingUpSprite : IEnemy
@@ -515,6 +667,27 @@ namespace Sprites
         public Rectangle getHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

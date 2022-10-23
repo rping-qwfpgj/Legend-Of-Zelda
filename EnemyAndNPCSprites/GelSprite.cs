@@ -88,6 +88,11 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
+
+        public void TakeDamage(string side)
+        {
+
+        }
     }
 }
 

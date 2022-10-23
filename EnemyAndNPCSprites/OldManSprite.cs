@@ -48,6 +48,11 @@ namespace Sprites
             // change this to destination rectangle
             return new Rectangle();
         }
+
+        public void TakeDamage(string side)
+        {
+
+        }
     }
 }
 

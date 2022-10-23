@@ -374,6 +374,11 @@ namespace Sprites
 
         }
 
+        public void TakeDamage(string side)
+        {
+
+        }
+
     }
 
 }
