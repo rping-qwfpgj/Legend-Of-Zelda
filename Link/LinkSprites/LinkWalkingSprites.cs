@@ -21,7 +21,9 @@ namespace Sprites
         private bool isDamaged;
 
         // Screen location
-        public Rectangle destinationRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
 
         public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -30,6 +32,7 @@ namespace Sprites
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+
         }
 
             public void Update()
@@ -100,7 +103,8 @@ namespace Sprites
         public bool isDamaged;
 
         // Screen location
-        public Rectangle destinationRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -179,7 +183,8 @@ namespace Sprites
 
         private bool isDamaged;
 
-        public Rectangle destinationRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -257,7 +262,8 @@ namespace Sprites
         private float yPosition;
         private bool isDamaged;
 
-       public Rectangle destinationRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
        
 
         public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
