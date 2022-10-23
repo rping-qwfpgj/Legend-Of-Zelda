@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Sprint0;
 using Sprites;
 using LegendofZelda;
+using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
 using Interfaces;
@@ -17,7 +18,8 @@ namespace Collision
 		
 		public static void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
 		{ 
-			Debug.WriteLine("Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
+			//link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+			//Debug.WriteLine("Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
 			switch (side)
 			{
 				case "top":

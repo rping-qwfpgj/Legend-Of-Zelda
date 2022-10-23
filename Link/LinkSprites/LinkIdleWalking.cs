@@ -78,7 +78,7 @@ namespace Sprites
             }
             spriteBatch.End();            
         }
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -160,7 +160,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -240,7 +240,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -319,7 +319,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }

@@ -141,6 +141,7 @@ namespace LegendofZelda.SpriteFactories
                     return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
                     break;
                 default:
+                    return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
                     break;
             }
             
