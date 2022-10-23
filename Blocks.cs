@@ -41,7 +41,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -78,7 +78,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -115,7 +115,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -152,7 +152,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -188,7 +188,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -225,7 +225,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -262,7 +262,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -299,7 +299,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -336,7 +336,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -373,7 +373,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -407,7 +407,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -444,7 +444,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -481,7 +481,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -518,7 +518,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -555,7 +555,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -592,7 +592,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -629,7 +629,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -666,7 +666,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -703,7 +703,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
@@ -740,7 +740,7 @@ namespace Sprint0
             _spriteBatch.End();
         }
 
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }

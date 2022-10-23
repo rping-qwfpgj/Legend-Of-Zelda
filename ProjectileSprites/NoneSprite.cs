@@ -24,7 +24,7 @@ namespace Sprites
         {
            //do Nothing
         }
-        public Rectangle getHitbox()
+        public Rectangle GetHitbox()
         {
             return new Rectangle(0,0,1,1);
         }

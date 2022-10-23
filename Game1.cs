@@ -13,9 +13,6 @@ using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
-using System.Reflection;
-using System.Diagnostics;
-using System.Windows.Forms.Design;
 using LegendofZelda.Interfaces;
 
 
@@ -80,7 +77,7 @@ public class Game1 : Game
 
         //ROOMLOADER STUFF
         rooms = new();
-        RoomLoader roomloader = new RoomLoader();
+        RoomLoader roomloader = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
@@ -119,8 +116,6 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.R, new NextRoomCommand(this));
-        keyboardController.AddCommand(Keys.T, new PreviousRoomCommand(this));
         this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex]);
 
         base.Initialize();
