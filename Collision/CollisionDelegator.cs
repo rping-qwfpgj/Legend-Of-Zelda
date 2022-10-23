@@ -27,7 +27,6 @@ namespace Collision
          * enemy-block 
          * enemy-enemy
          * player-item
-         * 
          */
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{

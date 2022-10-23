@@ -17,9 +17,11 @@ namespace Collision
             switch (side)
             {
                 case "top":
-                    enemy.getHitbox();
                     // Get enemy sprite's location, subtract collisionRect.y height from it. 
                     // Change direction to down
+                    float yPos = enemy.YPosition;
+                    enemy.YPosition = yPos - collisionRect.Width;
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 case "bottom":
                     break;
@@ -32,5 +34,6 @@ namespace Collision
                     break;
             }
         }
+        
 	}
 }
