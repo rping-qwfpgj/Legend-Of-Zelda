@@ -136,11 +136,13 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        keyboardController.Update();
-        mouseController.Update();
         link.Update();
-        currentRoom.Update();
+        mouseController.Update();
         collisionDetector.Update();
+        keyboardController.Update();
+        currentRoom.Update();
+        
+        
         base.Update(gameTime);
     }
 
