@@ -41,5 +41,10 @@ namespace LegendofZelda
             return sprites;
         }
 
+        public void removeObject(ISprite sprite)
+        {                
+                    sprites.Remove(sprite);
+        }
+
     }
 }

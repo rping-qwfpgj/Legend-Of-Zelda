@@ -28,7 +28,6 @@ namespace Collision
          * enemy-block 
          * enemy-enemy
          * player-item
-         * 
          */
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
@@ -59,12 +58,10 @@ namespace Collision
                 IEnemy enemy0 = obj as IEnemy;                
                 if(otherObj is IBlock) // enemy-block
                 {
-                    IBlock block = otherObj as IBlock; 
-                    EnemyBlockHandler.handleCollision(enemy0, block, side);
-                } else if (otherObj is IEnemy) // enemy-enemy
-                {
-                    IEnemy enemy1 = otherObj as IEnemy;                    
-                    EnemyEnemyHandler.handleCollision(enemy0, enemy1, side);
+                    IBlock block = otherObj as IBlock;
+                    Rectangle collisionRect = new Rectangle();
+                    collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                    EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
                 }
             } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
             {
@@ -119,7 +116,9 @@ namespace Collision
                     } else if (otherObj is IEnemy) // Enemy - Block
                     {
                         IEnemy enemy = otherObj as IEnemy;
-                        EnemyBlockHandler.handleCollision(enemy, block, side);
+                        Rectangle collisionRect = new Rectangle();
+                        collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
                     }
                 } else if (obj is IEnemyProjectile) 
                 {

@@ -19,8 +19,7 @@ namespace Collision
 
 		public static void handleCollision(Link link, IItem item, string side)
 		{
-			// have the projectile set it's currFrame to its last frame of animation
-			//projectile.collide();
+			
 		}        
 	}
 }

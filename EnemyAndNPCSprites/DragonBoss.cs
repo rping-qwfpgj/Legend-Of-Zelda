@@ -189,7 +189,7 @@ namespace Sprites
             this.yPosition -= 10; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
+            this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 32, 40);
 
         }
 
