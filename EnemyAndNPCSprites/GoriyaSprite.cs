@@ -9,17 +9,17 @@ namespace Sprites
 {
     public class GoriyaSprite : IEnemy
     {
-        private ISprite currentGoriya;
+        private IEnemy currentGoriya;
         private int counter = 0;
         private int speed = 50;
-        private ISprite movingUp;
-        private ISprite movingDown;
-        private ISprite movingRight;
-        private ISprite movingLeft;
-        private ISprite throwingRight;
-        private ISprite throwingLeft;
-        private ISprite throwingUp;
-        private ISprite throwingDown;
+        private IEnemy movingUp;
+        private IEnemy movingDown;
+        private IEnemy movingRight;
+        private IEnemy movingLeft;
+        private IEnemy throwingRight;
+        private IEnemy throwingLeft;
+        private IEnemy throwingUp;
+        private IEnemy throwingDown;
 
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -425,16 +425,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yGoriyaPosition += 5;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yGoriyaPosition -= 5;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xGoriyaPosition += 5;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xGoriyaPosition -=5;
                     break;
                 default:
                     break;
@@ -512,16 +512,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yGoriyaPosition += 5;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yGoriyaPosition -= 5;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xGoriyaPosition += 5;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xGoriyaPosition -=5;
                     break;
                 default:
                     break;
@@ -594,16 +594,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yGoriyaPosition += 5;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yGoriyaPosition -= 5;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xGoriyaPosition += 5;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xGoriyaPosition -=5;
                     break;
                 default:
                     break;
@@ -674,16 +674,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yGoriyaPosition += 5;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yGoriyaPosition -= 5;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xGoriyaPosition += 5;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xGoriyaPosition -=5;
                     break;
                 default:
                     break;
