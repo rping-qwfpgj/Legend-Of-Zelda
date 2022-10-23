@@ -75,7 +75,8 @@ namespace Collision
                     LinkEnemyHandler.handleCollision(this.link, enemy, side);
                 } else if (otherObj is IBlock) // link block
                 {
-                    Debug.WriteLine("case 1 Link-Block detected on side: " + side);
+                    this.link.currentLinkSprite = LinkSpriteFactory.Instance.createLinkIdleWalkingSprite(this.link.currentPosition, this.link.isDamaged, this.side);
+                   
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new Rectangle();
                     collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
@@ -102,11 +103,11 @@ namespace Collision
                     IBlock block = obj as IBlock;
                     if(otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // otherObj is Link: Link- block
                     {
+
+                        this.link.currentLinkSprite = LinkSpriteFactory.Instance.createLinkIdleWalking(this.link.currentPosition, this.isDamaged, side);
                         
                         Rectangle collisionRect = new Rectangle();
                         collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
-
-                       
                         LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
                     } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
                     {
