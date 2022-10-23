@@ -13,5 +13,6 @@ namespace Interfaces
         new void Update();
         new Rectangle GetHitbox();
         bool isAttacking();
+        public Rectangle DestinationRectangle { get; set; }
     }
 }

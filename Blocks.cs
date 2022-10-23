@@ -431,7 +431,7 @@ namespace Sprint0
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 29, sourceWidth, sourceHeight);
+            this.sourceRectangle = new Rectangle(3, 28, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
         public void Update()
@@ -451,7 +451,7 @@ namespace Sprint0
 
     }
 
-    public class LeftBoundingBlock : IBlock
+    public class VerticalBoundingBlock : IBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -463,12 +463,12 @@ namespace Sprint0
         private int destinationWidth = 50;
         private int destinationHeight = 392;
 
-        public LeftBoundingBlock(Texture2D blockTexture, int x, int y)
+        public VerticalBoundingBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
+            this.sourceRectangle = new Rectangle(3, 28, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
         public void Update()
@@ -488,44 +488,9 @@ namespace Sprint0
 
     }
 
-    public class RightBoundingBlock : IBlock
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int sourceWidth = 16;
-        private int sourceHeight = 16;
-        private int destinationWidth = 50;
-        private int destinationHeight = 392;
+    
 
-        public RightBoundingBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
-            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
-        }
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return destinationRectangle;
-        }
-
-    }
-
-    public class TopBoundingBlock : IBlock
+    public class HorizontalBoundingBlock : IBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -537,12 +502,12 @@ namespace Sprint0
         private int destinationWidth = 700;
         private int destinationHeight = 44;
 
-        public TopBoundingBlock(Texture2D blockTexture, int x, int y)
+        public HorizontalBoundingBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
+            this.sourceRectangle = new Rectangle(3, 28, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
         public void Update()
@@ -562,44 +527,7 @@ namespace Sprint0
 
     }
 
-    public class BottomBoundingBlock : IBlock
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int sourceWidth = 16;
-        private int sourceHeight = 16;
-        private int destinationWidth = 700;
-        private int destinationHeight = 44;
-
-        public BottomBoundingBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
-            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
-        }
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return destinationRectangle;
-        }
-
-    }
-
-    public class LeftHalfBoundingBlock : IBlock
+    public class VerticalHalfBoundingBlock : IBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -611,12 +539,12 @@ namespace Sprint0
         private int destinationWidth = 50;
         private int destinationHeight = 170;
 
-        public LeftHalfBoundingBlock(Texture2D blockTexture, int x, int y)
+        public VerticalHalfBoundingBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
+            this.sourceRectangle = new Rectangle(3, 28, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
         public void Update()
@@ -636,44 +564,7 @@ namespace Sprint0
 
     }
 
-    public class RightHalfBoundingBlock : IBlock
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int sourceWidth = 16;
-        private int sourceHeight = 16;
-        private int destinationWidth = 50;
-        private int destinationHeight = 170;
-
-        public RightHalfBoundingBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
-            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
-        }
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return destinationRectangle;
-        }
-
-    }
-
-    public class TopHalfBoundingBlock : IBlock
+    public class HorizontalHalfBoundingBlock : IBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -685,49 +576,12 @@ namespace Sprint0
         private int destinationWidth = 315;
         private int destinationHeight = 44;
 
-        public TopHalfBoundingBlock(Texture2D blockTexture, int x, int y)
+        public HorizontalHalfBoundingBlock(Texture2D blockTexture, int x, int y)
         {
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
-            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
-        }
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return destinationRectangle;
-        }
-
-    }
-
-    public class BottomHalfBoundingBlock : IBlock
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private int xPos;
-        private int yPos;
-        private int sourceWidth = 16;
-        private int sourceHeight = 16;
-        private int destinationWidth = 315;
-        private int destinationHeight = 44;
-
-        public BottomHalfBoundingBlock(Texture2D blockTexture, int x, int y)
-        {
-            this.texture = blockTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(38, 28, sourceWidth, sourceHeight);
+            this.sourceRectangle = new Rectangle(3, 28, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
         public void Update()

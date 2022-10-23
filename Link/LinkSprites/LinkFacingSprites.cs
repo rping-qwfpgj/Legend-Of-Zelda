@@ -20,7 +20,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -30,7 +33,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(71, 11, 12, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 48, 64); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 44); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -69,7 +72,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         private bool isDamaged;
 
@@ -82,7 +88,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -120,7 +126,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+       // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -130,7 +139,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -168,7 +177,10 @@ namespace Sprites
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
+
+        // Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkFacingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -178,7 +190,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
 
             if (isDamaged)
             {

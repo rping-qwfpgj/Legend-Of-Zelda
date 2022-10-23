@@ -7,12 +7,17 @@
 			<Location>0 0</Location>
 		</Item>
 
-		<!--  Block  -->
+		<!--  Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
-			<Location>350 220</Location>
+			<Location>350 132</Location>
 		</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>DepthBlock</ObjectName>
+		<Location>400 132</Location>
+	</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
@@ -28,16 +33,29 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Stalfos</ObjectName>
-			<Location>180 130</Location>
+			<Location>280 130</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
-			<Location>200 200</Location>
+			<Location>200 300</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Gel</ObjectName>
 			<Location>300 250</Location>
 		</Item>
+
+
+	<!--  Items  -->
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>PurpleGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Fairy</ObjectName>
+		<Location>500 150</Location>
+	</Item>
 </XnaContent>

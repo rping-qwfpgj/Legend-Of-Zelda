@@ -27,6 +27,7 @@ namespace Sprites
 
         // Where this will be drawn on screen
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkAttackUpSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
@@ -118,6 +119,7 @@ namespace Sprites
 
         // Location on screen
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
@@ -213,6 +215,7 @@ namespace Sprites
 
         // Location on screen
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
@@ -310,6 +313,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {

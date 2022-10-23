@@ -68,41 +68,25 @@ namespace LegendofZelda.SpriteFactories
 
                     return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "LeftBoundingBlock":
+                case "VerticalBoundingBlock":
 
-                    return new LeftBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+                    return new VerticalBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "RightBoundingBlock":
+                case "HorizontalBoundingBlock":
 
-                    return new RightBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
-
-                case "TopBoundingBlock":
-
-                    return new TopBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
-
-                case "BottomBoundingBlock":
-
-                    return new BottomBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+                    return new HorizontalBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
 
                 case "BoundingBlock":
 
                     return new BoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "LeftHalfBoundingBlock":
+                case "VerticalHalfBoundingBlock":
 
-                    return new LeftHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+                    return new VerticalHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
 
-                case "RightHalfBoundingBlock":
+                case "HorizontalHalfBoundingBlock":
 
-                    return new RightHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
-
-                case "TopHalfBoundingBlock":
-
-                    return new TopHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
-
-                case "BottomHalfBoundingBlock":
-
-                    return new BottomHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
+                    return new HorizontalHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y);
 
                 default:
 
