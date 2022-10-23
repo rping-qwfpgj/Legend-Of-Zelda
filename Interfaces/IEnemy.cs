@@ -7,11 +7,11 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace LegendofZelda.Interfaces
 {
-    public interface IEnemy : ISprite
+    public interface IEnemy:ISprite
     {
         void Draw(SpriteBatch spriteBatch);
         void Update();
-        Rectangle getHitbox();
-        void TakeDamage(string side);
+        Rectangle GetHitbox();
+        void TakeDamage();
     }
 }
