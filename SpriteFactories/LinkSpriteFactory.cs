@@ -124,25 +124,28 @@ namespace LegendofZelda.SpriteFactories
         //-------------------------END Attacking METHODS------------------------//
 
         //--------------------Idle Walking METHODS---------------------//
-        public ISprite CreateLinkIdleWalkingUp(Vector2 position, bool isDamaged)
+        public ISprite CreateLinkIdleWalkingSprite(Vector2 position, bool isDamaged, string side)
         {
-            return new LinkIdleWalkingUpSprite(spriteSheet, position.X, position.Y, isDamaged);
+            switch (side)
+            {
+                case "top":
+                    return new LinkIdleWalkingUpSprite(spriteSheet, position.X, position.Y, isDamaged);
+                    break;
+                case "bottom":
+                    return new LinkIdleWalkingDownSprite(spriteSheet, position.X, position.Y, isDamaged);
+                    break;
+                case "left":
+                    return new LinkIdleWalkingLeftSprite(spriteSheet, position.X, position.Y, isDamaged);
+                    break;
+                case "right":
+                    return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
-        public ISprite CreateLinkIdleWalkingDown(Vector2 position, bool isDamaged)
-        {
-            return new LinkIdleWalkingDownSprite(spriteSheet, position.X, position.Y, isDamaged);
-        }
-
-        public ISprite CreateLinkIdleWalkingLeft(Vector2 position, bool isDamaged)
-        {
-            return new LinkIdleWalkingLeftSprite(spriteSheet, position.X, position.Y, isDamaged);
-        }
-
-        public ISprite CreateLinkIdleWalkingRight(Vector2 position, bool isDamaged)
-        {
-            return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
-        }
 
         public void loadContent(ContentManager content)
         {
