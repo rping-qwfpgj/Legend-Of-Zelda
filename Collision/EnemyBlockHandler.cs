@@ -11,16 +11,26 @@ using LegendofZelda.Interfaces;
 namespace Collision
 {
     public static class EnemyBlockHandler
-	{		
-		static EnemyBlockHandler()
+	{
+		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
-			
-		}
-
-		public static void handleCollision(IEnemy enemy, IBlock block, string side)
-		{
-			// have the projectile set it's currFrame to its last frame of animation
-			//projectile.collide();
-		}        
+            switch (side)
+            {
+                case "top":
+                    enemy.getHitbox();
+                    // Get enemy sprite's location, subtract collisionRect.y height from it. 
+                    // Change direction to down
+                    break;
+                case "bottom":
+                    break;
+                case "left":
+                    break;
+                case "right":
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
 	}
 }
