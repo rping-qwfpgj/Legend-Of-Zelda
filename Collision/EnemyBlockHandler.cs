@@ -21,16 +21,17 @@ namespace Collision
                     // Get enemy sprite's location, subtract collisionRect.y height from it. 
                     // Change direction to down
                     Debug.WriteLine("Enemy top has collided with block");
-                    float yPos = enemy.YPosition;
-                    enemy.YPosition = yPos - collisionRect.Width;
+                    float yPos = enemy.YPosition;                    
                     enemy.Direction = enemy.Direction * -1;
                     break;
                 case "bottom":
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 case "left":
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 case "right":
-                    
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 default:
                     break;

@@ -96,7 +96,7 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Stalfos</ObjectName>
-			<Location>550 270</Location>
+			<Location>550 370</Location>
 		</Item>
 
 		<!--  Bounding  -->
