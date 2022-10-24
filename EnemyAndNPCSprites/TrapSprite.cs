@@ -21,6 +21,7 @@ namespace Sprites
 
         // Location on screen
         Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public TrapSprite(Texture2D texture, float xPosition, float yPosition)
         {

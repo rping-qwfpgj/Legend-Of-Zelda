@@ -25,6 +25,7 @@ namespace Sprites
 
         // On screen position
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public KeeseSprite(Texture2D texture, float xPosition, float yPosition)
         {
