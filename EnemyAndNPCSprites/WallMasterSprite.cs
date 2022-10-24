@@ -6,10 +6,9 @@ using LegendofZelda.Interfaces;
 namespace Sprites
 {
     public class WallMasterSprite : IEnemy
-    {
-        // Keep attack
-        int currFrames = 0;
-        int maxFrames = 2000;
+    {// Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -21,11 +20,11 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
+        private bool movingHorizontally = true;
+        private bool movingVertically = false;
 
-        // On screen location
-        public Rectangle destinationRectangle;
+        private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -36,39 +35,40 @@ namespace Sprites
 
         public void Update()
         {
-            currFrames++;
-
-            if(currFrames < 500)
+           if (currFrames == maxFrames / 2)
             {
-                this.xPosition += 1;
-            } else if(currFrames >= 500 && currFrames < 1000)
-            {
-                this.yPosition += 1;
-            } else if(this.currFrames >= 1000 && this.currFrames <  1500)
-            {
-                this.xPosition -= 1;
-            } else
-            {
-                this.yPosition -= 1;
+                direction *= -1;
+                movingHorizontally = !movingHorizontally;
+                movingVertically = !movingVertically;
             }
-
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
-
-            // Reset frames when at max
-            if(currFrames == maxFrames)
+            if (currFrames == maxFrames)
             {
                 currFrames = 0;
+            } else
+            {
+                currFrames += 10;
             }
-
+            
+            if (movingVertically && !movingHorizontally)
+            {
+                if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
+                this.yPosition += (1 * direction);
+            }
+            if (movingHorizontally && !movingVertically)
+            {
+                if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
+                this.xPosition += (1 * direction);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             // By default, draw the hand without the pinch
             Rectangle sourceRectangle = new Rectangle(393, 11, 16, 16);
+            this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition,60, 60);
 
             // Otherwise, have it pinch
-            if (currFrames > 2000)
+            if (currFrames > 1000)
             {
                 sourceRectangle = new Rectangle(410, 12, 14, 15);
 

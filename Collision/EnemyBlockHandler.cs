@@ -8,6 +8,7 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
+using Interfaces;
 
 namespace Collision
 {
@@ -15,6 +16,12 @@ namespace Collision
 	{
 		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
+           if((enemy is WallMasterSprite) && (block is IBoundingBlock)) {
+                // do nothing
+            } else if ((enemy is KeeseSprite) && (block is INonBoundingBlock))
+            {
+                // do nothing
+            } else { 
            if(true)
             {
                 switch (side)
@@ -46,7 +53,8 @@ namespace Collision
                     default:
                         break;
                 }
-            }            
+            }
+          }
         }
         
 	}

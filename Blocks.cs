@@ -10,7 +10,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprint0
 {
-    public class PlainTurqoiseBlock : IBlock
+    public class PlainTurqoiseBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -48,7 +48,7 @@ namespace Sprint0
         }
     }
 
-    public class DepthBlock : IBlock
+    public class DepthBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -86,7 +86,7 @@ namespace Sprint0
         }
     }
 
-    public class StatueOneBlock : IBlock
+    public class StatueOneBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -124,7 +124,7 @@ namespace Sprint0
         }
     }
 
-    public class StatueTwoBlock : IBlock
+    public class StatueTwoBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -162,7 +162,7 @@ namespace Sprint0
         }
     }
 
-    public class PlainBlackBlock : IBlock
+    public class PlainBlackBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -199,7 +199,7 @@ namespace Sprint0
         }
     }
 
-    public class PolkaDotBlock : IBlock
+    public class PolkaDotBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -237,7 +237,7 @@ namespace Sprint0
         }
     }
 
-    public class PlainDarkBlueBlock : IBlock
+    public class PlainDarkBlueBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -275,7 +275,7 @@ namespace Sprint0
         }
     }
 
-    public class StairsBlock : IBlock
+    public class StairsBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -313,7 +313,7 @@ namespace Sprint0
         }
     }
 
-    public class BricksBlock : IBlock
+    public class BricksBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -351,7 +351,7 @@ namespace Sprint0
         }
     }
 
-    public class StripedBlock : IBlock
+    public class StripedBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -390,7 +390,7 @@ namespace Sprint0
     }
 
 
-    public class BackgroundBlock : IBlock
+    public class BackgroundBlock : INonBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -425,7 +425,7 @@ namespace Sprint0
     }
 
 
-    public class BoundingBlock : IBlock
+    public class BoundingBlock : IBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -463,7 +463,7 @@ namespace Sprint0
 
     }
 
-    public class VerticalBoundingBlock : IBlock
+    public class VerticalBoundingBlock : IBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -503,7 +503,7 @@ namespace Sprint0
 
     
 
-    public class HorizontalBoundingBlock : IBlock
+    public class HorizontalBoundingBlock : IBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -541,7 +541,7 @@ namespace Sprint0
 
     }
 
-    public class VerticalHalfBoundingBlock : IBlock
+    public class VerticalHalfBoundingBlock : IBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -579,7 +579,7 @@ namespace Sprint0
 
     }
 
-    public class HorizontalHalfBoundingBlock : IBlock
+    public class HorizontalHalfBoundingBlock : IBoundingBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
