@@ -172,16 +172,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -247,16 +247,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -320,16 +320,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -399,16 +399,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -488,16 +488,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -582,16 +582,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -671,16 +671,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
@@ -758,16 +758,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 25;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 25;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 25;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 25;
                     break;
                 default:
                     break;
