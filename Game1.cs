@@ -43,6 +43,8 @@ public class Game1 : Game
     private KeyboardController keyboardController;
     private MouseController mouseController;
 
+   
+
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;
     public string onScreenText;
@@ -62,7 +64,7 @@ public class Game1 : Game
     {
 
        
-        _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+50;
+        _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+150;
         _graphics.ApplyChanges();
 
         
@@ -149,7 +151,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.BlueViolet);
+        GraphicsDevice.Clear(Color.Black);
         currentRoom.Draw(_spriteBatch);
         link.Draw(_spriteBatch);     
         base.Draw(gameTime);
