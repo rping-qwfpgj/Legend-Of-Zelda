@@ -27,6 +27,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
@@ -185,6 +186,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
@@ -345,6 +347,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
@@ -506,6 +509,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
         {
 

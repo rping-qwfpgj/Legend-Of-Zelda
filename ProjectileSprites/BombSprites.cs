@@ -26,7 +26,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
-        
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
 
         public BombUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -119,6 +120,7 @@ namespace Sprites
         public float yPosition;
         
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -214,7 +216,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
-        
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
         public BombRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -308,7 +311,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
-        
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
 
         public BombLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {

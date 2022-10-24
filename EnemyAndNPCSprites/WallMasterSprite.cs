@@ -24,6 +24,7 @@ namespace Sprites
 
         // On screen location
         public Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition)
         {

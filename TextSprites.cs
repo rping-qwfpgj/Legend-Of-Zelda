@@ -8,6 +8,8 @@ namespace Sprites
 {
     public class TextSprite: ISprite
     {
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         // Needed for for drawing at a location on the screen
         public GraphicsDeviceManager graphics;
 

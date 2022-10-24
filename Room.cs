@@ -2,7 +2,7 @@
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 
 namespace LegendofZelda
 {
@@ -18,13 +18,14 @@ namespace LegendofZelda
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             background.Draw(spriteBatch);
             foreach (var sprite in sprites)
             {
-                sprite.Draw(spriteBatch);
+                // If the object is not link, then don't draw him, will cause multiple links
+                if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
+                    sprite.Draw(spriteBatch);
+                }
             }
-
         }
 
         public void Update()
@@ -38,12 +39,15 @@ namespace LegendofZelda
 
         public List<ISprite> ReturnObjects()
         {
-            return sprites;
+            List<ISprite> copyOfSprites = new List<ISprite>(sprites);
+            return copyOfSprites;
         }
 
         public void removeObject(ISprite sprite)
-        {                
-                    sprites.Remove(sprite);
+        { 
+            sprites.Remove(sprite);
+
+            
         }
 
     }

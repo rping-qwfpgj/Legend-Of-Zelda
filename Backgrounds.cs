@@ -15,6 +15,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -47,6 +48,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -78,6 +80,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -109,6 +112,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -140,6 +144,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -171,6 +176,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -202,6 +208,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -233,6 +240,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -264,6 +272,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -295,6 +304,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -326,6 +336,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -357,6 +368,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -388,6 +400,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -419,6 +432,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -450,6 +464,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -481,6 +496,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -512,6 +528,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 
@@ -543,6 +560,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 160;
 
@@ -574,6 +592,7 @@ namespace Sprint0
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
 

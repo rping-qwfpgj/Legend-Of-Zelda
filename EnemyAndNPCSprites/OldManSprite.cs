@@ -19,6 +19,9 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
 
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
         public OldManSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;

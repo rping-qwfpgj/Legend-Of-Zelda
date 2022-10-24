@@ -25,6 +25,7 @@ namespace Sprites
         private bool movingVertically = false;
 
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public StalfosSprite(Texture2D texture, float xPosition, float yPosition)
         {

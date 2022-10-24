@@ -29,6 +29,9 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
 
+        private Rectangle destinationRectangle = new Rectangle(1,1,0,0);
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
         {
             movingUp = new GoriyaMovingUpSprite(texture, xPosition, yPosition);
@@ -39,6 +42,7 @@ namespace Sprites
             throwingLeft = new GoriyaThrowingLeftSprite(texture, xPosition, yPosition);
             throwingUp = new GoriyaThrowingUpSprite(texture, xPosition, yPosition);
             throwingDown = new GoriyaThrowingDownSprite(texture, xPosition, yPosition);
+            currentGoriya = movingRight;
         }
 
         public void Update()
@@ -91,7 +95,15 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return currentGoriya.GetHitbox();
+          Rectangle hitbox = currentGoriya.GetHitbox();
+          if(hitbox == null)
+            {
+                return this.destinationRectangle;
+            } else
+            {
+                return hitbox;
+            }
+            
         }
 
         public void TakeDamage(string side)
@@ -105,7 +117,7 @@ namespace Sprites
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
-
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -122,6 +134,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -151,7 +164,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -181,7 +194,7 @@ namespace Sprites
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
-
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
         // X and Y positions of the sprite
         private float xPosition;
         public float XPosition { get => xPosition; set => xPosition = value; }
@@ -198,6 +211,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -225,7 +239,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -255,6 +269,7 @@ namespace Sprites
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
         int currentFrame = 0;
 
 
@@ -271,6 +286,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
         public void Update()
         {
@@ -296,7 +312,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -327,6 +343,7 @@ namespace Sprites
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
         int currentFrame = 0;
 
 
@@ -343,6 +360,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -373,7 +391,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -407,6 +425,7 @@ namespace Sprites
 
         private Rectangle goriyaSourceRectangle;
         private Rectangle goriyaDestinationRectangle;
+        public Rectangle DestinationRectangle { get => goriyaDestinationRectangle; set => goriyaDestinationRectangle = value;}
 
        // X and Y positions of the sprite
         private float xPosition;
@@ -429,6 +448,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             rightBoomerang = new BoomerangGoingRightSprite(texture, (int)xPosition, (int)yPosition);
 
         }
@@ -495,6 +515,7 @@ namespace Sprites
        
         private Rectangle goriyaSourceRectangle;
         private Rectangle goriyaDestinationRectangle;
+        public Rectangle DestinationRectangle { get => goriyaDestinationRectangle; set => goriyaDestinationRectangle = value;}
 
        // X and Y positions of the sprite
         private float xPosition;
@@ -515,6 +536,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             leftBoomerang = new BoomerangGoingLeftSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -585,6 +607,7 @@ namespace Sprites
 
         private Rectangle goriyaSourceRectangle;
         private Rectangle goriyaDestinationRectangle;
+        public Rectangle DestinationRectangle { get => goriyaDestinationRectangle; set => goriyaDestinationRectangle = value;}
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -607,6 +630,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             downBoomerang = new BoomerangGoingDownSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -671,6 +695,7 @@ namespace Sprites
 
         private Rectangle goriyaSourceRectangle;
         private Rectangle goriyaDestinationRectangle;
+        public Rectangle DestinationRectangle { get => goriyaDestinationRectangle; set => goriyaDestinationRectangle = value;}
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -691,6 +716,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             upBoomerang = new BoomerangGoingUpSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -762,6 +788,7 @@ namespace Sprites
             // Keep track of where to get a sprite off the spritesheet and the on screen location
             private Rectangle sourceRectangle;
             private Rectangle destinationRectangle;
+            public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
             // The 3 frames of the boomerang's animation
             private Rectangle frame1 = new Rectangle(291, 15, 5, 8);
@@ -903,6 +930,7 @@ namespace Sprites
         // Keep track of where to get a sprite off the spritesheet and the on screen location
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         // The 3 frames of the boomerang's animation
         private Rectangle frame1 = new Rectangle(291, 15, 5, 8);
@@ -1044,6 +1072,7 @@ namespace Sprites
         // Keep track of where to get a sprite off the spritesheet and the on screen location
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         // The 3 frames of the boomerang's animation
         private Rectangle frame1 = new Rectangle(291, 15, 5, 8);
@@ -1185,6 +1214,7 @@ namespace Sprites
         // Keep track of where to get a sprite off the spritesheet and the on screen location
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         // The 3 frames of the boomerang's animation
         private Rectangle frame1 = new Rectangle(291, 15, 5, 8);

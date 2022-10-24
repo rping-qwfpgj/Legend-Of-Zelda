@@ -27,6 +27,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public GelSprite(Texture2D texture, float xPosition, float yPosition)
         {

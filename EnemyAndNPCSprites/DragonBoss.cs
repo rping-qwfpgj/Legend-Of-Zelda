@@ -25,6 +25,7 @@ namespace Sprites
 
         // On screen location
         Rectangle dragonDestinationRectangle;
+        public Rectangle DestinationRectangle { get => dragonDestinationRectangle; set => dragonDestinationRectangle = value;}
 
         // Projectile orbs
         private TopDragonAttackOrbSprite topAttackOrb;
@@ -147,6 +148,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public TopDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -235,6 +237,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public MiddleDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -323,6 +326,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public BottomDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {

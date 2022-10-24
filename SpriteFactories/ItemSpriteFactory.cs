@@ -68,12 +68,11 @@ namespace LegendofZelda.SpriteFactories
 
                     case "Fairy":
 
-                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y); return new BackgroundBlock(spriteSheet);
+                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y); 
 
                     case "Compass":
 
                         return new Compass(spriteSheet, (int)location.X, (int)location.Y);
-
 
                     case "Clock":
 
@@ -82,7 +81,6 @@ namespace LegendofZelda.SpriteFactories
                     case "Bow":
 
                         return new Bow(spriteSheet, (int)location.X, (int)location.Y);
-
 
                     case "Boomerang":
 
