@@ -15,22 +15,23 @@ namespace Collision
 	{
 		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
+           
             switch (side)
             {
                 case "top":
-                    // Get enemy sprite's location, subtract collisionRect.y height from it. 
-                    // Change direction to down
                     Debug.WriteLine("Enemy top has collided with block");
-                    float yPos = enemy.YPosition;                    
-                    enemy.Direction = enemy.Direction * -1;
+                    enemy.Direction = enemy.Direction * -1;                    
                     break;
                 case "bottom":
-                    enemy.Direction = enemy.Direction * -1;
+                    Debug.WriteLine("Enemy bottom has collided with block");
+                    enemy.Direction = enemy.Direction * -1;                    
                     break;
                 case "left":
+                    Debug.WriteLine("Enemy left has collided with block");
                     enemy.Direction = enemy.Direction * -1;
                     break;
                 case "right":
+                    Debug.WriteLine("Enemy right has collided with block");
                     enemy.Direction = enemy.Direction * -1;
                     break;
                 default:
