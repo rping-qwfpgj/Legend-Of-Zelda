@@ -12,6 +12,8 @@ namespace Sprites
 {
     public class NoneSprite : ILinkProjectile
     {
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         public NoneSprite()
         {
             //do nothing, aka no sprite is drawn when link does not have projectile

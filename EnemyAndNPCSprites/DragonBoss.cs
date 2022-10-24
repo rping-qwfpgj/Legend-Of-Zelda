@@ -25,7 +25,7 @@ namespace Sprites
 
         // On screen location
         Rectangle dragonDestinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => dragonDestinationRectangle; set => dragonDestinationRectangle = value;}
 
         // Projectile orbs
         private TopDragonAttackOrbSprite topAttackOrb;
