@@ -54,7 +54,9 @@ namespace Collision
 			this.handler = new CollisionDelegator(this.currLink, currRoom);
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			this.objects.Add(this.currLink.currentLinkSprite);
+			ISprite currLinkSprite = this.currLink.currentLinkSprite;
+
+            this.objects.Add(currLinkSprite);
 			this.alreadyChecked.Clear();
 
 			
@@ -79,9 +81,9 @@ namespace Collision
 				}
 				// now that we've checked all the possible collision interactions with this object, we don't need to agian for now
 				this.alreadyChecked.Add(obj);
+
 			}
-		   
-           this.objects.Remove(this.currLink.currentLinkSprite);
+           this.objects.Remove(currLinkSprite);
 
         }
 
