@@ -38,40 +38,41 @@ namespace LegendofZelda.SpriteFactories
 
         public IEnemy CreateEnemyOrNPC(Vector2 location, string name)
         {
+            int inventoryHeight = 150;
 
             switch (name)
             {
                 case "Goriya":
 
-                    return new GoriyaSprite(enemySpriteSheet, location.X, location.Y);
+                    return new GoriyaSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Keese":
 
-                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y);
+                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Stalfos":
 
-                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y);
+                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Gel":
 
-                    return new GelSprite(enemySpriteSheet, location.X, location.Y);
+                    return new GelSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y);
+                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "OldMan":
 
-                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y);
+                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Wallmaster":
 
-                    return new WallMasterSprite(enemySpriteSheet, location.X, location.Y);
+                    return new WallMasterSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Trap":
 
-                    return new TrapSprite(enemySpriteSheet, location.X, location.Y);
+                    return new TrapSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
                 default:
 

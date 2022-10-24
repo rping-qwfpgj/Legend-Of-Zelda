@@ -24,7 +24,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(515, 886, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -56,7 +56,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(258, 886, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -88,7 +88,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(772, 886, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -120,7 +120,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new (515, 709, width, height);
-            this.destinationRectangle = new (0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -152,7 +152,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(515, 532, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -184,7 +184,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(258, 532, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -216,7 +216,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(772, 532, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -248,7 +248,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(515, 355, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -280,7 +280,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(258, 355, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -312,7 +312,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(1, 355, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -344,7 +344,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(772, 355, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -376,7 +376,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(1029, 355, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -408,7 +408,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(1029, 178, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -440,7 +440,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(1286, 178, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -472,7 +472,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(515, 178, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -504,7 +504,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(515, 1, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -536,7 +536,7 @@ namespace Sprint0
         {
             texture = backgroundTexture;
             sourceRectangle = new Rectangle(258, 1, width, height);
-            destinationRectangle = new Rectangle(0, 0, 800, 480);
+            destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -568,7 +568,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(1, 1, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
@@ -600,7 +600,7 @@ namespace Sprint0
         {
             this.texture = backgroundTexture;
             this.sourceRectangle = new(258, 886, width, height);
-            this.destinationRectangle = new(0, 0, 800, 480);
+            this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()

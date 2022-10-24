@@ -87,16 +87,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.yPosition += 5;
+                    this.yPosition += 37;
                     break;
                 case "bottom":
-                    this.yPosition -= 5;
+                    this.yPosition -= 37;
                     break;
                 case "left":
-                    this.xPosition += 5;
+                    this.xPosition += 37;
                     break;
                 case "right":
-                    this.xPosition -=5;
+                    this.xPosition -= 37;
                     break;
                 default:
                     break;
