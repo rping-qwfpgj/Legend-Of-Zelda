@@ -7,6 +7,7 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -19,16 +20,18 @@ namespace Collision
                 case "top":
                     // Get enemy sprite's location, subtract collisionRect.y height from it. 
                     // Change direction to down
-                    float yPos = enemy.YPosition;
-                    enemy.YPosition = yPos - collisionRect.Width;
+                    Debug.WriteLine("Enemy top has collided with block");
+                    float yPos = enemy.YPosition;                    
                     enemy.Direction = enemy.Direction * -1;
                     break;
                 case "bottom":
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 case "left":
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 case "right":
-                    
+                    enemy.Direction = enemy.Direction * -1;
                     break;
                 default:
                     break;

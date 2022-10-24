@@ -56,7 +56,7 @@ namespace Collision
                 }
             } else if (obj is IEnemy)
             {
-                IEnemy enemy0 = obj as IEnemy;                
+                IEnemy enemy0 = obj as IEnemy;
                 if(otherObj is IBlock) // enemy-block
                 {
                     IBlock block = otherObj as IBlock;

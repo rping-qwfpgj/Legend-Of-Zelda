@@ -15,15 +15,17 @@ namespace Collision
 	{
 
 		private Link currLink;
-		private Room currRoom;
+		private Game1 currGame;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
 		private CollisionDelegator handler;
 		private int i = 0;
+		private Room currRoom;
 		
 		
-		public CollisionDetector(Link link, Room room)
+		public CollisionDetector(Link link, Room room, Game1 game)
 		{
+			this.currGame = game;
 			this.currLink = link;
 			this.handler = new CollisionDelegator(link);
 
@@ -48,7 +50,8 @@ namespace Collision
 		 *  Update method will constantly be checking all objects for a collision
 		 */
 		public void Update()
-		{
+		{	
+			this.currRoom = this.currGame.rooms[this.currGame.currentRoomIndex];
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
 			this.objects.Add(this.currLink.currentLinkSprite);
