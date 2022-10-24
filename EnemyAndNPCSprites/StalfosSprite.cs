@@ -68,7 +68,7 @@ namespace Sprites
         {
         
             Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16); 
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
+            this.destinationRectangle = new ((int)this.xPosition, (int)this.yPosition, 30, 32); 
 
             spriteBatch.Begin();
             if ((currFrames / 100) % 2 != 0) {
@@ -86,7 +86,23 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

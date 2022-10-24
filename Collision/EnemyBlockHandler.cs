@@ -8,6 +8,7 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
+using Interfaces;
 
 namespace Collision
 {
@@ -15,27 +16,45 @@ namespace Collision
 	{
 		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
-            switch (side)
+           if((enemy is WallMasterSprite) && (block is IBoundingBlock)) {
+                // do nothing
+            } else if ((enemy is KeeseSprite) && (block is INonBoundingBlock))
             {
-                case "top":
-                    // Get enemy sprite's location, subtract collisionRect.y height from it. 
-                    // Change direction to down
-                    Debug.WriteLine("Enemy top has collided with block");
-                    float yPos = enemy.YPosition;                    
+                // do nothing
+            } else { 
+           if(true)
+            {
+                switch (side)
+                {
+                    case "top":
+                        Debug.WriteLine("Enemy top has collided with block");
+                        enemy.YPosition += (collisionRect.Height);
+                        enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
+                        enemy.Direction = enemy.Direction * -1;
+                        break;
+                    case "bottom":
+                        Debug.WriteLine("Enemy bottom has collided with block");
+                        enemy.YPosition -= collisionRect.Height;
+                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
                     enemy.Direction = enemy.Direction * -1;
-                    break;
-                case "bottom":
+                        break;
+                    case "left":
+                        Debug.WriteLine("Enemy left has collided with block");
+                    enemy.XPosition += collisionRect.Width;
+                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
                     enemy.Direction = enemy.Direction * -1;
-                    break;
-                case "left":
+                        break;
+                    case "right":
+                        Debug.WriteLine("Enemy right has collided with block");
+                    enemy.XPosition -= collisionRect.Width;
+                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
                     enemy.Direction = enemy.Direction * -1;
-                    break;
-                case "right":
-                    enemy.Direction = enemy.Direction * -1;
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
+          }
         }
         
 	}
