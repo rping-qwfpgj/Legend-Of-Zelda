@@ -18,8 +18,8 @@ namespace Sprint0
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
-        private int sourceWidth = 16;
-        private int sourceHeight = 16;
+        private readonly int sourceWidth = 16;
+        private readonly int sourceHeight = 16;
         private int destinationWidth = 50;
         private int destinationHeight = 44;
 
@@ -28,7 +28,7 @@ namespace Sprint0
             this.texture = blockTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(3, 11, sourceWidth, sourceWidth);
+            this.sourceRectangle = new Rectangle(3, 11, sourceWidth, sourceHeight);
             this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
         }
 

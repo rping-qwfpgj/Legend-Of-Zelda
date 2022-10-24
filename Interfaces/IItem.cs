@@ -9,8 +9,6 @@ namespace LegendofZelda.Interfaces
 {
     public interface IItem : ISprite
     {
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
-        Rectangle GetHitbox();
+    
     }
 }

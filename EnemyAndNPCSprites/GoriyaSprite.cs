@@ -42,6 +42,7 @@ namespace Sprites
             throwingLeft = new GoriyaThrowingLeftSprite(texture, xPosition, yPosition);
             throwingUp = new GoriyaThrowingUpSprite(texture, xPosition, yPosition);
             throwingDown = new GoriyaThrowingDownSprite(texture, xPosition, yPosition);
+            currentGoriya = movingRight;
         }
 
         public void Update()

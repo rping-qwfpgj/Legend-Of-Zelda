@@ -35,18 +35,24 @@ namespace States
 
         public void MoveDown()
         {
-            
 
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingDownState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition, link.isDamaged);
         }
 
         public void MoveLeft()
         {
-          
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingLeftState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition, link.isDamaged);
         }
 
         public void MoveRight()
         {
-           
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingRightState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition, link.isDamaged);
 
         }
         public void NoInput()
@@ -89,7 +95,9 @@ namespace States
 
         public void MoveUp()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingUpState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition, link.isDamaged);
         }
 
         public void MoveDown()
@@ -99,12 +107,16 @@ namespace States
 
         public void MoveLeft()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingLeftState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition, link.isDamaged);
         }
 
         public void MoveRight()
         {
-           
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingRightState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition, link.isDamaged);
 
         }
         public void NoInput()
@@ -125,11 +137,11 @@ namespace States
         }
     }
 
-    public class LinIdlekWalkingLeftState : ILinkState
+    public class LinkIdleWalkingLeftState : ILinkState
     {
         private Link link;
 
-        public LinIdlekWalkingLeftState(Link link)
+        public LinkIdleWalkingLeftState(Link link)
         {
             this.link = link;
         }
@@ -146,12 +158,16 @@ namespace States
 
         public void MoveUp()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingUpState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition, link.isDamaged);
         }
 
         public void MoveDown()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingDownState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition, link.isDamaged);
 
         }
 
@@ -162,7 +178,9 @@ namespace States
 
         public void MoveRight()
         {
-           
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingRightState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition, link.isDamaged);
 
         }
         public void NoInput()
@@ -206,17 +224,23 @@ namespace States
 
         public void MoveUp()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingUpState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition, link.isDamaged);
         }
 
         public void MoveDown()
         {
-           
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingDownState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition, link.isDamaged);
         }
 
         public void MoveLeft()
         {
-            
+            link.UpdatePosition();
+            link.currentState = new LinkWalkingLeftState(link);
+            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition, link.isDamaged);
         }
 
         public void MoveRight()

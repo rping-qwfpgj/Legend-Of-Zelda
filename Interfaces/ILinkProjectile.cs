@@ -9,9 +9,6 @@ namespace LegendofZelda.Interfaces
 {
     public interface ILinkProjectile : ISprite
     {
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
-        Rectangle GetHitbox();
         void collide();
     }
 }

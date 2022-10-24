@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
+using System.Collections.Generic;
 
 namespace Sprint0
 {
@@ -27,13 +28,12 @@ namespace Sprint0
         //Fields
         public GraphicsDeviceManager graphics; // Used to bound link when he walks
         public ISprite currentLinkSprite;
-        public ISprite currentProjectile;
+        public List<ISprite> currentProjectiles;
         public ILinkState currentState;
         public Vector2 currentPosition;
         public bool isDamaged;
         public Throwables throwable;
         private int isDamagedCounter = 0;
-
 
         public Link(Vector2 position, GraphicsDeviceManager graphics)
         {
@@ -43,7 +43,8 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
-            this.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable);
+            this.currentProjectiles = new List<ISprite>();
+            this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
 
         public void Reset()
@@ -53,7 +54,7 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
-            this.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable);
+            this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable));
 
         }
         
@@ -124,8 +125,9 @@ namespace Sprint0
         public void Update()
         {
             this.currentLinkSprite.Update();
-            this.currentProjectile.Update();
-            this.UpdatePosition();
+            foreach (var projectile in currentProjectiles) { 
+            projectile.Update();
+            }
 
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
@@ -156,7 +158,10 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             this.currentLinkSprite.Draw(_spriteBatch);
-            this.currentProjectile.Draw(_spriteBatch);
+            foreach (var projectile in currentProjectiles)
+            {
+                projectile.Draw(_spriteBatch);
+            }
         }
 
     }

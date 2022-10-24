@@ -27,13 +27,12 @@ namespace Collision
 		{
 			this.currGame = game;
 			this.currLink = link;
-			this.handler = new CollisionDelegator(link);
 
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
 			this.alreadyChecked = new List<ISprite>();
-			this.handler = new CollisionDelegator(link);
+			this.handler = new CollisionDelegator(link, room);
 		
 		}
 
@@ -52,9 +51,12 @@ namespace Collision
 		public void Update()
 		{	
 			this.currRoom = this.currGame.rooms[this.currGame.currentRoomIndex];
+			this.handler = new CollisionDelegator(this.currLink, currRoom);
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			this.objects.Add(this.currLink.currentLinkSprite);
+			ISprite currLinkSprite = this.currLink.currentLinkSprite;
+
+            this.objects.Add(currLinkSprite);
 			this.alreadyChecked.Clear();
 
 			
@@ -81,7 +83,7 @@ namespace Collision
 				this.alreadyChecked.Add(obj);
 
 			}
-           this.objects.Remove(this.currLink.currentLinkSprite);
+           this.objects.Remove(currLinkSprite);
 
         }
 

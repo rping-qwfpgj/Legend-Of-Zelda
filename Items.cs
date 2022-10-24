@@ -4,7 +4,6 @@ using LegendofZelda.Interfaces;
 
 namespace Sprint0
 {
-
     public class PurpleGemstone : IItem
     {
         private Texture2D texture;
@@ -160,6 +159,7 @@ namespace Sprint0
         private int yPos;
         private int width = 9;
         private int height = 16;
+        private bool isCollected;
 
         public OrangeMap(Texture2D itemTexture, int x, int y)
         {
@@ -168,6 +168,7 @@ namespace Sprint0
             this.yPos = y;
             this.sourceRectangle = new Rectangle(88, 0, width, height);
             this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            isCollected = false;
         }
 
         public void Update()

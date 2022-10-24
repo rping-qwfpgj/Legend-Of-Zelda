@@ -35,11 +35,11 @@
 			<ObjectName>Stalfos</ObjectName>
 			<Location>280 130</Location>
 		</Item>
-		<Item>
+		<!--<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
 			<Location>200 300</Location>
-		</Item>
+		</Item>-->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Gel</ObjectName>

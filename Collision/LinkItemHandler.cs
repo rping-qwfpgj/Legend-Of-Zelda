@@ -14,12 +14,10 @@ namespace Collision
 	{		
 		static LinkItemHandler()
 		{
-			
 		}
-
-		public static void handleCollision(Link link, IItem item, string side)
+		public static void handleCollision(Link link, IItem item, Room room)
 		{
-			
+			room.removeObject(item);
 		}        
 	}
 }

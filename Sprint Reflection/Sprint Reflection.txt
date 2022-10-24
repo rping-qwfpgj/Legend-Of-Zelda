@@ -21,6 +21,9 @@ The majority of this sprint's work was creating functionalities for Rooms and Co
 we will be focusing on sound, room transition animation and graph representation of rooms, and health and inventory for link
 and enemies. 
 
+Additionally, an important note for next sprint is to start using branching functionality of Azure DevOps as some team
+members found it would be useful to work on new code that would be buggy, but also have it not affect the rest of
+the master code. 
 
 
 
