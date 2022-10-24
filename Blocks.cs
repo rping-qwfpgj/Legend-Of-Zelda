@@ -15,6 +15,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -52,6 +53,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -89,6 +91,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -126,6 +129,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -163,6 +167,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -199,6 +204,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -236,6 +242,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 15;
@@ -273,6 +280,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -310,6 +318,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -347,6 +356,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -385,6 +395,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int sourceWidth = 16;
         private int sourceHeight = 16;
         private int destinationWidth = 50;
@@ -419,6 +430,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -456,6 +468,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -495,6 +508,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -532,6 +546,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
@@ -569,6 +584,7 @@ namespace Sprint0
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int xPos;
         private int yPos;
         private int sourceWidth = 16;
