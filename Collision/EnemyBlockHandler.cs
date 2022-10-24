@@ -7,20 +7,36 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Collision
 {
     public static class EnemyBlockHandler
-	{		
-		static EnemyBlockHandler()
+	{
+		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
-			
-		}
-
-		public static void handleCollision(IEnemy enemy, IBlock block, string side)
-		{
-			// have the projectile set it's currFrame to its last frame of animation
-			//projectile.collide();
-		}        
+            switch (side)
+            {
+                case "top":
+                    // Get enemy sprite's location, subtract collisionRect.y height from it. 
+                    // Change direction to down
+                    Debug.WriteLine("Enemy top has collided with block");
+                    float yPos = enemy.YPosition;                    
+                    enemy.Direction = enemy.Direction * -1;
+                    break;
+                case "bottom":
+                    enemy.Direction = enemy.Direction * -1;
+                    break;
+                case "left":
+                    enemy.Direction = enemy.Direction * -1;
+                    break;
+                case "right":
+                    enemy.Direction = enemy.Direction * -1;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
 	}
 }

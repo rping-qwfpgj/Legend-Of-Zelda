@@ -115,7 +115,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex]);
+        this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex], this);
 
         base.Initialize();
     }

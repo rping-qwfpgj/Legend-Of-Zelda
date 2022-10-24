@@ -16,10 +16,15 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
+        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
+        public float YPosition { get => yPosition; set => yPosition = value; }
+        private int direction = 1;
+        public int Direction { get => direction; set => direction = value; }
 
         // On screen location
         public Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -35,16 +40,16 @@ namespace Sprites
 
             if(currFrames < 500)
             {
-                this.xPosition += 5;
+                this.xPosition += 1;
             } else if(currFrames >= 500 && currFrames < 1000)
             {
-                this.yPosition += 5;
+                this.yPosition += 1;
             } else if(this.currFrames >= 1000 && this.currFrames <  1500)
             {
-                this.xPosition -= 5;
+                this.xPosition -= 1;
             } else
             {
-                this.yPosition -= 5;
+                this.yPosition -= 1;
             }
 
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
@@ -82,6 +87,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TakeDamage(string side)
+        {
+
         }
     }
 }

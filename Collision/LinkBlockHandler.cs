@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Sprint0;
 using Sprites;
 using LegendofZelda;
+using Commands;
+using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
 using Interfaces;
@@ -17,7 +19,14 @@ namespace Collision
 		
 		public static void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
 		{ 
-			Debug.WriteLine("Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
+			//link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+			//Debug.WriteLine("Link-Block detected on side: " + side + " collision width = " + collisionRect.Width + " collision height: " + collisionRect.Height);
+			
+			//link.currentState = new LinkFacingRightState(link);
+			
+			//link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(link.currentPosition, link.isDamaged);
+			
+
 			switch (side)
 			{
 				case "top":
@@ -68,7 +77,6 @@ namespace Collision
 						INonAttackingSprite nonAttackingSprite = (INonAttackingSprite)link.currentLinkSprite;
 						nonAttackingSprite.DestinationRectangle = new ((int)link.currentPosition.X, (int)link.currentPosition.Y, 40, 44);
 					}
-					
 
                     break;
                 default:

@@ -1,8 +1,9 @@
 ﻿
 using Interfaces;
-using LegendofZelda;
+using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
+using States;
 using Sprint0;
 using System.Diagnostics;
 
@@ -30,7 +31,6 @@ namespace Collision
          * enemy-block 
          * enemy-enemy
          * player-item
-         * 
          */
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
@@ -58,15 +58,13 @@ namespace Collision
                 }
             } else if (obj is IEnemy)
             {
-                IEnemy enemy0 = obj as IEnemy;                
+                IEnemy enemy0 = obj as IEnemy;
                 if(otherObj is IBlock) // enemy-block
                 {
-                    IBlock block = otherObj as IBlock; 
-                    EnemyBlockHandler.handleCollision(enemy0, block, side);
-                } else if (otherObj is IEnemy) // enemy-enemy
-                {
-                    IEnemy enemy1 = otherObj as IEnemy;                    
-                    EnemyEnemyHandler.handleCollision(enemy0, enemy1, side);
+                    IBlock block = otherObj as IBlock;
+                    Rectangle collisionRect = new Rectangle();
+                    collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                    EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
                 }
             } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
             {
@@ -76,7 +74,7 @@ namespace Collision
                     LinkEnemyHandler.handleCollision(this.link, enemy, side);
                 } else if (otherObj is IBlock) // link block
                 {
-                    Debug.WriteLine("case 1 Link-Block detected on side: " + side);
+
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
@@ -103,11 +101,9 @@ namespace Collision
                     IBlock block = obj as IBlock;
                     if(otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // otherObj is Link: Link- block
                     {
-                        
+
                         Rectangle collisionRect = new Rectangle();
                         collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
-
-                       
                         LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
                     } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
                     {
@@ -120,7 +116,9 @@ namespace Collision
                     } else if (otherObj is IEnemy) // Enemy - Block
                     {
                         IEnemy enemy = otherObj as IEnemy;
-                        EnemyBlockHandler.handleCollision(enemy, block, side);
+                        Rectangle collisionRect = new Rectangle();
+                        collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
                     }
                 } else if (obj is IEnemyProjectile) 
                 {

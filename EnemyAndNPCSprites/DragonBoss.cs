@@ -17,11 +17,15 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
+        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
+        public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
-        
+        public int Direction { get => direction; set => direction = value; }
+
         // On screen location
         Rectangle dragonDestinationRectangle;
+        public Rectangle DestinationRectangle { get => dragonDestinationRectangle; set => dragonDestinationRectangle = value;}
 
         // Projectile orbs
         private TopDragonAttackOrbSprite topAttackOrb;
@@ -110,6 +114,11 @@ namespace Sprites
             // TEMPORARY, working on what to put here
             return this.dragonDestinationRectangle;
        }
+
+       public void TakeDamage(string side)
+        {
+
+        }
     }
 
     public class TopDragonAttackOrbSprite: IEnemyProjectile 
@@ -139,6 +148,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public TopDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -181,7 +191,7 @@ namespace Sprites
             this.yPosition -= 10; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
+            this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 32, 40);
 
         }
 
@@ -227,6 +237,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public MiddleDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -315,6 +326,7 @@ namespace Sprites
 
         // On Screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public BottomDragonAttackOrbSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -371,6 +383,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+
+        }
+
+        public void TakeDamage(string side)
+        {
 
         }
 

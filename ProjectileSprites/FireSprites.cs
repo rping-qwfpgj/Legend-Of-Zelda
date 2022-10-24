@@ -19,6 +19,7 @@ namespace Sprites
 
         // On screen position 
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public FireUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -97,6 +98,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public FireRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -175,6 +177,7 @@ namespace Sprites
         
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public FireDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -252,6 +255,7 @@ namespace Sprites
      
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public FireLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {

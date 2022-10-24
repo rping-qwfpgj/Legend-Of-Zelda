@@ -48,7 +48,7 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Stalfos</ObjectName>
-			<Location>500 220</Location>
+			<Location>500 320</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>

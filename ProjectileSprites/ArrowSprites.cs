@@ -20,6 +20,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public ArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -100,6 +101,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public ArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -181,6 +183,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public ArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -236,6 +239,7 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+
         }
 
         public void collide()
@@ -261,6 +265,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public ArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {

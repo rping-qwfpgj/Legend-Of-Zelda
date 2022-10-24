@@ -25,6 +25,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public BlueArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -104,6 +105,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public BlueArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -187,6 +189,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
 
         public BlueArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
@@ -268,6 +271,7 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public BlueArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
