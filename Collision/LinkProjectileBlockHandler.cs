@@ -7,6 +7,7 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -15,11 +16,9 @@ namespace Collision
 
 		public static void handleCollision(ILinkProjectile projectile, IBlock block, string side)
 		{
-			// have the projectile set it's currFrame to its last frame of animation
 			projectile.collide();
+			
 		}
-
-        
 
 	}
 }

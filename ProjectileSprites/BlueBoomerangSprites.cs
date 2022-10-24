@@ -18,7 +18,7 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int timingFrames = 0;
-        private readonly int maxFrames = 1500;
+        private int maxFrames = 1500;
         private Boolean done = false;
 
         // Texture to take sprites from
@@ -167,7 +167,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = this.maxFrames/2;
+            maxFrames = timingFrames * 2;
         }
     }
 
@@ -179,7 +179,7 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int timingFrames = 0;
-        private readonly int maxFrames = 1500;
+        private int maxFrames = 1500;
         private Boolean done = false;
         // Texture to take sprites from
         public Texture2D texture;
@@ -330,7 +330,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = this.maxFrames/2;
+            maxFrames = timingFrames * 2;
         }
     }
 
@@ -341,7 +341,7 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int timingFrames = 0;
-        private readonly int maxFrames = 1500;
+        private int maxFrames = 1500;
         private Boolean done = false;
 
         // Texture to take sprites from
@@ -493,7 +493,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = this.maxFrames/2;
+            maxFrames = timingFrames * 2;
         }
     }
 
@@ -504,7 +504,7 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int timingFrames = 0;
-        private readonly int maxFrames = 1500;
+        private int maxFrames = 1500;
         private Boolean done = false;
 
         // Texture to take sprites from
@@ -658,7 +658,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = this.maxFrames/2;
+            maxFrames = timingFrames * 2;
         }
     }
 }
