@@ -73,7 +73,7 @@ namespace Sprites
             } else if (currFrames > 1500 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(54, 106, 12, 19);
-                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos -12, 46, 74);
+                this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos -12, 30, 44);
             }
 
             spriteBatch.Begin();

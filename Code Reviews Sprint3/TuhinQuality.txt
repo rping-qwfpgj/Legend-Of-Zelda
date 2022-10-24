@@ -1,0 +1,11 @@
+Author of the code review: Tuhin Patel
+Date of the code review: 10/23/2022
+Sprint number: 3
+Name of the .cs file being reviewed: LinkBlockHandler.cs
+Author of the .cs file being reviewed: Vishal 
+Number of minutes for review: 7
+Specific comments on quality: 
+Very maintainable, would be easy to add in more functionality, either with new cases in the current switch
+statement or making another switch statement. Does well with passing other functions(such as sprite class insubstantiation)
+to other classes. Class is very cohesive, only does a few key functions needed to handle the colission.
+
