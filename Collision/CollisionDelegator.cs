@@ -1,5 +1,6 @@
 ﻿
 using Interfaces;
+using LegendofZelda;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Sprint0;
@@ -11,6 +12,7 @@ namespace Collision
 	{   
         Link link;
 
+        private Room room;
         public CollisionDelegator(Link link) {
             this.link = link;
         }
