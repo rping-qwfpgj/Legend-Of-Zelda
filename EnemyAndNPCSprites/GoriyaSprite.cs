@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +21,7 @@ namespace Sprites
         private IEnemy throwingLeft;
         private IEnemy throwingUp;
         private IEnemy throwingDown;
+        // private Random rand = new Random(0, 1000);
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -40,13 +42,15 @@ namespace Sprites
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
-            currentGoriya = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
+            currentGoriya = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
         {
             if(prevdirection != direction)
-            {
+            {   
+                this.xPos = currentGoriya.XPosition;
+                this.yPos = currentGoriya.YPosition;
                 prevdirection = direction;
                 if(currentGoriya is GoriyaMovingRightSprite)
                 {
@@ -62,6 +66,8 @@ namespace Sprites
                     currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
                 }
             }
+
+
             
             currentGoriya.Update();
         }
@@ -121,7 +127,6 @@ namespace Sprites
             sourceRectangle = new Rectangle(241, 11, 13, 16);
             destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             currentFrame++;
-
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -251,7 +256,7 @@ namespace Sprites
         int currentFrame = 0;
 
 
-       // X and Y positions of the sprite
+        // X and Y positions of the sprite
         private float xPosition;
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
@@ -451,9 +456,7 @@ namespace Sprites
             }
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
-            this.rightBoomerang.Draw(spriteBatch);
-
-            
+            this.rightBoomerang.Draw(spriteBatch);            
         }
 
         public Rectangle GetHitbox()
@@ -542,8 +545,6 @@ namespace Sprites
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
-
-
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             this.leftBoomerang.Draw(spriteBatch);
             
