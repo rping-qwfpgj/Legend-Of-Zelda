@@ -54,7 +54,9 @@ namespace Collision
 			this.currRoom = this.currGame.rooms[this.currGame.currentRoomIndex];
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			this.objects.Add(this.currLink.currentLinkSprite);
+			ISprite currLinkSprite = this.currLink.currentLinkSprite;
+
+            this.objects.Add(currLinkSprite);
 			this.alreadyChecked.Clear();
 
 			
@@ -81,7 +83,7 @@ namespace Collision
 				this.alreadyChecked.Add(obj);
 
 			}
-           this.objects.Remove(this.currLink.currentLinkSprite);
+           this.objects.Remove(currLinkSprite);
 
         }
 
