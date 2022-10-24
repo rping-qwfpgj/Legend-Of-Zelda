@@ -68,7 +68,7 @@ namespace Sprites
         {
         
             Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16); 
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 64); 
+            this.destinationRectangle = new ((int)this.xPosition, (int)this.yPosition, 30, 32); 
 
             spriteBatch.Begin();
             if ((currFrames / 100) % 2 != 0) {

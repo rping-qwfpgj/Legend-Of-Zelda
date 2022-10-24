@@ -65,7 +65,7 @@ namespace Collision
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new Rectangle();
                     collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
-                    //EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
+                    EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
                 }
             } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
             {
@@ -119,7 +119,7 @@ namespace Collision
                         IEnemy enemy = otherObj as IEnemy;
                         Rectangle collisionRect = new Rectangle();
                         collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
-                        //EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
+                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
                     }
                 } else if (obj is IEnemyProjectile) 
                 {
