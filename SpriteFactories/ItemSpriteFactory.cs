@@ -32,63 +32,65 @@ namespace LegendofZelda.SpriteFactories
             public ISprite CreateItem(Vector2 location, string name)
             {
 
+            int inventoryHeight = 150;
                 switch (name)
+
                 {
                     case "PurpleGemstone":
 
-                        return new PurpleGemstone(spriteSheet, (int)location.X, (int)location.Y);
+                        return new PurpleGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "OrangeGemstone":
 
-                        return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y);
+                        return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "PurpleTriangle":
 
-                        return new PurpleTriangle(spriteSheet, (int)location.X, (int)location.Y);
+                        return new PurpleTriangle(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "OrangeTriangle":
 
-                        return new OrangeTriangle(spriteSheet, (int)location.X, (int)location.Y);
+                        return new OrangeTriangle(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "OrangeMap":
 
-                        return new OrangeMap(spriteSheet, (int)location.X, (int)location.Y);
+                        return new OrangeMap(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "SmallRedHeart":
 
-                        return new SmallRedHeart(spriteSheet, (int)location.X, (int)location.Y);
+                        return new SmallRedHeart(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "SmallBlueHeart":
 
-                        return new SmallBlueHeart(spriteSheet, (int)location.X, (int)location.Y);
+                        return new SmallBlueHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
                     case "BigHeart":
 
-                        return new BigHeart(spriteSheet, (int)location.X, (int)location.Y);
+                        return new BigHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
                     case "Fairy":
 
-                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y); 
+                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight); 
 
                     case "Compass":
 
-                        return new Compass(spriteSheet, (int)location.X, (int)location.Y);
+                        return new Compass(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "Clock":
 
-                        return new Clock(spriteSheet, (int)location.X, (int)location.Y);
+                        return new Clock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "Bow":
 
-                        return new Bow(spriteSheet, (int)location.X, (int)location.Y);
+                        return new Bow(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "Boomerang":
 
-                        return new Boomerang(spriteSheet, (int)location.X, (int)location.Y);
+                        return new Boomerang(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "Bomb":
 
-                        return new Bomb(spriteSheet, (int)location.X, (int)location.Y);
+                        return new Bomb(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     default:
 
