@@ -27,7 +27,7 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingUpState(link);
-            link.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable);
+            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable));
             
         }
 
@@ -96,7 +96,7 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingDownState(link);
-            link.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable);            
+            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable));            
         }
 
         public void MoveUp()
@@ -168,7 +168,7 @@ public class LinkFacingRightState : ILinkState
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(link.currentPosition,
                link.isDamaged);
             link.currentState = new LinkThrowingRightState(link);
-            link.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable);        
+            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable));        
     }
 
     public void MoveUp()
@@ -240,7 +240,7 @@ public class LinkFacingLeftState : ILinkState
         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(link.currentPosition,
                 link.isDamaged);
         link.currentState = new LinkThrowingLeftState(link);
-        link.currentProjectile = ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable);        
+        link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable));        
     }
     public void MoveUp()
     {
