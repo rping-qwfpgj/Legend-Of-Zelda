@@ -8,8 +8,6 @@ namespace LegendofZelda.Interfaces
 {
     public interface IBlock : ISprite
     {
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
-        Rectangle GetHitbox();
+    
     }
 }

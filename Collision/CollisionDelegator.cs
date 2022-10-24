@@ -5,6 +5,7 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using States;
 using Sprint0;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -12,6 +13,7 @@ namespace Collision
 	{   
         Link link;
 
+        private Room room;
         public CollisionDelegator(Link link) {
             this.link = link;
         }

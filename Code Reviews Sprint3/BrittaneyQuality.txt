@@ -1,0 +1,9 @@
+﻿Author of the code review: Brittaney Jin
+Date of the code review: 10/23/2022
+Sprint number: 3
+Name of the .cs file being reviewed: CollisionDelegator.cs
+Author of the .cs file being reviewed: DJ
+
+
+Specific comments on code quality:
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change

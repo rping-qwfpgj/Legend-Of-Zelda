@@ -89,7 +89,6 @@ public class Game1 : Game
             var FilePath = directory+fileFolder+ roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
-
         }
        
         currentRoomIndex = 0;
@@ -128,15 +127,12 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
 
         link.Update();
         mouseController.Update();
         collisionDetector.Update();
         keyboardController.Update();
         currentRoom.Update();
-        
         
         base.Update(gameTime);
     }
