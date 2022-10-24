@@ -6,15 +6,16 @@ using Microsoft.Xna.Framework;
 using States;
 using Sprint0;
 using System.Diagnostics;
+using LegendofZelda;
 
 namespace Collision
 {
     public class CollisionDelegator
 	{   
         Link link;
-
         private Room room;
-        public CollisionDelegator(Link link) {
+        public CollisionDelegator(Link link, Room room) {
+            this.room = room;
             this.link = link;
         }
 
@@ -64,7 +65,7 @@ namespace Collision
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new Rectangle();
                     collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
-                    EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
+                    //EnemyBlockHandler.handleCollision(enemy0, block, side, collisionRect);
                 }
             } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
             {
@@ -118,7 +119,7 @@ namespace Collision
                         IEnemy enemy = otherObj as IEnemy;
                         Rectangle collisionRect = new Rectangle();
                         collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
-                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
+                        //EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
                     }
                 } else if (obj is IEnemyProjectile) 
                 {
@@ -132,7 +133,7 @@ namespace Collision
                     IItem item = obj as IItem;
                     if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // Link - Item
                     {
-                        LinkItemHandler.handleCollision(this.link, item, side);
+                        LinkItemHandler.handleCollision(this.link, item, this.room);
                     }
                 }
             }                                                                       
