@@ -20,6 +20,7 @@ namespace Sprites
         private IEnemy throwingLeft;
         private IEnemy throwingUp;
         private IEnemy throwingDown;
+        // private Random rand = new Random(0, 1000);
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -40,13 +41,15 @@ namespace Sprites
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
-            currentGoriya = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
+            currentGoriya = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
         {
             if (prevdirection != direction)
             {
+                this.xPos = currentGoriya.XPosition;
+                this.yPos = currentGoriya.YPosition;
                 prevdirection = direction;
                 if (currentGoriya is GoriyaMovingRightSprite)
                 {
@@ -125,7 +128,6 @@ namespace Sprites
             sourceRectangle = new Rectangle(241, 11, 13, 16);
             destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             currentFrame++;
-
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -546,8 +548,6 @@ namespace Sprites
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
-
-
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             this.leftBoomerang.Draw(spriteBatch);
 
