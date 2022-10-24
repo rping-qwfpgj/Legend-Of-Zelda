@@ -139,12 +139,12 @@ namespace Sprites
             if (currFrames >= 0 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(1, 11, 15, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); 
+                
             }
             else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking down
             {
                 sourceRectangle = new Rectangle(19, 11, 13, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 34, 44);
+                
             }
 
             // Draw the sprite
