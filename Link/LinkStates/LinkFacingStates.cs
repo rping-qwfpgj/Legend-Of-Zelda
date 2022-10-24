@@ -16,7 +16,6 @@ namespace States
         public LinkFacingUpState(Link link)
         {
             this.link = link;
-
         }
         public void Attack()
         {                        

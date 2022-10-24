@@ -51,7 +51,7 @@ namespace Collision
                 if (otherObj is IBlock)
                 {
                     IBlock block = otherObj as IBlock;
-                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, side, room);
+                    LinkProjectileBlockHandler.handleCollision(linkProjectile, room);
                 }else if (otherObj is IEnemy) // linkProj-enemy
                 {
                     IEnemy enemy = otherObj as IEnemy;                    
@@ -112,7 +112,7 @@ namespace Collision
                     } else if (otherObj is ILinkProjectile) // LinkProj - block
                     {
                         ILinkProjectile projectile = otherObj as ILinkProjectile;
-                        LinkProjectileBlockHandler.handleCollision(projectile, block, side, room);
+                        LinkProjectileBlockHandler.handleCollision(projectile, room);
                     } else if (otherObj is IEnemy) // Enemy - Block
                     {
                         IEnemy enemy = otherObj as IEnemy;

@@ -20,7 +20,6 @@ namespace Collision
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
 		private CollisionDelegator handler;
-		private int i = 0;
 		private Room currRoom;
 		
 		public CollisionDetector(Link link, Room room, Game1 game)
