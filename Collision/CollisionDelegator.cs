@@ -3,6 +3,7 @@ using Interfaces;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
+using States;
 using Sprint0;
 
 namespace Collision
@@ -71,8 +72,7 @@ namespace Collision
                     LinkEnemyHandler.handleCollision(this.link, enemy, side);
                 } else if (otherObj is IBlock) // link block
                 {
-                    //this.link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(this.link.currentPosition, this.link.isDamaged, side);
-                   
+
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
@@ -100,8 +100,6 @@ namespace Collision
                     if(otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // otherObj is Link: Link- block
                     {
 
-                        //this.link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(this.link.currentPosition, this.link.isDamaged, side);
-                        
                         Rectangle collisionRect = new Rectangle();
                         collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
                         LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);

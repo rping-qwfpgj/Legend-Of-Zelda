@@ -22,7 +22,10 @@ namespace LegendofZelda
             background.Draw(spriteBatch);
             foreach (var sprite in sprites)
             {
-                sprite.Draw(spriteBatch);
+                // If the object is not link, then don't draw him, will cause multiple links
+                if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
+                    sprite.Draw(spriteBatch);
+                }
             }
 
         }
