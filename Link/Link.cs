@@ -124,6 +124,7 @@ namespace Sprint0
 
         public void Update()
         {
+            this.UpdatePosition();
             this.currentLinkSprite.Update();
             foreach (var projectile in currentProjectiles) { 
             projectile.Update();
