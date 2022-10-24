@@ -34,7 +34,6 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
 
-
         public Link(Vector2 position, GraphicsDeviceManager graphics)
         {
             this.currentPosition = position;

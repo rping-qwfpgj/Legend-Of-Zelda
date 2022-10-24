@@ -17,7 +17,6 @@ namespace Collision
 		}
 		public static void handleCollision(Link link, IItem item, Room room)
 		{
-		
 			room.removeObject(item);
 		}        
 	}
