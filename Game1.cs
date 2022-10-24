@@ -14,6 +14,10 @@ using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
+using SharpDX.Direct3D9;
+using System.Drawing;
+using Color = Microsoft.Xna.Framework.Color;
+using SharpDX.MediaFoundation.DirectX;
 
 
 // Creator: Tuhin Patel
@@ -54,9 +58,14 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
-
     protected override void Initialize()
     {
+
+       
+        _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+50;
+        _graphics.ApplyChanges();
+
+        
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         LinkSpriteFactory.Instance.loadContent(Content);
@@ -66,7 +75,7 @@ public class Game1 : Game
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
 
-        link = new Link(new Vector2(400, 240), _graphics);
+       
         
 
         //Mouse Controller stuff
@@ -93,6 +102,7 @@ public class Game1 : Game
        
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
+        link = new Link(new Vector2(400, 240), _graphics, this);
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -127,7 +137,7 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-
+      
         link.Update();
         mouseController.Update();
         collisionDetector.Update();

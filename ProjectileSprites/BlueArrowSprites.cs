@@ -130,9 +130,8 @@ namespace Sprites
             {
                 done = true;
             }
-            currFrames = 0;
+            
         }
-
 
 
         // NOTE: All of these source Rectangles are using placeholder values for now

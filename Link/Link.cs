@@ -2,13 +2,11 @@
 using Microsoft.Xna.Framework;
 using States;
 using Interfaces;
-using static System.Windows.Forms.LinkLabel;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
-using System.Drawing;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
+using LegendofZelda;
 
 namespace Sprint0
 {
@@ -34,17 +32,21 @@ namespace Sprint0
         public bool isDamaged;
         public Throwables throwable;
         private int isDamagedCounter = 0;
+        public Game1 game;
+      
 
-        public Link(Vector2 position, GraphicsDeviceManager graphics)
+        public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
         {
             this.currentPosition = position;
             this.graphics = graphics;
             this.isDamaged = false;
+            this.game = game;
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
-            this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
+
+            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
 
         public void Reset()
@@ -54,7 +56,7 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
-            this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable));
+            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable));
 
         }
         

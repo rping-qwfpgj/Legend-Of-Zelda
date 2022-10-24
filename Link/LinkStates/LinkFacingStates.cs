@@ -4,16 +4,19 @@ using Sprint0;
 using Interfaces;
 using States;
 using LegendofZelda.SpriteFactories;
+using LegendofZelda;
 
 namespace States
 {
     public class LinkFacingUpState : ILinkState
     {
         private Link link;
+ 
 
         public LinkFacingUpState(Link link)
         {
             this.link = link;
+
         }
         public void Attack()
         {                        
@@ -27,7 +30,9 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingUpState(link);
-            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable));
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable);
+            link.currentProjectiles.Add(projectileSprite);
+            link.game.currentRoom.AddObject(projectileSprite);
             
         }
 
@@ -96,7 +101,9 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingDownState(link);
-            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable));            
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable);
+            link.currentProjectiles.Add(projectileSprite);
+            link.game.currentRoom.AddObject(projectileSprite);
         }
 
         public void MoveUp()
@@ -168,7 +175,10 @@ public class LinkFacingRightState : ILinkState
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(link.currentPosition,
                link.isDamaged);
             link.currentState = new LinkThrowingRightState(link);
-            link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable));        
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable);
+        link.currentProjectiles.Add(projectileSprite);
+        link.game.currentRoom.AddObject(projectileSprite);
+
     }
 
     public void MoveUp()
@@ -240,7 +250,9 @@ public class LinkFacingLeftState : ILinkState
         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(link.currentPosition,
                 link.isDamaged);
         link.currentState = new LinkThrowingLeftState(link);
-        link.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable));        
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable);
+        link.currentProjectiles.Add(projectileSprite);
+        link.game.currentRoom.AddObject(projectileSprite);
     }
     public void MoveUp()
     {
