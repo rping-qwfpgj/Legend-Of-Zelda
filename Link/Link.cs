@@ -116,10 +116,39 @@ namespace Sprint0
                 currentState.NoInput();
             }
         }
-        public void TakeDamage()
+
+         public void TakeDamage()
         {
             this.isDamaged = true;
             this.currentState.Redraw();
+           
+        }
+
+        public void TakeDamage(string side)
+        {
+            this.isDamaged = true;
+            this.currentState.Redraw();
+            switch(side)
+            {
+                case "top":
+                    this.currentPosition.Y += 5;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "bottom":
+                    this.currentPosition.Y -= 5;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "left":
+                    this.currentPosition.X += 5;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "right":
+                    this.currentPosition.X -=5;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void Update()

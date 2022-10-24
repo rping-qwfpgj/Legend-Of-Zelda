@@ -86,7 +86,23 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-
+            switch(side)
+            {
+                case "top":
+                    this.yPosition += 5;
+                    break;
+                case "bottom":
+                    this.yPosition -= 5;
+                    break;
+                case "left":
+                    this.xPosition += 5;
+                    break;
+                case "right":
+                    this.xPosition -=5;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
