@@ -55,13 +55,10 @@ namespace Collision
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
             
-
             ISprite currLinkSprite = this.currLink.currentLinkSprite;
-
             this.objects.Add(currLinkSprite);
 			this.alreadyChecked.Clear();
 
-			
 			foreach (ISprite obj in this.objects)
 			{
 				foreach (ISprite otherObj in this.objects)

@@ -47,7 +47,6 @@ namespace Collision
 
             } else if (obj is ILinkProjectile)// linkProj - Block
             {
-                
                 ILinkProjectile linkProjectile = obj as ILinkProjectile;
                 if (otherObj is IBlock)
                 {
