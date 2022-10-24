@@ -29,7 +29,7 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
 
-        private Rectangle destinationRectangle;
+        private Rectangle destinationRectangle = new Rectangle(1,1,0,0);
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
@@ -94,7 +94,15 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return currentGoriya.GetHitbox();
+          Rectangle hitbox = currentGoriya.GetHitbox();
+          if(hitbox == null)
+            {
+                return this.destinationRectangle;
+            } else
+            {
+                return hitbox;
+            }
+            
         }
 
         public void TakeDamage(string side)
@@ -125,6 +133,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -154,7 +163,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -201,6 +210,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -228,7 +238,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -275,6 +285,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
         public void Update()
         {
@@ -300,7 +311,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -348,6 +359,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
         }
 
         public void Update()
@@ -378,7 +390,7 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            return this.destinationRectangle;
         }
 
         public void TakeDamage(string side)
@@ -435,6 +447,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             rightBoomerang = new BoomerangGoingRightSprite(texture, (int)xPosition, (int)yPosition);
 
         }
@@ -522,6 +535,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             leftBoomerang = new BoomerangGoingLeftSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -615,6 +629,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             downBoomerang = new BoomerangGoingDownSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -700,6 +715,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
             upBoomerang = new BoomerangGoingUpSprite(texture, (int)xPosition, (int)yPosition);
         }
 
