@@ -11,6 +11,7 @@ namespace LegendofZelda
     {
         public List<ISprite> sprites;
         private ISprite background;
+
         public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;

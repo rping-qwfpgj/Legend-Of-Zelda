@@ -18,7 +18,6 @@ namespace LegendofZelda
 
         public Room ParseXML(XDocument xml)
         {
-
             List<ISprite> sprites = new();
 
             //parse background

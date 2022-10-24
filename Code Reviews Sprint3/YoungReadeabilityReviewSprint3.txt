@@ -1,0 +1,16 @@
+@Author DJ Young
+Date: 10/24/2022
+Sprint3
+File under review: Room.cs
+Author of file under review: Brittaney Jin
+Reviewed in 15 minutes
+
+The class is only 59 lines long, which makes it quick to read. Besides the constructor, there are five short methods. They are well named and clearly communicate what
+they accomplish. The Update() method simply iterates through the local list of ISprite types and called .Update() on each object. The Draw() method does the same, but
+calls .Draw() on each object. ReturnObjects() simply returns a copy of the local list, and the removeObject() and addObject() methods are simple one line methods. 
+The only code that is confusing can be found on line 27:
+if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { }
+
+This checks to see if the sprite is a Link sprite, which is clarified by the comment on the line before:
+// If the object is not link, then don't draw him, will cause multiple links.
+
