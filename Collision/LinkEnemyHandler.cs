@@ -9,6 +9,7 @@ using Sprites;
 
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -17,13 +18,14 @@ namespace Collision
 
 		public static void handleCollision(Link link, IEnemy enemy, string side)
 		{
-
+			
 			if(link.currentLinkSprite is IAttackingSprite)
 			{
                 IAttackingSprite currLinkSprite = (IAttackingSprite)link.currentLinkSprite;
                 if (currLinkSprite.isAttacking() && link.currentState.Direction() == side )
-                {
-                     //enemy.TakeDamage(side); // may need to change this to whatever name Tuhin gives takeDamage method in enemy class
+                { 
+                     side = reverseSide(side);
+                     enemy.TakeDamage(side);
                     /*
 					 * for future:
 					 * if enemy.health <= 0
@@ -32,7 +34,7 @@ namespace Collision
                 }
             } else
 			{
-				//link.TakeDamage(side);
+				link.TakeDamage(side);
                 /*
 				 * for future:
 				 * if Link.health <= 0
@@ -40,6 +42,30 @@ namespace Collision
 				 */
             }
         }
+
+
+        private static string reverseSide(string side)
+		{
+            // if enemy is to take damage, reverse side so that collision is from their perspective rather than link's
+			switch(side)
+            {
+                 case "top":
+                      return "bottom";
+                      break;
+                 case "bottom":
+                      return "top";
+                      break;
+                 case "left":
+                      return "right";
+                      break;
+                 case "right":
+                      return "left";
+                      break;
+                 default:
+                      return "error no cases chosen";
+                      break;
+            }
+		}
 
 	}
 }
