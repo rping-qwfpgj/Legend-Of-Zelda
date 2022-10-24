@@ -33,7 +33,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(71, 11, 12, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 44); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 42); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -88,7 +88,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -139,7 +139,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
 
             if (isDamaged)
             {
@@ -190,7 +190,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 44); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
 
             if (isDamaged)
             {

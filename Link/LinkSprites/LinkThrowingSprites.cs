@@ -56,7 +56,7 @@ namespace Sprites
         {
           
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 4*16, 4*16); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -136,7 +136,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 38); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -218,7 +218,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 38); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
@@ -302,7 +302,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 38); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)

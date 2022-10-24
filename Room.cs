@@ -3,12 +3,13 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Sprites;
 
 namespace LegendofZelda
 {
     public class Room
     {
-        private List<ISprite> sprites;
+        public List<ISprite> sprites;
         private ISprite background;
         public Room(List<ISprite> sprites, ISprite background)
         {
@@ -46,8 +47,11 @@ namespace LegendofZelda
         public void removeObject(ISprite sprite)
         { 
             sprites.Remove(sprite);
+        }
 
-            
+        public void AddObject(ISprite sprite)
+        {
+            sprites.Add(sprite);
         }
 
     }

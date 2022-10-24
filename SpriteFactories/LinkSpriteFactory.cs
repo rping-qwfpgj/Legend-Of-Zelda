@@ -130,19 +130,19 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "top":
                     return new LinkIdleWalkingUpSprite(spriteSheet, position.X, position.Y, isDamaged);
-                    break;
+                    
                 case "bottom":
                     return new LinkIdleWalkingDownSprite(spriteSheet, position.X, position.Y, isDamaged);
-                    break;
+                    
                 case "left":
                     return new LinkIdleWalkingLeftSprite(spriteSheet, position.X, position.Y, isDamaged);
-                    break;
+                    
                 case "right":
                     return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
-                    break;
+                   
                 default:
                     return new LinkIdleWalkingRightSprite(spriteSheet, position.X, position.Y, isDamaged);
-                    break;
+                    
             }
             
         }

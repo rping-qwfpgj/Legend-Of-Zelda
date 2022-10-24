@@ -74,6 +74,7 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
           Rectangle hitbox = currentGoriya.GetHitbox();
+
           if(hitbox == null)
             {
                 return this.destinationRectangle;

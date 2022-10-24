@@ -8,6 +8,7 @@ using Sprites;
 using LegendofZelda;
 using System.Diagnostics;
 using LegendofZelda.Interfaces;
+using SharpDX.Direct2D1;
 
 namespace Collision
 {
@@ -19,9 +20,7 @@ namespace Collision
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
 		private CollisionDelegator handler;
-		private int i = 0;
 		private Room currRoom;
-		
 		
 		public CollisionDetector(Link link, Room room, Game1 game)
 		{
@@ -54,12 +53,11 @@ namespace Collision
 			this.handler = new CollisionDelegator(this.currLink, currRoom);
 			// refresh objects array with the current room's objects and add link in there
 			this.objects = currRoom.ReturnObjects();
-			ISprite currLinkSprite = this.currLink.currentLinkSprite;
-
+            
+            ISprite currLinkSprite = this.currLink.currentLinkSprite;
             this.objects.Add(currLinkSprite);
 			this.alreadyChecked.Clear();
 
-			
 			foreach (ISprite obj in this.objects)
 			{
 				foreach (ISprite otherObj in this.objects)
@@ -74,7 +72,8 @@ namespace Collision
 						{
 							//Debug.WriteLine(i + "collision detected!");
 							//i++; //used to check that debug is working
-							this.handler.handleCollision(obj, otherObj);
+							
+                            this.handler.handleCollision(obj, otherObj);
 							// pass some stuff and let the handler handle it from here
 						}
 					}
