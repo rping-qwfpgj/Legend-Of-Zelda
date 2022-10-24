@@ -133,19 +133,19 @@ namespace Sprint0
             switch(side)
             {
                 case "top":
-                    this.currentPosition.Y += 5;
+                    this.currentPosition.Y += 25;
                     this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
                     break;
                 case "bottom":
-                    this.currentPosition.Y -= 5;
+                    this.currentPosition.Y -= 25;
                     this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
                     break;
                 case "left":
-                    this.currentPosition.X += 5;
+                    this.currentPosition.X += 25;
                     this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
                     break;
                 case "right":
-                    this.currentPosition.X -=5;
+                    this.currentPosition.X -= 25;
                     this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
                     break;
                 default:
