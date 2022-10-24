@@ -31,7 +31,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
         }
 
             public void Update()
@@ -46,7 +46,7 @@ namespace Sprites
                 }
 
                 this.yPosition -= 2; // Remember that the Y's decrease as you move up the screen  in Monogame's coordinate system
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 42); // Where to draw on screen
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
         }      
 
             // NOTE: All of these source Rectangles are using placeholder values for now
@@ -111,7 +111,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
         }
 
         public void Update()
@@ -126,7 +126,7 @@ namespace Sprites
             }
 
             this.yPosition += 2; // Remember that the Y's increases as you move down the screen  in Monogame's coordinate system
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -140,12 +140,12 @@ namespace Sprites
             if (currFrames >= 0 && currFrames <= 1000)
             {
                 sourceRectangle = new Rectangle(1, 11, 15, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 42); 
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); 
             }
             else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking down
             {
                 sourceRectangle = new Rectangle(19, 11, 13, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 34, 42);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
             }
 
             // Draw the sprite
@@ -191,7 +191,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
         }
 
         public void Update()
@@ -206,7 +206,7 @@ namespace Sprites
             }
             
             this.xPosition -= 2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -271,7 +271,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
         }
 
         public void Update()
@@ -286,7 +286,7 @@ namespace Sprites
             }
 
             this.xPosition += 2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 42); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
