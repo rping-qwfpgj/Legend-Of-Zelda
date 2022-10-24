@@ -15,7 +15,7 @@ namespace Collision
     public static class LinkProjectileBlockHandler
 	{		
 
-		public static void handleCollision(ILinkProjectile projectile, IBlock block, string side, Room room)
+		public static void handleCollision(ILinkProjectile projectile, Room room)
 		{
 			projectile.collide();
 			room.removeObject(projectile);

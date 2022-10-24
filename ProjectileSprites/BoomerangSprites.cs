@@ -18,7 +18,7 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
-        private Boolean done = false;
+       
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
@@ -178,7 +178,6 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
-        private Boolean done = false;
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
@@ -340,8 +339,7 @@ namespace Sprites
             // X and Y positions of the sprite
             public float xPosition;
             public float yPosition;
-            private Boolean done = false;
-
+   
             // On screen location
             private Rectangle destinationRectangle = new Rectangle();
             public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
@@ -501,7 +499,7 @@ namespace Sprites
         // X and Y positions of the sprite
         public float xPosition;
         public float yPosition;
-        private Boolean done = false;
+       
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();

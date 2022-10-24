@@ -59,9 +59,7 @@ namespace Sprites
             {
                 if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
                 this.xPosition += (1 * direction);
-            }
-            
-        
+            }                  
         }
 
         public void Draw(SpriteBatch spriteBatch)

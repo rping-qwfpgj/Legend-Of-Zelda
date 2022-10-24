@@ -28,63 +28,41 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private int prevdirection = 1;
+        private Texture2D texture;
+        private float xPos;
+        private float yPos;
         private Rectangle destinationRectangle = new Rectangle(1,1,0,0);
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
-        {
-            movingUp = new GoriyaMovingUpSprite(texture, xPosition, yPosition);
-            movingDown = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
-            movingRight = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
-            movingLeft = new GoriyaMovingLeftSprite(texture, xPosition, yPosition);
-            throwingRight = new GoriyaThrowingRightSprite(texture, xPosition, yPosition);
-            throwingLeft = new GoriyaThrowingLeftSprite(texture, xPosition, yPosition);
-            throwingUp = new GoriyaThrowingUpSprite(texture, xPosition, yPosition);
-            throwingDown = new GoriyaThrowingDownSprite(texture, xPosition, yPosition);
-            currentGoriya = movingRight;
+        {   
+            this.texture = texture;
+            this.xPos = xPosition;
+            this.yPos = yPosition;
+            currentGoriya = new GoriyaMovingDownSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
         {
-            counter++;
-
-            if (counter > 0 && counter < speed)
+            if(prevdirection != direction)
             {
-                currentGoriya = movingUp;
+                prevdirection = direction;
+                if(currentGoriya is GoriyaMovingRightSprite)
+                {
+                    currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
+                } else if(currentGoriya is GoriyaMovingLeftSprite)
+                {
+                    currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
+                } else if(currentGoriya is GoriyaMovingUpSprite)
+                {
+                    currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
+                } else if (currentGoriya is GoriyaMovingDownSprite)
+                {
+                    currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
+                }
             }
-            else if (counter >= speed && counter < speed * 2)
-            {
-                currentGoriya = movingDown;
-            }
-            else if (counter >= speed * 2 && counter < speed * 3)
-            {
-                currentGoriya = movingRight;
-            }
-            else if (counter >= speed * 3 && counter < speed * 4)
-            {
-                currentGoriya = movingLeft;
-            }
-            else if (counter >= speed * 4 && counter < speed * 5)
-            {
-                currentGoriya = throwingRight;
-            }
-            else if (counter >= speed * 5 && counter < speed * 6)
-            {
-                currentGoriya = throwingLeft;
-            }
-            else if (counter >= speed * 6 && counter < speed * 7)
-            {
-                currentGoriya = throwingUp;
-            }
-            else if (counter >= speed * 7 && counter < speed * 8)
-            {
-                currentGoriya = throwingDown;
-            }
-            else
-            {
-                counter = 0;
-            }
+            
             currentGoriya.Update();
         }
 
@@ -96,14 +74,14 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
           Rectangle hitbox = currentGoriya.GetHitbox();
+
           if(hitbox == null)
             {
                 return this.destinationRectangle;
             } else
             {
                 return hitbox;
-            }
-            
+            }            
         }
 
         public void TakeDamage(string side)
@@ -134,14 +112,14 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
         }
 
         public void Update()
         {
             yPosition -= 1;
             sourceRectangle = new Rectangle(241, 11, 13, 16);
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             currentFrame++;
 
         }
@@ -211,14 +189,14 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
         }
 
         public void Update()
         {
             yPosition += 1;
             sourceRectangle = new Rectangle(224, 11, 13, 16);
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             currentFrame++;
 
         }
@@ -286,7 +264,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
         }
         public void Update()
         {
@@ -295,12 +273,12 @@ namespace Sprites
             if ((currentFrame / 10) % 2 == 0)
             {
                 sourceRectangle = new Rectangle(257, 11, 13, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             else
             {
                 sourceRectangle = new Rectangle(275, 12, 14, 15);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 60);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -360,7 +338,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
         }
 
         public void Update()
@@ -372,12 +350,12 @@ namespace Sprites
             if ((currentFrame / 10) % 2 == 0)
             {
                 sourceRectangle = new Rectangle(257, 11, 13, 16);
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 52, 64);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 39, 48);
             }
             else
             {
                 sourceRectangle = new Rectangle(275, 12, 14, 15);
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 56, 60);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 39, 48);
             }
 
 
@@ -448,7 +426,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             rightBoomerang = new BoomerangGoingRightSprite(texture, (int)xPosition, (int)yPosition);
 
         }
@@ -464,12 +442,12 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
@@ -536,7 +514,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             leftBoomerang = new BoomerangGoingLeftSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -557,12 +535,12 @@ namespace Sprites
             if ((currFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
 
 
@@ -630,7 +608,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             downBoomerang = new BoomerangGoingDownSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -645,13 +623,13 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }
@@ -716,7 +694,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+            this.goriyaDestinationRectangle =  new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             upBoomerang = new BoomerangGoingUpSprite(texture, (int)xPosition, (int)yPosition);
         }
 
@@ -731,13 +709,13 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 52, 64);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }

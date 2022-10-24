@@ -22,8 +22,8 @@ namespace Collision
             {
                 // do nothing
             } else { 
-           if(true)
-            {
+            if(true)
+                {
                 switch (side)
                 {
                     case "top":

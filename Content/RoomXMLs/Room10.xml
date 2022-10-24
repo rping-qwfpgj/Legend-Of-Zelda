@@ -44,7 +44,7 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
-			<Location>230 150</Location>
+			<Location>330 150</Location>
 		</Item>
 
 		<!--  Bounding  -->
