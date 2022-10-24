@@ -191,7 +191,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 29, 30); // Where to draw on screen
         }
 
         public void Update()
@@ -206,7 +206,7 @@ namespace Sprites
             }
             
             this.xPosition -= 2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 37, 39); // Where to draw on screen
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
