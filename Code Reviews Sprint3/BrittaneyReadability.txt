@@ -1,10 +1,15 @@
 ﻿Author of the code review: Brittaney Jin
 Date of the code review: 10/23/2022
 Sprint number: 3
-Name of the .cs file being reviewed: LinkBlockHandler
-Author of the .cs file being reviewed: Vishal 
-Number of minutes taken to complete the review: 20
-Specific comments on what is readable and what is not
-
+Name of the .cs file being reviewed: KeeseSprite
+Author of the .cs file being reviewed: Tuhin
+Number of minutes taken to complete the review: 10
+Specific comments on what is readable and what is not:
+The update() method I believe is the weakest part in terms of readability. There are many if statements, 
+and additionally an if-else statement that are not conceptually clear what they do. Additionally
+there are magic numbers for position comparisons that seem arbitrary and I do not know what they
+represent. Draw is very readable as there are just two cases to draw based on what number of frames there
+are, although there could be a rectangle matrix that stores rectangles, and then they could be iterated 
+instead of creating rectangles every time. 
 
 
