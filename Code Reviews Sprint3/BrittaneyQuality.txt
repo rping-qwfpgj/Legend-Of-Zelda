@@ -5,5 +5,13 @@ Name of the .cs file being reviewed: CollisionDelegator.cs
 Author of the .cs file being reviewed: DJ
 
 
-Specific comments on code quality:
-A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+Specific comments on code quality:The nesting makes this class very difficult to understand, and I think that is its greatest weakness.
+Making changes andupdating this class would be hard as you must think about what level of if else statements to make the changes, and 
+additionally the many different cases also make this class hard to maintain. Additionally, because the two objects being passed in are not orderless, 
+meaning there must be two cases in the if-else structure for one kind of collision. 
+
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change:
+The classes objects being compared could be passed in as an orderless pair, halving the number of cases. All the logic would remain the same, 
+but we would not need an "obj" and "otherObj", we'd just need to check when the pair meet the requirements for a certain case.
+
+
