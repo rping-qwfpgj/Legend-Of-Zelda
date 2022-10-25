@@ -1,0 +1,18 @@
+@Author DJ Young
+Date: 10/24/2022
+Sprint3
+File under review: Roomloader.cs
+Author of file under review: Brittaney Jin
+Reviewed in 25 minutes
+
+*Reviewing for maintainability*
+
+The class's constructor is empty, and the class only has one method, ParseXML(XDocument xml). ParseXML is only called once in Game1.cs, and only serves to initialized 
+the Room.cs object in Game1. This class should be refactored to be a static class, which will only require changing the keywords in the class and removing the 
+declaration in Game1.cs. The class has 2 nested loops that end up 5 indentations deep in the innermost loop. This could be refactored by moving the inner loop to a 
+private method. This would be easy to change with the current implementation. ParseXML only needs to handle three different types of sprites: Blocks, Enemies, and 
+Items. This is because the instance of Link is being handled by the game class. The existence of factory patterns for creating sprites makes it easy to create the 
+sprites and add them to the list of sprites that is passed to the room object that is returned by ParseXML. Overall this class is simplified by the design patterns 
+that are currently implemented, and can easily be extended as more types of sprites are added to the game. 
+
+

@@ -452,7 +452,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White*0.00f);
             _spriteBatch.End();
         }
 
@@ -490,7 +490,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White*0.00f);
             _spriteBatch.End();
         }
 
@@ -530,7 +530,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
 
@@ -568,7 +568,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
 
@@ -606,7 +606,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
 
