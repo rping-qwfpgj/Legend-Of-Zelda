@@ -55,11 +55,21 @@
 		<ObjectName>BoundingBlock</ObjectName>
 		<Location>500 240</Location>
 	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>BoundingBlock</ObjectName>
+		<Location>200 284</Location>
+	</Item>
 	
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HorizontalBoundingBlock</ObjectName>
 		<Location>100 384</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>BoundingBlock</ObjectName>
+		<Location>100 284</Location>
 	</Item>
 	
 	<Item>
@@ -70,7 +80,17 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+		<Location>600 284</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>230 240</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+		<Location>230 284</Location>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
@@ -101,6 +121,11 @@
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>550 50</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+		<Location>380 140</Location>
 	</Item>
 	
 </XnaContent>
