@@ -11,5 +11,5 @@ there are magic numbers for position comparisons that seem arbitrary and I do no
 represent. Draw is very readable as there are just two cases to draw based on what number of frames there
 are, although there could be a rectangle matrix that stores rectangles, and then they could be iterated 
 instead of creating rectangles every time. 
-
+.
 
