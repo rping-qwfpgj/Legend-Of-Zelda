@@ -7,6 +7,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprint0
 {
@@ -33,6 +34,7 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
         public Game1 game;
+        public SoundEffect throwProjectile;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -45,6 +47,7 @@ namespace Sprint0
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
+            this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -73,6 +76,7 @@ namespace Sprint0
 
         public void ThrowProjectile()
         {
+            throwProjectile.Play();
             this.UpdatePosition();
             currentState.ThrowProjectile();
         }

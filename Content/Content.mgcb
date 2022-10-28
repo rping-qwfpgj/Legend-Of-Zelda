@@ -103,6 +103,12 @@
 /processorParam:TextureFormat=Color
 /build:oldman.png
 
+#begin throw_projectile.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:throw_projectile.wav
+
 #begin Times New Roman.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
