@@ -54,25 +54,26 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-          
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40); // Where to draw on screen
+
+            Rectangle currentFrame = new();
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(141, 11, 16, 16);
+                currentFrame = new Rectangle(141, 11, 16, 16);
             }
-
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
             spriteBatch.Begin();
 
-            if (!isDamaged)
+            if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            } else
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
+
+            }
+            else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
@@ -135,25 +136,25 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 38); // Where to draw on screen
+            Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(107, 11, 16, 15);
+                currentFrame = new(107, 11, 16, 15);
 
             }
-
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
             spriteBatch.Begin();
-            if (!isDamaged)
+            if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
+
             }
             else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
@@ -217,27 +218,26 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 38); // Where to draw on screen
+            Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(124, 12, 15, 15);
+                currentFrame = new (124, 12, 15, 15);
 
-            } 
+            }
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
             if (isDamaged)
             {
-                // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+
             }
             else
             {
-                // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
         }
@@ -301,25 +301,27 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 38); // Where to draw on screen
+            Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
+           
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(124, 12, 15, 15);
+                currentFrame = new (124, 12, 15, 15);
 
             }
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin();
-            if (!isDamaged)
+            if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
+
             }
             else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
