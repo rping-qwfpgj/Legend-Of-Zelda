@@ -7,6 +7,7 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Collision
 {
@@ -15,8 +16,10 @@ namespace Collision
 		static LinkItemHandler()
 		{
 		}
-		public static void handleCollision(Link link, IItem item, Room room)
+		public static void handleCollision(Link link, IItem item, Room room, Game1 game)
 		{
+			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
+			itemPickup.Play();
 			room.removeObject(item);
 		}        
 	}

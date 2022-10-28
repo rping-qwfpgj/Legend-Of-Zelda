@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:enemies.png
 
+#begin item_pickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:item_pickup.wav
+
 #begin itemsandweapons.png
 /importer:TextureImporter
 /processor:TextureProcessor

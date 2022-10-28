@@ -14,9 +14,11 @@ namespace Collision
 	{   
         Link link;
         private Room room;
-        public CollisionDelegator(Link link, Room room) {
+        private Game1 game;
+        public CollisionDelegator(Link link, Room room, Game1 game) {
             this.room = room;
             this.link = link;
+            this.game = game;
         }
 
         // method which will assign the object pair to it's pairwise handler
@@ -107,7 +109,7 @@ namespace Collision
                 } else if(otherObj is IItem)
                 {
                     IItem item = otherObj as IItem;
-                    LinkItemHandler.handleCollision(this.link, item, this.room);
+                    LinkItemHandler.handleCollision(this.link, item, this.room, this.game);
                 }
 
             }                   
@@ -147,7 +149,7 @@ namespace Collision
                     IItem item = obj as IItem;
                     if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // Link - Item
                     {
-                        LinkItemHandler.handleCollision(this.link, item, this.room);
+                        LinkItemHandler.handleCollision(this.link, item, this.room, this.game);
                     }
                 }
                                                                                    
