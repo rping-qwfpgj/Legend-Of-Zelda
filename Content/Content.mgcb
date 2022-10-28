@@ -55,6 +55,12 @@
 /processorParam:TextureFormat=Color
 /build:bosses.png
 
+#begin coconut_mall_mp3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:coconut_mall_mp3.mp3
+
 #begin enemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
