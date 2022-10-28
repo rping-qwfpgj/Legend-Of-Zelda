@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprites
 {
@@ -9,6 +10,7 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
+        private SoundEffect enemyHit;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -27,11 +29,12 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
-        public KeeseSprite(Texture2D texture, float xPosition, float yPosition)
+        public KeeseSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.enemyHit = sound;
         }
 
         public void Update()

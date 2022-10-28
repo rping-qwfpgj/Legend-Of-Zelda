@@ -1,6 +1,7 @@
 
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
@@ -20,6 +21,7 @@ namespace Sprites
         private IEnemy throwingLeft;
         private IEnemy throwingUp;
         private IEnemy throwingDown;
+       
         // private Random rand = new Random(0, 1000);
 
         // X and Y positions of the sprite

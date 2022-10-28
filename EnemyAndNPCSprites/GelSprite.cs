@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprites
 {
@@ -14,6 +15,7 @@ namespace Sprites
 
         // Texture to take sprites from
         private Texture2D texture;
+        private SoundEffect enemyHit;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -29,11 +31,12 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
-        public GelSprite(Texture2D texture, float xPosition, float yPosition)
+        public GelSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.enemyHit = sound;
         }
 
         public void Update()
@@ -95,7 +98,7 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-
+            enemyHit.Play();
         }
     }
 }

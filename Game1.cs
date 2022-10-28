@@ -18,6 +18,7 @@ using SharpDX.Direct3D9;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using SharpDX.MediaFoundation.DirectX;
+using Microsoft.Xna.Framework.Audio;
 
 
 // Creator: Tuhin Patel
@@ -42,6 +43,7 @@ public class Game1 : Game
     public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
+    public SoundEffect enemyHit;
 
    
 
@@ -78,7 +80,7 @@ public class Game1 : Game
         BackgroundSpriteFactory.Instance.loadContent(Content);
 
        
-        
+
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -134,7 +136,7 @@ public class Game1 : Game
     
     protected override void LoadContent()
     {
-
+        
     }
 
     protected override void Update(GameTime gameTime)

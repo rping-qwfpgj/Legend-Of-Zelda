@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../Downloads/enemy_hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../../Downloads/enemy_hit.wav;enemy_hit.wav
+
 #begin allbackgrounds.png
 /importer:TextureImporter
 /processor:TextureProcessor
