@@ -44,13 +44,9 @@ namespace LegendofZelda.SpriteFactories
 
                         return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "PurpleTriangle":
+                    case "Triforce":
 
-                        return new PurpleTriangle(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
-
-                    case "OrangeTriangle":
-
-                        return new OrangeTriangle(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                        return new Triforce(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                     case "OrangeMap":
 
