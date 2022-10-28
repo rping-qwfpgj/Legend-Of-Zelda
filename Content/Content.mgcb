@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:enemies.png
 
+#begin hee_hee.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:hee_hee.wav
+
 #begin item_pickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

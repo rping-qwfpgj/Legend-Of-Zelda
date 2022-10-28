@@ -20,6 +20,20 @@ namespace Collision
 		{
 			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
 			itemPickup.Play();
+			if (item is SmallRedHeart)
+			{
+				link.health += 1.0f;
+			}
+			if (item is Fairy)
+			{
+				link.health = 3.0f;
+			}
+			/*
+			if (item is Triforce)
+			{
+                link.health = 4.0f;
+            }
+			*/
 			room.removeObject(item);
 		}        
 	}

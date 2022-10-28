@@ -8,6 +8,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
 using Microsoft.Xna.Framework.Audio;
+using System.Diagnostics;
 
 namespace Sprint0
 {
@@ -34,7 +35,9 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
         public Game1 game;
-        public SoundEffect throwProjectile;
+        private SoundEffect throwProjectile;
+        private SoundEffect attack;
+        public float health;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -48,6 +51,8 @@ namespace Sprint0
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
             this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
+            this.attack = game.Content.Load<SoundEffect>("hee_hee");
+            this.health = 3;
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -70,6 +75,7 @@ namespace Sprint0
         }
         public void Attack()
         {
+            attack.Play();
             this.UpdatePosition();
             currentState.Attack();
         }
@@ -125,6 +131,12 @@ namespace Sprint0
 
          public void TakeDamage()
         {
+            this.health -= 0.5f;
+            Debug.WriteLine("link health = " + health);
+            if (health <= 0)
+            {
+                this.Die();
+            }
             this.isDamaged = true;
             this.currentState.Redraw();
            
@@ -198,6 +210,11 @@ namespace Sprint0
             {
                 projectile.Draw(_spriteBatch);
             }
+        }
+
+        public void Die()
+        {
+            //this.game.currentState = gameOverState;
         }
 
     }

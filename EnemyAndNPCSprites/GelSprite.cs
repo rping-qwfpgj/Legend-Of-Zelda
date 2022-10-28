@@ -99,6 +99,12 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             enemyHit.Play();
+            this.Die();
+        }
+
+        public void Die()
+        {
+
         }
     }
 }
