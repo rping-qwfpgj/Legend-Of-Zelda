@@ -36,9 +36,8 @@ namespace Sprites
 
         public void Update()
         {
-            bool done = false;
             // Update frames
-            if (!done)
+            if (!(currFrames >= maxFrames))
             {
                 currFrames += 100;
             }
@@ -46,10 +45,7 @@ namespace Sprites
             {
                 this.yPosition -= 4;
             }
-            if (currFrames >= maxFrames)
-            {
-                done = true;
-            }
+            
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -73,7 +69,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -155,7 +151,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
             spriteBatch.End();
         }
@@ -237,7 +233,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -318,7 +314,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             spriteBatch.End();
         }

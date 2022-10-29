@@ -19,8 +19,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
@@ -29,13 +29,13 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public LinkThrowingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             this.isAttack = true;
         }
@@ -62,9 +62,9 @@ namespace Sprites
             {
                 currentFrame = new Rectangle(141, 11, 16, 16);
             }
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
             if (isDamaged)
             {
@@ -78,7 +78,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-         public Rectangle GetHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -88,7 +88,7 @@ namespace Sprites
             return this.isAttack;
         }
     }
-     
+
     public class LinkThrowingDownSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -99,8 +99,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
@@ -109,13 +109,13 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public LinkThrowingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             this.isAttack = true;
         }
@@ -144,9 +144,9 @@ namespace Sprites
                 currentFrame = new(107, 11, 16, 15);
 
             }
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -159,7 +159,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-         public Rectangle GetHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -180,8 +180,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
@@ -190,13 +190,13 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
         public LinkThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             this.isAttack = true;
         }
@@ -223,36 +223,39 @@ namespace Sprites
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= maxFrames)
             {
-                currentFrame = new (124, 12, 15, 15);
+                currentFrame = new(124, 12, 15, 15);
 
+
+                destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (isDamaged)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+                }
+                spriteBatch.End();
             }
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+        }
 
-            // Draw the sprite
-            spriteBatch.Begin();
-            if (isDamaged)
+            public Rectangle GetHitbox()
             {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
-
+                return this.destinationRectangle;
             }
-            else
+
+            public bool isAttacking()
             {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+                return this.isAttack;
             }
-            spriteBatch.End();
         }
 
-        public Rectangle GetHitbox()
-        {
-            return this.destinationRectangle;
-        }
-
-        public bool isAttacking()
-        {
-            return this.isAttack;
-        }
+    
     }
-
     public class LinkThrowingRightSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -263,8 +266,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
@@ -278,8 +281,8 @@ namespace Sprites
         public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             this.isAttack = true;
         }
@@ -310,10 +313,10 @@ namespace Sprites
                 currentFrame = new (124, 12, 15, 15);
 
             }
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -336,5 +339,6 @@ namespace Sprites
             return this.isAttack;
         }
     }
-}
+
+
 

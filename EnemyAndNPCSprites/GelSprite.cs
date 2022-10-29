@@ -73,7 +73,7 @@ namespace Sprites
             Rectangle sourceRectangle;
             
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((currFrames / 100) % 2 != 0)
             {
                 sourceRectangle = new Rectangle(1, 16, 8, 8);

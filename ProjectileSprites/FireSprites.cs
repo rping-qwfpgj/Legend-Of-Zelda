@@ -54,7 +54,7 @@ namespace Sprites
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if(currFrames < maxFrames)
             {
 
@@ -134,7 +134,7 @@ namespace Sprites
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
             if (currFrames < maxFrames)
             {
@@ -213,7 +213,7 @@ namespace Sprites
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (currFrames < maxFrames)
             {
                 if ((currFrames / 100) % 2 == 0)
@@ -291,7 +291,7 @@ namespace Sprites
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (currFrames < maxFrames)
             {
                 if (currFrames < maxFrames)

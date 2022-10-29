@@ -86,7 +86,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -246,7 +246,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -406,7 +406,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -569,7 +569,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {

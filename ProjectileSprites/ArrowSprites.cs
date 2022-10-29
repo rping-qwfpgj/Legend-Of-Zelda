@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
@@ -45,7 +45,6 @@ namespace Sprites
             {
                 done = true;
             }
-
             
         }
 
@@ -69,7 +68,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -149,7 +148,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
             spriteBatch.End();
         }
@@ -231,7 +230,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -313,7 +312,7 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             spriteBatch.End();
         }

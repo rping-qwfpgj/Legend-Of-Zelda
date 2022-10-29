@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using LegendofZelda.Interfaces;
-using System.Collections.Generic;
 
 namespace Sprites
 {
-    public class BoomerangUpSprite : ILinkProjectile
+    public class BlueBoomerangUpSprite : ILinkProjectile
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -32,7 +30,7 @@ namespace Sprites
             destinationRectangle.Y += destinationRectangle.Height / 2;
             return origin;
         }
-        public BoomerangUpSprite(Texture2D texture, float xPosition, float yPosition)
+        public BlueBoomerangUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
@@ -55,7 +53,7 @@ namespace Sprites
                     currFrames = 0;
                 }
 
-                //to change direction of boomerang
+                //to change direction of BlueBoomerang
                 if (timingFrames <= maxFrames / 2)
                 {
                     this.yPosition -= 2;
@@ -72,9 +70,9 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
+            Rectangle frame1 = new(92, 189, 5, 8);
+            Rectangle frame2 = new(100, 189, 8, 8);
+            Rectangle frame3 = new(109, 191, 8, 5);
             Vector2 origin;
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -161,7 +159,7 @@ namespace Sprites
 
 
 
-    public class BoomerangDownSprite : ILinkProjectile
+    public class BlueBoomerangDownSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -189,7 +187,7 @@ namespace Sprites
 
             return origin;
         }
-        public BoomerangDownSprite(Texture2D texture, float xPosition, float yPosition)
+        public BlueBoomerangDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
@@ -212,7 +210,7 @@ namespace Sprites
                     currFrames = 0;
                 }
 
-                //to change direction of boomerang
+                //to change direction of BlueBoomerang
                 if (timingFrames <= maxFrames / 2)
                 {
                     this.yPosition += 2;
@@ -231,9 +229,9 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
+            Rectangle frame1 = new(92, 189, 5, 8);
+            Rectangle frame2 = new(100, 189, 8, 8);
+            Rectangle frame3 = new(109, 191, 8, 5);
             Vector2 origin;
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -319,7 +317,7 @@ namespace Sprites
         }
     }
 
-        public class BoomerangRightSprite : ILinkProjectile
+        public class BlueBoomerangRightSprite : ILinkProjectile
         {
 
             // Keep track of frames
@@ -346,7 +344,7 @@ namespace Sprites
                 return origin;
             }
 
-            public BoomerangRightSprite(Texture2D texture, float xPosition, float yPosition)
+            public BlueBoomerangRightSprite(Texture2D texture, float xPosition, float yPosition)
             {
                 this.texture = texture;
                 this.xPosition = (int)xPosition;
@@ -370,7 +368,7 @@ namespace Sprites
                     currFrames = 0;
                 }
 
-                //to change direction of boomerang
+                //to change direction of BlueBoomerang
                 if (timingFrames <= maxFrames / 2)
                 {
                     this.xPosition += 2;
@@ -389,9 +387,9 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
+            Rectangle frame1 = new(92, 189, 5, 8);
+            Rectangle frame2 = new(100, 189, 8, 8);
+            Rectangle frame3 = new(109, 191, 8, 5);
             Vector2 origin;
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -475,7 +473,7 @@ namespace Sprites
         }
 
 
-    public class BoomerangLeftSprite : ILinkProjectile
+    public class BlueBoomerangLeftSprite : ILinkProjectile
     {
 
         // Keep track of frames
@@ -503,7 +501,7 @@ namespace Sprites
 
             return origin;
         }
-        public BoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition)
+        public BlueBoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
@@ -528,7 +526,7 @@ namespace Sprites
                     currFrames = 0;
                 }
 
-                //to change direction of boomerang
+                //to change direction of BlueBoomerang
                 if (timingFrames <= maxFrames / 2)
                 {
                     this.xPosition -= 2;
@@ -545,9 +543,9 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
+            Rectangle frame1 = new(92, 189, 5, 8);
+            Rectangle frame2 = new(100, 189, 8, 8);
+            Rectangle frame3 = new(109, 191, 8, 5);
             Vector2 origin;
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);

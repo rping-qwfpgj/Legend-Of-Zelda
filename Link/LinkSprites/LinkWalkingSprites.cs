@@ -16,8 +16,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
      
         private bool isDamaged;
 
@@ -30,8 +30,8 @@ namespace Sprites
         public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(71, 11, 12, 16));
@@ -68,11 +68,11 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width*2, currentFrame.Height*2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width*2, currentFrame.Height*2); // Where to draw on screen
 
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -101,8 +101,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         public bool isDamaged;
 
@@ -115,10 +115,9 @@ namespace Sprites
         public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 40); // Where to draw on screen
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 11, 15, 16));
             sourceRectangles.Add(new Rectangle(19, 11, 13, 16));
@@ -138,7 +137,6 @@ namespace Sprites
             }
 
             this.yPosition += 2; // Remember that the Y's increases as you move down the screen  in Monogame's coordinate system
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -155,11 +153,11 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -188,8 +186,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
@@ -201,8 +199,8 @@ namespace Sprites
         public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(35, 11, 15, 16));
@@ -222,7 +220,7 @@ namespace Sprites
             }
             
             this.xPosition -= 2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 37, 39); // Where to draw on screen
+          
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -240,11 +238,11 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
@@ -273,8 +271,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
         private bool isDamaged;
 
         private Rectangle destinationRectangle;
@@ -286,8 +284,8 @@ namespace Sprites
         public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(35, 11, 15, 16));
@@ -307,7 +305,7 @@ namespace Sprites
             }
 
             this.xPosition += 2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 40); // Where to draw on screen
+         
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -325,11 +323,11 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
