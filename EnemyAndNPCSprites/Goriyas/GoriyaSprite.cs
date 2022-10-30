@@ -42,6 +42,7 @@ namespace Sprites
             this.xPos = xPosition;
             this.yPos = yPosition;
             currentGoriya = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
+
         }
 
         public void Update()
