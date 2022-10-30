@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 
 namespace Sprites
@@ -21,45 +22,55 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-        private bool movingHorizontally = true;
-        private bool movingVertically = false;
+        //private bool movingHorizontally = true;
+        //private bool movingVertically = false;
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
+        // Handles getting enemy movement to be randomized
+        Random random = new Random();
+        public enum Directions { UP, RIGHT, LEFT, DOWN};
+        List<Directions>  directions = new List<Directions>{Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN};
+        Directions currDirection; 
 
         public StalfosSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.currDirection = directions[random.Next(0,directions.Count)];
         }
 
         public void Update()
         {
-            if (currFrames == maxFrames / 2)
+            if (random.Next(0, maxFrames) <= (maxFrames/50))
             {
-                direction *= -1;
-                movingHorizontally = !movingHorizontally;
-                movingVertically = !movingVertically;
+                 this.currDirection = directions[random.Next(0,directions.Count)];
             }
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
-            } else
+            }
+            else
             {
                 currFrames += 10;
             }
-            
-            if (movingVertically && !movingHorizontally)
+
+            if (currDirection == Directions.UP)
             {
-                if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
-                this.yPosition += (1 * direction);
+                this.yPosition -= 1;
             }
-            if (movingHorizontally && !movingVertically)
+            else if (currDirection == Directions.LEFT)
             {
-                if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
-                this.xPosition += (1 * direction);
-            }                  
+                this.xPosition -= 1;
+            } else if (currDirection == Directions.RIGHT)
+            {
+                this.xPosition += 1;
+            } else // Direction is down
+            {
+                this.yPosition += 1;
+            }          
         }
 
         public void Draw(SpriteBatch spriteBatch)

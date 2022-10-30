@@ -86,7 +86,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -155,7 +155,7 @@ namespace Sprites
             }
             // Draw the sprite
 
-            spriteBatch.End();
+            
         }
         public Rectangle GetHitbox()
         {
@@ -246,7 +246,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -315,7 +315,7 @@ namespace Sprites
             }
             // Draw the sprite
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
@@ -406,7 +406,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -475,7 +475,7 @@ namespace Sprites
             }
             // Draw the sprite
 
-            spriteBatch.End();
+            
         }
         public Rectangle GetHitbox()
         {
@@ -569,7 +569,7 @@ namespace Sprites
             Rectangle frame3 = new Rectangle(82, 191, 8, 5);
             Vector2 origin;
 
-            spriteBatch.Begin();
+            
             //1
             if (currFrames >= 0 && currFrames <= maxFrames / 8)
             {
@@ -638,7 +638,7 @@ namespace Sprites
             }
             // Draw the sprite
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()

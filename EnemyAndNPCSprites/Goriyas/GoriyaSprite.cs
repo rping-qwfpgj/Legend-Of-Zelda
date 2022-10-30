@@ -7,6 +7,7 @@ using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
+   /* 
     public class GoriyaSprite : IEnemy
     {
         private IEnemy currentGoriya;
@@ -98,6 +99,7 @@ namespace Sprites
         }
     }
 
+    */
     public class GoriyaMovingUpSprite : IEnemy
     {
         private Texture2D texture;
@@ -132,7 +134,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
 
             if ((currentFrame / 10) % 2 == 0)
             {
@@ -144,7 +146,7 @@ namespace Sprites
             }
 
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
@@ -209,7 +211,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((currentFrame / 10) % 2 == 0)
             {
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
@@ -219,7 +221,7 @@ namespace Sprites
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
@@ -290,9 +292,9 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
@@ -369,9 +371,9 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
@@ -445,7 +447,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
@@ -538,7 +540,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((currFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
@@ -624,7 +626,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
@@ -710,7 +712,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
