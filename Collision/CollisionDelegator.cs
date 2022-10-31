@@ -62,7 +62,7 @@ namespace Collision
                 }else if (otherObj is IEnemy) // linkProj-enemy
                 {
                     IEnemy enemy = otherObj as IEnemy;                    
-                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, this.room);
+                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, room);
                 }
             } else if (obj is IEnemy)
             {
@@ -84,7 +84,7 @@ namespace Collision
                 else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
                 {
                     side = determineSide(otherObj, obj);
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
                 }
 
 
@@ -93,7 +93,7 @@ namespace Collision
                 if(otherObj is IEnemy)// link enemy # 1
                 {
                     IEnemy enemy = otherObj as IEnemy;
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
 
                 } else if (otherObj is IBlock) // link block
                 {

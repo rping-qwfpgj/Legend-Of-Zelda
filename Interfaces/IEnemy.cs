@@ -13,5 +13,8 @@ namespace LegendofZelda.Interfaces
         public float XPosition { get; set; }
         public float YPosition { get; set; }
         public int Direction { get; set; }
+        public bool IsDead { get; set; }
+        public bool DyingComplete { get; set; }
+        void Die();
     }
 }

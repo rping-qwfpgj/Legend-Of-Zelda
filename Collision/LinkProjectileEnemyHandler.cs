@@ -7,6 +7,9 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
+using LegendofZelda.EnemyAndNPCSprites;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
@@ -19,12 +22,10 @@ namespace Collision
             projectile.collide();
             room.removeObject(projectile);
             enemy.TakeDamage(side);
-            /*
-			 * for future:
-			 * if enemy.health <= 0
-			 * game/room.remove(enemy)
-			 */
-
+            room.removeObject(enemy);
+            ISprite dyingAnimation = EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2((int)enemy.XPosition, (int)enemy.YPosition), "Dying");
+            room.AddObject(dyingAnimation);
+            
         }
 
         

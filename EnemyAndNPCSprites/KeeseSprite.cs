@@ -24,6 +24,10 @@ namespace Sprites
         public int Direction { get => direction; set => direction = value; }
         private bool movingHorizontally = true;
         private bool movingVertically = false;
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // On screen position
         private Rectangle destinationRectangle;
@@ -95,6 +99,11 @@ namespace Sprites
         }
 
         public void TakeDamage(string side)
+        {
+
+        }
+
+        public void Die()
         {
 
         }

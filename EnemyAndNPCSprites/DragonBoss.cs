@@ -22,6 +22,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // On screen location
         Rectangle dragonDestinationRectangle;
@@ -116,6 +120,10 @@ namespace Sprites
        }
 
        public void TakeDamage(string side)
+        {
+
+        }
+        public void Die()
         {
 
         }

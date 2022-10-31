@@ -24,6 +24,10 @@ namespace Sprites
         private bool movingVertically = false;
 
         private Rectangle destinationRectangle;
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -90,6 +94,11 @@ namespace Sprites
         }
 
         public void TakeDamage(string side)
+        {
+
+        }
+
+        public void Die()
         {
 
         }

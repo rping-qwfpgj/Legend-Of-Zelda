@@ -38,6 +38,7 @@ namespace Sprint0
         private SoundEffect throwProjectile;
         private SoundEffect attack;
         public float health;
+        private bool canBeDamaged;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -53,6 +54,7 @@ namespace Sprint0
             this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
             this.attack = game.Content.Load<SoundEffect>("hee_hee");
             this.health = 3;
+            this.canBeDamaged = true;
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -131,41 +133,57 @@ namespace Sprint0
 
          public void TakeDamage()
         {
-            this.health -= 0.5f;
-            Debug.WriteLine("link health = " + health);
-            if (health <= 0)
+            if (this.canBeDamaged == true)
             {
-                this.Die();
+                this.health -= 0.5f;
+                Debug.WriteLine("link health = " + health);
+                if (health <= 0)
+                {
+                    this.Die();
+                }
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.canBeDamaged = false;
             }
-            this.isDamaged = true;
-            this.currentState.Redraw();
+            
            
         }
 
         public void TakeDamage(string side)
         {
-            this.isDamaged = true;
-            this.currentState.Redraw();
-            switch(side)
+            if (this.canBeDamaged == true)
             {
-                case "top":
-                    this.currentPosition.Y += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "bottom":
-                    this.currentPosition.Y -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "left":
-                    this.currentPosition.X += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "right":
-                    this.currentPosition.X -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                default:
-                    break;
+                this.health -= 0.5f;
+                Debug.WriteLine("link health = " + health);
+                if (health <= 0)
+                {
+                    this.Die();
+
+                }
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.canBeDamaged = false;
+                switch (side)
+                {
+                    case "top":
+                        this.currentPosition.Y += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "right":
+                        this.currentPosition.X -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -183,6 +201,7 @@ namespace Sprint0
                 this.isDamagedCounter++;
                 if (this.isDamagedCounter > 60)
                 {
+                    this.canBeDamaged = true;
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
                     this.UpdatePosition();
@@ -215,6 +234,7 @@ namespace Sprint0
         public void Die()
         {
             //this.game.currentState = gameOverState;
+            //this.Reset();
         }
 
     }

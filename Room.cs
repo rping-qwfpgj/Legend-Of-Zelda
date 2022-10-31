@@ -31,7 +31,7 @@ namespace LegendofZelda
         }
 
         public void Update()
-        {
+        { 
            foreach (var sprite in sprites)
             {
                 sprite.Update();
@@ -47,11 +47,19 @@ namespace LegendofZelda
 
         public void removeObject(ISprite sprite)
         { 
+            if (sprite is IEnemy)
+            {
+                //Debug.WriteLine("Hey i work");
+            }
             sprites.Remove(sprite);
         }
 
         public void AddObject(ISprite sprite)
         {
+            if (sprite is IEnemy)
+            {
+                Debug.WriteLine("Hey i work");
+            }
             sprites.Add(sprite);
         }
 

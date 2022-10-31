@@ -26,6 +26,10 @@ namespace Sprites
         public int Direction { get => direction; set => direction = value; }
         private bool movingHorizontally = true;
         private bool movingVertically = false;
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
@@ -106,6 +110,11 @@ namespace Sprites
                 default:
                     break;
             }
+        }
+
+        public void Die()
+        {
+
         }
     }
 }

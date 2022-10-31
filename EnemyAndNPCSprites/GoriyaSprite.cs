@@ -37,7 +37,10 @@ namespace Sprites
         private float yPos;
         private Rectangle destinationRectangle = new Rectangle(1, 1, 0, 0);
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -97,6 +100,11 @@ namespace Sprites
         {
             currentGoriya.TakeDamage(side);
         }
+
+        public void Die()
+        {
+
+        }
     }
 
     public class GoriyaMovingUpSprite : IEnemy
@@ -115,6 +123,10 @@ namespace Sprites
         public int Direction { get => direction; set => direction = value; }
 
         private int currentFrame = 0;
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         public GoriyaMovingUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -173,6 +185,10 @@ namespace Sprites
                     break;
             }
         }
+        public void Die()
+        {
+
+        }
     }
 
     public class GoriyaMovingDownSprite : IEnemy
@@ -188,7 +204,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         private int currentFrame;
 
@@ -248,6 +267,11 @@ namespace Sprites
                     break;
             }
         }
+
+        public void Die()
+        {
+
+        }
     }
 
     public class GoriyaMovingRightSprite : IEnemy
@@ -266,7 +290,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public GoriyaMovingRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -322,6 +349,11 @@ namespace Sprites
             }
         }
 
+        public void Die()
+        {
+
+        }
+
     }
 
     public class GoriyaMovingLeftSprite : IEnemy
@@ -340,7 +372,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public GoriyaMovingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -400,6 +435,10 @@ namespace Sprites
                     break;
             }
         }
+        public void Die()
+        {
+
+        }
     }
 
     /* ------- THROWING SPRITES -------*/
@@ -420,6 +459,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // Boomerang that will be thrown
         public GoriyaBoomerangRightSprite rightBoomerang;
@@ -490,6 +533,11 @@ namespace Sprites
             }
         }
 
+        public void Die()
+        {
+
+        }
+
     }
 
     public class GoriyaThrowingLeftSprite : IEnemy
@@ -516,7 +564,10 @@ namespace Sprites
 
         // Boomerang that will be thrown
         public GoriyaBoomerangLeftSprite leftBoomerang;
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public GoriyaThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -581,7 +632,10 @@ namespace Sprites
                     break;
             }
         }
+        public void Die()
+        {
 
+        }
     }
 
     public class GoriyaThrowingDownSprite : IEnemy
@@ -600,7 +654,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -671,6 +728,11 @@ namespace Sprites
             }
         }
 
+        public void Die()
+        {
+
+        }
+
     }
 
     public class GoriyaThrowingUpSprite : IEnemy
@@ -688,7 +750,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => isDead; set => isDead = value; }
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -758,6 +823,10 @@ namespace Sprites
             }
         }
 
+        public void Die()
+        {
+
+        }
     }
 }
 

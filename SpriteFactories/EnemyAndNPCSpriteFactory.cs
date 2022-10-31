@@ -5,6 +5,7 @@ using Sprites;
 using Microsoft.Xna.Framework;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
+using LegendofZelda.EnemyAndNPCSprites;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -14,6 +15,7 @@ namespace LegendofZelda.SpriteFactories
         private Texture2D oldManSpriteSheet;
         private Texture2D bossSpriteSheet;
         private SoundEffect enemyHit;
+        private Texture2D dyingSpriteSheet;
         private static EnemyAndNPCSpriteFactory instance = new EnemyAndNPCSpriteFactory();
         
 
@@ -35,6 +37,7 @@ namespace LegendofZelda.SpriteFactories
             oldManSpriteSheet = content.Load<Texture2D>("oldman");
             bossSpriteSheet = content.Load<Texture2D>("bosses");
             enemyHit = content.Load<SoundEffect>("enemy_hit");
+            dyingSpriteSheet = content.Load<Texture2D>("enemy_death");
 
         }
 
@@ -59,7 +62,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "Gel":
 
-                    return new GelSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit);
+                    return new GelSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
 
                 case "DragonBoss":
 
@@ -76,6 +79,9 @@ namespace LegendofZelda.SpriteFactories
                 case "Trap":
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
+
+                case "Dying":
+                    return new DyingAnimation(dyingSpriteSheet, location.X, location.Y + inventoryHeight);
 
                 default:
 
