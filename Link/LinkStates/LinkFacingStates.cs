@@ -29,7 +29,7 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingUpState(link);
-            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable);
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable, link);
             link.currentProjectiles.Add(projectileSprite);
             link.game.currentRoom.AddObject(projectileSprite);
             
@@ -100,7 +100,7 @@ namespace States
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(link.currentPosition,
                     link.isDamaged);
             link.currentState = new LinkThrowingDownState(link);
-            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable);
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable, link);
             link.currentProjectiles.Add(projectileSprite);
             link.game.currentRoom.AddObject(projectileSprite);
         }
@@ -174,7 +174,7 @@ public class LinkFacingRightState : ILinkState
             link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(link.currentPosition,
                link.isDamaged);
             link.currentState = new LinkThrowingRightState(link);
-        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable);
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable, link);
         link.currentProjectiles.Add(projectileSprite);
         link.game.currentRoom.AddObject(projectileSprite);
 
@@ -249,7 +249,7 @@ public class LinkFacingLeftState : ILinkState
         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(link.currentPosition,
                 link.isDamaged);
         link.currentState = new LinkThrowingLeftState(link);
-        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable);
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable, link);
         link.currentProjectiles.Add(projectileSprite);
         link.game.currentRoom.AddObject(projectileSprite);
     }
