@@ -7,7 +7,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
-// Hi vishall
+
 namespace Sprint0
 {
     public class Link
@@ -128,29 +128,32 @@ namespace Sprint0
 
         public void TakeDamage(string side)
         {
-            this.isDamaged = true;
-            this.currentState.Redraw();
-            switch(side)
+            if(!this.isDamaged)
             {
-                case "top":
-                    this.currentPosition.Y += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                switch(side)
+                {   
+                    case "top":
+                        this.currentPosition.Y += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "right":
+                        this.currentPosition.X -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
                     break;
-                case "bottom":
-                    this.currentPosition.Y -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "left":
-                    this.currentPosition.X += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "right":
-                    this.currentPosition.X -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                default:
-                    break;
-            }
+                }
+            }                        
         }
 
         public void Update()
@@ -158,14 +161,14 @@ namespace Sprint0
             this.UpdatePosition();
             this.currentLinkSprite.Update();
             foreach (var projectile in currentProjectiles) { 
-            projectile.Update();
+                projectile.Update();
             }
 
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
             {
                 this.isDamagedCounter++;
-                if (this.isDamagedCounter > 60)
+                if (this.isDamagedCounter > 180)
                 {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
