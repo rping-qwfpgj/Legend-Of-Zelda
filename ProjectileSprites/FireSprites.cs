@@ -28,9 +28,6 @@ namespace Sprites
             this.yPosition = yPosition;
         }
 
-        // having boomeraing come back note:
-        // pull initial position, once position hits inital plus certian amount, have position start decrementing rather than incrementing
-
 
         public void Update()
         {

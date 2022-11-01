@@ -11,6 +11,7 @@ namespace LegendofZelda.SpriteFactories
         {
 
             private Texture2D spriteSheet;
+            private Texture2D fireTexture;
             private readonly static ItemSpriteFactory instance = new();
 
             public static ItemSpriteFactory Instance
@@ -27,6 +28,7 @@ namespace LegendofZelda.SpriteFactories
             public void loadContent(ContentManager content)
             {
                 spriteSheet = content.Load<Texture2D>("itemsandweapons");
+            fireTexture = content.Load<Texture2D>("LinkandProjectileSprites");
             }
 
             public ISprite CreateItem(Vector2 location, string name)
@@ -91,6 +93,10 @@ namespace LegendofZelda.SpriteFactories
                     case "Bomb":
 
                         return new Bomb(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+
+                    case "Fire":
+
+                        return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
 
                     default:
 

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using LegendofZelda;
 
 namespace Sprint0
-{
+{// im gonna get rid of the magic numbers
     public class Link
     {
         public enum Throwables
@@ -33,6 +33,7 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
         public Game1 game;
+        
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)

@@ -102,7 +102,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
        
-        currentRoomIndex = 0;
+        currentRoomIndex = 8;
         currentRoom = rooms[currentRoomIndex];
         link = new Link(new Vector2(400, 240), _graphics, this);
 
