@@ -19,8 +19,8 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
         private SpriteFont font;
-        private String message = "Fulcrum, come in...Yuuuuuuuh Yodie..Gang..";
-        private int messageOffsetX = 150;
+        private String message = "EASTMOST PENNINSULA IS THE SECRET .";
+        private int messageOffsetX = 180;
         private int messageOffsetY = 35;
 
         private Rectangle destinationRectangle;
