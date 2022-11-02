@@ -115,10 +115,15 @@ namespace Sprites
             return this.dragonDestinationRectangle;
        }
 
-       public void TakeDamage(string side)
-        {
+       public void TurnAround(string side)
+       {
 
-        }
+       }
+
+       public void TakeDamage(string side)
+       {
+
+       }
     }
 
     public class TopDragonAttackOrbSprite: IEnemyProjectile 

@@ -104,6 +104,30 @@ namespace Sprites
             return this.destinationRectangle;
         }
 
+        public void TurnAround(string side)
+        {
+            // Have the Keese turn around based on what wall it is running into
+            switch(side)
+            {
+                case "top":
+                    this.currDirection = Directions.DOWN;
+                    break;
+                case "bottom":
+                    this.currDirection = Directions.UP;
+                    break;
+                case "left":
+                    this.currDirection = Directions.RIGHT;
+                    break;
+                case "right":
+                    this.currDirection = Directions.LEFT;
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+
         public void TakeDamage(string side)
         {
 

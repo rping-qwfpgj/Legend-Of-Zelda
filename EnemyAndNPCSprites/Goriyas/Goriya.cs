@@ -107,6 +107,11 @@ namespace Sprites
             }
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
             currentGoriya.TakeDamage(side);

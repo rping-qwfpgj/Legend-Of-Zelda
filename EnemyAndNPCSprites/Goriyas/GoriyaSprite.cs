@@ -7,99 +7,6 @@ using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
-   /* 
-    public class GoriyaSprite : IEnemy
-    {
-        private IEnemy currentGoriya;
-        private int counter = 0;
-        private int speed = 50;
-        private IEnemy movingUp;
-        private IEnemy movingDown;
-        private IEnemy movingRight;
-        private IEnemy movingLeft;
-        private IEnemy throwingRight;
-        private IEnemy throwingLeft;
-        private IEnemy throwingUp;
-        private IEnemy throwingDown;
-        // private Random rand = new Random(0, 1000);
-
-        // X and Y positions of the sprite
-        private float xPosition;
-        public float XPosition { get => xPosition; set => xPosition = value; }
-        private float yPosition;
-        public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
-        private int prevdirection = 1;
-        private Texture2D texture;
-        private float xPos;
-        private float yPos;
-        private Rectangle destinationRectangle = new Rectangle(1, 1, 0, 0);
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
-        public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
-        {
-            this.texture = texture;
-            this.xPos = xPosition;
-            this.yPos = yPosition;
-            currentGoriya = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
-
-        }
-
-        public void Update()
-        {
-            if (prevdirection != direction)
-            {
-                this.xPos = currentGoriya.XPosition;
-                this.yPos = currentGoriya.YPosition;
-                prevdirection = direction;
-                if (currentGoriya is GoriyaMovingRightSprite)
-                {
-                    currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingLeftSprite)
-                {
-                    currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingUpSprite)
-                {
-                    currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingDownSprite)
-                {
-                    currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
-                }
-            }
-
-            currentGoriya.Update();
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            currentGoriya.Draw(spriteBatch);
-        }
-
-        public Rectangle GetHitbox()
-        {
-            Rectangle hitbox = currentGoriya.GetHitbox();
-
-            if (hitbox == null)
-            {
-                return this.destinationRectangle;
-            }
-            else
-            {
-                return hitbox;
-            }
-        }
-
-        public void TakeDamage(string side)
-        {
-            currentGoriya.TakeDamage(side);
-        }
-    }
-
-    */
     public class GoriyaMovingUpSprite : IEnemy
     {
         private Texture2D texture;
@@ -152,6 +59,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -229,6 +141,11 @@ namespace Sprites
             return this.destinationRectangle;
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
             switch (side)
@@ -300,6 +217,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -379,6 +301,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -468,6 +395,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -562,6 +494,11 @@ namespace Sprites
             return this.goriyaDestinationRectangle;
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
             switch (side)
@@ -651,6 +588,11 @@ namespace Sprites
             return this.goriyaDestinationRectangle;
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
             switch (side)
@@ -736,6 +678,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
