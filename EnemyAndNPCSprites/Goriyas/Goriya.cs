@@ -109,6 +109,25 @@ namespace Sprites
 
         public void TurnAround(string side)
         {
+            // Have the Goriya turn around based on what wall it is running into
+            switch (side)
+            {
+                case "top":
+                    this.currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
+                    break;
+                case "bottom":
+                    this.currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
+                    break;
+                case "left":
+                    this.currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
+                    break;
+                case "right":
+                    this.currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
+                    break;
+                default:
+                    break;
+
+            }
 
         }
 
