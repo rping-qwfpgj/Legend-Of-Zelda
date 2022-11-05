@@ -33,6 +33,7 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
         public Game1 game;
+        private string side;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -132,28 +133,8 @@ namespace Sprint0
             {
                 this.isDamaged = true;
                 this.currentState.Redraw();
-                switch(side)
-                {   
-                    case "top":
-                        this.currentPosition.Y += 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "bottom":
-                        this.currentPosition.Y -= 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "left":
-                        this.currentPosition.X += 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "right":
-                        this.currentPosition.X -= 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    default:
-                    break;
-                }
-            }                        
+                this.side = side;                
+            }                     
         }
 
         public void Update()
@@ -166,8 +147,36 @@ namespace Sprint0
 
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
-            {
+            {   
                 this.isDamagedCounter++;
+
+                // Take knockback for the first 20 frames
+                if(this.isDamagedCounter < 20)
+                {
+                    int knockbackDistance = 10;
+                    switch(this.side)
+                    {   
+                    case "top":
+                        this.currentPosition.Y += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "right":
+                        this.currentPosition.X -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
+                    break;
+                    }
+                }
+                
                 if (this.isDamagedCounter > 180)
                 {
                     this.isDamagedCounter = 0;
@@ -198,7 +207,6 @@ namespace Sprint0
                 projectile.Draw(_spriteBatch);
             }
         }
-
     }
 }
 
