@@ -5,7 +5,6 @@ using Sprites;
 using Microsoft.Xna.Framework;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
-using LegendofZelda.EnemyAndNPCSprites;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -54,11 +53,11 @@ namespace LegendofZelda.SpriteFactories
 
                 case "Keese":
 
-                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit);
+                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
 
                 case "Stalfos":
 
-                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit);
+                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
 
                 case "Gel":
 
@@ -66,7 +65,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight);
+                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
 
                 case "OldMan":
 
@@ -80,8 +79,7 @@ namespace LegendofZelda.SpriteFactories
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
-                case "Dying":
-                    return new DyingAnimation(dyingSpriteSheet, location.X, location.Y + inventoryHeight);
+                
 
                 default:
 

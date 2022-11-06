@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprites
 {
@@ -11,9 +12,13 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
+        private int deathFrames = 0;
+        private int health = 3;
 
         // Texture to take sprites from
         private Texture2D texture;
+        private Texture2D dyingTexture;
+        private SoundEffect enemyHit;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -36,11 +41,13 @@ namespace Sprites
         private MiddleDragonAttackOrbSprite middleAttackOrb;
         private BottomDragonAttackOrbSprite bottomAttackOrb;
         
-        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition)
+        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.enemyHit = sound;
+            this.dyingTexture = texture2;
 
             this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
             this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
@@ -49,67 +56,112 @@ namespace Sprites
 
         public void Update()
         {
-            // Go the other direction halfway through
-            if (currFrames == maxFrames / 2)
+            if (!isDead)
             {
-                direction *= -1;
-            }
+                // Go the other direction halfway through
+                if (currFrames == maxFrames / 2)
+                {
+                    direction *= -1;
+                }
 
-            // Reset motion if at max
-            if (currFrames == maxFrames)
+                // Reset motion if at max
+                if (currFrames == maxFrames)
+                {
+                    currFrames = 0;
+                }
+                else
+                {
+                    currFrames += 10;
+                }
+
+                // Update the x position
+                this.xPosition += 2 * direction;
+
+                // Update the orbs
+                this.topAttackOrb.Update();
+                this.middleAttackOrb.Update();
+                this.bottomAttackOrb.Update();
+            } else
             {
-                currFrames = 0;
+                deathFrames++;
             }
-            else
-            {
-                currFrames += 10;
-            }
-
-            // Update the x position
-            this.xPosition += 2 * direction;
-
-            // Update the orbs
-            this.topAttackOrb.Update();
-            this.middleAttackOrb.Update();
-            this.bottomAttackOrb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
-            
 
-            this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+            if (!isDead)
+            {
+                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
-            if (currFrames >= 0 && currFrames < 500)
-            {
-                // Dragon to draw
-                dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
-            } else if (currFrames >= 500 && currFrames <1000)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
-            } else if (currFrames >= 1000 && currFrames < 1500)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
-                
-            } else if (currFrames >= 1500 && currFrames < 2000)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
+                if (currFrames >= 0 && currFrames < 500)
+                {
+                    // Dragon to draw
+                    dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
+                }
+                else if (currFrames >= 500 && currFrames < 1000)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
+                }
+                else if (currFrames >= 1000 && currFrames < 1500)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
+
+                }
+                else if (currFrames >= 1500 && currFrames < 2000)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
+                }
+                spriteBatch.Begin();
+
+                spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                spriteBatch.End();
+                this.topAttackOrb.Draw(spriteBatch);
+                this.middleAttackOrb.Draw(spriteBatch);
+                this.bottomAttackOrb.Draw(spriteBatch);
             }
-            spriteBatch.Begin();
+            else
+            {
+                spriteBatch.Begin();
+                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
+                if (deathFrames >= 0 && deathFrames <= 5)
+                {
+                    dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
 
-            spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-            spriteBatch.End();
-            this.topAttackOrb.Draw(spriteBatch);
-            this.middleAttackOrb.Draw(spriteBatch);
-            this.bottomAttackOrb.Draw(spriteBatch);
-           
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    dragonSourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    dragonSourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    dragonSourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
+
+                spriteBatch.End();
+            }
+
             //spriteBatch.End();
-            
+
 
         }
 
@@ -121,7 +173,12 @@ namespace Sprites
 
        public void TakeDamage(string side)
         {
-
+            enemyHit.Play();
+            this.health -= 1;
+            if (this.health <= 0)
+            {
+                this.isDead = true;
+            }
         }
         public void Die()
         {

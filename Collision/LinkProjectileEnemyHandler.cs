@@ -8,7 +8,6 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
-using LegendofZelda.EnemyAndNPCSprites;
 using LegendofZelda.SpriteFactories;
 
 namespace Collision
@@ -22,10 +21,20 @@ namespace Collision
             projectile.collide();
             room.removeObject(projectile);
             enemy.TakeDamage(side);
-            room.removeObject(enemy);
-            ISprite dyingAnimation = EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(new Vector2((int)enemy.XPosition, (int)enemy.YPosition), "Dying");
-            room.AddObject(dyingAnimation);
+            if (enemy is StalfosSprite)
+            {
+                StalfosSprite stalfos = enemy as StalfosSprite;
+                ISprite item = stalfos.DropItem();
+                if (item != null)
+                {
+                    room.AddObject(item);
+                }
+                
+            }
             
+
+
+
         }
 
         

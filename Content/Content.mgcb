@@ -109,6 +109,12 @@
 /processorParam:TextureFormat=Color
 /build:itemsandweapons.png
 
+#begin link_damage.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:link_damage.wav
+
 #begin LinkandProjectileSprites.png
 /importer:TextureImporter
 /processor:TextureProcessor

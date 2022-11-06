@@ -10,6 +10,7 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
@@ -26,13 +27,7 @@ namespace Collision
                 { 
                      side = reverseSide(side);
                      enemy.TakeDamage(side);
-                     if (enemy.IsDead == true)
-                     {
-
-                        room.removeObject(enemy);
-                        
-
-                    }
+                     
                     
                     /*
                      

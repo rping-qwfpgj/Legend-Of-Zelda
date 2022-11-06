@@ -27,14 +27,32 @@ namespace LegendofZelda
                 if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
                     sprite.Draw(spriteBatch);
                 }
+                
             }
         }
 
         public void Update()
-        { 
+        {
+            List<ISprite> toRemove = new();
            foreach (var sprite in sprites)
             {
+                
+                if (sprite is IEnemy)
+                {
+                    IEnemy enemy = sprite as IEnemy;
+                    if (enemy.DyingComplete == true)
+                    {
+                        toRemove.Add(sprite);
+                    }
+                }
                 sprite.Update();
+                
+            }
+
+            foreach (var sprite in toRemove)
+            {
+                this.removeObject(sprite);
+
             }
 
         }
@@ -49,16 +67,17 @@ namespace LegendofZelda
         { 
             if (sprite is IEnemy)
             {
-                //Debug.WriteLine("Hey i work");
+                Debug.WriteLine("remove works");
             }
             sprites.Remove(sprite);
+          
         }
 
         public void AddObject(ISprite sprite)
         {
             if (sprite is IEnemy)
             {
-                Debug.WriteLine("Hey i work");
+                Debug.WriteLine("add works");
             }
             sprites.Add(sprite);
         }

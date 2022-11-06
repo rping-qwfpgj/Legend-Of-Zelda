@@ -39,6 +39,7 @@ namespace Sprint0
         private SoundEffect attack;
         public float health;
         private bool canBeDamaged;
+        private SoundEffect takeDamage;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -55,6 +56,7 @@ namespace Sprint0
             this.attack = game.Content.Load<SoundEffect>("hee_hee");
             this.health = 3;
             this.canBeDamaged = true;
+            this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -135,6 +137,7 @@ namespace Sprint0
         {
             if (this.canBeDamaged == true)
             {
+                takeDamage.Play();
                 this.health -= 0.5f;
                 Debug.WriteLine("link health = " + health);
                 if (health <= 0)
@@ -153,6 +156,7 @@ namespace Sprint0
         {
             if (this.canBeDamaged == true)
             {
+                takeDamage.Play();
                 this.health -= 0.5f;
                 Debug.WriteLine("link health = " + health);
                 if (health <= 0)

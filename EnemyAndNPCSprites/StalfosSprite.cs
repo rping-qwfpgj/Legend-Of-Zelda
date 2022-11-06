@@ -4,18 +4,25 @@ using System;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System.Reflection.Metadata;
+using System.Collections.Generic;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
     public class StalfosSprite : IEnemy
     {
+        private List<string> droppableItems = new List<string> { "Clock", "BigHeart", "PurpleGemstone", "OrangeGemstone" };
+        
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
+        private int deathFrames = 0;
         private SoundEffect enemyHit;
 
         // Texture to take sprites from
         private Texture2D texture;
+        private Texture2D dyingTexture;
+        
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -34,56 +41,104 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
-        public StalfosSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound)
+        public StalfosSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.enemyHit = sound;
+            this.dyingTexture = texture2;
         }
 
         public void Update()
         {
-            if (currFrames == maxFrames / 2)
+            if (!isDead)
             {
-                direction *= -1;
-                movingHorizontally = !movingHorizontally;
-                movingVertically = !movingVertically;
-            }
-            if (currFrames == maxFrames)
-            {
-                currFrames = 0;
+                if (currFrames == maxFrames / 2)
+                {
+                    direction *= -1;
+                    movingHorizontally = !movingHorizontally;
+                    movingVertically = !movingVertically;
+                }
+                if (currFrames == maxFrames)
+                {
+                    currFrames = 0;
+                }
+                else
+                {
+                    currFrames += 10;
+                }
+
+                if (movingVertically && !movingHorizontally)
+                {
+                    if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
+                    this.yPosition += (1 * direction);
+                }
+                if (movingHorizontally && !movingVertically)
+                {
+                    if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
+                    this.xPosition += (1 * direction);
+                }
             } else
             {
-                currFrames += 10;
+                deathFrames++;
             }
-            
-            if (movingVertically && !movingHorizontally)
-            {
-                if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
-                this.yPosition += (1 * direction);
-            }
-            if (movingHorizontally && !movingVertically)
-            {
-                if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
-                this.xPosition += (1 * direction);
-            }                  
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-        
-            Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16); 
-            this.destinationRectangle = new ((int)this.xPosition, (int)this.yPosition, 30, 32); 
+            Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16);
 
-            spriteBatch.Begin();
-            if ((currFrames / 100) % 2 != 0) {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            } else {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            if (!isDead)
+            {
+                this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 30, 32);
+
+                spriteBatch.Begin();
+                if ((currFrames / 100) % 2 != 0)
+                {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                }
+                spriteBatch.End();
             }
-            spriteBatch.End();
-    }
+            else
+            {
+                spriteBatch.Begin();
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
+                if (deathFrames >= 0 && deathFrames <= 5)
+                {
+                    sourceRectangle = new Rectangle(0, 0, 15, 16);
+
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    sourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    sourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    sourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+
+                spriteBatch.End();
+            }
+        }
 
         public Rectangle GetHitbox()
         {
@@ -93,23 +148,37 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             enemyHit.Play();
-            switch(side)
+            this.isDead = true;
+            //switch (side)
+            //{
+            //    case "top":
+            //        this.yPosition += 37;
+            //        break;
+            //    case "bottom":
+            //        this.yPosition -= 37;
+            //        break;
+            //    case "left":
+            //        this.xPosition += 37;
+            //        break;
+            //    case "right":
+            //        this.xPosition -= 37;
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+
+        public ISprite DropItem()
+        {
+            if (dyingComplete) {
+                Random random = new Random();
+                int rand = random.Next(0, droppableItems.Count);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+            } else
             {
-                case "top":
-                    this.yPosition += 37;
-                    break;
-                case "bottom":
-                    this.yPosition -= 37;
-                    break;
-                case "left":
-                    this.xPosition += 37;
-                    break;
-                case "right":
-                    this.xPosition -= 37;
-                    break;
-                default:
-                    break;
+                return null;
             }
+            
         }
 
         public void Die()

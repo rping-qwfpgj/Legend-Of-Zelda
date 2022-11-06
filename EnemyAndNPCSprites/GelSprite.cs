@@ -49,38 +49,44 @@ namespace Sprites
 
         public void Update()
         {
-            if (currFrames == maxFrames / 2)
+            if (!isDead)
             {
-                direction *= -1;
-                movingHorizontally = !movingHorizontally;
-                movingVertically = !movingVertically;
-            }
-            if (currFrames == maxFrames)
-            {
-                currFrames = 0;
-            }
-            else
-            {
-                currFrames += 10;
-            }
+                if (currFrames == maxFrames / 2)
+                {
+                    direction *= -1;
+                    movingHorizontally = !movingHorizontally;
+                    movingVertically = !movingVertically;
+                }
+                if (currFrames == maxFrames)
+                {
+                    currFrames = 0;
+                }
+                else
+                {
+                    currFrames += 10;
+                }
 
-            if (movingVertically && !movingHorizontally)
+                if (movingVertically && !movingHorizontally)
+                {
+                    if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
+                    this.yPosition += (1 * direction);
+                }
+                if (movingHorizontally && !movingVertically)
+                {
+                    if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
+                    this.xPosition += (1 * direction);
+                }
+            } else
             {
-                if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
-                this.yPosition += (1 * direction);
-            }
-            if (movingHorizontally && !movingVertically)
-            {
-                if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
-                this.xPosition += (1 * direction);
-            }
+                deathFrames++;
 
+            }
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle sourceRectangle;
+            Rectangle sourceRectangle = new Rectangle(1, 16, 8, 8);
             if (!isDead)
             {
 
@@ -100,35 +106,35 @@ namespace Sprites
             }
             else
             {
-                deathFrames++;
                 spriteBatch.Begin();
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
                 if (deathFrames >= 0 && deathFrames <= 5)
-                    {
-                        sourceRectangle = new Rectangle(0, 0, 15, 16);
-                        spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                    }
-                    else if (deathFrames > 5 && deathFrames < 10)
-                    {
-                        sourceRectangle = new Rectangle(16, 0, 15, 16);
-                        spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                    }
-                    else if (deathFrames >= 10 && deathFrames < 15)
-                    {
-                        sourceRectangle = new Rectangle(35, 3, 9, 10);
-                        spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                    }
-                    else if (deathFrames >= 15 && deathFrames < 20)
-                    {
-                        sourceRectangle = new Rectangle(51, 3, 9, 10);
-                        spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                    } 
+                {
+                    sourceRectangle = new Rectangle(0, 0, 15, 16);
                     
-                    this.dyingComplete = true;
-                    //Debug.WriteLine("The isDyingComplete equals" + this.dyingComplete);
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    sourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    sourceRectangle = new Rectangle(35, 3, 9, 10);
 
-                
-                
-                
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    sourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                } else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+
                 spriteBatch.End();
             }
         }
@@ -143,6 +149,8 @@ namespace Sprites
             enemyHit.Play();
             this.isDead = true;
         }
+
+        
 
         public void Die()
         {
