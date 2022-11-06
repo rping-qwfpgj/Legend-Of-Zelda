@@ -24,16 +24,17 @@ namespace Collision
             if (enemy is StalfosSprite)
             {
                 StalfosSprite stalfos = enemy as StalfosSprite;
-                ISprite item = stalfos.DropItem();
-                if (item != null)
+                if (stalfos.IsDead)
                 {
-                    room.AddObject(item);
+                    ISprite item = stalfos.DropItem();
+                    if (item != null)
+                    {
+                        room.AddObject(item);
+
+                    }
                 }
-                
+
             }
-            
-
-
 
         }
 

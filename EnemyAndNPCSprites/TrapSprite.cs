@@ -60,6 +60,10 @@ namespace Sprites
 
         }
 
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 

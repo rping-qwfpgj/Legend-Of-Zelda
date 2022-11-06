@@ -180,6 +180,11 @@ namespace Sprites
                 this.isDead = true;
             }
         }
+
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 

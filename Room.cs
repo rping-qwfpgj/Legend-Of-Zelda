@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Sprites;
+using Microsoft.VisualBasic.Devices;
+using LegendofZelda.SpriteFactories;
+using Microsoft.Xna.Framework;
 
 namespace LegendofZelda
 {
@@ -34,7 +37,8 @@ namespace LegendofZelda
         public void Update()
         {
             List<ISprite> toRemove = new();
-           foreach (var sprite in sprites)
+            List<ISprite> toAdd = new();
+            foreach (var sprite in sprites)
             {
                 
                 if (sprite is IEnemy)
@@ -43,7 +47,25 @@ namespace LegendofZelda
                     if (enemy.DyingComplete == true)
                     {
                         toRemove.Add(sprite);
+                        /*
+                        once DropItem() is in IEnemy interface:
+                        ISprite item = enemy.DropItem();
+                        toAdd.Add(item);
+                        */
+                        if (enemy is StalfosSprite)
+                        {
+                            StalfosSprite stalfos = enemy as StalfosSprite;
+                            
+                                ISprite item = stalfos.DropItem();
+                                if (item != null)
+                                {
+                                    toAdd.Add(item);
+
+                                }
+                            
+                        }
                     }
+                    
                 }
                 sprite.Update();
                 
@@ -52,6 +74,11 @@ namespace LegendofZelda
             foreach (var sprite in toRemove)
             {
                 this.removeObject(sprite);
+
+            }
+            foreach (var sprite in toAdd)
+            {
+                this.AddObject(sprite);
 
             }
 
@@ -75,7 +102,7 @@ namespace LegendofZelda
 
         public void AddObject(ISprite sprite)
         {
-            if (sprite is IEnemy)
+            if (sprite is IItem)
             {
                 Debug.WriteLine("add works");
             }
