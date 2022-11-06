@@ -8,10 +8,10 @@
 		</Item>
 
 		<!--  Block  -->
-		<Item>
+	    <Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>DepthBlock</ObjectName>
-			<Location>350 216</Location>
+			<ObjectName>DepthPushableBlock</ObjectName>
+			<Location>350 218</Location>
 		</Item>
 
 		<!--  Enemies  -->

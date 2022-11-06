@@ -617,6 +617,69 @@ namespace Sprint0
 
     }
 
+    public class DepthPushableBlock: IPushableBlock
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
+
+        public DepthPushableBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(20, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+
+        public void Move(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPos += 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "bottom":
+                    this.yPos -= 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "left":
+                    this.xPos += 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "right":
+                    this.xPos -= 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 }
 
   

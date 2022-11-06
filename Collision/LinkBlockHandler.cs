@@ -24,10 +24,17 @@ namespace Collision
 			switch (side)
 			{
 				case "top":
-                    link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                    link.currentState = new LinkIdleWalkingUpState(link);
-                    link.currentPosition.Y += collisionRect.Height;
-                    link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    if(block is IPushableBlock)
+                    {
+                        IPushableBlock bloc = block as IPushableBlock;
+                        bloc.Move("bottom");
+
+                    } else { 
+                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+                        link.currentState = new LinkIdleWalkingUpState(link);
+                        link.currentPosition.Y += collisionRect.Height;
+                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    }
                     break;
 				case "bottom":
                     link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);

@@ -89,6 +89,10 @@ namespace LegendofZelda.SpriteFactories
 
                     return new HorizontalHalfBoundingBlock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
+                case "DepthPushableBlock":
+
+                    return new DepthPushableBlock(spriteSheet, (int)location.X,(int)location.Y + inventoryHeight);
+
                 default:
 
                     return null;
