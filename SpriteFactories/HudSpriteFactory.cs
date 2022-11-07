@@ -26,10 +26,14 @@ namespace LegendofZelda.SpriteFactories
         {
         }
 
-        public void loadContent(ContentManager content, GraphicsDeviceManager graphics)
+        public void initGraphics(GraphicsDeviceManager graphics)
+        {
+            this.graphics = graphics;
+        }
+
+        public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("gamestates");
-            this.graphics = graphics;
         }
 
         public ISprite CreateBackground(string name)
@@ -38,7 +42,7 @@ namespace LegendofZelda.SpriteFactories
             switch (name)
             {
                 case "Hud":
-                    return new HudSprite(spriteSheet);
+                    return new HudSprite(spriteSheet, this.graphics);
 
                 case "Background1":
 

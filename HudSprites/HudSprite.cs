@@ -18,11 +18,13 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 255;
         private readonly int height = 56;
+        private GraphicsDeviceManager graphics;
 
 
         public HudSprite(Texture2D texture, GraphicsDeviceManager graphics)
         {
             this.texture = texture;
+            this.graphics = graphics;
             this.sourceRectangle = new(259, 11, width, height);
             this.destinationRectangle = new(0, 0, width*3, height*3);
         }
