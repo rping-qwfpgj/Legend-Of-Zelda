@@ -13,7 +13,12 @@
 			<ObjectName>DepthPushableBlock</ObjectName>
 			<Location>350 218</Location>
 		</Item>
-
+		<!-- Puzzle Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PuzzleDoorBlockLeft</ObjectName>
+			<Location>48 195</Location>
+		</Item>
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

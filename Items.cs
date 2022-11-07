@@ -581,6 +581,41 @@ namespace Sprint0
 
     }
 
+        public class Key : IItem
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int width = 8;
+        private int height = 16;
+
+        public Key (Texture2D itemTexture, int x, int y)
+        {
+            this.texture = itemTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(240, 0, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
     
     
 

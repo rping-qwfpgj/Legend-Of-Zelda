@@ -98,7 +98,11 @@ namespace LegendofZelda.SpriteFactories
 
                         return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
 
-                    default:
+                    case "Key":
+
+                        return new Key(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+
+                default:
 
                         return null;
                 }
