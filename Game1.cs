@@ -18,6 +18,7 @@ using SharpDX.Direct3D9;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using SharpDX.MediaFoundation.DirectX;
+using HeadsUpDisplay;
 
 
 // Creator: Tuhin Patel
@@ -42,6 +43,7 @@ public class Game1 : Game
     public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
+    private Hud hud = new Hud();
 
    
 
@@ -76,6 +78,7 @@ public class Game1 : Game
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+        HudSpriteFactory.Instance.loadContent(Content);
 
        
         
@@ -105,6 +108,9 @@ public class Game1 : Game
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         link = new Link(new Vector2(400, 240), _graphics, this);
+
+        // HUD
+        this.hud = new Hud();
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -154,6 +160,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         currentRoom.Draw(_spriteBatch);
         link.Draw(_spriteBatch);     
+        hud.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
 }

@@ -195,7 +195,6 @@ namespace Sprint0
                 projectile.Draw(_spriteBatch);
             }
         }
-
     }
 }
 
