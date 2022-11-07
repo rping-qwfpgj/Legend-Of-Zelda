@@ -535,7 +535,7 @@ namespace Sprites
         private int timingFrames = 0;
         private int maxFrames = 1000;
 
-        // Texture to take sprites from
+        // Texture to take sprites from.
         public Texture2D texture;
 
         // X and Y positions of the sprite
