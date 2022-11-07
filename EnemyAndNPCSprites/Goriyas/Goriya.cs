@@ -10,13 +10,20 @@ namespace Sprites
     public class GoriyaSprite : IEnemy
     {
         private IEnemy currentGoriya;
+        private IEnemyProjectile currentBoomerang;
+        
+        
         private enum GoriyaActions { MovingUp, MovingDown, MovingRight, MovingLeft, ThrowingUp, ThrowingRight,
             ThrowingLeft, ThrowingDown };
 
         List<GoriyaActions> goriyaActions = new List<GoriyaActions> {GoriyaActions.MovingUp, GoriyaActions.MovingDown,
         GoriyaActions.MovingRight, GoriyaActions.MovingLeft, GoriyaActions.ThrowingUp, GoriyaActions.ThrowingRight,
         GoriyaActions.ThrowingLeft};
+
+
         private Random rand = new Random();
+
+      
 
         private Texture2D texture;
 
@@ -38,13 +45,15 @@ namespace Sprites
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
-            this.currentGoriya = new GoriyaMovingRightSprite(texture, this.xPos, this.yPos);
+            this.currentGoriya = new GoriyaThrowingRightSprite(texture, this.xPos, this.yPos);
+            this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
         }
 
         public void Update()
         {
             // Decided if the goriya should change its current action
-            if ((rand.Next(0, 1000)) % 50 == 0)
+
+            if ((rand.Next(0, 1000)) % 100 == 0)
             {
                 this.switchAction();
             }
@@ -54,6 +63,8 @@ namespace Sprites
                 currentGoriya.Update();
             }
 
+            currentBoomerang.Update();
+
 
         }
 
@@ -61,6 +72,7 @@ namespace Sprites
         {
             spriteBatch.Begin();
             currentGoriya.Draw(spriteBatch);
+            currentBoomerang.Draw(spriteBatch);
             spriteBatch.End();
         }
 
@@ -95,15 +107,19 @@ namespace Sprites
                     break;
                 case GoriyaActions.ThrowingUp:
                     this.currentGoriya = new GoriyaThrowingUpSprite(this.texture, this.xPos, this.yPos);
+                    this.currentBoomerang = new GoriyaBoomerangUpSprite(texture, this.xPos, this.yPos);
                     break;
                 case GoriyaActions.ThrowingDown:
                     this.currentGoriya = new GoriyaThrowingDownSprite(this.texture,this.xPos, this.yPos);
+                    this.currentBoomerang = new GoriyaBoomerangDownSprite(texture, this.xPos, this.yPos);
                     break;
                 case GoriyaActions.ThrowingLeft:
                     this.currentGoriya = new GoriyaThrowingLeftSprite(this.texture, this.xPos, this.yPos);
+                    this.currentBoomerang = new GoriyaBoomerangLeftSprite(texture, this.xPos, this.yPos);
                     break;
                 case GoriyaActions.ThrowingRight:
                     this.currentGoriya = new GoriyaThrowingRightSprite(this.texture, this.xPos, this.yPos);
+                    this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, this.xPos, this.yPos);
                     break;
                 default:
                     break;

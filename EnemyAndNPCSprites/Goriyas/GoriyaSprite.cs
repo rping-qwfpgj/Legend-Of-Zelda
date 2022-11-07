@@ -352,9 +352,7 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
 
-        // Boomerang that will be thrown
-        public GoriyaBoomerangRightSprite rightBoomerang;
-
+        
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -366,14 +364,14 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            this.rightBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
+            
 
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.rightBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -391,7 +389,7 @@ namespace Sprites
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
             
-            this.rightBoomerang.Draw(spriteBatch);
+            
             
 
 
@@ -452,8 +450,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        // Boomerang that will be thrown
-        public GoriyaBoomerangLeftSprite leftBoomerang;
+        
 
         public GoriyaThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -461,7 +458,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            this.leftBoomerang = new GoriyaBoomerangLeftSprite(texture, (int)xPosition, (int)yPosition);
+            
         }
 
         public void Update()
@@ -473,7 +470,7 @@ namespace Sprites
                 currFrames = 0;
             }
 
-            this.leftBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -489,7 +486,7 @@ namespace Sprites
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-            this.leftBoomerang.Draw(spriteBatch);
+            
            
 
 
@@ -550,8 +547,7 @@ namespace Sprites
         private Texture2D texture;
         // X and Y positions of the sprite
 
-        // Boomerang to throw 
-        public GoriyaBoomerangDownSprite downBoomerang;
+        
 
         public GoriyaThrowingDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -559,13 +555,13 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            this.downBoomerang = new GoriyaBoomerangDownSprite(texture, (int)xPosition, (int)yPosition);
+            
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.downBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -584,7 +580,7 @@ namespace Sprites
 
             }
 
-            this.downBoomerang.Draw(spriteBatch);
+            
 
 
         }
@@ -641,8 +637,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        // Boomerang to throw
-        public GoriyaBoomerangUpSprite upBoomerang;
+       
 
         public GoriyaThrowingUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -650,13 +645,13 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            this.upBoomerang = new GoriyaBoomerangUpSprite(texture, (int)xPosition, (int)yPosition);
+           
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.upBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -676,8 +671,7 @@ namespace Sprites
             }
 
 
-            this.upBoomerang.Draw(spriteBatch);
-
+            
 
         }
 
