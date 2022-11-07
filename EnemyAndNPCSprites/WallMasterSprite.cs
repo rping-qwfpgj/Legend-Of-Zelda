@@ -105,28 +105,29 @@ namespace Sprites
                 spriteBatch.End();
             }
 
+            else {
+            if (deathFrames > 5 && deathFrames < 10)
+                {
+                    sourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    sourceRectangle = new Rectangle(35, 3, 9, 10);
 
-            else if (deathFrames > 5 && deathFrames < 10)
-            {
-                sourceRectangle = new Rectangle(16, 0, 15, 16);
-            }
-            else if (deathFrames >= 10 && deathFrames < 15)
-            {
-                sourceRectangle = new Rectangle(35, 3, 9, 10);
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    sourceRectangle = new Rectangle(51, 3, 9, 10);
 
-            }
-            else if (deathFrames >= 15 && deathFrames < 20)
-            {
-                sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-            }
-            else
-            {
-                this.dyingComplete = true;
-            }
-            if (!dyingComplete)
-            {
-                spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
             }
 
             spriteBatch.End();
