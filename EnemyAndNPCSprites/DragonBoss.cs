@@ -107,6 +107,15 @@ namespace Sprites
 
             if (!isDead)
             {
+                if (isDamaged)
+                {
+                    damagedCounter++;
+                    if (damagedCounter > 60)
+                    {
+                        isDamaged = false;
+                        damagedCounter = 0;
+                    }
+                 }
                 this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
                 if (currFrames >= 0 && currFrames < 500)
@@ -132,8 +141,15 @@ namespace Sprites
                 }
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
+                if (isDamaged)
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
 
-                spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
                 spriteBatch.End();
                 this.topAttackOrb.Draw(spriteBatch);
                 this.middleAttackOrb.Draw(spriteBatch);
