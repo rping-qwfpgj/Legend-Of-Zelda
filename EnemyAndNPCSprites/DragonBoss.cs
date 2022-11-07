@@ -251,6 +251,8 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
+        public bool keepThrowing { get; set; }
+
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
         private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
@@ -351,6 +353,8 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
+       public bool keepThrowing { get; set; }
+
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
         private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
@@ -450,6 +454,8 @@ namespace Sprites
          // Original positions to reset to
         private int originalX;
         private int originalY;
+
+        public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();

@@ -66,7 +66,7 @@ namespace Sprites
                 currentGoriya.Update();
             }
 
-            currentBoomerang.Update();
+            //currentBoomerang.Update();
 
 
         }
@@ -75,7 +75,7 @@ namespace Sprites
         {
             spriteBatch.Begin();
             currentGoriya.Draw(spriteBatch);
-            currentBoomerang.Draw(spriteBatch);
+            //currentBoomerang.Draw(spriteBatch);
             spriteBatch.End();
         }
 
@@ -151,6 +151,11 @@ namespace Sprites
 
             }
 
+        }
+
+        public IEnemyProjectile GetCurrentBoomerang()
+        {
+            return this.currentBoomerang;
         }
 
         public void TakeDamage(string side)
