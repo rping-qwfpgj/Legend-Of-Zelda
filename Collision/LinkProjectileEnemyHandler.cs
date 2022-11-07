@@ -21,20 +21,7 @@ namespace Collision
             projectile.collide();
             room.removeObject(projectile);
             enemy.TakeDamage(side);
-            if (enemy is StalfosSprite)
-            {
-                StalfosSprite stalfos = enemy as StalfosSprite;
-                if (stalfos.IsDead)
-                {
-                    ISprite item = stalfos.DropItem();
-                    if (item != null)
-                    {
-                        room.AddObject(item);
-
-                    }
-                }
-
-            }
+            
 
         }
 
