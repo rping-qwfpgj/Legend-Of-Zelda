@@ -67,10 +67,7 @@ namespace Sprites
             // Update the x position
             this.xPosition += 2 * direction;
 
-            // Update the orbs
-            //this.topAttackOrb.Update();
-            //this.middleAttackOrb.Update();
-            //this.bottomAttackOrb.Update();
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -103,11 +100,7 @@ namespace Sprites
 
             spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
             spriteBatch.End();
-            //this.topAttackOrb.Draw(spriteBatch);
-            //this.middleAttackOrb.Draw(spriteBatch);
-            //this.bottomAttackOrb.Draw(spriteBatch);
-           
-            //spriteBatch.End();
+            
             
 
         }
