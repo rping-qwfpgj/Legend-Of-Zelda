@@ -100,6 +100,10 @@ namespace Sprites
         {
             currentGoriya.TakeDamage(side);
         }
+        public ISprite DropItem()
+        {
+            return null;
+        }
 
         public void Die()
         {
@@ -185,6 +189,10 @@ namespace Sprites
                     break;
             }
         }
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -268,6 +276,10 @@ namespace Sprites
             }
         }
 
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -349,6 +361,10 @@ namespace Sprites
             }
         }
 
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -434,6 +450,10 @@ namespace Sprites
                 default:
                     break;
             }
+        }
+        public ISprite DropItem()
+        {
+            return null;
         }
         public void Die()
         {
@@ -532,7 +552,10 @@ namespace Sprites
                     break;
             }
         }
-
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -632,6 +655,10 @@ namespace Sprites
                     break;
             }
         }
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -727,7 +754,10 @@ namespace Sprites
                     break;
             }
         }
-
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 
@@ -822,7 +852,10 @@ namespace Sprites
                     break;
             }
         }
-
+        public ISprite DropItem()
+        {
+            return null;
+        }
         public void Die()
         {
 

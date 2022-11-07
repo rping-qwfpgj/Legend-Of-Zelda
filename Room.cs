@@ -36,50 +36,11 @@ namespace LegendofZelda
 
         public void Update()
         {
-            List<ISprite> toRemove = new();
-            List<ISprite> toAdd = new();
-            foreach (var sprite in sprites)
+            List<ISprite> copy = new List<ISprite>(this.sprites);
+            foreach (var sprite in copy)
             {
-                
-                if (sprite is IEnemy)
-                {
-                    IEnemy enemy = sprite as IEnemy;
-                    if (enemy.DyingComplete == true)
-                    {
-                        toRemove.Add(sprite);
-                        /*
-                        once DropItem() is in IEnemy interface:
-                        ISprite item = enemy.DropItem();
-                        toAdd.Add(item);
-                        */
-                        if (enemy is StalfosSprite)
-                        {
-                            StalfosSprite stalfos = enemy as StalfosSprite;
-                            
-                                ISprite item = stalfos.DropItem();
-                                if (item != null)
-                                {
-                                    toAdd.Add(item);
-
-                                }
-                            
-                        }
-                    }
-                    
-                }
+                DealWithEnemies(sprite);
                 sprite.Update();
-                
-            }
-
-            foreach (var sprite in toRemove)
-            {
-                this.removeObject(sprite);
-
-            }
-            foreach (var sprite in toAdd)
-            {
-                this.AddObject(sprite);
-
             }
 
         }
@@ -109,5 +70,35 @@ namespace LegendofZelda
             sprites.Add(sprite);
         }
 
+        public void DealWithEnemies(ISprite sprite)
+        {
+            List<ISprite> toRemove = new();
+            List<ISprite> toAdd = new();
+            if (sprite is IEnemy)
+            {
+                IEnemy enemy = sprite as IEnemy;
+                if (enemy.DyingComplete == true)
+                {
+                    toRemove.Add(sprite);
+                    ISprite item = enemy.DropItem();
+                    if (item != null)
+                    {
+                        toAdd.Add(item);
+
+                    }
+                }
+
+            }
+            foreach (var spr in toRemove)
+            {
+                this.removeObject(spr);
+
+            }
+            foreach (var spr in toAdd)
+            {
+                this.AddObject(spr);
+
+            }
+        }
     }
 }

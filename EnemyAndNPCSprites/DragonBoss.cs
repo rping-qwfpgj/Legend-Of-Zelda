@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
     public class DragonBossSprite : IEnemy
     {
+        private List<string> droppableItems = new List<string> { "Fairy", "BigHeart", "PurpleGemstone", "OrangeGemstone" };
+
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
@@ -183,7 +186,16 @@ namespace Sprites
 
         public ISprite DropItem()
         {
-            return null;
+            if (dyingComplete)
+            {
+                Random random = new Random();
+                int rand = random.Next(0, droppableItems.Count);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+            }
+            else
+            {
+                return null;
+            }
         }
         public void Die()
         {
