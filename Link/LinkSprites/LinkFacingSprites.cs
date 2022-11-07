@@ -23,8 +23,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position {get => new(xPosition, yPosition);}
         public LinkFacingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -75,8 +75,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         private bool isDamaged;
 
         public LinkFacingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
@@ -129,8 +129,8 @@ namespace Sprites
 
        // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkFacingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -180,8 +180,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkFacingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;

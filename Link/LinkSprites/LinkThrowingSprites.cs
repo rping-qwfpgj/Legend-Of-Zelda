@@ -29,8 +29,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -109,8 +109,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -190,8 +190,8 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -276,9 +276,9 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
-        public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+    public Vector2 Position { get => new(xPosition, yPosition); }
+    public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;

@@ -25,8 +25,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -74,7 +74,6 @@ namespace Sprites
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             { 
@@ -84,7 +83,8 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            var returner = destinationRectangle;
+            return returner;
         }
             
     }
@@ -108,8 +108,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle {             get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -189,8 +189,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -271,8 +271,12 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle
+        {
+            get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;
 
+        }
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -314,6 +318,7 @@ namespace Sprites
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+           
 
 
             // Draw the sprite
@@ -332,7 +337,8 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            var returner = destinationRectangle;
+            return returner;
         }
     }
 }

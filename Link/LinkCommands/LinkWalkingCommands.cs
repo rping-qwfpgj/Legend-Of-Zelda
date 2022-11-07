@@ -43,9 +43,9 @@ namespace Commands
     {
         private readonly Link currLink;
 
-        public WalkUpCommand(Link link)
+        public WalkUpCommand(Link currLink)
         {
-            this.currLink = link;
+            this.currLink = currLink;
         }
 
         public void Execute()

@@ -18,7 +18,6 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        private readonly int originalXPosition;
         private readonly int originalYPosition;
         private int xPosition;
         private int yPosition;
@@ -37,7 +36,6 @@ namespace Sprites
         public BlueBoomerangUpSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
             originalYPosition = (int)yPosition;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
@@ -148,7 +146,6 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        private readonly int originalXPosition;
         private readonly int originalYPosition;
         private int xPosition;
         private int yPosition;
@@ -169,7 +166,6 @@ namespace Sprites
         public BlueBoomerangDownSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
             originalYPosition = (int)yPosition;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
@@ -281,7 +277,6 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private readonly int originalXPosition;
-        private readonly int originalYPosition;
         private int xPosition;
         private int yPosition;
 
@@ -301,7 +296,6 @@ namespace Sprites
         {
             this.texture = texture;
             originalXPosition = (int)xPosition;
-            originalYPosition = (int)yPosition;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
             this.link = link;
@@ -413,7 +407,6 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
 
     // X and Y positions of the sprite
     private readonly int originalXPosition;
-    private readonly int originalYPosition;
     private int xPosition;
     private int yPosition;
 
@@ -432,7 +425,6 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
     {
         this.texture = texture;
         originalXPosition = (int)xPosition;
-        originalYPosition = (int)yPosition;
         this.xPosition = (int)xPosition;
         this.yPosition = (int)yPosition;
         this.link = link;

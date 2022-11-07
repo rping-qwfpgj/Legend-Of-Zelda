@@ -65,6 +65,7 @@ namespace Sprites
             {
                 currFrames = 0;
             }
+
             for (int i = 0; i < 8; i++)
             {
                 if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)

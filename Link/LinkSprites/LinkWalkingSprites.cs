@@ -25,8 +25,11 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        private Rectangle currentFrame;
+        public Rectangle DestinationRectangle {
+            get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;
+        }
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -37,6 +40,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(71, 11, 12, 16));
             sourceRectangles.Add(new Rectangle(88, 11, 12, 16));
             currentFrameIndex = 0;
+            currentFrame = new();
         }
 
         public void Update()
@@ -48,9 +52,7 @@ namespace Sprites
             {
                 currFrames = 0;
             }
-                
-            this.yPosition -= 2;
-                
+            this.yPosition -= 2;  
         }      
 
        
@@ -67,16 +69,14 @@ namespace Sprites
                 currentFrameIndex = 1;
             }
 
-            Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+            currentFrame = sourceRectangles[currentFrameIndex];
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width*2, currentFrame.Height*2); // Where to draw on screen
-
 
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             {
@@ -86,7 +86,8 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            return destinationRectangle;
+            var returner = destinationRectangle;
+            return returner;
         }
             
     }
@@ -110,8 +111,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -122,7 +123,6 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(1, 11, 15, 16));
             sourceRectangles.Add(new Rectangle(19, 11, 13, 16));
             currentFrameIndex = 0;
-
         }
 
         public void Update()
@@ -194,8 +194,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -278,9 +278,12 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-       
+        public Rectangle DestinationRectangle
+        {
+            get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;
+        }
 
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
@@ -324,14 +327,13 @@ namespace Sprites
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
-
+            
 
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             {
@@ -342,7 +344,9 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+
+            var hitBox = destinationRectangle;
+            return destinationRectangle;
         }
     }
 }

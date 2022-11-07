@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection.Metadata;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Sprint0;
-using SharpDX.Direct3D9;
-using Commands;
 using LegendofZelda.Interfaces;
 
 namespace Controllers
 {
     public class KeyboardController : IController
 	{
-		private Dictionary<Keys, ICommand> keyBindings = new Dictionary<Keys, ICommand>();
+		private Dictionary<Keys, ICommand> keyBindings = new();
 		private ICommand noInput;
 		private ICommand previousCommand;
 		
@@ -21,14 +16,13 @@ namespace Controllers
         // Pass the noInput command into the keyboard controller in Game1's initialize function
         public KeyboardController(ICommand command) 
 		{
-			this.noInput = command;
-			this.previousCommand = command;
+			noInput = command;
+			previousCommand = command;
 		}
 
 		public void AddCommand(Keys key, ICommand command)
 		{
-			this.keyBindings.Add(key, command);
-
+			keyBindings.Add(key, command);
 		}
 
 		public void Update()
@@ -37,8 +31,8 @@ namespace Controllers
 
 			if(kstate.GetPressedKeyCount() == 0)
 			{
-				this.noInput.Execute();
-				previousCommand = this.noInput;
+				noInput.Execute();
+				previousCommand = noInput;
 			} 
 			else
 			{
@@ -57,10 +51,6 @@ namespace Controllers
                 }
             }			
 		}
-
-
-
-
     }
 
     public class MouseController : IController

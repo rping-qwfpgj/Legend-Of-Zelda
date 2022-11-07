@@ -45,8 +45,6 @@ namespace Sprint0
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
-
-            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
 
         public void Reset()
@@ -56,14 +54,13 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
-            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable));
 
         }
         
         public void UpdatePosition()
         {
-            Microsoft.Xna.Framework.Rectangle rectangle = this.currentLinkSprite.GetHitbox();
-            this.currentPosition = new Vector2(rectangle.X, rectangle.Y);
+            Rectangle rectangle = currentLinkSprite.GetHitbox();
+            currentPosition = new Vector2(rectangle.X, rectangle.Y);
         }
         public void Attack()
         {
@@ -158,7 +155,7 @@ namespace Sprint0
             this.UpdatePosition();
             this.currentLinkSprite.Update();
             foreach (var projectile in currentProjectiles) { 
-            projectile.Update();
+                projectile.Update();
             }
 
             // This can be refactored using a decorator pattern

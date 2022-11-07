@@ -29,8 +29,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackUpSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
@@ -129,8 +129,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
@@ -230,8 +230,8 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
@@ -330,8 +330,8 @@ namespace Sprites
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
 
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
