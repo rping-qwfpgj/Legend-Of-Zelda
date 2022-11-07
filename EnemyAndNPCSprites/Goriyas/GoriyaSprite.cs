@@ -2,6 +2,7 @@
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
@@ -363,7 +364,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            rightBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
+            this.rightBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
 
         }
 
@@ -387,7 +388,9 @@ namespace Sprites
             }
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
+            
             this.rightBoomerang.Draw(spriteBatch);
+            
 
 
         }
@@ -456,7 +459,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            leftBoomerang = new GoriyaBoomerangLeftSprite(texture, (int)xPosition, (int)yPosition);
+            this.leftBoomerang = new GoriyaBoomerangLeftSprite(texture, (int)xPosition, (int)yPosition);
         }
 
         public void Update()
@@ -485,6 +488,7 @@ namespace Sprites
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             this.leftBoomerang.Draw(spriteBatch);
+           
 
 
         }
@@ -553,7 +557,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            downBoomerang = new GoriyaBoomerangDownSprite(texture, (int)xPosition, (int)yPosition);
+            this.downBoomerang = new GoriyaBoomerangDownSprite(texture, (int)xPosition, (int)yPosition);
         }
 
         public void Update()
@@ -644,7 +648,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            upBoomerang = new GoriyaBoomerangUpSprite(texture, (int)xPosition, (int)yPosition);
+            this.upBoomerang = new GoriyaBoomerangUpSprite(texture, (int)xPosition, (int)yPosition);
         }
 
         public void Update()

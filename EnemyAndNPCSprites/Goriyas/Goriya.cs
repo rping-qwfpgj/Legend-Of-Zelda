@@ -48,8 +48,11 @@ namespace Sprites
             {
                 this.switchAction();
             }
+            else
+            {
 
-            currentGoriya.Update();
+                currentGoriya.Update();
+            }
 
 
         }
