@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.Direct3D9;
 using System;
 using System.Security.Cryptography.X509Certificates;
 using Interfaces;
@@ -17,8 +16,8 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         // X and Y positions of the sprite
-        private float xPos;
-        private float yPos;
+        private int xPosition;
+        private int yPosition;
 
         // to know whether or not to dye sprite red.
         private bool isDamaged;
@@ -30,13 +29,13 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackUpSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPos = xPos;
-            this.yPos = yPos;
+            this.xPosition = (int)xPos;
+            this.yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             this.isAttack = true;
             sourceRectangles = new List<Rectangle>();
@@ -82,9 +81,9 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -117,8 +116,8 @@ namespace Sprites
         // Texture to take sprites from
         public Texture2D texture;
         // X and Y positions of the sprite
-        private float xPos;
-        private float yPos;
+        private int xPosition;
+        private int yPosition;
 
         // to know whether or not to dye sprite red.
         private bool isDamaged;
@@ -130,13 +129,13 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPos = xPos;
-            this.yPos = yPos;
+            this.xPosition = (int)xPos;
+            this.yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             this.isAttack = true;
             sourceRectangles = new List<Rectangle>();
@@ -182,9 +181,9 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
@@ -218,8 +217,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPos;
-        private float yPos;
+        private int xPosition;
+        private int yPosition;
 
         // to know whether or not to dye sprite red.
         private bool isDamaged;
@@ -231,13 +230,13 @@ namespace Sprites
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPos = xPos;
-            this.yPos = yPos;
+            this.xPosition = (int)xPos;
+            this.yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             this.isAttack = true;
             sourceRectangles = new List<Rectangle>();
@@ -283,9 +282,9 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
@@ -316,8 +315,8 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         // X and Y positions of the sprite
-        private float xPos;
-        private float yPos;
+        private int xPosition;
+        private int yPosition;
 
         // to know whether or not to dye sprite red.
         private bool isDamaged;
@@ -331,13 +330,13 @@ namespace Sprites
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
 
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPos = xPos;
-            this.yPos = yPos;
+            this.xPosition = (int)xPos;
+            this.yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             this.isAttack = true;
             sourceRectangles = new List<Rectangle>();
@@ -381,9 +380,9 @@ namespace Sprites
             }
 
             Rectangle currentFrame = sourceRectangles[currentFrameIndex];
-            destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);

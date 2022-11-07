@@ -156,8 +156,8 @@ namespace Collision
         private string determineSide(ISprite obj, ISprite otherObj)
         {
 
-            Rectangle objectRec = obj.GetHitbox();
-            Rectangle otherRec = otherObj.GetHitbox();
+            Rectangle objectRec = obj.DestinationRectangle;
+            Rectangle otherRec = otherObj.DestinationRectangle;
 
             // return the side of the collision from the perspective of obj
 
@@ -204,8 +204,8 @@ namespace Collision
 
         private void collisionRectangle(ref ISprite obj, ref ISprite otherObj, ref Rectangle collisionRect)
         {
-            Rectangle rectangle1 = obj.GetHitbox();
-            Rectangle rectangle2 = otherObj.GetHitbox();
+            Rectangle rectangle1 = obj.DestinationRectangle;
+            Rectangle rectangle2 = otherObj.DestinationRectangle;
             Rectangle.Intersect(ref rectangle1, ref rectangle2, out collisionRect);
         }
     }

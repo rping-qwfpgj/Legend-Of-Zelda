@@ -68,7 +68,7 @@ namespace Sprites
             Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16); 
             this.destinationRectangle = new ((int)this.xPosition, (int)this.yPosition, 30, 32); 
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((currFrames / 100) % 2 != 0) {
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             } else {

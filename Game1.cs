@@ -14,10 +14,7 @@ using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
-using SharpDX.Direct3D9;
-using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
-using SharpDX.MediaFoundation.DirectX;
 
 
 // Creator: Tuhin Patel
@@ -77,8 +74,7 @@ public class Game1 : Game
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
 
-       
-        
+      
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,

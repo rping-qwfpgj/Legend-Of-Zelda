@@ -14,8 +14,8 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // On screen position 
         private Rectangle destinationRectangle;
@@ -24,8 +24,8 @@ namespace Sprites
         public FireUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
         }
 
         // having boomeraing come back note:
@@ -51,10 +51,10 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if(currFrames < maxFrames)
             {
 
@@ -93,8 +93,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition; 
+        private int xPosition;
+        private int yPosition; 
 
         // On screen location
         private Rectangle destinationRectangle;
@@ -103,8 +103,8 @@ namespace Sprites
         public FireRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
         }
 
         public void Update()
@@ -131,10 +131,10 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
             if (currFrames < maxFrames)
             {
@@ -172,8 +172,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
         
         // On screen location
         private Rectangle destinationRectangle;
@@ -182,8 +182,8 @@ namespace Sprites
         public FireDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
         }
 
         public void Update()
@@ -210,10 +210,10 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (currFrames < maxFrames)
             {
                 if ((currFrames / 100) % 2 == 0)
@@ -250,8 +250,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
      
         // On screen location
         private Rectangle destinationRectangle;
@@ -260,8 +260,8 @@ namespace Sprites
         public FireLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
         }
 
         public void Update()
@@ -288,10 +288,10 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(191, 185, 16, 16); // fire
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 16 * 4, 16 * 4); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 16 * 4, 16 * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (currFrames < maxFrames)
             {
                 if (currFrames < maxFrames)

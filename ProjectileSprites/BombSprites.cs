@@ -21,8 +21,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // On screen location
         private Rectangle destinationRectangle;
@@ -32,8 +32,8 @@ namespace Sprites
         public BombUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition-64;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition-64;
         }
 
         public void Update()
@@ -58,18 +58,18 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
 
             if (currFrames >= 0 && currFrames <= 1400)
             {
                 sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
 
             }
             else if (currFrames >= 1400 && currFrames <= 1600)
             {
                 sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -77,7 +77,7 @@ namespace Sprites
             else if (currFrames >= 1600 && currFrames <= 1800)
             {
                 sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -85,11 +85,11 @@ namespace Sprites
             else if (currFrames >= 1800 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -116,8 +116,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
         
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
@@ -125,8 +125,8 @@ namespace Sprites
         public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition+64;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition+64;
         }
 
         public void Update()
@@ -152,18 +152,18 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
 
             if (currFrames >= 0 && currFrames <= 1400)
             {
                 sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
 
             }
             else if (currFrames >= 1400 && currFrames <= 1600)
             {
                 sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -171,7 +171,7 @@ namespace Sprites
             else if (currFrames >= 1600 && currFrames <= 1800)
             {
                 sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -179,11 +179,11 @@ namespace Sprites
             else if (currFrames >= 1800 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -211,8 +211,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // On screen location
         private Rectangle destinationRectangle;
@@ -221,8 +221,8 @@ namespace Sprites
         public BombRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition+32;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition+32;
+            this.yPosition = (int)yPosition;
         }
 
         public void Update()
@@ -246,19 +246,19 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
 
 
             if (currFrames >= 0 && currFrames <= 1400)
             {
                 sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
 
             }
             else if (currFrames >= 1400 && currFrames <= 1600)
             {
                 sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -266,7 +266,7 @@ namespace Sprites
             else if (currFrames >= 1600 && currFrames <= 1800)
             {
                 sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -274,11 +274,11 @@ namespace Sprites
             else if (currFrames >= 1800 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
             }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -306,8 +306,8 @@ namespace Sprites
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         // On screen location
         private Rectangle destinationRectangle;
@@ -317,8 +317,8 @@ namespace Sprites
         public BombLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = xPosition-32;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition-32;
+            this.yPosition = (int)yPosition;
         }
 
         public void Update()
@@ -341,7 +341,7 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 64); // Where to draw on screen
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
 
             // Draw the first step of link walking up
             if (currFrames >= 0 && currFrames <= 1400)
@@ -352,7 +352,7 @@ namespace Sprites
             else if (currFrames >= 1400 && currFrames <= 1600)
             {
                 sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -360,7 +360,7 @@ namespace Sprites
             else if (currFrames >= 1600 && currFrames <= 1800)
             {
                 sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
 
 
             }
@@ -368,7 +368,7 @@ namespace Sprites
             else if (currFrames >= 1800 && currFrames <= 2000)
             {
                 sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle  = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+                this.destinationRectangle  = new Rectangle(xPosition, yPosition, 64, 64);
             }
 
            
@@ -376,7 +376,7 @@ namespace Sprites
     
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
