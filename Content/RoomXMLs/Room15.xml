@@ -18,7 +18,7 @@
 		<Item>
 			<ObjectType>Item</ObjectType>
 			<ObjectName>Key</ObjectName>
-			<Location>310</Location>
+			<Location>310 90</Location>
 		</Item>
 		<!--  Blocks  -->
 		<Item>
