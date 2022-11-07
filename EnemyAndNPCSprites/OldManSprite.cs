@@ -29,7 +29,7 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        public OldManSprite(Texture2D texture, float xPosition, float yPosition)
+        public OldManSprite(Texture2D texture, float xPosition, float yPosition, SpriteFont font)
         {
             this.texture = texture;
             this.xPosition = xPosition;

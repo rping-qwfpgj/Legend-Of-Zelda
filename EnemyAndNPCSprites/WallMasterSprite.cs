@@ -38,7 +38,7 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
@@ -90,7 +90,7 @@ namespace Sprites
             if (!isDead)
             {
                 // By default, draw the hand without the pinch
-                
+
                 this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 60, 60);
 
                 // Otherwise, have it pinch
@@ -102,36 +102,36 @@ namespace Sprites
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
-        }
-
-                }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    this.dyingComplete = true;
-                }
-                if (!dyingComplete)
-                {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                }
-
                 spriteBatch.End();
             }
+
+
+            else if (deathFrames > 5 && deathFrames < 10)
+            {
+                sourceRectangle = new Rectangle(16, 0, 15, 16);
+            }
+            else if (deathFrames >= 10 && deathFrames < 15)
+            {
+                sourceRectangle = new Rectangle(35, 3, 9, 10);
+
+            }
+            else if (deathFrames >= 15 && deathFrames < 20)
+            {
+                sourceRectangle = new Rectangle(51, 3, 9, 10);
+
+            }
+            else
+            {
+                this.dyingComplete = true;
+            }
+            if (!dyingComplete)
+            {
+                spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+            }
+
+            spriteBatch.End();
         }
+    
 
         public Vector2 getPosition()
         {

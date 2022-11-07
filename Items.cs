@@ -150,41 +150,7 @@ namespace Sprint0
         }
     }
 
-    public class OrangeTriangle : IItem
-    {
-        private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private int xPos;
-        private int yPos;
-        private int width = 10;
-        private int height = 10;
-
-        public OrangeTriangle(Texture2D itemTexture, int x, int y)
-        {
-            this.texture = itemTexture;
-            this.xPos = x;
-            this.yPos = y;
-            this.sourceRectangle = new Rectangle(275, 3, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
-        }
-
-        public void Update()
-        {
-        }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return destinationRectangle;
-        }
-    }
+    
 
 
     public class OrangeMap : IItem

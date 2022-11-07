@@ -106,14 +106,17 @@ namespace Sprites
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
-                if ((currFrames / 100) % 2 != 0) {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            } else {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                if ((currFrames / 100) % 2 != 0)
+                {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                }
+                spriteBatch.End();
             }
-            spriteBatch.End();
-    }
-
+        }
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;

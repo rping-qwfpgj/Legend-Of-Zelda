@@ -36,7 +36,7 @@ namespace Sprites
 
         // On screen position
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         Random random = new Random();
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
@@ -102,61 +102,62 @@ namespace Sprites
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if ((currFrames / 100) % 2 != 0)
-            {
-                sourceRectangle = new Rectangle(183, 15, 16, 8);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
+                {
+                    sourceRectangle = new Rectangle(183, 15, 16, 8);
+                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
+                }
+                else
+                {
+                    sourceRectangle = new Rectangle(203, 15, 10, 10);
+                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40);
+                }
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
             }
-            else
-            {
-                sourceRectangle = new Rectangle(203, 15, 10, 10);
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40);
-            }
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
         }
-
-        public Rectangle GetHitbox()
-        {
-            return this.destinationRectangle;
-        }
-
-        public void TurnAround(string side)
-        {
-            // Have the Keese turn around based on what wall it is running into
-            switch(side)
+            public Rectangle GetHitbox()
             {
-                case "top":
-                    this.currDirection = Directions.DOWN;
-                    break;
-                case "bottom":
-                    this.currDirection = Directions.UP;
-                    break;
-                case "left":
-                    this.currDirection = Directions.RIGHT;
-                    break;
-                case "right":
-                    this.currDirection = Directions.LEFT;
-                    break;
-                default:
-                    break;
-
+                return this.destinationRectangle;
             }
 
-        }
+            public void TurnAround(string side)
+            {
+                // Have the Keese turn around based on what wall it is running into
+                switch (side)
+                {
+                    case "top":
+                        this.currDirection = Directions.DOWN;
+                        break;
+                    case "bottom":
+                        this.currDirection = Directions.UP;
+                        break;
+                    case "left":
+                        this.currDirection = Directions.RIGHT;
+                        break;
+                    case "right":
+                        this.currDirection = Directions.LEFT;
+                        break;
+                    default:
+                        break;
 
-        public void TakeDamage(string side)
-        {
-            enemyHit.Play();
-            this.isDead = true;
-        }
-        public ISprite DropItem()
-        {
-            return null;
-        }
-        public void Die()
-        {
+                }
 
+            }
+
+            public void TakeDamage(string side)
+            {
+                enemyHit.Play();
+                this.isDead = true;
+            }
+            public ISprite DropItem()
+            {
+                return null;
+            }
+            public void Die()
+            {
+
+            }
         }
     }
-}
+
 

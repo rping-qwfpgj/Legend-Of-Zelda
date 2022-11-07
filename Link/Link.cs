@@ -50,7 +50,7 @@ namespace Sprint0
             this.isDamaged = false;
             this.game = game;
             this.currentState = new LinkFacingUpState(this);
-            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
+            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
             this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
@@ -72,7 +72,7 @@ namespace Sprint0
             this.throwable = Throwables.None;
 
         }
-        
+
         public void UpdatePosition()
         {
             Rectangle rectangle = currentLinkSprite.GetHitbox();
@@ -134,7 +134,7 @@ namespace Sprint0
             }
         }
 
-         public void TakeDamage()
+        public void TakeDamage()
         {
             if (this.canBeDamaged == true)
             {
@@ -149,8 +149,8 @@ namespace Sprint0
                 this.currentState.Redraw();
                 this.canBeDamaged = false;
             }
-            
-           
+
+
         }
 
         public void TakeDamage(string side)
@@ -166,27 +166,28 @@ namespace Sprint0
 
                 }
                 this.isDamaged = true;
-            this.currentState.Redraw();
-            switch(side)
-            {
-                case "top":
-                    this.currentPosition.Y += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "bottom":
-                    this.currentPosition.Y -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "left":
-                    this.currentPosition.X += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "right":
-                    this.currentPosition.X -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                default:
-                    break;
+                this.currentState.Redraw();
+                switch (side)
+                {
+                    case "top":
+                        this.currentPosition.Y += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "right":
+                        this.currentPosition.X -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -194,8 +195,9 @@ namespace Sprint0
         {
             this.UpdatePosition();
             this.currentLinkSprite.Update();
-            foreach (var projectile in currentProjectiles) { 
-            projectile.Update();
+            foreach (var projectile in currentProjectiles)
+            {
+                projectile.Update();
             }
 
             // This can be refactored using a decorator pattern
@@ -225,6 +227,7 @@ namespace Sprint0
                 }
             }
         }
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             this.currentLinkSprite.Draw(_spriteBatch);
@@ -241,4 +244,6 @@ namespace Sprint0
         }
     }
 }
+    
+
 

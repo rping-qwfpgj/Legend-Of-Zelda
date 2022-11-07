@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Sprites
 {
 
-    public class GoriyaBoomerangUpSprite: IEnemyProjectile
+    public class GoriyaBoomerangUpSprite : IEnemyProjectile
     {
 
         // Keep track of frames
@@ -164,7 +164,7 @@ namespace Sprites
                 }
                 spriteBatch.End();
             }
-            
+
         }
         public Rectangle GetHitbox()
         {
@@ -427,7 +427,7 @@ namespace Sprites
             spriteBatch.Begin();
             if (keepThrowing)
             {
-                
+
                 // Create source and destination rectangles
                 Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
                 this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4); // Where to draw on screen
@@ -437,7 +437,7 @@ namespace Sprites
                 Vector2 origin;
 
 
-                
+
                 //1
                 if (currFrames >= 0 && currFrames <= maxFrames / 8)
                 {
@@ -506,7 +506,7 @@ namespace Sprites
                     this.keepThrowing = false;
                 }
 
-                
+
             }
 
             spriteBatch.End();
