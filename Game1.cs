@@ -18,6 +18,8 @@ using SharpDX.Direct3D9;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using SharpDX.MediaFoundation.DirectX;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 
 // Creator: Tuhin Patel
@@ -42,6 +44,8 @@ public class Game1 : Game
     public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
+    public SoundEffect enemyHit;
+    public Song backgroundMusic;
 
    
 
@@ -76,9 +80,10 @@ public class Game1 : Game
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+        SoundFactory.Instance.loadContent(Content);
 
-       
-        
+
+
 
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
@@ -134,6 +139,10 @@ public class Game1 : Game
     
     protected override void LoadContent()
     {
+        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.Play(backgroundMusic);
 
     }
 
@@ -145,7 +154,8 @@ public class Game1 : Game
         collisionDetector.Update();
         keyboardController.Update();
         currentRoom.Update();
-        
+       
+
         base.Update(gameTime);
     }
 

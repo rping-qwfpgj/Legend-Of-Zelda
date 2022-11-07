@@ -21,7 +21,10 @@ namespace Sprites
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public OldManSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -56,7 +59,21 @@ namespace Sprites
             return new Rectangle();
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
+        {
+
+        }
+
+        public ISprite DropItem()
+        {
+            return null;
+        }
+        public void Die()
         {
 
         }

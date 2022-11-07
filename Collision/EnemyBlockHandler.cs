@@ -24,27 +24,28 @@ namespace Collision
             } else { 
             if(true)
                 {
+                enemy.TurnAround(side);
                 switch (side)
                 {
                     case "top":
                         enemy.YPosition += (collisionRect.Height);
                         enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
-                        enemy.Direction = enemy.Direction * -1;
+                        //enemy.Direction = enemy.Direction * -1;
                         break;
                     case "bottom":
                         enemy.YPosition -= collisionRect.Height;
-                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
-                    enemy.Direction = enemy.Direction * -1;
+                        enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
+                         //enemy.Direction = enemy.Direction * -1;
                         break;
                     case "left":
-                    enemy.XPosition += collisionRect.Width;
-                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
-                    enemy.Direction = enemy.Direction * -1;
+                        enemy.XPosition += collisionRect.Width;
+                        enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
+                        //enemy.Direction = enemy.Direction * -1;
                         break;
                     case "right":
-                    enemy.XPosition -= collisionRect.Width;
-                    enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
-                    enemy.Direction = enemy.Direction * -1;
+                        enemy.XPosition -= collisionRect.Width;
+                        enemy.DestinationRectangle = new((int)enemy.XPosition, (int)enemy.YPosition, 30, 32);
+                        //enemy.Direction = enemy.Direction * -1;
                         break;
                     default:
                         break;

@@ -7,6 +7,8 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
+using Microsoft.Xna.Framework.Audio;
+using System.Diagnostics;
 
 namespace Sprint0
 {
@@ -33,6 +35,11 @@ namespace Sprint0
         public Throwables throwable;
         private int isDamagedCounter = 0;
         public Game1 game;
+        private SoundEffect throwProjectile;
+        private SoundEffect attack;
+        public float health;
+        private bool canBeDamaged;
+        private SoundEffect takeDamage;
       
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
@@ -45,6 +52,11 @@ namespace Sprint0
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp (this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.currentProjectiles = new List<ISprite>();
+            this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
+            this.attack = game.Content.Load<SoundEffect>("hee_hee");
+            this.health = 3;
+            this.canBeDamaged = true;
+            this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -67,12 +79,14 @@ namespace Sprint0
         }
         public void Attack()
         {
+            attack.Play();
             this.UpdatePosition();
             currentState.Attack();
         }
 
         public void ThrowProjectile()
         {
+            throwProjectile.Play();
             this.UpdatePosition();
             currentState.ThrowProjectile();
         }
@@ -121,35 +135,59 @@ namespace Sprint0
 
          public void TakeDamage()
         {
-            this.isDamaged = true;
-            this.currentState.Redraw();
+            if (this.canBeDamaged == true)
+            {
+                takeDamage.Play();
+                this.health -= 0.5f;
+                Debug.WriteLine("link health = " + health);
+                if (health <= 0)
+                {
+                    this.Die();
+                }
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.canBeDamaged = false;
+            }
+            
            
         }
 
         public void TakeDamage(string side)
         {
-            this.isDamaged = true;
-            this.currentState.Redraw();
-            switch(side)
+            if (this.canBeDamaged == true)
             {
-                case "top":
-                    this.currentPosition.Y += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "bottom":
-                    this.currentPosition.Y -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "left":
-                    this.currentPosition.X += 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                case "right":
-                    this.currentPosition.X -= 25;
-                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                    break;
-                default:
-                    break;
+                takeDamage.Play();
+                this.health -= 0.5f;
+                Debug.WriteLine("link health = " + health);
+                if (health <= 0)
+                {
+                    this.Die();
+
+                }
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.canBeDamaged = false;
+                switch (side)
+                {
+                    case "top":
+                        this.currentPosition.Y += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "right":
+                        this.currentPosition.X -= 25;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -167,6 +205,7 @@ namespace Sprint0
                 this.isDamagedCounter++;
                 if (this.isDamagedCounter > 60)
                 {
+                    this.canBeDamaged = true;
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
                     this.UpdatePosition();
@@ -194,6 +233,12 @@ namespace Sprint0
             {
                 projectile.Draw(_spriteBatch);
             }
+        }
+
+        public void Die()
+        {
+            //this.game.currentState = gameOverState;
+            //this.Reset();
         }
 
     }

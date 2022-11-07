@@ -7,6 +7,8 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
@@ -19,11 +21,20 @@ namespace Collision
             projectile.collide();
             room.removeObject(projectile);
             enemy.TakeDamage(side);
-            /*
-			 * for future:
-			 * if enemy.health <= 0
-			 * game/room.remove(enemy)
-			 */
+            if (enemy is StalfosSprite)
+            {
+                StalfosSprite stalfos = enemy as StalfosSprite;
+                if (stalfos.IsDead)
+                {
+                    ISprite item = stalfos.DropItem();
+                    if (item != null)
+                    {
+                        room.AddObject(item);
+
+                    }
+                }
+
+            }
 
         }
 

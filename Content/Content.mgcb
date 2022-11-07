@@ -49,6 +49,12 @@
 /processorParam:TextureFormat=Color
 /build:bosses.png
 
+#begin coconut_mall_mp3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:coconut_mall_mp3.mp3
+
 #begin enemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -61,6 +67,42 @@
 /processorParam:TextureFormat=Color
 /build:enemies.png
 
+#begin enemy_death.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy_death.png
+
+#begin enemy_hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:enemy_hit.wav
+
+#begin hee_hee.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:hee_hee.wav
+
+#begin item_drop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:item_drop.wav
+
+#begin item_pickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:item_pickup.wav
+
 #begin itemsandweapons.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -72,6 +114,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:itemsandweapons.png
+
+#begin link_damage.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:link_damage.wav
 
 #begin LinkandProjectileSprites.png
 /importer:TextureImporter
@@ -96,6 +144,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:oldman.png
+
+#begin throw_projectile.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:throw_projectile.wav
 
 #begin Times New Roman.spritefont
 /importer:FontDescriptionImporter

@@ -14,9 +14,11 @@ namespace Collision
 	{   
         Link link;
         private Room room;
-        public CollisionDelegator(Link link, Room room) {
+        private Game1 game;
+        public CollisionDelegator(Link link, Room room, Game1 game) {
             this.room = room;
             this.link = link;
+            this.game = game;
         }
 
         // method which will assign the object pair to it's pairwise handler
@@ -42,7 +44,7 @@ namespace Collision
                 if (otherObj is IBlock) // enemyProj - block
                 {
                     IBlock block = otherObj as IBlock;
-                    EnemyProjectileBlockHandler.handleCollision(projectile, block, side);
+                    EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
                 }
                 if (otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // enemyProj - Link
                 {
@@ -60,7 +62,7 @@ namespace Collision
                 }else if (otherObj is IEnemy) // linkProj-enemy
                 {
                     IEnemy enemy = otherObj as IEnemy;                    
-                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, this.room);
+                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, room);
                 }
             } else if (obj is IEnemy)
             {
@@ -82,7 +84,7 @@ namespace Collision
                 else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
                 {
                     side = determineSide(otherObj, obj);
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
                 }
 
 
@@ -91,7 +93,7 @@ namespace Collision
                 if(otherObj is IEnemy)// link enemy # 1
                 {
                     IEnemy enemy = otherObj as IEnemy;
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
 
                 } else if (otherObj is IBlock) // link block
                 {
@@ -107,7 +109,7 @@ namespace Collision
                 } else if(otherObj is IItem)
                 {
                     IItem item = otherObj as IItem;
-                    LinkItemHandler.handleCollision(this.link, item, this.room);
+                    LinkItemHandler.handleCollision(this.link, item, this.room, this.game);
                 }
 
             }                   
@@ -123,7 +125,7 @@ namespace Collision
                     } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
                     {
                         IEnemyProjectile projectile = otherObj as IEnemyProjectile;
-                        EnemyProjectileBlockHandler.handleCollision(projectile, block, side);
+                        EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
                     } else if (otherObj is ILinkProjectile) // LinkProj - block
                     {
                         ILinkProjectile projectile = otherObj as ILinkProjectile;
@@ -147,7 +149,7 @@ namespace Collision
                     IItem item = obj as IItem;
                     if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // Link - Item
                     {
-                        LinkItemHandler.handleCollision(this.link, item, this.room);
+                        LinkItemHandler.handleCollision(this.link, item, this.room, this.game);
                     }
                 }
                                                                                    

@@ -34,17 +34,17 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
-			<Location>130 130</Location>
+			<Location>100 100</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
-			<Location>160 270</Location>
+			<Location>130 250</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
-			<Location>330 150</Location>
+			<Location>320 180</Location>
 		</Item>
 
 		<!--  Bounding  -->

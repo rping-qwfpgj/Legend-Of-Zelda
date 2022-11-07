@@ -21,7 +21,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(72, 16, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -57,7 +57,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(72, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -94,24 +94,48 @@ namespace Sprint0
             this.texture = itemTexture;
             this.xPos = x;
             this.yPos = y;
-            this.sourceRectangle = new Rectangle(275, 19, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.sourceRectangle = new Rectangle(275,19, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
         {
-            currFrames += 5;
-            if (currFrames > maxFrames)
-            {
-                currFrames = 0;
-            }
-            if (currFrames >= 0 && currFrames <= 50)
-            {
-                sourceRectangle = new Rectangle(275, 19, width, height);
-            } else
-            {
-                sourceRectangle = new Rectangle(275, 3, width, height);
-            }
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class OrangeTriangle : IItem
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int width = 10;
+        private int height = 10;
+
+        public OrangeTriangle(Texture2D itemTexture, int x, int y)
+        {
+            this.texture = itemTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(275, 3, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
+        }
+
+        public void Update()
+        {
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -144,7 +168,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(88, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -180,7 +204,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(0, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -216,7 +240,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(0, 8, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -252,7 +276,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(25, 1, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -288,7 +312,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(40, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -324,7 +348,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(258, 1, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -360,7 +384,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(58, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -396,7 +420,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(144, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -432,7 +456,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(129, 3, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
@@ -468,7 +492,7 @@ namespace Sprint0
             this.xPos = x;
             this.yPos = y;
             this.sourceRectangle = new Rectangle(136, 0, width, height);
-            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
         }
 
         public void Update()
