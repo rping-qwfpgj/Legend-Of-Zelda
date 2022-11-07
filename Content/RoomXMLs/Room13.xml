@@ -161,7 +161,7 @@
 		<!--  Items  -->
 		<Item>
 			<ObjectType>Item</ObjectType>
-			<ObjectName>PurpleTriangle</ObjectName>
+			<ObjectName>Triforce</ObjectName>
 			<Location>380 220</Location>
 		</Item>
 
