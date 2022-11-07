@@ -12,6 +12,7 @@ using LegendofZelda.Interfaces;
 using System.Diagnostics;
 using Interfaces;
 using States;
+using System.Windows.Forms;
 
 namespace Collision
 {
@@ -37,10 +38,16 @@ namespace Collision
                     }
                     break;
 				case "bottom":
-                    link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                    link.currentState = new LinkIdleWalkingDownState(link);
-                    link.currentPosition.Y -= collisionRect.Height;
-                    link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    if(block is IPushableBlock)
+                    {
+                        IPushableBlock bloc = block as IPushableBlock;
+                        bloc.Move("top");
+                    } else { 
+                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+                        link.currentState = new LinkIdleWalkingDownState(link);
+                        link.currentPosition.Y -= collisionRect.Height;
+                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    }
                     break;
 				case "left":
                     link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
