@@ -7,6 +7,7 @@ using Sprites;
 using Microsoft.VisualBasic.Devices;
 using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LegendofZelda
 {
@@ -109,6 +110,7 @@ namespace LegendofZelda
                     ISprite item = enemy.DropItem();
                     if (item != null)
                     {
+                        SoundFactory.Instance.CreateSoundEffect("ItemDrop").Play();
                         toAdd.Add(item);
 
                     }

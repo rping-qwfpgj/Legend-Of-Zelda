@@ -80,8 +80,9 @@ public class Game1 : Game
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+        SoundFactory.Instance.loadContent(Content);
 
-       
+
 
 
         //Mouse Controller stuff
