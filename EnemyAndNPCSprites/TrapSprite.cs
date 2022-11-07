@@ -55,6 +55,11 @@ namespace Sprites
             return this.destinationRectangle;
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
 

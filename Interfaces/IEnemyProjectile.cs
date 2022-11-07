@@ -9,6 +9,6 @@ namespace LegendofZelda.Interfaces
 {
     public interface IEnemyProjectile : ISprite
     {
-        // void collide();
+        void collide();
     }
 }

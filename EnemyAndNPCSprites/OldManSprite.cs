@@ -59,6 +59,11 @@ namespace Sprites
             return new Rectangle();
         }
 
+        public void TurnAround(string side)
+        {
+
+        }
+
         public void TakeDamage(string side)
         {
 

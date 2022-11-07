@@ -3,114 +3,12 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
-    public class GoriyaSprite : IEnemy
-    {
-        private IEnemy currentGoriya;
-        private int counter = 0;
-        private int speed = 50;
-        private IEnemy movingUp;
-        private IEnemy movingDown;
-        private IEnemy movingRight;
-        private IEnemy movingLeft;
-        private IEnemy throwingRight;
-        private IEnemy throwingLeft;
-        private IEnemy throwingUp;
-        private IEnemy throwingDown;
-       
-        // private Random rand = new Random(0, 1000);
-
-        // X and Y positions of the sprite
-        private float xPosition;
-        public float XPosition { get => xPosition; set => xPosition = value; }
-        private float yPosition;
-        public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
-        private int prevdirection = 1;
-        private Texture2D texture;
-        private float xPos;
-        private float yPos;
-        private Rectangle destinationRectangle = new Rectangle(1, 1, 0, 0);
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private bool isDead = false;
-        public bool IsDead { get => isDead; set => isDead = value; }
-        private bool dyingComplete = false;
-        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
-        {
-            this.texture = texture;
-            this.xPos = xPosition;
-            this.yPos = yPosition;
-            currentGoriya = new GoriyaMovingRightSprite(texture, xPosition, yPosition);
-        }
-
-        public void Update()
-        {
-            if (prevdirection != direction)
-            {
-                this.xPos = currentGoriya.XPosition;
-                this.yPos = currentGoriya.YPosition;
-                prevdirection = direction;
-                if (currentGoriya is GoriyaMovingRightSprite)
-                {
-                    currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingLeftSprite)
-                {
-                    currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingUpSprite)
-                {
-                    currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
-                }
-                else if (currentGoriya is GoriyaMovingDownSprite)
-                {
-                    currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
-                }
-            }
-
-            currentGoriya.Update();
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            currentGoriya.Draw(spriteBatch);
-        }
-
-        public Rectangle GetHitbox()
-        {
-            Rectangle hitbox = currentGoriya.GetHitbox();
-
-            if (hitbox == null)
-            {
-                return this.destinationRectangle;
-            }
-            else
-            {
-                return hitbox;
-            }
-        }
-
-        public void TakeDamage(string side)
-        {
-            currentGoriya.TakeDamage(side);
-        }
-        public ISprite DropItem()
-        {
-            return null;
-        }
-
-        public void Die()
-        {
-
-        }
-    }
-
     public class GoriyaMovingUpSprite : IEnemy
     {
         private Texture2D texture;
@@ -149,7 +47,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
 
             if ((currentFrame / 10) % 2 == 0)
             {
@@ -161,12 +59,19 @@ namespace Sprites
             }
 
 
-            spriteBatch.End();
+            
         }
+
+
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -237,7 +142,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((currentFrame / 10) % 2 == 0)
             {
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
@@ -247,12 +152,17 @@ namespace Sprites
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
 
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -330,14 +240,19 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -421,14 +336,19 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            spriteBatch.End();
+            
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -484,9 +404,7 @@ namespace Sprites
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
-        // Boomerang that will be thrown
-        public GoriyaBoomerangRightSprite rightBoomerang;
-
+        
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -498,18 +416,18 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            rightBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
+            
 
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.rightBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
@@ -522,7 +440,9 @@ namespace Sprites
             }
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
-            this.rightBoomerang.Draw(spriteBatch);
+            
+            
+            
 
 
         }
@@ -530,6 +450,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -585,19 +510,15 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        // Boomerang that will be thrown
-        public GoriyaBoomerangLeftSprite leftBoomerang;
-        private bool isDead = false;
-        public bool IsDead { get => isDead; set => isDead = value; }
-        private bool dyingComplete = false;
-        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        
+
         public GoriyaThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            leftBoomerang = new GoriyaBoomerangLeftSprite(texture, (int)xPosition, (int)yPosition);
+            
         }
 
         public void Update()
@@ -609,11 +530,11 @@ namespace Sprites
                 currFrames = 0;
             }
 
-            this.leftBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((currFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
@@ -625,7 +546,8 @@ namespace Sprites
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-            this.leftBoomerang.Draw(spriteBatch);
+            
+           
 
 
         }
@@ -633,6 +555,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -690,8 +617,7 @@ namespace Sprites
         private Texture2D texture;
         // X and Y positions of the sprite
 
-        // Boomerang to throw 
-        public GoriyaBoomerangDownSprite downBoomerang;
+        
 
         public GoriyaThrowingDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -699,17 +625,17 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            downBoomerang = new GoriyaBoomerangDownSprite(texture, (int)xPosition, (int)yPosition);
+            
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.downBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
@@ -724,7 +650,7 @@ namespace Sprites
 
             }
 
-            this.downBoomerang.Draw(spriteBatch);
+            
 
 
         }
@@ -732,6 +658,11 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)
@@ -787,8 +718,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
 
-        // Boomerang to throw
-        public GoriyaBoomerangUpSprite upBoomerang;
+       
 
         public GoriyaThrowingUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -796,17 +726,17 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-            upBoomerang = new GoriyaBoomerangUpSprite(texture, (int)xPosition, (int)yPosition);
+           
         }
 
         public void Update()
         {
             goriyaFrames++;
-            this.upBoomerang.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
@@ -822,14 +752,18 @@ namespace Sprites
             }
 
 
-            this.upBoomerang.Draw(spriteBatch);
-
+            
 
         }
 
         public Rectangle GetHitbox()
         {
             return this.goriyaDestinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+
         }
 
         public void TakeDamage(string side)

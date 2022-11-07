@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using System;
+using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
@@ -30,14 +30,19 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        private bool movingHorizontally = true;
-        private bool movingVertically = false;
         private int deathFrames = 0;
+
+        //private bool movingHorizontally = true;
+        //private bool movingVertically = false;
+
 
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        Random random = new Random();
+        public enum Directions { UP, RIGHT, LEFT, DOWN };
+        List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
+        Directions currDirection;
         public GelSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
@@ -45,17 +50,17 @@ namespace Sprites
             this.yPosition = yPosition;
             this.enemyHit = sound;
             this.dyingTexture = texture2;
+            this.currDirection = directions[random.Next(0, directions.Count)];
+
         }
 
         public void Update()
         {
             if (!isDead)
             {
-                if (currFrames == maxFrames / 2)
+                if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    direction *= -1;
-                    movingHorizontally = !movingHorizontally;
-                    movingVertically = !movingVertically;
+                    this.currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames == maxFrames)
                 {
@@ -66,24 +71,27 @@ namespace Sprites
                     currFrames += 10;
                 }
 
-                if (movingVertically && !movingHorizontally)
+                if (currDirection == Directions.UP)
                 {
-                    if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
-                    this.yPosition += (1 * direction);
+                    this.yPosition -= 1;
                 }
-                if (movingHorizontally && !movingVertically)
+                else if (currDirection == Directions.LEFT)
                 {
-                    if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
-                    this.xPosition += (1 * direction);
+                    this.xPosition -= 1;
+                }
+                else if (currDirection == Directions.RIGHT)
+                {
+                    this.xPosition += 1;
+                }
+                else // Direction is down
+                {
+                    this.yPosition += 1;
                 }
             } else
             {
                 deathFrames++;
-
             }
-
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectangle = new Rectangle(1, 16, 8, 8);
@@ -142,6 +150,30 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+            // Have the Gel turn around based on what wall it is running into
+            switch(side)
+            {
+                case "top":
+                    this.currDirection = Directions.DOWN;
+                    break;
+                case "bottom":
+                    this.currDirection = Directions.UP;
+                    break;
+                case "left":
+                    this.currDirection = Directions.RIGHT;
+                    break;
+                case "right":
+                    this.currDirection = Directions.LEFT;
+                    break;
+                default:
+                    break;
+
+            }
+
         }
 
         public void TakeDamage(string side)

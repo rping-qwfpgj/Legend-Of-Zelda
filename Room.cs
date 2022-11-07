@@ -26,7 +26,7 @@ namespace LegendofZelda
             background.Draw(spriteBatch);
             foreach (var sprite in sprites)
             {
-                // If the object is not link, then don't draw him, will cause multiple links
+                //If the object is link , then don't draw it, will cause duplicates otherwise
                 if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
                     sprite.Draw(spriteBatch);
                 }
@@ -40,8 +40,14 @@ namespace LegendofZelda
             foreach (var sprite in copy)
             {
                 DealWithEnemies(sprite);
+                if (sprite is DragonBossSprite)
+                {
+                    DragonBossSprite dragonBoss = sprite as DragonBossSprite;
+                    toAdd = dragonBoss.getEnemyProjectiles();
+                }
                 sprite.Update();
             }
+            
 
         }
 
@@ -53,20 +59,12 @@ namespace LegendofZelda
 
         public void removeObject(ISprite sprite)
         { 
-            if (sprite is IEnemy)
-            {
-                Debug.WriteLine("remove works");
-            }
             sprites.Remove(sprite);
-          
         }
 
-        public void AddObject(ISprite sprite)
+       public void AddObject(ISprite sprite)
         {
-            if (sprite is IItem)
-            {
-                Debug.WriteLine("add works");
-            }
+            
             sprites.Add(sprite);
         }
 
