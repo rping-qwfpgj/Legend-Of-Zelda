@@ -100,17 +100,10 @@ namespace Sprites
 
                 }
 
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-                spriteBatch.End();
-            }
-            else
-            {
-                spriteBatch.Begin();
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
-                if (deathFrames >= 0 && deathFrames <= 5)
-                {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
+            spriteBatch.End();
+        }
 
                 }
                 else if (deathFrames > 5 && deathFrames < 10)

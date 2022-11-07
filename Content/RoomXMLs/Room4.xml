@@ -56,6 +56,13 @@
 			<Location>560 290</Location>
 		</Item>
 
+		<!-- Items-->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Key</ObjectName>
+			<Location>130 130</Location>
+		</Item>
+
 		<!--  Bounding  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

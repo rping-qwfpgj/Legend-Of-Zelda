@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace Sprites
 {
@@ -15,75 +16,78 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
-        
+        private int xPosition;
+        private  int yPosition;
+     
         private bool isDamaged;
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
-
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 44); // Where to draw on screen
+            sourceRectangles = new List<Rectangle>();
+            sourceRectangles.Add(new Rectangle(71, 11, 12, 16));
+            sourceRectangles.Add(new Rectangle(88, 11, 12, 16));
+            currentFrameIndex = 0;
         }
 
-            public void Update()
+        public void Update()
+        {                                        
+            currFrames += 100;
+
+            // If frames are past max, reset to 0
+            if (currFrames > maxFrames)
             {
-                // Update frames
-                currFrames += 100;
-
-                // If frames are past max, reset to 0
-                if (currFrames > maxFrames)
-                {
-                    currFrames = 0;
-                }
-
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 44); // Where to draw on screen
+                currFrames = 0;
+            }
+                
         }      
 
-            // NOTE: All of these source Rectangles are using placeholder values for now
-            public void Draw(SpriteBatch spriteBatch)
+       
+        public void Draw(SpriteBatch spriteBatch)
+        {
+                
+            // Create source and destination rectangles
+            if (currFrames >= 0 && currFrames <= maxFrames / 2)
             {
-                // Create source and destination rectangles
-                Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-               
+                currentFrameIndex = 0;
+            }
+            else if (currFrames > maxFrames / 2 && currFrames <= maxFrames) 
+            {
+                currentFrameIndex = 1;
+            }
 
-                // Draw the first step of link walking up
-                if (currFrames >= 0 && currFrames <= 1000)
-                {
-                    sourceRectangle = new Rectangle(71, 11, 12, 16);
+            Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width*2, currentFrame.Height*2); // Where to draw on screen
 
-                }
-                else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking up
-                {
-                    sourceRectangle = new Rectangle(88, 11, 12, 16);
-                }
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
             }
             else
-            {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+            { 
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height/2), SpriteEffects.None, 1);     
             }
             spriteBatch.End();            
         }
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            var returner = destinationRectangle;
+            return returner;
         }
             
-        }
+    }
 
     public class LinkIdleWalkingDownSprite : INonAttackingSprite
     {
@@ -95,22 +99,28 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         public bool isDamaged;
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
+        public Rectangle DestinationRectangle {             get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 42); // Where to draw on screen
+            sourceRectangles = new List<Rectangle>();
+            sourceRectangles.Add(new Rectangle(1, 11, 15, 16));
+            sourceRectangles.Add(new Rectangle(19, 11, 13, 16));
+            currentFrameIndex = 0;
+
         }
 
         public void Update()
@@ -123,39 +133,34 @@ namespace Sprites
             {
                 currFrames = 0;
             }
-
-            
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-           
 
-            // Draw the first step of link walking down
-            if (currFrames >= 0 && currFrames <= 1000)
+            // Create source and destination rectangles
+            if (currFrames >= 0 && currFrames <= maxFrames / 2)
             {
-                sourceRectangle = new Rectangle(1, 11, 15, 16);
-                
+                currentFrameIndex = 0;
             }
-            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking down
+            else if (currFrames > maxFrames / 2 && currFrames <= maxFrames) 
             {
-                sourceRectangle = new Rectangle(19, 11, 13, 16);
-                
+                currentFrameIndex = 1;
             }
+
+            Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+
 
             // Draw the sprite
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
-            } else
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
+            }
+            else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height/2), SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
@@ -176,21 +181,26 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
 
         private bool isDamaged;
 
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
+        public Rectangle DestinationRectangle {get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 42); // Where to draw on screen
+            sourceRectangles = new List<Rectangle>();
+            sourceRectangles.Add(new Rectangle(35, 11, 15, 16));
+            sourceRectangles.Add(new Rectangle(52, 12, 14, 15));
+            currentFrameIndex = 0;
         }
 
         public void Update()
@@ -203,39 +213,37 @@ namespace Sprites
             {
                 currFrames = 0;
             }
-            
-            
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
+           
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
+        
         public void Draw(SpriteBatch spriteBatch)
         {
+
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-           
-
-            // Draw the first step of link walking side to side
-            if (currFrames >= 0 && currFrames <= 1000)
+            if (currFrames >= 0 && currFrames <= maxFrames / 2)
             {
-                sourceRectangle = new Rectangle(35, 11, 15, 16);
-
+                currentFrameIndex = 0;
             }
-            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking side to side
+            else if (currFrames > maxFrames / 2 && currFrames <= maxFrames) 
             {
-                sourceRectangle = new Rectangle(52, 12, 14, 15);
+                currentFrameIndex = 1;
             }
+
+            Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+
 
             // Draw the sprite
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
-                // Must flip the sprite horizontally as the sprite sheet only has sprites for link moving right
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            } else
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+
+            }
+            else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1); 
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width/2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
         }
@@ -256,21 +264,29 @@ namespace Sprites
         private Texture2D texture;
 
         // X and Y positions of the sprite
-        private float xPosition;
-        private float yPosition;
+        private int xPosition;
+        private int yPosition;
         private bool isDamaged;
 
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
-       
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
+        public Rectangle DestinationRectangle
+        {
+            get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;
 
+        }
+        public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkIdleWalkingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
             this.isDamaged = isDamaged;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 42); // Where to draw on screen
+            sourceRectangles = new List<Rectangle>();
+            sourceRectangles.Add(new Rectangle(35, 11, 15, 16));
+            sourceRectangles.Add(new Rectangle(52, 12, 14, 15));
+            currentFrameIndex = 0;
         }
 
         public void Update()
@@ -284,44 +300,45 @@ namespace Sprites
                 currFrames = 0;
             }
 
-
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 38, 42); // Where to draw on screen
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
+        
         public void Draw(SpriteBatch spriteBatch)
         {
+
             // Create source and destination rectangles
-            Rectangle sourceRectangle = sourceRectangle = new Rectangle(35, 11, 15, 16);
+            if (currFrames >= 0 && currFrames <= maxFrames / 2)
+            {
+                currentFrameIndex = 0;
+            }
+            else if (currFrames > maxFrames / 2 && currFrames <= maxFrames)
+            {
+                currentFrameIndex = 1;
+            }
+
+            Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
            
 
-            // Draw the first step of link walking side to side
-            if (currFrames >= 0 && currFrames <= 1000)
-            {
-                sourceRectangle = new Rectangle(35, 11, 15, 16);
-
-            }
-            else if (currFrames > 1000 && currFrames <= 2000) // Draw the 2nd step of link walking side to side
-            {
-                sourceRectangle = new Rectangle(52, 12, 14, 15);
-            }
 
             // Draw the sprite
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f));
-            } else
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
+
+            }
+            else
             {
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White); 
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            var returner = destinationRectangle;
+            return returner;
         }
     }
 }

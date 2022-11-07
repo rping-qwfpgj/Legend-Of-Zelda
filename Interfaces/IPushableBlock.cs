@@ -6,11 +6,9 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace LegendofZelda.Interfaces
 {
-    public interface ISprite
+    public interface IPushableBlock : IBlock
     {
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
-        Rectangle GetHitbox();
-        public Rectangle DestinationRectangle { get; set; }
+        void Move(string side);
     }
 }
+

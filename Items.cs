@@ -29,7 +29,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -65,7 +65,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -139,7 +139,43 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+    public class OrangeTriangle : IItem
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int width = 10;
+        private int height = 10;
+
+        public OrangeTriangle(Texture2D itemTexture, int x, int y)
+        {
+            this.texture = itemTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(275, 3, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -176,7 +212,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -212,7 +248,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -248,7 +284,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -284,7 +320,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -320,7 +356,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -356,7 +392,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -392,7 +428,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -428,7 +464,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -464,7 +500,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -500,6 +536,114 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+
+    }
+
+
+    public class Fire : IItem
+    {
+        // frame count for animating the fire
+        private int currFrames = 0;
+        private int maxFrames = 2500;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private float xPosition;
+        private float yPosition;
+
+        private int width = 16;
+        private int height = 16;
+
+        // On screen position 
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
+        public Fire(Texture2D texture, float xPosition, float yPosition)
+        {
+            this.texture = texture;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+        }
+
+
+        public void Update()
+        {
+
+            currFrames += 50;
+
+            if (currFrames >= maxFrames) { currFrames = 0; }
+
+            
+        }
+
+        // NOTE: All of these source Rectangles are using placeholder values for now
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Create source and destination rectangles
+            Rectangle sourceRectangle = new Rectangle(191, 185, this.width, this.height); // fire
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, this.width * 4, this.height * 4); // Where to draw on screen
+
+            // Draw the sprite
+            spriteBatch.Begin();
+            if(currFrames < maxFrames)
+            {
+
+                if ((currFrames/100) % 2 == 0) {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                }
+                    
+            }
+          
+            spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return this.destinationRectangle;
+        }
+
+    }
+
+        public class Key : IItem
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int width = 8;
+        private int height = 16;
+
+        public Key (Texture2D itemTexture, int x, int y)
+        {
+            this.texture = itemTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(240, 0, width, height);
+            this.destinationRectangle = new Rectangle(xPos, yPos, width * 4, height * 4);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
             _spriteBatch.Begin();
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
@@ -510,7 +654,8 @@ namespace Sprint0
             return destinationRectangle;
         }
     }
-
+    
+    
 
     //public class Item : ISprite
     //{
@@ -601,7 +746,7 @@ namespace Sprint0
 
     //    public void Draw(SpriteBatch _spriteBatch)
     //    {
-    //        _spriteBatch.Begin();
+    //        _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
     //        _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
     //        _spriteBatch.End();
     //    }

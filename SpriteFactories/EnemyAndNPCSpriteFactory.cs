@@ -16,6 +16,7 @@ namespace LegendofZelda.SpriteFactories
         private SoundEffect enemyHit;
         private Texture2D dyingSpriteSheet;
         private static EnemyAndNPCSpriteFactory instance = new EnemyAndNPCSpriteFactory();
+        private SpriteFont font;
         
 
         public static EnemyAndNPCSpriteFactory Instance
@@ -37,6 +38,8 @@ namespace LegendofZelda.SpriteFactories
             bossSpriteSheet = content.Load<Texture2D>("bosses");
             enemyHit = content.Load<SoundEffect>("enemy_hit");
             dyingSpriteSheet = content.Load<Texture2D>("enemy_death");
+            font = content.Load<SpriteFont>("Times New Roman");
+
 
         }
 
@@ -69,7 +72,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OldMan":
 
-                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y + inventoryHeight);
+                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y + inventoryHeight, font);
 
                 case "Wallmaster":
 

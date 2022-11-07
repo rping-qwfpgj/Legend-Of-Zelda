@@ -20,7 +20,7 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>500 88</Location>
 		</Item>
-		<Item>
+		<Item> 
 			<ObjectType>Block</ObjectType>
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>550 88</Location>
@@ -95,6 +95,14 @@
 			<Location>650 306</Location>
 		</Item>
 
+		<!-- Puzzle Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PuzzleDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
+	
+	
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

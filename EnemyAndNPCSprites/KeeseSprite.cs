@@ -100,55 +100,19 @@ namespace Sprites
             if (!isDead)
             {
 
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if ((currFrames / 100) % 2 != 0)
-                {
-                    sourceRectangle = new Rectangle(183, 15, 16, 8);
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle(203, 15, 10, 10);
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40);
-                }
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-                spriteBatch.End();
+            {
+                sourceRectangle = new Rectangle(183, 15, 16, 8);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
             }
             else
             {
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
-
-                spriteBatch.Begin();
-                if (deathFrames >= 0 && deathFrames <= 5)
-                {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
-
-                }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    this.dyingComplete = true;
-                }
-                if (!dyingComplete)
-                {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
-                }
-
-                spriteBatch.End();
+                sourceRectangle = new Rectangle(203, 15, 10, 10);
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 40, 40);
             }
+            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()

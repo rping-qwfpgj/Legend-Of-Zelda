@@ -95,9 +95,8 @@ namespace Collision
                     IEnemy enemy = otherObj as IEnemy;
                     LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
 
-                } else if (otherObj is IBlock) // link block
+                } else if (otherObj is IBlock && obj is INonAttackingSprite) // link block, link is not attacking
                 {
-
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
@@ -117,11 +116,11 @@ namespace Collision
                 {
                     side = determineSide(otherObj, obj);
                     IBlock block = obj as IBlock;
-                    if(otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // otherObj is Link: Link- block
+                    if(otherObj is INonAttackingSprite) // otherObj is Link that is not attacking: Link- block
                     {
-                        Rectangle collisionRect = new Rectangle();
-                        collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
-                        LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
+                            Rectangle collisionRect = new Rectangle();
+                            collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
+                            LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);                                                           
                     } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
                     {
                         IEnemyProjectile projectile = otherObj as IEnemyProjectile;
@@ -158,8 +157,8 @@ namespace Collision
         private string determineSide(ISprite obj, ISprite otherObj)
         {
 
-            Rectangle objectRec = obj.GetHitbox();
-            Rectangle otherRec = otherObj.GetHitbox();
+            Rectangle objectRec = obj.DestinationRectangle;
+            Rectangle otherRec = otherObj.DestinationRectangle;
 
             // return the side of the collision from the perspective of obj
 
@@ -206,8 +205,8 @@ namespace Collision
 
         private void collisionRectangle(ref ISprite obj, ref ISprite otherObj, ref Rectangle collisionRect)
         {
-            Rectangle rectangle1 = obj.GetHitbox();
-            Rectangle rectangle2 = otherObj.GetHitbox();
+            Rectangle rectangle1 = obj.DestinationRectangle;
+            Rectangle rectangle2 = otherObj.DestinationRectangle;
             Rectangle.Intersect(ref rectangle1, ref rectangle2, out collisionRect);
         }
     }

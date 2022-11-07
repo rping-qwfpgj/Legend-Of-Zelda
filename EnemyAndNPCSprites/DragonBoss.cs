@@ -109,74 +109,33 @@ namespace Sprites
             {
                 this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
-                if (currFrames >= 0 && currFrames < 500)
-                {
-                    // Dragon to draw
-                    dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
-                }
-                else if (currFrames >= 500 && currFrames < 1000)
-                {
-                    // Dragon rectangle
-                    dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
-                }
-                else if (currFrames >= 1000 && currFrames < 1500)
-                {
-                    // Dragon rectangle
-                    dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
-
-                }
-                else if (currFrames >= 1500 && currFrames < 2000)
-                {
-                    // Dragon rectangle
-                    dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
-                }
-                spriteBatch.Begin();
-                if (isDamaged)
-                {
-                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
-                } else
-                {
-                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-
-                }
-                spriteBatch.End();
-                
-            }
-            else
+            if (currFrames >= 0 && currFrames < 500)
             {
-                spriteBatch.Begin();
-                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
-                if (deathFrames >= 0 && deathFrames <= 5)
-                {
-                    dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
-
-                }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    dragonSourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    dragonSourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    dragonSourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    this.dyingComplete = true;
-                }
-                if (!dyingComplete)
-                {
-                    spriteBatch.Draw(dyingTexture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-                }
-
-                spriteBatch.End();
+                // Dragon to draw
+                dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
+            } else if (currFrames >= 500 && currFrames <1000)
+            {
+                // Dragon rectangle
+                dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
+            } else if (currFrames >= 1000 && currFrames < 1500)
+            {
+                // Dragon rectangle
+                dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
+                
+            } else if (currFrames >= 1500 && currFrames < 2000)
+            {
+                // Dragon rectangle
+                dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
             }
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
+
+                spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+            spriteBatch.End();
+            this.topAttackOrb.Draw(spriteBatch);
+            this.middleAttackOrb.Draw(spriteBatch);
+            this.bottomAttackOrb.Draw(spriteBatch);
+           
             //spriteBatch.End();
 
 
@@ -315,11 +274,10 @@ namespace Sprites
 
          public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-                spriteBatch.End();
-            }
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
@@ -418,11 +376,10 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-                spriteBatch.End();
-            }
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
@@ -519,11 +476,10 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-                spriteBatch.End();
-            }
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()

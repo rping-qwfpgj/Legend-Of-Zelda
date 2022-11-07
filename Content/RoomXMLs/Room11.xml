@@ -8,7 +8,22 @@
 			<Location>0 0</Location>
 		</Item>
 
+		<!-- Items-->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Key</ObjectName>
+			<Location>690 100</Location>
+		</Item>
+	
 		<!--  Blocks  -->
+
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockTop</ObjectName>
+			<Location>352 22</Location>
+		</Item>
+		
 		<!--  Leftmost Column  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

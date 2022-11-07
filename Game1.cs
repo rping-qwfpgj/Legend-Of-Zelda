@@ -14,8 +14,6 @@ using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
-using SharpDX.Direct3D9;
-using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using SharpDX.MediaFoundation.DirectX;
 using Microsoft.Xna.Framework.Audio;
@@ -36,6 +34,7 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
+    public Texture2D doorSpriteSheet;
     private Link link;
     public List<Room> rooms;
     public Room currentRoom;
@@ -46,8 +45,7 @@ public class Game1 : Game
     private MouseController mouseController;
     public SoundEffect enemyHit;
     public Song backgroundMusic;
-
-   
+    private Graph roomsGraph;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;
@@ -64,13 +62,12 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
+
     protected override void Initialize()
     {
-
        
         _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+150;
         _graphics.ApplyChanges();
-
         
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -82,9 +79,8 @@ public class Game1 : Game
         BackgroundSpriteFactory.Instance.loadContent(Content);
         SoundFactory.Instance.loadContent(Content);
 
-
-
-
+       
+        
         //Mouse Controller stuff
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
              _graphics.PreferredBackBufferHeight / 2);
@@ -107,9 +103,38 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
        
-        currentRoomIndex = 0;
+        currentRoomIndex = 1;
         currentRoom = rooms[currentRoomIndex];
         link = new Link(new Vector2(400, 240), _graphics, this);
+
+
+        //Graph init
+        roomsGraph = new();
+
+
+        roomsGraph.AddLeftRightEdge(17, 16);
+        roomsGraph.AddLeftRightEdge(16, 15);
+        roomsGraph.AddLeftRightEdge(12, 13);
+        roomsGraph.AddLeftRightEdge(9, 8);
+        roomsGraph.AddLeftRightEdge(8, 7);
+        roomsGraph.AddLeftRightEdge(7, 10);
+        roomsGraph.AddLeftRightEdge(10, 11);
+        roomsGraph.AddLeftRightEdge(5, 4);
+        roomsGraph.AddLeftRightEdge(4, 6);
+        roomsGraph.AddLeftRightEdge(1, 0);
+        roomsGraph.AddLeftRightEdge(0, 2);
+
+        roomsGraph.AddDownUpEdge(5, 8);
+        roomsGraph.AddDownUpEdge(0, 3);
+        roomsGraph.AddDownUpEdge(3, 4);
+        roomsGraph.AddDownUpEdge(4, 7);
+        roomsGraph.AddDownUpEdge(7, 14);
+        roomsGraph.AddDownUpEdge(14, 15);
+        roomsGraph.AddDownUpEdge(6, 10);
+        roomsGraph.AddDownUpEdge(11, 12);
+
+
+
 
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
@@ -132,7 +157,12 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
+        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
         this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex], this);
+
 
         base.Initialize();
     }

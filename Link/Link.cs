@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
 
 namespace Sprint0
-{
+{// im gonna get rid of the magic numbers
     public class Link
     {
         public enum Throwables
@@ -40,7 +40,8 @@ namespace Sprint0
         public float health;
         private bool canBeDamaged;
         private SoundEffect takeDamage;
-      
+        private string side;
+
 
         public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
         {
@@ -58,6 +59,7 @@ namespace Sprint0
             this.canBeDamaged = true;
             this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
 
+
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
 
@@ -68,14 +70,13 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
-            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableRight(this.currentPosition, this.throwable));
 
         }
         
         public void UpdatePosition()
         {
-            Microsoft.Xna.Framework.Rectangle rectangle = this.currentLinkSprite.GetHitbox();
-            this.currentPosition = new Vector2(rectangle.X, rectangle.Y);
+            Rectangle rectangle = currentLinkSprite.GetHitbox();
+            currentPosition = new Vector2(rectangle.X, rectangle.Y);
         }
         public void Attack()
         {
@@ -165,29 +166,27 @@ namespace Sprint0
 
                 }
                 this.isDamaged = true;
-                this.currentState.Redraw();
-                this.canBeDamaged = false;
-                switch (side)
-                {
-                    case "top":
-                        this.currentPosition.Y += 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "bottom":
-                        this.currentPosition.Y -= 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "left":
-                        this.currentPosition.X += 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    case "right":
-                        this.currentPosition.X -= 25;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        break;
-                    default:
-                        break;
-                }
+            this.currentState.Redraw();
+            switch(side)
+            {
+                case "top":
+                    this.currentPosition.Y += 25;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "bottom":
+                    this.currentPosition.Y -= 25;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "left":
+                    this.currentPosition.X += 25;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                case "right":
+                    this.currentPosition.X -= 25;
+                    this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -240,7 +239,6 @@ namespace Sprint0
             //this.game.currentState = gameOverState;
             //this.Reset();
         }
-
     }
 }
 

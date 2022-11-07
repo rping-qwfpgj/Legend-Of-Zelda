@@ -27,8 +27,8 @@
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>DepthBlock</ObjectName>
-			<Location>300 216</Location>
+			<ObjectName>DepthPushableBlock</ObjectName>
+			<Location>300 218</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using LegendofZelda.Interfaces;
+using Sprint0;
+using System.Collections.Generic;
 
 namespace Sprites
 {
@@ -9,147 +10,117 @@ namespace Sprites
     {
         // Keep track of frames
         private int currFrames = 0;
-        private int timingFrames = 0;
         private int maxFrames = 1000;
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
 
         // Texture to take sprites from
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
-       
+        private readonly int originalXPosition;
+        private readonly int originalYPosition;
+        private int xPosition;
+        private int yPosition;
+
+        //to track phase of animation
+        private bool returning;
+        private bool returned;
+
+        //for position
+        private Link link;
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-        private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
-        {
-
-            Vector2 origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            destinationRectangle.X += destinationRectangle.Width / 2;
-            destinationRectangle.Y += destinationRectangle.Height / 2;
-
-            return origin;
-        }
-        public BoomerangUpSprite(Texture2D texture, float xPosition, float yPosition)
+        public BoomerangUpSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            originalXPosition = (int)xPosition;
+            originalYPosition = (int)yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
+            this.link = link;
+
+            returning = false;
+            returned = false;
+
+            //building source rectangle array
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
         }
 
         public void Update()
         {
-            if (timingFrames > maxFrames)
+            currFrames += 25;
+            if (currFrames >= maxFrames)
             {
-                currFrames = maxFrames + 20;
+                currFrames = 0;
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
+            }
+
+            if (yPosition > originalYPosition - 100 && !returning)
+            {
+                yPosition -= 1;
             }
             else
             {
-                currFrames += 50;
-                timingFrames += 10;
+                returning = true;
 
-                if (currFrames >= maxFrames)
+                Vector2 vectorToTarget = link.currentPosition - new Vector2(xPosition, yPosition);
+                if (vectorToTarget.Length() <= 3)
                 {
-                    currFrames = 0;
+                    returned = true;
                 }
-
-                //to change direction of boomerang
-                if (timingFrames <= maxFrames / 2)
+                else
                 {
-                    this.yPosition -= 5;
-                }
-                else if (timingFrames < maxFrames)
-                {
-                    this.yPosition += 5;
+                    vectorToTarget.Normalize();
+                    xPosition += (int)(vectorToTarget.X * 2.5);
+                    yPosition += (int)(vectorToTarget.Y * 2.5);
                 }
             }
-
         }
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4); // Where to draw on screen
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
-            Vector2 origin;
-
-            spriteBatch.Begin();
-            //1
-            if (currFrames >= 0 && currFrames <= maxFrames / 8)
+            if (!returned)
             {
-                sourceRectangle = frame1;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+                destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2);
+                Vector2 origin = new Vector2(currentFrame.Width / 2, currentFrame.Height / 2);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (currentFrameIndex <= 2)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 2 && currentFrameIndex <= 3)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 3 && currentFrameIndex <= 6)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
+                }
+                spriteBatch.End();
             }
-            //2
-            else if (currFrames > maxFrames / 8 && currFrames <= 2 * maxFrames / 8)
-            {
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            }
-            //3
-            else if (currFrames > 2 * maxFrames / 8 && currFrames <= 3 * maxFrames / 8)
-            {
-                sourceRectangle = frame3;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            }
-            //4
-            else if (currFrames > 3 * maxFrames / 8 && currFrames <= 4 * maxFrames / 8)
-            {
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -90, origin, SpriteEffects.None, 0); spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 180, new Vector2(0, 0), SpriteEffects.None, 1);
-
-            }
-            //5
-            else if (currFrames > 4 * maxFrames / 8 && currFrames <= 5 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame1;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //6
-            else if (currFrames > 5 * maxFrames / 8 && currFrames <= 6 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //7
-            else if (currFrames > 6 * maxFrames / 8 && currFrames <= 7 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame3;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //8
-            else if (currFrames > 7 * maxFrames / 8 && currFrames < maxFrames)
-            {
-                //reversed
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -270, origin, SpriteEffects.None, 0);
-            }
-            // Draw the sprite
-
-            spriteBatch.End();
         }
         public Rectangle GetHitbox()
         {
@@ -158,7 +129,7 @@ namespace Sprites
 
         public void collide()
         {
-            maxFrames = timingFrames * 2;
+            returning = true;
         }
     }
 
@@ -169,148 +140,119 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private int timingFrames = 0;
         private int maxFrames = 1000;
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
 
         // Texture to take sprites from
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
+        private readonly int originalXPosition;
+        private readonly int originalYPosition;
+        private int xPosition;
+        private int yPosition;
+
+        //to track phase of animation
+        private bool returning;
+        private bool returned;
+
+        //for position
+        private Link link;
+
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-        private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
-        {
 
-            Vector2 origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            destinationRectangle.X += destinationRectangle.Width / 2;
-            destinationRectangle.Y += destinationRectangle.Height / 2;
-
-            return origin;
-        }
-        public BoomerangDownSprite(Texture2D texture, float xPosition, float yPosition)
+        public BoomerangDownSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            originalXPosition = (int)xPosition;
+            originalYPosition = (int)yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
+            this.link = link;
 
+            returning = false;
+            returned = false;
+
+            //building source rectangle array
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
         }
         public void Update()
         {
-            if (timingFrames > maxFrames)
+            currFrames += 25;
+            if (currFrames >= maxFrames)
             {
-                currFrames = maxFrames + 20;
+                currFrames = 0;
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
+            }
+
+            if (yPosition < originalYPosition + 100 && !returning)
+            {
+                yPosition += 1;
             }
             else
             {
+                returning = true;
 
-                currFrames += 50;
-                timingFrames += 10;
-
-                if (currFrames >= maxFrames)
+                Vector2 vectorToTarget = link.currentPosition - new Vector2(xPosition, yPosition);
+                if (vectorToTarget.Length() <= 3)
                 {
-                    currFrames = 0;
+                    returned = true;
                 }
-
-                //to change direction of boomerang
-                if (timingFrames <= maxFrames / 2)
+                else
                 {
-                    this.yPosition += 5;
-
-                }
-                else if (timingFrames < maxFrames)
-                {
-                    this.yPosition -= 5;
+                    vectorToTarget.Normalize();
+                    xPosition += (int)(vectorToTarget.X * 2.5);
+                    yPosition += (int)(vectorToTarget.Y * 2.5);
                 }
             }
-
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-            Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-            Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-            Rectangle frame3 = new Rectangle(82, 191, 8, 5);
-            Vector2 origin;
-
-            spriteBatch.Begin();
-            //1
-            if (currFrames >= 0 && currFrames <= maxFrames / 8)
+            if (!returned)
             {
-                sourceRectangle = frame1;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+                destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2);
+                Vector2 origin = new Vector2(currentFrame.Width / 2, currentFrame.Height / 2);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (currentFrameIndex <= 2)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 2 && currentFrameIndex <= 3)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 3 && currentFrameIndex <= 6)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
+                }
+                spriteBatch.End();
             }
-            //2
-            else if (currFrames > maxFrames / 8 && currFrames <= 2 * maxFrames / 8)
-            {
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            }
-            //3
-            else if (currFrames > 2 * maxFrames / 8 && currFrames <= 3 * maxFrames / 8)
-            {
-                sourceRectangle = frame3;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            }
-            //4
-            else if (currFrames > 3 * maxFrames / 8 && currFrames <= 4 * maxFrames / 8)
-            {
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -90, origin, SpriteEffects.None, 0); spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 180, new Vector2(0, 0), SpriteEffects.None, 1);
-
-            }
-            //5
-            else if (currFrames > 4 * maxFrames / 8 && currFrames <= 5 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame1;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //
-            else if (currFrames > 5 * maxFrames / 8 && currFrames <= 6 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //7
-            else if (currFrames > 6 * maxFrames / 8 && currFrames <= 7 * maxFrames / 8)
-            {
-                //reversed
-                sourceRectangle = frame3;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-            }
-            //8
-            else if (currFrames > 7 * maxFrames / 8 && currFrames < maxFrames)
-            {
-                //reversed
-                sourceRectangle = frame2;
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -270, origin, SpriteEffects.None, 0);
-            }
-            // Draw the sprite
-
-            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
@@ -320,332 +262,266 @@ namespace Sprites
 
         public void collide()
         {
-            maxFrames = timingFrames * 2;
+            returning = true;
 
         }
     }
 
-        public class BoomerangRightSprite : ILinkProjectile
-        {
-
-            // Keep track of frames
-            private int currFrames = 0;
-            private int timingFrames = 0;
-            private int maxFrames = 1000;
-
-            // Texture to take sprites from
-            public Texture2D texture;
-
-            // X and Y positions of the sprite
-            public float xPosition;
-            public float yPosition;
-   
-            // On screen location
-            private Rectangle destinationRectangle = new Rectangle();
-            public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
-            private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
-            {
-                Vector2 origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-                destinationRectangle.X += destinationRectangle.Width / 2;
-                destinationRectangle.Y += destinationRectangle.Height / 2;
-                return origin;
-            }
-
-            public BoomerangRightSprite(Texture2D texture, float xPosition, float yPosition)
-            {
-                this.texture = texture;
-                this.xPosition = xPosition;
-                this.yPosition = yPosition;
-            }
-
-        public void Update()
-        {
-            if (timingFrames > maxFrames)
-            {
-                currFrames = maxFrames + 20;
-            }
-            else
-            {
-
-                currFrames += 50;
-                timingFrames += 10;
-
-                if (currFrames >= maxFrames)
-                {
-                    currFrames = 0;
-                }
-
-                //to change direction of boomerang
-                if (timingFrames <= maxFrames / 2)
-                {
-                    this.xPosition += 5;
-
-                }
-                else if (timingFrames < maxFrames)
-                {
-                    this.xPosition -= 5;
-                }
-            }
-
-        }
-
-
-        public void Draw(SpriteBatch spriteBatch)
-            {
-                // Create source and destination rectangles
-                Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4); // Where to draw on screen
-                Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-                Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-                Rectangle frame3 = new Rectangle(82, 191, 8, 5);
-                Vector2 origin;
-
-                spriteBatch.Begin();
-                //1
-                if (currFrames >= 0 && currFrames <= maxFrames / 8)
-                {
-                    sourceRectangle = frame1;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-                }
-                //2
-                else if (currFrames > maxFrames / 8 && currFrames <= 2 * maxFrames / 8)
-                {
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-                }
-                //3
-                else if (currFrames > 2 * maxFrames / 8 && currFrames <= 3 * maxFrames / 8)
-                {
-                    sourceRectangle = frame3;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-                }
-                //4
-                else if (currFrames > 3 * maxFrames / 8 && currFrames <= 4 * maxFrames / 8)
-                {
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -90, origin, SpriteEffects.None, 0); spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 180, new Vector2(0, 0), SpriteEffects.None, 1);
-
-                }
-                //5
-                else if (currFrames > 4 * maxFrames / 8 && currFrames <= 5 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame1;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //
-                else if (currFrames > 5 * maxFrames / 8 && currFrames <= 6 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //7
-                else if (currFrames > 6 * maxFrames / 8 && currFrames <= 7 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame3;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //8
-                else if (currFrames > 7 * maxFrames / 8 && currFrames < maxFrames)
-                {
-                    //reversed
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -270, origin, SpriteEffects.None, 0);
-                }
-                // Draw the sprite
-
-                spriteBatch.End();
-            }
-            public Rectangle GetHitbox()
-            {
-                return this.destinationRectangle;
-            }
-            public void collide()
-            {
-                maxFrames = timingFrames * 2;
-
-        
-            }
-        }
-
-
-    public class BoomerangLeftSprite : ILinkProjectile
+    public class BoomerangRightSprite : ILinkProjectile
     {
 
         // Keep track of frames
         private int currFrames = 0;
-        private int timingFrames = 0;
         private int maxFrames = 1000;
+        private List<Rectangle> sourceRectangles;
+        private int currentFrameIndex;
 
         // Texture to take sprites from
         public Texture2D texture;
 
         // X and Y positions of the sprite
-        public float xPosition;
-        public float yPosition;
-       
+        private readonly int originalXPosition;
+        private readonly int originalYPosition;
+        private int xPosition;
+        private int yPosition;
+
+        //to track phase of animation
+        private bool returning;
+        private bool returned;
+
+        //for position
+        private Link link;
 
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private Vector2 CalculateOrigin(ref Rectangle sourceRectangle, ref Rectangle destinationRectangle)
-        {
 
-            Vector2 origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            destinationRectangle.X += destinationRectangle.Width / 2;
-            destinationRectangle.Y += destinationRectangle.Height / 2;
 
-            return origin;
-        }
-        public BoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition)
+        public BoomerangRightSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
-        }
+            originalXPosition = (int)xPosition;
+            originalYPosition = (int)yPosition;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
+            this.link = link;
 
+            returning = false;
+            returned = false;
+
+            //building source rectangle array
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+            sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+            sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+
+        }
 
         public void Update()
         {
-            if (timingFrames > maxFrames)
+            currFrames += 25;
+            if (currFrames >= maxFrames)
             {
-                currFrames = maxFrames + 20;
+                currFrames = 0;
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
+            }
+
+            if (xPosition < originalXPosition + 100 && !returning)
+            {
+                xPosition += 1;
             }
             else
             {
+                returning = true;
 
-                currFrames += 50;
-                timingFrames += 10;
-
-                if (currFrames >= maxFrames)
+                Vector2 vectorToTarget = link.currentPosition - new Vector2(xPosition, yPosition);
+                if (vectorToTarget.Length() <= 3)
                 {
-                    currFrames = 0;
+                    returned = true;
                 }
-
-                //to change direction of boomerang
-                if (timingFrames <= maxFrames / 2)
+                else
                 {
-                    this.xPosition -= 5;
-
-                }
-                else if (timingFrames < maxFrames)
-                {
-                    this.xPosition += 5;
+                    vectorToTarget.Normalize();
+                    xPosition += (int)(vectorToTarget.X * 2.5);
+                    yPosition += (int)(vectorToTarget.Y * 2.5);
                 }
             }
-
         }
-    
 
 
-            public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (!returned)
             {
-                // Create source and destination rectangles
-                Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4); // Where to draw on screen
-                Rectangle frame1 = new Rectangle(65, 189, 5, 8);
-                Rectangle frame2 = new Rectangle(73, 189, 8, 8);
-                Rectangle frame3 = new Rectangle(82, 191, 8, 5);
-                Vector2 origin;
-
-                spriteBatch.Begin();
-                //1
-                if (currFrames >= 0 && currFrames <= maxFrames / 8)
+                Rectangle currentFrame = sourceRectangles[currentFrameIndex];
+                destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2);
+                Vector2 origin = new Vector2(currentFrame.Width / 2, currentFrame.Height / 2);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (currentFrameIndex <= 2)
                 {
-                    sourceRectangle = frame1;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
                 }
-                //2
-                else if (currFrames > maxFrames / 8 && currFrames <= 2 * maxFrames / 8)
+                else if (currentFrameIndex > 2 && currentFrameIndex <= 3)
                 {
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
                 }
-                //3
-                else if (currFrames > 2 * maxFrames / 8 && currFrames <= 3 * maxFrames / 8)
+                else if (currentFrameIndex > 3 && currentFrameIndex <= 6)
                 {
-                    sourceRectangle = frame3;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
                 }
-                //4
-                else if (currFrames > 3 * maxFrames / 8 && currFrames <= 4 * maxFrames / 8)
+                else
                 {
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -90, origin, SpriteEffects.None, 0); spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 180, new Vector2(0, 0), SpriteEffects.None, 1);
-
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
                 }
-                //5
-                else if (currFrames > 4 * maxFrames / 8 && currFrames <= 5 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame1;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //
-                else if (currFrames > 5 * maxFrames / 8 && currFrames <= 6 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //7
-                else if (currFrames > 6 * maxFrames / 8 && currFrames <= 7 * maxFrames / 8)
-                {
-                    //reversed
-                    sourceRectangle = frame3;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -180, origin, SpriteEffects.None, 0);
-                }
-                //8
-                else if (currFrames > 7 * maxFrames / 8 && currFrames < maxFrames)
-                {
-                    //reversed
-                    sourceRectangle = frame2;
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 4, sourceRectangle.Height * 4);
-                    origin = CalculateOrigin(ref sourceRectangle, ref destinationRectangle);
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, -270, origin, SpriteEffects.None, 0);
-                }
-                // Draw the sprite
-
                 spriteBatch.End();
             }
+        }
+        public Rectangle GetHitbox()
+        {
+            return this.destinationRectangle;
+        }
+        public void collide()
+        {
+            returning = true;
 
-            public Rectangle GetHitbox()
+        }
+    }
+}
+
+
+public class BoomerangLeftSprite : ILinkProjectile
+{ 
+    // Keep track of frames
+    private int currFrames = 0;
+    private int maxFrames = 1000;
+    private List<Rectangle> sourceRectangles;
+    private int currentFrameIndex;
+
+    // Texture to take sprites from
+    public Texture2D texture;
+
+    // X and Y positions of the sprite
+    private readonly int originalXPosition;
+    private readonly int originalYPosition;
+    private int xPosition;
+    private int yPosition;
+
+    //to track phase of animation
+    private bool returning;
+    private bool returned;
+
+    //for position
+    private Link link;
+
+    // On screen location
+    private Rectangle destinationRectangle = new Rectangle();
+    public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
+
+    public BoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition, Link link)
+    {
+        this.texture = texture;
+        originalXPosition = (int)xPosition;
+        originalYPosition = (int)yPosition;
+        this.xPosition = (int)xPosition;
+        this.yPosition = (int)yPosition;
+        this.link = link;
+
+        returning = false;
+        returned = false;
+        
+        //building source rectangle array
+        sourceRectangles = new();
+        sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+        sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+        sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+        sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+        sourceRectangles.Add(new Rectangle(65, 189, 5, 8));
+        sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+        sourceRectangles.Add(new Rectangle(82, 191, 8, 5));
+        sourceRectangles.Add(new Rectangle(73, 189, 8, 8));
+    }
+    public void Update()
+    {
+        currFrames += 25;
+        if (currFrames >= maxFrames)
+        {
+            currFrames = 0;
+        }
+        for (int i = 0; i<8; i++)
+        {
+            if(currFrames>i*maxFrames/8 && currFrames <= (i + 1) * maxFrames / 8)
             {
-                return this.destinationRectangle;
+                currentFrameIndex = i;
             }
-
-            public void collide()
+        }
+        if (xPosition > originalXPosition - 100 && !returning)
+        {
+            xPosition -= 1;
+        }
+        else
+        {
+            returning = true;
+            Vector2 vectorToTarget = link.currentPosition - new Vector2(xPosition, yPosition);
+            if (vectorToTarget.Length() <= 3)
             {
-                maxFrames = timingFrames * 2;
-
+                returned = true;
+            }
+            else
+            {
+                vectorToTarget.Normalize();
+                xPosition += (int)(vectorToTarget.X * 2.5);
+                yPosition += (int)(vectorToTarget.Y * 2.5);
             }
         }
     }
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        if (!returned)
+        {
+            Rectangle currentFrame = sourceRectangles[currentFrameIndex]; 
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2);
+            Vector2 origin = new Vector2(currentFrame.Width / 2, currentFrame.Height / 2);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            if (currentFrameIndex <= 2)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
+            }
+            else if(currentFrameIndex>2 && currentFrameIndex <=3)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
+            }
+            else if(currentFrameIndex>3 && currentFrameIndex <=6)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
+            }
+            spriteBatch.End();
+        }
+    }
+    public Rectangle GetHitbox()
+    {
+        return this.destinationRectangle;
+    }
+
+    public void collide()
+    {
+        returning = true;
+    }
+}
+
+
 

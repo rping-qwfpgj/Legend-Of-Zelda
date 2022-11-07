@@ -144,12 +144,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:oldman.png
-
 #begin throw_projectile.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:throw_projectile.wav
+#begin doors.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:doors.png
 
 #begin Times New Roman.spritefont
 /importer:FontDescriptionImporter

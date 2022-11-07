@@ -35,7 +35,7 @@ namespace LegendofZelda
             }
         }
 
-        public void Update()
+        public void Update() 
         {
             List<ISprite> copy = new List<ISprite>(this.sprites);
             List<ISprite> toAdd = new();

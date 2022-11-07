@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using static Sprint0.Link;
 using Sprites;
 using LegendofZelda.Interfaces;
+using Sprint0;
 
 namespace LegendofZelda.SpriteFactories
 {
     public class ProjectileSpriteFactory : ISpriteFactory
     {
-
         private Texture2D spriteSheet;
         private readonly static ProjectileSpriteFactory instance = new();
 
@@ -29,15 +29,15 @@ namespace LegendofZelda.SpriteFactories
             spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
         }
 
-        public ISprite CreateThrowableUp(Vector2 linkPosition, Throwables throwable)
+        public ISprite CreateThrowableUp(Vector2 linkPosition, Throwables throwable, Link link)
         {
             switch (throwable)
             {
                 case Throwables.BlueBoomerang:
-                    return new BlueBoomerangUpSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BlueBoomerangUpSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.Boomerang:
-                    return new BoomerangUpSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BoomerangUpSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.BlueArrow:
                     return new BlueArrowUpSprite(spriteSheet, linkPosition.X, linkPosition.Y);
@@ -60,15 +60,15 @@ namespace LegendofZelda.SpriteFactories
 
         }
 
-        public ISprite CreateThrowableDown(Vector2 linkPosition, Throwables throwable)
+        public ISprite CreateThrowableDown(Vector2 linkPosition, Throwables throwable, Link link)
         {
             switch (throwable)
             {
                 case Throwables.BlueBoomerang:
-                    return new BlueBoomerangDownSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BlueBoomerangDownSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.Boomerang:
-                    return new BoomerangDownSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BoomerangDownSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.BlueArrow:
                     return new BlueArrowDownSprite(spriteSheet, linkPosition.X, linkPosition.Y);
@@ -91,15 +91,15 @@ namespace LegendofZelda.SpriteFactories
 
         }
 
-        public ISprite CreateThrowableRight(Vector2 linkPosition, Throwables throwable)
+        public ISprite CreateThrowableRight(Vector2 linkPosition, Throwables throwable, Link link)
         {
             switch (throwable)
             {
                 case Throwables.BlueBoomerang:
-                    return new BlueBoomerangRightSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BlueBoomerangRightSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.Boomerang:
-                    return new BoomerangRightSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BoomerangRightSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.BlueArrow:
                     return new BlueArrowRightSprite(spriteSheet, linkPosition.X, linkPosition.Y);
@@ -121,15 +121,15 @@ namespace LegendofZelda.SpriteFactories
             }
         }
 
-        public ISprite CreateThrowableLeft(Vector2 linkPosition, Throwables throwable)
+        public ISprite CreateThrowableLeft(Vector2 linkPosition, Throwables throwable, Link link)
         {
             switch (throwable)
             {
                 case Throwables.BlueBoomerang:
-                    return new BlueBoomerangLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BlueBoomerangLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.Boomerang:
-                    return new BoomerangLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+                    return new BoomerangLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y, link);
 
                 case Throwables.BlueArrow:
                     return new BlueArrowLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y);

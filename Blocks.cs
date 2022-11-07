@@ -37,7 +37,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -75,7 +75,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -113,7 +113,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -151,7 +151,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -188,7 +188,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -226,7 +226,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -264,7 +264,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -302,7 +302,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -340,7 +340,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -378,7 +378,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -413,7 +413,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
@@ -451,7 +451,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White*0.00f);
             _spriteBatch.End();
         }
@@ -489,8 +489,8 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White*0.00f);
             _spriteBatch.End();
         }
 
@@ -529,7 +529,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
@@ -567,7 +567,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
@@ -605,7 +605,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
@@ -616,6 +616,192 @@ namespace Sprint0
         }
 
     }
+
+    public class DepthPushableBlock: IPushableBlock
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int sourceWidth = 16;
+        private int sourceHeight = 16;
+        private int destinationWidth = 50;
+        private int destinationHeight = 44;
+
+        public DepthPushableBlock(Texture2D blockTexture, int x, int y)
+        {
+            this.texture = blockTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.sourceRectangle = new Rectangle(20, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+        }
+
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+
+        public void Move(string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    this.yPos += 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "bottom":
+                    this.yPos -= 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "left":
+                    this.xPos += 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                case "right":
+                    this.xPos -= 2;
+                    this.destinationRectangle = new(this.xPos, this.yPos, destinationWidth, destinationHeight);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public class LockedDoorBlock : IBlock
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private static int sourceWidth = 32;
+        private static int sourceHeight = 22;
+        private Rectangle[] sourceRectangles = {new Rectangle(103, 21, 32, 22), new Rectangle(115, 44, 22, 31), new Rectangle(103, 77, 22, 32), new Rectangle(103, 110, 32, 22)};
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int direction;
+        private int xPos;
+        private int yPos;
+        private int destinationWidth = sourceWidth * 3;
+        private int destinationHeight = sourceHeight * 3;
+
+        public LockedDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+        {
+            this.texture = doorTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.direction = direction;
+            // for source rectangles 0 = top, 1 = left, 2 = right, 3 = bottom
+            this.sourceRectangle = sourceRectangles[direction];
+
+            if(direction == 0 || direction == 3)
+              this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+            else
+              this.destinationRectangle = new Rectangle(xPos, yPos, destinationHeight, destinationWidth);
+        }
+        public void Update()
+        {
+        
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+        public String getSide()
+        {
+            switch (this.direction) { 
+                case 0:
+                    return "top";
+                case 1:
+                    return "left";
+                case 2: 
+                    return "right";
+                case 3:
+                     return "bottom";
+                default:
+                     return "INVALID DIRECTION NUM PASSED";
+            
+            }
+        }
+
+    }
+
+        public class PuzzleDoorBlock : IBlock
+        {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private static int sourceWidth = 30;
+        private static int sourceHeight = 18;
+        private Rectangle[] sourceRectangles = {new Rectangle(136, 25, 32, 18), new Rectangle(150, 44, 18, 32), new Rectangle(136, 77, 18, 32), new Rectangle(136, 110, 32, 18)};
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int direction;
+        private int xPos;
+        private int yPos;
+        private int destinationWidth = sourceWidth * 3;
+        private int destinationHeight = sourceHeight * 3;
+
+     public PuzzleDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+     {
+            this.texture = doorTexture;
+            this.xPos = x;
+            this.yPos = y;
+            this.direction = direction;
+            // for source rectangles 0 = top, 1 = left, 2 = right, 3 = bottom
+            this.sourceRectangle = sourceRectangles[direction];
+
+            if(direction == 0 || direction == 3)
+              this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+            else
+              this.destinationRectangle = new Rectangle(xPos, yPos, destinationHeight, destinationWidth);
+        }
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+        public String getSide()
+        {
+            switch (this.direction) { 
+                case 0:
+                    return "top";
+                case 1:
+                    return "left";
+                case 2: 
+                    return "right";
+                case 3:
+                     return "bottom";
+                default:
+                     return "INVALID DIRECTION NUM PASSED";
+            }
+        }
+    }
+
 
 }
 

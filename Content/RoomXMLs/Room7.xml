@@ -67,6 +67,13 @@
 			<Location>400 216</Location>
 		</Item>
 
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
+	
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

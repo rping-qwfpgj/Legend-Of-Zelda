@@ -23,8 +23,7 @@ namespace Collision
 			if(link.currentLinkSprite is IAttackingSprite)
 			{
                 IAttackingSprite currLinkSprite = (IAttackingSprite)link.currentLinkSprite;
-                if (currLinkSprite.isAttacking() && link.currentState.Direction() == side )
-                { 
+                
                      side = reverseSide(side);
                      enemy.TakeDamage(side);
                      
@@ -37,7 +36,7 @@ namespace Collision
 					 * if enemy.health <= 0
 					 * game/room.remove(enemy)
 					 */
-                }
+                
             } else
 			{
 				link.TakeDamage(side);
@@ -57,19 +56,19 @@ namespace Collision
             {
                  case "top":
                       return "bottom";
-                      break;
+                      
                  case "bottom":
                       return "top";
-                      break;
+                      
                  case "left":
                       return "right";
-                      break;
+                      
                  case "right":
                       return "left";
-                      break;
+                      
                  default:
                       return "error no cases chosen";
-                      break;
+                      
             }
 		}
 
