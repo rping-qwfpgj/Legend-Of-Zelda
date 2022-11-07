@@ -51,6 +51,12 @@
 			<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 			<Location>700 264</Location>
 		</Item>
+	<!-- Items-->
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Key</ObjectName>
+		<Location>200 200</Location>
+	</Item>
 	
 		
 </XnaContent>

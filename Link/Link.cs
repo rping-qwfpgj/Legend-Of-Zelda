@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using LegendofZelda;
 
 namespace Sprint0
-{
+{// im gonna get rid of the magic numbers
     public class Link
     {
         public enum Throwables

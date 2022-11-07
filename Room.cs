@@ -30,7 +30,7 @@ namespace LegendofZelda
             }
         }
 
-        public void Update()
+        public void Update() 
         {
            foreach (var sprite in sprites)
             {

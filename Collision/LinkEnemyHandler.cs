@@ -50,19 +50,19 @@ namespace Collision
             {
                  case "top":
                       return "bottom";
-                      break;
+                      
                  case "bottom":
                       return "top";
-                      break;
+                      
                  case "left":
                       return "right";
-                      break;
+                      
                  case "right":
                       return "left";
-                      break;
+                      
                  default:
                       return "error no cases chosen";
-                      break;
+                      
             }
 		}
 

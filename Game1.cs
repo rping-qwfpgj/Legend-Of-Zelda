@@ -31,6 +31,7 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
+    public Texture2D doorSpriteSheet;
     private Link link;
     public List<Room> rooms;
     public Room currentRoom;
@@ -98,7 +99,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
        
-        currentRoomIndex = 0;
+        currentRoomIndex = 1;
         currentRoom = rooms[currentRoomIndex];
         link = new Link(new Vector2(400, 240), _graphics, this);
 

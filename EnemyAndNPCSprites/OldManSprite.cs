@@ -18,15 +18,20 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
+        private SpriteFont font;
+        private String message = "EASTMOST PENNINSULA IS THE SECRET .";
+        private int messageOffsetX = 180;
+        private int messageOffsetY = 35;
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
-        public OldManSprite(Texture2D texture, float xPosition, float yPosition)
+        public OldManSprite(Texture2D texture, float xPosition, float yPosition, SpriteFont font)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.font = font;
         }
 
         public void Update()
@@ -42,6 +47,7 @@ namespace Sprites
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.DrawString(this.font, this.message, new Vector2(this.xPosition - messageOffsetX , this.yPosition - messageOffsetY), Color.White);
             spriteBatch.End();
         }
 
