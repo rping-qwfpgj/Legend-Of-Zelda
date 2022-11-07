@@ -8,7 +8,7 @@ using Interfaces;
 
 namespace LegendofZelda
 {
-    internal class Graph
+    public class Graph
     {
        
         private List<Tuple<int, int>> leftRightAdj;
@@ -30,7 +30,7 @@ namespace LegendofZelda
 
         }
 
-        public void AddUpDownEdge(int room1, int room2)
+        public void AddDownUpEdge(int room1, int room2)
         {
 
             upDownAdj.Add(new Tuple<int, int>(room1, room2));
@@ -86,7 +86,6 @@ namespace LegendofZelda
                 if (tuple.Item1 == currentRoomIndex)
                 {
                     returner = tuple.Item2;
-
                 }
 
             }
