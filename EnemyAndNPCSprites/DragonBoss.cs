@@ -143,6 +143,40 @@ namespace Sprites
 
 
             }
+            else
+            {
+                spriteBatch.Begin();
+                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
+                if (deathFrames >= 0 && deathFrames <= 5)
+                {
+                    dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
+
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    dragonSourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    dragonSourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    dragonSourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
+
+                spriteBatch.End();
+            }
         }
 
             public Rectangle GetHitbox()

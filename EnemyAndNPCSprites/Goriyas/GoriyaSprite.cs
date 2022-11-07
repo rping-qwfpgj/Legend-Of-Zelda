@@ -58,7 +58,7 @@ namespace Sprites
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
 
-
+            spriteBatch.End();
             
         }
 
@@ -151,8 +151,8 @@ namespace Sprites
             {
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
+            spriteBatch.End();
 
-            
         }
 
         public Rectangle GetHitbox()
@@ -242,7 +242,7 @@ namespace Sprites
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
@@ -338,7 +338,7 @@ namespace Sprites
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            
+            spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
@@ -441,7 +441,7 @@ namespace Sprites
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
             
-            
+            spriteBatch.End();
             
 
 
@@ -551,8 +551,8 @@ namespace Sprites
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-            
-           
+
+            spriteBatch.End();
 
 
         }
@@ -655,7 +655,7 @@ namespace Sprites
 
             }
 
-            
+            spriteBatch.End();
 
 
         }
@@ -756,8 +756,8 @@ namespace Sprites
 
             }
 
+            spriteBatch.End();
 
-            
 
         }
 

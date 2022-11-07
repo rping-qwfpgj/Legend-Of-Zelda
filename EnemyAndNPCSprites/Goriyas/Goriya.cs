@@ -73,10 +73,10 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             currentGoriya.Draw(spriteBatch);
             //currentBoomerang.Draw(spriteBatch);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
 
         public Rectangle GetHitbox()
