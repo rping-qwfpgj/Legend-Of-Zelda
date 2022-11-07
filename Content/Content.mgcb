@@ -13,12 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../Downloads/enemy_hit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:../../../../Downloads/enemy_hit.wav;enemy_hit.wav
-
 #begin allbackgrounds.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,6 +78,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:enemy_death.png
+
+#begin enemy_hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:enemy_hit.wav
 
 #begin hee_hee.wav
 /importer:WavImporter

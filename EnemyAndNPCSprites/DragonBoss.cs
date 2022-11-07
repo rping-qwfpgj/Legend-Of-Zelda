@@ -17,6 +17,8 @@ namespace Sprites
         private int maxFrames = 2000;
         private int deathFrames = 0;
         private int health = 3;
+        private bool isDamaged = false;
+        private int damagedCounter = 0;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -61,6 +63,15 @@ namespace Sprites
         {
             if (!isDead)
             {
+                if (isDamaged)
+                {
+                    damagedCounter++;
+                    if (damagedCounter > 60)
+                    {
+                        isDamaged = false;
+                        damagedCounter = 0;
+                    }
+                }
                 // Go the other direction halfway through
                 if (currFrames == maxFrames / 2)
                 {
@@ -120,8 +131,14 @@ namespace Sprites
                     dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
                 }
                 spriteBatch.Begin();
+                if (isDamaged)
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
+                } else
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
 
-                spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
                 spriteBatch.End();
                 
             }
@@ -190,6 +207,7 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             enemyHit.Play();
+            this.isDamaged = true;
             this.health -= 1;
             if (this.health <= 0)
             {
