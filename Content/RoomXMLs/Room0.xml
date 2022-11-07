@@ -71,7 +71,12 @@
 			<ObjectName>StatueTwoBlock</ObjectName>
 			<Location>600 306</Location>
 		</Item>
-
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockTop</ObjectName>
+			<Location>175 30</Location>
+		</Item>
 		<!--  Bounding  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

@@ -679,6 +679,47 @@ namespace Sprint0
             }
         }
     }
+    public class LockedDoorBlock : IBlock
+    {
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private static int sourceWidth = 32;
+        private static int sourceHeight = 32;
+        private Rectangle[] sourceRectangles = {new Rectangle(103, 11, sourceWidth, sourceHeight), new Rectangle(103, 44, sourceWidth, sourceHeight), new Rectangle(103, 77, sourceWidth, sourceHeight), new Rectangle(103, 110, sourceWidth, sourceHeight)};
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private int xPos;
+        private int yPos;
+        private int destinationWidth = sourceWidth * 4;
+        private int destinationHeight = sourceHeight * 4;
+
+        public LockedDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+        {
+            this.texture = doorTexture;
+            this.xPos = x;
+            this.yPos = y;
+            // for source rectangles 0 = top, 1 = left, 2 = right, 3 = bottom
+            this.sourceRectangle = sourceRectangles[direction];
+            this.destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+        }
+        public void Update()
+        {
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+
+    }
+
+
 
 }
 

@@ -12,6 +12,7 @@ namespace LegendofZelda.SpriteFactories
     {
 
         private Texture2D spriteSheet;
+        private Texture2D doorSpriteSheet;
         private readonly static BlockSpriteFactory instance = new();
 
         public static BlockSpriteFactory Instance
@@ -28,6 +29,7 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("blocks");
+            doorSpriteSheet = content.Load<Texture2D>("doors");
         }
 
         public ISprite CreateBlock(Vector2 location, string name)
@@ -92,6 +94,22 @@ namespace LegendofZelda.SpriteFactories
                 case "DepthPushableBlock":
 
                     return new DepthPushableBlock(spriteSheet, (int)location.X,(int)location.Y + inventoryHeight);
+
+                case "LockedDoorBlockTop":
+
+                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                
+                case "LockedDoorBlockLeft":
+
+                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+
+                case "LockedDoorBlockRight":
+
+                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+
+                case "LockedDoorBlockBottom":
+
+                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
 
                 default:
 
