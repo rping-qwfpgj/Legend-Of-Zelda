@@ -37,6 +37,7 @@ namespace LegendofZelda
         public void Update()
         {
             List<ISprite> copy = new List<ISprite>(this.sprites);
+            List<ISprite> toAdd = new();
             foreach (var sprite in copy)
             {
                 DealWithEnemies(sprite);
@@ -46,6 +47,10 @@ namespace LegendofZelda
                     toAdd = dragonBoss.getEnemyProjectiles();
                 }
                 sprite.Update();
+            }
+            if (toAdd.Count > 0)
+            {
+                this.sprites.AddRange(toAdd);
             }
             
 

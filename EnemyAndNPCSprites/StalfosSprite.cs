@@ -36,7 +36,7 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        private int deathFrames = 0;
+        
         //private bool movingHorizontally = true;
         //private bool movingVertically = false;
 

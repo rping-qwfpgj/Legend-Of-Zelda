@@ -507,6 +507,11 @@ namespace Sprites
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
 
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+
         // Texture to take sprites from
         private Texture2D texture;
 

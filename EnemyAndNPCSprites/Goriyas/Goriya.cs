@@ -11,8 +11,11 @@ namespace Sprites
     {
         private IEnemy currentGoriya;
         private IEnemyProjectile currentBoomerang;
-        
-        
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+
         private enum GoriyaActions { MovingUp, MovingDown, MovingRight, MovingLeft, ThrowingUp, ThrowingRight,
             ThrowingLeft, ThrowingDown };
 
@@ -153,6 +156,16 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             currentGoriya.TakeDamage(side);
+        }
+
+        public ISprite DropItem()
+        {
+            return null;
+        }
+
+        public void Die()
+        {
+
         }
     }
 }
