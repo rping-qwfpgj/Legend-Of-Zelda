@@ -79,7 +79,6 @@ public class Game1 : Game
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
         HudSpriteFactory.Instance.loadContent(Content);
-        HudSpriteFactory.Instance.initGraphics(this._graphics);
 
        
         

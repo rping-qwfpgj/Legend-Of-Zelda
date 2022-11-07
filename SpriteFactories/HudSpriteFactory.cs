@@ -13,7 +13,6 @@ namespace LegendofZelda.SpriteFactories
 
         private Texture2D spriteSheet;
         private readonly static HudSpriteFactory instance = new();
-        private GraphicsDeviceManager graphics;
 
         public static HudSpriteFactory Instance
         {
@@ -26,10 +25,6 @@ namespace LegendofZelda.SpriteFactories
         {
         }
 
-        public void initGraphics(GraphicsDeviceManager graphics)
-        {
-            this.graphics = graphics;
-        }
 
         public void loadContent(ContentManager content)
         {
@@ -42,7 +37,7 @@ namespace LegendofZelda.SpriteFactories
             switch (name)
             {
                 case "Hud":
-                    return new HudSprite(spriteSheet, this.graphics);
+                    return new HudSprite(spriteSheet);
 
                 case "Background1":
 
