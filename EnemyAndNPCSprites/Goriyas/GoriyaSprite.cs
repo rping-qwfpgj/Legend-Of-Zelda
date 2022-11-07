@@ -57,6 +57,8 @@ namespace Sprites
             
         }
 
+
+
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;

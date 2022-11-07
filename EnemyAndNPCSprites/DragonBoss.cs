@@ -55,6 +55,9 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
+                this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+                this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+                this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
             }
             else
             {
@@ -65,9 +68,9 @@ namespace Sprites
             this.xPosition += 2 * direction;
 
             // Update the orbs
-            this.topAttackOrb.Update();
-            this.middleAttackOrb.Update();
-            this.bottomAttackOrb.Update();
+            //this.topAttackOrb.Update();
+            //this.middleAttackOrb.Update();
+            //this.bottomAttackOrb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -76,7 +79,7 @@ namespace Sprites
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
             
 
-            this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+            this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 72, 98);
 
             if (currFrames >= 0 && currFrames < 500)
             {
@@ -100,9 +103,9 @@ namespace Sprites
 
             spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
             spriteBatch.End();
-            this.topAttackOrb.Draw(spriteBatch);
-            this.middleAttackOrb.Draw(spriteBatch);
-            this.bottomAttackOrb.Draw(spriteBatch);
+            //this.topAttackOrb.Draw(spriteBatch);
+            //this.middleAttackOrb.Draw(spriteBatch);
+            //this.bottomAttackOrb.Draw(spriteBatch);
            
             //spriteBatch.End();
             
@@ -119,6 +122,17 @@ namespace Sprites
        {
 
        }
+
+       // Allows other things in the game to get the projectiles
+       public List<ISprite> getEnemyProjectiles()
+        {
+            // Make a list to return
+            List<ISprite> projectileList = new List<ISprite>{topAttackOrb, middleAttackOrb, bottomAttackOrb};
+            return projectileList;
+        
+        }
+
+        
 
        public void TakeDamage(string side)
        {
@@ -172,20 +186,23 @@ namespace Sprites
         }
         public void Update()
         {
-            // Updated frames in the exact way the dragon is
+            /* Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
-                currFrames = 0;
-                this.xPosition = this.originalX;
+                //currFrames = 0;
+                //this.xPosition = this.originalX;
                 this.yPosition = this.originalY;
             }
             else
             {
                 currFrames += 10;
             }
-
+            */
             // Update current orb
-            ++this.currOrb;
+            currFrames +=10;
+            if(currFrames % 500 == 0) { 
+                ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -200,17 +217,25 @@ namespace Sprites
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) { 
+                spriteBatch.Begin();
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
+        }
+
+        public void collide()
+        {
+           this.currFrames = maxFrames;
+           
         }
 
     }
@@ -261,6 +286,7 @@ namespace Sprites
         }
         public void Update()
         {
+            /*
             // Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
@@ -272,9 +298,12 @@ namespace Sprites
             {
                 currFrames += 10;
             }
-
+            */
             // Update current orb
-            ++this.currOrb;
+            currFrames+=10;
+            if(currFrames % 10 == 0) { 
+                ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -291,15 +320,22 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) { 
+                spriteBatch.Begin();
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
+        }
+
+        public void collide()
+        {
+            this.currFrames = maxFrames;
         }
 
     }
@@ -350,7 +386,7 @@ namespace Sprites
         }
         public void Update()
         {
-            // Updated frames in the exact way the dragon is
+            /* Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
@@ -361,9 +397,12 @@ namespace Sprites
             {
                 currFrames += 10;
             }
-
+            */
+            currFrames += 10;
             // Update current orb
+            if(currFrames % 10 == 0) { 
             ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -380,9 +419,11 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) { 
+                spriteBatch.Begin();
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -394,6 +435,11 @@ namespace Sprites
         public void TakeDamage(string side)
         {
 
+        }
+
+        public void collide()
+        {
+            this.currFrames = maxFrames;
         }
 
     }
