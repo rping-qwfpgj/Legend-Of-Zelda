@@ -38,19 +38,42 @@ namespace LegendofZelda
         {
             List<ISprite> copy = new List<ISprite>(this.sprites);
             List<ISprite> toAdd = new();
+            List<ISprite> toRemove = new();
+            
             foreach (var sprite in copy)
             {
                 DealWithEnemies(sprite);
                 if (sprite is DragonBossSprite)
                 {
                     DragonBossSprite dragonBoss = sprite as DragonBossSprite;
-                    toAdd = dragonBoss.getEnemyProjectiles();
-                }
+                    toAdd.AddRange(dragonBoss.getEnemyProjectiles());
+                } else if (sprite is GoriyaSprite)
+                {
+                    GoriyaSprite goriya = sprite as GoriyaSprite;
+                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
+
+                    if(currBoomerang.keepThrowing)
+                    {
+                        toAdd.Add(currBoomerang);
+                    } else
+                    {
+                        toRemove.Add(currBoomerang);
+                    }
+                    
+                        
+                    
+                } 
+
                 sprite.Update();
             }
             if (toAdd.Count > 0)
             {
                 this.sprites.AddRange(toAdd);
+            }
+
+            foreach (ISprite sprite in toRemove)
+            {
+                this.sprites.Remove(sprite);
             }
             
 
