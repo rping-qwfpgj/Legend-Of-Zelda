@@ -167,6 +167,7 @@ namespace Sprint0
                     case "left":
                         this.currentPosition.X += knockbackDistance;
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        
                         break;
                     case "right":
                         this.currentPosition.X -= knockbackDistance;
