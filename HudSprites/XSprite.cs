@@ -10,25 +10,27 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class HudSprite : ISprite
+    public class XSprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int width = 255;
-        private readonly int height = 56;
-
-
-        public HudSprite(Texture2D texture)
+        private readonly int width = 8;
+        private readonly int height = 8;
+        private int xPos = 354;
+        private int yPos = 27;
+        
+        public XSprite(Texture2D texture)
         {
             this.texture = texture;
-            this.sourceRectangle = new(259, 11, width, height);
-            this.destinationRectangle = new(18, -20, width*3, height*3);
+            this.sourceRectangle = new(519, 117, width, height);
+            this.destinationRectangle = new(xPos, yPos, width, height);
         }
 
         public void Update()
         {
+            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

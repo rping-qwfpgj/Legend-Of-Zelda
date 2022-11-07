@@ -31,13 +31,12 @@ namespace LegendofZelda.SpriteFactories
             spriteSheet = content.Load<Texture2D>("gamestates");
         }
 
-        public ISprite CreateBackground(string name)
+        public ISprite CreateSprite(string name)
         {
-
             switch (name)
             {
-                case "Hud":
-                    return new HudSprite(spriteSheet);
+                case "hudBackground":
+                    return new HudBackgroundSprite(spriteSheet);
 
                 case "Background1":
 
