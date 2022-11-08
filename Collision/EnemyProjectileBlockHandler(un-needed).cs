@@ -7,6 +7,7 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Collision
 {
@@ -17,10 +18,13 @@ namespace Collision
 			
 		}
 
-		public static void handleCollision(IEnemyProjectile projectile, IBlock block, string side)
+		public static void handleCollision(IEnemyProjectile projectile, IBlock block, string side, Room room)
 		{
-			// have the projectile set it's currFrame to its last frame of animation
-			//projectile.collide();
+			//have the projectile set it's currFrame to its last frame of animation
+			//Debug.WriteLine("Collision detected/n");
+			projectile.collide();
+			room.removeObject(projectile);
+			
 		}        
 	}
 }

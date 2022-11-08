@@ -4,6 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Sprites;
+using Microsoft.VisualBasic.Devices;
+using LegendofZelda.SpriteFactories;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LegendofZelda
 {
@@ -23,19 +27,56 @@ namespace LegendofZelda
             background.Draw(spriteBatch);
             foreach (var sprite in sprites)
             {
-                // If the object is not link, then don't draw him, will cause multiple links
+                //If the object is link , then don't draw it, will cause duplicates otherwise
                 if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
                     sprite.Draw(spriteBatch);
                 }
+                
             }
         }
 
         public void Update() 
         {
-           foreach (var sprite in sprites)
+            List<ISprite> copy = new List<ISprite>(this.sprites);
+            List<ISprite> toAdd = new();
+            List<ISprite> toRemove = new();
+            
+            foreach (var sprite in copy)
             {
+                DealWithEnemies(sprite);
+                if (sprite is DragonBossSprite)
+                {
+                    DragonBossSprite dragonBoss = sprite as DragonBossSprite;
+                    toAdd.AddRange(dragonBoss.getEnemyProjectiles());
+                } else if (sprite is GoriyaSprite)
+                {
+                    GoriyaSprite goriya = sprite as GoriyaSprite;
+                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
+
+                    if(currBoomerang.keepThrowing)
+                    {
+                        toAdd.Add(currBoomerang);
+                    } else
+                    {
+                        toRemove.Add(currBoomerang);
+                    }
+                    
+                        
+                    
+                } 
+
                 sprite.Update();
             }
+            if (toAdd.Count > 0)
+            {
+                this.sprites.AddRange(toAdd);
+            }
+
+            foreach (ISprite sprite in toRemove)
+            {
+                this.sprites.Remove(sprite);
+            }
+            
 
         }
 
@@ -50,10 +91,42 @@ namespace LegendofZelda
             sprites.Remove(sprite);
         }
 
-        public void AddObject(ISprite sprite)
+       public void AddObject(ISprite sprite)
         {
+            
             sprites.Add(sprite);
         }
 
+        public void DealWithEnemies(ISprite sprite)
+        {
+            List<ISprite> toRemove = new();
+            List<ISprite> toAdd = new();
+            if (sprite is IEnemy)
+            {
+                IEnemy enemy = sprite as IEnemy;
+                if (enemy.DyingComplete == true)
+                {
+                    toRemove.Add(sprite);
+                    ISprite item = enemy.DropItem();
+                    if (item != null)
+                    {
+                        SoundFactory.Instance.CreateSoundEffect("ItemDrop").Play();
+                        toAdd.Add(item);
+
+                    }
+                }
+
+            }
+            foreach (var spr in toRemove)
+            {
+                this.removeObject(spr);
+
+            }
+            foreach (var spr in toAdd)
+            {
+                this.AddObject(spr);
+
+            }
+        }
     }
 }
