@@ -55,6 +55,18 @@
 /processorParam:Quality=Best
 /build:coconut_mall_mp3.mp3
 
+#begin doors.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:doors.png
+
 #begin enemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,6 +96,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:enemy_hit.wav
+
+#begin gamestates.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gamestates.png
 
 #begin hee_hee.wav
 /importer:WavImporter
@@ -144,22 +168,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:oldman.png
+
 #begin throw_projectile.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:throw_projectile.wav
-#begin doors.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:doors.png
 
 #begin Times New Roman.spritefont
 /importer:FontDescriptionImporter
