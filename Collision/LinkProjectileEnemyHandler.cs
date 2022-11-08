@@ -7,6 +7,8 @@ using Sprint0;
 using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
@@ -19,11 +21,7 @@ namespace Collision
             projectile.collide();
             room.removeObject(projectile);
             enemy.TakeDamage(side);
-            /*
-			 * for future:
-			 * if enemy.health <= 0
-			 * game/room.remove(enemy)
-			 */
+            
 
         }
 

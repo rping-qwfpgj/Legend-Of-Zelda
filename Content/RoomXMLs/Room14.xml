@@ -8,6 +8,13 @@
 			<Location>0 0</Location>
 		</Item>
 
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockTop</ObjectName>
+			<Location>352 22</Location>
+		</Item>
+		
 		<!--  Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

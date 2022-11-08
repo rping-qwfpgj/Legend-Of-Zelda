@@ -10,13 +10,14 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
     public static class LinkEnemyHandler
 	{		
 
-		public static void handleCollision(Link link, IEnemy enemy, string side)
+		public static void handleCollision(Link link, IEnemy enemy, string side, Room room)
 		{
 			
 			if(link.currentLinkSprite is IAttackingSprite)
@@ -25,6 +26,11 @@ namespace Collision
                 
                      side = reverseSide(side);
                      enemy.TakeDamage(side);
+                     
+                    
+                    /*
+                     
+                    */
                     /*
 					 * for future:
 					 * if enemy.health <= 0
@@ -50,19 +56,19 @@ namespace Collision
             {
                  case "top":
                       return "bottom";
-                      break;
+                      
                  case "bottom":
                       return "top";
-                      break;
+                      
                  case "left":
                       return "right";
-                      break;
+                      
                  case "right":
                       return "left";
-                      break;
+                      
                  default:
                       return "error no cases chosen";
-                      break;
+                      
             }
 		}
 

@@ -3,17 +3,27 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework.Audio;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
     public class DragonBossSprite : IEnemy
     {
+        private List<string> droppableItems = new List<string> { "Fairy", "BigHeart", "PurpleGemstone", "OrangeGemstone" };
+
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
+        private int deathFrames = 0;
+        private int health = 3;
+        private bool isDamaged = false;
+        private int damagedCounter = 0;
 
         // Texture to take sprites from
         private Texture2D texture;
+        private Texture2D dyingTexture;
+        private SoundEffect enemyHit;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -22,6 +32,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
+        private bool isDead = false;
+        public bool IsDead { get => isDead; set => isDead = value; }
+        private bool dyingComplete = false;
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // On screen location
         Rectangle dragonDestinationRectangle;
@@ -32,11 +46,13 @@ namespace Sprites
         private MiddleDragonAttackOrbSprite middleAttackOrb;
         private BottomDragonAttackOrbSprite bottomAttackOrb;
         
-        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition)
+        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
+            this.enemyHit = sound;
+            this.dyingTexture = texture2;
 
             this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
             this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
@@ -45,77 +61,174 @@ namespace Sprites
 
         public void Update()
         {
-            // Go the other direction halfway through
-            if (currFrames == maxFrames / 2)
+            if (!isDead)
             {
-                direction *= -1;
+                if (isDamaged)
+                {
+                    damagedCounter++;
+                    if (damagedCounter > 60)
+                    {
+                        isDamaged = false;
+                        damagedCounter = 0;
+                    }
+                }
+                // Go the other direction halfway through
+                if (currFrames == maxFrames / 2)
+                {
+                    direction *= -1;
+                }
+
+                // Reset motion if at max
+                if (currFrames == maxFrames)
+                {
+                    currFrames = 0;
+                    this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+                    this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+                    this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
+                }
+                else
+                {
+                    currFrames += 10;
+                }
+
+                // Update the x position
+                this.xPosition += 2 * direction;
+            } else
+            {
+                deathFrames++;
             }
 
-            // Reset motion if at max
-            if (currFrames == maxFrames)
-            {
-                currFrames = 0;
-            }
-            else
-            {
-                currFrames += 10;
-            }
-
-            // Update the x position
-            this.xPosition += 2 * direction;
-
-            // Update the orbs
-            this.topAttackOrb.Update();
-            this.middleAttackOrb.Update();
-            this.bottomAttackOrb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
-            
 
-            this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+            if (!isDead)
+            {
+                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
-            if (currFrames >= 0 && currFrames < 500)
-            {
-                // Dragon to draw
-                dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
-            } else if (currFrames >= 500 && currFrames <1000)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
-            } else if (currFrames >= 1000 && currFrames < 1500)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
+                if (currFrames >= 0 && currFrames < 500)
+                {
+                    // Dragon to draw
+                    dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
+                }
+                else if (currFrames >= 500 && currFrames < 1000)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
+                }
+                else if (currFrames >= 1000 && currFrames < 1500)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
+
+                }
+                else if (currFrames >= 1500 && currFrames < 2000)
+                {
+                    // Dragon rectangle
+                    dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
+                }
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (isDamaged)
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
+                } else
+                {
+                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+
+                }
+                spriteBatch.End();
                 
-            } else if (currFrames >= 1500 && currFrames < 2000)
-            {
-                // Dragon rectangle
-                dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
             }
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            else
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
+                if (deathFrames >= 0 && deathFrames <= 5)
+                {
+                    dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
 
-            spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-            spriteBatch.End();
-            this.topAttackOrb.Draw(spriteBatch);
-            this.middleAttackOrb.Draw(spriteBatch);
-            this.bottomAttackOrb.Draw(spriteBatch);
-           
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    dragonSourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    dragonSourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    dragonSourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                }
+
+                spriteBatch.End();
+            }
+
             //spriteBatch.End();
-            
+
 
         }
 
-       public Rectangle GetHitbox()
+        public Rectangle GetHitbox()
        {
             // TEMPORARY, working on what to put here
             return this.dragonDestinationRectangle;
        }
 
-       public void TakeDamage(string side)
+       public void TurnAround(string side)
+       {
+
+       }
+
+       // Allows other things in the game to get the projectiles
+       public List<ISprite> getEnemyProjectiles()
+        {
+            // Make a list to return
+            List<ISprite> projectileList = new List<ISprite>{topAttackOrb, middleAttackOrb, bottomAttackOrb};
+            return projectileList;
+        
+        }
+
+
+
+        public void TakeDamage(string side)
+        {
+            enemyHit.Play();
+            this.isDamaged = true;
+            this.health -= 1;
+            if (this.health <= 0)
+            {
+                this.isDead = true;
+            }
+        }
+
+        public ISprite DropItem()
+        {
+            if (dyingComplete)
+            {
+                Random random = new Random();
+                int rand = random.Next(0, droppableItems.Count);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void Die()
         {
 
         }
@@ -137,6 +250,8 @@ namespace Sprites
         // Original positions to reset to
         private int originalX;
         private int originalY;
+
+        public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -167,20 +282,23 @@ namespace Sprites
         }
         public void Update()
         {
-            // Updated frames in the exact way the dragon is
+            /* Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
-                currFrames = 0;
-                this.xPosition = this.originalX;
+                //currFrames = 0;
+                //this.xPosition = this.originalX;
                 this.yPosition = this.originalY;
             }
             else
             {
                 currFrames += 10;
             }
-
+            */
             // Update current orb
-            ++this.currOrb;
+            currFrames +=10;
+            if(currFrames % 500 == 0) { 
+                ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -195,17 +313,25 @@ namespace Sprites
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) { 
+                spriteBatch.Begin();
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
+        }
+
+        public void collide()
+        {
+           this.currFrames = maxFrames;
+           
         }
 
     }
@@ -226,6 +352,8 @@ namespace Sprites
         // Original positions to reset to
         private int originalX;
         private int originalY;
+
+       public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -256,6 +384,7 @@ namespace Sprites
         }
         public void Update()
         {
+            /*
             // Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
@@ -267,9 +396,12 @@ namespace Sprites
             {
                 currFrames += 10;
             }
-
+            */
             // Update current orb
-            ++this.currOrb;
+            currFrames+=10;
+            if(currFrames % 10 == 0) { 
+                ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -286,15 +418,22 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
 
+        }
+
+        public void collide()
+        {
+            this.currFrames = maxFrames;
         }
 
     }
@@ -315,6 +454,8 @@ namespace Sprites
          // Original positions to reset to
         private int originalX;
         private int originalY;
+
+        public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -345,7 +486,7 @@ namespace Sprites
         }
         public void Update()
         {
-            // Updated frames in the exact way the dragon is
+            /* Updated frames in the exact way the dragon is
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
@@ -356,9 +497,12 @@ namespace Sprites
             {
                 currFrames += 10;
             }
-
+            */
+            currFrames += 10;
             // Update current orb
+            if(currFrames % 10 == 0) { 
             ++this.currOrb;
+            }
             if(this.currOrb >= this.attackOrbs.Count)
             {
                 this.currOrb = 0;
@@ -375,9 +519,11 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
-            spriteBatch.End();
+             if(this.currFrames < maxFrames) { 
+                spriteBatch.Begin();
+                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -389,6 +535,11 @@ namespace Sprites
         public void TakeDamage(string side)
         {
 
+        }
+
+        public void collide()
+        {
+            this.currFrames = maxFrames;
         }
 
     }

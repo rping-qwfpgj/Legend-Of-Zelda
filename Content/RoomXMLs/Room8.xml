@@ -8,12 +8,17 @@
 		</Item>
 
 		<!--  Block  -->
+	    <Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthPushableBlock</ObjectName>
+			<Location>350 218</Location>
+		</Item>
+		<!-- Puzzle Door-->
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>DepthBlock</ObjectName>
-			<Location>350 216</Location>
+			<ObjectName>PuzzleDoorBlockLeft</ObjectName>
+			<Location>48 195</Location>
 		</Item>
-
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

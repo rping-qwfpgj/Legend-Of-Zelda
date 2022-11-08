@@ -1,16 +1,14 @@
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-
 namespace LegendofZelda.Interfaces
 {
-    public interface IEnemyProjectile : ISprite
+    public interface IPushableBlock : IBlock
     {
-        void collide();
-
-        public bool keepThrowing { get; set; }
+        void Move(string side);
     }
 }
+

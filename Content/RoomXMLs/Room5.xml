@@ -38,7 +38,20 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>400 260</Location>
 		</Item>
+	
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockTop</ObjectName>
+			<Location>352 22</Location>
+		</Item>
 
+		<!-- Puzzle Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>PuzzleDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
 
 		<!--  Enemies  -->
 		<Item>

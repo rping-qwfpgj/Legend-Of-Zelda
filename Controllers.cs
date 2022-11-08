@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Controllers
 {
@@ -34,7 +35,7 @@ namespace Controllers
 				noInput.Execute();
 				previousCommand = noInput;
 			} 
-			else
+			else if(kstate.GetPressedKeyCount() == 1)
 			{
                 // Loop through the bindings. If a key is down, execute its command.
                 foreach (Keys key in keyBindings.Keys)
@@ -45,6 +46,7 @@ namespace Controllers
 						if (typeField != keyBindings[key].GetType())
 						{
 							keyBindings[key].Execute();
+                            Debug.WriteLine(keyBindings[key]);
 						}
                         previousCommand = keyBindings[key];
                     }
