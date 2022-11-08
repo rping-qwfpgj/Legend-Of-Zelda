@@ -40,6 +40,7 @@ namespace LegendofZelda
             List<ISprite> copy = new List<ISprite>(this.sprites);
             List<ISprite> toAdd = new();
             List<ISprite> toRemove = new();
+            background.Update();
             
             foreach (var sprite in copy)
             {
@@ -60,9 +61,7 @@ namespace LegendofZelda
                     {
                         toRemove.Add(currBoomerang);
                     }
-                    
-                        
-                    
+     
                 } 
 
                 sprite.Update();

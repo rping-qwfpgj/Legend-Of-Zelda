@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprites;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Sprint0
 {
@@ -23,12 +24,18 @@ namespace Sprint0
         public Background0(Texture2D backgroundTexture)
         {
             this.texture = backgroundTexture;
-            this.sourceRectangle = new(515, 886, width, height);
+            this.sourceRectangle = new(258, 886, width, height);
             this.destinationRectangle = new(0, 150, 800, 480);
         }
 
         public void Update()
         {
+            if (!(sourceRectangle.X == 515 && sourceRectangle.Y == 886))
+            {
+                sourceRectangle.Offset(1, 0);
+            }
+          
+           
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
