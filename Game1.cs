@@ -154,6 +154,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
+
         this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex], this);
 
 
@@ -181,7 +182,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.Black);
         currentRoom.Draw(_spriteBatch);
-        link.Draw(_spriteBatch);     
+        link.Draw(_spriteBatch); 
+        
         base.Draw(gameTime);
     }
 }

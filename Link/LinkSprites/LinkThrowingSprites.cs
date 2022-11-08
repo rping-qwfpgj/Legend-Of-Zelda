@@ -13,7 +13,7 @@ namespace Sprites
     {
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 1000;
+        private int maxFrames = 500;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -48,7 +48,7 @@ namespace Sprites
             // If frames are past max, no longer attacking
             if (currFrames > maxFrames)
             {
-                this.isAttack = false;
+                isAttack = false;
             }
         }
 
@@ -58,10 +58,9 @@ namespace Sprites
             Rectangle currentFrame = new();
 
             // Draw the first step of link walking up
-            if (currFrames >= 0 && currFrames <= maxFrames)
-            {
+           
                 currentFrame = new Rectangle(141, 11, 16, 16);
-            }
+            
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -85,7 +84,7 @@ namespace Sprites
 
         public bool isAttacking()
         {
-            return this.isAttack;
+            return isAttack;
         }
     }
 
@@ -93,7 +92,7 @@ namespace Sprites
     {
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 1000;
+        private int maxFrames = 500;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -124,6 +123,7 @@ namespace Sprites
         {
             // Update frames
             currFrames += 50;
+            
 
             // If frames are past max, done with the attacking cycle
             if (currFrames > maxFrames)
@@ -139,11 +139,11 @@ namespace Sprites
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
-            if (currFrames >= 0 && currFrames <= maxFrames)
-            {
+          
                 currentFrame = new(107, 11, 16, 15);
 
-            }
+            
+
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -174,7 +174,7 @@ namespace Sprites
     {
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 1000;
+        private int maxFrames = 500;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -221,9 +221,7 @@ namespace Sprites
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
-            if (currFrames >= 0 && currFrames <= maxFrames)
-            {
-                currentFrame = new(124, 12, 15, 15);
+             currentFrame = new(124, 12, 15, 15);
 
 
                 destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
@@ -240,7 +238,7 @@ namespace Sprites
                     spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
                 }
                 spriteBatch.End();
-            }
+            
         }
 
             public Rectangle GetHitbox()
@@ -260,7 +258,7 @@ namespace Sprites
     {
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 1000;
+        private int maxFrames = 500;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -308,11 +306,10 @@ namespace Sprites
            
 
             // Draw the first step of link walking up
-            if (currFrames >= 0 && currFrames <= maxFrames)
-            {
+           
                 currentFrame = new (124, 12, 15, 15);
 
-            }
+            
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
             // Draw the sprite

@@ -23,6 +23,7 @@ namespace Sprites
 
         // Screen location
         private Rectangle destinationRectangle;
+        private bool isDamaged;
         public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
         public Vector2 Position {get => new(xPosition, yPosition);}
         public LinkFacingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
@@ -30,15 +31,11 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            this.isDamaged = isDamaged;
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(71, 11, 12, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
-
-            if (isDamaged)
-            {
-                color = Color.Lerp(Color.White, Color.Red, 0.3f);
-            }
         }
         public void Update()
         {
@@ -49,7 +46,14 @@ namespace Sprites
         {
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            }
             spriteBatch.End();
         }
 
@@ -69,6 +73,7 @@ namespace Sprites
         private readonly int yPosition;
 
         private Color color = Color.White;
+        private bool isDamaged;
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
@@ -77,7 +82,6 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
         public Vector2 Position { get => new(xPosition, yPosition); }
-        private bool isDamaged;
 
         public LinkFacingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -90,10 +94,6 @@ namespace Sprites
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
 
-            if (isDamaged)
-            {
-                color = Color.Lerp(Color.White, Color.Red, 0.3f);
-            }
         }
         public void Update()
         {
@@ -104,7 +104,15 @@ namespace Sprites
         {
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+
+            }else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            }
+
             spriteBatch.End();
         }
 
@@ -123,6 +131,7 @@ namespace Sprites
         private readonly int yPosition;
 
         private Color color = Color.White;
+        private bool isDamaged;
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
@@ -136,15 +145,12 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-
+            this.isDamaged = isDamaged;
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
 
-            if (isDamaged)
-            {
-                color = Color.Lerp(Color.White, Color.Red, 0.3f);
-            }
+           
         }
         public void Update()
         {
@@ -154,7 +160,15 @@ namespace Sprites
         {
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            }
             spriteBatch.End();
         }
 
@@ -174,6 +188,7 @@ namespace Sprites
         private readonly int yPosition;
 
         private Color color = Color.White;
+        private bool isDamaged;
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
@@ -187,15 +202,13 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            this.isDamaged = isDamaged;
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2,sourceRectangle.Height*2); // Where to draw on screen
 
-            if (isDamaged)
-            {
-                color = Color.Lerp(Color.White, Color.Red, 0.3f);
-            }
+          
         }
         public void Update()
         {
@@ -206,7 +219,15 @@ namespace Sprites
         {
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.FlipHorizontally, 1);
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+            }
             spriteBatch.End();
         }
 

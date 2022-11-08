@@ -84,10 +84,5 @@ namespace Collision
            this.objects.Remove(currLinkSprite);
 
         }
-
-
-
-
-
 	}
 }

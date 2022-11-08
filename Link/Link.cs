@@ -101,7 +101,7 @@ namespace Sprint0
         }
         public void NoInput()
         {
-            this.UpdatePosition();
+            //this.UpdatePosition();
 
             if (currentLinkSprite is IAttackingSprite)
             {
@@ -181,11 +181,11 @@ namespace Sprint0
                     this.isDamaged = false;
                     this.UpdatePosition();
 
-                    // Check if current sprite is an attacking sprite
+                    //Check if current sprite is an attacking sprite
                     if (currentLinkSprite is IAttackingSprite)
                     {
                         IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                        if (!(currSprite.isAttacking()))
+                        if (!currSprite.isAttacking())
                         {
                             this.currentState.Redraw();
                         }
