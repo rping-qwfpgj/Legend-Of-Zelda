@@ -12,17 +12,17 @@ namespace HeadsUpDisplay
 {
     public class Hud
     {
-        private List<ISprite> sprites;
+        private List<ISprite> sprites = new List<ISprite>();
         private ISprite backgroundSprite;
-        private List<String> spriteStrings = "hudBackground", "X1Sprite";
+        private List<string> spriteStrings = new List<string> {"hudBackground"};
 
         public Hud()
         {
-            for(string spriteString in spriteStrings)
+            foreach (string spriteString in spriteStrings)
             {
-                sprites.Add(HudSpriteFactory.Instance.CreateSprite(spriteString);
+                ISprite currSprite = HudSpriteFactory.Instance.CreateSprite(spriteString);
+                sprites.Add(currSprite);
             }
-            
         }
 
         public void Update()
@@ -31,12 +31,11 @@ namespace HeadsUpDisplay
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            for (ISprite sprite in sprites)
+            foreach (ISprite sprite in sprites)
             {
                 sprite.Draw(_spriteBatch);
             }
         }
-
     }
 }
 

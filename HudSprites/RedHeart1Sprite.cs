@@ -10,7 +10,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class XSprite : ISprite
+    public class redHeart1Sprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
@@ -18,19 +18,17 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 8;
         private readonly int height = 8;
-        private int xPos = 354;
-        private int yPos = 27;
-        
-        public XSprite(Texture2D texture)
+
+
+        public redHeart1Sprite(Texture2D texture)
         {
             this.texture = texture;
-            this.sourceRectangle = new(519, 117, width, height);
-            this.destinationRectangle = new(xPos, yPos, width, height);
+            this.sourceRectangle = new(645, 117, width, height);
+            this.destinationRectangle = new(176, 40, width*3, height*3);
         }
 
         public void Update()
         {
-            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

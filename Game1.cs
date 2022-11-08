@@ -43,7 +43,7 @@ public class Game1 : Game
     public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
-    private Hud hud = new Hud();
+    private Hud hud;
 
    
 
