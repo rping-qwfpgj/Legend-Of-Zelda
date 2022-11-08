@@ -13,22 +13,25 @@ namespace HeadsUpDisplay
     public class Hud
     {
         private List<ISprite> sprites = new List<ISprite>();
-        private ISprite backgroundSprite;
-        private List<string> spriteStrings = new List<string> {"hudBackground"};
+        private List<string> spriteStrings = new List<string> { "hudBackground" };
 
         public Hud()
         {
-            foreach (string spriteString in spriteStrings)
-            {
-                ISprite currSprite = HudSpriteFactory.Instance.CreateSprite(spriteString);
-                sprites.Add(currSprite);
-            }
+
+            ISprite background = HudSpriteFactory.Instance.CreateSprite("hudBackground");
+            sprites.Add(background);
+            //foreach (string spriteString in spriteStrings)
+            //{
+            //    ISprite currSprite = HudSpriteFactory.Instance.CreateSprite(spriteString);
+            //    sprites.Add(currSprite);
+            //}
         }
 
         public void Update()
         {            
             
         }
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             foreach (ISprite sprite in sprites)

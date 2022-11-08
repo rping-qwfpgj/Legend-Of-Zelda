@@ -19,6 +19,7 @@ using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using SharpDX.MediaFoundation.DirectX;
 using HeadsUpDisplay;
+using System.Diagnostics;
 
 
 // Creator: Tuhin Patel
@@ -111,7 +112,10 @@ public class Game1 : Game
 
         // HUD
         this.hud = new Hud();
-
+        if(hud != null)
+        {
+            Debug.WriteLine("BUH!");
+        }
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
