@@ -135,7 +135,6 @@ public class Game1 : Game
 
 
 
-
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
