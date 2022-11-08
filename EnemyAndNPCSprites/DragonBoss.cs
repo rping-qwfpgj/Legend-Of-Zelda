@@ -130,7 +130,7 @@ namespace Sprites
                     // Dragon rectangle
                     dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
                 }
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if (isDamaged)
                 {
                     spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
@@ -144,7 +144,7 @@ namespace Sprites
             }
             else
             {
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
@@ -418,8 +418,8 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
-                spriteBatch.Begin();
+             if(this.currFrames < maxFrames) {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
             }
