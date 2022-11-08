@@ -70,6 +70,9 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
+            this.game.currentRoomIndex = 0;
+            this.game.currentRoom = this.game.rooms[this.game.currentRoomIndex];
+            this.health = 3;
 
         }
 
@@ -163,7 +166,7 @@ namespace Sprint0
                 if (health <= 0)
                 {
                     this.Die();
-
+                    
                 }
                 this.isDamaged = true;
                 this.canBeDamaged = false;
@@ -241,7 +244,7 @@ namespace Sprint0
         public void Die()
         {
             //this.game.currentState = gameOverState;
-            //this.Reset();
+            this.Reset();
         }
     }
 }
