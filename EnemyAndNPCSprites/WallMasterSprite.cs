@@ -106,6 +106,8 @@ namespace Sprites
             }
 
             else {
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
             if (deathFrames > 5 && deathFrames < 10)
                 {
                     sourceRectangle = new Rectangle(16, 0, 15, 16);
@@ -128,9 +130,10 @@ namespace Sprites
                 {
                     spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
                 }
+                spriteBatch.End();
             }
 
-            spriteBatch.End();
+            
         }
     
 
