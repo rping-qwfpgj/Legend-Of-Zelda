@@ -15,6 +15,9 @@ using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
 using Color = Microsoft.Xna.Framework.Color;
+using SharpDX.MediaFoundation.DirectX;
+using HeadsUpDisplay;
+using System.Diagnostics;
 
 
 // Creator: Tuhin Patel
@@ -39,6 +42,7 @@ public class Game1 : Game
     public ISprite background;
     private KeyboardController keyboardController;
     private MouseController mouseController;
+    private Hud hud;
 
    
 
@@ -73,6 +77,7 @@ public class Game1 : Game
         BlockSpriteFactory.Instance.loadContent(Content);
         ItemSpriteFactory.Instance.loadContent(Content);
         BackgroundSpriteFactory.Instance.loadContent(Content);
+        HudSpriteFactory.Instance.loadContent(Content);
 
       
 
@@ -102,6 +107,12 @@ public class Game1 : Game
         currentRoom = rooms[currentRoomIndex];
         link = new Link(new Vector2(400, 240), _graphics, this);
 
+        // HUD
+        this.hud = new Hud();
+        if(hud != null)
+        {
+            Debug.WriteLine("BUH!");
+        }
         // Initalize keyboard controller
         keyboardController = new KeyboardController(new NoInputCommand(link));
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
@@ -150,6 +161,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         currentRoom.Draw(_spriteBatch);
         link.Draw(_spriteBatch);     
+        hud.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
 }
