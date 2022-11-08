@@ -166,6 +166,7 @@ namespace Sprint0
 
                 }
                 this.isDamaged = true;
+                this.canBeDamaged = false;
                 this.currentState.Redraw();
                 switch (side)
                 {
