@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 using System.Collections.Generic;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
@@ -12,6 +13,8 @@ namespace Sprites
         private IEnemy currentGoriya;
         private IEnemyProjectile currentBoomerang;
         private bool isDead = false;
+        private int health = 3;
+        private int deathFrames = 0;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
@@ -29,6 +32,7 @@ namespace Sprites
       
 
         private Texture2D texture;
+        private Texture2D dyingTexture;
 
         //  Obsolete variables
         private float xPosition;
@@ -43,11 +47,12 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle(100, 100, 0, 0);
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-        public GoriyaSprite(Texture2D texture, float xPosition, float yPosition)
+        public GoriyaSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
+            this.dyingTexture = texture2;
             this.currentGoriya = new GoriyaThrowingRightSprite(texture, this.xPos, this.yPos);
             this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
         }
@@ -55,15 +60,20 @@ namespace Sprites
         public void Update()
         {
             // Decided if the goriya should change its current action
-
-            if ((rand.Next(0, 1000)) % 100 == 0)
+            if (!isDead)
             {
-                this.switchAction();
-            }
-            else
-            {
+                if ((rand.Next(0, 1000)) % 100 == 0)
+                {
+                    this.switchAction();
+                }
+                else
+                {
 
-                currentGoriya.Update();
+                    currentGoriya.Update();
+                }
+            } else
+            {
+                deathFrames++;
             }
 
             //currentBoomerang.Update();
@@ -73,11 +83,51 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
-            currentGoriya.Draw(spriteBatch);
+            Rectangle sourceRectangle = new Rectangle(0, 0, 15, 16);
+            if (!isDead)
+            {
+                //spriteBatch.Begin();
+                currentGoriya.Draw(spriteBatch);
+            }
+            else
+            {
+                spriteBatch.Begin();
+                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
+                if (deathFrames >= 0 && deathFrames <= 5)
+                {
+                    sourceRectangle = new Rectangle(0, 0, 15, 16);
+
+                }
+                else if (deathFrames > 5 && deathFrames < 10)
+                {
+                    sourceRectangle = new Rectangle(16, 0, 15, 16);
+                }
+                else if (deathFrames >= 10 && deathFrames < 15)
+                {
+                    sourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                }
+                else if (deathFrames >= 15 && deathFrames < 20)
+                {
+                    sourceRectangle = new Rectangle(51, 3, 9, 10);
+
+                }
+                else
+                {
+                    this.dyingComplete = true;
+                }
+                if (!dyingComplete)
+                {
+                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                }
+
+                spriteBatch.End();
+            }
             //currentBoomerang.Draw(spriteBatch);
             //spriteBatch.End();
         }
+
+
 
         public Rectangle GetHitbox()
         {
@@ -160,7 +210,12 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-            currentGoriya.TakeDamage(side);
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
+            this.health -= 1;
+            if (this.health <= 0)
+            {
+                this.isDead = true;
+            }
         }
 
         public ISprite DropItem()

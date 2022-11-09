@@ -52,7 +52,7 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "Goriya":
 
-                    return new GoriyaSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
+                    return new GoriyaSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "Keese":
 
