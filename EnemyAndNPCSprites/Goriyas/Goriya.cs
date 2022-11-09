@@ -2,6 +2,7 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
@@ -71,6 +72,8 @@ namespace Sprites
 
                     currentGoriya.Update();
                 }
+
+                this.destinationRectangle = currentGoriya.DestinationRectangle;
             } else
             {
                 deathFrames++;
@@ -212,6 +215,7 @@ namespace Sprites
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             this.health -= 1;
+            
             if (this.health <= 0)
             {
                 this.isDead = true;

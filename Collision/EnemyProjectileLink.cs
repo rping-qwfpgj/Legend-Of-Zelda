@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Sprint0;
 using Sprites;
+using System.Diagnostics;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 
@@ -19,6 +20,7 @@ namespace Collision
             projectile.collide();
             link.TakeDamage(side);
 			room.removeObject(projectile);
+			
 			/*
 			 * for future:
 			 * if Link.health <= 0

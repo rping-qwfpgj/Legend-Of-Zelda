@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Sprint0;
 using Sprites;
+using System.Diagnostics;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
@@ -19,8 +20,10 @@ namespace Collision
 		{
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
-            room.removeObject(projectile);
             enemy.TakeDamage(side);
+            room.removeObject(projectile);
+            
+            
             
 
         }

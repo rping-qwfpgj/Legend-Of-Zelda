@@ -41,6 +41,7 @@ namespace Collision
 			Rectangle objectRec = obj.DestinationRectangle;
 			Rectangle otherRec = otherObj.DestinationRectangle;
 
+			
 			return objectRec.Intersects(otherRec);
 		}
 		
