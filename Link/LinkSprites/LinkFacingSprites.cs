@@ -221,12 +221,12 @@ namespace Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (isDamaged)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.FlipHorizontally, 1);
 
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
         }

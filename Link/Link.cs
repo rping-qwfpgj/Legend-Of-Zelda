@@ -51,7 +51,7 @@ namespace Sprint0
             this.game = game;
             this.currentState = new LinkFacingUpState(this);
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
-            this.throwable = Throwables.None;
+            this.throwable = Throwables.Boomerang;
             this.currentProjectiles = new List<ISprite>();
             this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
             this.attack = game.Content.Load<SoundEffect>("hee_hee");
