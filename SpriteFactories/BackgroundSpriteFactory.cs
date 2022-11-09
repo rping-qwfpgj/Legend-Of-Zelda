@@ -5,6 +5,7 @@ using static Sprint0.Link;
 using Sprites;
 using Sprint0;
 using LegendofZelda.Interfaces;
+using LegendofZelda.Backgrounds;
 
 namespace LegendofZelda.SpriteFactories
 {

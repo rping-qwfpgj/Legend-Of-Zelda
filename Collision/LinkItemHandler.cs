@@ -8,6 +8,7 @@ using Sprites;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
+using LegendofZelda.Items;
 
 namespace Collision
 {

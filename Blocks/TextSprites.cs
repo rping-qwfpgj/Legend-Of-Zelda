@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
 using LegendofZelda.Interfaces;
 
-namespace Sprites
+namespace LegendofZelda.Blocks
 {
-    public class TextSprite: ISprite
+    public class TextSprite : ISprite
     {
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
@@ -19,7 +19,7 @@ namespace Sprites
         // Text to produce
         public string text;
 
-        public TextSprite(GraphicsDeviceManager graphics,SpriteFont font, string text)
+        public TextSprite(GraphicsDeviceManager graphics, SpriteFont font, string text)
         {
             this.graphics = graphics;
             this.font = font;
@@ -49,6 +49,6 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             throw new NotImplementedException();
-        }        
+        }
     }
 }
