@@ -30,7 +30,8 @@ namespace Sprites
 
         private Random rand = new Random();
 
-      
+        private List<string> droppableItems = new List<string> { "Clock", "BigHeart", "PurpleGemstone", "OrangeGemstone", "Bomb" };
+
 
         private Texture2D texture;
         private Texture2D dyingTexture;
@@ -54,6 +55,7 @@ namespace Sprites
             this.xPos = xPosition;
             this.yPos = yPosition;
             this.dyingTexture = texture2;
+            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
             this.currentGoriya = new GoriyaThrowingRightSprite(texture, this.xPos, this.yPos);
             this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
         }
@@ -95,7 +97,7 @@ namespace Sprites
             else
             {
                 spriteBatch.Begin();
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
+                this.destinationRectangle = new Rectangle((int)this.currentGoriya.XPosition, (int)this.currentGoriya.YPosition, 30, 30);
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
                     sourceRectangle = new Rectangle(0, 0, 15, 16);
@@ -224,7 +226,16 @@ namespace Sprites
 
         public ISprite DropItem()
         {
-            return null;
+            if (dyingComplete)
+            {
+                Random random = new Random();
+                int rand = random.Next(0, droppableItems.Count);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.currentGoriya.XPosition, this.currentGoriya.YPosition - 150), droppableItems[rand]);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void Die()
