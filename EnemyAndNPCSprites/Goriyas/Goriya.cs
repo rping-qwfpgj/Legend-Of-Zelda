@@ -11,11 +11,13 @@ namespace Sprites
 {
     public class GoriyaSprite : IEnemy
     {
-        private IEnemy currentGoriya;
+        private IGoriya currentGoriya;
         private IEnemyProjectile currentBoomerang;
         private bool isDead = false;
         private int health = 3;
         private int deathFrames = 0;
+        private bool isDamaged = false;
+        private int damagedCounter = 0;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
@@ -65,6 +67,16 @@ namespace Sprites
             // Decided if the goriya should change its current action
             if (!isDead)
             {
+                if (isDamaged)
+                {
+                    damagedCounter++;
+                    if (damagedCounter >= 60)
+                    {
+                        isDamaged = false;
+                        this.currentGoriya.IsDamaged = false;
+                        damagedCounter = 0;
+                    }
+                }
                 if ((rand.Next(0, 1000)) % 100 == 0)
                 {
                     this.switchAction();
@@ -217,7 +229,8 @@ namespace Sprites
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             this.health -= 1;
-            
+            this.isDamaged = true;
+            this.currentGoriya.IsDamaged = true;
             if (this.health <= 0)
             {
                 this.isDead = true;
