@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using LegendofZelda.SpriteFactories;
+using System.Runtime.CompilerServices;
 
 namespace Sprites
 {
@@ -279,6 +280,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -319,7 +321,7 @@ namespace Sprites
                 spriteBatch.Begin();
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -331,6 +333,7 @@ namespace Sprites
         public void collide()
         {
            this.currFrames = maxFrames;
+           this.keepThrowing = false;
            
         }
 
@@ -353,7 +356,8 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
-       public bool keepThrowing { get; set; }
+        // Keeps track of if the projectile should keep going
+        public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -381,6 +385,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -422,7 +427,7 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -434,6 +439,7 @@ namespace Sprites
         public void collide()
         {
             this.currFrames = maxFrames;
+            this.keepThrowing = false;
         }
 
     }
@@ -455,7 +461,9 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
+        // Keep track of if the projectile should keep going
         public bool keepThrowing { get; set; }
+        
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -483,6 +491,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -523,7 +532,7 @@ namespace Sprites
                 spriteBatch.Begin();
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -540,6 +549,7 @@ namespace Sprites
         public void collide()
         {
             this.currFrames = maxFrames;
+            this.keepThrowing = false;
         }
 
     }

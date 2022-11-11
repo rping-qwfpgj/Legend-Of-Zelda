@@ -89,7 +89,18 @@ namespace LegendofZelda
                  if (enemy is DragonBossSprite)
                 {
                     DragonBossSprite dragonBoss = enemy as DragonBossSprite;
-                    toAdd.AddRange(dragonBoss.getEnemyProjectiles());
+                    List<ISprite> dragonOrbs = dragonBoss.getEnemyProjectiles();
+
+                    foreach(IEnemyProjectile orb in dragonOrbs)
+                    {
+                        if(orb.keepThrowing)
+                        {
+                            toAdd.Add(orb);
+                        } else
+                        {
+                            toRemove.Add(orb);
+                        }
+                    }
                 } else if (enemy is GoriyaSprite)
                 {
                     GoriyaSprite goriya = enemy as GoriyaSprite;
