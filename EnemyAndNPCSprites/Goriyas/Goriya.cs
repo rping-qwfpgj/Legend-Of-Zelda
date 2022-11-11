@@ -21,6 +21,7 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        private int currFrames = 0;
 
         private enum GoriyaActions { MovingUp, MovingDown, MovingRight, MovingLeft, ThrowingUp, ThrowingRight,
             ThrowingLeft, ThrowingDown };
@@ -67,6 +68,7 @@ namespace Sprites
             // Decided if the goriya should change its current action
             if (!isDead)
             {
+                ++currFrames;
                 if (isDamaged)
                 {
                     damagedCounter++;
@@ -198,6 +200,11 @@ namespace Sprites
 
         public void TurnAround(string side)
         {
+            // Get the hitbox of the current goriya
+            Rectangle currentLocation = currentGoriya.GetHitbox();
+            this.xPos = (float)currentLocation.X;
+            this.yPos = (float)currentLocation.Y;
+
             // Have the Goriya turn around based on what wall it is running into
             switch (side)
             {
