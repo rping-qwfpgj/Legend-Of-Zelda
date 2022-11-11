@@ -84,7 +84,7 @@ namespace Collision
                 else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
                 {
                     side = determineSide(otherObj, obj);
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room, game);
                 }
 
 
@@ -93,7 +93,7 @@ namespace Collision
                 if(otherObj is IEnemy)// link enemy # 1
                 {
                     IEnemy enemy = otherObj as IEnemy;
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room, game);
 
                 } else if (otherObj is IBlock && obj is INonAttackingSprite) // link block, link is not attacking
                 {
