@@ -19,7 +19,7 @@ namespace Collision
 		{
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
-            room.removeObject(projectile);
+            room.RemoveObject(projectile);
             enemy.TakeDamage(side);
             
 

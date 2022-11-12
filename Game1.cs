@@ -62,111 +62,25 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
+  
 
     protected override void Initialize()
     {
-       
-        _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+150;
+
+        _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
-        
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        LinkSpriteFactory.Instance.loadContent(Content);
-        ProjectileSpriteFactory.Instance.loadContent(Content);
-        EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
-        BlockSpriteFactory.Instance.loadContent(Content);
-        ItemSpriteFactory.Instance.loadContent(Content);
-        BackgroundSpriteFactory.Instance.loadContent(Content);
-        SoundFactory.Instance.loadContent(Content);
-
-       
-        
-        //Mouse Controller stuff
-        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
-             _graphics.PreferredBackBufferHeight / 2);
-        mouseController = new(this, center);
-
-
-        //ROOMLOADER STUFF
-        rooms = new();
-        RoomLoader roomloader = new();
-        string fileFolder = "\\Content\\RoomXMLs\\Room";
-        var enviroment = Environment.CurrentDirectory;
-        string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-
-      
-        for (int i = 0; i <= 18; i++)
-        {
-            var roomNumber = i.ToString();
-            var FilePath = directory+fileFolder+ roomNumber + ".xml";
-            XDocument xml = XDocument.Load(FilePath);
-            rooms.Add(roomloader.ParseXML(xml));
-        }
-       
-        currentRoomIndex = 1;
-        currentRoom = rooms[currentRoomIndex];
-        link = new Link(new Vector2(400, 240), _graphics, this);
-
-
-        //Graph init
-        roomsGraph = new();
-
-
-        roomsGraph.AddLeftRightEdge(17, 16);
-        roomsGraph.AddLeftRightEdge(16, 15);
-        roomsGraph.AddLeftRightEdge(12, 13);
-        roomsGraph.AddLeftRightEdge(9, 8);
-        roomsGraph.AddLeftRightEdge(8, 7);
-        roomsGraph.AddLeftRightEdge(7, 10);
-        roomsGraph.AddLeftRightEdge(10, 11);
-        roomsGraph.AddLeftRightEdge(5, 4);
-        roomsGraph.AddLeftRightEdge(4, 6);
-        roomsGraph.AddLeftRightEdge(1, 0);
-        roomsGraph.AddLeftRightEdge(0, 2);
-
-        roomsGraph.AddDownUpEdge(5, 8);
-        roomsGraph.AddDownUpEdge(0, 3);
-        roomsGraph.AddDownUpEdge(3, 4);
-        roomsGraph.AddDownUpEdge(4, 7);
-        roomsGraph.AddDownUpEdge(7, 14);
-        roomsGraph.AddDownUpEdge(14, 15);
-        roomsGraph.AddDownUpEdge(6, 10);
-        roomsGraph.AddDownUpEdge(11, 12);
-
-
-
-        // Initalize keyboard controller
-        keyboardController = new KeyboardController(new NoInputCommand(link));
-        keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
-        keyboardController.AddCommand(Keys.Up, new WalkUpCommand(link));
-        keyboardController.AddCommand(Keys.S, new WalkDownCommand(link));
-        keyboardController.AddCommand(Keys.Down, new WalkDownCommand(link));
-        keyboardController.AddCommand(Keys.A, new WalkLeftCommand(link));
-        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(link));
-        keyboardController.AddCommand(Keys.D, new WalkRightCommand(link));
-        keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
-        keyboardController.AddCommand(Keys.V, new ThrowRightCommand(link));
-        keyboardController.AddCommand(Keys.E, new TakeDamageCommand(link));
-        keyboardController.AddCommand(Keys.Z, new AttackCommand(link));
-        keyboardController.AddCommand(Keys.N, new AttackCommand(link));
-        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand(link));
-        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand(link));
-        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand(link));
-        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand(link));
-        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
-        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
-        keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
-
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex], this);
-
+        SpriteFactoriesInit();
+        RoomloaderInit();
+        GraphInit();
+        ControllersInit();
+        collisionDetector = new CollisionDetector(link, rooms[currentRoomIndex], this);
 
         base.Initialize();
     }
-    
+
+
     protected override void LoadContent()
     {
         backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
@@ -197,4 +111,112 @@ public class Game1 : Game
         
         base.Draw(gameTime);
     }
+
+
+
+
+
+
+
+
+
+
+    //--------HELPER METHODS---------//
+    private void ControllersInit()
+    {
+
+        keyboardController = new KeyboardController(new NoInputCommand(link));
+
+        keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
+        keyboardController.AddCommand(Keys.Up, new WalkUpCommand(link));
+        keyboardController.AddCommand(Keys.S, new WalkDownCommand(link));
+        keyboardController.AddCommand(Keys.Down, new WalkDownCommand(link));
+        keyboardController.AddCommand(Keys.A, new WalkLeftCommand(link));
+        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(link));
+        keyboardController.AddCommand(Keys.D, new WalkRightCommand(link));
+        keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
+        keyboardController.AddCommand(Keys.V, new ThrowRightCommand(link));
+        keyboardController.AddCommand(Keys.E, new TakeDamageCommand(link));
+        keyboardController.AddCommand(Keys.Z, new AttackCommand(link));
+        keyboardController.AddCommand(Keys.N, new AttackCommand(link));
+        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand(link));
+        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand(link));
+        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand(link));
+        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand(link));
+        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
+        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
+        keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
+        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
+
+        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
+          _graphics.PreferredBackBufferHeight / 2);
+        mouseController = new(this, center);
+
+    }
+
+    private void GraphInit()
+    {
+        roomsGraph = new();
+
+
+        roomsGraph.AddLeftRightEdge(17, 16);
+        roomsGraph.AddLeftRightEdge(16, 15);
+        roomsGraph.AddLeftRightEdge(12, 13);
+        roomsGraph.AddLeftRightEdge(9, 8);
+        roomsGraph.AddLeftRightEdge(8, 7);
+        roomsGraph.AddLeftRightEdge(7, 10);
+        roomsGraph.AddLeftRightEdge(10, 11);
+        roomsGraph.AddLeftRightEdge(5, 4);
+        roomsGraph.AddLeftRightEdge(4, 6);
+        roomsGraph.AddLeftRightEdge(1, 0);
+        roomsGraph.AddLeftRightEdge(0, 2);
+
+        roomsGraph.AddDownUpEdge(5, 8);
+        roomsGraph.AddDownUpEdge(0, 3);
+        roomsGraph.AddDownUpEdge(3, 4);
+        roomsGraph.AddDownUpEdge(4, 7);
+        roomsGraph.AddDownUpEdge(7, 14);
+        roomsGraph.AddDownUpEdge(14, 15);
+        roomsGraph.AddDownUpEdge(6, 10);
+        roomsGraph.AddDownUpEdge(11, 12);
+    }
+
+    private void RoomloaderInit()
+    {
+        rooms = new();
+        RoomLoader roomloader = new();
+        string fileFolder = "\\Content\\RoomXMLs\\Room";
+        var enviroment = Environment.CurrentDirectory;
+        string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
+
+
+        for (int i = 0; i <= 18; i++)
+        {
+            var roomNumber = i.ToString();
+            var FilePath = directory + fileFolder + roomNumber + ".xml";
+            XDocument xml = XDocument.Load(FilePath);
+            rooms.Add(roomloader.ParseXML(xml));
+        }
+
+        currentRoomIndex = 1;
+        currentRoom = rooms[currentRoomIndex];
+        link = new Link(new Vector2(400, 240), _graphics, this);
+    }
+
+
+
+    private void SpriteFactoriesInit()
+    {
+        LinkSpriteFactory.Instance.loadContent(Content);
+        ProjectileSpriteFactory.Instance.loadContent(Content);
+        EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
+        BlockSpriteFactory.Instance.loadContent(Content);
+        ItemSpriteFactory.Instance.loadContent(Content);
+        BackgroundSpriteFactory.Instance.loadContent(Content);
+        SoundFactory.Instance.loadContent(Content);
+    }
+
 }

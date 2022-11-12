@@ -33,88 +33,93 @@ namespace LegendofZelda.SpriteFactories
         public ISprite CreateBackground(string name)
         {
 
-            switch (name)
-            {
-                case "Background0":
 
-                    return new Background0(spriteSheet);
+            var split= name.Split('d');
+            return new Background(spriteSheet, int.Parse(split[1]));
 
-                case "Background1":
 
-                    return new Background1(spriteSheet);
+            //switch (name)
+            //{
+            //    case "Background0":
 
-                case "Background2":
+            //        return new Background0(spriteSheet);
 
-                    return new Background2(spriteSheet);
+            //    case "Background1":
 
-                case "Background3":
+            //        return new Background1(spriteSheet);
 
-                    return new Background3(spriteSheet);
+            //    case "Background2":
 
-                case "Background4":
+            //        return new Background2(spriteSheet);
 
-                    return new Background4(spriteSheet);
+            //    case "Background3":
 
-                case "Background5":
+            //        return new Background3(spriteSheet);
 
-                    return new Background5(spriteSheet);
+            //    case "Background4":
 
-                case "Background6":
+            //        return new Background4(spriteSheet);
 
-                    return new Background6(spriteSheet);
+            //    case "Background5":
 
-                case "Background7":
+            //        return new Background5(spriteSheet);
 
-                    return new Background7(spriteSheet);
+            //    case "Background6":
 
-                case "Background8":
+            //        return new Background6(spriteSheet);
 
-                    return new Background8(spriteSheet);
+            //    case "Background7":
 
-                case "Background9":
+            //        return new Background7(spriteSheet);
 
-                    return new Background9(spriteSheet);
+            //    case "Background8":
 
-                case "Background10":
+            //        return new Background8(spriteSheet);
 
-                    return new Background10(spriteSheet);
+            //    case "Background9":
 
-                case "Background11":
+            //        return new Background9(spriteSheet);
 
-                    return new Background11(spriteSheet);
+            //    case "Background10":
 
-                case "Background12":
+            //        return new Background10(spriteSheet);
 
-                    return new Background12(spriteSheet);
+            //    case "Background11":
 
-                case "Background13":
+            //        return new Background11(spriteSheet);
 
-                    return new Background13(spriteSheet);
+            //    case "Background12":
 
-                case "Background14":
+            //        return new Background12(spriteSheet);
 
-                    return new Background14(spriteSheet);
+            //    case "Background13":
 
-                case "Background15":
+            //        return new Background13(spriteSheet);
 
-                    return new Background15(spriteSheet);
+            //    case "Background14":
 
-                case "Background16":
+            //        return new Background14(spriteSheet);
 
-                    return new Background16(spriteSheet);
+            //    case "Background15":
 
-                case "Background17":
+            //        return new Background15(spriteSheet);
 
-                    return new Background17(spriteSheet);
+            //    case "Background16":
 
-                case "Background18":
+            //        return new Background16(spriteSheet);
 
-                    return new Background18(spriteSheet);
+            //    case "Background17":
 
-                default:
+            //        return new Background17(spriteSheet);
 
-                    return null;
-            }
+            //    case "Background18":
+
+            //        return new Background18(spriteSheet);
+
+            //    default:
+
+            //        return null;
+            //}
         }
 
     }

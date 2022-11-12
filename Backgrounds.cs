@@ -11,6 +11,144 @@ using System.Diagnostics;
 
 namespace Sprint0
 {
+
+
+    public class Background : IBackground
+    {
+        private readonly Texture2D texture;
+        private List<Rectangle> sourceRectangles;
+        private Rectangle destinationRectangle;
+        private Rectangle sourceRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private readonly int width = 256;
+        private readonly int height = 176;
+        private readonly Vector2 backgroundLocation;
+        private string direction;
+
+
+        public Background(Texture2D backgroundTexture, int roomNumber)
+        {
+            texture = backgroundTexture;
+
+            sourceRectangles = new();
+
+            sourceRectangles.Add(new(515, 886, width, height));
+            sourceRectangles.Add(new(258, 886, width, height));
+            sourceRectangles.Add(new(772, 886, width, height));
+            sourceRectangles.Add(new(515, 709, width, height));
+            sourceRectangles.Add(new(515, 532, width, height));
+            sourceRectangles.Add(new(258, 532, width, height));
+            sourceRectangles.Add(new(772, 532, width, height));
+            sourceRectangles.Add(new(515, 355, width, height));
+            sourceRectangles.Add(new(258, 355, width, height));
+            sourceRectangles.Add(new(1, 355, width, height));
+            sourceRectangles.Add(new(772, 355, width, height));
+            sourceRectangles.Add(new(1029, 355, width, height));
+            sourceRectangles.Add(new(1029, 178, width, height));
+            sourceRectangles.Add(new(1286, 178, width, height));
+            sourceRectangles.Add(new(515, 178, width, height));
+            sourceRectangles.Add(new(515, 1, width, height));
+            sourceRectangles.Add(new(258, 1, width, height));
+            sourceRectangles.Add(new(1, 1, width, height));
+            sourceRectangles.Add(new(258, 886, width, height));
+           
+            sourceRectangle = sourceRectangles[roomNumber];
+            backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);
+            destinationRectangle = new(0, 150, 800, 480);
+            direction = "";
+
+            
+        }
+
+        public void TransitionDirection(String direction)
+        {
+            this.direction = direction;
+          
+            switch (direction)
+            {
+
+                case "right":
+                    sourceRectangle.Offset(-width, 0);
+                    break;
+                case "left":
+                    sourceRectangle.Offset(width, 0);
+                    break;
+                case "up":
+                    sourceRectangle.Offset(0, height);
+                    break;
+                case "down":
+                    sourceRectangle.Offset(0, -height);
+                    break;
+
+            }
+
+        }
+
+        public void Update()
+        {
+
+            if (!(sourceRectangle.X == backgroundLocation.X && sourceRectangle.Y == backgroundLocation.Y))
+            {
+
+                switch (direction)
+                {
+
+                    case "left":
+                        sourceRectangle.Offset(-1, 0);
+                        break;
+                    case "right":
+                        sourceRectangle.Offset(1, 0);
+                        break;
+                    case "up":
+                        sourceRectangle.Offset(0, -1);
+                        break;
+                    case "down":
+                        sourceRectangle.Offset(0, 1);
+                        break;
+
+
+                }
+
+
+            }
+
+
+
+        }
+
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public class Background0 : ISprite
     {
         private readonly Texture2D texture;
@@ -19,23 +157,49 @@ namespace Sprint0
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 256;
         private readonly int height = 176;
+        private readonly Vector2 backgroundLocation;
 
 
         public Background0(Texture2D backgroundTexture)
         {
-            this.texture = backgroundTexture;
-            this.sourceRectangle = new(258, 886, width, height);
-            this.destinationRectangle = new(0, 150, 800, 480);
+            texture = backgroundTexture;
+            sourceRectangle = new(258, 886, width, height);
+            backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);
+            destinationRectangle = new(0, 150, 800, 480);
+        }
+
+        public void TransitionDirection(String direction)
+        {
+
+           switch (direction)
+            {
+
+                case "right":
+                    sourceRectangle.Offset(-width, 0);
+                    break;
+                case "left":
+                     sourceRectangle.Offset(width, 0);
+                    break;
+                case "up":
+                    sourceRectangle.Offset(0, height);
+                    break;
+                case "down":
+                    sourceRectangle.Offset(0, -height);
+                    break;
+
+            }
+
         }
 
         public void Update()
         {
+
             if (!(sourceRectangle.X == 515 && sourceRectangle.Y == 886))
             {
                 sourceRectangle.Offset(1, 0);
             }
-          
-           
+
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
