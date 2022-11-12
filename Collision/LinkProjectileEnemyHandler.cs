@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Sprint0;
 using Sprites;
+using System.Diagnostics;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;

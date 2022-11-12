@@ -39,6 +39,13 @@ namespace Sprites
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
+        // Handles deciding enemy movement
+        Random random;
+        public enum Directions { UP, RIGHT, LEFT, DOWN };
+        List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
+        Directions currDirection;
+       
         public WallMasterSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
         {
             this.texture = texture;
@@ -47,17 +54,17 @@ namespace Sprites
             this.enemyHit = sound;
             this.dyingTexture = texture2;
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
+            this.random = new Random();
+            this.currDirection = directions[random.Next(0, directions.Count)];
         }
 
         public void Update()
         {
             if (!isDead)
             {
-                if (currFrames == maxFrames / 2)
+                if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    direction *= -1;
-                    movingHorizontally = !movingHorizontally;
-                    movingVertically = !movingVertically;
+                    this.currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames == maxFrames)
                 {
@@ -68,15 +75,21 @@ namespace Sprites
                     currFrames += 10;
                 }
 
-                if (movingVertically && !movingHorizontally)
+                if (currDirection == Directions.UP)
                 {
-                    if (this.yPosition < 0 || this.yPosition > 480) { direction *= -1; }
-                    this.yPosition += (1 * direction);
+                    this.yPosition -= 1;
                 }
-                if (movingHorizontally && !movingVertically)
+                else if (currDirection == Directions.LEFT)
                 {
-                    if (this.xPosition < 0 || this.xPosition > 800) { direction *= -1; }
-                    this.xPosition += (1 * direction);
+                    this.xPosition -= 1;
+                }
+                else if (currDirection == Directions.RIGHT)
+                {
+                    this.xPosition += 1;
+                }
+                else // Direction is down
+                {
+                    this.yPosition += 1;
                 }
             } else
             {
@@ -94,10 +107,13 @@ namespace Sprites
                 this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 60, 60);
 
                 // Otherwise, have it pinch
-                if (currFrames > 1000)
+                if (currFrames % 5 == 0)
                 {
                     sourceRectangle = new Rectangle(410, 12, 14, 15);
 
+                } else
+                {
+                    sourceRectangle = new Rectangle(393, 11, 16, 16);
                 }
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -149,7 +165,25 @@ namespace Sprites
 
         public void TurnAround(string side)
         {
+            // Have the Keese turn around based on what wall it is running into
+                switch (side)
+                {
+                    case "top":
+                        this.currDirection = Directions.DOWN;
+                        break;
+                    case "bottom":
+                        this.currDirection = Directions.UP;
+                        break;
+                    case "left":
+                        this.currDirection = Directions.RIGHT;
+                        break;
+                    case "right":
+                        this.currDirection = Directions.LEFT;
+                        break;
+                    default:
+                        break;
 
+                }
         }
 
         public void TakeDamage(string side)

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Sprint0;
 using Sprites;
 using LegendofZelda;
+using LegendofZelda.Blocks;
 using Commands;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
@@ -19,7 +20,7 @@ namespace Collision
     public static class LinkBlockHandler
 	{		
 		
-		public static void handleCollision(Link link, IBlock block, string side, Rectangle collisionRect)
+		public static void handleCollision(Link link, IBlock block, Room currRoom, string side, Rectangle collisionRect)
 		{ 
 
 			switch (side)
@@ -29,8 +30,10 @@ namespace Collision
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
-
-                    } else { 
+                    } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                        currRoom.removeObject(block);
+                    
+                    }else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
                         link.currentState = new LinkIdleWalkingUpState(link);
                         link.currentPosition.Y += collisionRect.Height;
@@ -42,6 +45,9 @@ namespace Collision
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("top");
+                    } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                        currRoom.removeObject(block);
+                    
                     } else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
                         link.currentState = new LinkIdleWalkingDownState(link);
@@ -50,17 +56,24 @@ namespace Collision
                     }
                     break;
 				case "left":
-                    link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                    link.currentState = new LinkIdleWalkingLeftState(link);
-                    link.currentPosition.X += collisionRect.Width;
-                    link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                     if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                        currRoom.removeObject(block);
+                    } else { 
+                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+                        link.currentState = new LinkIdleWalkingLeftState(link);
+                        link.currentPosition.X += collisionRect.Width;
+                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    }
                     break;
                 case "right":
-                    link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-					link.currentState = new LinkIdleWalkingRightState(link);
-                    link.currentPosition.X -= collisionRect.Width;
-					link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
-                    
+                    if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                        currRoom.removeObject(block);
+                    } else { 
+                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
+					    link.currentState = new LinkIdleWalkingRightState(link);
+                        link.currentPosition.X -= collisionRect.Width;
+					    link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                    }
                     break;
                 default:
                     break;

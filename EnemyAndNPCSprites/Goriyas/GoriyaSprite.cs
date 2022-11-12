@@ -9,7 +9,7 @@ using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
 namespace Sprites
 {
-    public class GoriyaMovingUpSprite : IEnemy
+    public class GoriyaMovingUpSprite : IGoriya
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -29,7 +29,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         public GoriyaMovingUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -47,15 +48,20 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
             if ((currentFrame / 10) % 2 == 0)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color);
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
 
             spriteBatch.End();
@@ -104,7 +110,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaMovingDownSprite : IEnemy
+    public class GoriyaMovingDownSprite : IGoriya
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -121,7 +127,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         private int currentFrame;
 
         public GoriyaMovingDownSprite(Texture2D texture, float xPosition, float yPosition)
@@ -142,14 +149,19 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((currentFrame / 10) % 2 == 0)
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color);
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
             spriteBatch.End();
 
@@ -196,7 +208,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaMovingRightSprite : IEnemy
+    public class GoriyaMovingRightSprite : IGoriya
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -216,6 +228,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         public GoriyaMovingRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -240,8 +254,13 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, color);
             spriteBatch.End();
         }
 
@@ -287,7 +306,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaMovingLeftSprite : IEnemy
+    public class GoriyaMovingLeftSprite : IGoriya
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
@@ -307,6 +326,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         public GoriyaMovingLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -336,8 +357,13 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
             spriteBatch.End();
         }
 
@@ -383,7 +409,7 @@ namespace Sprites
 
     /* ------- THROWING SPRITES -------*/
 
-    public class GoriyaThrowingRightSprite : IEnemy
+    public class GoriyaThrowingRightSprite : IGoriya
     {
 
         private int goriyaFrames = 0;
@@ -403,8 +429,9 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
 
-        
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -427,6 +454,11 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((goriyaFrames / 10) % 2 == 0)
             {
@@ -439,7 +471,7 @@ namespace Sprites
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
 
-            spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
+            spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
             
             spriteBatch.End();
             
@@ -488,7 +520,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingLeftSprite : IEnemy
+    public class GoriyaThrowingLeftSprite : IGoriya
     {
         // Keep track of frames
         private int currFrames = 0;
@@ -511,7 +543,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -539,6 +572,11 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((currFrames / 10) % 2 == 0)
             {
@@ -550,7 +588,7 @@ namespace Sprites
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
-            spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+            spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             spriteBatch.End();
 
@@ -597,7 +635,7 @@ namespace Sprites
         }
     }
 
-    public class GoriyaThrowingDownSprite : IEnemy
+    public class GoriyaThrowingDownSprite : IGoriya
     {
         // Keep track of frames
         private int goriyaFrames = 0;
@@ -617,7 +655,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         // Texture to take sprites from
         private Texture2D texture;
         // X and Y positions of the sprite
@@ -640,18 +679,23 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
+                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }
 
@@ -701,7 +745,7 @@ namespace Sprites
 
     }
 
-    public class GoriyaThrowingUpSprite : IEnemy
+    public class GoriyaThrowingUpSprite : IGoriya
     {
         private int goriyaFrames = 0;
 
@@ -720,6 +764,8 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => isDead; set => isDead = value; }
+        private bool isDamaged = false;
+        public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
         // Texture to take sprites from
         private Texture2D texture;
 
@@ -741,18 +787,23 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color color = Color.White;
+            if (isDamaged)
+            {
+                color = Color.Lerp(Color.White, Color.Red, 0.3f);
+            }
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White);
+                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
-                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }
 

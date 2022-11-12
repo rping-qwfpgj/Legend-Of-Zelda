@@ -49,24 +49,7 @@ namespace LegendofZelda
             foreach (var sprite in copy)
             {
                 DealWithEnemies(sprite);
-                if (sprite is DragonBossSprite)
-                {
-                    DragonBossSprite dragonBoss = sprite as DragonBossSprite;
-                    toAdd.AddRange(dragonBoss.getEnemyProjectiles());
-                } else if (sprite is GoriyaSprite)
-                {
-                    GoriyaSprite goriya = sprite as GoriyaSprite;
-                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
-
-                    if(currBoomerang.keepThrowing)
-                    {
-                        toAdd.Add(currBoomerang);
-                    } else
-                    {
-                        toRemove.Add(currBoomerang);
-                    }
-     
-                } 
+               
 
                 sprite.Update();
             }
@@ -108,6 +91,35 @@ namespace LegendofZelda
             if (sprite is IEnemy)
             {
                 IEnemy enemy = sprite as IEnemy;
+
+                 if (enemy is DragonBossSprite)
+                {
+                    DragonBossSprite dragonBoss = enemy as DragonBossSprite;
+                    List<ISprite> dragonOrbs = dragonBoss.getEnemyProjectiles();
+
+                    foreach(IEnemyProjectile orb in dragonOrbs)
+                    {
+                        if(orb.keepThrowing)
+                        {
+                            toAdd.Add(orb);
+                        } else
+                        {
+                            toRemove.Add(orb);
+                        }
+                    }
+                } else if (enemy is GoriyaSprite)
+                {
+                    GoriyaSprite goriya = enemy as GoriyaSprite;
+                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
+
+                    if(currBoomerang.keepThrowing)
+                    {
+                        toAdd.Add(currBoomerang);
+                    } else
+                    {
+                        toRemove.Add(currBoomerang);
+                    }
+                } 
                 if (enemy.DyingComplete == true)
                 {
                     toRemove.Add(sprite);
@@ -120,7 +132,10 @@ namespace LegendofZelda
                     }
                 }
 
+
             }
+
+
             foreach (var spr in toRemove)
             {
                 this.RemoveObject(spr);

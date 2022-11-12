@@ -84,7 +84,7 @@ namespace Collision
                 else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
                 {
                     side = determineSide(otherObj, obj);
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room, game);
                 }
 
 
@@ -93,14 +93,14 @@ namespace Collision
                 if(otherObj is IEnemy)// link enemy # 1
                 {
                     IEnemy enemy = otherObj as IEnemy;
-                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room);
+                    LinkEnemyHandler.handleCollision(this.link, enemy, side, room, game);
 
                 } else if (otherObj is IBlock && obj is INonAttackingSprite) // link block, link is not attacking
                 {
                     IBlock block = otherObj as IBlock;
                     Rectangle collisionRect = new();
                     collisionRectangle(ref obj, ref otherObj, ref collisionRect);
-                    LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);
+                    LinkBlockHandler.handleCollision(this.link, block, this.room, side, collisionRect);
                 } else if(otherObj is IEnemyProjectile) // enemy projectile - link
                 {
                     IEnemyProjectile enemyProj = otherObj as IEnemyProjectile;
@@ -120,7 +120,7 @@ namespace Collision
                     {
                             Rectangle collisionRect = new Rectangle();
                             collisionRectangle (ref obj, ref this.link.currentLinkSprite, ref collisionRect);
-                            LinkBlockHandler.handleCollision(this.link, block, side, collisionRect);                                                           
+                            LinkBlockHandler.handleCollision(this.link, block, this.room, side, collisionRect);                                                           
                     } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
                     {
                         IEnemyProjectile projectile = otherObj as IEnemyProjectile;

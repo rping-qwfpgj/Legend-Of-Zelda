@@ -17,7 +17,7 @@ namespace Collision
     public static class LinkEnemyHandler
 	{		
 
-		public static void handleCollision(Link link, IEnemy enemy, string side, Room room)
+		public static void handleCollision(Link link, IEnemy enemy, string side, Room room, Game1 game)
 		{
 			
 			if(link.currentLinkSprite is IAttackingSprite)
@@ -39,7 +39,14 @@ namespace Collision
                 
             } else
 			{
-				link.TakeDamage(side);
+                if(enemy is WallMasterSprite)
+                {
+                    game.currentRoomIndex = 0;
+                    game.currentRoom = game.rooms[game.currentRoomIndex];
+                } else { 
+				    link.TakeDamage(side);
+                }
+                
                 /*
 				 * for future:
 				 * if Link.health <= 0
