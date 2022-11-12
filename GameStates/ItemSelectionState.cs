@@ -1,25 +1,21 @@
-using System;
-using System.Windows.Forms;
-using Microsoft.Xna.Framework;
-using Sprint0;
-using Sprites;
+﻿using System;
 using Interfaces;
-
 namespace GameStates
 {
-    public class TransitionRightState : IGameState
+    public class InventoryState : IGameState
     {
-        public TransitionRightState()
+        private GameStateController controller;
+        public InventoryState(GameStateController controller)
         {
-
+            this.controller = controller;
         }
         public void GamePlay()
         {
-
+            
         }
         public void Inventory()
         {
-
+            // Already in InventoryState
         }
         public void GameOver()
         {
@@ -51,3 +47,4 @@ namespace GameStates
         }
     }
 }
+

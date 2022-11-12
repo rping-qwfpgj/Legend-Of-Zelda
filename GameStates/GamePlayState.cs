@@ -1,28 +1,50 @@
 ﻿using System;
-
-namespace Gamestates
+using Interfaces;
+namespace GameStates
 {   
     public class GamePlayState : IGameState
     {
-        public GamePlayState()
+        private GameStateController controller;
+        public GamePlayState(GameStateController controller)
         {
-            
+            this.controller = controller;
         }
-        void GamePlay(); // already in gameplaystate 
-        void ItemSelection()
+        public void GamePlay()
+        {
+             // Already in gameplay state
+        }
+        public void Inventory()
+        {
+            this.controller.gamestate = new InventoryState(this.controller);
+        }
+        public void GameOver()
         {
 
         }
-        void GameOver()
+        public void Pause()
         {
 
         }
-        void Pause();
-        void WinGame();
-        void TransitionUp();
-        void TransitionDown();
-        void TransitionLeft();
-        void TransitionRight();
+        public void WinGame()
+        {
+
+        }
+        public void TransitionUp()
+        {
+
+        }
+        public void TransitionDown()
+        {
+
+        }
+        public void TransitionLeft()
+        {
+
+        }
+        public void TransitionRight()
+        {
+
+        }
     }
 }
 

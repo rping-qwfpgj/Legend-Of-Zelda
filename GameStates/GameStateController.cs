@@ -1,19 +1,21 @@
 ﻿using System;
+using Interfaces;
+using GameStates;
 
-public class GameState
+public class GameStateController
 {
-    GameState gamestate;
-    public GameState()
+    public IGameState gamestate;
+    public GameStateController()
     {
-        this.gamestate = new GamePlayState();
+        this.gamestate = new GamePlayState(this);
     }
     public void GamePlay()
     {
         this.gamestate.GamePlay();
     }
-    public void ItemSelection()
+    public void Inventory()
     {
-        this.gamestate.ItemSelection();
+        this.gamestate.Inventory();
     }
     public void GameOver()
     {

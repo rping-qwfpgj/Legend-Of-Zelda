@@ -3,13 +3,14 @@
     public interface IGameState
     {
         void GamePlay();
-        void ItemSelection();
+        void Inventory();
         void GameOver();
         void Pause();
         void WinGame();
         void TransitionUp();
         void TransitionDown();
         void TransitionLeft();
-        void TransitionRight();        
+        void TransitionRight();
+        
     }
 }

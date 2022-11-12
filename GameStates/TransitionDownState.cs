@@ -5,39 +5,47 @@ using Sprint0;
 using Sprites;
 using Interfaces;
 
-namespace States
+namespace GameStates
 {
     public class TransitionDownState : IGameState
     {
-        void ItemSelection()
+        public TransitionDownState()
         {
 
         }
-        void GameOver()
+        public void GamePlay()
         {
 
         }
-        void Pause()
+        public void Inventory()
         {
 
         }
-        void WinGame()
+        public void GameOver()
         {
 
         }
-        void TransitionUp()
+        public void Pause()
         {
 
         }
-        void TransitionDown()
+        public void WinGame()
         {
 
         }
-        void TransitionLeft()
+        public void TransitionUp()
         {
 
         }
-        void TransitionRight()
+        public void TransitionDown()
+        {
+
+        }
+        public void TransitionLeft()
+        {
+
+        }
+        public void TransitionRight()
         {
 
         }

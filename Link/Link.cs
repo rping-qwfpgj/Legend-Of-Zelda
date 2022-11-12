@@ -119,11 +119,10 @@ namespace Sprint0
             }
         }
 
-         public void TakeDamage()
+        public void TakeDamage()
         {
             this.isDamaged = true;
-            this.currentState.Redraw();
-           
+            this.currentState.Redraw();           
         }
 
         public void TakeDamage(string side)
