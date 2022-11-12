@@ -74,11 +74,12 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        hud = new Hud();
+        
         SpriteFactoriesInit();
         RoomloaderInit();
         GraphInit();
         ControllersInit();
+        hud = new Hud();
         collisionDetector = new CollisionDetector(link, rooms[currentRoomIndex], this);
 
         base.Initialize();
@@ -102,8 +103,7 @@ public class Game1 : Game
         collisionDetector.Update();
         keyboardController.Update();
         currentRoom.Update();
-
-       
+        hud.Update();
 
         base.Update(gameTime);
     }
@@ -215,6 +215,7 @@ public class Game1 : Game
 
     private void SpriteFactoriesInit()
     {
+        HudSpriteFactory.Instance.loadContent(Content);
         LinkSpriteFactory.Instance.loadContent(Content);
         ProjectileSpriteFactory.Instance.loadContent(Content);
         EnemyAndNPCSpriteFactory.Instance.loadContent(Content);

@@ -15,7 +15,7 @@ namespace LegendofZelda.SpriteFactories
         private Texture2D bossSpriteSheet;
         private SoundEffect enemyHit;
         private Texture2D dyingSpriteSheet;
-        private static EnemyAndNPCSpriteFactory instance = new EnemyAndNPCSpriteFactory();
+        private static EnemyAndNPCSpriteFactory instance = new();
         private SpriteFont font;
         
 

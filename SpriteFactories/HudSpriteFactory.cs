@@ -6,6 +6,7 @@ using Sprites;
 using Sprint0;
 using LegendofZelda.Interfaces;
 using LegendofZelda.Backgrounds;
+using System.Diagnostics;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -13,7 +14,7 @@ namespace LegendofZelda.SpriteFactories
     {
 
         private Texture2D spriteSheet;
-        private readonly static HudSpriteFactory instance = new();
+        private static HudSpriteFactory instance = new();
 
         public static HudSpriteFactory Instance
         {
@@ -26,10 +27,10 @@ namespace LegendofZelda.SpriteFactories
         {
         }
 
-
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("gamestates");
+            Debug.WriteLine("hi");
         }
 
         public ISprite CreateSprite(string name)
@@ -38,13 +39,9 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "hudBackground":
                     return new HudBackgroundSprite(spriteSheet);
-
                 case "Background1":
-
-                    return new Background1(spriteSheet);                
-
+                    return new Background1(spriteSheet);
                 default:
-
                     return null;
             }
         }

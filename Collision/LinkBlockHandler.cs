@@ -31,7 +31,7 @@ namespace Collision
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
                     } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
-                        currRoom.removeObject(block);
+                        currRoom.RemoveObject(block);
                     
                     }else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
@@ -46,7 +46,7 @@ namespace Collision
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("top");
                     } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
-                        currRoom.removeObject(block);
+                        currRoom.RemoveObject(block);
                     
                     } else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
@@ -57,7 +57,7 @@ namespace Collision
                     break;
 				case "left":
                      if (block is LockedDoorBlock || block is PuzzleDoorBlock){
-                        currRoom.removeObject(block);
+                        currRoom.RemoveObject(block);
                     } else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
                         link.currentState = new LinkIdleWalkingLeftState(link);
@@ -67,7 +67,7 @@ namespace Collision
                     break;
                 case "right":
                     if (block is LockedDoorBlock || block is PuzzleDoorBlock){
-                        currRoom.removeObject(block);
+                        currRoom.RemoveObject(block);
                     } else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
 					    link.currentState = new LinkIdleWalkingRightState(link);

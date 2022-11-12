@@ -45,6 +45,7 @@ namespace LegendofZelda
             List<ISprite> toAdd = new();
             List<ISprite> toRemove = new();
             background.Update();
+
             
             foreach (var sprite in copy)
             {
