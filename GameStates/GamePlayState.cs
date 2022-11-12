@@ -6,21 +6,23 @@ namespace Gamestates
     {
         public GamePlayState()
         {
-            void ItemSelection()
-            {
-                
-            }
-            void GameOver()
-            {
-
-            }
-            void Pause();
-            void WinGame();
-            void TransitionUp();
-            void TransitionDown();
-            void TransitionLeft();
-            void TransitionRight();
+            
         }
+        void GamePlay(); // already in gameplaystate 
+        void ItemSelection()
+        {
+
+        }
+        void GameOver()
+        {
+
+        }
+        void Pause();
+        void WinGame();
+        void TransitionUp();
+        void TransitionDown();
+        void TransitionLeft();
+        void TransitionRight();
     }
 }
 

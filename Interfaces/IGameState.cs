@@ -2,6 +2,7 @@
 {
     public interface IGameState
     {
+        void GamePlay();
         void ItemSelection();
         void GameOver();
         void Pause();
