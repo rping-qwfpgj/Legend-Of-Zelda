@@ -66,84 +66,72 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
+  
 
     protected override void Initialize()
     {
-       
-        _graphics.PreferredBackBufferHeight = _graphics.PreferredBackBufferHeight+150;
+
+        _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
-        
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        hud = new Hud();
+        SpriteFactoriesInit();
+        RoomloaderInit();
+        GraphInit();
+        ControllersInit();
+        collisionDetector = new CollisionDetector(link, rooms[currentRoomIndex], this);
 
-        LinkSpriteFactory.Instance.loadContent(Content);
-        ProjectileSpriteFactory.Instance.loadContent(Content);
-        EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
-        BlockSpriteFactory.Instance.loadContent(Content);
-        ItemSpriteFactory.Instance.loadContent(Content);
-        BackgroundSpriteFactory.Instance.loadContent(Content);
-        HudSpriteFactory.Instance.loadContent(Content);
-        SoundFactory.Instance.loadContent(Content);
-
-       
-        
-        //Mouse Controller stuff
-        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
-             _graphics.PreferredBackBufferHeight / 2);
-        mouseController = new(this, center);
+        base.Initialize();
+    }
 
 
-        //ROOMLOADER STUFF
-        rooms = new();
-        RoomLoader roomloader = new();
-        string fileFolder = "\\Content\\RoomXMLs\\Room";
-        var enviroment = Environment.CurrentDirectory;
-        string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
+    protected override void LoadContent()
+    {
+        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.Play(backgroundMusic);
 
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
       
-        for (int i = 0; i <= 18; i++)
-        {
-            var roomNumber = i.ToString();
-            var FilePath = directory+fileFolder+ roomNumber + ".xml";
-            XDocument xml = XDocument.Load(FilePath);
-            rooms.Add(roomloader.ParseXML(xml));
-        }
+        link.Update();
+        mouseController.Update();
+        collisionDetector.Update();
+        keyboardController.Update();
+        currentRoom.Update();
+
        
-        currentRoomIndex = 0;
-        currentRoom = rooms[currentRoomIndex];
-        link = new Link(new Vector2(400, 240), _graphics, this);
 
+        base.Update(gameTime);
+    }
 
-        //Graph init
-        roomsGraph = new();
-
-
-        roomsGraph.AddLeftRightEdge(17, 16);
-        roomsGraph.AddLeftRightEdge(16, 15);
-        roomsGraph.AddLeftRightEdge(12, 13);
-        roomsGraph.AddLeftRightEdge(9, 8);
-        roomsGraph.AddLeftRightEdge(8, 7);
-        roomsGraph.AddLeftRightEdge(7, 10);
-        roomsGraph.AddLeftRightEdge(10, 11);
-        roomsGraph.AddLeftRightEdge(5, 4);
-        roomsGraph.AddLeftRightEdge(4, 6);
-        roomsGraph.AddLeftRightEdge(1, 0);
-        roomsGraph.AddLeftRightEdge(0, 2);
-
-        roomsGraph.AddDownUpEdge(5, 8);
-        roomsGraph.AddDownUpEdge(0, 3);
-        roomsGraph.AddDownUpEdge(3, 4);
-        roomsGraph.AddDownUpEdge(4, 7);
-        roomsGraph.AddDownUpEdge(7, 14);
-        roomsGraph.AddDownUpEdge(14, 15);
-        roomsGraph.AddDownUpEdge(6, 10);
-        roomsGraph.AddDownUpEdge(11, 12);
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.Black);
+        currentRoom.Draw(_spriteBatch);
+        link.Draw(_spriteBatch); 
+        hud.Draw(_spriteBatch);
+        base.Draw(gameTime);
+    }
 
 
 
-        // HUD
-        this.hud = new Hud();
-        // Initalize keyboard controller
+
+
+
+
+
+
+
+    //--------HELPER METHODS---------//
+    private void ControllersInit()
+    {
+
         keyboardController = new KeyboardController(new NoInputCommand(link));
+
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
         keyboardController.AddCommand(Keys.Up, new WalkUpCommand(link));
         keyboardController.AddCommand(Keys.S, new WalkDownCommand(link));
@@ -168,40 +156,72 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
 
-        this.collisionDetector = new CollisionDetector(this.link, this.rooms[currentRoomIndex], this);
+        Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
+          _graphics.PreferredBackBufferHeight / 2);
+        mouseController = new(this, center);
 
-
-        base.Initialize();
     }
-    
-    protected override void LoadContent()
+
+    private void GraphInit()
     {
-        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
-        MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.4f;
-        MediaPlayer.Play(backgroundMusic);
+        roomsGraph = new();
 
+
+        roomsGraph.AddLeftRightEdge(17, 16);
+        roomsGraph.AddLeftRightEdge(16, 15);
+        roomsGraph.AddLeftRightEdge(12, 13);
+        roomsGraph.AddLeftRightEdge(9, 8);
+        roomsGraph.AddLeftRightEdge(8, 7);
+        roomsGraph.AddLeftRightEdge(7, 10);
+        roomsGraph.AddLeftRightEdge(10, 11);
+        roomsGraph.AddLeftRightEdge(5, 4);
+        roomsGraph.AddLeftRightEdge(4, 6);
+        roomsGraph.AddLeftRightEdge(1, 0);
+        roomsGraph.AddLeftRightEdge(0, 2);
+
+        roomsGraph.AddDownUpEdge(5, 8);
+        roomsGraph.AddDownUpEdge(0, 3);
+        roomsGraph.AddDownUpEdge(3, 4);
+        roomsGraph.AddDownUpEdge(4, 7);
+        roomsGraph.AddDownUpEdge(7, 14);
+        roomsGraph.AddDownUpEdge(14, 15);
+        roomsGraph.AddDownUpEdge(6, 10);
+        roomsGraph.AddDownUpEdge(11, 12);
     }
 
-    protected override void Update(GameTime gameTime)
+    private void RoomloaderInit()
     {
-      
-        link.Update();
-        mouseController.Update();
-        collisionDetector.Update();
-        keyboardController.Update();
-        currentRoom.Update();
-       
+        rooms = new();
+        RoomLoader roomloader = new();
+        string fileFolder = "\\Content\\RoomXMLs\\Room";
+        var enviroment = Environment.CurrentDirectory;
+        string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
 
-        base.Update(gameTime);
+
+        for (int i = 0; i <= 18; i++)
+        {
+            var roomNumber = i.ToString();
+            var FilePath = directory + fileFolder + roomNumber + ".xml";
+            XDocument xml = XDocument.Load(FilePath);
+            rooms.Add(roomloader.ParseXML(xml));
+        }
+
+        currentRoomIndex = 1;
+        currentRoom = rooms[currentRoomIndex];
+        link = new Link(new Vector2(400, 240), _graphics, this);
     }
 
-    protected override void Draw(GameTime gameTime)
+
+
+    private void SpriteFactoriesInit()
     {
-        GraphicsDevice.Clear(Color.Black);
-        currentRoom.Draw(_spriteBatch);
-        link.Draw(_spriteBatch);     
-        hud.Draw(_spriteBatch);
-        base.Draw(gameTime);
+        LinkSpriteFactory.Instance.loadContent(Content);
+        ProjectileSpriteFactory.Instance.loadContent(Content);
+        EnemyAndNPCSpriteFactory.Instance.loadContent(Content);
+        BlockSpriteFactory.Instance.loadContent(Content);
+        ItemSpriteFactory.Instance.loadContent(Content);
+        BackgroundSpriteFactory.Instance.loadContent(Content);
+        SoundFactory.Instance.loadContent(Content);
     }
+
 }

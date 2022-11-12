@@ -41,7 +41,7 @@ namespace Sprites
         {
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
+       
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite

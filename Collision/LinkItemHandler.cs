@@ -34,7 +34,7 @@ namespace Collision
                 link.health = 4.0f;
             }
 			*/
-			room.removeObject(item);
+			room.RemoveObject(item);
 		}        
 	}
 }

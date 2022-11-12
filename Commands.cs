@@ -6,6 +6,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using LegendofZelda.Interfaces;
 using System.Runtime.CompilerServices;
+using LegendofZelda.SpriteFactories;
 
 namespace Commands
 {
@@ -62,6 +63,10 @@ public class LeftRoomCommand : ICommand
     {
         myGame.currentRoomIndex =  myGraph.GetLeftRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+        var background = myGame.currentRoom.Background as IBackground;
+        background.SetTransitionDirection("left");
+
     }
 }
 
@@ -81,6 +86,10 @@ public class RightRoomCommand : ICommand
     {
         myGame.currentRoomIndex = myGraph.GetRightRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+        var background = myGame.currentRoom.Background as IBackground;
+        background.SetTransitionDirection("right");
+
     }
 }
 
@@ -100,6 +109,10 @@ public class UpRoomCommand : ICommand
     {
         myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+        var background = myGame.currentRoom.Background as IBackground;
+        background.SetTransitionDirection("up");
+
     }
 }
 
@@ -119,6 +132,10 @@ public class DownRoomCommand : ICommand
     {
         myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+        var background = myGame.currentRoom.Background as IBackground;
+        background.SetTransitionDirection("down");
+
     }
 }
 

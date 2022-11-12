@@ -53,11 +53,6 @@ namespace LegendofZelda
                         sprites.Add(ItemSpriteFactory.Instance.CreateItem(location, spriteToCreate.Element("ObjectName").Value));
                     }
 
-
-                    //testing purposes
-                    Console.WriteLine("Check that it's getting all sprites{0}\n", spriteToCreate.Value);
-                    Console.WriteLine("Check that it's getting sprite types {0}\n", spriteToCreate.Element("ObjectName").Value);
-
                 }
 
             }

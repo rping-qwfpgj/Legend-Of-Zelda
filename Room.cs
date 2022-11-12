@@ -2,12 +2,9 @@
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Sprites;
-using Microsoft.VisualBasic.Devices;
 using LegendofZelda.SpriteFactories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+
 
 namespace LegendofZelda
 {
@@ -15,6 +12,7 @@ namespace LegendofZelda
     {
         public List<ISprite> sprites;
         private ISprite background;
+        public ISprite Background {get => background; set=>background=value; }
 
         public Room(List<ISprite> sprites, ISprite background)
         {
@@ -25,13 +23,19 @@ namespace LegendofZelda
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch);
-            foreach (var sprite in sprites)
+            var ibackground = background as IBackground;
+            if (!ibackground.IsTransitioning)
             {
-                //If the object is link , then don't draw it, will cause duplicates otherwise
-                if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
-                    sprite.Draw(spriteBatch);
+                foreach (var sprite in sprites)
+                {
+
+                    //If the object is link , then don't draw it, will cause duplicates otherwise
+                    if (!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite))
+                    {
+                        sprite.Draw(spriteBatch);
+                    }
+
                 }
-                
             }
         }
 
@@ -40,6 +44,7 @@ namespace LegendofZelda
             List<ISprite> copy = new List<ISprite>(this.sprites);
             List<ISprite> toAdd = new();
             List<ISprite> toRemove = new();
+            background.Update();
             
             foreach (var sprite in copy)
             {
@@ -60,9 +65,7 @@ namespace LegendofZelda
                     {
                         toRemove.Add(currBoomerang);
                     }
-                    
-                        
-                    
+     
                 } 
 
                 sprite.Update();
@@ -86,7 +89,7 @@ namespace LegendofZelda
             return copyOfSprites;
         }
 
-        public void removeObject(ISprite sprite)
+        public void RemoveObject(ISprite sprite)
         { 
             sprites.Remove(sprite);
         }
@@ -97,7 +100,8 @@ namespace LegendofZelda
             sprites.Add(sprite);
         }
 
-        public void DealWithEnemies(ISprite sprite)
+   
+        private void DealWithEnemies(ISprite sprite)
         {
             List<ISprite> toRemove = new();
             List<ISprite> toAdd = new();
@@ -119,7 +123,7 @@ namespace LegendofZelda
             }
             foreach (var spr in toRemove)
             {
-                this.removeObject(spr);
+                this.RemoveObject(spr);
 
             }
             foreach (var spr in toAdd)
