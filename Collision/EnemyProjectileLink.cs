@@ -14,11 +14,11 @@ namespace Collision
     public static class EnemyProjectileLinkHandler
 	{		
 
-		public static void handleCollision(IEnemyProjectile projectile, Link link, string side, Room room)
+		public static void handleCollision(IEnemyProjectile projectile,string side, Room room)
 		{
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
-            link.TakeDamage(side);
+            Link.Instance.TakeDamage(side);
 			room.RemoveObject(projectile);
 			/*
 			 * for future:

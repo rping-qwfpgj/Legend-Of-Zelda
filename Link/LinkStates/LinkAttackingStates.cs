@@ -10,11 +10,11 @@ namespace States
 {
     public class LinkAttackRightState : ILinkState
     {
-        private Link link;
+        
 
-        public LinkAttackRightState(Link link)
+        public LinkAttackRightState()
         {
-            this.link = link;
+            
         }
 
         public void Attack()
@@ -49,14 +49,14 @@ namespace States
 
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         public void NoInput() 
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(link.currentPosition, 
-                link.isDamaged);
-            link.currentState = new LinkFacingRightState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(Link.Instance.currentPosition, 
+                Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkFacingRightState();
         }
         public string Direction()
         {
@@ -68,11 +68,11 @@ namespace States
 
     public class LinkAttackLeftState : ILinkState
     {
-        private Link link;
+        
 
-        public LinkAttackLeftState(Link link)
+        public LinkAttackLeftState()
         {
-            this.link = link;
+            
         }
         public void Attack(){ }
 
@@ -88,14 +88,14 @@ namespace States
 
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         
         public void NoInput() {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(link.currentPosition,
-                link.isDamaged);
-            link.currentState = new LinkFacingLeftState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkFacingLeftState();
         }
         public string Direction()
         {
@@ -105,12 +105,12 @@ namespace States
 
     public class LinkAttackUpState : ILinkState
     {
-        private Link link;
+        
 
 
-        public LinkAttackUpState(Link link)
+        public LinkAttackUpState()
         {
-            this.link = link;
+            
         }
 
         public void Attack() { }
@@ -127,13 +127,13 @@ namespace States
 
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         public void NoInput() {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkFacingUpState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkFacingUpState();
         }
         public string Direction()
         {
@@ -145,12 +145,12 @@ namespace States
 
     public class LinkAttackDownState : ILinkState
     {
-        private Link link;
+        
 
 
-        public LinkAttackDownState(Link link)
+        public LinkAttackDownState()
         {
-            this.link = link;
+            
         }
 
         public void Attack() { }
@@ -167,13 +167,13 @@ namespace States
 
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         public void NoInput() {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(link.currentPosition,
-            link.isDamaged);
-            link.currentState = new LinkFacingDownState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(Link.Instance.currentPosition,
+            Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkFacingDownState();
         }
         public string Direction()
         {

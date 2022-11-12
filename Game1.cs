@@ -38,7 +38,7 @@ public class Game1 : Game
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
     public Texture2D doorSpriteSheet;
-    private Link link;
+    //private Link link;
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
@@ -80,7 +80,7 @@ public class Game1 : Game
         GraphInit();
         ControllersInit();
         hud = new Hud();
-        collisionDetector = new CollisionDetector(link, rooms[currentRoomIndex], this);
+        collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
         base.Initialize();
     }
@@ -98,7 +98,7 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
       
-        link.Update();
+        Link.Instance.Update();
         mouseController.Update();
         collisionDetector.Update();
         keyboardController.Update();
@@ -112,7 +112,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.Black);
         currentRoom.Draw(_spriteBatch);
-        link.Draw(_spriteBatch); 
+        Link.Instance.Draw(_spriteBatch); 
         hud.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -130,26 +130,26 @@ public class Game1 : Game
     private void ControllersInit()
     {
 
-        keyboardController = new KeyboardController(new NoInputCommand(link));
+        keyboardController = new KeyboardController(new NoInputCommand());
 
-        keyboardController.AddCommand(Keys.W, new WalkUpCommand(link));
-        keyboardController.AddCommand(Keys.Up, new WalkUpCommand(link));
-        keyboardController.AddCommand(Keys.S, new WalkDownCommand(link));
-        keyboardController.AddCommand(Keys.Down, new WalkDownCommand(link));
-        keyboardController.AddCommand(Keys.A, new WalkLeftCommand(link));
-        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(link));
-        keyboardController.AddCommand(Keys.D, new WalkRightCommand(link));
-        keyboardController.AddCommand(Keys.Right, new WalkRightCommand(link));
-        keyboardController.AddCommand(Keys.V, new ThrowRightCommand(link));
-        keyboardController.AddCommand(Keys.E, new TakeDamageCommand(link));
-        keyboardController.AddCommand(Keys.Z, new AttackCommand(link));
-        keyboardController.AddCommand(Keys.N, new AttackCommand(link));
-        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand(link));
-        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand(link));
-        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand(link));
-        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand(link));
-        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand(link));
-        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand(link));
+        keyboardController.AddCommand(Keys.W, new WalkUpCommand());
+        keyboardController.AddCommand(Keys.Up, new WalkUpCommand());
+        keyboardController.AddCommand(Keys.S, new WalkDownCommand());
+        keyboardController.AddCommand(Keys.Down, new WalkDownCommand());
+        keyboardController.AddCommand(Keys.A, new WalkLeftCommand());
+        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand());
+        keyboardController.AddCommand(Keys.D, new WalkRightCommand());
+        keyboardController.AddCommand(Keys.Right, new WalkRightCommand());
+        keyboardController.AddCommand(Keys.V, new ThrowRightCommand());
+        keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
+        keyboardController.AddCommand(Keys.Z, new AttackCommand());
+        keyboardController.AddCommand(Keys.N, new AttackCommand());
+        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
+        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand());
+        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand());
+        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand());
+        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
+        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
@@ -208,7 +208,9 @@ public class Game1 : Game
 
         currentRoomIndex = 1;
         currentRoom = rooms[currentRoomIndex];
-        link = new Link(new Vector2(400, 240), _graphics, this);
+        //link = Link.Instance;
+        Link.Instance.getGame(this);
+
     }
 
 

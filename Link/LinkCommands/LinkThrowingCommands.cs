@@ -11,64 +11,64 @@ namespace Commands
 
     public class ThrowRightCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public ThrowRightCommand(Link currLink)
+        public ThrowRightCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.ThrowProjectile();
+            Link.Instance.ThrowProjectile();
         }
 
     }
 
     public class ThrowLeftCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public ThrowLeftCommand(Link currLink)
+        public ThrowLeftCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.ThrowProjectile();
+            Link.Instance.ThrowProjectile();
         }
 
     }
 
     public class ThrowUpCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public ThrowUpCommand(Link currLink)
+        public ThrowUpCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.ThrowProjectile();
+            Link.Instance.ThrowProjectile();
         }
 
     }
 
     public class ThrowDownCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public ThrowDownCommand(Link currLink)
+        public ThrowDownCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.ThrowProjectile();
+            Link.Instance.ThrowProjectile();
         }
 
     }

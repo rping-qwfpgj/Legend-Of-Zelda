@@ -20,7 +20,7 @@ namespace Collision
     public static class LinkBlockHandler
 	{		
 		
-		public static void handleCollision(Link link, IBlock block, Room currRoom, string side, Rectangle collisionRect)
+		public static void handleCollision( IBlock block, Room currRoom, string side, Rectangle collisionRect)
 		{ 
 
 			switch (side)
@@ -34,10 +34,10 @@ namespace Collision
                         currRoom.RemoveObject(block);
                     
                     }else { 
-                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                        link.currentState = new LinkIdleWalkingUpState(link);
-                        link.currentPosition.Y += collisionRect.Height;
-                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingUpState();
+                        Link.Instance.currentPosition.Y += collisionRect.Height;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
                     }
                     break;
 				case "bottom":
@@ -49,30 +49,30 @@ namespace Collision
                         currRoom.RemoveObject(block);
                     
                     } else { 
-                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                        link.currentState = new LinkIdleWalkingDownState(link);
-                        link.currentPosition.Y -= collisionRect.Height;
-                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingDownState();
+                        Link.Instance.currentPosition.Y -= collisionRect.Height;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
                     }
                     break;
 				case "left":
                      if (block is LockedDoorBlock || block is PuzzleDoorBlock){
                         currRoom.RemoveObject(block);
                     } else { 
-                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                        link.currentState = new LinkIdleWalkingLeftState(link);
-                        link.currentPosition.X += collisionRect.Width;
-                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingLeftState();
+                        Link.Instance.currentPosition.X += collisionRect.Width;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
                     }
                     break;
                 case "right":
                     if (block is LockedDoorBlock || block is PuzzleDoorBlock){
                         currRoom.RemoveObject(block);
                     } else { 
-                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-					    link.currentState = new LinkIdleWalkingRightState(link);
-                        link.currentPosition.X -= collisionRect.Width;
-					    link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+					    Link.Instance.currentState = new LinkIdleWalkingRightState();
+                        Link.Instance.currentPosition.X -= collisionRect.Width;
+					    Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
                     }
                     break;
                 default:

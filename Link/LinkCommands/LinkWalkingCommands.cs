@@ -10,63 +10,63 @@ namespace Commands
 {
     public class WalkRightCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public WalkRightCommand(Link currLink)
+        public WalkRightCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.MoveRight();
+            Link.Instance.MoveRight();
         }
 
     }
 
     public class WalkLeftCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public WalkLeftCommand(Link currLink)
+        public WalkLeftCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.MoveLeft();
+            Link.Instance.MoveLeft();
         }
     }
 
     public class WalkUpCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public WalkUpCommand(Link currLink)
+        public WalkUpCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.MoveUp();
+            Link.Instance.MoveUp();
         }
 
     }
 
     public class WalkDownCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public WalkDownCommand(Link currLink)
+        public WalkDownCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.MoveDown();
+            Link.Instance.MoveDown();
         }
 
     }

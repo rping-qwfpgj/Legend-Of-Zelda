@@ -10,16 +10,16 @@ namespace Sprint0
 {
     public class TakeDamageCommand : ICommand
     {
-        private readonly Link link;
+        
 
-        public TakeDamageCommand(Link link)
+        public TakeDamageCommand()
         {
-            this.link = link;
+            
         }
 
         public void Execute()
         {
-            link.TakeDamage();
+            Link.Instance.TakeDamage();
         }
     }
 }
