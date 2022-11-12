@@ -6,6 +6,7 @@ namespace LegendofZelda.Interfaces
 {
     public interface IBackground : ISprite
     {
-        public void TransitionDirection(String direction);
+        public void SetTransitionDirection(String direction);
+        public bool IsTransitioning { get; }
     }
 }

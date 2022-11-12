@@ -41,7 +41,7 @@ namespace Sprites
         {
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
+       
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite
@@ -226,7 +226,7 @@ namespace Sprites
             }
             else
             {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.FlipHorizontally, 1);
             }
             spriteBatch.End();
         }

@@ -11,6 +11,8 @@ namespace LegendofZelda.Interfaces
         void Draw(SpriteBatch spriteBatch);
         void Update();
         Rectangle GetHitbox();
+    
         public Rectangle DestinationRectangle { get; set; }
+  
     }
 }

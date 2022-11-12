@@ -23,13 +23,19 @@ namespace LegendofZelda
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch);
-            foreach (var sprite in sprites)
+            var ibackground = background as IBackground;
+            if (!ibackground.IsTransitioning)
             {
-                //If the object is link , then don't draw it, will cause duplicates otherwise
-                if(!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite)) { 
-                    sprite.Draw(spriteBatch);
+                foreach (var sprite in sprites)
+                {
+
+                    //If the object is link , then don't draw it, will cause duplicates otherwise
+                    if (!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite))
+                    {
+                        sprite.Draw(spriteBatch);
+                    }
+
                 }
-                
             }
         }
 
@@ -94,13 +100,7 @@ namespace LegendofZelda
             sprites.Add(sprite);
         }
 
-        public void Transition()
-        {
-
-
-
-        }
-
+   
         private void DealWithEnemies(ISprite sprite)
         {
             List<ISprite> toRemove = new();

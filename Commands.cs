@@ -65,7 +65,7 @@ public class LeftRoomCommand : ICommand
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
-        background.TransitionDirection("left");
+        background.SetTransitionDirection("left");
 
     }
 }
@@ -88,7 +88,7 @@ public class RightRoomCommand : ICommand
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
-        background.TransitionDirection("right");
+        background.SetTransitionDirection("right");
 
     }
 }
@@ -111,7 +111,7 @@ public class UpRoomCommand : ICommand
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
-        background.TransitionDirection("up");
+        background.SetTransitionDirection("up");
 
     }
 }
@@ -134,7 +134,7 @@ public class DownRoomCommand : ICommand
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
-        background.TransitionDirection("down");
+        background.SetTransitionDirection("down");
 
     }
 }
