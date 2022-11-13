@@ -61,7 +61,6 @@ namespace GameStates
         }
         public void Update()
         {
-            // add code for game over animation
             LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
             if (!sprite.isComplete)
             {
@@ -71,7 +70,6 @@ namespace GameStates
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            // add code for game over animation
             LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
             if (!sprite.isComplete)
             {
@@ -79,7 +77,6 @@ namespace GameStates
             }
             if (sprite.isComplete)
             {
-                //draw game over
                 ISprite gameOver = BackgroundSpriteFactory.Instance.GameOverScreen();
                 gameOver.Draw(_spriteBatch);
             }

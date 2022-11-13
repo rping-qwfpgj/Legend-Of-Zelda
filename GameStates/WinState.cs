@@ -5,7 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
-
+using LegendofZelda.SpriteFactories;
+using LegendofZelda.Interfaces;
+using Sprites;
 
 namespace GameStates
 
@@ -18,6 +20,8 @@ namespace GameStates
         {
             this.controller = controller;
             this.game = game;
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWinning(Link.Instance.currentPosition);
+
         }
         public void GamePlay()
         {
@@ -58,19 +62,25 @@ namespace GameStates
         }
         public void Update()
         {
-            Link.Instance.Update();
-            this.game.mouseController.Update();
-            this.game.collisionDetector.Update();
-            this.game.keyboardController.Update();
-            this.game.currentRoom.Update();
-            this.game.hud.Update();
+            //LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
+            //if (!sprite.isComplete)
+            //{
+                Link.Instance.Update();
+            //}
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.game.GraphicsDevice.Clear(Color.Black);
-            this.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.Draw(_spriteBatch);
-            this.game.hud.Draw(_spriteBatch);
+            //LinkWinningSprite sprite = Link.Instance.currentLinkSprite as LinkWinningSprite;
+            //if (!sprite.isComplete)
+            //{
+                Link.Instance.Draw(_spriteBatch);
+            //}
+            //if (sprite.isComplete)
+            //{
+            //    ISprite gameOver = BackgroundSpriteFactory.Instance.GameOverScreen();
+            //    gameOver.Draw(_spriteBatch);
+            //}
         }
     }
 }

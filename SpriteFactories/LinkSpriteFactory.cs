@@ -38,6 +38,12 @@ namespace LegendofZelda.SpriteFactories
 
         }
 
+        public ISprite CreateLinkWinning(Vector2 linkPosition)
+        {
+            return new LinkWinningSprite(spriteSheet, linkPosition.X, linkPosition.Y);
+
+        }
+
         public ISprite CreateLinkFacingUp(Vector2 linkPosition, bool isDamaged)
         {
             return new LinkFacingUpSprite(spriteSheet, linkPosition.X, linkPosition.Y, isDamaged);
