@@ -23,7 +23,7 @@ namespace Collision
 			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
 			itemPickup.Play();
             Link.Instance.inventory.addItem(item);
-			Debug.WriteLine("picked up item: " + item.toString());
+			//Debug.WriteLine("picked up item: " + item.toString() + "count: " + Link.Instance.inventory.getItemCount(item.toString()));
             switch (item)
 			{
 				case SmallRedHeart:
