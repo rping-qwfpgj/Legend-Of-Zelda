@@ -27,16 +27,14 @@ namespace Sprint0
             this.inventory.Add("triforce", 0); 
         }
 
-        public int getItemCount(IItem item)
+        public int getItemCount(String itemStr)
         {   
-            return this.inventory[item.toString()];
+            return this.inventory[itemStr];
         }
 
         public void addItem(IItem item)
         {
             int itemCount;
-
-
 
             //this.inventory.TryGetValue(item.toString(), out itemCount);
 
@@ -52,7 +50,21 @@ namespace Sprint0
                     inventory[item.toString()] = itemCount + 1;
                 }
             }
-           
+
+        }
+
+        public void removeItem(String itemStr)
+        {
+            int itemCount;
+
+            //this.inventory.TryGetValue(item.toString(), out itemCount);
+
+            if (this.inventory.ContainsKey(itemStr))
+            {
+                itemCount = this.inventory[itemStr];
+                inventory[itemStr] = itemCount - 1;
+                
+            }
 
         }
     }
