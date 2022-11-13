@@ -71,7 +71,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-
+        hud = new Hud();
         _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -80,7 +80,7 @@ public class Game1 : Game
         RoomloaderInit();
         GraphInit();
         ControllersInit();
-        hud = new Hud();
+        
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
         
         base.Initialize();

@@ -42,6 +42,8 @@ namespace LegendofZelda.SpriteFactories
                     return new RedHeartSprite(spriteSheet);
                 case "heartBlackSprite":
                     return new HeartBlackSprite(spriteSheet);
+                case "halfPinkHeartSprite":
+                    return new HalfPinkHeartSprite(spriteSheet);
                 default:
                     return null;
             }
