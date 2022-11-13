@@ -7,6 +7,12 @@
 			<Location>0 0</Location>
 		</Item>
 
+		<!--  Items  -->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Bow</ObjectName>
+			<Location>400 170</Location>
+		</Item>
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
