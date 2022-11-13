@@ -1,5 +1,6 @@
 ﻿using System;
 using Interfaces;
+using Microsoft.Xna.Framework.Graphics;
 namespace GameStates
 {
     public class InventoryState : IGameState
@@ -49,7 +50,7 @@ namespace GameStates
         {
 
         }
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
 
         }

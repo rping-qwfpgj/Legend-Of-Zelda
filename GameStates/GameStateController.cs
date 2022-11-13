@@ -4,45 +4,46 @@ using GameStates;
 
 public class GameStateController
 {
-    public IGameState gamestate;
+    public IGameState gameState;
     public GameStateController(Game1 game)
     {
-        this.gamestate = new GamePlayState(this, game);
+        this.gameState = new GamePlayState(this, game);
     }
     public void GamePlay()
     {
-        this.gamestate.GamePlay();
+        this.gameState.GamePlay();
     }
     public void Inventory()
     {
-        this.gamestate.Inventory();
+        this.gameState.Inventory();
     }
     public void GameOver()
     {
-        this.gamestate.GameOver();
+        this.gameState.GameOver();
     }
     public void Pause()
     {
-        this.gamestate.Pause();
+        this.gameState.Pause();
     }
     public void WinGame()
     {
-        this.gamestate.WinGame();
+        this.gameState.WinGame();
     }
     public void TransitionUp()
     {
-        this.gamestate.TransitionUp();
+        this.gameState.TransitionUp();
     }
     public void TransitionDown()
     {
-        this.gamestate.TransitionDown();
+        this.gameState.TransitionDown();
     }
     public void TransitionLeft()
     {
-        this.gamestate.TransitionLeft();
+        this.gameState.TransitionLeft();
     }
     public void TransitionRight()
     {
-        this.gamestate.TransitionRight();
+        this.gameState.TransitionRight();
     }
+    
 }

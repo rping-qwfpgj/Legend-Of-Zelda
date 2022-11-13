@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
 using Sprites;
 using Interfaces;
@@ -53,7 +54,7 @@ namespace GameStates
         {
 
         }
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
 
         }
