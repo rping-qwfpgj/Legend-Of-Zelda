@@ -44,12 +44,13 @@ public class Game1 : Game
     public int currentRoomIndex;
     public CollisionDetector collisionDetector;
     public ISprite background;
-    private KeyboardController keyboardController;
-    private MouseController mouseController;
-    private Hud hud;
+    public KeyboardController keyboardController;
+    public MouseController mouseController;
+    public Hud hud;
     public SoundEffect enemyHit;
     public Song backgroundMusic;
-    private Graph roomsGraph;
+    public Graph roomsGraph;
+    private GameStateController gameStateController;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;
@@ -74,14 +75,14 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        
+        gameStateController = new GameStateController(this);
         SpriteFactoriesInit();
         RoomloaderInit();
         GraphInit();
         ControllersInit();
         hud = new Hud();
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
-
+        
         base.Initialize();
     }
 
@@ -98,22 +99,24 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
       
-        Link.Instance.Update();
-        mouseController.Update();
-        collisionDetector.Update();
-        keyboardController.Update();
-        currentRoom.Update();
-        hud.Update();
+        // Link.Instance.Update();
+        // mouseController.Update();
+        //collisionDetector.Update();
+        //keyboardController.Update();
+        //currentRoom.Update(); 
+        //hud.Update();
+        gameStateController.gameState.Update();
 
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Black);
-        currentRoom.Draw(_spriteBatch);
-        Link.Instance.Draw(_spriteBatch); 
-        hud.Draw(_spriteBatch);
+        //GraphicsDevice.Clear(Color.Black);
+        //currentRoom.Draw(_spriteBatch);
+        //Link.Instance.Draw(_spriteBatch); 
+        //hud.Draw(_spriteBatch);
+        gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
 
@@ -155,6 +158,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
         keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
+
 
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
