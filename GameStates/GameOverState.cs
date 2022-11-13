@@ -22,7 +22,6 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkDying(Link.Instance.currentPosition);
-
         }
         public void GamePlay()
         {
@@ -63,15 +62,21 @@ namespace GameStates
         public void Update()
         {
             // add code for game over animation
-            Link.Instance.Update();
-            
+            LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
+            if (!sprite.isComplete)
+            {
+                Link.Instance.Update();
+            }
 
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             // add code for game over animation
-            Link.Instance.Draw(_spriteBatch);
             LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
+            if (!sprite.isComplete)
+            {
+                Link.Instance.Draw(_spriteBatch);
+            }
             if (sprite.isComplete)
             {
                 //draw game over
