@@ -1,6 +1,11 @@
 ﻿using System;
 using Interfaces;
 using Sprint0;
+using Microsoft.Xna.Framework.Graphics;
+using Color = Microsoft.Xna.Framework.Color;
+using System.Diagnostics;
+
+
 namespace GameStates
 
 {   
@@ -19,7 +24,8 @@ namespace GameStates
         }
         public void Inventory()
         {
-            this.controller.gamestate = new InventoryState(this.controller);
+            this.controller.gameState = new InventoryState(this.controller);
+            Debug.WriteLine("goofy ah");
         }
         public void GameOver()
         {
@@ -58,9 +64,12 @@ namespace GameStates
             this.game.currentRoom.Update();
             this.game.hud.Update();            
         }
-        public void Draw()
+        public void Draw(SpriteBatch _spriteBatch)
         {
-
+            this.game.GraphicsDevice.Clear(Color.Black);
+            this.game.currentRoom.Draw(_spriteBatch);
+            Link.Instance.Draw(_spriteBatch);
+            this.game.hud.Draw(_spriteBatch);
         }
     }
 }

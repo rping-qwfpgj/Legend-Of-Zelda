@@ -1,4 +1,6 @@
-﻿namespace Interfaces
+﻿using Microsoft.Xna.Framework.Graphics;
+
+namespace Interfaces
 {
     public interface IGameState
     {
@@ -12,6 +14,6 @@
         void TransitionLeft();
         void TransitionRight();
         void Update();
-        void Draw();        
+        void Draw(SpriteBatch spriteBatch);      
     }
 }
