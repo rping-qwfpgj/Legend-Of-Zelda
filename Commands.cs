@@ -36,7 +36,7 @@ public class InventoryCommand : ICommand
         }
         public void Execute()
         {
-            this.controller.gameState.Inventory();
+            this.controller.gameState.Pause();
         }
     }
 

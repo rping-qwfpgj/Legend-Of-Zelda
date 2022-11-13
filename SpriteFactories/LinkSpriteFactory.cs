@@ -13,6 +13,7 @@ namespace LegendofZelda.SpriteFactories
     public class LinkSpriteFactory : ISpriteFactory
     {
         private Texture2D spriteSheet;
+        private Texture2D dyingSpriteSheet;
         private static LinkSpriteFactory instance = new LinkSpriteFactory();
 
         public static LinkSpriteFactory Instance
@@ -29,6 +30,12 @@ namespace LegendofZelda.SpriteFactories
         public void Initialize(Texture2D spriteSheet)
         {
             this.spriteSheet = spriteSheet;
+        }
+
+        public ISprite CreateLinkDying(Vector2 linkPosition)
+        {
+            return new LinkDyingSprite(spriteSheet, linkPosition.X, linkPosition.Y, dyingSpriteSheet);
+
         }
 
         public ISprite CreateLinkFacingUp(Vector2 linkPosition, bool isDamaged)
@@ -151,7 +158,7 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
-
+            dyingSpriteSheet = content.Load<Texture2D>("enemy_death");
         }
     }
 }
