@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using LegendofZelda.Interfaces;
 using System.Runtime.CompilerServices;
 using LegendofZelda.SpriteFactories;
+using GameStates;
 
 namespace Commands
 {
@@ -24,6 +25,20 @@ namespace Commands
         }
     }
 }
+
+public class InventoryCommand : ICommand
+    {
+        private GameStateController controller;
+
+        public InventoryCommand(GameStateController controller) 
+        {
+            this.controller = controller;
+        }
+        public void Execute()
+        {
+            this.controller.gameState.Inventory();
+        }
+    }
 
 public class ResetGameCommand : ICommand
 {
