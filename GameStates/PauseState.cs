@@ -4,23 +4,24 @@ using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace GameStates
 
-{   
-    public class GamePlayState : IGameState
+{
+    public class PauseState : IGameState
     {
         private GameStateController controller;
         private Game1 game;
-        public GamePlayState(GameStateController controller, Game1 game)
+        public PauseState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
         }
         public void GamePlay()
         {
-             // Already in gameplay state
+            this.controller.gameState = new GamePlayState(this.controller, this.game);
         }
         public void Inventory()
         {
@@ -33,7 +34,7 @@ namespace GameStates
         }
         public void Pause()
         {
-            this.controller.gameState = new PauseState(this.controller, this.game);
+            
         }
         public void WinGame()
         {
@@ -62,7 +63,7 @@ namespace GameStates
             this.game.collisionDetector.Update();
             this.game.keyboardController.Update();
             this.game.currentRoom.Update();
-            this.game.hud.Update();            
+            this.game.hud.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
