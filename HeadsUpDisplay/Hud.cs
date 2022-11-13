@@ -33,12 +33,14 @@ namespace HeadsUpDisplay
 
             ISprite red3 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
             RedHeartSprite redHeart3Sprite = red3 as RedHeartSprite;
-            redHeart3Sprite.setPos(xPos + width*2, yPos); 
-            
+            redHeart3Sprite.setPos(xPos + width*2, yPos);
+
+
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite("heartBlackSprite"));
             sprites.Add(redHeart1Sprite);
             sprites.Add(redHeart2Sprite);
             sprites.Add(redHeart3Sprite);
-
+            
         }
 
         public void Update()
