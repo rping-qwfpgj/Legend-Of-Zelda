@@ -6,6 +6,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
+using Sprites;
 
 
 namespace HeadsUpDisplay
@@ -16,22 +17,28 @@ namespace HeadsUpDisplay
         // For setting the positions of the heart sprites. 
         readonly private int xPos = 543;
         readonly private int yPos = 93;
-        readonly private int width = 7;
+        readonly private int width = 35;
 
         public Hud()
         {       
             sprites.Add(HudSpriteFactory.Instance.CreateSprite("hudBackground"));
 
-            //ISprite redHeart1Sprite = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
-            //redHeart1Sprite.setPos(xPos, yPos);
-            //ISprite redHeart2Sprite = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
-            //redHeart1Sprite.setPos(xPos + width, yPos);
-            //ISprite redHeart3Sprite = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
-            //redHeart1Sprite.setPos(xPos + 2*width, yPos);
-            //sprites.Add(redHeart1Sprite);
-            //sprites.Add(redHeart1Sprite);
-            //sprites.Add(redHeart1Sprite);
+            ISprite red1 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+            RedHeartSprite redHeart1Sprite = red1 as RedHeartSprite;
+            redHeart1Sprite.setPos(xPos, yPos);
+
+            ISprite red2 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+            RedHeartSprite redHeart2Sprite = red2 as RedHeartSprite;
+            redHeart2Sprite.setPos(xPos + width, yPos);
+
+            ISprite red3 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+            RedHeartSprite redHeart3Sprite = red3 as RedHeartSprite;
+            redHeart3Sprite.setPos(xPos + width*2, yPos); 
             
+            sprites.Add(redHeart1Sprite);
+            sprites.Add(redHeart2Sprite);
+            sprites.Add(redHeart3Sprite);
+
         }
 
         public void Update()

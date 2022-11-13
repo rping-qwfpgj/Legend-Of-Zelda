@@ -10,21 +10,19 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class RedHeartSprite : ISprite
+    public class heartBlackSprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int width = 7;
-        private readonly int height = 8;
 
 
-        public RedHeartSprite(Texture2D texture)
+        public heartBlackSprite(Texture2D texture)
         {
             this.texture = texture;
-            this.sourceRectangle = new(645, 117, width, height);
-            this.destinationRectangle = new(543, 93, width*4, height*4);
+            this.sourceRectangle = new(170, 120, 20, 4);
+            this.destinationRectangle = new(543, 93, width*10, height*10);
         }
 
         public void Update()
