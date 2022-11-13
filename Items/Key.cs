@@ -22,7 +22,7 @@ namespace LegendofZelda.Items
             xPos = x;
             yPos = y;
             sourceRectangle = new Rectangle(240, 0, width, height);
-            destinationRectangle = new Rectangle(xPos, yPos, width * 3, height * 3);
+            destinationRectangle = new Rectangle(xPos, yPos, (int)(width * 2.5), (int)(height * 2.5));
         }
 
         public void Update()

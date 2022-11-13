@@ -274,6 +274,13 @@
 			<ObjectName>Stalfos</ObjectName>
 			<Location>520 180</Location>
 		</Item>
+	
+		<!-- Items-->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Key</ObjectName>
+			<Location>670 220</Location>
+		</Item>
 
 		<!--  Bounding  -->
 		<Item>

@@ -46,12 +46,12 @@
 			<Location>352 22</Location>
 		</Item>
 
-		<!-- Puzzle Door-->
+		<!-- Puzzle Door--> <!--
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>PuzzleDoorBlockRight</ObjectName>
 			<Location>700 200</Location>
-		</Item>
+		</Item> -->
 
 		<!--  Enemies  -->
 		<Item>

@@ -6,17 +6,39 @@
 			<ObjectName>Background8</ObjectName>
 			<Location>0 0</Location>
 		</Item>
-
 		<!--  Block  -->
 	    <Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>DepthPushableBlock</ObjectName>
+			<ObjectName>DepthBlock</ObjectName>
 			<Location>350 218</Location>
 		</Item>
-		<!-- Puzzle Door-->
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>PuzzleDoorBlockLeft</ObjectName>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>400 264</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthPushableBlock</ObjectName>
+			<Location>450 218</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>DepthBlock</ObjectName>
+			<Location>400 172</Location>
+		</Item>
+		
+	<!--  Item  -->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Key</ObjectName>
+			<Location>420 218</Location>
+		</Item>
+		
+		<!-- Locked Door-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>LockedDoorBlockLeft</ObjectName>
 			<Location>48 195</Location>
 		</Item>
 		<!--  Enemies  -->

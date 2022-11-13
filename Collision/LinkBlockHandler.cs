@@ -33,7 +33,7 @@ namespace Collision
                     } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
                         currRoom.removeObject(block);
                     
-                    }else { 
+                    } else { 
                         link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
                         link.currentState = new LinkIdleWalkingUpState(link);
                         link.currentPosition.Y += collisionRect.Height;
