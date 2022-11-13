@@ -16,13 +16,11 @@ namespace Collision
 	{
 		public static void handleCollision(IEnemy enemy, IBlock block, string side, Rectangle collisionRect)
 		{
-           if((enemy is WallMasterSprite) && (block is IBoundingBlock)) {
+           if((enemy is WallMasterSprite || enemy is KeeseSprite) && (block is INonBoundingBlock)) {
                 // do nothing
-            } else if ((enemy is KeeseSprite) && (block is INonBoundingBlock))
-            {
-                // do nothing
-            } else { 
-            if(true)
+            }  
+            else { 
+                if(true)
                 {
                 enemy.TurnAround(side);
                 switch (side)

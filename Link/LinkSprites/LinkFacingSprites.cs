@@ -35,13 +35,13 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(71, 11, 12, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
+            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
         }
         public void Update()
         {
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
+       
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite

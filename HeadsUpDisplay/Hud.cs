@@ -14,10 +14,8 @@ namespace HeadsUpDisplay
     {
         private List<ISprite> sprites = new List<ISprite>();
         private List<string> spriteStrings = new List<string> { "hudBackground" };
-
         public Hud()
         {
-
             ISprite background = HudSpriteFactory.Instance.CreateSprite("hudBackground");
             sprites.Add(background);
             //foreach (string spriteString in spriteStrings)

@@ -14,6 +14,16 @@ namespace Sprint0
 {// im gonna get rid of the magic numbers
     public class Link
     {
+
+        private static Link instance = new();
+
+        public static Link Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public enum Throwables
         {
             BlueBoomerang,
@@ -26,7 +36,6 @@ namespace Sprint0
         }
 
         //Fields
-        public GraphicsDeviceManager graphics; // Used to bound link when he walks
         public ISprite currentLinkSprite;
         public List<ISprite> currentProjectiles;
         public ILinkState currentState;
@@ -43,21 +52,21 @@ namespace Sprint0
         private string side;
 
 
-        public Link(Vector2 position, GraphicsDeviceManager graphics, Game1 game)
+        public Link()
         {
-            this.currentPosition = position;
-            this.graphics = graphics;
+            this.currentPosition = new Vector2(400, 240);
+
             this.isDamaged = false;
-            this.game = game;
-            this.currentState = new LinkFacingUpState(this);
+            //this.game = game;
+            this.currentState = new LinkFacingUpState();
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.Boomerang;
             this.currentProjectiles = new List<ISprite>();
-            this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
-            this.attack = game.Content.Load<SoundEffect>("hee_hee");
+            //this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
+            //this.attack = game.Content.Load<SoundEffect>("hee_hee");
             this.health = 3;
             this.canBeDamaged = true;
-            this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
+            //this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
 
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
@@ -67,7 +76,7 @@ namespace Sprint0
         {
             this.currentPosition = new Vector2(400, 240);
             this.isDamaged = false;
-            this.currentState = new LinkFacingUpState(this);
+            this.currentState = new LinkFacingUpState();
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.None;
             this.game.currentRoomIndex = 0;
@@ -143,7 +152,7 @@ namespace Sprint0
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
-                Debug.WriteLine("link health = " + health);
+                Debug.WriteLine("Link.Instance health = " + health);
                 if (health <= 0)
                 {
                     this.Die();
@@ -162,7 +171,7 @@ namespace Sprint0
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
-                Debug.WriteLine("link health = " + health);
+                Debug.WriteLine("Link.Instance health = " + health);
                 if (health <= 0)
                 {
                     this.Die();
@@ -245,6 +254,14 @@ namespace Sprint0
         {
             //this.game.currentState = gameOverState;
             this.Reset();
+        }
+
+        public void getGame(Game1 game)
+        {
+            this.game = game;
+            this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
+            this.attack = game.Content.Load<SoundEffect>("hee_hee");
+            this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
         }
     }
 }

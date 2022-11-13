@@ -18,7 +18,7 @@ namespace Collision
 		public static void handleCollision(ILinkProjectile projectile, Room room)
 		{
 			projectile.collide();
-			room.removeObject(projectile);
+			room.RemoveObject(projectile);
 		}
 
 	}

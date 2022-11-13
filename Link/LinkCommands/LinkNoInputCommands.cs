@@ -11,16 +11,16 @@ namespace Commands
 {
     public class NoInputCommand : ICommand
     {
-        private readonly Link link;
+        
 
-        public NoInputCommand(Link link)
+        public NoInputCommand()
         {
-            this.link = link;
+            
         }
 
         public void Execute()
         {
-            link.NoInput();
+            Link.Instance.NoInput();
         }
     }
 }

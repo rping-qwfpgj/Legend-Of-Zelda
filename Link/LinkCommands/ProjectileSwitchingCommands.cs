@@ -11,16 +11,16 @@ namespace Commands
 {
     public class SwitchToBombCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public SwitchToBombCommand(Link currLink)
+        public SwitchToBombCommand()
         {
-            this.currLink = currLink;
+          
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.Bomb;
+            Link.Instance.throwable = Link.Throwables.Bomb;
         }
 
     }
@@ -28,79 +28,79 @@ namespace Commands
 
     public class SwitchToBoomerangCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public SwitchToBoomerangCommand(Link currLink)
+        public SwitchToBoomerangCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.Boomerang;
+            Link.Instance.throwable = Link.Throwables.Boomerang;
         }
 
     }
 
     public class SwitchToBlueBoomerangCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public SwitchToBlueBoomerangCommand(Link currLink)
+        public SwitchToBlueBoomerangCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.BlueBoomerang;
+            Link.Instance.throwable = Link.Throwables.BlueBoomerang;
         }
 
     }
 
     public class SwitchToArrowCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public SwitchToArrowCommand(Link currLink)
+        public SwitchToArrowCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.Arrow;
+            Link.Instance.throwable = Link.Throwables.Arrow;
         }
 
     }
     public class SwitchToBlueArrowCommand : ICommand
     {
-        private readonly Link currLink;
+        
 
-        public SwitchToBlueArrowCommand(Link currLink)
+        public SwitchToBlueArrowCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.BlueArrow;
+            Link.Instance.throwable = Link.Throwables.BlueArrow;
         }
 
     }
 
     public class SwitchToFireCommand : ICommand
     {
-        private readonly Link currLink;
+       
 
-        public SwitchToFireCommand(Link currLink)
+        public SwitchToFireCommand()
         {
-            this.currLink = currLink;
+            
         }
 
         public void Execute()
         {
-            currLink.throwable = Link.Throwables.Fire;
+            Link.Instance.throwable = Link.Throwables.Fire;
         }
 
     }

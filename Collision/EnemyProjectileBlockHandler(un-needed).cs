@@ -23,7 +23,7 @@ namespace Collision
 			//have the projectile set it's currFrame to its last frame of animation
 			//Debug.WriteLine("Collision detected/n");
 			projectile.collide();
-			room.removeObject(projectile);
+			room.RemoveObject(projectile);
 			
 		}        
 	}

@@ -8,16 +8,16 @@ namespace Commands
 
     public class AttackCommand : ICommand
     {
-        private readonly Link currLink;
+       
 
-        public AttackCommand(Link link)
+        public AttackCommand()
         {
-            this.currLink = link;
+            
         }
 
         public void Execute()
         {
-            currLink.Attack();
+            Link.Instance.Attack();
         }
 
     }

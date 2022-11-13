@@ -10,58 +10,58 @@ namespace States
 {
     public class LinkFacingUpState : ILinkState
     {
-        private Link link;
+        
  
 
-        public LinkFacingUpState(Link link)
+        public LinkFacingUpState()
         {
-            this.link = link;
+            
         }
         public void Attack()
         {                        
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingUp(link.currentPosition, 
-                    link.isDamaged);
-            link.currentState = new LinkAttackUpState(link);       
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingUp(Link.Instance.currentPosition, 
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkAttackUpState();       
         }
         public void ThrowProjectile()
         {
             
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkThrowingUpState(link);
-            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableUp(link.currentPosition, link.throwable, link);
-            link.currentProjectiles.Add(projectileSprite);
-            link.game.currentRoom.AddObject(projectileSprite);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkThrowingUpState();
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableUp(Link.Instance.currentPosition, Link.Instance.throwable, Link.Instance);
+            Link.Instance.currentProjectiles.Add(projectileSprite);
+            Link.Instance.game.currentRoom.AddObject(projectileSprite);
             
         }
 
         public void MoveUp()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingUpState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingUpState();
         }
 
         public void MoveDown()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingDownState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingDownState();
         }
 
         public void MoveLeft()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingLeftState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingLeftState();
 
         }
 
         public void MoveRight()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingRightState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingRightState();
 
         }
         public void NoInput()
@@ -70,8 +70,8 @@ namespace States
         }
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         public string Direction()
         {
@@ -82,56 +82,56 @@ namespace States
 
     public class LinkFacingDownState : ILinkState
     {
-        private Link link;
+        
 
-        public LinkFacingDownState(Link link)
+        public LinkFacingDownState()
         {
-            this.link = link;
+            
         }
         public void Attack()
         {
-                link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingDown(link.currentPosition,
-                    link.isDamaged);
-                link.currentState = new LinkAttackDownState(link);            
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+                Link.Instance.currentState = new LinkAttackDownState();            
         }
 
         public void ThrowProjectile()
         {            
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkThrowingDownState(link);
-            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableDown(link.currentPosition, link.throwable, link);
-            link.currentProjectiles.Add(projectileSprite);
-            link.game.currentRoom.AddObject(projectileSprite);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkThrowingDownState();
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableDown(Link.Instance.currentPosition, Link.Instance.throwable, Link.Instance);
+            Link.Instance.currentProjectiles.Add(projectileSprite);
+            Link.Instance.game.currentRoom.AddObject(projectileSprite);
         }
 
         public void MoveUp()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingUpState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingUpState();
         }
 
         public void MoveDown()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingDownState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingDownState();
         }
 
         public void MoveLeft()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingLeftState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingLeftState();
 
         }
 
         public void MoveRight()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition,
-                    link.isDamaged);
-            link.currentState = new LinkWalkingRightState(link);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkWalkingRightState();
 
         }
         public void NoInput()
@@ -141,8 +141,8 @@ namespace States
 
         public void Redraw()
         {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(link.currentPosition,
-                    link.isDamaged);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(Link.Instance.currentPosition,
+                    Link.Instance.isDamaged);
         }
         public string Direction()
         {
@@ -154,59 +154,59 @@ namespace States
 
 public class LinkFacingRightState : ILinkState
 {
-    private Link link;
+    
 
-    public LinkFacingRightState(Link link)
+    public LinkFacingRightState()
     {
-        this.link = link;
+        
     }
 
     public void Attack()
     {            
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingRight(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkAttackRightState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingRight(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkAttackRightState();
         
     }
 
     public void ThrowProjectile()
     {
-            link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(link.currentPosition,
-               link.isDamaged);
-            link.currentState = new LinkThrowingRightState(link);
-        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableRight(link.currentPosition, link.throwable, link);
-        link.currentProjectiles.Add(projectileSprite);
-        link.game.currentRoom.AddObject(projectileSprite);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(Link.Instance.currentPosition,
+               Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkThrowingRightState();
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableRight(Link.Instance.currentPosition, Link.Instance.throwable, Link.Instance);
+        Link.Instance.currentProjectiles.Add(projectileSprite);
+        Link.Instance.game.currentRoom.AddObject(projectileSprite);
 
     }
 
     public void MoveUp()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkWalkingUpState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingUpState();
     }
 
     public void MoveDown()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkWalkingDownState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingDownState();
     }
 
     public void MoveLeft()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkWalkingLeftState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingLeftState();
 
     }
 
     public void MoveRight()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkWalkingRightState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingRightState();
 
     }
     public void NoInput()
@@ -216,8 +216,8 @@ public class LinkFacingRightState : ILinkState
 
     public void Redraw()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(link.currentPosition,
-                link.isDamaged);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
     }
     public string Direction()
     {
@@ -230,54 +230,54 @@ public class LinkFacingRightState : ILinkState
 
 public class LinkFacingLeftState : ILinkState
 {
-    private Link link;
+    
 
-    public LinkFacingLeftState(Link link)
+    public LinkFacingLeftState()
     {
-        this.link = link;
+        
     }
     public void Attack()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingLeft(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkAttackLeftState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingLeft(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkAttackLeftState();
         
     }
 
     public void ThrowProjectile()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkThrowingLeftState(link);
-        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableLeft(link.currentPosition, link.throwable, link);
-        link.currentProjectiles.Add(projectileSprite);
-        link.game.currentRoom.AddObject(projectileSprite);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkThrowingLeftState();
+        var projectileSprite = ProjectileSpriteFactory.Instance.CreateThrowableLeft(Link.Instance.currentPosition, Link.Instance.throwable, Link.Instance);
+        Link.Instance.currentProjectiles.Add(projectileSprite);
+        Link.Instance.game.currentRoom.AddObject(projectileSprite);
     }
     public void MoveUp()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(link.currentPosition,
-        link.isDamaged);
-        link.currentState = new LinkWalkingUpState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance.currentPosition,
+        Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingUpState();
     }
     public void MoveDown()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(link.currentPosition,
-        link.isDamaged);
-        link.currentState = new LinkWalkingDownState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(Link.Instance.currentPosition,
+        Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingDownState();
     }
 
     public void MoveLeft()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(link.currentPosition,
-        link.isDamaged);
-        link.currentState = new LinkWalkingLeftState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(Link.Instance.currentPosition,
+        Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingLeftState();
     }
 
     public void MoveRight()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(link.currentPosition,
-                link.isDamaged);
-        link.currentState = new LinkWalkingRightState(link);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+        Link.Instance.currentState = new LinkWalkingRightState();
 
     }
     public void NoInput()
@@ -287,8 +287,8 @@ public class LinkFacingLeftState : ILinkState
 
     public void Redraw()
     {
-        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(link.currentPosition,
-                link.isDamaged);
+        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
     }
     public string Direction()
     {

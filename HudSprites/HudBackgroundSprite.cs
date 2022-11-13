@@ -33,7 +33,7 @@ namespace Sprites
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
 

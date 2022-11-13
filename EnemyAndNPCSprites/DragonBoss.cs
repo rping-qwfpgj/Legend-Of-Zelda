@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using LegendofZelda.SpriteFactories;
+using System.Runtime.CompilerServices;
 
 namespace Sprites
 {
@@ -14,7 +15,7 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 2000;
+        private int maxFrames = 480;
         private int deathFrames = 0;
         private int health = 3;
         private bool isDamaged = false;
@@ -88,11 +89,11 @@ namespace Sprites
                 }
                 else
                 {
-                    currFrames += 10;
+                    currFrames += 5;
                 }
 
                 // Update the x position
-                this.xPosition += 2 * direction;
+                this.xPosition += 1 * direction;
             } else
             {
                 deathFrames++;
@@ -109,23 +110,23 @@ namespace Sprites
             {
                 this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
 
-                if (currFrames >= 0 && currFrames < 500)
+                if (currFrames <= maxFrames / 8)
                 {
                     // Dragon to draw
                     dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
                 }
-                else if (currFrames >= 500 && currFrames < 1000)
+                else if (currFrames <= maxFrames / 4)
                 {
                     // Dragon rectangle
                     dragonSourceRectangle = new Rectangle(26, 11, 24, 32);
                 }
-                else if (currFrames >= 1000 && currFrames < 1500)
+                else if (currFrames <= maxFrames / 2)
                 {
                     // Dragon rectangle
                     dragonSourceRectangle = new Rectangle(51, 11, 24, 32);
 
                 }
-                else if (currFrames >= 1500 && currFrames < 2000)
+                else if (currFrames <= maxFrames )
                 {
                     // Dragon rectangle
                     dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
@@ -238,7 +239,7 @@ namespace Sprites
     {
           // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 2000;
+        private int maxFrames = 480;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -279,6 +280,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -295,7 +297,7 @@ namespace Sprites
             }
             */
             // Update current orb
-            currFrames +=10;
+            currFrames += 5;
             if(currFrames % 500 == 0) { 
                 ++this.currOrb;
             }
@@ -305,8 +307,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition -= 10; 
+            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.yPosition -= 2; 
 
             // Update the full location of the orb
             this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 32, 40);
@@ -319,7 +321,7 @@ namespace Sprites
                 spriteBatch.Begin();
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -331,6 +333,7 @@ namespace Sprites
         public void collide()
         {
            this.currFrames = maxFrames;
+           this.keepThrowing = false;
            
         }
 
@@ -353,7 +356,8 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
-       public bool keepThrowing { get; set; }
+        // Keeps track of if the projectile should keep going
+        public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -381,6 +385,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -408,7 +413,7 @@ namespace Sprites
             } 
             
             // Update just x so that this orb goes towards the left in a horizontal line
-            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
            
 
             // Update the full location of the orb
@@ -422,7 +427,7 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -434,6 +439,7 @@ namespace Sprites
         public void collide()
         {
             this.currFrames = maxFrames;
+            this.keepThrowing = false;
         }
 
     }
@@ -455,7 +461,9 @@ namespace Sprites
         private int originalX;
         private int originalY;
 
+        // Keep track of if the projectile should keep going
         public bool keepThrowing { get; set; }
+        
 
         // Orbs will rapidly swap between 4 different version
         private List<Rectangle> attackOrbs = new List<Rectangle>();
@@ -483,6 +491,7 @@ namespace Sprites
             this.attackOrbs.Add(orangeOrb);
             this.attackOrbs.Add(greenOrb);
             this.attackOrbs.Add(multicolorOrb);
+            this.keepThrowing = true;
         }
         public void Update()
         {
@@ -509,8 +518,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= 10; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition += 10; 
+            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            this.yPosition += 2; 
 
             // Update the full location of the orb
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
@@ -523,7 +532,7 @@ namespace Sprites
                 spriteBatch.Begin();
                 spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
                 spriteBatch.End();
-            }
+            } 
         }
 
         public Rectangle GetHitbox()
@@ -540,6 +549,7 @@ namespace Sprites
         public void collide()
         {
             this.currFrames = maxFrames;
+            this.keepThrowing = false;
         }
 
     }

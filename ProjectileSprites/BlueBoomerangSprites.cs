@@ -129,6 +129,11 @@ namespace Sprites
         {
             returning = true;
         }
+
+        public bool isReturned()
+        {
+            return returned;
+        }
     }
 
 
