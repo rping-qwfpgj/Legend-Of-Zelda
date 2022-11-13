@@ -56,22 +56,22 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Trap</ObjectName>
-			<Location>150 150</Location>
+			<Location>105 92</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Trap</ObjectName>
-			<Location>180 130</Location>
+			<Location>105 356</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Trap</ObjectName>
-			<Location>550 180</Location>
+			<Location>664 92</Location>
 		</Item>
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Trap</ObjectName>
-			<Location>560 320</Location>
+			<Location>664 356</Location>
 		</Item>
 
 		<!--  Bounding  -->
