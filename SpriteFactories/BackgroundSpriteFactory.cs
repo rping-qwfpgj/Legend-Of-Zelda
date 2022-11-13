@@ -13,6 +13,7 @@ namespace LegendofZelda.SpriteFactories
     {
 
         private Texture2D spriteSheet;
+        private Texture2D gameOverBackground;
         private readonly static BackgroundSpriteFactory instance = new();
 
         public static BackgroundSpriteFactory Instance
@@ -29,6 +30,7 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("allbackgrounds");
+            gameOverBackground = content.Load<Texture2D>("game_over");
         }
 
         public ISprite CreateBackground(string name)
@@ -36,6 +38,11 @@ namespace LegendofZelda.SpriteFactories
             var split= name.Split('d');
             return new Background(spriteSheet, int.Parse(split[1]));
 
+        }
+
+        public ISprite GameOverScreen()
+        {
+            return new GameOverScreen(gameOverBackground);
         }
 
     }
