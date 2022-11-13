@@ -47,7 +47,7 @@ namespace Collision
 
 				case Compass:
 					// display the red dot on the map
-					break: 
+					break;
                 default:
 					break;
 
