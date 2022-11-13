@@ -33,7 +33,7 @@ namespace Collision
                     } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    }else { 
+                    }else if(!(block is OpenDoorBlock)) { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingUpState();
                         Link.Instance.currentPosition.Y += collisionRect.Height;
@@ -48,7 +48,7 @@ namespace Collision
                     } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else { 
+                    } else if(!(block is OpenDoorBlock)) { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingDownState();
                         Link.Instance.currentPosition.Y -= collisionRect.Height;
@@ -59,7 +59,7 @@ namespace Collision
                      if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else { 
+                    } else if(!(block is OpenDoorBlock)) { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingLeftState();
                         Link.Instance.currentPosition.X += collisionRect.Width;
@@ -70,7 +70,7 @@ namespace Collision
                     if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else { 
+                    } else if(!(block is OpenDoorBlock)) { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
 					    Link.Instance.currentState = new LinkIdleWalkingRightState();
                         Link.Instance.currentPosition.X -= collisionRect.Width;

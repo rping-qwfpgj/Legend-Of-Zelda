@@ -11,7 +11,7 @@ namespace LegendofZelda.Blocks
         private Rectangle sourceRectangle;
         private static int sourceWidth = 32;
         private static int sourceHeight = 22;
-        private Rectangle[] sourceRectangles = { new Rectangle(70, 11, 32, 22), new Rectangle(70, 44, 22, 31), new Rectangle(103, 77, 22, 32), new Rectangle(103, 110, 32, 22) };
+        private Rectangle[] sourceRectangles = { new Rectangle(70, 11, 32, 22), new Rectangle(70, 44, 22, 31), new Rectangle(70, 77, 22, 32), new Rectangle(70, 110, 32, 22) };
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int direction;
