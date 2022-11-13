@@ -22,7 +22,7 @@ namespace Sprites
         {
             this.texture = texture;
             this.sourceRectangle = new(170, 120, 20, 4);
-            this.destinationRectangle = new(543, 93, 80, 16);
+            this.destinationRectangle = new(543, 70, 300, 70);
         }
 
         public void Update()
