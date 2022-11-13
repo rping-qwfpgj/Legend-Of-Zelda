@@ -20,11 +20,11 @@ namespace Sprites
         private readonly int height = 56;
 
 
-        public HudBackgroundSprite(Texture2D texture)
+        public HudBackgroundSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
             this.sourceRectangle = new(259, 11, width, height);
-            this.destinationRectangle = new(18, -20, width*3, height*3);
+            this.destinationRectangle = new(x, y, width*3, height*3);
         }
 
         public void Update()
