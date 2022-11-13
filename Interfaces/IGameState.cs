@@ -11,6 +11,7 @@
         void TransitionDown();
         void TransitionLeft();
         void TransitionRight();
-        
+        void Update();
+        void Draw();        
     }
 }

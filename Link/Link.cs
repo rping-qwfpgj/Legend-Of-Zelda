@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
 
 namespace Sprint0
-{// im gonna get rid of the magic numbers
+{
     public class Link
     {
 

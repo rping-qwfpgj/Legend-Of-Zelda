@@ -5,9 +5,9 @@ using GameStates;
 public class GameStateController
 {
     public IGameState gamestate;
-    public GameStateController()
+    public GameStateController(Game1 game)
     {
-        this.gamestate = new GamePlayState(this);
+        this.gamestate = new GamePlayState(this, game);
     }
     public void GamePlay()
     {

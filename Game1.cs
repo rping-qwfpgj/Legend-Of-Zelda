@@ -44,12 +44,12 @@ public class Game1 : Game
     public int currentRoomIndex;
     public CollisionDetector collisionDetector;
     public ISprite background;
-    private KeyboardController keyboardController;
-    private MouseController mouseController;
-    private Hud hud;
+    public KeyboardController keyboardController;
+    public MouseController mouseController;
+    public Hud hud;
     public SoundEffect enemyHit;
     public Song backgroundMusic;
-    private Graph roomsGraph;
+    public Graph roomsGraph;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;

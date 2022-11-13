@@ -45,6 +45,14 @@ namespace GameStates
         {
 
         }
+        public void Update()
+        {
+
+        }
+        public void Draw()
+        {
+
+        }
     }
 }
 
