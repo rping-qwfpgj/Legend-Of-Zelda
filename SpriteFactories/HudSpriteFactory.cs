@@ -30,7 +30,6 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("gamestates");
-            Debug.WriteLine("hi");
         }
 
         public ISprite CreateSprite(string name)
@@ -39,8 +38,8 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "hudBackground":
                     return new HudBackgroundSprite(spriteSheet);
-                case "Background1":
-                    return new Background1(spriteSheet);
+                case "RedHeartSprite":
+                    return new RedHeartSprite(spriteSheet);
                 default:
                     return null;
             }
