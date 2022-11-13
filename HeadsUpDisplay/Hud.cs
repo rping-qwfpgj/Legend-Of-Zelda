@@ -20,7 +20,7 @@ namespace HeadsUpDisplay
         readonly private int width = 35;
 
         public Hud()
-        {       
+        {   
             sprites.Add(HudSpriteFactory.Instance.CreateSprite("hudBackground"));
 
             ISprite red1 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
@@ -43,8 +43,7 @@ namespace HeadsUpDisplay
             sprites.Add(HudSpriteFactory.Instance.CreateSprite("heartBlackSprite"));
             sprites.Add(halfPinkSprite1);
             sprites.Add(redHeart2Sprite);
-            sprites.Add(redHeart3Sprite);
-            
+            sprites.Add(redHeart3Sprite);            
         }
 
         public void Update()
