@@ -38,6 +38,12 @@ namespace LegendofZelda.Items
         {
             return destinationRectangle;
         }
+
+        public string toString()
+        {
+            return "orange map";
+        }
+
     }
 
 
