@@ -97,6 +97,18 @@
 /processorParam:Quality=Best
 /build:enemy_hit.wav
 
+#begin game_over.PNG
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:game_over.PNG
+
 #begin gamestates.png
 /importer:TextureImporter
 /processor:TextureProcessor
