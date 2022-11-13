@@ -49,13 +49,12 @@ namespace Sprites
 
         public void Update()
         {
+             Vector2 linkLocation = Link.Instance.currentPosition;
 
             // Compare to link's position if its just sitting
             if(this.trapState == TrapStates.Sitting)
             {
-                Vector2 linkLocation = Link.Instance.currentPosition;
-               // Debug.WriteLine(linkLocation);
-                //Debug.WriteLine("Trap " + this.xPosition);
+               
                 // Change to a new state by comparing link's position to the trap
                 this.swapState(linkLocation);
 
@@ -71,25 +70,29 @@ namespace Sprites
 
                 if(currState == TrapStates.MoveUp)
                 {
-                    this.yPosition -= 1;
+                    this.yPosition -= 3;
                     
                     
                 } else if (currState == TrapStates.MoveDown)
                 {
-                    this.yPosition += 1;
+                    this.yPosition += 3;
 
                     
                 } else if (currState == TrapStates.MoveLeft)
                 {
-                    this.xPosition -= 1;
+                    this.xPosition -= 2;
 
                     
                 } else if(currState == TrapStates.MoveRight)
                 {
-                    this.xPosition += 1;
+                    this.xPosition += 2;
 
                     
                 }
+
+                
+
+                //this.swapToOpposite(linkLocation);
 
                 
             }
@@ -117,7 +120,7 @@ namespace Sprites
 
         public void TurnAround(string side)
         {
-
+            this.trapState = TrapStates.Sitting;
         }
 
         public void TakeDamage(string side)
@@ -134,45 +137,26 @@ namespace Sprites
         {
            int xRange = (int)Math.Abs(linkLocation.X - this.xPosition);
            int yRange = (int)Math.Abs(linkLocation.Y - this.YPosition);
-           if(xRange <= 10 && linkLocation.Y < this.YPosition)
+           if(xRange <= 20 && linkLocation.Y < this.YPosition)
             {
-                // hi
+                
                 this.trapState = TrapStates.MoveUp;
-            } else if(xRange <= 10 && linkLocation.Y > this.YPosition)
+            } else if(xRange <= 20 && linkLocation.Y > this.YPosition)
             {
                 this.trapState = TrapStates.MoveDown;
-            } else if(linkLocation.X < this.xPosition && yRange <= 10)
+            } else if(linkLocation.X < this.xPosition && yRange <= 20)
             {
                 this.trapState = TrapStates.MoveLeft;
-            }  else if(linkLocation.X > this.xPosition && yRange <= 10)
+            }  else if(linkLocation.X > this.xPosition && yRange <= 20)
             {
                 this.trapState = TrapStates.MoveRight;
             } else
             {
                 this.trapState = TrapStates.Sitting;
-            }   
-        }
-
-        public void swapToOpposite()
-        {
-            // If at the last location, turn around
-            if(this.yPosition <= lastLocation.Y)
-            {
-                this.trapState = TrapStates.MoveDown;
-            } else if(this.yPosition >= lastLocation.Y)
-            {
-                this.trapState = TrapStates.MoveUp;
-            } else if(this.xPosition >= lastLocation.X)
-            {
-                this.trapState = TrapStates.MoveLeft;
-            } else if(this.xPosition <= lastLocation.X)
-            {
-                this.trapState = TrapStates.MoveRight;
             }
-
-            // If back at the initial location, need to go back to sitting
-
+           
         }
+
         public void Die()
         {
 
