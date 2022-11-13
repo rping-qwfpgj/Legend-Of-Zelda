@@ -34,10 +34,10 @@ namespace Collision
                         currRoom.RemoveObject(block);
                     
                     }else { 
-                        link.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(link.currentPosition, link.isDamaged, side);
-                        link.currentState = new LinkIdleWalkingUpState(link);
-                        link.currentPosition.Y += collisionRect.Height;
-                        link.currentLinkSprite.DestinationRectangle = new((int)link.currentPosition.X, (int)link.currentPosition.Y, 38, 40);
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingUpState();
+                        Link.Instance.currentPosition.Y += collisionRect.Height;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
                     }
                     break;
 				case "bottom":
