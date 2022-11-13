@@ -42,7 +42,7 @@ namespace LegendofZelda.Items
 
         public string toString()
         {
-            return "fire";
+            return "key";
         }
 
     }

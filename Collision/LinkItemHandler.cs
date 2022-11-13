@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using Sprint0;
 using Sprites;
@@ -22,6 +23,7 @@ namespace Collision
 			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
 			itemPickup.Play();
             Link.Instance.inventory.addItem(item);
+			Debug.WriteLine("picked up item: " + item.toString());
             switch (item)
 			{
 				case SmallRedHeart:
@@ -48,6 +50,7 @@ namespace Collision
 				case Compass:
 					// display the red dot on the map
 					break;
+				
                 default:
 					break;
 

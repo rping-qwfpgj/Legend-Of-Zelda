@@ -30,9 +30,9 @@ namespace Collision
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
-                    } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
-                    
+                        Link.Instance.inventory.removeItem("key");
                     }else { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingUpState();
@@ -45,9 +45,9 @@ namespace Collision
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("top");
-                    } else if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
-                    
+                        Link.Instance.inventory.removeItem("key");
                     } else { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingDownState();
@@ -56,8 +56,9 @@ namespace Collision
                     }
                     break;
 				case "left":
-                     if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                     if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
+                        Link.Instance.inventory.removeItem("key");
                     } else { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
                         Link.Instance.currentState = new LinkIdleWalkingLeftState();
@@ -66,8 +67,9 @@ namespace Collision
                     }
                     break;
                 case "right":
-                    if (block is LockedDoorBlock || block is PuzzleDoorBlock){
+                    if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
+                        Link.Instance.inventory.removeItem("key");
                     } else { 
                         Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
 					    Link.Instance.currentState = new LinkIdleWalkingRightState();
