@@ -32,14 +32,20 @@ namespace LegendofZelda.SpriteFactories
             spriteSheet = content.Load<Texture2D>("gamestates");
         }
 
-        public ISprite CreateSprite(string name)
+        public ISprite CreateSprite(Vector2 location, string name)
         {
             switch (name)
             {
                 case "hudBackground":
-                    return new HudBackgroundSprite(spriteSheet);
+                    return new HudBackgroundSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "RedHeartSprite":
-                    return new RedHeartSprite(spriteSheet);
+                    return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "BigTriforceSprite":
+                    return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "InventorySelectionSprite":
+                    return new InventorySelectionSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "MapDisplaySprite":
+                    return new MapDisplaySprite(spriteSheet, (int)location.X, (int)location.Y);
                 default:
                     return null;
             }
