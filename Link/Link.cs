@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
 
 namespace Sprint0
-{// im gonna get rid of the magic numbers
+{
     public class Link
     {
 
@@ -43,6 +43,7 @@ namespace Sprint0
         public bool isDamaged;
         public Throwables throwable;
         private int isDamagedCounter = 0;
+        public Inventory inventory;
         public Game1 game;
         private SoundEffect throwProjectile;
         private SoundEffect attack;
@@ -62,12 +63,13 @@ namespace Sprint0
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.Boomerang;
             this.currentProjectiles = new List<ISprite>();
+            this.inventory = new Inventory();
             //this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
             //this.attack = game.Content.Load<SoundEffect>("hee_hee");
             this.health = 3;
             this.canBeDamaged = true;
             //this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
-
+            
 
             //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
@@ -82,7 +84,7 @@ namespace Sprint0
             this.game.currentRoomIndex = 0;
             this.game.currentRoom = this.game.rooms[this.game.currentRoomIndex];
             this.health = 3;
-
+            this.inventory = new Inventory();
         }
 
         public void UpdatePosition()

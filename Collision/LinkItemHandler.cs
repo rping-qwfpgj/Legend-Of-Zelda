@@ -21,6 +21,38 @@ namespace Collision
 		{
 			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
 			itemPickup.Play();
+            Link.Instance.inventory.addItem(item);
+            switch (item)
+			{
+				case SmallRedHeart:
+                    Link.Instance.health += 1.0f;
+					break;
+
+				case Fairy:
+                    Link.Instance.health = 3.0f;
+					break;
+
+				case Triforce:
+                    Link.Instance.health = 4.0f;  
+					// trigger the win game state
+                    break;
+
+				case OrangeMap:
+                   // display the map (make it not transparent)
+					break;
+
+				case Bow:
+					// let link shoot arrows
+					break;
+
+				case Compass:
+					// display the red dot on the map
+					break: 
+                default:
+					break;
+
+            }
+			/*
 			if (item is SmallRedHeart)
 			{
 				Link.Instance.health += 1.0f;
@@ -29,7 +61,7 @@ namespace Collision
 			{
 				Link.Instance.health = 3.0f;
 			}
-			/*
+			
 			if (item is Triforce)
 			{
                 Link.Instancehealth = 4.0f;
