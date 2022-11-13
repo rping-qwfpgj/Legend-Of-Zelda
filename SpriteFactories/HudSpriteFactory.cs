@@ -46,6 +46,14 @@ namespace LegendofZelda.SpriteFactories
                     return new InventorySelectionSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "MapDisplaySprite":
                     return new MapDisplaySprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudBoomerangSprite":
+                    return new HudBoomerangSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudBowSprite":
+                    return new HudBowSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudBombSprite":
+                    return new HudBombSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudSelectionCursor":
+                    return new HudSelectionCursor(spriteSheet, (int)location.X, (int)location.Y);
                 default:
                     return null;
             }
