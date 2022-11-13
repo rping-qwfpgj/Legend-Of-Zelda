@@ -58,19 +58,10 @@ namespace GameStates
         }
         public void Update()
         {
-            Link.Instance.Update();
-            this.game.mouseController.Update();
-            this.game.collisionDetector.Update();
-            this.game.keyboardController.Update();
-            this.game.currentRoom.Update();
-            this.game.hud.Update();
+            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.game.GraphicsDevice.Clear(Color.Black);
-            this.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.Draw(_spriteBatch);
-            this.game.hud.Draw(_spriteBatch);
         }
     }
 }
