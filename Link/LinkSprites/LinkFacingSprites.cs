@@ -4,6 +4,7 @@ using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Interfaces;
+using LegendofZelda.Interfaces;
 
 namespace Sprites
 {

@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
 using Commands;
-using Sprites;
 using Controllers;
 using System.IO;
 using System.Xml.Linq;
@@ -14,13 +13,10 @@ using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
-using Color = Microsoft.Xna.Framework.Color;
-using SharpDX.MediaFoundation.DirectX;
 using HeadsUpDisplay;
-using System.Diagnostics;
-using SharpDX.MediaFoundation.DirectX;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using Interfaces;
 
 
 // Creator: Tuhin Patel
@@ -98,17 +94,26 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-      
+
         // Link.Instance.Update();
         // mouseController.Update();
         //collisionDetector.Update();
         //keyboardController.Update();
         //currentRoom.Update(); 
         //hud.Update();
-        gameStateController.gameState.Update();
+        if (gameStateController.gameState is ITransitionGameState) { 
+        var gameState = gameStateController.gameState as ITransitionGameState;
+        gameState.Update(gameTime, gameTime.TotalGameTime);
+
+        }
+        else
+        {
+            gameStateController.gameState.Update();
+        }
 
         base.Update(gameTime);
     }
+
 
     protected override void Draw(GameTime gameTime)
     {
@@ -117,6 +122,7 @@ public class Game1 : Game
         //Link.Instance.Draw(_spriteBatch); 
         //hud.Draw(_spriteBatch);
         gameStateController.gameState.Draw(_spriteBatch);
+        
         base.Draw(gameTime);
     }
 
@@ -154,10 +160,10 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph));
-        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph));
+        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph, gameStateController));
+        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph, gameStateController));
+        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph, gameStateController));
+        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph, gameStateController));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
 
 

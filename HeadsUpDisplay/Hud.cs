@@ -9,32 +9,40 @@ using LegendofZelda;
 using Sprites;
 
 
+
 namespace HeadsUpDisplay
 {
     public class Hud
     {
         private List<ISprite> sprites = new List<ISprite>();
         // For setting the positions of the heart sprites. 
-        readonly private int xPos = 543;
-        readonly private int yPos = 93;
-        readonly private int width = 35;
+        readonly private float xPos = 543;
+        readonly private float yPos = 93;
+        readonly private float width = 35;
+
+        private List<Vector2> heartPosVectors;
+
+        readonly private Vector2 heartOnePos = new Vector2(2, 3);
+        
+        readonly private Vector2 backgroundPos = new Vector2(20, -19);
+
 
         public Hud()
-        {    
-            /*
-            sprites.Add(HudSpriteFactory.Instance.CreateSprite("hudBackground"));
-
-            ISprite red1 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+        {
+            
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
+            
+            ISprite red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");
             RedHeartSprite redHeart1Sprite = red1 as RedHeartSprite;
-            redHeart1Sprite.setPos(xPos, yPos);
+            
 
-            ISprite red2 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+            ISprite red2 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");
             RedHeartSprite redHeart2Sprite = red2 as RedHeartSprite;
-            redHeart2Sprite.setPos(xPos + width, yPos);
+            
 
-            ISprite red3 = HudSpriteFactory.Instance.CreateSprite("RedHeartSprite");
+            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");
             RedHeartSprite redHeart3Sprite = red3 as RedHeartSprite;
-            redHeart3Sprite.setPos(xPos + width*2, yPos); 
+            
             
             sprites.Add(redHeart1Sprite);
             sprites.Add(redHeart2Sprite);

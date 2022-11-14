@@ -24,7 +24,7 @@ namespace Sprint0
             this.inventory.Add("boomerang", 0);
             this.inventory.Add("fairy", 0); // may remove fairies from dungeon 1
             this.inventory.Add("orange gemstone", 0);
-            this.inventory.Add("triforce", 0); 
+            this.inventory.Add("triforce", 0);
             
         }
 

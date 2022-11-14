@@ -22,9 +22,6 @@ namespace Sprint0
 
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         public bool IsTransitioning { get => transitioning; }
-
-
-
         public Background(Texture2D backgroundTexture, int roomNumber)
         {
             texture = backgroundTexture;
