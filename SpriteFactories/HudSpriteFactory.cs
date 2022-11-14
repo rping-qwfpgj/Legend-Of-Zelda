@@ -29,7 +29,7 @@ namespace LegendofZelda.SpriteFactories
 
         public void loadContent(ContentManager content)
         {
-            spriteSheet = content.Load<Texture2D>("gamestates");
+            spriteSheet = content.Load<Texture2D>("hud_sprites");
         }
 
         public ISprite CreateSprite(Vector2 location, string name)

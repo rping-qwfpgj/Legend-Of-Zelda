@@ -14,6 +14,14 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
+        int bombCount;
+        int keyCount;
+        int mapCount;
+        int compassCount;
+        int boomerangCount;
+        int fairyCount;
+        int gemstoneCount;
+        int triforceCount;
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -57,19 +65,19 @@ namespace GameStates
         }
         public void Update()
         {
-            Link.Instance.Update();
-            this.game.mouseController.Update();
-            this.game.collisionDetector.Update();
-            this.game.keyboardController.Update();
-            this.game.currentRoom.Update();
-            this.game.hud.Update();
+            bombCount = Link.Instance.inventory.getItemCount("bomb");
+            keyCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            mapCount = Link.Instance.inventory.getItemCount("orange map");
+            compassCount = Link.Instance.inventory.getItemCount("compass");
+            boomerangCount = Link.Instance.inventory.getItemCount("boomerang");
+            fairyCount = Link.Instance.inventory.getItemCount("fairy");
+            gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            triforceCount = Link.Instance.inventory.getItemCount("triforce");
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.game.GraphicsDevice.Clear(Color.Black);
-            this.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.Draw(_spriteBatch);
-            this.game.hud.Draw(_spriteBatch);
+            
         }
     }
 }
