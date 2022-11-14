@@ -5,7 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
-
+using LegendofZelda.SpriteFactories;
+using Sprites;
+using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace GameStates
 
@@ -22,6 +25,10 @@ namespace GameStates
         int fairyCount;
         int gemstoneCount;
         int triforceCount;
+        ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
+        ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
+        ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
+
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -77,7 +84,9 @@ namespace GameStates
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            
+            itemSelectionBackground.Draw(_spriteBatch);
+            mapDisplayBackground.Draw(_spriteBatch);
+            hudBackground.Draw(_spriteBatch);
         }
     }
 }
