@@ -24,7 +24,7 @@ namespace Sprites
         {
             this.texture = texture;
             this.sourceRectangle = new(633, 137, width, height);
-            this.destinationRectangle = new(x, y, width * 4, height * 4);
+            this.destinationRectangle = new(x, y, width * 3, height * 3);
         }
 
         public void Update()
