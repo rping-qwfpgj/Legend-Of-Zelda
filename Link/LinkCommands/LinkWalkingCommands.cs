@@ -26,10 +26,13 @@ namespace Commands
         {
             if (controller.gameState is InventoryState)
             {
-
                 var inventory = controller.gameState as InventoryState;
+
                 var oldRect = inventory.cursor.DestinationRectangle;
-                inventory.cursor.DestinationRectangle = new(oldRect.X+oldRect.Width, oldRect.Y, oldRect.Width, oldRect.Height);
+                if (oldRect.X< 400+ ( 5 * oldRect.Width))
+                {
+                    inventory.cursor.DestinationRectangle = new(oldRect.X + oldRect.Width, oldRect.Y, oldRect.Width, oldRect.Height);
+                }
             }
             else
             {
@@ -54,7 +57,10 @@ namespace Commands
             {
                 var inventory = controller.gameState as InventoryState;
                 var oldRect = inventory.cursor.DestinationRectangle;
-                inventory.cursor.DestinationRectangle = new(oldRect.X - oldRect.Width, oldRect.Y, oldRect.Width, oldRect.Height);
+                if (oldRect.X > 400)
+                {
+                    inventory.cursor.DestinationRectangle = new(oldRect.X - oldRect.Width, oldRect.Y, oldRect.Width, oldRect.Height);
+                }
             }
             else
             {
@@ -79,7 +85,10 @@ namespace Commands
             {
                 var inventory = controller.gameState as InventoryState;
                 var oldRect = inventory.cursor.DestinationRectangle;
-                inventory.cursor.DestinationRectangle = new(oldRect.X , oldRect.Y - oldRect.Height, oldRect.Width, oldRect.Height);
+                if (oldRect.Y > 122 )
+                {
+                    inventory.cursor.DestinationRectangle = new(oldRect.X, oldRect.Y - oldRect.Height, oldRect.Width, oldRect.Height);
+                }
             }
             else
             {
@@ -104,7 +113,10 @@ namespace Commands
             {
                 var inventory = controller.gameState as InventoryState;
                 var oldRect = inventory.cursor.DestinationRectangle;
-                inventory.cursor.DestinationRectangle = new(oldRect.X, oldRect.Y + oldRect.Height, oldRect.Width, oldRect.Height);
+                if (oldRect.Y < 122 + (oldRect.Height))
+                {
+                    inventory.cursor.DestinationRectangle = new(oldRect.X, oldRect.Y + oldRect.Height, oldRect.Width, oldRect.Height);
+                }
             }
             else
             {
