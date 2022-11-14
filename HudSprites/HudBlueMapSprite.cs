@@ -18,6 +18,7 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 48;
         private readonly int height = 28;
+        private List<Vector2> linkLocations = new();
 
 
         public HudBlueMapSprite(Texture2D texture, int x, int y)
@@ -25,6 +26,7 @@ namespace Sprites
             this.texture = texture;
             this.sourceRectangle = new(697, 104, width, height);
             this.destinationRectangle = new(x, y, 168, 98);
+            linkLocations.Add(new Vector2(x, y));
         }
 
         public void Update()
