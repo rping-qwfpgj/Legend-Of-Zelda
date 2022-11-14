@@ -29,7 +29,7 @@ namespace GameStates
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
         ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
         ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
-
+        ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -91,6 +91,7 @@ namespace GameStates
             mapDisplayBackground.Draw(_spriteBatch);
             hudBackground.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
+            text.Draw(_spriteBatch);
         }
     }
 }

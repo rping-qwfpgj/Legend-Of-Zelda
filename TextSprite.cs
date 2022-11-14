@@ -1,4 +1,5 @@
 using System;
+using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
@@ -7,18 +8,19 @@ namespace Sprint0
 {
     public class TextSprite : ISprite
     {
-        // Needed for for drawing at a location on the screen
-        public GraphicsDeviceManager graphics;
+        private Vector2 position;
 
         // Font to use
-        public SpriteFont font;
+        private SpriteFont font;
 
         // Text to produce
-        public string text;
+        private string text;
 
-        public TextSprite(GraphicsDeviceManager graphics, SpriteFont font, string text)
+        public Rectangle DestinationRectangle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public TextSprite(Vector2 location, SpriteFont font, string text)
         {
-            this.graphics = graphics;
+            this.position = location;
             this.font = font;
             this.text = text;
         }
@@ -30,17 +32,23 @@ namespace Sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Where to position the font
-            Vector2 fontPosition = new Vector2(graphics.PreferredBackBufferWidth / 3, graphics.PreferredBackBufferHeight / 3);
+            //// Where to position the font
+            //Vector2 fontPosition = new Vector2(graphics.PreferredBackBufferWidth / 3, graphics.PreferredBackBufferHeight / 3);
 
-            // Get the origin of the font to center it
-            Vector2 fontOrigin = font.MeasureString(text) / 2;
+            //// Get the origin of the font to center it
+            //Vector2 fontOrigin = font.MeasureString(text) / 2;
 
+            //public void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color)
             // Draw the text
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, text, fontPosition, Color.Black, 0, fontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+            spriteBatch.DrawString(font, text, position, Color.White);
             spriteBatch.End();
 
+        }
+
+        public Rectangle GetHitbox()
+        {
+            throw new NotImplementedException();
         }
     }
 }
