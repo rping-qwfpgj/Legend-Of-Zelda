@@ -17,6 +17,7 @@ namespace LegendofZelda.SpriteFactories
         SoundEffect item_pickup;
         SoundEffect link_damage;
         SoundEffect throw_projectile;
+        SoundEffect link_death;
 
         public static SoundFactory Instance
         {
@@ -38,6 +39,7 @@ namespace LegendofZelda.SpriteFactories
             item_pickup = content.Load<SoundEffect>("item_pickup");
             link_damage = content.Load<SoundEffect>("link_damage");
             throw_projectile = content.Load<SoundEffect>("throw_projectile");
+            link_death = content.Load<SoundEffect>("link_death");
 
         }
 
@@ -69,6 +71,10 @@ namespace LegendofZelda.SpriteFactories
                 case "ThrowProjectile":
 
                     return throw_projectile;
+
+                case "LinkDeath":
+
+                    return link_death;
 
                 default:
 
