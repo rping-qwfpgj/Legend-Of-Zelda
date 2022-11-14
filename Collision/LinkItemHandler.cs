@@ -28,6 +28,18 @@ namespace Collision
 			{
 				case SmallRedHeart:
                     Link.Instance.health += 1.0f;
+					if(Link.Instance.health > 3)
+					{
+						Link.Instance.health = 3;
+					}
+					break;
+				
+				case BigHeart:
+                    Link.Instance.health += 1.0f;
+					if(Link.Instance.health > 3)
+					{
+						Link.Instance.health = 3;
+					}
 					break;
 
 				case Fairy:

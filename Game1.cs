@@ -33,8 +33,7 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
-    public Texture2D doorSpriteSheet;
-    //private Link link;
+    public Texture2D doorSpriteSheet;    
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
