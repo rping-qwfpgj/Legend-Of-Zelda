@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Security.Cryptography.X509Certificates;
-using Interfaces;
 using System.Collections.Generic;
+using LegendofZelda.Interfaces;
 
 namespace Sprites
 {

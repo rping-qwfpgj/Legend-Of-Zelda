@@ -4,8 +4,12 @@ using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
-
+using LegendofZelda.Interfaces;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
+using LegendofZelda.SpriteFactories;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.Xna.Framework;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace GameStates
 
@@ -14,6 +18,7 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
+   
         public TransitionRightState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -21,7 +26,10 @@ namespace GameStates
         }
         public void GamePlay()
         {
+
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(new(0, 395), false);
             this.controller.gameState = new GamePlayState(this.controller, this.game);
+            
         }
         public void Inventory()
         {
@@ -58,20 +66,22 @@ namespace GameStates
         }
         public void Update()
         {
-            Link.Instance.Update();
-            this.game.mouseController.Update();
-            this.game.collisionDetector.Update();
-            this.game.keyboardController.Update();
-            this.game.currentRoom.Update();
-            this.game.hud.Update();
+            var background = this.game.currentRoom.Background as IBackground;
+            background.Update();
+            
+            if (!background.IsTransitioning)
+            {
+                GamePlay();
+            }
+            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             this.game.GraphicsDevice.Clear(Color.Black);
             this.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.Draw(_spriteBatch);
             this.game.hud.Draw(_spriteBatch);
         }
+
     }
 }
 

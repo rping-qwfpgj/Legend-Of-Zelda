@@ -67,15 +67,21 @@ public class LeftRoomCommand : ICommand
 {
     private Game1 myGame;
     private Graph myGraph;
+    private GameStateController myStateController;
 
-    public LeftRoomCommand(Game1 myGame, Graph myGraph)
+
+    public LeftRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
     {
         this.myGame = myGame;
         this.myGraph = myGraph;
+        myStateController = gameStateController;
+
     }
 
     public void Execute()
     {
+
+        myStateController.gameState.TransitionLeft();
         myGame.currentRoomIndex =  myGraph.GetLeftRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
@@ -90,18 +96,20 @@ public class RightRoomCommand : ICommand
 {
     private Game1 myGame;
     private Graph myGraph;
+    private GameStateController myStateController;
 
-    public RightRoomCommand(Game1 myGame, Graph myGraph)
+    public RightRoomCommand(Game1 myGame, Graph myGraph,GameStateController gameStateController)
     {
         this.myGame = myGame;
         this.myGraph = myGraph;
+        myStateController = gameStateController;
     }
 
     public void Execute()
     {
+        myStateController.gameState.TransitionRight();
         myGame.currentRoomIndex = myGraph.GetRightRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
-
         var background = myGame.currentRoom.Background as IBackground;
         background.SetTransitionDirection("right");
 
@@ -113,15 +121,21 @@ public class UpRoomCommand : ICommand
 {
     private Game1 myGame;
     private Graph myGraph;
+    private GameStateController myStateController;
 
-    public UpRoomCommand(Game1 myGame, Graph myGraph)
+
+    public UpRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
     {
         this.myGame = myGame;
         this.myGraph = myGraph;
+        myStateController = gameStateController;
+
     }
 
     public void Execute()
     {
+
+        myStateController.gameState.TransitionUp();
         myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
@@ -136,15 +150,21 @@ public class DownRoomCommand : ICommand
 {
     private Game1 myGame;
     private Graph myGraph;
+    private GameStateController myStateController;
 
-    public DownRoomCommand(Game1 myGame, Graph myGraph)
+
+    public DownRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
     {
         this.myGame = myGame;
         this.myGraph = myGraph;
+        myStateController = gameStateController;
+
     }
 
     public void Execute()
     {
+
+        myStateController.gameState.TransitionDown();
         myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
