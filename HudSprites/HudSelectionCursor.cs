@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprites;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
 
 namespace Sprites
 {
@@ -46,6 +47,11 @@ namespace Sprites
             _spriteBatch.End();
         }
 
+
+        public void Offset(int x, int y)
+        {
+            this.DestinationRectangle = new(x, y, width * 4, height * 4);
+        }
         public void setPos(int x, int y)
         {
             this.DestinationRectangle = new(x, y, width * 4, height * 4);

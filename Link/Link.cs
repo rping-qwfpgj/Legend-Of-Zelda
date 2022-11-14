@@ -8,6 +8,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
+using GameStates;
 
 namespace Sprint0
 {
@@ -49,12 +50,9 @@ namespace Sprint0
         private bool canBeDamaged;
         private SoundEffect takeDamage;
     
-
-
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
-
             this.isDamaged = false;
             //this.game = game;
             this.currentState = new LinkFacingUpState();
@@ -80,75 +78,98 @@ namespace Sprint0
             this.game.currentRoom = this.game.rooms[this.game.currentRoomIndex];
             this.health = 3;
             this.inventory = new Inventory();
+            this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
         }
 
         public void UpdatePosition()
         {
-            
-            Rectangle rectangle = currentLinkSprite.GetHitbox();
-            currentPosition = new Vector2(rectangle.X, rectangle.Y);
+            if (this.health > 0)
+            {
+                Rectangle rectangle = currentLinkSprite.GetHitbox();
+                currentPosition = new Vector2(rectangle.X, rectangle.Y);
+            }
        
         }
         public void Attack()
         {
-            attack.Play();
-            this.UpdatePosition();
-            currentState.Attack();
+            if (this.health > 0)
+            {
+                attack.Play();
+                this.UpdatePosition();
+                currentState.Attack();
+            }
         }
 
         public void ThrowProjectile()
         {
-            throwProjectile.Play();
-            this.UpdatePosition();
-            currentState.ThrowProjectile();
+            if (this.health > 0)
+            {
+                throwProjectile.Play();
+                this.UpdatePosition();
+                currentState.ThrowProjectile();
+            }
         }
 
         public void MoveUp()
         {
-            this.UpdatePosition();
-            currentState.MoveUp();
+            if (this.health > 0)
+            {
+                this.UpdatePosition();
+                currentState.MoveUp();
+            }
         }
 
         public void MoveDown()
         {
-            this.UpdatePosition();
-            currentState.MoveDown();
+            if (this.health > 0)
+            {
+                this.UpdatePosition();
+                currentState.MoveDown();
+            }
         }
 
         public void MoveLeft()
         {
-            this.UpdatePosition();
-            currentState.MoveLeft();
+            if (this.health > 0)
+            {
+                this.UpdatePosition();
+                currentState.MoveLeft();
+            }
         }
 
         public void MoveRight()
         {
-            this.UpdatePosition();
-            currentState.MoveRight();
+            if (this.health > 0)
+            {
+                this.UpdatePosition();
+                currentState.MoveRight();
+            }
 
         }
         public void NoInput()
         {
-
-            this.UpdatePosition();
-
-            if (currentLinkSprite is IAttackingSprite)
+            if (this.health > 0)
             {
-                IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                if (!(currSprite.isAttacking()))
+                this.UpdatePosition();
+
+                if (currentLinkSprite is IAttackingSprite)
+                {
+                    IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
+                    if (!(currSprite.isAttacking()))
+                    {
+                        currentState.NoInput();
+                    }
+                }
+                else
                 {
                     currentState.NoInput();
                 }
-            }
-            else
-            {
-                currentState.NoInput();
             }
         }
 
         public void TakeDamage()
         {
-            if (this.canBeDamaged == true)
+            if (this.canBeDamaged == true && this.health > 0)
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
@@ -167,7 +188,7 @@ namespace Sprint0
 
         public void TakeDamage(string side)
         {
-            if (this.canBeDamaged == true)
+            if (this.canBeDamaged == true && this.health > 0)
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
@@ -175,72 +196,78 @@ namespace Sprint0
                 if (health <= 0)
                 {
                     this.Die();
-                    
+
                 }
-                this.isDamaged = true;
-                this.canBeDamaged = false;
-                this.currentState.Redraw();
-                switch (side)
+                else
                 {
-                    case "top":
+                    this.isDamaged = true;
+                    this.canBeDamaged = false;
+                    this.currentState.Redraw();
+                    switch (side)
+                    {
+                        case "top":
 
-                        this.currentPosition.Y += 25;
-                        this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
+                            this.currentPosition.Y += 25;
+                            this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
 
-                        break;
-                    case "bottom":
+                            break;
+                        case "bottom":
 
-                        this.currentPosition.Y -= 25;
-                        this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                        break;
-                    case "left":
-                        this.currentPosition.X -= 25;
-                        this.currentLinkSprite.DestinationRectangle.Offset(25, 0);
-                        break;
-                    case "right":
-                        this.currentPosition.X += 25;
-                        this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
+                            this.currentPosition.Y -= 25;
+                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
+                            break;
+                        case "left":
+                            this.currentPosition.X -= 25;
+                            this.currentLinkSprite.DestinationRectangle.Offset(25, 0);
+                            break;
+                        case "right":
+                            this.currentPosition.X += 25;
+                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
 
 
-                        break;
-                    default:
-                        break;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
 
         public void Update()
         {
-            this.UpdatePosition();
-            this.currentLinkSprite.Update();
-            foreach (var projectile in currentProjectiles)
+            if (this.health > 0)
             {
-                projectile.Update();
-            }
-
-            // This can be refactored using a decorator pattern
-            if (this.isDamaged)
-            {
-                this.isDamagedCounter++;
-                if (this.isDamagedCounter > 60)
+                this.UpdatePosition();
+                this.currentLinkSprite.Update();
+                foreach (var projectile in currentProjectiles)
                 {
-                    this.canBeDamaged = true;
-                    this.isDamagedCounter = 0;
-                    this.isDamaged = false;
-                    this.UpdatePosition();
+                    projectile.Update();
+                }
 
-                    //Check if current sprite is an attacking sprite
-                    if (currentLinkSprite is IAttackingSprite)
+                // This can be refactored using a decorator pattern
+                if (this.isDamaged)
+                {
+                    this.isDamagedCounter++;
+                    if (this.isDamagedCounter > 60)
                     {
-                        IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                        if (!currSprite.isAttacking())
+                        this.canBeDamaged = true;
+                        this.isDamagedCounter = 0;
+                        this.isDamaged = false;
+                        this.UpdatePosition();
+
+                        //Check if current sprite is an attacking sprite
+                        if (currentLinkSprite is IAttackingSprite)
+                        {
+                            IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
+                            if (!currSprite.isAttacking())
+                            {
+                                this.currentState.Redraw();
+                            }
+                        }
+                        else
                         {
                             this.currentState.Redraw();
                         }
-                    }
-                    else
-                    {
-                        this.currentState.Redraw();
                     }
                 }
             }
@@ -248,17 +275,24 @@ namespace Sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            currentLinkSprite.Draw(_spriteBatch);
-            foreach (var projectile in currentProjectiles)
+            if (this.health > 0)
             {
-                projectile.Draw(_spriteBatch);
+                currentLinkSprite.Draw(_spriteBatch);
+                foreach (var projectile in currentProjectiles)
+                {
+                    projectile.Draw(_spriteBatch);
+                }
             }
         }
 
         public void Die()
         {
+            SoundFactory.Instance.CreateSoundEffect("LinkDeath").Play();
             //this.game.currentState = gameOverState;
-            Reset();
+            //this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkDying(this.currentPosition);
+            //Debug.WriteLine(this.currentLinkSprite);
+            this.game.gameStateController.gameState.GameOver();
+            //Reset();
         }
 
         public void getGame(Game1 game)

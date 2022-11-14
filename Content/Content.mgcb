@@ -157,6 +157,12 @@
 /processorParam:Quality=Best
 /build:link_damage.wav
 
+#begin link_death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:link_death.wav
+
 #begin LinkandProjectileSprites.png
 /importer:TextureImporter
 /processor:TextureProcessor

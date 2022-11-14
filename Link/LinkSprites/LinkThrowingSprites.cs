@@ -27,9 +27,11 @@ namespace Sprites
         // Is current sprite done with one attack cycle
         private bool isAttack;
 
+        public string side = "top";
+
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value; }
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingUpSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -58,9 +60,9 @@ namespace Sprites
             Rectangle currentFrame = new();
 
             // Draw the first step of link walking up
-           
-                currentFrame = new Rectangle(141, 11, 16, 16);
-            
+
+            currentFrame = new Rectangle(141, 11, 16, 16);
+
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -86,6 +88,11 @@ namespace Sprites
         {
             return isAttack;
         }
+
+        public string getSide()
+        {
+            return this.side;
+        }
     }
 
     public class LinkThrowingDownSprite : IAttackingSprite
@@ -103,12 +110,14 @@ namespace Sprites
 
         private bool isDamaged;
 
+        public string side = "bottom";
+
         // Represents if sprite is currently in a attack cycle
         private bool isAttack;
 
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value; }
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingDownSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -123,7 +132,7 @@ namespace Sprites
         {
             // Update frames
             currFrames += 50;
-            
+
 
             // If frames are past max, done with the attacking cycle
             if (currFrames > maxFrames)
@@ -139,10 +148,10 @@ namespace Sprites
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
-          
-                currentFrame = new(107, 11, 16, 15);
 
-            
+            currentFrame = new(107, 11, 16, 15);
+
+
 
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
             // Draw the sprite
@@ -168,6 +177,11 @@ namespace Sprites
         {
             return this.isAttack;
         }
+
+        public string getSide()
+        {
+            return this.side;
+        }
     }
 
     public class LinkThrowingLeftSprite : IAttackingSprite
@@ -188,9 +202,11 @@ namespace Sprites
         // Represents if sprite is currently in an attacking cycle
         private bool isAttack;
 
+        public string side = "left";
+
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value; }
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkThrowingLeftSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
@@ -221,39 +237,45 @@ namespace Sprites
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
 
             // Draw the first step of link walking up
-             currentFrame = new(124, 12, 15, 15);
+            currentFrame = new(124, 12, 15, 15);
 
 
-                destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
-                // Draw the sprite
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                if (isDamaged)
-                {
-                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+            // Draw the sprite
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            if (isDamaged)
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
 
-                }
-                else
-                {
-                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
-                }
-                spriteBatch.End();
-            
+            }
+            else
+            {
+                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.FlipHorizontally, 1);
+            }
+            spriteBatch.End();
+
         }
 
-            public Rectangle GetHitbox()
-            {
-                return this.destinationRectangle;
-            }
-
-            public bool isAttacking()
-            {
-                return this.isAttack;
-            }
+        public Rectangle GetHitbox()
+        {
+            return this.destinationRectangle;
         }
 
-    
+        public bool isAttacking()
+        {
+            return this.isAttack;
+        }
+        public string getSide()
+        {
+            return this.side;
+        }
     }
+
+
+
+
+
     public class LinkThrowingRightSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -272,11 +294,13 @@ namespace Sprites
         // Represents if sprite is in an attack cycle
         private bool isAttack;
 
+        public string side = "right";
+
         // Screen location
         private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
-    public Vector2 Position { get => new(xPosition, yPosition); }
-    public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
+        public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X - (destinationRectangle.Width / 2), destinationRectangle.Y - (destinationRectangle.Height / 2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value; }
+        public Vector2 Position { get => new(xPosition, yPosition); }
+        public LinkThrowingRightSprite(Texture2D texture, float xPosition, float yPosition, bool isDamaged)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
@@ -303,13 +327,13 @@ namespace Sprites
         {
             // Create source and destination rectangles
             Rectangle currentFrame = new(); // Store the current location on the spritesheet to get a sprite from
-           
+
 
             // Draw the first step of link walking up
-           
-                currentFrame = new (124, 12, 15, 15);
 
-            
+            currentFrame = new(124, 12, 15, 15);
+
+
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2); // Where to draw on screen
 
             // Draw the sprite
@@ -326,7 +350,7 @@ namespace Sprites
             spriteBatch.End();
         }
 
-         public Rectangle GetHitbox()
+        public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
         }
@@ -335,7 +359,13 @@ namespace Sprites
         {
             return this.isAttack;
         }
+
+        public string getSide()
+        {
+            return this.side;
+        }
     }
+}
 
 
 

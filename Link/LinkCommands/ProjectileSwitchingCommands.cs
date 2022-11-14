@@ -69,7 +69,10 @@ namespace Commands
 
         public void Execute()
         {
-            Link.Instance.throwable = Link.Throwables.Arrow;
+            if (Link.Instance.inventory.getItemCount("bow") == 1)
+            {
+                Link.Instance.throwable = Link.Throwables.Arrow;
+            }
         }
 
     }
@@ -84,7 +87,10 @@ namespace Commands
 
         public void Execute()
         {
-            Link.Instance.throwable = Link.Throwables.BlueArrow;
+            if (Link.Instance.inventory.getItemCount("bow") == 1)
+            {
+                Link.Instance.throwable = Link.Throwables.BlueArrow;
+            }
         }
 
     }

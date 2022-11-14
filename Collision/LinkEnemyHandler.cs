@@ -22,10 +22,11 @@ namespace Collision
 			if(Link.Instance.currentLinkSprite is IAttackingSprite)
 			{
                 IAttackingSprite currLinkSprite = (IAttackingSprite)Link.Instance.currentLinkSprite;
-                
-                     side = reverseSide(side);
-                     enemy.TakeDamage(side);
-                     
+                if (currLinkSprite.getSide() == side)
+                {
+                    side = reverseSide(side);
+                    enemy.TakeDamage(side);
+                }     
                     
                     /*
                      
@@ -42,6 +43,9 @@ namespace Collision
                 {
                     game.currentRoomIndex = 0;
                     game.currentRoom = game.rooms[game.currentRoomIndex];
+                } else if(enemy is TrapSprite) {
+                    Link.Instance.health = 0f;
+                    Link.Instance.Die();
                 } else { 
 				    Link.Instance.TakeDamage(side);
                 }

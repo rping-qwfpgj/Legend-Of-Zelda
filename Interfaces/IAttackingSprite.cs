@@ -12,5 +12,7 @@ namespace LegendofZelda.Interfaces
         new void Update();
         new Rectangle GetHitbox();
         bool isAttacking();
+        string getSide();
+
     }
 }
