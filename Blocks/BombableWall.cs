@@ -17,8 +17,8 @@ namespace LegendofZelda.Blocks
         private int direction;
         private int xPos;
         private int yPos;
-        private int destinationWidth = sourceWidth * 3;
-        private int destinationHeight = sourceHeight * 3;
+        private int destinationWidth = sourceWidth * 2;
+        private int destinationHeight = sourceHeight * 2;
 
         public BombableDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
