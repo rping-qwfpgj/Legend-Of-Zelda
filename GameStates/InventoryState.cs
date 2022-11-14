@@ -74,7 +74,7 @@ namespace GameStates
         public void Update()
         {
             bombCount = Link.Instance.inventory.getItemCount("bomb");
-            keyCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            keyCount = Link.Instance.inventory.getItemCount("key");
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
             boomerangCount = Link.Instance.inventory.getItemCount("boomerang");
