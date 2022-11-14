@@ -22,10 +22,11 @@ namespace Collision
 			if(Link.Instance.currentLinkSprite is IAttackingSprite)
 			{
                 IAttackingSprite currLinkSprite = (IAttackingSprite)Link.Instance.currentLinkSprite;
-                
-                     side = reverseSide(side);
-                     enemy.TakeDamage(side);
-                     
+                if (currLinkSprite.getSide() == side)
+                {
+                    side = reverseSide(side);
+                    enemy.TakeDamage(side);
+                }     
                     
                     /*
                      
