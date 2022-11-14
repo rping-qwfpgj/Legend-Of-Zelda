@@ -1,6 +1,7 @@
 ﻿using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Sprites
 {
@@ -20,6 +21,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        private List<Rectangle> sourceRectangles;
+
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone;}
@@ -29,8 +32,12 @@ namespace Sprites
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
-            this.yPosition = (int)yPosition;
+            this.yPosition = (int)yPosition-30;
             isDone = false;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(3, 185, 5, 16));
+            sourceRectangles.Add(new Rectangle(53, 189, 8, 8));
+
         }
 
         public void Update()
@@ -51,31 +58,27 @@ namespace Sprites
             }
             
         }
-
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new(xPosition, yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
 
-            // Draw the first step of link  up
-            if (currFrames >= 0 && currFrames <= 5*maxFrames/6)
-            {
-                sourceRectangle = new Rectangle(3, 185, 5, 16);
-                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 5 * 4, 16 * 4);
+            Rectangle sourceRectangle = new Rectangle();
 
-            } else if (currFrames >= 5*maxFrames/6 && currFrames <= maxFrames)
+            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
             {
-                sourceRectangle = new Rectangle(53, 189, 8, 8);
-                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
+                sourceRectangle = sourceRectangles[0];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
+            }
+            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
+            {
+                sourceRectangle = sourceRectangles[1];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
 
-            // Draw the sprite
             if (!isDone)
             {
+
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
         }
@@ -109,6 +112,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        private List<Rectangle> sourceRectangles;
+
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
@@ -118,6 +123,10 @@ namespace Sprites
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
             isDone = false;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(3, 185, 5, 16));
+            sourceRectangles.Add(new Rectangle(53, 189, 8, 8));
+
         }
 
         public void Update()
@@ -137,35 +146,30 @@ namespace Sprites
             }
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new(xPosition, yPosition, 5 * 4, 16 * 4); // Where to draw on screen
 
-            // Draw the first step of link  up
-            if (currFrames >= 0 && currFrames <= 3200)
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
             {
-                sourceRectangle = new Rectangle(3, 185, 5, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 5 * 4, 16 * 4);
-
+                sourceRectangle = sourceRectangles[0];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
-            else if (currFrames >= 3200 && currFrames <= 3500)
+            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(53, 189, 8, 8);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
+                sourceRectangle = sourceRectangles[1];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
 
-            // Draw the sprite
             if (!isDone)
             {
+
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
                 spriteBatch.End();
             }
         }
-
         public Rectangle GetHitbox()
         {
             return this.destinationRectangle;
@@ -196,6 +200,8 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        private List<Rectangle> sourceRectangles;
+
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
@@ -205,6 +211,10 @@ namespace Sprites
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
             isDone = false;
+            sourceRectangles = new();
+            sourceRectangles.Add(new(10, 190, 16, 5));
+            sourceRectangles.Add(new Rectangle(53, 189, 8, 8));
+
         }
 
         public void Update()
@@ -228,28 +238,25 @@ namespace Sprites
         // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new(xPosition, yPosition, 16 * 4, 5 * 4); // Where to draw on screen
 
-            // Draw the first step of link  up
-            if (currFrames >= 0 && currFrames <= 3200)
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
             {
-                sourceRectangle = new(10, 190, 16, 5);
-                this.destinationRectangle = new(xPosition, yPosition, 16 * 4, 5 * 4);
-
+                sourceRectangle = sourceRectangles[0];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
-            else if (currFrames >= 3200 && currFrames <= 3500)
+            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
             {
-                sourceRectangle = new(53, 189, 8, 8);
-                this.destinationRectangle = new(xPosition, yPosition, 8 * 4, 8 * 4);
+                sourceRectangle = sourceRectangles[1];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
 
             if (!isDone)
             {
-                // Draw the sprite
+
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
         }
@@ -285,15 +292,21 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        private List<Rectangle> sourceRectangles;
+
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
         public ArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition-30;
             this.yPosition = (int)yPosition;
             isDone = false;
+            sourceRectangles = new();
+            sourceRectangles.Add(new(10, 190, 16, 5));
+            sourceRectangles.Add(new Rectangle(53, 189, 8, 8));
+
         }
 
         public void Update()
@@ -313,30 +326,25 @@ namespace Sprites
                 isDone = true;
             }
         }
-
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new(xPosition, yPosition, 16 * 4, 5 * 4); // Where to draw on screen
 
-            // Draw the first step of link  up
-            if (currFrames >= 0 && currFrames <= 3200)
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
             {
-                sourceRectangle = new Rectangle(10, 190, 16, 5);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 16 * 4, 5 * 4);
-
+                sourceRectangle = sourceRectangles[0];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
-            else if (currFrames >= 3200 && currFrames <= 3500)
+            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
             {
-                sourceRectangle = new Rectangle(53, 189, 8, 8);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
+                sourceRectangle = sourceRectangles[1];
+                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
             }
 
             if (!isDone)
             {
-                // Draw the sprite
+
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 spriteBatch.End();
