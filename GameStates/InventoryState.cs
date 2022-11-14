@@ -5,7 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
-
+using LegendofZelda.SpriteFactories;
+using Sprites;
+using LegendofZelda.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace GameStates
 
@@ -22,6 +25,11 @@ namespace GameStates
         int fairyCount;
         int gemstoneCount;
         int triforceCount;
+        ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
+        ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
+        ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
+        ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
+        ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -66,7 +74,7 @@ namespace GameStates
         public void Update()
         {
             bombCount = Link.Instance.inventory.getItemCount("bomb");
-            keyCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            keyCount = Link.Instance.inventory.getItemCount("key");
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
             boomerangCount = Link.Instance.inventory.getItemCount("boomerang");
@@ -74,10 +82,16 @@ namespace GameStates
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
 
+            cursor.Update();
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            
+            itemSelectionBackground.Draw(_spriteBatch);
+            mapDisplayBackground.Draw(_spriteBatch);
+            hudBackground.Draw(_spriteBatch);
+            cursor.Draw(_spriteBatch);
+            text.Draw(_spriteBatch);
         }
     }
 }
