@@ -8,6 +8,7 @@ using LegendofZelda.Interfaces;
 using LegendofZelda.Backgrounds;
 using System.Diagnostics;
 
+
 namespace LegendofZelda.SpriteFactories
 {
     public class HudSpriteFactory : ISpriteFactory
@@ -15,7 +16,7 @@ namespace LegendofZelda.SpriteFactories
 
         private Texture2D spriteSheet;
         private static HudSpriteFactory instance = new();
-
+        private SpriteFont font;
         public static HudSpriteFactory Instance
         {
             get
@@ -30,6 +31,7 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("hud_sprites");
+            this.font = content.Load<SpriteFont>("Times New Roman");
         }
 
         public ISprite CreateSprite(Vector2 location, string name)
@@ -38,7 +40,11 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "hudBackground":
                     return new HudBackgroundSprite(spriteSheet, (int)location.X, (int)location.Y);
-                case "RedHeartSprite":
+                case "LinkSwordSprite":
+                    return new LinkSwordSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "BombTextSprite":                    
+                    return new BombTextSprite(spriteSheet, (int)location.X, (int)location.Y, this.font);
+                case "RedHeartSprite":                    
                     return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y);                
                 case "BigTriforceSprite":
                     return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);

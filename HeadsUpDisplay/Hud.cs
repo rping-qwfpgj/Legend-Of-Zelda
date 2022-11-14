@@ -7,6 +7,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using LegendofZelda;
 using Sprites;
+using System.Diagnostics;
 
 
 
@@ -24,27 +25,25 @@ namespace HeadsUpDisplay
         readonly private Vector2 heartTwoPos;
         readonly private Vector2 heartThreePos;
 
-        readonly private Vector2 backgroundPos = new Vector2(20, -19);        
+        readonly private Vector2 backgroundPos = new Vector2(20, -19);
 
         public Hud()
         {
+
             heartOnePos = new Vector2(xPos, yPos);
             heartTwoPos = new Vector2(xPos + heartSpacing, yPos);
             heartThreePos = new Vector2(xPos + heartSpacing*2, yPos);
-                        
+            
             ISprite red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");                        
             ISprite red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");                        
-            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");
-
-            RedHeartSprite redHeart1Sprite = red1 as RedHeartSprite;
-            RedHeartSprite redHeart2Sprite = red2 as RedHeartSprite;
-            RedHeartSprite redHeart3Sprite = red3 as RedHeartSprite;
-
+            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");                        
+            
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
-            sprites.Add(redHeart1Sprite);
-            sprites.Add(redHeart2Sprite);
-            sprites.Add(redHeart3Sprite);
-
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "BombTextSprite"));
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "LinkSwordSprite"));
+            sprites.Add(red1);
+            sprites.Add(red2);
+            sprites.Add(red3);
         }
 
         public void Update()
@@ -57,6 +56,7 @@ namespace HeadsUpDisplay
             foreach (ISprite sprite in sprites)
             {
                 sprite.Draw(_spriteBatch);
+
             }
         }
     }
