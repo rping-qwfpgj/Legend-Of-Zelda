@@ -287,6 +287,7 @@ namespace Sprint0
 
         public void Die()
         {
+            SoundFactory.Instance.CreateSoundEffect("LinkDeath").Play();
             //this.game.currentState = gameOverState;
             //this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkDying(this.currentPosition);
             //Debug.WriteLine(this.currentLinkSprite);
