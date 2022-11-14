@@ -73,7 +73,7 @@ namespace HeadsUpDisplay
             keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 90), "X" + keyCount.ToString());
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 40), "X" + gemstoneCount.ToString());
-
+            blueMap.Update();
         }
 
         public void Draw(SpriteBatch _spriteBatch)

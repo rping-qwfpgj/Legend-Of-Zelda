@@ -42,11 +42,11 @@ namespace Controllers
                 {
                     if (kstate.IsKeyDown(key))
                     {
-						Type typeField = previousCommand.GetType();
-						if (typeField != keyBindings[key].GetType())
-						{
-							keyBindings[key].Execute();
-                            Debug.WriteLine(keyBindings[key]);
+                        Type typeField = previousCommand.GetType();
+                        if (typeField != keyBindings[key].GetType())
+                        {
+                            keyBindings[key].Execute();
+                         Debug.WriteLine(keyBindings[key]);
 						}
                         previousCommand = keyBindings[key];
                     }
