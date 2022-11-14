@@ -47,8 +47,13 @@ namespace HeadsUpDisplay
         ISprite pink2;
         ISprite pink3;
 
+        ISprite heart1; 
+        ISprite heart2;
+        ISprite heart3;
 
-        float heartCount;
+
+
+        float heartCount = 3;
 
         public Hud(int xPos, int yPos)
         {            
@@ -77,9 +82,13 @@ namespace HeadsUpDisplay
 
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));            
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 472, this.y + 62), "LinkSwordSprite"));
+            this.heart1 = red1;
+            this.heart2 = red2;
+            this.heart3 = red3;
+            
             sprites.Add(red1);
             sprites.Add(red2);
-            sprites.Add(pink3);
+            sprites.Add(red3);
         }
 
         public void Update()
@@ -90,7 +99,92 @@ namespace HeadsUpDisplay
             keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 90), "X" + keyCount.ToString());
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 40), "X" + gemstoneCount.ToString());
-            heartCount = Link.Instance.health;
+            float prevHeartCount = this.heartCount;
+            this.heartCount = Link.Instance.health;
+            
+            switch (this.heartCount)
+            {
+                case 0:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = pink1;
+                    this.heart2 = pink2;
+                    this.heart3 = pink3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case .5f:                    
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = halfRed1;
+                    this.heart2 = pink2;
+                    this.heart3 = pink3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case 1:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = red1;
+                    this.heart2 = pink2;
+                    this.heart3 = pink3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case 1.5f:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = red1;
+                    this.heart2 = halfRed2;
+                    this.heart3 = pink3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case 2:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = red1;
+                    this.heart2 = red2;
+                    this.heart3 = pink3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case 2.5f:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = red1;
+                    this.heart2 = red2;
+                    this.heart3 = halfRed3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                case 3:
+                    sprites.Remove(this.heart1);
+                    sprites.Remove(this.heart2);
+                    sprites.Remove(this.heart3);
+                    this.heart1 = red1;
+                    this.heart2 = red2;
+                    this.heart3 = red3;
+                    sprites.Add(this.heart1); 
+                    sprites.Add(this.heart2);
+                    sprites.Add(this.heart3);
+                    break;
+                default:
+                    break;
+            }
+
             
         }
 
