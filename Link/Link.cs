@@ -15,7 +15,6 @@ namespace Sprint0
     {
 
         private static Link instance = new();
-
         public static Link Instance
         {
             get
@@ -49,10 +48,7 @@ namespace Sprint0
         public float health;
         private bool canBeDamaged;
         private SoundEffect takeDamage;
-        //private string side;
-        //private int transitionxPosition;
-        //private int transitionyPosition;
-
+    
 
 
         public Link()
@@ -64,16 +60,13 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState();
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
             this.throwable = Throwables.Boomerang;
-            this.currentProjectiles = new List<ISprite>();
+            this.currentProjectiles = new();
             this.inventory = new Inventory();
             //this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
             //this.attack = game.Content.Load<SoundEffect>("hee_hee");
             this.health = 3;
             this.canBeDamaged = true;
             //this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
-            
-
-            //this.currentProjectiles.Add(ProjectileSpriteFactory.Instance.CreateThrowableUp(this.currentPosition, this.throwable));
         }
 
         public void Reset()

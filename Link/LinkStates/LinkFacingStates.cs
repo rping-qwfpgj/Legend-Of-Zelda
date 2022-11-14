@@ -25,7 +25,6 @@ namespace States
         }
         public void ThrowProjectile()
         {
-            
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(Link.Instance.currentPosition,
                     Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkThrowingUpState();

@@ -26,12 +26,14 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BlueArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
@@ -40,6 +42,11 @@ namespace Sprites
             if (!(currFrames >= maxFrames))
             {
                 currFrames += 100;
+            }
+            else
+            {
+                isDone = true;
+
             }
             if (currFrames <= 6800)
             {
@@ -68,10 +75,13 @@ namespace Sprites
                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
             }
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -83,6 +93,8 @@ namespace Sprites
         {
             this.currFrames = 6800;
         }
+
+     
     }
 
     public class BlueArrowDownSprite : ILinkProjectile
@@ -102,19 +114,20 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BlueArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
-
-            if (!done)
+           
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -124,7 +137,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
             
         }
@@ -150,10 +163,13 @@ namespace Sprites
                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
             }
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -165,6 +181,7 @@ namespace Sprites
         {
             this.currFrames = 6800;
         }
+
     }
 
 
@@ -185,20 +202,20 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BlueArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
             // Update frames
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -208,7 +225,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
         }
 
@@ -231,11 +248,14 @@ namespace Sprites
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
             }
+            if (!isDone)
+            {
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -247,6 +267,8 @@ namespace Sprites
         {
             this.currFrames = 6800;
         }
+
+   
     }
 
 
@@ -267,19 +289,21 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BlueArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
+        
             // Update frames
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -289,7 +313,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
         }
 
@@ -313,10 +337,13 @@ namespace Sprites
                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
             }
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -328,6 +355,7 @@ namespace Sprites
         {
             this.currFrames = 6800;
         }
+
     }
 }
 

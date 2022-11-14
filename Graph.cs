@@ -13,12 +13,20 @@ namespace LegendofZelda
        
         private List<Tuple<int, int>> leftRightAdj;
         private List<Tuple<int, int>> upDownAdj;
- 
+        bool[] visited;
+
+
 
         public Graph()
         {
             leftRightAdj = new List<Tuple<int, int>>();
             upDownAdj = new List<Tuple<int, int>>();
+            visited = new bool[18];
+            for (int i = 1; i < 18; i++)
+            {
+                visited[i] = false;
+            }
+            visited[0] = true;
             
         }
 
@@ -110,9 +118,12 @@ namespace LegendofZelda
             }
 
             return returner;
-
         }
 
+        public void AddToVisited(int roomNumber)
+        {
+            visited[roomNumber] = true;
+        }
 
     }
 }
