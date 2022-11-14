@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
 
+
 namespace LegendofZelda.Items
 {
     public class Fire : IItem
@@ -50,7 +51,7 @@ namespace LegendofZelda.Items
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, width * 4, height * 4); // Where to draw on screen
 
             // Draw the sprite
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             if (currFrames < maxFrames)
             {
 

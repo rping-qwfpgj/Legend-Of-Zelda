@@ -46,7 +46,7 @@ public class Game1 : Game
     public SoundEffect enemyHit;
     public Song backgroundMusic;
     public Graph roomsGraph;
-    private GameStateController gameStateController;
+    public GameStateController gameStateController;
 
     // Font for on screen text , the text to display and the class to store it in
     public SpriteFont font;

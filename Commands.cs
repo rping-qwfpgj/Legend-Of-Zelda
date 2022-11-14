@@ -134,7 +134,6 @@ public class UpRoomCommand : ICommand
 
     public void Execute()
     {
-
         myStateController.gameState.TransitionUp();
         myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
