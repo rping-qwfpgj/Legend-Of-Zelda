@@ -4,7 +4,6 @@ using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
 
