@@ -84,8 +84,8 @@
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>OpenDoorBlockBottom</ObjectName>
-			<Location>350 400</Location>
+			<ObjectName>OpenDoorBlockTop</ObjectName>
+			<Location>350 15</Location>
 		</Item>
 		<!-- Locked Door-->
 		<Item>
