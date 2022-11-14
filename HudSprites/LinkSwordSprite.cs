@@ -10,7 +10,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class HudBombSprite : ISprite
+    public class LinkSwordSprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
@@ -20,10 +20,10 @@ namespace Sprites
         private readonly int height = 16;
 
 
-        public HudBombSprite(Texture2D texture, int x, int y)
+        public LinkSwordSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
-            this.sourceRectangle = new(604, 137, width, height);
+            this.sourceRectangle = new(555, 137, width, height);
             this.destinationRectangle = new(x, y, width * 4, height * 4);
         }
 

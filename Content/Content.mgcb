@@ -109,7 +109,13 @@
 /processorParam:TextureFormat=Color
 /build:game_over.PNG
 
-#begin gamestates.png
+#begin hee_hee.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:hee_hee.wav
+
+#begin hud_sprites.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -119,13 +125,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gamestates.png
-
-#begin hee_hee.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:hee_hee.wav
+/build:hud_sprites.png
 
 #begin item_drop.wav
 /importer:WavImporter
