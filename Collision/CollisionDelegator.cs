@@ -1,6 +1,4 @@
-﻿
-using Interfaces;
-using LegendofZelda.SpriteFactories;
+﻿using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using States;

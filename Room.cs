@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Sprites;
 using LegendofZelda.SpriteFactories;
-
+using Sprint0;
 
 namespace LegendofZelda
 {
@@ -28,15 +28,14 @@ namespace LegendofZelda
             {
                 foreach (var sprite in sprites)
                 {
-
                     //If the object is link , then don't draw it, will cause duplicates otherwise
                     if (!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite))
                     {
                         sprite.Draw(spriteBatch);
                     }
-
                 }
             }
+            
         }
 
         public void Update() 
@@ -46,24 +45,25 @@ namespace LegendofZelda
             List<ISprite> toRemove = new();
             background.Update();
 
+            var ibackground = background as IBackground;
+            if (!ibackground.IsTransitioning) { 
             
-            foreach (var sprite in copy)
-            {
-                DealWithEnemies(sprite);
-               
+                foreach (var sprite in copy)
+                {
+                    DealWithEnemies(sprite);
+                    sprite.Update();
+                }
+                if (toAdd.Count > 0)
+                {
+                    this.sprites.AddRange(toAdd);
+                }
 
-                sprite.Update();
+                foreach (ISprite sprite in toRemove)
+                {
+                    this.sprites.Remove(sprite);
+                }
             }
-            if (toAdd.Count > 0)
-            {
-                this.sprites.AddRange(toAdd);
-            }
-
-            foreach (ISprite sprite in toRemove)
-            {
-                this.sprites.Remove(sprite);
-            }
-            
+           
 
         }
 
@@ -80,7 +80,6 @@ namespace LegendofZelda
 
        public void AddObject(ISprite sprite)
         {
-            
             sprites.Add(sprite);
         }
 
@@ -135,7 +134,6 @@ namespace LegendofZelda
 
 
             }
-
 
             foreach (var spr in toRemove)
             {

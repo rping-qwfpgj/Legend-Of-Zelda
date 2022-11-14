@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
-using LegendofZelda;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
 
@@ -50,7 +49,10 @@ namespace Sprint0
         public float health;
         private bool canBeDamaged;
         private SoundEffect takeDamage;
-        private string side;
+        //private string side;
+        //private int transitionxPosition;
+        //private int transitionyPosition;
+
 
 
         public Link()
@@ -89,8 +91,10 @@ namespace Sprint0
 
         public void UpdatePosition()
         {
+            
             Rectangle rectangle = currentLinkSprite.GetHitbox();
             currentPosition = new Vector2(rectangle.X, rectangle.Y);
+       
         }
         public void Attack()
         {
@@ -132,7 +136,8 @@ namespace Sprint0
         }
         public void NoInput()
         {
-            //this.UpdatePosition();
+
+            this.UpdatePosition();
 
             if (currentLinkSprite is IAttackingSprite)
             {
@@ -245,7 +250,7 @@ namespace Sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.currentLinkSprite.Draw(_spriteBatch);
+            currentLinkSprite.Draw(_spriteBatch);
             foreach (var projectile in currentProjectiles)
             {
                 projectile.Draw(_spriteBatch);
@@ -255,16 +260,18 @@ namespace Sprint0
         public void Die()
         {
             //this.game.currentState = gameOverState;
-            this.Reset();
+            Reset();
         }
 
         public void getGame(Game1 game)
         {
             this.game = game;
-            this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
-            this.attack = game.Content.Load<SoundEffect>("hee_hee");
-            this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
+            throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
+            attack = game.Content.Load<SoundEffect>("hee_hee");
+            takeDamage = game.Content.Load<SoundEffect>("link_damage");
         }
+
+       
     }
 }
     

@@ -3,14 +3,14 @@ using System;
 using Microsoft.Xna.Framework;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
-using LegendofZelda.Interfaces;
 
-namespace Interfaces
+namespace LegendofZelda.Interfaces
 {
-    public interface INonAttackingSprite: ISprite
+    public interface IAttackingSprite : ISprite
     {
         new void Draw(SpriteBatch spriteBatch);
         new void Update();
         new Rectangle GetHitbox();
+        bool isAttacking();
     }
 }

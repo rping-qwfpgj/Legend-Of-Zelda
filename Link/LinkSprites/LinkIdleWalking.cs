@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Interfaces;
 using System;
 using System.Collections.Generic;
+using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
