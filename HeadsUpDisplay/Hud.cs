@@ -25,7 +25,7 @@ namespace HeadsUpDisplay
         readonly private Vector2 heartOnePos = new Vector2(2, 3);
         
         readonly private Vector2 backgroundPos = new Vector2(20, -19);
-
+        // hud
 
         public Hud()
         {
