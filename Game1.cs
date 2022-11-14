@@ -76,7 +76,7 @@ public class Game1 : Game
         RoomloaderInit();
         GraphInit();
         ControllersInit();
-        hud = new Hud();
+        hud = new Hud(20, -19);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
         
         base.Initialize();

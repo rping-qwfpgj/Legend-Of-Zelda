@@ -16,7 +16,7 @@ namespace Sprites
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int width = 7;
+        private readonly int width = 8;
         private readonly int height = 8;
 
 

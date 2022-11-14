@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using LegendofZelda;
 using Sprites;
 using System.Diagnostics;
+using Sprint0;
 
 
 
@@ -17,46 +18,81 @@ namespace HeadsUpDisplay
     {
         private List<ISprite> sprites = new List<ISprite>();
         // For setting the positions of the heart sprites. 
-        readonly private float xPos = 543;
-        readonly private float yPos = 93;
-        readonly private float heartSpacing = 30;
+        readonly private float heartXPos = 543;
+        readonly private float heartYPos = 93;
+        private int x;
+        private int y;
+        readonly private float heartSpacing = 34;
 
         readonly private Vector2 heartOnePos;
         readonly private Vector2 heartTwoPos;
         readonly private Vector2 heartThreePos;
 
-        readonly private Vector2 backgroundPos = new Vector2(20, -19);
+        readonly private Vector2 backgroundPos;
 
-        public Hud()
+        int bombCount;
+        ISprite bombCountText;
+        int keyCount;
+        ISprite keyCountText;
+        int gemstoneCount;
+        ISprite gemstoneCountText;
+
+        public Hud(int xPos, int yPos)
         {
 
-            heartOnePos = new Vector2(xPos, yPos);
-            heartTwoPos = new Vector2(xPos + heartSpacing, yPos);
-            heartThreePos = new Vector2(xPos + heartSpacing*2, yPos);
             
+
+            this.x = xPos;
+            this.y = yPos;
+            this.heartXPos = this.x + 540;
+            this.heartYPos = this.y + 106;
+            heartOnePos = new Vector2(this.heartXPos, this.heartYPos);
+            heartTwoPos = new Vector2(this.heartXPos + heartSpacing, this.heartYPos);
+            heartThreePos = new Vector2(this.heartXPos + heartSpacing * 2, this.heartYPos);
+            backgroundPos = new Vector2(this.x, this.y);
+
             ISprite red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");                        
             ISprite red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");                        
             ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");                        
             
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
             
-            sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "LinkSwordSprite"));
+            //sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "LinkSwordSprite"));
             sprites.Add(red1);
             sprites.Add(red2);
             sprites.Add(red3);
         }
 
         public void Update()
-        {            
-            
+        {
+            bombCount = Link.Instance.inventory.getItemCount("bomb");
+            bombCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 115), "X" + bombCount.ToString());
+            keyCount = Link.Instance.inventory.getItemCount("key");
+            keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 90), "X" + keyCount.ToString());
+            gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 40), "X" + gemstoneCount.ToString());
+
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
+            
             foreach (ISprite sprite in sprites)
             {
                 sprite.Draw(_spriteBatch);
 
+            }
+            if (bombCountText != null)
+            {
+                bombCountText.Draw(_spriteBatch);
+            }
+            if (keyCountText != null)
+            {
+                keyCountText.Draw(_spriteBatch);
+            }
+            if (gemstoneCountText != null)
+            {
+                gemstoneCountText.Draw(_spriteBatch);
             }
         }
     }
