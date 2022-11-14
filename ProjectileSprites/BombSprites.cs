@@ -30,6 +30,9 @@ namespace Sprites
 
         public List<Rectangle> sourceRectangles;
         public int currentFrameIndex;
+
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BombUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -44,6 +47,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
+            isDone = false;
         }
 
         public void Update()
@@ -53,6 +57,10 @@ namespace Sprites
             if (!(currFrames > maxFrames))
             {
                 currFrames += 50;
+            }
+            else
+            {
+                isDone = true;
             }
 
             for (int i = 0; i < 8; i++)
@@ -73,10 +81,13 @@ namespace Sprites
             Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
             this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width*3, sourceRectangle.Height*3); // Where to draw on screen
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -88,6 +99,8 @@ namespace Sprites
         {
             this.currFrames = 5 * maxFrames / 8;
         }
+
+   
     }
 
 
@@ -109,6 +122,8 @@ namespace Sprites
 
         public List<Rectangle> sourceRectangles;
         public int currentFrameIndex;
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -123,6 +138,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
+            isDone = false;
         }
 
         public void Update()
@@ -131,6 +147,10 @@ namespace Sprites
             if (!(currFrames > maxFrames))
             {
                 currFrames += 50;
+            }
+            else
+            {
+                isDone = true;
             }
 
             for (int i = 0; i < 8; i++)
@@ -153,10 +173,13 @@ namespace Sprites
             Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
             this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -168,6 +191,8 @@ namespace Sprites
         {
             this.currFrames = 5 * maxFrames / 8;
         }
+
+  
     }
 
 
@@ -191,6 +216,8 @@ namespace Sprites
 
         public List<Rectangle> sourceRectangles;
         public int currentFrameIndex;
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BombRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -205,6 +232,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
+            isDone = false;
         }
 
         public void Update()
@@ -213,6 +241,10 @@ namespace Sprites
             if (!(currFrames > maxFrames))
             {
                 currFrames += 50;
+            }
+            else
+            {
+                isDone = true;
             }
 
             for (int i = 0; i < 8; i++)
@@ -231,10 +263,13 @@ namespace Sprites
             Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
             this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -246,6 +281,8 @@ namespace Sprites
         {
             this.currFrames = 5 * maxFrames / 8;
         }
+
+    
     }
 
 
@@ -269,7 +306,8 @@ namespace Sprites
 
         public List<Rectangle> sourceRectangles;
         public int currentFrameIndex;
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public BombLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -284,6 +322,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
             sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
+            isDone = false;
         }
 
         public void Update()
@@ -292,6 +331,10 @@ namespace Sprites
             if (!(currFrames > maxFrames))
             {
                 currFrames += 50;
+            }
+            else
+            {
+                isDone = true;
             }
 
             for (int i = 0; i < 8; i++)
@@ -310,10 +353,13 @@ namespace Sprites
             Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
             this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -325,6 +371,7 @@ namespace Sprites
         {
             this.currFrames = 5*maxFrames/8;
         }
+
     }
 
 

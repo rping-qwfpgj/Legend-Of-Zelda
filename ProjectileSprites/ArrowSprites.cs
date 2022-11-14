@@ -21,19 +21,23 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private bool isDone;
+        public bool IsDone { get => isDone;}
+        
 
         public ArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
+           
             // Update frames
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -43,7 +47,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
             
         }
@@ -68,9 +72,12 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -82,6 +89,8 @@ namespace Sprites
         {
             this.currFrames = 3200;
         }
+
+     
     }
 
     public class ArrowDownSprite : ILinkProjectile
@@ -101,19 +110,20 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public ArrowDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
            
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -123,7 +133,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
         }
 
@@ -148,9 +158,12 @@ namespace Sprites
             }
 
             // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -162,6 +175,7 @@ namespace Sprites
         {
             this.currFrames = 3200;
         }
+
     }
 
 
@@ -183,20 +197,22 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public ArrowRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
+        
             // Update frames
-            if (!done)
-            {
+            if (!isDone)
+            { 
                 currFrames += 100;
             }
             if (currFrames <= 3200)
@@ -205,7 +221,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
         }
 
@@ -229,10 +245,13 @@ namespace Sprites
                 this.destinationRectangle = new(xPosition, yPosition, 8 * 4, 8 * 4);
             }
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()
@@ -245,6 +264,8 @@ namespace Sprites
         {
             this.currFrames = 3200;
         }
+
+       
     }
 
 
@@ -265,19 +286,21 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public ArrowLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
+         
             // Update frames
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 100;
             }
@@ -287,7 +310,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
         }
 
@@ -311,10 +334,13 @@ namespace Sprites
                 this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
             }
 
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
-            spriteBatch.End();
+            if (!isDone)
+            {
+                // Draw the sprite
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.End();
+            }
         }
 
         public Rectangle GetHitbox()

@@ -51,6 +51,7 @@ namespace LegendofZelda
                 foreach (var sprite in copy)
                 {
                     DealWithEnemies(sprite);
+                    DealWithLinkProjectiles(sprite);
                     sprite.Update();
                 }
                 if (toAdd.Count > 0)
@@ -84,6 +85,25 @@ namespace LegendofZelda
         }
 
    
+        private void DealWithLinkProjectiles(ISprite sprite)
+        {
+            List<ISprite> toRemove = new();
+            if(sprite is ILinkProjectile)
+            {
+                var projectile = sprite as ILinkProjectile;
+                if (projectile.IsDone)
+                {
+                    toRemove.Add(sprite);
+                }
+
+            }
+
+            foreach (var spr in toRemove)
+            {
+                this.RemoveObject(spr);
+
+            }
+        }
         private void DealWithEnemies(ISprite sprite)
         {
             List<ISprite> toRemove = new();

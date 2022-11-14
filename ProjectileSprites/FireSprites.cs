@@ -20,25 +20,26 @@ namespace Sprites
         // On screen position 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public FireUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
 
         public void Update()
         {
            
-            bool done = false;
-
-            if (!done) { currFrames += 50; }
+        
+            if (!isDone) { currFrames += 50; }
 
             if (currFrames <= 1500) { this.yPosition -= 4; }
 
-            if (currFrames >= maxFrames) { done = true; }
+            if (currFrames >= maxFrames) { isDone = true; }
 
             
         }
@@ -77,6 +78,8 @@ namespace Sprites
         {
             this.currFrames = 2400;
         }
+
+   
     }
 
     public class FireRightSprite : ILinkProjectile
@@ -96,19 +99,20 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public FireRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
-
-            if (!done)
+      
+            if (!isDone)
             {
                 currFrames += 50;
             }
@@ -118,7 +122,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames) 
             { 
-                done = true; 
+                isDone = true; 
             }
 
         }
@@ -156,6 +160,8 @@ namespace Sprites
         {
             this.currFrames = 2400;
         }
+
+        
     }
 
     public class FireDownSprite : ILinkProjectile
@@ -175,19 +181,21 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public FireDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
+            isDone = false;
         }
 
         public void Update()
         {
-            bool done = false;
+         ;
 
-            if (!done)
+            if (!isDone)
             {
                 currFrames += 50;
             }
@@ -197,7 +205,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
 
         }
@@ -234,6 +242,8 @@ namespace Sprites
         {
             this.currFrames = 2400;
         }
+
+      
     }
 
     public class FireLeftSprite : ILinkProjectile
@@ -253,7 +263,8 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+        private bool isDone;
+        public bool IsDone { get => isDone; }
         public FireLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -263,9 +274,8 @@ namespace Sprites
 
         public void Update()
         {
-            bool done = false;
-
-            if (!done)
+          
+            if (!isDone)
             {
                 currFrames += 50;
             }
@@ -275,7 +285,7 @@ namespace Sprites
             }
             if (currFrames >= maxFrames)
             {
-                done = true;
+                isDone = true;
             }
 
         }
@@ -315,5 +325,7 @@ namespace Sprites
         {
             this.currFrames = 2400;
         }
+
+      
     }
 }
