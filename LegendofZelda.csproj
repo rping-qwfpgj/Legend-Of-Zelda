@@ -17,6 +17,7 @@
     <None Remove="NewFolder1\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\hud_sprites - Copy.png" />
     <None Remove="Content\hud_sprites.png" />
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,7 @@ namespace LegendofZelda.SpriteFactories
 
             public void loadContent(ContentManager content)
             {
-                spriteSheet = content.Load<Texture2D>("hud_sprites - Copy");
+                spriteSheet = content.Load<Texture2D>("actual_hud_sprites");
                
             }
 

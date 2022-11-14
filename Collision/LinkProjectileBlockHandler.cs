@@ -22,16 +22,50 @@ namespace Collision
 			projectile.collide();
 			room.RemoveObject(projectile);
 
-			if(block is BombableDoorBlock)
+			if(block is BombableDoorBlock && (projectile is BombDownSprite || projectile is BombLeftSprite | projectile is BombRightSprite || projectile is BombUpSprite )) { 
 			{
-				//BombableDoorBlock bombableDoor = block as BombableDoorBlock;
-				//Vector2 newDoorPosition = new Vector2(bombableDoor.DestinationRectangle.X, bombableDoor.DestinationRectangle.Y - 10);
-				//IBlock newDoor = (IBlock)BlockSpriteFactory.Instance.CreateBlock(newDoorPosition,"OpenDoorBlockTop");
 				room.RemoveObject(block);
-				//room.AddObject(newDoor);
-				Debug.WriteLine("Reached");
+
+				// Need to remove the bombable wall on the other side
+				int roomToEdit;
+				switch (Link.Instance.game.currentRoomIndex) { 
+						case 4:
+							roomToEdit = 7;
+							break;
+						case 7:
+							roomToEdit = 4;
+							break;
+						case 6:
+							roomToEdit = 10;
+							break;
+						case 10:
+							roomToEdit = 6;
+							break;
+						default:
+							roomToEdit = 0;
+							break;
+				}
+
+				// Get the room 
+				List<ISprite> otherRoomSprites = Link.Instance.game.rooms[roomToEdit].sprites;
+
+				foreach (var sprite in otherRoomSprites)
+					{
+						if(sprite is BombableDoorBlock)
+						{
+							otherRoomSprites.Remove(sprite);
+							break;
+						}
+					}
+
+				
+
+
+				
 			}
+
 		}
 
 	}
+}
 }

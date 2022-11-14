@@ -27,18 +27,26 @@ namespace Commands
 }
 
 public class InventoryCommand : ICommand
-    {
-        private GameStateController controller;
+{
+    private GameStateController controller;
 
-        public InventoryCommand(GameStateController controller) 
+    public InventoryCommand(GameStateController controller)
+    {
+        this.controller = controller;
+    }
+    public void Execute()
+    {
+
+        if (this.controller.gameState is InventoryState)
         {
-            this.controller = controller;
+            this.controller.gameState.GamePlay();
         }
-        public void Execute()
+        else
         {
             this.controller.gameState.Inventory();
         }
     }
+}
 
 public class ResetGameCommand : ICommand
 {
