@@ -37,7 +37,7 @@ namespace Sprites
             {
                 currFrames += 100;
             }
-            if (currFrames <= 3200)
+            if (currFrames <= 5*maxFrames/6)
             {
                 this.yPosition -= 4;
             }
@@ -56,12 +56,12 @@ namespace Sprites
             this.destinationRectangle = new(xPosition, yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
 
             // Draw the first step of link  up
-            if (currFrames >= 0 && currFrames <= 3200)
+            if (currFrames >= 0 && currFrames <= 5*maxFrames/6)
             {
                 sourceRectangle = new Rectangle(3, 185, 5, 16);
                  this.destinationRectangle = new Rectangle(xPosition, yPosition, 5 * 4, 16 * 4);
 
-            } else if (currFrames >= 3200 && currFrames <= 3500)
+            } else if (currFrames >= 5*maxFrames/6 && currFrames <= maxFrames)
             {
                 sourceRectangle = new Rectangle(53, 189, 8, 8);
                  this.destinationRectangle = new Rectangle(xPosition, yPosition, 8 * 4, 8 * 4);
