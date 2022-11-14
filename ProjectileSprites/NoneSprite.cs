@@ -8,6 +8,9 @@ namespace Sprites
     {
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
+        private bool isDone = true;
+        public bool IsDone { get => isDone; }
         public NoneSprite()
         {
             //do nothing, aka no sprite is drawn when link does not have projectile
@@ -22,7 +25,7 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            return new Rectangle(0,0,1,1);
+            return new Rectangle(0,0,0,0);
         }
 
         public void collide()

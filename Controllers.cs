@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
+using Commands;
 
 namespace Controllers
 {
@@ -42,11 +43,11 @@ namespace Controllers
                 {
                     if (kstate.IsKeyDown(key))
                     {
-						Type typeField = previousCommand.GetType();
-						if (typeField != keyBindings[key].GetType())
-						{
-							keyBindings[key].Execute();
-                            Debug.WriteLine(keyBindings[key]);
+                        Type typeField = previousCommand.GetType();
+                        if (typeField != keyBindings[key].GetType())
+                        {
+                            keyBindings[key].Execute();
+                         Debug.WriteLine(keyBindings[key]);
 						}
                         previousCommand = keyBindings[key];
                     }

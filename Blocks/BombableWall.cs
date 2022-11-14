@@ -1,17 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.Blocks
 {
-    public class OpenDoorBlock : IBlock
+    public class BombableDoorBlock : IBlock
     {
         private Texture2D texture;
         private Rectangle sourceRectangle;
         private static int sourceWidth = 32;
-        private static int sourceHeight = 22;
-        private Rectangle[] sourceRectangles = { new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1) };
+        private static int sourceHeight = 32;
+        private Rectangle[] sourceRectangles = { new Rectangle(37, 11, 32, 32), new Rectangle(37, 44, 32, 32), new Rectangle(37, 77, 32, 32), new Rectangle(37, 110, 32, 32) };
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int direction;
@@ -20,7 +20,7 @@ namespace LegendofZelda.Blocks
         private int destinationWidth = sourceWidth * 2;
         private int destinationHeight = sourceHeight * 2;
 
-        public OpenDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+        public BombableDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
             xPos = x;

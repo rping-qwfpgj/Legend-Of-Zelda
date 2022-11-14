@@ -8,6 +8,7 @@ using LegendofZelda.Interfaces;
 using LegendofZelda.Backgrounds;
 using System.Diagnostics;
 
+
 namespace LegendofZelda.SpriteFactories
 {
     public class HudSpriteFactory : ISpriteFactory
@@ -15,7 +16,7 @@ namespace LegendofZelda.SpriteFactories
 
         private Texture2D spriteSheet;
         private static HudSpriteFactory instance = new();
-
+        
         public static HudSpriteFactory Instance
         {
             get
@@ -29,7 +30,8 @@ namespace LegendofZelda.SpriteFactories
 
         public void loadContent(ContentManager content)
         {
-            spriteSheet = content.Load<Texture2D>("gamestates");
+            spriteSheet = content.Load<Texture2D>("actual_hud_sprites");
+            
         }
 
         public ISprite CreateSprite(Vector2 location, string name)
@@ -38,8 +40,14 @@ namespace LegendofZelda.SpriteFactories
             {
                 case "hudBackground":
                     return new HudBackgroundSprite(spriteSheet, (int)location.X, (int)location.Y);
-                case "RedHeartSprite":
-                    return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "LinkSwordSprite":
+                    return new LinkSwordSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "RedHeartSprite":                    
+                    return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y); 
+                case "HalfRedHeartSprite":                    
+                    return new HalfRedHeartSprite(spriteSheet, (int)location.X, (int)location.Y); 
+                    case "PinkHeartSprite":                    
+                    return new PinkHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "BigTriforceSprite":
                     return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "InventorySelectionSprite":
@@ -54,6 +62,9 @@ namespace LegendofZelda.SpriteFactories
                     return new HudBombSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "HudSelectionCursor":
                     return new HudSelectionCursor(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudBlueMapSprite":
+                    return new HudBlueMapSprite(spriteSheet, (int)location.X, (int)location.Y);
+
                 default:
                     return null;
             }

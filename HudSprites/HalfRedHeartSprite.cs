@@ -10,34 +10,37 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class MapDisplaySprite : ISprite
+    public class HalfRedHeartSprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int sourceWidth = 256;
-        private readonly int sourceHeight = 88;
-        private readonly int destWidth = 800;
-        private readonly int destHeight = 230;
+        private readonly int width = 8;
+        private readonly int height = 8;
 
 
-
-        public MapDisplaySprite(Texture2D texture, int x, int y)
+        public HalfRedHeartSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
-            this.sourceRectangle = new(258, 112, sourceWidth, sourceHeight);
-            this.destinationRectangle = new(x, y, destWidth, destHeight);
+            this.sourceRectangle = new(636, 117, width, height);
+            this.destinationRectangle = new(x, y, width*4, height*4);
         }
 
         public void Update()
         {
+           
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
+        }
+
+        public void setPos(int x, int y)
+        {
+            this.DestinationRectangle = new(x, y, width*4, height*4);
         }
 
         public Rectangle GetHitbox()

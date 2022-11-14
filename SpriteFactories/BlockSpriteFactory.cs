@@ -141,6 +141,20 @@ namespace LegendofZelda.SpriteFactories
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
 
+                case "BombableDoorBlockTop":
+
+                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                case "BombableDoorBlockLeft":
+
+                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                case "BombableDoorBlockRight":
+
+                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                case "BombableDoorBlockBottom":
+
+                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+
+
 
                 default:
 

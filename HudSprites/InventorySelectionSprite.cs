@@ -16,15 +16,17 @@ namespace Sprites
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int width = 256;
-        private readonly int height = 88;
+        private readonly int sourceWidth = 256;
+        private readonly int sourceHeight = 88;
+        private readonly int destWidth = 800;
+        private readonly int destHeight = 230;
 
 
         public InventorySelectionSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
-            this.sourceRectangle = new(1, 11, width, height);
-            this.destinationRectangle = new(x, y, width * 3, height * 3);
+            this.sourceRectangle = new(1, 11, sourceWidth, sourceHeight);
+            this.destinationRectangle = new(x, y, destWidth, destHeight);
         }
 
         public void Update()

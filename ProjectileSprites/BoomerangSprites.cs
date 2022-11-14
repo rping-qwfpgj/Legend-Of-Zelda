@@ -33,7 +33,8 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+    
+        public bool IsDone { get => returned; }
         public BoomerangUpSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -135,6 +136,8 @@ namespace Sprites
         {
             return returned;
         }
+
+     
     }
 
 
@@ -169,7 +172,8 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-
+      
+        public bool IsDone { get => returned; }
         public BoomerangDownSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -274,6 +278,8 @@ namespace Sprites
         {
             return returned;
         }
+
+    
     }
 
     public class BoomerangRightSprite : ILinkProjectile
@@ -305,7 +311,7 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-
+        public bool IsDone { get => returned; }
         public BoomerangRightSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -410,6 +416,7 @@ namespace Sprites
         {
             return returned;
         }
+
     }
 
 
@@ -441,7 +448,8 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+      
+        public bool IsDone { get => returned; }
         public BoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -540,6 +548,8 @@ namespace Sprites
         {
             return returned;
         }
+
+       
     }
 
 }

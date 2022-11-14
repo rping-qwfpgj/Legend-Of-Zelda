@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin actual_hud_sprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:actual_hud_sprites.png
+
 #begin allbackgrounds.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -109,18 +121,6 @@
 /processorParam:TextureFormat=Color
 /build:game_over.PNG
 
-#begin gamestates.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gamestates.png
-
 #begin hee_hee.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -156,6 +156,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:link_damage.wav
+
+#begin link_death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:link_death.wav
 
 #begin LinkandProjectileSprites.png
 /importer:TextureImporter

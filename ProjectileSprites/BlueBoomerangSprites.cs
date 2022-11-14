@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
 using Sprint0;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Sprites
 {
@@ -32,7 +33,8 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
+   
+        public bool IsDone { get => returned; }
         public BlueBoomerangUpSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -72,7 +74,7 @@ namespace Sprites
                 }
             }
 
-            if (yPosition > originalYPosition - 100 && !returning)
+            if (yPosition > originalYPosition - 200 && !returning)
             {
                 yPosition -= 1;
             }
@@ -134,6 +136,8 @@ namespace Sprites
         {
             return returned;
         }
+
+      
     }
 
 
@@ -167,7 +171,7 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-
+        public bool IsDone { get => returned; }
         public BlueBoomerangDownSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -205,7 +209,7 @@ namespace Sprites
                 }
             }
 
-            if (yPosition < originalYPosition + 100 && !returning)
+            if (yPosition < originalYPosition + 200 && !returning)
             {
                 yPosition += 1;
             }
@@ -266,6 +270,8 @@ namespace Sprites
             returning = true;
 
         }
+
+     
     }
 
     public class BlueBoomerangRightSprite : ILinkProjectile
@@ -296,7 +302,8 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-
+       
+        public bool IsDone { get => returned; }
         public BlueBoomerangRightSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -336,7 +343,7 @@ namespace Sprites
                 }
             }
 
-            if (xPosition < originalXPosition + 100 && !returning)
+            if (xPosition < originalXPosition + 200 && !returning)
             {
                 xPosition += 1;
             }
@@ -395,6 +402,7 @@ namespace Sprites
             returning = true;
 
         }
+
     }
 }
 
@@ -426,6 +434,7 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
     private Rectangle destinationRectangle = new Rectangle();
     public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
+    public bool IsDone { get => returned; }
     public BlueBoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition, Link link)
     {
         this.texture = texture;
@@ -462,7 +471,7 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
                 currentFrameIndex = i;
             }
         }
-        if (xPosition > originalXPosition - 100 && !returning)
+        if (xPosition > originalXPosition - 200 && !returning)
         {
             xPosition -= 1;
         }
@@ -489,24 +498,26 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
             Rectangle currentFrame = sourceRectangles[currentFrameIndex]; 
             destinationRectangle = new Rectangle(xPosition, yPosition, currentFrame.Width * 2, currentFrame.Height * 2);
             Vector2 origin = new Vector2(currentFrame.Width / 2, currentFrame.Height / 2);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            if (currentFrameIndex <= 2)
-            {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
-            }
-            else if(currentFrameIndex>2 && currentFrameIndex <=3)
-            {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
-            }
-            else if(currentFrameIndex>3 && currentFrameIndex <=6)
-            {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
-            }
-            else
-            {
-                spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
-            }
-            spriteBatch.End();
+           
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (currentFrameIndex <= 2)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, 0, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 2 && currentFrameIndex <= 3)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -90, origin, SpriteEffects.None, 1);
+                }
+                else if (currentFrameIndex > 3 && currentFrameIndex <= 6)
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -180, origin, SpriteEffects.None, 1);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.White, -270, origin, SpriteEffects.None, 1);
+                }
+                spriteBatch.End();
+            
         }
     }
     public Rectangle GetHitbox()
@@ -518,6 +529,7 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
     {
         returning = true;
     }
+
 }
 
 
