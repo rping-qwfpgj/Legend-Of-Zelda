@@ -138,8 +138,7 @@ namespace Sprites
            int xRange = (int)Math.Abs(linkLocation.X - this.xPosition);
            int yRange = (int)Math.Abs(linkLocation.Y - this.YPosition);
            if(xRange <= 20 && linkLocation.Y < this.YPosition)
-            {
-                
+            {                
                 this.trapState = TrapStates.MoveUp;
             } else if(xRange <= 20 && linkLocation.Y > this.YPosition)
             {
