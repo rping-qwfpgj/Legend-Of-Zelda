@@ -33,12 +33,13 @@ namespace GameStates
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
         ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
-        ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
+        public ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
         ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
+         
         }
         public void GamePlay()
         {
@@ -46,7 +47,7 @@ namespace GameStates
         }
         public void Inventory()
         {
-            
+            //already in inventory state
         }
         public void GameOver()
         {
@@ -91,7 +92,7 @@ namespace GameStates
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
             bowCount = Link.Instance.inventory.getItemCount("bow");
             cursor.Update();
-
+            this.game.keyboardController.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -112,7 +113,7 @@ namespace GameStates
             }
 
 
-                if (bombCountText != null)
+            if (bombCountText != null)
             {
                 bombCountText.Draw(_spriteBatch);
             }
@@ -141,6 +142,10 @@ namespace GameStates
                 ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
                 bow.Draw(_spriteBatch);
             }
+
+
+
+
         }
     }
 }

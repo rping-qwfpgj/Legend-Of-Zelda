@@ -24,217 +24,224 @@ namespace Commands
             currGame.Exit();
         }
     }
-}
 
-public class InventoryCommand : ICommand
+
+    public class InventoryCommand : ICommand
     {
         private GameStateController controller;
 
-        public InventoryCommand(GameStateController controller) 
+        public InventoryCommand(GameStateController controller)
         {
             this.controller = controller;
         }
         public void Execute()
         {
-            this.controller.gameState.Inventory();
+
+            if (this.controller.gameState is InventoryState)
+            {
+                this.controller.gameState.GamePlay();
+            }
+            else
+            {
+                this.controller.gameState.Inventory();
+            }
         }
     }
 
-public class ResetGameCommand : ICommand
-{
-    private Link currLink;
-    private IEnemy currEnemy;
-    private IBlock currBlock;
-    private IItem currItem;
-
-    public ResetGameCommand(Link link, IEnemy enemy, IBlock block, IItem item)
+    public class ResetGameCommand : ICommand
     {
-        this.currLink = link;
-        this.currEnemy = enemy;
-        this.currBlock = block;
-        this.currItem = item;
-    }
+        private Link currLink;
+        private IEnemy currEnemy;
+        private IBlock currBlock;
+        private IItem currItem;
 
-    public void Execute()
-    {
-        currLink.Reset();
-    }
-
-}
-
-
-public class LeftRoomCommand : ICommand
-{
-    private Game1 myGame;
-    private Graph myGraph;
-    private GameStateController myStateController;
-
-
-    public LeftRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
-    {
-        this.myGame = myGame;
-        this.myGraph = myGraph;
-        myStateController = gameStateController;
-
-    }
-
-    public void Execute()
-    {
-
-        myStateController.gameState.TransitionLeft();
-        myGame.currentRoomIndex = myGraph.GetLeftRoom(myGame.currentRoomIndex);
-        myGraph.AddToVisited(myGame.currentRoomIndex);
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
-        
-
-        var background = myGame.currentRoom.Background as IBackground;
-        background.SetTransitionDirection("left");
-
-    }
-}
-
-
-public class RightRoomCommand : ICommand
-{
-    private Game1 myGame;
-    private Graph myGraph;
-    private GameStateController myStateController;
-
-    public RightRoomCommand(Game1 myGame, Graph myGraph,GameStateController gameStateController)
-    {
-        this.myGame = myGame;
-        this.myGraph = myGraph;
-        myStateController = gameStateController;
-    }
-
-    public void Execute()
-    {
-        myStateController.gameState.TransitionRight();
-        myGame.currentRoomIndex = myGraph.GetRightRoom(myGame.currentRoomIndex);
-        myGraph.AddToVisited(myGame.currentRoomIndex);
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
-        var background = myGame.currentRoom.Background as IBackground;
-        background.SetTransitionDirection("right");
-
-    }
-}
-
-
-public class UpRoomCommand : ICommand
-{
-    private Game1 myGame;
-    private Graph myGraph;
-    private GameStateController myStateController;
-
-
-    public UpRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
-    {
-        this.myGame = myGame;
-        this.myGraph = myGraph;
-        myStateController = gameStateController;
-
-    }
-
-    public void Execute()
-    {
-        myStateController.gameState.TransitionUp();
-        myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
-        myGraph.AddToVisited(myGame.currentRoomIndex);
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
-
-        var background = myGame.currentRoom.Background as IBackground;
-        background.SetTransitionDirection("up");
-
-    }
-}
-
-
-public class DownRoomCommand : ICommand
-{
-    private Game1 myGame;
-    private Graph myGraph;
-    private GameStateController myStateController;
-
-
-    public DownRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
-    {
-        this.myGame = myGame;
-        this.myGraph = myGraph;
-        myStateController = gameStateController;
-
-    }
-
-    public void Execute()
-    {
-
-        myStateController.gameState.TransitionDown();
-        myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
-        myGraph.AddToVisited(myGame.currentRoomIndex);
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
-
-        var background = myGame.currentRoom.Background as IBackground;
-        background.SetTransitionDirection("down");
-
-    }
-}
-
-
-
-public class NextRoomCommand : ICommand
-{
-    private Game1 myGame;
-   
-
-    public NextRoomCommand(Game1 myGame)
-    {
-        this.myGame = myGame;
-      
-    }
-
-    public void Execute()
-    {
-      
-        if (myGame.currentRoomIndex == 18)
+        public ResetGameCommand(Link link, IEnemy enemy, IBlock block, IItem item)
         {
-            myGame.currentRoomIndex = 0;
+            this.currLink = link;
+            this.currEnemy = enemy;
+            this.currBlock = block;
+            this.currItem = item;
         }
-        else
+
+        public void Execute()
         {
-            myGame.currentRoomIndex++;
+            currLink.Reset();
         }
 
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
     }
-}
 
-public class PreviousRoomCommand : ICommand
-{
-    private Game1 myGame;
 
-    public PreviousRoomCommand(Game1 myGame)
+    public class LeftRoomCommand : ICommand
     {
-        this.myGame=myGame;
+        private Game1 myGame;
+        private Graph myGraph;
+        private GameStateController myStateController;
 
+
+        public LeftRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
+        {
+            this.myGame = myGame;
+            this.myGraph = myGraph;
+            myStateController = gameStateController;
+
+        }
+
+        public void Execute()
+        {
+
+            myStateController.gameState.TransitionLeft();
+            myGame.currentRoomIndex = myGraph.GetLeftRoom(myGame.currentRoomIndex);
+            myGraph.AddToVisited(myGame.currentRoomIndex);
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+
+            var background = myGame.currentRoom.Background as IBackground;
+            background.SetTransitionDirection("left");
+
+        }
     }
 
-    public void Execute()
+
+    public class RightRoomCommand : ICommand
     {
+        private Game1 myGame;
+        private Graph myGraph;
+        private GameStateController myStateController;
 
-        if (myGame.currentRoomIndex == 0)
+        public RightRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
         {
-            myGame.currentRoomIndex = 18;
-        }
-        else
-        {
-            myGame.currentRoomIndex--;
+            this.myGame = myGame;
+            this.myGraph = myGraph;
+            myStateController = gameStateController;
         }
 
-        myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+        public void Execute()
+        {
+            myStateController.gameState.TransitionRight();
+            myGame.currentRoomIndex = myGraph.GetRightRoom(myGame.currentRoomIndex);
+            myGraph.AddToVisited(myGame.currentRoomIndex);
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+            var background = myGame.currentRoom.Background as IBackground;
+            background.SetTransitionDirection("right");
+
+        }
+    }
+
+
+    public class UpRoomCommand : ICommand
+    {
+        private Game1 myGame;
+        private Graph myGraph;
+        private GameStateController myStateController;
+
+
+        public UpRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
+        {
+            this.myGame = myGame;
+            this.myGraph = myGraph;
+            myStateController = gameStateController;
+
+        }
+
+        public void Execute()
+        {
+            myStateController.gameState.TransitionUp();
+            myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
+            myGraph.AddToVisited(myGame.currentRoomIndex);
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+            var background = myGame.currentRoom.Background as IBackground;
+            background.SetTransitionDirection("up");
+
+        }
+    }
+
+
+    public class DownRoomCommand : ICommand
+    {
+        private Game1 myGame;
+        private Graph myGraph;
+        private GameStateController myStateController;
+
+
+        public DownRoomCommand(Game1 myGame, Graph myGraph, GameStateController gameStateController)
+        {
+            this.myGame = myGame;
+            this.myGraph = myGraph;
+            myStateController = gameStateController;
+
+        }
+
+        public void Execute()
+        {
+
+            myStateController.gameState.TransitionDown();
+            myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
+            myGraph.AddToVisited(myGame.currentRoomIndex);
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+
+            var background = myGame.currentRoom.Background as IBackground;
+            background.SetTransitionDirection("down");
+
+        }
+    }
+
+
+
+    public class NextRoomCommand : ICommand
+    {
+        private Game1 myGame;
+
+
+        public NextRoomCommand(Game1 myGame)
+        {
+            this.myGame = myGame;
+
+        }
+
+        public void Execute()
+        {
+
+            if (myGame.currentRoomIndex == 18)
+            {
+                myGame.currentRoomIndex = 0;
+            }
+            else
+            {
+                myGame.currentRoomIndex++;
+            }
+
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+        }
+    }
+
+    public class PreviousRoomCommand : ICommand
+    {
+        private Game1 myGame;
+
+        public PreviousRoomCommand(Game1 myGame)
+        {
+            this.myGame = myGame;
+
+        }
+
+        public void Execute()
+        {
+
+            if (myGame.currentRoomIndex == 0)
+            {
+                myGame.currentRoomIndex = 18;
+            }
+            else
+            {
+                myGame.currentRoomIndex--;
+            }
+
+            myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+        }
+
     }
 
 }
-
-
-
 
 

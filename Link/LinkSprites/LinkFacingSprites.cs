@@ -151,12 +151,10 @@ namespace Sprites
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
 
-           
         }
         public void Update()
         {
         }
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite
@@ -164,7 +162,6 @@ namespace Sprites
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             {
@@ -215,7 +212,6 @@ namespace Sprites
         {
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite

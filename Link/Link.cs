@@ -50,12 +50,9 @@ namespace Sprint0
         private bool canBeDamaged;
         private SoundEffect takeDamage;
     
-
-
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
-
             this.isDamaged = false;
             //this.game = game;
             this.currentState = new LinkFacingUpState();
