@@ -17,7 +17,6 @@ namespace LegendofZelda
         private bool[] visited;
         public bool[] Visited { get => visited; }
 
-
         public Graph()
         {
             leftRightAdj = new List<Tuple<int, int>>();
@@ -62,7 +61,6 @@ namespace LegendofZelda
             }
 
             return returner;
-          
         }
 
 

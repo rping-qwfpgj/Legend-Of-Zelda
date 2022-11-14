@@ -33,8 +33,7 @@ public class Game1 : Game
     public Texture2D itemSpriteSheet;
     public IEnemy enemy;
     public Texture2D enemySpriteSheet;
-    public Texture2D doorSpriteSheet;
-    //private Link link;
+    public Texture2D doorSpriteSheet;    
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
@@ -141,14 +140,14 @@ public class Game1 : Game
 
         keyboardController = new KeyboardController(new NoInputCommand());
 
-        keyboardController.AddCommand(Keys.W, new WalkUpCommand());
-        keyboardController.AddCommand(Keys.Up, new WalkUpCommand());
-        keyboardController.AddCommand(Keys.S, new WalkDownCommand());
-        keyboardController.AddCommand(Keys.Down, new WalkDownCommand());
-        keyboardController.AddCommand(Keys.A, new WalkLeftCommand());
-        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand());
-        keyboardController.AddCommand(Keys.D, new WalkRightCommand());
-        keyboardController.AddCommand(Keys.Right, new WalkRightCommand());
+        keyboardController.AddCommand(Keys.W, new WalkUpCommand(gameStateController));
+        keyboardController.AddCommand(Keys.Up, new WalkUpCommand(gameStateController));
+        keyboardController.AddCommand(Keys.S, new WalkDownCommand(gameStateController));
+        keyboardController.AddCommand(Keys.Down, new WalkDownCommand(gameStateController));
+        keyboardController.AddCommand(Keys.A, new WalkLeftCommand(gameStateController));
+        keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
+        keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
+        keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.V, new ThrowRightCommand());
         keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
