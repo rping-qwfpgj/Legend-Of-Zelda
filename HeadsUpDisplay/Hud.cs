@@ -36,6 +36,7 @@ namespace HeadsUpDisplay
         ISprite keyCountText;
         int gemstoneCount;
         ISprite gemstoneCountText;
+        ISprite blueMap;
 
         public Hud(int xPos, int yPos)
         {
@@ -53,8 +54,9 @@ namespace HeadsUpDisplay
 
             ISprite red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");                        
             ISprite red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");                        
-            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");                        
-            
+            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");
+            blueMap = HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 40, this.y + 55), "HudBlueMapSprite");
+
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
             
             //sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "LinkSwordSprite"));
@@ -93,6 +95,10 @@ namespace HeadsUpDisplay
             if (gemstoneCountText != null)
             {
                 gemstoneCountText.Draw(_spriteBatch);
+            }
+            if (blueMap != null)
+            {
+                blueMap.Draw(_spriteBatch);
             }
         }
     }
