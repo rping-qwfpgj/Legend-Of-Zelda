@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
-
+using GameStates;
 
 namespace Sprint0
 {
@@ -80,7 +80,7 @@ namespace Sprint0
 
         public void Update()
         {
-
+            
             if (!(sourceRectangle.X == backgroundLocation.X && sourceRectangle.Y == backgroundLocation.Y))
             {
                 switch (direction)
@@ -108,7 +108,14 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            if (Link.Instance.game.gameStateController.gameState is GameOverState)
+            {
+                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.Red);
+            } else
+            {
+                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+            
             _spriteBatch.End();
         }
 
