@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interfaces;
+using LegendofZelda.SpriteFactories;
 
 namespace LegendofZelda
 {
@@ -13,8 +14,8 @@ namespace LegendofZelda
        
         private List<Tuple<int, int>> leftRightAdj;
         private List<Tuple<int, int>> upDownAdj;
-        bool[] visited;
-
+        private bool[] visited;
+        public bool[] Visited { get => visited; }
 
 
         public Graph()
@@ -123,6 +124,20 @@ namespace LegendofZelda
         public void AddToVisited(int roomNumber)
         {
             visited[roomNumber] = true;
+        }
+
+        public void Draw()
+        {
+
+            for(int i = 0;i<18; i++)
+            {
+                if (visited[i] == true)
+                {
+                    MapPieceSpriteFactory.Instance.CreateMapPiece(new(0, 0), i);
+
+                }
+            }
+
         }
 
     }

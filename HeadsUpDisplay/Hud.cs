@@ -41,6 +41,7 @@ namespace HeadsUpDisplay
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
             
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(heartOnePos, "LinkSwordSprite"));
+            
             sprites.Add(red1);
             sprites.Add(red2);
             sprites.Add(red3);

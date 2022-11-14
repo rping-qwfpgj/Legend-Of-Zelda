@@ -85,6 +85,7 @@ public class LeftRoomCommand : ICommand
         myGame.currentRoomIndex = myGraph.GetLeftRoom(myGame.currentRoomIndex);
         myGraph.AddToVisited(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
+        
 
         var background = myGame.currentRoom.Background as IBackground;
         background.SetTransitionDirection("left");

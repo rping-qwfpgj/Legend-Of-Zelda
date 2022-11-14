@@ -237,6 +237,7 @@ public class Game1 : Game
         BackgroundSpriteFactory.Instance.loadContent(Content);
         SoundFactory.Instance.loadContent(Content);
         TextSpriteFactory.Instance.loadContent(Content);
+        MapPieceSpriteFactory.Instance.loadContent(Content);
     }
 
 }

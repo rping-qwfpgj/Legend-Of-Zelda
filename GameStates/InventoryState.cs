@@ -9,6 +9,7 @@ using LegendofZelda.SpriteFactories;
 using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 
 namespace GameStates
 
@@ -29,7 +30,6 @@ namespace GameStates
         int triforceCount;
         int bowCount;
         ISprite boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
-
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
         ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
@@ -101,7 +101,18 @@ namespace GameStates
             hudBackground.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
             text.Draw(_spriteBatch);
-            if (bombCountText != null)
+
+            for (int i = 0; i < 18; i++)
+            {
+                if (game.roomsGraph.Visited[i])
+                {
+                    MapPieceSpriteFactory.Instance.CreateMapPiece(new(0, 0), i).Draw(_spriteBatch);
+                }
+
+            }
+
+
+                if (bombCountText != null)
             {
                 bombCountText.Draw(_spriteBatch);
             }

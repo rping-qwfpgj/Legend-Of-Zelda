@@ -74,7 +74,7 @@ namespace Sprites
                 }
             }
 
-            if (yPosition > originalYPosition - 100 && !returning)
+            if (yPosition > originalYPosition - 200 && !returning)
             {
                 yPosition -= 1;
             }
@@ -209,7 +209,7 @@ namespace Sprites
                 }
             }
 
-            if (yPosition < originalYPosition + 100 && !returning)
+            if (yPosition < originalYPosition + 200 && !returning)
             {
                 yPosition += 1;
             }
@@ -343,7 +343,7 @@ namespace Sprites
                 }
             }
 
-            if (xPosition < originalXPosition + 100 && !returning)
+            if (xPosition < originalXPosition + 200 && !returning)
             {
                 xPosition += 1;
             }
@@ -471,7 +471,7 @@ public class BlueBoomerangLeftSprite : ILinkProjectile
                 currentFrameIndex = i;
             }
         }
-        if (xPosition > originalXPosition - 100 && !returning)
+        if (xPosition > originalXPosition - 200 && !returning)
         {
             xPosition -= 1;
         }
