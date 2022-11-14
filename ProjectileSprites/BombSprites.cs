@@ -15,7 +15,7 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 2000;
+        private int maxFrames = 10000;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -28,121 +28,40 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
-
+        public List<Rectangle> sourceRectangles;
+        public int currentFrameIndex;
         public BombUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition-15;
             this.yPosition = (int)yPosition-64;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
         }
 
         public void Update()
         {
-            Boolean done = false;
-            // Update frames
-            if (!done)
-            {
-                currFrames += 100;
-            }
-
-            if (currFrames > maxFrames)
-            {
-                done = true;
-            }
-
         
-        }
-
-        // NOTE: All of these source Rectangles are using placeholder values for now
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
-
-            if (currFrames >= 0 && currFrames <= 1400)
-            {
-                sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
-
-            }
-            else if (currFrames >= 1400 && currFrames <= 1600)
-            {
-                sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1600 && currFrames <= 1800)
-            {
-                sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1800 && currFrames <= 2000)
-            {
-                sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-            }
-
-            // Draw the sprite
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return this.destinationRectangle;
-        }
-
-        public void collide()
-        {
-            this.currFrames = 1800;
-        }
-    }
-
-
-    public class BombDownSprite : ILinkProjectile
-    {
-        // Keep track of frames
-        private int currFrames = 0;
-        private int maxFrames = 2000;
-
-        // Texture to take sprites from
-        public Texture2D texture;
-
-        // X and Y positions of the sprite
-        private int xPosition;
-        private int yPosition;
-        
-        private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-
-        public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
-        {
-            this.texture = texture;
-            this.xPosition = (int)xPosition;
-            this.yPosition = (int)yPosition+64;
-        }
-
-        public void Update()
-        {
-            Boolean done = false;
             // Update frames
-            if (!done)
+            if (!(currFrames > maxFrames))
             {
-                currFrames += 100;
+                currFrames += 50;
             }
 
-            if (currFrames > maxFrames)
+            for (int i = 0; i < 8; i++)
             {
-                done = true;
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
             }
-
 
 
         }
@@ -151,36 +70,8 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
-
-            if (currFrames >= 0 && currFrames <= 1400)
-            {
-                sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
-
-            }
-            else if (currFrames >= 1400 && currFrames <= 1600)
-            {
-                sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1600 && currFrames <= 1800)
-            {
-                sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1800 && currFrames <= 2000)
-            {
-                sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-            }
+            Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width*3, sourceRectangle.Height*3); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -195,7 +86,87 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 1800;
+            this.currFrames = 5 * maxFrames / 8;
+        }
+    }
+
+
+    public class BombDownSprite : ILinkProjectile
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 10000;
+
+        // Texture to take sprites from
+        public Texture2D texture;
+
+        // X and Y positions of the sprite
+        private int xPosition;
+        private int yPosition;
+        
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
+        public List<Rectangle> sourceRectangles;
+        public int currentFrameIndex;
+        public BombDownSprite(Texture2D texture, float xPosition, float yPosition)
+        {
+            this.texture = texture;
+            this.xPosition = (int)xPosition-15;
+            this.yPosition = (int)yPosition+32;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
+        }
+
+        public void Update()
+        {
+            // Update frames
+            if (!(currFrames > maxFrames))
+            {
+                currFrames += 50;
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
+            }
+
+
+
+        }
+
+        // NOTE: All of these source Rectangles are using placeholder values for now
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Create source and destination rectangles
+            // Create source and destination rectangles
+            Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
+
+            // Draw the sprite
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return this.destinationRectangle;
+        }
+
+        public void collide()
+        {
+            this.currFrames = 5 * maxFrames / 8;
         }
     }
 
@@ -205,7 +176,7 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 2000;
+        private int maxFrames = 10000;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -218,64 +189,47 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
+        public List<Rectangle> sourceRectangles;
+        public int currentFrameIndex;
         public BombRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition+32;
-            this.yPosition = (int)yPosition;
+            this.yPosition = (int)yPosition-32;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
         }
 
         public void Update()
         {
-            Boolean done = false;
             // Update frames
-            if (!done)
+            if (!(currFrames > maxFrames))
             {
-                currFrames += 100;
+                currFrames += 50;
             }
 
-            if (currFrames > maxFrames)
+            for (int i = 0; i < 8; i++)
             {
-                done = true;
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
             }
-
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
-
-
-            if (currFrames >= 0 && currFrames <= 1400)
-            {
-                sourceRectangle = new Rectangle(129, 185, 8, 14);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64);
-
-            }
-            else if (currFrames >= 1400 && currFrames <= 1600)
-            {
-                sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1600 && currFrames <= 1800)
-            {
-                sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1800 && currFrames <= 2000)
-            {
-                sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-            }
+            Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -290,7 +244,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 1800;
+            this.currFrames = 5 * maxFrames / 8;
         }
     }
 
@@ -300,7 +254,7 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private int maxFrames = 2000;
+        private int maxFrames = 10000;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -313,26 +267,39 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
+        public List<Rectangle> sourceRectangles;
+        public int currentFrameIndex;
 
         public BombLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition-32;
-            this.yPosition = (int)yPosition;
+            this.xPosition = (int)xPosition-64;
+            this.yPosition = (int)yPosition-32;
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(129, 185, 8, 14));
+            sourceRectangles.Add(new Rectangle(138, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(155, 185, 16, 16));
+            sourceRectangles.Add(new Rectangle(172, 185, 16, 16));
         }
 
         public void Update()
         {
-            Boolean done = false;
             // Update frames
-            if (!done)
+            if (!(currFrames > maxFrames))
             {
-                currFrames += 100;
+                currFrames += 50;
             }
 
-            if (currFrames > maxFrames)
+            for (int i = 0; i < 8; i++)
             {
-                done = true;
+                if (currFrames > i * maxFrames / 8 && currFrames <= (i + 1) * maxFrames / 8)
+                {
+                    currentFrameIndex = i;
+                }
             }
         }
 
@@ -340,40 +307,8 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             // Create source and destination rectangles
-            Rectangle sourceRectangle = new Rectangle(); // Store the current location on the spritesheet to get a sprite from
-            this.destinationRectangle = new Rectangle(xPosition, yPosition, 32, 64); // Where to draw on screen
-
-            // Draw the first step of link walking up
-            if (currFrames >= 0 && currFrames <= 1400)
-            {
-                sourceRectangle = new Rectangle(129, 185, 8, 14);
-
-            }
-            else if (currFrames >= 1400 && currFrames <= 1600)
-            {
-                sourceRectangle = new Rectangle(138, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1600 && currFrames <= 1800)
-            {
-                sourceRectangle = new Rectangle(155, 185, 16, 16);
-                this.destinationRectangle = new Rectangle(xPosition, yPosition, 64, 64);
-
-
-            }
-
-            else if (currFrames >= 1800 && currFrames <= 2000)
-            {
-                sourceRectangle = new Rectangle(172, 185, 16, 16);
-                this.destinationRectangle  = new Rectangle(xPosition, yPosition, 64, 64);
-            }
-
-           
-
-    
+            Rectangle sourceRectangle = sourceRectangles[currentFrameIndex]; // Store the current location on the spritesheet to get a sprite from
+            this.destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3); // Where to draw on screen
 
             // Draw the sprite
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -388,7 +323,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 1800;
+            this.currFrames = 5*maxFrames/8;
         }
     }
 

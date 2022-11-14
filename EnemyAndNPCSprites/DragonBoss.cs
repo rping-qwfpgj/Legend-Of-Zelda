@@ -11,7 +11,7 @@ namespace Sprites
 {
     public class DragonBossSprite : IEnemy
     {
-        private List<string> droppableItems = new List<string> { "Fairy", "BigHeart", "PurpleGemstone", "OrangeGemstone" };
+        private List<string> droppableItems = new List<string> { "Fairy", "BigHeart", "OrangeGemstone" };
 
         // Keep track of frames
         private int currFrames = 0;

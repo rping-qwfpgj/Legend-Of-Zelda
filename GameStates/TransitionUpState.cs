@@ -22,7 +22,7 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(new(400, 650), false);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(new(400, 520), false);
             this.controller.gameState = new GamePlayState(this.controller, this.game);
         }
         public void Inventory()
