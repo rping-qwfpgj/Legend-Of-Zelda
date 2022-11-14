@@ -46,7 +46,7 @@ namespace GameStates
         }
         public void Inventory()
         {
-            
+            //already in inventory state
         }
         public void GameOver()
         {
@@ -91,6 +91,8 @@ namespace GameStates
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
             bowCount = Link.Instance.inventory.getItemCount("bow");
             cursor.Update();
+            this.game.keyboardController.Update();
+
 
         }
         public void Draw(SpriteBatch _spriteBatch)
