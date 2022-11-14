@@ -17,14 +17,14 @@ namespace Sprites
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 255;
-        private readonly int height = 56;
+        private readonly int height = 54;
 
 
         public HudBackgroundSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
-            this.sourceRectangle = new(259, 11, width, height);
-            this.destinationRectangle = new(x, y, width*3, height*3);
+            this.sourceRectangle = new(259, 13, width, height);
+            this.destinationRectangle = new(x, y, 800, 168);
         }
 
         public void Update()
