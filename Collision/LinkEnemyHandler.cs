@@ -42,6 +42,9 @@ namespace Collision
                 {
                     game.currentRoomIndex = 0;
                     game.currentRoom = game.rooms[game.currentRoomIndex];
+                } else if(enemy is TrapSprite) {
+                    Link.Instance.health = 0f;
+                    Link.Instance.Die();
                 } else { 
 				    Link.Instance.TakeDamage(side);
                 }
