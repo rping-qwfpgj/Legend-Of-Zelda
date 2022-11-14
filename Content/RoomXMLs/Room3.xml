@@ -6,7 +6,17 @@
 			<ObjectName>Background3</ObjectName>
 			<Location>0 0</Location>
 		</Item>
-
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockBottom</ObjectName>
+			<Location>350 400</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockTop</ObjectName>
+			<Location>350 22</Location>
+		</Item>
 		<!--  Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

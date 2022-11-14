@@ -128,9 +128,19 @@ namespace LegendofZelda.SpriteFactories
 
                     return new PuzzleDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
 
-                case "OpenDoorBlock":
+                case "OpenDoorBlockTop":
+
+                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                case "OpenDoorBlockLeft":
+
+                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                case "OpenDoorBlockRight":
+
+                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                case "OpenDoorBlockBottom":
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+
 
                 default:
 

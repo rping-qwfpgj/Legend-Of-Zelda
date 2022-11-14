@@ -7,6 +7,13 @@
 			<Location>0 0</Location>
 		</Item>
 
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
+		
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

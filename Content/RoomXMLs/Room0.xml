@@ -71,6 +71,22 @@
 			<ObjectName>StatueTwoBlock</ObjectName>
 			<Location>600 306</Location>
 		</Item>
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockLeft</ObjectName>
+			<Location>40 199</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockBottom</ObjectName>
+			<Location>350 400</Location>
+		</Item>
 		<!-- Locked Door-->
 		<Item>
 			<ObjectType>Block</ObjectType>

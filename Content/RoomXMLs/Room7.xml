@@ -7,6 +7,28 @@
 			<Location>0 0</Location>
 		</Item>
 
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockRight</ObjectName>
+			<Location>700 200</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockLeft</ObjectName>
+			<Location>40 199</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockBottom</ObjectName>
+			<Location>350 400</Location>
+		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockTop</ObjectName>
+			<Location>350 22</Location>
+		</Item>
+	
 		<!--  Top Left Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>

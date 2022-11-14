@@ -71,7 +71,12 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>550 260</Location>
 		</Item>
-
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockLeft</ObjectName>
+			<Location>40 199</Location>
+		</Item>
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>

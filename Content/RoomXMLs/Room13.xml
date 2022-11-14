@@ -6,6 +6,12 @@
 			<ObjectName>Background13</ObjectName>
 			<Location>0 0</Location>
 		</Item>
+		<!--Door Transition Blocks-->
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockLeft</ObjectName>
+			<Location>40 199</Location>
+		</Item>
 
 		<!--  Blocks  -->
 		<!--  Left Column  -->
