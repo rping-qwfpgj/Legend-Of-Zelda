@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Sprites;
 using LegendofZelda.Interfaces;
 
+
 namespace Sprites
 {
     public class HudBlueMapSprite : ISprite
@@ -18,25 +19,28 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private readonly int width = 48;
         private readonly int height = 28;
-        private List<Vector2> linkLocations = new();
-
-
+        private LinkLocationTracker tracker;
+        
         public HudBlueMapSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
             this.sourceRectangle = new(697, 104, width, height);
             this.destinationRectangle = new(x, y, 168, 98);
-            linkLocations.Add(new Vector2(x, y));
+            tracker = new LinkLocationTracker(texture, x, y);
+            
         }
 
         public void Update()
         {
+            tracker.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
+            tracker.Draw(_spriteBatch);
+
         }
 
         public Rectangle GetHitbox()
