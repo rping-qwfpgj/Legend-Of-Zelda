@@ -82,7 +82,8 @@ public class LeftRoomCommand : ICommand
     {
 
         myStateController.gameState.TransitionLeft();
-        myGame.currentRoomIndex =  myGraph.GetLeftRoom(myGame.currentRoomIndex);
+        myGame.currentRoomIndex = myGraph.GetLeftRoom(myGame.currentRoomIndex);
+        myGraph.AddToVisited(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
@@ -109,6 +110,7 @@ public class RightRoomCommand : ICommand
     {
         myStateController.gameState.TransitionRight();
         myGame.currentRoomIndex = myGraph.GetRightRoom(myGame.currentRoomIndex);
+        myGraph.AddToVisited(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
         var background = myGame.currentRoom.Background as IBackground;
         background.SetTransitionDirection("right");
@@ -136,6 +138,7 @@ public class UpRoomCommand : ICommand
     {
         myStateController.gameState.TransitionUp();
         myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
+        myGraph.AddToVisited(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
@@ -165,6 +168,7 @@ public class DownRoomCommand : ICommand
 
         myStateController.gameState.TransitionDown();
         myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
+        myGraph.AddToVisited(myGame.currentRoomIndex);
         myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
         var background = myGame.currentRoom.Background as IBackground;
