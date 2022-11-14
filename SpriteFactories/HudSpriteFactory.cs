@@ -58,6 +58,9 @@ namespace LegendofZelda.SpriteFactories
                     return new HudBombSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "HudSelectionCursor":
                     return new HudSelectionCursor(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudBlueMapSprite":
+                    return new HudBlueMapSprite(spriteSheet, (int)location.X, (int)location.Y);
+
                 default:
                     return null;
             }

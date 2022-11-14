@@ -18,6 +18,12 @@
 			<ObjectName>OpenDoorBlockTop</ObjectName>
 			<Location>350 22</Location>
 		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>BombableDoorBlockTop</ObjectName>
+			<Location>360 22</Location>
+		</Item>
 	
 		<!--  Blocks  -->
 		<Item>
