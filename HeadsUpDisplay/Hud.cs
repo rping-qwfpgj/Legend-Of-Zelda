@@ -37,12 +37,21 @@ namespace HeadsUpDisplay
         int gemstoneCount;
         ISprite gemstoneCountText;
         ISprite blueMap;
+        ISprite red1;
+        ISprite red2;
+        ISprite red3;
+        ISprite halfRed1;
+        ISprite halfRed2;
+        ISprite halfRed3;
+        ISprite pink1;
+        ISprite pink2;
+        ISprite pink3;
+
+
+        float heartCount;
 
         public Hud(int xPos, int yPos)
-        {
-
-            
-
+        {            
             this.x = xPos;
             this.y = yPos;
             this.heartXPos = this.x + 540;
@@ -52,17 +61,25 @@ namespace HeadsUpDisplay
             heartThreePos = new Vector2(this.heartXPos + heartSpacing * 2, this.heartYPos);
             backgroundPos = new Vector2(this.x, this.y);
 
-            ISprite red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");                        
-            ISprite red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");                        
-            ISprite red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");
+            red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");                        
+            red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");                        
+            red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");
+
+            halfRed1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "HalfRedHeartSprite");
+            halfRed2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "HalfRedHeartSprite");
+            halfRed3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "HalfRedHeartSprite");
+
+            pink1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "PinkHeartSprite");
+            pink2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "PinkHeartSprite");
+            pink3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "PinkHeartSprite");
+
             blueMap = HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 40, this.y + 55), "HudBlueMapSprite");
 
-            sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));
-            
-            sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 465, this.y + 65), "LinkSwordSprite"));
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));            
+            sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 472, this.y + 62), "LinkSwordSprite"));
             sprites.Add(red1);
             sprites.Add(red2);
-            sprites.Add(red3);
+            sprites.Add(pink3);
         }
 
         public void Update()
@@ -73,16 +90,16 @@ namespace HeadsUpDisplay
             keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 90), "X" + keyCount.ToString());
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 40), "X" + gemstoneCount.ToString());
-
+            heartCount = Link.Instance.health;
+            
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
             
             foreach (ISprite sprite in sprites)
-            {
-                sprite.Draw(_spriteBatch);
-
+            {                                
+                    sprite.Draw(_spriteBatch);                               
             }
             if (bombCountText != null)
             {
