@@ -47,7 +47,7 @@ namespace HeadsUpDisplay
             sprites.Add(redHeart1Sprite);
             sprites.Add(redHeart2Sprite);
             sprites.Add(redHeart3Sprite);
-            */
+            
         }
 
         public void Update()
