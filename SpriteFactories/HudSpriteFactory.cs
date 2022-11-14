@@ -39,7 +39,7 @@ namespace LegendofZelda.SpriteFactories
                 case "hudBackground":
                     return new HudBackgroundSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "RedHeartSprite":
-                    return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
+                    return new RedHeartSprite(spriteSheet, (int)location.X, (int)location.Y);                
                 case "BigTriforceSprite":
                     return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);
                 case "InventorySelectionSprite":
