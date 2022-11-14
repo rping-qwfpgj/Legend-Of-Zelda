@@ -28,6 +28,7 @@ namespace GameStates
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
         ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
+        ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
 
         public InventoryState(GameStateController controller, Game1 game)
         {
@@ -81,12 +82,15 @@ namespace GameStates
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
 
+            cursor.Update();
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             itemSelectionBackground.Draw(_spriteBatch);
             mapDisplayBackground.Draw(_spriteBatch);
             hudBackground.Draw(_spriteBatch);
+            cursor.Draw(_spriteBatch);
         }
     }
 }
