@@ -36,6 +36,7 @@ namespace HeadsUpDisplay
         ISprite keyCountText;
         int gemstoneCount;
         ISprite gemstoneCountText;
+        int mapCount;
         ISprite blueMap;
         ISprite red1;
         ISprite red2;
@@ -102,7 +103,7 @@ namespace HeadsUpDisplay
             blueMap.Update();
             float prevHeartCount = this.heartCount;
             this.heartCount = Link.Instance.health;
-            
+            mapCount = Link.Instance.inventory.getItemCount("orange map");
             switch (this.heartCount)
             {
                 case 0:
@@ -208,7 +209,7 @@ namespace HeadsUpDisplay
             {
                 gemstoneCountText.Draw(_spriteBatch);
             }
-            if (blueMap != null)
+            if (blueMap != null && mapCount > 0)
             {
                 blueMap.Draw(_spriteBatch);
             }
