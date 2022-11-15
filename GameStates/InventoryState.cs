@@ -19,15 +19,9 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        int bombCount;
-        ISprite bombCountText;
-        int keyCount;
-        ISprite keyCountText;
         int mapCount;
         int compassCount;
         int fairyCount;
-        int gemstoneCount;
-        ISprite gemstoneCountText;
         int triforceCount;
         int bowCount;
         ISprite boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
@@ -100,15 +94,9 @@ namespace GameStates
         }
         public void Update()
         {
-            bombCount = Link.Instance.inventory.getItemCount("bomb");
-            bombCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 575), "X" + bombCount.ToString());
-            keyCount = Link.Instance.inventory.getItemCount("key");
-            keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 550), "X" + keyCount.ToString());
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
             fairyCount = Link.Instance.inventory.getItemCount("fairy");
-            gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
-            gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 500), "X" + gemstoneCount.ToString());
             hud.Update();
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
             bowCount = Link.Instance.inventory.getItemCount("bow");
@@ -144,7 +132,6 @@ namespace GameStates
             itemSelectionBackground.Draw(_spriteBatch);
             mapDisplayBackground.Draw(_spriteBatch);
             hud.Draw(_spriteBatch);
-            //hudBackground.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
             text.Draw(_spriteBatch);
 
@@ -156,19 +143,6 @@ namespace GameStates
                 }
             }
 
-
-            if (bombCountText != null)
-            {
-                bombCountText.Draw(_spriteBatch);
-            }
-            if (keyCountText != null)
-            {
-                keyCountText.Draw(_spriteBatch);
-            }
-            if (gemstoneCountText != null)
-            {
-                gemstoneCountText.Draw(_spriteBatch);
-            }
             if (mapCount > 0)
             {
                 ISprite map = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 135), "OrangeMap");
