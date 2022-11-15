@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Sprites;
+using SharpDX.Direct2D1;
 
 namespace GameStates
 
@@ -65,16 +66,20 @@ namespace GameStates
             //LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
             //if (!sprite.isComplete)
             //{
-                Link.Instance.Update();
+            //Link.Instance.Update();
+            Link.Instance.game.currentRoom.Update();
+            Link.Instance.currentLinkSprite.Update();
             //}
 
         }
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch _spriteBatch)
         {
             //LinkWinningSprite sprite = Link.Instance.currentLinkSprite as LinkWinningSprite;
             //if (!sprite.isComplete)
             //{
-                Link.Instance.Draw(_spriteBatch);
+            //Link.Instance.Draw(_spriteBatch);
+            Link.Instance.game.currentRoom.Draw(_spriteBatch);
+            Link.Instance.currentLinkSprite.Draw(_spriteBatch);
             //}
             //if (sprite.isComplete)
             //{

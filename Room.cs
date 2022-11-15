@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Sprites;
 using LegendofZelda.SpriteFactories;
 using Sprint0;
+using LegendofZelda.Items;
+using GameStates;
 
 namespace LegendofZelda
 {
@@ -88,6 +90,7 @@ namespace LegendofZelda
         private void DealWithLinkProjectiles(ISprite sprite)
         {
             List<ISprite> toRemove = new();
+            
             if(sprite is ILinkProjectile)
             {
                 var projectile = sprite as ILinkProjectile;
