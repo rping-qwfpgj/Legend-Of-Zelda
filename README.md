@@ -43,4 +43,6 @@ Items that are only displayed once a room has been cleared are now  displayed in
 
 Clock Item
 
+small red and blue hearts: replaced funcionality with big read hearts
+
 
