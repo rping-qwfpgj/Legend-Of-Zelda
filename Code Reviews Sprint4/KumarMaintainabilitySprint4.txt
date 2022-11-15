@@ -1,0 +1,14 @@
+@Author Vishal Kumar
+Date: 11/14/2022
+Sprint4
+File under review: EnemyProjectileLink.cs
+Author of file under review: Tuhin Patel
+10 Minutes to complete review
+
+*Reviewing for maintainability*
+
+This class is very small as it has high cohesion. Thus making it very maintainable. The only method
+is handleCollsion() and calls a behevioral methods on link, the enemy projectile and room. Future funcitonality
+with the handler would be very easy to implment as we would be able to add more objects or conditional logic to just one method.
+A future change could be adding more functionality to the enemy projctile link collsiion such as having a special audio snippet play or changing link's sprite,
+this could be implemneted very easily.
