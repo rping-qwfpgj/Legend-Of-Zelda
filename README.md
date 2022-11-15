@@ -1,20 +1,20 @@
-#Sprint 3
+#Sprint 4
 
-Controls: 
-WASD and arrow keys are used to move. V is used to shoot a projectile, number keys 1-6 are used to switch between Link's projectiles.
+CONTROLS: 
+WASD and arrow keys are used to move, NOTE: When in the inventory, arrow keys are instead used to move the cursor around the inventory
+V is used to shoot a projectile, number keys 1-6 are used to switch between Link's projectiles.
 Clicking on the right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room.
-Keys Z and N are used to attack. 
+Keys Z and N are used to attack with the sword.
+H is to pause/unpause
+L is to open the inventory/close the inventory
 
-Bugs:
-current implmenmtation of enemyProjectilePlayer handler cannot be used due to design choices with enemyProjectiles
-Goriya is not throwing boomerang
-enemies are able to be hit out of bounds
-Link's attack into wall state creates collision edge cases in which he may be corrected to outside of the level
+BUGS:
+Room 17 transition still need work.
+Transitioning from room 10 to 6 also has some issues with moving over a pure green section for a moment
 
-Pertinent information about our implementation:
-The main things that were added in this sprint was room loading, the room class, collisions. 
-A GetHitbox() method was added to all the sprites for the collision purposes, as well as making new interfaces that inherit ISprite
-to determine the type of object that has collided.
+
+PERTINENT information about our implementation:
+The main things that were added in this sprint was sound, game states, link/enemy health, proper trap/wallmaster behavior, room transitions, the heads-up display/inventory, and enemy projectile collisions
 
 Collision detector uses exhaustive checking to compare every object in room with every other object in room, once a collision is detected,
 the two objects are passed to the collision delegator.
@@ -31,7 +31,12 @@ implemented using the Rectangle intersect method.
 
 we've also added a space at the top of the game which will display menu information
 
-# sprint 4
+When pulling up the inventory, there is currently no way to select an item. BUT 
+hovering the selector cursor over one of the projectiles will equip it to link
+after exiting the inventory, in addition to being able 
+to use the numerical keys to swap the current projectile.
+
+Reset has not been implemented yet(link will reset to the first room, but items and enemies do no respawn yet)
 
 Intentional omissions:
 
@@ -41,7 +46,7 @@ has also been changed to have a key.
 
 Items that are only displayed once a room has been cleared are now  displayed in the room pre-clear state.
 
-Clock Item
+Clock Item is not in the game
 
 small red and blue hearts: replaced funcionality with big read hearts
 
