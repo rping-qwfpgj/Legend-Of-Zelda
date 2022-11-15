@@ -57,7 +57,7 @@ namespace GameStates
         }
         public void Update()
         {
-            
+            this.game.keyboardController.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
