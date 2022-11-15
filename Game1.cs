@@ -159,10 +159,10 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph, gameStateController));
-        keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph, gameStateController));
-        keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph, gameStateController));
-        keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph, gameStateController));
+        //keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph, gameStateController));
+        //keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph, gameStateController));
+        //keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph, gameStateController));
+        //keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph, gameStateController));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
         keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
 

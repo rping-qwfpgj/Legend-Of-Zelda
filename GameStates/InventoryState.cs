@@ -133,7 +133,7 @@ namespace GameStates
             mapDisplayBackground.Draw(_spriteBatch);
             hud.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
-            text.Draw(_spriteBatch);
+            //text.Draw(_spriteBatch);
 
             for (int i = 0; i < 18; i++)
             {
