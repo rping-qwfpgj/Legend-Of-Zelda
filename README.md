@@ -1,12 +1,15 @@
 #Sprint 4
 
 CONTROLS: 
-WASD and arrow keys are used to move, NOTE: When in the inventory, arrow keys are instead used to move the cursor around the inventory
-V is used to shoot a projectile, number keys 1-6 are used to switch between Link's projectiles.
-Clicking on the right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room.
-Keys Z and N are used to attack with the sword.
-H is to pause/unpause
-L is to open the inventory/close the inventory
+-WASD and arrow keys are used to move, NOTE: When in the inventory, WASD and arrow keys are instead used to move the cursor around the inventory
+-V is used to shoot a projectile, number keys 1-6 are used to switch between Link's projectiles.
+When pulling up the inventory, hovering the selector cursor over one of the projectiles and then exiting the inventory will equip it to link, 
+in addition to being able to use the numerical keys to swap the current projectile.
+-Clicking on the right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room.
+-Keys Z and N are used to attack with the sword.
+-H is to pause/unpause
+-L is to open the inventory/close the inventory
+
 
 BUGS:
 Room 17 transition still need work.
@@ -31,10 +34,7 @@ implemented using the Rectangle intersect method.
 
 we've also added a space at the top of the game which will display menu information
 
-When pulling up the inventory, there is currently no way to select an item. BUT 
-hovering the selector cursor over one of the projectiles will equip it to link
-after exiting the inventory, in addition to being able 
-to use the numerical keys to swap the current projectile.
+
 
 Reset has not been implemented yet(link will reset to the first room, but items and enemies do no respawn yet)
 
