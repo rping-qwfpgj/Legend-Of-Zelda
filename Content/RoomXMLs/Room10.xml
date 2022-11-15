@@ -37,8 +37,12 @@
 			<Location>350 400</Location>
 		</Item>
 	
-	`
-	
+		`<!--  Items  -->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Boomerang</ObjectName>
+			<Location>320 350</Location>
+		</Item>
 		<!--  Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
