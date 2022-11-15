@@ -31,8 +31,16 @@ implemented using the Rectangle intersect method.
 
 we've also added a space at the top of the game which will display menu information
 
+# sprint 4
 
+Intentional omissions:
 
+sliding doors are replaced with locked doors
+The room which contains a pushable block to access the old man room has been modified to accomodated for this. The dragon room 
+has also been changed to have a key. 
 
+Items that are only displayed once a room has been cleared are now  displayed in the room pre-clear state.
+
+Clock Item
 
 

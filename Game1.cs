@@ -216,7 +216,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
-        currentRoomIndex = 1;
+        currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         //link = Link.Instance;
         Link.Instance.getGame(this);
