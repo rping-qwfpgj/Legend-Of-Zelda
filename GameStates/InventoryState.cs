@@ -10,6 +10,7 @@ using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
+using HeadsUpDisplay;
 
 namespace GameStates
 
@@ -32,9 +33,10 @@ namespace GameStates
         ISprite boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
-        ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
+        //ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
         public ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
         ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
+        Hud hud = new Hud(0, 460);
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -79,18 +81,19 @@ namespace GameStates
         }
         public void Update()
         {
-            bombCount = Link.Instance.inventory.getItemCount("bomb");
-            bombCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 575), "X" + bombCount.ToString());
-            keyCount = Link.Instance.inventory.getItemCount("key");
-            keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 550), "X" + keyCount.ToString());
-            mapCount = Link.Instance.inventory.getItemCount("orange map");
-            compassCount = Link.Instance.inventory.getItemCount("compass");
-            fairyCount = Link.Instance.inventory.getItemCount("fairy");
-            gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
-            gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 500), "X" + gemstoneCount.ToString());
+            //bombCount = Link.Instance.inventory.getItemCount("bomb");
+            //bombCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 575), "X" + bombCount.ToString());
+            //keyCount = Link.Instance.inventory.getItemCount("key");
+            //keyCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 550), "X" + keyCount.ToString());
+            //mapCount = Link.Instance.inventory.getItemCount("orange map");
+            //compassCount = Link.Instance.inventory.getItemCount("compass");
+            //fairyCount = Link.Instance.inventory.getItemCount("fairy");
+            //gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
+            //gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 500), "X" + gemstoneCount.ToString());
 
-            triforceCount = Link.Instance.inventory.getItemCount("triforce");
-            bowCount = Link.Instance.inventory.getItemCount("bow");
+            //triforceCount = Link.Instance.inventory.getItemCount("triforce");
+            //bowCount = Link.Instance.inventory.getItemCount("bow");
+            hud.Update();
             cursor.Update();
             this.game.keyboardController.Update();
         }
@@ -99,7 +102,8 @@ namespace GameStates
             
             itemSelectionBackground.Draw(_spriteBatch);
             mapDisplayBackground.Draw(_spriteBatch);
-            hudBackground.Draw(_spriteBatch);
+            hud.Draw(_spriteBatch);
+            //hudBackground.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
             text.Draw(_spriteBatch);
 
@@ -113,18 +117,18 @@ namespace GameStates
             }
 
 
-            if (bombCountText != null)
-            {
-                bombCountText.Draw(_spriteBatch);
-            }
-            if (keyCountText != null)
-            {
-                keyCountText.Draw(_spriteBatch);
-            }
-            if (gemstoneCountText != null)
-            {
-                gemstoneCountText.Draw(_spriteBatch);
-            }
+            //if (bombCountText != null)
+            //{
+            //    bombCountText.Draw(_spriteBatch);
+            //}
+            //if (keyCountText != null)
+            //{
+            //    keyCountText.Draw(_spriteBatch);
+            //}
+            //if (gemstoneCountText != null)
+            //{
+            //    gemstoneCountText.Draw(_spriteBatch);
+            //}
             if (mapCount > 0)
             {
                 ISprite map = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 135), "OrangeMap");
@@ -137,11 +141,11 @@ namespace GameStates
             }
             boomerang.Draw(_spriteBatch);
             
-            if (bowCount > 0)
-            {
-                ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
-                bow.Draw(_spriteBatch);
-            }
+            //if (bowCount > 0)
+            //{
+            //    ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
+            //    bow.Draw(_spriteBatch);
+            //}
 
 
 

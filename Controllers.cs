@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
 using Commands;
+using Sprint0;
+using GameStates;
+using System.Linq;
 
 namespace Controllers
 {
@@ -38,20 +41,42 @@ namespace Controllers
 			} 
 			else if(kstate.GetPressedKeyCount() == 1)
 			{
-                // Loop through the bindings. If a key is down, execute its command.
-                foreach (Keys key in keyBindings.Keys)
-                {
-                    if (kstate.IsKeyDown(key))
+                //if (Link.Instance.game.gameStateController.gameState is PauseState && kstate.GetPressedKeys().Contains(Keys.H))
+                    // Loop through the bindings. If a key is down, execute its command.
+                    if (!(Link.Instance.game.gameStateController.gameState is PauseState))
                     {
-                        Type typeField = previousCommand.GetType();
-                        if (typeField != keyBindings[key].GetType())
+                        foreach (Keys key in keyBindings.Keys)
                         {
-                            keyBindings[key].Execute();
-                         Debug.WriteLine(keyBindings[key]);
-						}
-                        previousCommand = keyBindings[key];
+                            if (kstate.IsKeyDown(key))
+                            {
+                                Type typeField = previousCommand.GetType();
+                                if (typeField != keyBindings[key].GetType())
+                                {
+                                    keyBindings[key].Execute();
+                                    Debug.WriteLine(keyBindings[key]);
+                                }
+                                previousCommand = keyBindings[key];
+                            }
+                        }
+                    } else
+                    {
+                        if (kstate.GetPressedKeys().Contains(Keys.H))
+                        {
+                            foreach (Keys key in keyBindings.Keys)
+                            {
+                                if (kstate.IsKeyDown(key))
+                                {
+                                    Type typeField = previousCommand.GetType();
+                                    if (typeField != keyBindings[key].GetType())
+                                    {
+                                        keyBindings[key].Execute();
+                                        Debug.WriteLine(keyBindings[key]);
+                                    }
+                                    previousCommand = keyBindings[key];
+                                }
+                            }
+                        }
                     }
-                }
             }			
 		}
     }
