@@ -56,6 +56,37 @@
 	<Item>
 		<ObjectType>Item</ObjectType>
 		<ObjectName>Fairy</ObjectName>
-		<Location>500 150</Location>
+		<Location>300 150</Location>
 	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>320 170</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeMap</ObjectName>
+		<Location>340 200</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>SmallRedHeart</ObjectName>
+		<Location>360 210</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>SmallBlueHeart</ObjectName>
+		<Location>380 230</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>BigHeart</ObjectName>
+		<Location>410 250</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Compass</ObjectName>
+		<Location>420 270</Location>
+	</Item>
+	
 </XnaContent>

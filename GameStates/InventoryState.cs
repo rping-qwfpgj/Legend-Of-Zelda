@@ -9,10 +9,6 @@ using LegendofZelda.SpriteFactories;
 using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
-using SharpDX.Direct3D9;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
 namespace GameStates
 
 {
@@ -48,9 +44,10 @@ namespace GameStates
 
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
-        ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
+        //ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
         public ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
         ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
+        Hud hud = new Hud(0, 460);
         public InventoryState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -111,6 +108,7 @@ namespace GameStates
             fairyCount = Link.Instance.inventory.getItemCount("fairy");
             gemstoneCount = Link.Instance.inventory.getItemCount("orange gemstone");
             gemstoneCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(300, 500), "X" + gemstoneCount.ToString());
+            hud.Update();
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
             bowCount = Link.Instance.inventory.getItemCount("bow");
             cursor.Update();
@@ -144,7 +142,8 @@ namespace GameStates
             
             itemSelectionBackground.Draw(_spriteBatch);
             mapDisplayBackground.Draw(_spriteBatch);
-            hudBackground.Draw(_spriteBatch);
+            hud.Draw(_spriteBatch);
+            //hudBackground.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
             text.Draw(_spriteBatch);
 
@@ -155,6 +154,7 @@ namespace GameStates
                     MapPieceSpriteFactory.Instance.CreateMapPiece(new(0, 0), i).Draw(_spriteBatch);
                 }
             }
+
 
             if (bombCountText != null)
             {
@@ -182,13 +182,16 @@ namespace GameStates
             arrow.Draw(_spriteBatch);
             boomerang.Draw(_spriteBatch);
             fire.Draw(_spriteBatch);
-            selectedItem.Draw(_spriteBatch);
-
+            
             if (bowCount > 0)
             {
                 ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
                 bow.Draw(_spriteBatch);
             }
+
+
+
+
         }
     }
 }

@@ -75,7 +75,7 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>OpenDoorBlockLeft</ObjectName>
-			<Location>40 199</Location>
+			<Location>32 199</Location>
 		</Item>
 		<!--  Enemies  -->
 		<Item>

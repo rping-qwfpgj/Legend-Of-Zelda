@@ -164,7 +164,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph, gameStateController));
         keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph, gameStateController));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
-
+        keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
 
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
@@ -216,7 +216,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
-        currentRoomIndex = 1;
+        currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         //link = Link.Instance;
         Link.Instance.getGame(this);

@@ -26,7 +26,6 @@ namespace GameStates
         public void Inventory()
         {
             this.controller.gameState = new InventoryState(this.controller, this.game);
-            Debug.WriteLine("goofy ah");
         }
         public void GameOver()
         {
@@ -58,7 +57,7 @@ namespace GameStates
         }
         public void Update()
         {
-            
+            this.game.keyboardController.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

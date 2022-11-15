@@ -17,7 +17,7 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>OpenDoorBlockLeft</ObjectName>
-			<Location>40 199</Location>
+			<Location>32 199</Location>
 		</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
@@ -37,8 +37,12 @@
 			<Location>350 400</Location>
 		</Item>
 	
-	`
-	
+		`<!--  Items  -->
+		<Item>
+			<ObjectType>Item</ObjectType>
+			<ObjectName>Boomerang</ObjectName>
+			<Location>320 350</Location>
+		</Item>
 		<!--  Blocks  -->
 		<Item>
 			<ObjectType>Block</ObjectType>
