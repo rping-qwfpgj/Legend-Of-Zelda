@@ -37,7 +37,10 @@ namespace Commands
 
         public void Execute()
         {
-            Link.Instance.throwable = Link.Throwables.Boomerang;
+              if (Link.Instance.inventory.getItemCount("boomerang") > 0)
+            {
+                Link.Instance.throwable = Link.Throwables.Boomerang;
+            }
         }
 
     }
@@ -53,7 +56,10 @@ namespace Commands
 
         public void Execute()
         {
-            Link.Instance.throwable = Link.Throwables.BlueBoomerang;
+              if (Link.Instance.inventory.getItemCount("boomerang") > 0)
+            {
+                Link.Instance.throwable = Link.Throwables.BlueBoomerang;
+            }
         }
 
     }
