@@ -1,0 +1,14 @@
+@Author DJ Young
+Date: 11/14/2022
+Sprint4
+File under review: TrapSprite.cs
+Author of file under review: Tuhin Patel
+15 Minutes to complete review
+
+*Reviewing for readeability*
+
+The fields declared in the class are well named and give a good approximation of what they are used for. The logic is at most two 
+tabs deep in the Update() function. There are comments before the if and else logic in the method, explaining what is happening
+behind the abstraction resulting from local private methods such as swapState. There is an outdated line of code that has been 
+commented out in Update(). Draw() is very simple as usual. The biggest issue is that the swapState() method is a black box
+with many magic numbers. As far as I can tell the method changes the state of the trap Sprite depending on Link's location. 
