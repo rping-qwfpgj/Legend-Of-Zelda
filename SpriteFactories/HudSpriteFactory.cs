@@ -15,6 +15,7 @@ namespace LegendofZelda.SpriteFactories
     {
 
         private Texture2D spriteSheet;
+        private Texture2D _spriteSheet;
         private static HudSpriteFactory instance = new();
         
         public static HudSpriteFactory Instance
@@ -31,7 +32,8 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("actual_hud_sprites");
-            
+            _spriteSheet = content.Load<Texture2D>("LinkandProjectileSprites");
+
         }
 
         public ISprite CreateSprite(Vector2 location, string name)
@@ -64,6 +66,8 @@ namespace LegendofZelda.SpriteFactories
                     return new HudSelectionCursor(spriteSheet, (int)location.X, (int)location.Y);
                 case "HudBlueMapSprite":
                     return new HudBlueMapSprite(spriteSheet, (int)location.X, (int)location.Y);
+                case "HudFireSprite":
+                    return new HudFireSprite(_spriteSheet, (int)location.X, (int)location.Y);
 
                 default:
                     return null;

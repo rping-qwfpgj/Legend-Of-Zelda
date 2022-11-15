@@ -26,17 +26,17 @@ namespace GameStates
         int bowCount;
         ISprite boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
         ISprite bomb = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+50, 122), "HudBombSprite");
-        ISprite fire = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+2*50, 122), "RedHeartSprite");
+        ISprite fire = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+2*50, 122), "HudFireSprite");
         ISprite arrow = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+3*50, 122), "HudBowSprite");
 
         ISprite boomerang1= HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBoomerangSprite");
         ISprite bomb1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBombSprite");
-        ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "RedHeartSprite");
+        ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudFireSprite");
         ISprite arrow1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBowSprite");
 
         ISprite boomerang2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBoomerangSprite");
         ISprite bomb2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBombSprite");
-        ISprite fire2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "RedHeartSprite");
+        ISprite fire2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudFireSprite");
         ISprite arrow2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBowSprite");
 
         List<ISprite> actualHudSprites;

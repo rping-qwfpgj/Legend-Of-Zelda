@@ -10,21 +10,21 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class HudBombSprite : ISprite
+    public class HudFireSprite : ISprite
     {
         private readonly Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private readonly int width = 8;
+        private readonly int width = 16;
         private readonly int height = 16;
 
 
-        public HudBombSprite(Texture2D texture, int x, int y)
+        public HudFireSprite(Texture2D texture, int x, int y)
         {
             this.texture = texture;
-            this.sourceRectangle = new(604, 137, width, height);
-            this.destinationRectangle = new(x, y, width * 3, height * 3);
+            this.sourceRectangle = new(191, 185, 16, 16);
+            this.destinationRectangle = new(x, y, width * 2, height * 2);
         }
 
         public void Update()
