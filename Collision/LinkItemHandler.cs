@@ -10,6 +10,7 @@ using LegendofZelda;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using LegendofZelda.Items;
+using LegendofZelda.SpriteFactories;
 
 namespace Collision
 {
@@ -23,7 +24,8 @@ namespace Collision
 			SoundEffect itemPickup = game.Content.Load<SoundEffect>("item_pickup");
 			itemPickup.Play();
             Link.Instance.inventory.addItem(item);
-			//Debug.WriteLine("picked up item: " + item.toString() + "count: " + Link.Instance.inventory.getItemCount(item.toString()));
+            room.RemoveObject(item);
+            //Debug.WriteLine("picked up item: " + item.toString() + "count: " + Link.Instance.inventory.getItemCount(item.toString()));
             switch (item)
 			{
 				case SmallRedHeart:
@@ -47,7 +49,9 @@ namespace Collision
 					break;
 
 				case Triforce:
-                    Link.Instance.health = 4.0f;  
+                    Link.Instance.health = 4.0f;
+					
+					Link.Instance.game.gameStateController.gameState.WinGame();
 					// trigger the win game state
                     break;
 
@@ -82,7 +86,7 @@ namespace Collision
                 Link.Instancehealth = 4.0f;
             }
 			*/
-			room.RemoveObject(item);
+			
 		}        
 	}
 }

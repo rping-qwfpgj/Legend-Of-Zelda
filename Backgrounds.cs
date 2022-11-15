@@ -44,7 +44,7 @@ namespace Sprint0
             sourceRectangles.Add(new(515, 178, width, height));
             sourceRectangles.Add(new(515, 1, width, height));
             sourceRectangles.Add(new(258, 1, width, height));
-            sourceRectangles.Add(new(1, 1, width, height));
+            sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
            
             sourceRectangle = sourceRectangles[roomNumber];

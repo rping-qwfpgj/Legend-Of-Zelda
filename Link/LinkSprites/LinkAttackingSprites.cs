@@ -25,6 +25,8 @@ namespace Sprites
         // Represents if the sprite has done one full attack cycle
         private bool isAttack;
 
+        public string side = "top";
+
         // Where this will be drawn on screen
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
@@ -104,6 +106,11 @@ namespace Sprites
         {
             return this.isAttack;
         }
+
+        public string getSide()
+        {
+            return this.side;
+        }
     }
 
 
@@ -124,6 +131,8 @@ namespace Sprites
 
         // Is this sprite currently in its attacking cycle
         private bool isAttack;
+
+        public string side = "bottom";
 
         // Location on screen
         private Rectangle destinationRectangle;
@@ -205,6 +214,11 @@ namespace Sprites
         {
             return this.isAttack;
         }
+
+         public string getSide()
+        {
+            return this.side;
+        }
     }
 
     public class LinkAttackLeftSprite : IAttackingSprite
@@ -225,6 +239,8 @@ namespace Sprites
 
         // Represents if sprite is in its attack cycle 
         private bool isAttack;
+
+        public string side = "left";
 
         // Location on screen
         private Rectangle destinationRectangle;
@@ -304,6 +320,11 @@ namespace Sprites
         {
             return this.isAttack;
         }
+
+        public string getSide()
+        {
+            return this.side;
+        }
     }
 
     public class LinkAttackRightSprite : IAttackingSprite
@@ -323,6 +344,8 @@ namespace Sprites
 
         // Represents if sprite is in its attacking loop
         private bool isAttack;
+
+        public string side = "right";
 
         // On screen location
 
@@ -402,6 +425,10 @@ namespace Sprites
         public bool isAttacking()
         {
             return this.isAttack;
+        }
+         public string getSide()
+        {
+            return this.side;
         }
     }
   }
