@@ -51,7 +51,6 @@ namespace Commands
     public class PauseCommand : ICommand
     {
         private GameStateController controller;
-
         public PauseCommand(GameStateController controller)
         {
             this.controller = controller;

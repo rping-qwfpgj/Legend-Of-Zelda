@@ -9,6 +9,9 @@ using LegendofZelda.SpriteFactories;
 using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
+using HeadsUpDisplay;
+using System.Collections.Generic;
+
 namespace GameStates
 
 {
@@ -32,10 +35,10 @@ namespace GameStates
         ISprite fire = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+2*50, 122), "RedHeartSprite");
         ISprite arrow = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+3*50, 122), "HudBowSprite");
 
-        ISprite boomerang1= HudSpriteFactory.Instance.CreateSprite(new Vector2(200, 122), "HudBoomerangSprite");
-        ISprite bomb1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(200, 122), "HudBombSprite");
-        ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(200, 122), "RedHeartSprite");
-        ISprite arrow1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(200, 122), "HudBowSprite");
+        ISprite boomerang1= HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBoomerangSprite");
+        ISprite bomb1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBombSprite");
+        ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "RedHeartSprite");
+        ISprite arrow1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBowSprite");
 
         List<ISprite> selectedItems;
         ISprite selectedItem;
@@ -58,8 +61,6 @@ namespace GameStates
             selectedItems.Add(fire1);
             selectedItems.Add(arrow1);
             selectedItem = boomerang1;
-
-
         }
         public void GamePlay()
         {
@@ -178,16 +179,18 @@ namespace GameStates
                 ISprite compass = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 250), "Compass");
                 compass.Draw(_spriteBatch);
             }
-            bomb.Draw(_spriteBatch);
-            arrow.Draw(_spriteBatch);
-            boomerang.Draw(_spriteBatch);
-            fire.Draw(_spriteBatch);
-            
+         
             if (bowCount > 0)
             {
                 ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
                 bow.Draw(_spriteBatch);
             }
+
+            bomb.Draw(_spriteBatch);
+            arrow.Draw(_spriteBatch);
+            boomerang.Draw(_spriteBatch);
+            fire.Draw(_spriteBatch);
+            selectedItem.Draw(_spriteBatch);
 
 
 

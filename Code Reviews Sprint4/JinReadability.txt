@@ -1,0 +1,13 @@
+﻿@Author Brittaney Jin
+Date: 11/14/2022
+Sprint4
+File under review: Graph.cs
+Author of file under review: Brittaney Jin
+10 Minutes to complete review
+
+*Reviewing for readeability*
+
+Graph.cs has a few global variables that are well name. Right away I can tell that each room has either a left-right tuple,
+a up-down tuple or both. The constructor initializes these and the behovioral methods are also quite wellnaemd and easy to read as they
+are mostly one liners and simple for loops with if statements. There is one magic number which is 18, which I know refers to the 
+amount of rooms in the dungeon. Overall I would give Graph.cs a very good readability score. 
