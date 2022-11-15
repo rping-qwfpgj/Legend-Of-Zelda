@@ -9,8 +9,8 @@ using LegendofZelda.SpriteFactories;
 using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
-using HeadsUpDisplay;
 using System.Collections.Generic;
+using HeadsUpDisplay;
 
 namespace GameStates
 

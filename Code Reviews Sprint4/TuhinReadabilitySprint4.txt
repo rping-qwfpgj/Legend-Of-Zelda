@@ -1,0 +1,13 @@
+@Author Tuhin Patel
+Date: 11/14/2022
+Sprint4
+File under review: Hud.cs
+Author of file under review: DJ 
+6 Minutes to complete review
+
+*Reviewing for readability*
+
+Many fields, but they all have very self-explanatory names. Cases are also
+a bit long but are simple and easy to understand. Overall I'd say Hud needs
+some cleanup to cut out about 70 lines to meet proper line requirements, but at least
+everything is easy to understand
