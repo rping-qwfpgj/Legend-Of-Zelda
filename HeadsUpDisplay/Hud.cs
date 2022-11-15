@@ -1,22 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
-using States;
-using Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
-using LegendofZelda;
-using Sprites;
+
 using System.Diagnostics;
 using Sprint0;
-
-
+using Sprites;
 
 namespace HeadsUpDisplay
 {
     public class Hud
     {
-        private List<ISprite> sprites = new List<ISprite>();
+        public List<ISprite> sprites = new List<ISprite>();
         // For setting the positions of the heart sprites. 
         readonly private float heartXPos = 543;
         readonly private float heartYPos = 93;
@@ -27,7 +23,6 @@ namespace HeadsUpDisplay
         readonly private Vector2 heartOnePos;
         readonly private Vector2 heartTwoPos;
         readonly private Vector2 heartThreePos;
-
         readonly private Vector2 backgroundPos;
 
         int bombCount;
@@ -51,9 +46,8 @@ namespace HeadsUpDisplay
         ISprite heart1; 
         ISprite heart2;
         ISprite heart3;
-
-
-
+    
+        public ISprite throwableSprite;
         float heartCount = 3;
 
         public Hud(int xPos, int yPos)
@@ -83,17 +77,18 @@ namespace HeadsUpDisplay
 
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(this.backgroundPos, "hudBackground"));            
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(this.x + 472, this.y + 62), "LinkSwordSprite"));
-            this.heart1 = red1;
-            this.heart2 = red2;
-            this.heart3 = red3;
+            throwableSprite = HudSpriteFactory.Instance.CreateSprite(new(this.x + 400, this.y + 62), "HudBoomerangSprite");
+            
             
             sprites.Add(red1);
             sprites.Add(red2);
             sprites.Add(red3);
+            sprites.Add(throwableSprite);
         }
 
         public void Update()
         {
+            
             bombCount = Link.Instance.inventory.getItemCount("bomb");
             bombCountText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.x + 300, this.y + 115), "X" + bombCount.ToString());
             keyCount = Link.Instance.inventory.getItemCount("key");
@@ -192,10 +187,11 @@ namespace HeadsUpDisplay
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            
+
+        
             foreach (ISprite sprite in sprites)
             {                                
-                    sprite.Draw(_spriteBatch);                               
+               sprite.Draw(_spriteBatch);                               
             }
             if (bombCountText != null)
             {

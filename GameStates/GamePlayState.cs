@@ -23,7 +23,7 @@ namespace GameStates
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
+            this.controller.gameState = new InventoryState(this.controller, this.game, game.hud);
             Debug.WriteLine("goofy ah");
         }
         public void GameOver()
@@ -56,8 +56,8 @@ namespace GameStates
         }
         public void Update()
         {
-            
 
+           
             Link.Instance.Update();
             this.game.mouseController.Update();
             this.game.collisionDetector.Update();

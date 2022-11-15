@@ -132,8 +132,6 @@ public class Game1 : Game
 
 
 
-
-
     //--------HELPER METHODS---------//
     private void ControllersInit()
     {

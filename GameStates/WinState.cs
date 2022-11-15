@@ -30,7 +30,7 @@ namespace GameStates
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
+            this.controller.gameState = new InventoryState(this.controller, this.game   , game.hud);
             Debug.WriteLine("goofy ah");
         }
         public void GameOver()

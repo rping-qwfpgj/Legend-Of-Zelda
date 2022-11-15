@@ -34,10 +34,14 @@ namespace GameStates
         ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "RedHeartSprite");
         ISprite arrow1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBowSprite");
 
+        ISprite boomerang2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBoomerangSprite");
+        ISprite bomb2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBombSprite");
+        ISprite fire2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "RedHeartSprite");
+        ISprite arrow2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBowSprite");
+
+        List<ISprite> actualHudSprites;
         List<ISprite> selectedItems;
         ISprite selectedItem;
-       
-
 
         ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
         ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
@@ -45,16 +49,26 @@ namespace GameStates
         public ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
       
         Hud hud = new Hud(0, 460);
-        public InventoryState(GameStateController controller, Game1 game)
+        Hud actualHud;
+        public InventoryState(GameStateController controller, Game1 game, Hud hud)
         {
             this.controller = controller;
             this.game = game;
+            selectedItems = new List<ISprite>();
             selectedItems = new List<ISprite>();
             selectedItems.Add(boomerang1);
             selectedItems.Add(bomb1);
             selectedItems.Add(fire1);
             selectedItems.Add(arrow1);
             selectedItem = boomerang1;
+
+            actualHudSprites = new();
+            actualHudSprites.Add(boomerang2);
+            actualHudSprites.Add(bomb2);
+            actualHudSprites.Add(fire2);
+            actualHudSprites.Add(arrow2);
+     
+            actualHud = hud;
         }
         public void GamePlay()
         {
@@ -97,18 +111,17 @@ namespace GameStates
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
             fairyCount = Link.Instance.inventory.getItemCount("fairy");
-            hud.Update();
             triforceCount = Link.Instance.inventory.getItemCount("triforce");
             bowCount = Link.Instance.inventory.getItemCount("bow");
+            hud.Update();
             cursor.Update();
             this.game.keyboardController.Update();
 
             List<Link.Throwables> inventoryItems = new();
-            inventoryItems.Add(Link.Throwables.Arrow);
-            inventoryItems.Add(Link.Throwables.Bomb);
             inventoryItems.Add(Link.Throwables.Boomerang);
+            inventoryItems.Add(Link.Throwables.Bomb);
             inventoryItems.Add(Link.Throwables.Fire);
-
+            inventoryItems.Add(Link.Throwables.Arrow);
             var newRect = cursor.DestinationRectangle;
 
             for (int i = 0; i < 4; i++)
@@ -117,14 +130,15 @@ namespace GameStates
                 {
                     if ((newRect.X == 400 + (i * newRect.Width)) && (newRect.Y == 122 + (j * newRect.Height)))
                     {
-                        Debug.WriteLine(inventoryItems[i]);
                         Link.Instance.throwable = inventoryItems[i];
                         selectedItem = selectedItems[i];
+                        actualHud.sprites.Remove(actualHud.throwableSprite);
+                        actualHud.throwableSprite = actualHudSprites[i];
+                        actualHud.sprites.Add(actualHud.throwableSprite);
+                       
                     }
                 }
             }
-
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -133,7 +147,6 @@ namespace GameStates
             mapDisplayBackground.Draw(_spriteBatch);
             hud.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
-            //text.Draw(_spriteBatch);
 
             for (int i = 0; i < 18; i++)
             {
@@ -165,9 +178,6 @@ namespace GameStates
             boomerang.Draw(_spriteBatch);
             fire.Draw(_spriteBatch);
             selectedItem.Draw(_spriteBatch);
-
-
-
 
         }
     }

@@ -25,7 +25,7 @@ namespace GameStates
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
+            this.controller.gameState = new InventoryState(this.controller, this.game   , game.hud);
         }
         public void GameOver()
         {
