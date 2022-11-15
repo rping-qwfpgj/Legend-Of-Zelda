@@ -15,6 +15,12 @@
 			<ObjectName>OpenDoorBlockRight</ObjectName>
 			<Location>700 200</Location>
 		</Item>
+
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockRight</ObjectName>
+			<Location>415 200</Location>
+		</Item>
 	
 		<!--  Blocks  -->
 		<Item>
