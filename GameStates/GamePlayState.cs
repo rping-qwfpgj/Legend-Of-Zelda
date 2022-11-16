@@ -24,7 +24,6 @@ namespace GameStates
         public void Inventory()
         {
             this.controller.gameState = new InventoryState(this.controller, this.game, game.hud);
-            Debug.WriteLine("goofy ah");
         }
         public void GameOver()
         {
@@ -56,8 +55,6 @@ namespace GameStates
         }
         public void Update()
         {
-
-           
             Link.Instance.Update();
             this.game.mouseController.Update();
             this.game.collisionDetector.Update();
@@ -67,7 +64,6 @@ namespace GameStates
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            
             this.game.GraphicsDevice.Clear(Color.Black);
             this.game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
