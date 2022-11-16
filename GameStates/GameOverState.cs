@@ -1,10 +1,7 @@
-﻿using System;
+﻿
 using Interfaces;
 using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
-using Color = Microsoft.Xna.Framework.Color;
-using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
 using LegendofZelda.SpriteFactories;
 using Sprites;
 using LegendofZelda.Interfaces;
@@ -61,7 +58,7 @@ namespace GameStates
         }
         public void Update()
         {
-            this.game.hud.Update();
+            game.hud.Update();
             LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
             if (sprite != null)
             {
@@ -74,7 +71,7 @@ namespace GameStates
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.game.hud.Draw(_spriteBatch);
+            game.hud.Draw(_spriteBatch);
             LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
             if (sprite != null)
             {

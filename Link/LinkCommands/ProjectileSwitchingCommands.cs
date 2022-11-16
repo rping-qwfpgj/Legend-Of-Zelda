@@ -11,7 +11,6 @@ namespace Commands
 {
     public class SwitchToBombCommand : ICommand
     {
-        
 
         public SwitchToBombCommand()
         {

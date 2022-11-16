@@ -72,7 +72,7 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            this.controller.gameState = new GamePlayState(this.controller, this.game);
+            controller.gameState = new GamePlayState(controller, game);
         }
         public void Inventory()
         {
@@ -80,31 +80,31 @@ namespace GameStates
         }
         public void GameOver()
         {
-            this.controller.gameState = new GameOverState(this.controller, this.game);
+            controller.gameState = new GameOverState(controller, game);
         }
         public void Pause()
         {
-            this.controller.gameState = new PauseState(this.controller, this.game);
+            controller.gameState = new PauseState(controller, game);
         }
         public void WinGame()
         {
-            this.controller.gameState = new WinGameState(this.controller, this.game);
+            controller.gameState = new WinGameState(controller, game);
         }
         public void TransitionUp()
         {
-            this.controller.gameState = new TransitionUpState(this.controller, this.game);
+            controller.gameState = new TransitionUpState(controller, game);
         }
         public void TransitionDown()
         {
-            this.controller.gameState = new TransitionDownState(this.controller, this.game);
+            controller.gameState = new TransitionDownState(controller, game);
         }
         public void TransitionLeft()
         {
-            this.controller.gameState = new TransitionLeftState(this.controller, this.game);
+            controller.gameState = new TransitionLeftState(controller, game);
         }
         public void TransitionRight()
         {
-            this.controller.gameState = new TransitionRightState(this.controller, this.game);
+            controller.gameState = new TransitionRightState(controller, game);
         }
         public void Update()
         {
@@ -115,7 +115,7 @@ namespace GameStates
             bowCount = Link.Instance.inventory.getItemCount("bow");
             hud.Update();
             cursor.Update();
-            this.game.keyboardController.Update();
+            game.keyboardController.Update();
 
             List<Link.Throwables> inventoryItems = new();
             inventoryItems.Add(Link.Throwables.Boomerang);
