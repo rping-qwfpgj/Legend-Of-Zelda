@@ -156,10 +156,6 @@ namespace Sprites
            
         }
 
-        public void Die()
-        {
-
-        }
     }
 }
 

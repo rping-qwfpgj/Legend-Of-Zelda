@@ -18,12 +18,10 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 2000;
         private int deathFrames = 0;
-        private SoundEffect enemyHit;
-
+        
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
-        
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -46,12 +44,11 @@ namespace Sprites
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
-        public StalfosSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public StalfosSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
             this.dyingTexture = texture2;
             this.currDirection = directions[random.Next(0, directions.Count)];
 
@@ -182,25 +179,8 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-            enemyHit.Play();
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             this.isDead = true;
-            //switch (side)
-            //{
-            //    case "top":
-            //        this.yPosition += 37;
-            //        break;
-            //    case "bottom":
-            //        this.yPosition -= 37;
-            //        break;
-            //    case "left":
-            //        this.xPosition += 37;
-            //        break;
-            //    case "right":
-            //        this.xPosition -= 37;
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         public ISprite DropItem()
@@ -216,10 +196,6 @@ namespace Sprites
             
         }
 
-        public void Die()
-        {
-
-        }
     }
 }
 

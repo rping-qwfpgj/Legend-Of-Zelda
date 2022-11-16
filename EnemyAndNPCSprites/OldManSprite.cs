@@ -79,10 +79,7 @@ namespace Sprites
         {
             return null;
         }
-        public void Die()
-        {
-
-        }
+       
     }
 }
 

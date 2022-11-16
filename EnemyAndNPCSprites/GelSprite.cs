@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
@@ -17,8 +18,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
-        private SoundEffect enemyHit;
-
+        
         // X and Y positions of the sprite
         private float xPosition;
         public float XPosition { get => xPosition; set => xPosition = value; }
@@ -32,10 +32,6 @@ namespace Sprites
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         private int deathFrames = 0;
 
-        //private bool movingHorizontally = true;
-        //private bool movingVertically = false;
-
-
         // On screen location
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
@@ -43,15 +39,13 @@ namespace Sprites
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
-        public GelSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public GelSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
             this.dyingTexture = texture2;
             this.currDirection = directions[random.Next(0, directions.Count)];
-
         }
 
         public void Update()
@@ -178,7 +172,7 @@ namespace Sprites
 
             public void TakeDamage(string side)
             {
-                enemyHit.Play();
+                SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
                 this.isDead = true;
             }
 
@@ -187,10 +181,7 @@ namespace Sprites
                 return null;
             }
 
-            public void Die()
-            {
-
-            }
+           
         }
     }
 

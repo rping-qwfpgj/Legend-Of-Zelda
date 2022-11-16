@@ -17,6 +17,7 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 480;
         private int deathFrames = 0;
+
         private int health = 3;
         private bool isDamaged = false;
         private int damagedCounter = 0;
@@ -24,7 +25,6 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
-        private SoundEffect enemyHit;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -46,13 +46,11 @@ namespace Sprites
         private TopDragonAttackOrbSprite topAttackOrb;
         private MiddleDragonAttackOrbSprite middleAttackOrb;
         private BottomDragonAttackOrbSprite bottomAttackOrb;
-        
-        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
             this.dyingTexture = texture2;
 
             this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
@@ -64,6 +62,7 @@ namespace Sprites
         {
             if (!isDead)
             {
+                // keeps track of how long sprite stays red
                 if (isDamaged)
                 {
                     damagedCounter++;
@@ -78,7 +77,7 @@ namespace Sprites
                 {
                     direction *= -1;
                 }
-
+                currFrames += 5;
                 // Reset motion if at max
                 if (currFrames == maxFrames)
                 {
@@ -87,10 +86,6 @@ namespace Sprites
                     this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
                     this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
                 }
-                else
-                {
-                    currFrames += 5;
-                }
 
                 // Update the x position
                 this.xPosition += 1 * direction;
@@ -98,12 +93,10 @@ namespace Sprites
             {
                 deathFrames++;
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
 
             if (!isDead)
@@ -178,18 +171,15 @@ namespace Sprites
                 spriteBatch.End();
             }
 
-            //spriteBatch.End();
-
-
         }
 
         public Rectangle GetHitbox()
-       {
+        {
             // TEMPORARY, working on what to put here
             return this.dragonDestinationRectangle;
-       }
+        }
 
-       public void TurnAround(string side)
+        public void TurnAround(string side)
        {
 
        }
@@ -207,7 +197,7 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-            enemyHit.Play();
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             this.isDamaged = true;
             this.health -= 1;
             if (this.health <= 0)

@@ -4,7 +4,7 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
-
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
@@ -13,7 +13,6 @@ namespace Sprites
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
-        private SoundEffect enemyHit;
 
         // Texture to take sprites from
         private Texture2D texture;
@@ -47,12 +46,11 @@ namespace Sprites
         Directions currDirection;
     
 
-        public KeeseSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public KeeseSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
             this.dyingTexture = texture2;
             this.currDirection = directions[random.Next(0, directions.Count)];
             sourceRectangles = new();
@@ -173,17 +171,14 @@ namespace Sprites
 
             public void TakeDamage(string side)
             {
-                enemyHit.Play();
+                SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
                 this.isDead = true;
             }
             public ISprite DropItem()
             {
                 return null;
             }
-            public void Die()
-            {
-
-            }
+           
         }
     }
 

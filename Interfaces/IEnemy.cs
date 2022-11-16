@@ -13,11 +13,10 @@ namespace LegendofZelda.Interfaces
         public float XPosition { get; set; }
         public float YPosition { get; set; }
         public int Direction { get; set; }
-        public void TurnAround(string side);
+        void TurnAround(string side);
         public bool IsDead { get; set; }
         public bool DyingComplete { get; set; }
-
-        public ISprite DropItem();
-        void Die();
+        ISprite DropItem();
+      
     }
 }
