@@ -31,6 +31,7 @@ namespace Sprites
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
         private int deathFrames = 0;
+        private int maxDeathFrames = 20;
 
         // On screen location
         private Rectangle destinationRectangle;
@@ -42,13 +43,21 @@ namespace Sprites
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
-        public GelSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
+        public GelSprite(Texture2D texture, float xPosition, float yPosition, Texture2D dyingTexture)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.dyingTexture = texture2;
-            this.currDirection = directions[random.Next(0, directions.Count)];
+            this.dyingTexture = dyingTexture;
+            currDirection = directions[random.Next(0, directions.Count)];
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(1, 16, 8, 8));
+            sourceRectangles.Add(new Rectangle(11, 15, 6, 9));
+            sourceRectangles.Add(new Rectangle(0, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
+            sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
+            currFrameIndex = 0;
         }
 
         public void Update()
@@ -57,7 +66,7 @@ namespace Sprites
             {
                 if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    this.currDirection = directions[random.Next(0, directions.Count)];
+                    currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames > maxFrames)
                 {
@@ -70,19 +79,19 @@ namespace Sprites
 
                 if (currDirection == Directions.UP)
                 {
-                    this.yPosition -= 1;
+                    yPosition -= 1;
                 }
                 else if (currDirection == Directions.LEFT)
                 {
-                    this.xPosition -= 1;
+                    xPosition -= 1;
                 }
                 else if (currDirection == Directions.RIGHT)
                 {
-                    this.xPosition += 1;
+                    xPosition += 1;
                 }
                 else // Direction is down
                 {
-                    this.yPosition += 1;
+                    yPosition += 1;
                 }
             } else
             {
@@ -91,7 +100,7 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle sourceRectangle = new Rectangle(1, 16, 8, 8);
+           
             if (!isDead)
             {
 
@@ -104,43 +113,30 @@ namespace Sprites
                 {
                     currFrameIndex = 1;
                 }
-                destinationRectangle = new(sourceRectangle.X, sourceRectangle.Y, sourceRectangle.Width*2, sourceRectangle.Height*2);
-                spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                sourceRectangle = sourceRectangles[currFrameIndex];
+                destinationRectangle = new((int)xPosition, (int)yPosition, sourceRectangle.Width*3, sourceRectangle.Height*3);
+                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
             else
             {
-                spriteBatch.Begin();
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
-                
-                for()
-                
-                if (deathFrames >= 0 && deathFrames <= 5)
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                for (int i = 0; i < 4; i++)
                 {
-                    currFrameIndex = 2;
-
+                    if (deathFrames >= i*maxDeathFrames/4 && deathFrames < (i+1)* maxDeathFrames / 4)
+                    {
+                        currFrameIndex = i + 2;
+                    }
+                    else if(deathFrames>=maxDeathFrames)
+                    {
+                        dyingComplete = true;
+                    }
                 }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    this.dyingComplete = true;
-                }
+                sourceRectangle = sourceRectangles[currFrameIndex];
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2);
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                 }
 
                 spriteBatch.End();
@@ -157,16 +153,16 @@ namespace Sprites
                 switch (side)
                 {
                     case "top":
-                        this.currDirection = Directions.DOWN;
+                        currDirection = Directions.DOWN;
                         break;
                     case "bottom":
-                        this.currDirection = Directions.UP;
+                        currDirection = Directions.UP;
                         break;
                     case "left":
-                        this.currDirection = Directions.RIGHT;
+                        currDirection = Directions.RIGHT;
                         break;
                     case "right":
-                        this.currDirection = Directions.LEFT;
+                        currDirection = Directions.LEFT;
                         break;
                     default:
                         break;
@@ -174,11 +170,10 @@ namespace Sprites
                 }
 
             }
-
             public void TakeDamage(string side)
             {
                 SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-                this.isDead = true;
+                isDead = true;
             }
 
             public ISprite DropItem()
