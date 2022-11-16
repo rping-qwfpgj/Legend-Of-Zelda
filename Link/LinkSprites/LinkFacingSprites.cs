@@ -36,7 +36,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(71, 11, 12, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle(xPosition, yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
         }
         public void Update()
         {
@@ -89,11 +89,11 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.isDamaged = isDamaged;
+            isDamaged = isDamaged;
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2); // Where to draw on screen
 
         }
         public void Update()
@@ -149,7 +149,7 @@ namespace Sprites
             this.isDamaged = isDamaged;
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
 
         }
         public void Update()
@@ -204,7 +204,7 @@ namespace Sprites
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(35, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
-            destinationRectangle = new Rectangle(this.xPosition, this.yPosition, sourceRectangle.Width*2,sourceRectangle.Height*2); // Where to draw on screen
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width*2,sourceRectangle.Height*2); // Where to draw on screen
 
           
         }
