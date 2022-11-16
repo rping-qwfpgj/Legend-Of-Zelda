@@ -47,10 +47,6 @@ namespace LegendofZelda.SpriteFactories
 
                     return new StatueTwoBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
-                case "PolkaDotBlock":
-
-                    return new PolkaDotBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
                 case "DepthBlock":
 
                     return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
@@ -59,18 +55,6 @@ namespace LegendofZelda.SpriteFactories
                 case "PlainDarkBlueBlock":
 
                     return new PlainDarkBlueBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "PlainBlackBlock":
-
-                    return new PlainBlackBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "PlainTurqoiseBlock":
-
-                    return new PlainTurqoiseBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "StairsBlock":
-
-                    return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                 case "VerticalBoundingBlock":
 
