@@ -8,18 +8,25 @@ namespace LegendofZelda.Blocks
     public class LockedDoorBlock : IBlock
     {
         private Texture2D texture;
-        private Rectangle sourceRectangle;
+        
         private static int sourceWidth = 32;
         private static int sourceHeight = 22;
-        private Rectangle[] sourceRectangles = { new Rectangle(103, 21, 32, 22), new Rectangle(115, 44, 22, 31), new Rectangle(103, 77, 22, 32), new Rectangle(103, 110, 32, 22) };
-        private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private int direction;
-        private int xPos;
-        private int yPos;
         private int destinationWidth = sourceWidth * 3;
         private int destinationHeight = sourceHeight * 3;
 
+        private Rectangle[] sourceRectangles = { 
+            new Rectangle(103, 21, sourceWidth, sourceHeight), 
+            new Rectangle(115, 44, sourceHeight, sourceWidth), 
+            new Rectangle(103, 77, sourceHeight, sourceWidth), 
+            new Rectangle(103, 110, sourceWidth, sourceHeight) };
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        
+        private int direction;
+        private int xPos;
+        private int yPos;
+        
         public LockedDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
@@ -63,13 +70,9 @@ namespace LegendofZelda.Blocks
                     return "bottom";
                 default:
                     return "INVALID DIRECTION NUM PASSED";
-
             }
         }
-
     }
-
-
 }
 
 

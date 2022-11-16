@@ -8,18 +8,24 @@ namespace LegendofZelda.Blocks
     public class BombableDoorBlock : IBlock
     {
         private Texture2D texture;
-        private Rectangle sourceRectangle;
+        
         private static int sourceWidth = 32;
         private static int sourceHeight = 32;
-        private Rectangle[] sourceRectangles = { new Rectangle(37, 11, 32, 32), new Rectangle(37, 44, 32, 32), new Rectangle(37, 77, 32, 32), new Rectangle(37, 110, 32, 32) };
+        private int destinationWidth = sourceWidth * 2;
+        private int destinationHeight = sourceHeight * 2;
+
+        private Rectangle[] sourceRectangles = { 
+            new Rectangle(37, 11, sourceWidth, sourceHeight), 
+            new Rectangle(37, 44, sourceHeight, sourceWidth), 
+            new Rectangle(37, 77, sourceHeight, sourceWidth), 
+            new Rectangle(37, 110, sourceWidth, sourceHeight) };
+        private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int direction;
         private int xPos;
         private int yPos;
-        private int destinationWidth = sourceWidth * 2;
-        private int destinationHeight = sourceHeight * 2;
-
+        
         public BombableDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
@@ -36,7 +42,6 @@ namespace LegendofZelda.Blocks
         }
         public void Update()
         {
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -63,13 +68,9 @@ namespace LegendofZelda.Blocks
                     return "bottom";
                 default:
                     return "INVALID DIRECTION NUM PASSED";
-
             }
         }
-
     }
-
-
 }
 
 

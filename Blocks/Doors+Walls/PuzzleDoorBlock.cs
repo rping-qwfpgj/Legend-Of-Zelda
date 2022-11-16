@@ -10,22 +10,29 @@ using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.Blocks
 {
-
     public class PuzzleDoorBlock : IBlock
     {
         private Texture2D texture;
-        private Rectangle sourceRectangle;
-        private static int sourceWidth = 30;
+
+        private static int sourceWidth = 32;
         private static int sourceHeight = 18;
-        private Rectangle[] sourceRectangles = { new Rectangle(136, 25, 32, 18), new Rectangle(150, 44, 18, 32), new Rectangle(136, 77, 18, 32), new Rectangle(136, 110, 32, 18) };
-        private Rectangle destinationRectangle;
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        private int direction;
-        private int xPos;
-        private int yPos;
         private int destinationWidth = sourceWidth * 3;
         private int destinationHeight = sourceHeight * 3;
 
+        private Rectangle sourceRectangle;
+        private Rectangle[] sourceRectangles = { 
+            new Rectangle(136, 25, sourceWidth, sourceHeight), 
+            new Rectangle(150, 44, sourceHeight, sourceWidth), 
+            new Rectangle(136, 77, sourceHeight, sourceWidth), 
+            new Rectangle(136, 110, sourceWidth, sourceHeight) };
+
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        
+        private int direction;
+        private int xPos;
+        private int yPos;
+        
         public PuzzleDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
@@ -71,7 +78,6 @@ namespace LegendofZelda.Blocks
             }
         }
     }
-
 
 }
 
