@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
-using System.Diagnostics;
 
 namespace Sprites
 {
@@ -38,6 +37,9 @@ namespace Sprites
 
         // On screen location
         private Rectangle destinationRectangle;
+        private List<Rectangle> sourceRectangles;
+        private Rectangle sourceRectangle;
+        private int currFrameIndex;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         Random random = new Random();
         public enum Directions { UP, RIGHT, LEFT, DOWN };
@@ -51,7 +53,14 @@ namespace Sprites
             this.enemyHit = sound;
             this.dyingTexture = texture2;
             this.currDirection = directions[random.Next(0, directions.Count)];
-
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(1, 16, 8, 8));
+            sourceRectangles.Add(new Rectangle(11, 15, 6, 9));
+            sourceRectangles.Add(new Rectangle(0, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
+            sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
+            currFrameIndex = 0;
         }
 
         public void Update()
@@ -62,7 +71,7 @@ namespace Sprites
                 {
                     this.currDirection = directions[random.Next(0, directions.Count)];
                 }
-                if (currFrames == maxFrames)
+                if (currFrames > maxFrames)
                 {
                     currFrames = 0;
                 }
@@ -101,14 +110,13 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if ((currFrames / 100) % 2 != 0)
                 {
-                    sourceRectangle = new Rectangle(1, 16, 8, 8);
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
+                    currFrameIndex = 0;
                 }
                 else
                 {
-                    sourceRectangle = new Rectangle(11, 15, 6, 9);
-                    this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 24, 36);
+                    currFrameIndex = 1;
                 }
+                destinationRectangle = new(sourceRectangle.X, sourceRectangle.Y, sourceRectangle.Width*2, sourceRectangle.Height*2);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
@@ -116,9 +124,12 @@ namespace Sprites
             {
                 spriteBatch.Begin();
                 this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
+                
+                for()
+                
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
+                    currFrameIndex = 2;
 
                 }
                 else if (deathFrames > 5 && deathFrames < 10)
