@@ -19,56 +19,66 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        int mapCount;
-        int compassCount;
-        int fairyCount;
-        int triforceCount;
-        int bowCount;
-        ISprite boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
-        ISprite bomb = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+50, 122), "HudBombSprite");
-        ISprite fire = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+2*50, 122), "HudFireSprite");
-        ISprite arrow = HudSpriteFactory.Instance.CreateSprite(new Vector2(412+3*50, 122), "HudBowSprite");
+        int mapCount, compassCount, bowCount, fairyCount, triforceCount;
 
-        ISprite boomerang1= HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBoomerangSprite");
-        ISprite bomb1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBombSprite");
-        ISprite fire1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudFireSprite");
-        ISprite arrow1 = HudSpriteFactory.Instance.CreateSprite(new Vector2(220, 122), "HudBowSprite");
-
-        ISprite boomerang2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBoomerangSprite");
-        ISprite bomb2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBombSprite");
-        ISprite fire2= HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudFireSprite");
-        ISprite arrow2 = HudSpriteFactory.Instance.CreateSprite(new Vector2(420, 50), "HudBowSprite");
+        ISprite boomerang, bomb, fire, arrow;
+        ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
+        ISprite hudSelectedBoomerang, hudSelectedBomb, hudSelectedFire, hudSelectedArrow;
 
         List<ISprite> actualHudSprites;
         List<ISprite> selectedItems;
         ISprite selectedItem;
 
-        ISprite itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
-        ISprite mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
-        //ISprite hudBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 460), "hudBackground");
-        public ISprite cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
-      
-        Hud hud = new Hud(0, 460);
-        Hud actualHud;
-        public InventoryState(GameStateController controller, Game1 game, Hud hud)
+        ISprite itemSelectionBackground;
+        ISprite mapDisplayBackground;
+        public ISprite cursor;
+
+        Hud hud;
+        Hud inGameHud;
+        public InventoryState(GameStateController controller, Game1 game, Hud inGameHud)
         {
+
             this.controller = controller;
             this.game = game;
-            selectedItems = new List<ISprite>();
-            selectedItems = new List<ISprite>();
-            selectedItems.Add(boomerang1);
-            selectedItems.Add(bomb1);
-            selectedItems.Add(fire1);
-            selectedItems.Add(arrow1);
-            selectedItem = boomerang1;
+            this.inGameHud = inGameHud;
+            hud = new Hud(0, 460);
+
+            Vector2 selectedItemLocation = new(220, 122);
+            Vector2 hudSelectedItemLocation = new Vector2(420, 50);
+
+            boomerang = HudSpriteFactory.Instance.CreateSprite(new Vector2(412, 122), "HudBoomerangSprite");
+            bomb = HudSpriteFactory.Instance.CreateSprite(new Vector2(412 + 50, 122), "HudBombSprite");
+            fire = HudSpriteFactory.Instance.CreateSprite(new Vector2(412 + 2 * 50, 122), "HudFireSprite");
+            arrow = HudSpriteFactory.Instance.CreateSprite(new Vector2(412 + 3 * 50, 122), "HudBowSprite");
+
+            selectedBoomerang = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBoomerangSprite");
+            selectedBomb = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBombSprite");
+            selectedFire = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudFireSprite");
+            selectedArrow = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBowSprite");
+
+            hudSelectedBoomerang = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudBoomerangSprite");
+            hudSelectedBomb = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudBombSprite");
+            hudSelectedFire = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudFireSprite");
+            hudSelectedArrow = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudBowSprite");
+
+            itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
+            mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
+            cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
+
+            selectedItems = new();
+            selectedItems.Add(selectedBoomerang);
+            selectedItems.Add(selectedBomb);
+            selectedItems.Add(selectedFire);
+            selectedItems.Add(selectedArrow);
+
+            selectedItem = selectedBoomerang;
 
             actualHudSprites = new();
-            actualHudSprites.Add(boomerang2);
-            actualHudSprites.Add(bomb2);
-            actualHudSprites.Add(fire2);
-            actualHudSprites.Add(arrow2);
-     
-            actualHud = hud;
+            actualHudSprites.Add(hudSelectedBoomerang);
+            actualHudSprites.Add(hudSelectedBomb);
+            actualHudSprites.Add(hudSelectedFire);
+            actualHudSprites.Add(hudSelectedArrow);
+
         }
         public void GamePlay()
         {
@@ -132,9 +142,9 @@ namespace GameStates
                     {
                         Link.Instance.throwable = inventoryItems[i];
                         selectedItem = selectedItems[i];
-                        actualHud.sprites.Remove(actualHud.throwableSprite);
-                        actualHud.throwableSprite = actualHudSprites[i];
-                        actualHud.sprites.Add(actualHud.throwableSprite);
+                        inGameHud.sprites.Remove(inGameHud.throwableSprite);
+                        inGameHud.throwableSprite = actualHudSprites[i];
+                        inGameHud.sprites.Add(inGameHud.throwableSprite);
                        
                     }
                 }
@@ -147,6 +157,12 @@ namespace GameStates
             mapDisplayBackground.Draw(_spriteBatch);
             hud.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
+
+            bomb.Draw(_spriteBatch);
+            arrow.Draw(_spriteBatch);
+            boomerang.Draw(_spriteBatch);
+            fire.Draw(_spriteBatch);
+            selectedItem.Draw(_spriteBatch);
 
             for (int i = 0; i < 18; i++)
             {
@@ -173,20 +189,10 @@ namespace GameStates
                 bow.Draw(_spriteBatch);
             }
 
-            bomb.Draw(_spriteBatch);
-            arrow.Draw(_spriteBatch);
-            boomerang.Draw(_spriteBatch);
-            fire.Draw(_spriteBatch);
-            selectedItem.Draw(_spriteBatch);
+          
 
         }
     }
 }
-
-
-
-
-
-
 
 //ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
