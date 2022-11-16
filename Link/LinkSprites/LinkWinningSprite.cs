@@ -45,6 +45,7 @@ namespace Sprites
     }
         public void Update()
         {
+            triforce.Update();
         }
 
 

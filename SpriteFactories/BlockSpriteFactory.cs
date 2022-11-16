@@ -47,30 +47,13 @@ namespace LegendofZelda.SpriteFactories
 
                     return new StatueTwoBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
-                case "PolkaDotBlock":
-
-                    return new PolkaDotBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
                 case "DepthBlock":
 
                     return new DepthBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
-
                 case "PlainDarkBlueBlock":
 
                     return new PlainDarkBlueBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "PlainBlackBlock":
-
-                    return new PlainBlackBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "PlainTurqoiseBlock":
-
-                    return new PlainTurqoiseBlock(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
-
-                case "StairsBlock":
-
-                    return new StairsBlock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                 case "VerticalBoundingBlock":
 
@@ -131,12 +114,15 @@ namespace LegendofZelda.SpriteFactories
                 case "OpenDoorBlockTop":
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                
                 case "OpenDoorBlockLeft":
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                
                 case "OpenDoorBlockRight":
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                
                 case "OpenDoorBlockBottom":
 
                     return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
@@ -144,17 +130,18 @@ namespace LegendofZelda.SpriteFactories
                 case "BombableDoorBlockTop":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                
                 case "BombableDoorBlockLeft":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                
                 case "BombableDoorBlockRight":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                
                 case "BombableDoorBlockBottom":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
-
-
 
                 default:
 

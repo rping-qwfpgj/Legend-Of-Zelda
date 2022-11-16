@@ -22,7 +22,6 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWinning(Link.Instance.currentPosition);
-
         }
         public void GamePlay()
         {
@@ -31,7 +30,6 @@ namespace GameStates
         public void Inventory()
         {
             this.controller.gameState = new InventoryState(this.controller, this.game   , game.hud);
-            Debug.WriteLine("goofy ah");
         }
         public void GameOver()
         {
@@ -63,29 +61,13 @@ namespace GameStates
         }
         public void Update()
         {
-            //LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
-            //if (!sprite.isComplete)
-            //{
-            //Link.Instance.Update();
             Link.Instance.game.currentRoom.Update();
-            Link.Instance.currentLinkSprite.Update();
-            //}
-
+            Link.Instance.Update();
         }
         public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch _spriteBatch)
         {
-            //LinkWinningSprite sprite = Link.Instance.currentLinkSprite as LinkWinningSprite;
-            //if (!sprite.isComplete)
-            //{
-            //Link.Instance.Draw(_spriteBatch);
             Link.Instance.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.currentLinkSprite.Draw(_spriteBatch);
-            //}
-            //if (sprite.isComplete)
-            //{
-            //    ISprite gameOver = BackgroundSpriteFactory.Instance.GameOverScreen();
-            //    gameOver.Draw(_spriteBatch);
-            //}
+            Link.Instance.Draw(_spriteBatch);
         }
     }
 }

@@ -13,12 +13,10 @@ namespace LegendofZelda.SpriteFactories
         private Texture2D enemySpriteSheet;
         private Texture2D oldManSpriteSheet;
         private Texture2D bossSpriteSheet;
-        private SoundEffect enemyHit;
         private Texture2D dyingSpriteSheet;
-        private static EnemyAndNPCSpriteFactory instance = new();
         private SpriteFont font;
-        
 
+        private static EnemyAndNPCSpriteFactory instance = new();
         public static EnemyAndNPCSpriteFactory Instance
         {
             get
@@ -36,13 +34,9 @@ namespace LegendofZelda.SpriteFactories
             enemySpriteSheet = content.Load<Texture2D>("enemies");
             oldManSpriteSheet = content.Load<Texture2D>("oldman");
             bossSpriteSheet = content.Load<Texture2D>("bosses");
-            enemyHit = content.Load<SoundEffect>("enemy_hit");
             dyingSpriteSheet = content.Load<Texture2D>("enemy_death");
             font = content.Load<SpriteFont>("Times New Roman");
-
-
         }
-
 
         public IEnemy CreateEnemyOrNPC(Vector2 location, string name)
         {
@@ -56,19 +50,19 @@ namespace LegendofZelda.SpriteFactories
 
                 case "Keese":
 
-                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
+                    return new KeeseSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "Stalfos":
 
-                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
+                    return new StalfosSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "Gel":
 
-                    return new GelSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
+                    return new GelSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "DragonBoss":
 
-                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
+                    return new DragonBossSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "OldMan":
 
@@ -76,20 +70,16 @@ namespace LegendofZelda.SpriteFactories
 
                 case "Wallmaster":
 
-                    return new WallMasterSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, enemyHit, dyingSpriteSheet);
+                    return new WallMasterSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
 
                 case "Trap":
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
-                
-
                 default:
 
                     return null;
             }
-
         }
-
     }
 }
