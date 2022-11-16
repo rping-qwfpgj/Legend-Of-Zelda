@@ -49,8 +49,8 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.dyingTexture = texture2;
-            this.currDirection = directions[random.Next(0, directions.Count)];
+            dyingTexture = texture2;
+            currDirection = directions[random.Next(0, directions.Count)];
 
         }
 
@@ -60,7 +60,7 @@ namespace Sprites
             {
                 if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    this.currDirection = directions[random.Next(0, directions.Count)];
+                    currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames == maxFrames)
                 {
@@ -73,19 +73,19 @@ namespace Sprites
 
                 if (currDirection == Directions.UP)
                 {
-                    this.yPosition -= 1;
+                    yPosition -= 1;
                 }
                 else if (currDirection == Directions.LEFT)
                 {
-                    this.xPosition -= 1;
+                    xPosition -= 1;
                 }
                 else if (currDirection == Directions.RIGHT)
                 {
-                    this.xPosition += 1;
+                    xPosition += 1;
                 }
                 else // Direction is down
                 {
-                    this.yPosition += 1;
+                    yPosition += 1;
                 }
             } else
             {
@@ -99,24 +99,24 @@ namespace Sprites
 
             if (!isDead)
             {
-                this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 30, 32);
+                destinationRectangle = new((int)xPosition, (int)yPosition, 30, 32);
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
                 if ((currFrames / 100) % 2 != 0)
                 {
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+                    spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 }
                 spriteBatch.End();
             }
             else
             {
                 spriteBatch.Begin();
-                this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 30);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
                     sourceRectangle = new Rectangle(0, 0, 15, 16);
@@ -138,11 +138,11 @@ namespace Sprites
                 }
                 else
                 {
-                    this.dyingComplete = true;
+                    dyingComplete = true;
                 }
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                 }
 
                 spriteBatch.End();
@@ -150,7 +150,7 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
         }
 
         public void TurnAround(string side)
@@ -159,16 +159,16 @@ namespace Sprites
             switch(side)
             {
                 case "top":
-                    this.currDirection = Directions.DOWN;
+                    currDirection = Directions.DOWN;
                     break;
                 case "bottom":
-                    this.currDirection = Directions.UP;
+                    currDirection = Directions.UP;
                     break;
                 case "left":
-                    this.currDirection = Directions.RIGHT;
+                    currDirection = Directions.RIGHT;
                     break;
                 case "right":
-                    this.currDirection = Directions.LEFT;
+                    currDirection = Directions.LEFT;
                     break;
                 default:
                     break;
@@ -180,7 +180,7 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-            this.isDead = true;
+            isDead = true;
         }
 
         public ISprite DropItem()
@@ -188,7 +188,7 @@ namespace Sprites
             if (dyingComplete) {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(xPosition, yPosition - 150), droppableItems[rand]);
             } else
             {
                 return null;

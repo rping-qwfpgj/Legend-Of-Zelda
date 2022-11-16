@@ -46,17 +46,17 @@ namespace Sprites
         {
 
             Rectangle sourceRectangle = new Rectangle(0, 0, 16, 16);
-            Rectangle destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 64);
+            Rectangle destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 64, 64);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.DrawString(this.font, this.message, new Vector2(this.xPosition - messageOffsetX , this.yPosition - messageOffsetY), Color.White);
+            spriteBatch.DrawString(font, message, new Vector2(xPosition - messageOffsetX , yPosition - messageOffsetY), Color.White);
             spriteBatch.End();
         }
 
         public Vector2 getPosition()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return new Vector2(xPosition, yPosition);
         }
         
         public Rectangle GetHitbox()

@@ -51,8 +51,8 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.dyingTexture = texture2;
-            this.currDirection = directions[random.Next(0, directions.Count)];
+            dyingTexture = texture2;
+            currDirection = directions[random.Next(0, directions.Count)];
             sourceRectangles = new();
             sourceRectangles.Add(new Rectangle(183, 15, 16, 8));
             sourceRectangles.Add(new Rectangle(203, 15, 10, 10));
@@ -71,7 +71,7 @@ namespace Sprites
             {
                 if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    this.currDirection = directions[random.Next(0, directions.Count)];
+                    currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames == maxFrames)
                 {
@@ -84,19 +84,19 @@ namespace Sprites
 
                 if (currDirection == Directions.UP)
                 {
-                    this.yPosition -= 1;
+                    yPosition -= 1;
                 }
                 else if (currDirection == Directions.LEFT)
                 {
-                    this.xPosition -= 1;
+                    xPosition -= 1;
                 }
                 else if (currDirection == Directions.RIGHT)
                 {
-                    this.xPosition += 1;
+                    xPosition += 1;
                 }
                 else // Direction is down
                 {
-                    this.yPosition += 1;
+                    yPosition += 1;
                 }
             }
             else
@@ -113,7 +113,7 @@ namespace Sprites
             if (!isDead)
             {
                 sourceRectangle = sourceRectangles[(currFrames / 100) % 2];
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
@@ -131,18 +131,18 @@ namespace Sprites
                         dyingComplete = true;
                     }
                 }
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition,30, 30);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition,30, 30);
                 if (!dyingComplete)
                 {
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                     spriteBatch.End();
                 }
             }
         }
             public Rectangle GetHitbox()
             {
-                return this.destinationRectangle;
+                return destinationRectangle;
             }
 
             public void TurnAround(string side)
@@ -151,16 +151,16 @@ namespace Sprites
                 switch (side)
                 {
                     case "top":
-                        this.currDirection = Directions.DOWN;
+                        currDirection = Directions.DOWN;
                         break;
                     case "bottom":
-                        this.currDirection = Directions.UP;
+                        currDirection = Directions.UP;
                         break;
                     case "left":
-                        this.currDirection = Directions.RIGHT;
+                        currDirection = Directions.RIGHT;
                         break;
                     case "right":
-                        this.currDirection = Directions.LEFT;
+                        currDirection = Directions.LEFT;
                         break;
                     default:
                         break;
@@ -172,7 +172,7 @@ namespace Sprites
             public void TakeDamage(string side)
             {
                 SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-                this.isDead = true;
+                isDead = true;
             }
             public ISprite DropItem()
             {
