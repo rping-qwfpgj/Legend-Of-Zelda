@@ -83,6 +83,7 @@ namespace HeadsUpDisplay
             blueMap.Update();
             heartCount = Link.Instance.health;
             mapCount = Link.Instance.inventory.getItemCount("orange map");
+
             switch (heartCount)
             {
                 case 0:
