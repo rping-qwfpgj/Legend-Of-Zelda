@@ -30,5 +30,21 @@ public class GameStateController
     {
         gameState.WinGame();
     }
+    public void TransitionUp()
+    {
+        gameState.TransitionUp();
+    }
+    public void TransitionDown()
+    {
+        gameState.TransitionDown();
+    }
+    public void TransitionLeft()
+    {
+        gameState.TransitionLeft();
+    }
+    public void TransitionRight()
+    {
+        gameState.TransitionRight();
+    }
     
 }

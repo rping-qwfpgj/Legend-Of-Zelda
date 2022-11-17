@@ -1,35 +1,34 @@
-﻿using System;
+using System;
 using Interfaces;
 using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
-using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
-using Sprites;
-using SharpDX.Direct2D1;
+using LegendofZelda.SpriteFactories;
 
 namespace GameStates
 
 {
-    public class WinGameState : IGameState
+    public class TransitionLeftState : IGameState
     {
         private GameStateController controller;
         private Game1 game;
-        public WinGameState(GameStateController controller, Game1 game)
+        public TransitionLeftState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWinning(Link.Instance.currentPosition);
         }
         public void GamePlay()
         {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(new(670, 390), false);
             controller.gameState = new GamePlayState(controller, game);
         }
         public void Inventory()
         {
-            controller.gameState = new InventoryState(controller, game   , game.hud);
+            controller.gameState = new InventoryState(controller, game, game.hud);
+            Debug.WriteLine("goofy ah");
         }
         public void GameOver()
         {
@@ -41,7 +40,7 @@ namespace GameStates
         }
         public void WinGame()
         {
-            
+            controller.gameState = new WinGameState(controller, game);
         }
         public void TransitionUp()
         {
@@ -53,7 +52,7 @@ namespace GameStates
         }
         public void TransitionLeft()
         {
-            controller.gameState = new TransitionLeftState(controller, game);
+            
         }
         public void TransitionRight()
         {
@@ -61,13 +60,20 @@ namespace GameStates
         }
         public void Update()
         {
-            Link.Instance.game.currentRoom.Update();
-            Link.Instance.Update();
+            var background = game.currentRoom.Background as IBackground;
+            background.Update();
+
+            if (!background.IsTransitioning)
+            {
+                GamePlay();
+            }
+
         }
-        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch _spriteBatch)
+        public void Draw(SpriteBatch _spriteBatch)
         {
-            Link.Instance.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.Draw(_spriteBatch);
+            game.GraphicsDevice.Clear(Color.Black);
+            game.currentRoom.Draw(_spriteBatch);
+            game.hud.Draw(_spriteBatch);
         }
     }
 }
