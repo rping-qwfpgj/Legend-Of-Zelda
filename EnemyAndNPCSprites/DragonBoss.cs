@@ -274,18 +274,7 @@ namespace Sprites
         }
         public void Update()
         {
-            /* Updated frames in the exact way the dragon is
-            if (currFrames == maxFrames)
-            {
-                //currFrames = 0;
-                //xPosition = originalX;
-                yPosition = originalY;
-            }
-            else
-            {
-                currFrames += 10;
-            }
-            */
+            
             // Update current orb
             currFrames += 5;
             if(currFrames % 500 == 0) { 
@@ -379,19 +368,7 @@ namespace Sprites
         }
         public void Update()
         {
-            /*
-            // Updated frames in the exact way the dragon is
-            if (currFrames == maxFrames)
-            {
-                currFrames = 0;
-                xPosition = originalX;
-                yPosition = originalY;
-            }
-            else
-            {
-                currFrames += 10;
-            }
-            */
+          
             // Update current orb
             currFrames+=10;
             if(currFrames % 10 == 0) { 
@@ -485,18 +462,8 @@ namespace Sprites
         }
         public void Update()
         {
-            /* Updated frames in the exact way the dragon is
-            if (currFrames == maxFrames)
-            {
-                currFrames = 0;
-                xPosition = originalX;
-                yPosition = originalY;
-            }
-            else
-            {
-                currFrames += 10;
-            }
-            */
+           
+      
             currFrames += 10;
             // Update current orb
             if(currFrames % 10 == 0) { 
