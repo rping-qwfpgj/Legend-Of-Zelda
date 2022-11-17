@@ -44,8 +44,6 @@ namespace Sprint0
         private int isDamagedCounter = 0;
         public Inventory inventory;
         public Game1 game;
-        private SoundEffect throwProjectile;
-        private SoundEffect attack;
         public float health;
         private bool canBeDamaged;
         private SoundEffect takeDamage;
@@ -53,145 +51,119 @@ namespace Sprint0
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
-            this.isDamaged = false;
-            //this.game = game;
             this.currentState = new LinkFacingUpState();
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
+            
             this.throwable = Throwables.Boomerang;
             this.currentProjectiles = new();
             this.inventory = new Inventory();
-            //this.throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
-            //this.attack = game.Content.Load<SoundEffect>("hee_hee");
+
             this.health = 3;
+            this.isDamaged = false;
             this.canBeDamaged = true;
-            //this.takeDamage = game.Content.Load<SoundEffect>("link_damage");
         }
 
         public void Reset()
         {
-            this.game.RoomloaderInit();
             this.currentPosition = new Vector2(400, 240);
-            this.isDamaged = false;
             this.currentState = new LinkFacingUpState();
-            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(this.currentPosition, this.isDamaged);
-            this.throwable = Throwables.None;
-            this.game.currentRoomIndex = 0;
-            this.game.currentRoom = this.game.rooms[this.game.currentRoomIndex];
-            this.health = 3;
+            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
+
+            this.throwable = Throwables.Boomerang;
+            this.currentProjectiles = new();
             this.inventory = new Inventory();
+
+            this.health = 3;
+            this.isDamaged = false;
+            this.canBeDamaged = true;
+
+            this.game.RoomloaderInit();
             this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
         }
 
         public void UpdatePosition()
         {
-            if (this.health > 0)
-            {
-                Rectangle rectangle = currentLinkSprite.GetHitbox();
-                currentPosition = new Vector2(rectangle.X, rectangle.Y);
-            }
-       
+            Rectangle rectangle = currentLinkSprite.GetHitbox();
+            currentPosition = new Vector2(rectangle.X, rectangle.Y);
         }
         public void Attack()
         {
-            if (this.health > 0)
-            {
-                attack.Play();
-                this.UpdatePosition();
-                currentState.Attack();
-            }
+            SoundFactory.Instance.CreateSoundEffect("LinkAttack").Play();
+            this.UpdatePosition();
+            currentState.Attack();
         }
 
         public void ThrowProjectile()
         {
-            if (this.health > 0)
-            {
-                throwProjectile.Play();
-                this.UpdatePosition();
-                currentState.ThrowProjectile();
-            }
+            SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
+            this.UpdatePosition();
+            currentState.ThrowProjectile();
         }
 
         public void MoveUp()
         {
-            if (this.health > 0)
-            {
-                this.UpdatePosition();
-                currentState.MoveUp();
-            }
+            this.UpdatePosition();
+            currentState.MoveUp();
         }
 
         public void MoveDown()
         {
-            if (this.health > 0)
-            {
-                this.UpdatePosition();
-                currentState.MoveDown();
-            }
+            this.UpdatePosition();
+            currentState.MoveDown();
         }
 
         public void MoveLeft()
         {
-            if (this.health > 0)
-            {
-                this.UpdatePosition();
-                currentState.MoveLeft();
-            }
+            this.UpdatePosition();
+            currentState.MoveLeft();
         }
 
         public void MoveRight()
         {
-            if (this.health > 0)
-            {
-                this.UpdatePosition();
-                currentState.MoveRight();
-            }
-
+            this.UpdatePosition();
+            currentState.MoveRight();
         }
         public void NoInput()
         {
-            if (this.health > 0)
+            this.UpdatePosition();
+            if (currentLinkSprite is IAttackingSprite)
             {
-                this.UpdatePosition();
-
-                if (currentLinkSprite is IAttackingSprite)
-                {
-                    IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                    if (!(currSprite.isAttacking()))
-                    {
-                        currentState.NoInput();
-                    }
-                }
-                else
+                IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
+                if (!(currSprite.isAttacking()))
                 {
                     currentState.NoInput();
                 }
             }
-        }
-
-        public void TakeDamage()
-        {
-            if (this.canBeDamaged == true && this.health > 0)
+            else
             {
-                takeDamage.Play();
-                this.health -= 0.5f;
-                
-                if (health <= 0)
-                {
-                    this.Die();
-                }
-                this.isDamaged = true;
-                this.currentState.Redraw();
-                this.canBeDamaged = false;
+                currentState.NoInput();
             }
-
-
         }
+
+        //public void TakeDamage()
+        //{
+        //    if (this.canBeDamaged == true && this.health > 0)
+        //    {
+        //        SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
+        //        this.health -= 0.5f;
+                
+        //        if (health <= 0)
+        //        {
+        //            this.Die();
+        //        }
+        //        this.isDamaged = true;
+        //        this.currentState.Redraw();
+        //        this.canBeDamaged = false;
+        //    }
+
+
+        //}
 
         public void TakeDamage(string side)
         {
             if (this.canBeDamaged == true && this.health > 0)
             {
-                takeDamage.Play();
+                SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
                 this.health -= 0.5f;
                 if (health <= 0)
                 {
@@ -235,39 +207,36 @@ namespace Sprint0
 
         public void Update()
         {
-            if (this.health > 0)
+            this.UpdatePosition();
+            this.currentLinkSprite.Update();
+            foreach (var projectile in currentProjectiles)
             {
-                this.UpdatePosition();
-                this.currentLinkSprite.Update();
-                foreach (var projectile in currentProjectiles)
-                {
-                    projectile.Update();
-                }
+                projectile.Update();
+            }
 
-                // This can be refactored using a decorator pattern
-                if (this.isDamaged)
+            // This can be refactored using a decorator pattern
+            if (this.isDamaged)
+            {
+                this.isDamagedCounter++;
+                if (this.isDamagedCounter > 60)
                 {
-                    this.isDamagedCounter++;
-                    if (this.isDamagedCounter > 60)
+                    this.canBeDamaged = true;
+                    this.isDamagedCounter = 0;
+                    this.isDamaged = false;
+                    this.UpdatePosition();
+
+                    //Check if current sprite is an attacking sprite
+                    if (currentLinkSprite is IAttackingSprite)
                     {
-                        this.canBeDamaged = true;
-                        this.isDamagedCounter = 0;
-                        this.isDamaged = false;
-                        this.UpdatePosition();
-
-                        //Check if current sprite is an attacking sprite
-                        if (currentLinkSprite is IAttackingSprite)
-                        {
-                            IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                            if (!currSprite.isAttacking())
-                            {
-                                this.currentState.Redraw();
-                            }
-                        }
-                        else
+                        IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
+                        if (!currSprite.isAttacking())
                         {
                             this.currentState.Redraw();
                         }
+                    }
+                    else
+                    {
+                        this.currentState.Redraw();
                     }
                 }
             }
@@ -275,13 +244,10 @@ namespace Sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            if (this.health > 0)
+            currentLinkSprite.Draw(_spriteBatch);
+            foreach (var projectile in currentProjectiles)
             {
-                currentLinkSprite.Draw(_spriteBatch);
-                foreach (var projectile in currentProjectiles)
-                {
-                    projectile.Draw(_spriteBatch);
-                }
+                projectile.Draw(_spriteBatch);
             }
         }
 
@@ -294,9 +260,7 @@ namespace Sprint0
         public void getGame(Game1 game)
         {
             this.game = game;
-            throwProjectile = game.Content.Load<SoundEffect>("throw_projectile");
-            attack = game.Content.Load<SoundEffect>("hee_hee");
-            takeDamage = game.Content.Load<SoundEffect>("link_damage");
+            
         }
 
        
