@@ -57,8 +57,7 @@ namespace Commands
         }
         public void Execute()
         {
-            Debug.WriteLine(controller.gameState);
-
+            
             if (this.controller.gameState is PauseState)
             {
                 this.controller.gameState.GamePlay();

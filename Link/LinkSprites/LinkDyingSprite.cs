@@ -93,7 +93,7 @@ namespace Sprites
                 } else if (deathFrames >= 20)
                 {
                     isComplete = true;
-                    //Debug.WriteLine("isComplete: " + isComplete);
+                    
                 }
             }
         }
