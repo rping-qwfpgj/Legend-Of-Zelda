@@ -8,7 +8,6 @@ using Sprites;
 using System.Diagnostics;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
-using System.Diagnostics;
 using LegendofZelda.SpriteFactories;
 
 namespace Collision

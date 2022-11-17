@@ -69,6 +69,7 @@ namespace Sprint0
 
         public void Reset()
         {
+            this.game.RoomloaderInit();
             this.currentPosition = new Vector2(400, 240);
             this.isDamaged = false;
             this.currentState = new LinkFacingUpState();
@@ -173,7 +174,7 @@ namespace Sprint0
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
-                Debug.WriteLine("Link.Instance health = " + health);
+                
                 if (health <= 0)
                 {
                     this.Die();
@@ -192,7 +193,6 @@ namespace Sprint0
             {
                 takeDamage.Play();
                 this.health -= 0.5f;
-                Debug.WriteLine("Link.Instance health = " + health);
                 if (health <= 0)
                 {
                     this.Die();
@@ -288,11 +288,7 @@ namespace Sprint0
         public void Die()
         {
             SoundFactory.Instance.CreateSoundEffect("LinkDeath").Play();
-            //this.game.currentState = gameOverState;
-            //this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkDying(this.currentPosition);
-            //Debug.WriteLine(this.currentLinkSprite);
-            this.game.gameStateController.gameState.GameOver();
-            //Reset();
+            this.game.gameStateController.GameOver();
         }
 
         public void getGame(Game1 game)

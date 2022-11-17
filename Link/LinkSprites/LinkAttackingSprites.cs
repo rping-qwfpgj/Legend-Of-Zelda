@@ -142,10 +142,10 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 47, 16, 15));
@@ -250,10 +250,10 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
@@ -357,10 +357,10 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));

@@ -10,7 +10,7 @@ namespace Collision
 {
     public class CollisionDelegator
 	{   
-        Link link;
+        //Link link;
         private Room room;
         private Game1 game;
         public CollisionDelegator(Room room, Game1 game) {

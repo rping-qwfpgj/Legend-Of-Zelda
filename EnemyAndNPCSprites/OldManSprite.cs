@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
+using Sprint0;
+using LegendofZelda.SpriteFactories;
 
 namespace Sprites
 {
@@ -18,10 +20,10 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-        private SpriteFont font;
-        private String message = "EASTMOST PENNINSULA IS THE SECRET.";
+        private string message = "EASTMOST PENNINSULA IS THE SECRET.";
         private int messageOffsetX = 180;
-        private int messageOffsetY = 35;
+        private int messageOffsetY = 38;
+        private ISprite text;
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
@@ -29,12 +31,12 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        public OldManSprite(Texture2D texture, float xPosition, float yPosition, SpriteFont font)
+        public OldManSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.font = font;
+            this.text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.xPosition - this.messageOffsetX, this.yPosition - this.messageOffsetY), message);
         }
 
         public void Update()
@@ -50,8 +52,8 @@ namespace Sprites
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.DrawString(font, message, new Vector2(xPosition - messageOffsetX , yPosition - messageOffsetY), Color.White);
             spriteBatch.End();
+            text.Draw(spriteBatch);
         }
 
         public Vector2 getPosition()

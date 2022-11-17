@@ -29,9 +29,6 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-        private bool movingHorizontally = true;
-        private bool movingVertically = false;
-
         private Rectangle destinationRectangle;
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
