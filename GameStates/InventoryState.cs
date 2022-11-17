@@ -100,22 +100,7 @@ namespace GameStates
         {
             controller.gameState = new WinGameState(controller, game);
         }
-        public void TransitionUp()
-        {
-            controller.gameState = new TransitionUpState(controller, game);
-        }
-        public void TransitionDown()
-        {
-            controller.gameState = new TransitionDownState(controller, game);
-        }
-        public void TransitionLeft()
-        {
-            controller.gameState = new TransitionLeftState(controller, game);
-        }
-        public void TransitionRight()
-        {
-            controller.gameState = new TransitionRightState(controller, game);
-        }
+        
         public void Update()
         {
             mapCount = Link.Instance.inventory.getItemCount("orange map");
