@@ -58,12 +58,12 @@ namespace LegendofZelda
                 }
                 if (toAdd.Count > 0)
                 {
-                    this.sprites.AddRange(toAdd);
+                    sprites.AddRange(toAdd);
                 }
 
                 foreach (ISprite sprite in toRemove)
                 {
-                    this.sprites.Remove(sprite);
+                    sprites.Remove(sprite);
                 }
             }
            
@@ -86,7 +86,6 @@ namespace LegendofZelda
             sprites.Add(sprite);
         }
 
-   
         private void DealWithLinkProjectiles(ISprite sprite)
         {
             List<ISprite> toRemove = new();
@@ -103,7 +102,7 @@ namespace LegendofZelda
 
             foreach (var spr in toRemove)
             {
-                this.RemoveObject(spr);
+                RemoveObject(spr);
 
             }
         }
@@ -160,12 +159,12 @@ namespace LegendofZelda
 
             foreach (var spr in toRemove)
             {
-                this.RemoveObject(spr);
+                RemoveObject(spr);
 
             }
             foreach (var spr in toAdd)
             {
-                this.AddObject(spr);
+                AddObject(spr);
 
             }
         }
