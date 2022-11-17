@@ -147,7 +147,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.V, new ThrowRightCommand());
-        keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
+        //keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
         keyboardController.AddCommand(Keys.N, new AttackCommand());
         keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
@@ -216,7 +216,6 @@ public class Game1 : Game
 
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
-        //link = Link.Instance;
         Link.Instance.getGame(this);
 
     }
