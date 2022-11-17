@@ -17,6 +17,7 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 480;
         private int deathFrames = 0;
+        private int maxDeathFrames = 40;
 
         private int health = 3;
         private bool isDamaged = false;
@@ -39,7 +40,10 @@ namespace Sprites
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 
         // On screen location
-        Rectangle dragonDestinationRectangle;
+        private Rectangle dragonDestinationRectangle;
+        private Rectangle sourceRectangle;
+        private List<Rectangle> sourceRectangles;
+        
         public Rectangle DestinationRectangle { get => dragonDestinationRectangle; set => dragonDestinationRectangle = value;}
 
         // Projectile orbs
@@ -56,6 +60,13 @@ namespace Sprites
             topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
             middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
             bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
+
+            sourceRectangles = new();
+            sourceRectangles.Add(new (0, 0, 15, 16));
+            sourceRectangles.Add(new (16, 0, 15, 16));
+            sourceRectangles.Add(new (35, 3, 9, 10));
+            sourceRectangles.Add(new (51, 3, 9, 10));
+            sourceRectangle = new();
         }
 
         public void Update()
@@ -137,35 +148,24 @@ namespace Sprites
                 
             }
             else
-            {
+            {    
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                dragonDestinationRectangle = new Rectangle((int)xPosition + 48, (int)yPosition + 64, 60, 60);
-                if (deathFrames >= 0 && deathFrames <= 5)
+                dragonDestinationRectangle = new((int)xPosition + 48, (int)yPosition + 64, 60, 60);
+                for (int i = 0; i < 4; i++)
                 {
-                    dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
+                    if (deathFrames > (i * maxDeathFrames) / 4 && deathFrames <= ((i + 1) * maxDeathFrames) / 4)
+                    {
+                        sourceRectangle = sourceRectangles[i];
+                    }
+                    else if (deathFrames > maxDeathFrames)
+                    {
+                        dyingComplete = true;
+                    }
+                }
 
-                }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    dragonSourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    dragonSourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    dragonSourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    dyingComplete = true;
-                }
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, dragonDestinationRectangle, sourceRectangle, Color.White);
                 }
 
                 spriteBatch.End();
@@ -297,8 +297,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            yPosition -= 2; 
+            xPosition -= 1; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            yPosition -= 1; 
 
             // Update the full location of the orb
             destinationRectangle = new((int)xPosition, (int)yPosition, 32, 40);
@@ -403,7 +403,7 @@ namespace Sprites
             } 
             
             // Update just x so that this orb goes towards the left in a horizontal line
-            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            xPosition -= 1; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
            
 
             // Update the full location of the orb
@@ -508,8 +508,8 @@ namespace Sprites
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            yPosition += 2; 
+            xPosition -= 1; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            yPosition += 1; 
 
             // Update the full location of the orb
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);

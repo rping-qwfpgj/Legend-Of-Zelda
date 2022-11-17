@@ -15,7 +15,6 @@ namespace LegendofZelda
         {
            
         }
-
         public Room ParseXML(XDocument xml)
         {
             List<ISprite> sprites = new();
@@ -52,11 +51,8 @@ namespace LegendofZelda
                     {
                         sprites.Add(ItemSpriteFactory.Instance.CreateItem(location, spriteToCreate.Element("ObjectName").Value));
                     }
-
                 }
-
             }
-
             return new Room(sprites, backgroundSprite);
         }
 

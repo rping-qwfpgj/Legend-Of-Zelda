@@ -60,14 +60,11 @@ namespace LegendofZelda
                 {
                     sprites.AddRange(toAdd);
                 }
-
                 foreach (ISprite sprite in toRemove)
                 {
                     sprites.Remove(sprite);
                 }
             }
-           
-
         }
 
         public List<ISprite> ReturnObjects()
@@ -76,7 +73,7 @@ namespace LegendofZelda
             return copyOfSprites;
         }
 
-        public void RemoveObject(ISprite sprite)
+       public void RemoveObject(ISprite sprite)
         { 
             sprites.Remove(sprite);
         }
@@ -153,8 +150,6 @@ namespace LegendofZelda
 
                     }
                 }
-
-
             }
 
             foreach (var spr in toRemove)
