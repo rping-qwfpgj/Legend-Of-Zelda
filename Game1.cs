@@ -197,7 +197,7 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(11, 12);
     }
 
-    private void RoomloaderInit()
+    public void RoomloaderInit()
     {
         rooms = new();
         RoomLoader roomloader = new();

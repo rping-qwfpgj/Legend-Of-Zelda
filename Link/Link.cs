@@ -69,6 +69,7 @@ namespace Sprint0
 
         public void Reset()
         {
+            this.game.RoomloaderInit();
             this.currentPosition = new Vector2(400, 240);
             this.isDamaged = false;
             this.currentState = new LinkFacingUpState();
