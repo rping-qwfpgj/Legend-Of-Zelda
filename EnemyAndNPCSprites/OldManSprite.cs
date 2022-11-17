@@ -22,7 +22,7 @@ namespace Sprites
         public int Direction { get => direction; set => direction = value; }
         private string message = "EASTMOST PENNINSULA IS THE SECRET.";
         private int messageOffsetX = 180;
-        private int messageOffsetY = 35;
+        private int messageOffsetY = 38;
         private ISprite text;
 
         private Rectangle destinationRectangle;
@@ -36,7 +36,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.xPosition + messageOffsetX, this.yPosition + this.messageOffsetY), message);
+            this.text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.xPosition - this.messageOffsetX, this.yPosition - this.messageOffsetY), message);
         }
 
         public void Update()
