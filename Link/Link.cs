@@ -140,25 +140,6 @@ namespace Sprint0
             }
         }
 
-        //public void TakeDamage()
-        //{
-        //    if (this.canBeDamaged == true && this.health > 0)
-        //    {
-        //        SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
-        //        this.health -= 0.5f;
-                
-        //        if (health <= 0)
-        //        {
-        //            this.Die();
-        //        }
-        //        this.isDamaged = true;
-        //        this.currentState.Redraw();
-        //        this.canBeDamaged = false;
-        //    }
-
-
-        //}
-
         public void TakeDamage(string side)
         {
             if (this.canBeDamaged == true && this.health > 0)
