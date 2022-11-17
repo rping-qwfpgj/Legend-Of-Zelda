@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System.Reflection.Metadata;
-using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
 
 namespace Sprites

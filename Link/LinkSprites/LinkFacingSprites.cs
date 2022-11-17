@@ -89,7 +89,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from

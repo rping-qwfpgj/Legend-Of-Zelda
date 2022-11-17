@@ -145,7 +145,7 @@ namespace Sprites
             this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 47, 16, 15));
@@ -253,7 +253,7 @@ namespace Sprites
             this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
@@ -360,7 +360,7 @@ namespace Sprites
             this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
-            isDamaged = isDamaged;
+            this.isDamaged = isDamaged;
             isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));

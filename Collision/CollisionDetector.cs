@@ -15,7 +15,7 @@ namespace Collision
     public class CollisionDetector
 	{
 
-		private Link currLink;
+		//private Link currLink;
 		private Game1 currGame;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
