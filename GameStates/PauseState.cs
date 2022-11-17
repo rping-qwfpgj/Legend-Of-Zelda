@@ -23,45 +23,22 @@ namespace GameStates
         {
             controller.gameState = new GamePlayState(controller, game);
         }
-        public void Inventory()
-        {
-            controller.gameState = new InventoryState(controller, game   , game.hud);
-        }
-        public void GameOver()
-        {
-            controller.gameState = new GameOverState(controller, game);
-        }
-        public void Pause()
-        {
-            
-        }
-        public void WinGame()
-        {
-            controller.gameState = new WinGameState(controller, game);
-        }
-        public void TransitionUp()
-        {
-            controller.gameState = new TransitionUpState(controller, game);
-        }
-        public void TransitionDown()
-        {
-            controller.gameState = new TransitionDownState(controller, game);
-        }
-        public void TransitionLeft()
-        {
-            controller.gameState = new TransitionLeftState(controller, game);
-        }
-        public void TransitionRight()
-        {
-            controller.gameState = new TransitionRightState(controller, game);
-        }
         public void Update()
         {
             game.keyboardController.Update();
         }
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-        }
+
+        //these are all empty because they are not valid states from PauseState
+        public void Inventory(){}
+        public void GameOver() {}
+        public void Draw(SpriteBatch _spriteBatch) {}
+        public void Pause() {}
+        public void WinGame() {}
+        public void TransitionUp() {}
+        public void TransitionDown() {}
+        public void TransitionLeft() {}
+        public void TransitionRight() {}
+       
     }
 }
 

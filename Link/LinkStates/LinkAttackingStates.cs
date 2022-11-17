@@ -10,42 +10,19 @@ namespace States
 {
     public class LinkAttackRightState : ILinkState
     {
-        
-
+       
         public LinkAttackRightState()
         {
             
         }
 
-        public void Attack()
-        {
-            // already attacking
-        }
-
-        public void ThrowProjectile()
-        {
-            // cant throw while attacking
-        }
-
-        public void MoveUp()
-        {
-            // can't move while attacking
-        }
-
-        public void MoveDown()
-        {
-            // can't move while attacking
-        }
-
-        public void MoveLeft()
-        {
-            // can't move while attacking
-        }
-
-        public void MoveRight()
-        {
-            // can't move while attacking
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        public void MoveDown() { }
+        public void MoveLeft() { }
+        public void MoveRight() { }
 
         public void Redraw()
         {
@@ -68,22 +45,17 @@ namespace States
 
     public class LinkAttackLeftState : ILinkState
     {
-        
-
         public LinkAttackLeftState()
         {
             
         }
-        public void Attack(){ }
 
+        //Invalid states from the current state
+        public void Attack() { }
         public void ThrowProjectile() { }
-
         public void MoveUp() { }
-
         public void MoveDown() { }
-
         public void MoveLeft() { }
-
         public void MoveRight() { }
 
         public void Redraw()
@@ -105,24 +77,17 @@ namespace States
 
     public class LinkAttackUpState : ILinkState
     {
-        
-
-
         public LinkAttackUpState()
         {
             
         }
 
+        //Invalid states from the current state
         public void Attack() { }
-
         public void ThrowProjectile() { }
-
         public void MoveUp() { }
-
         public void MoveDown() { }
-
         public void MoveLeft() { }
-
         public void MoveRight() { }
 
         public void Redraw()
@@ -145,24 +110,18 @@ namespace States
 
     public class LinkAttackDownState : ILinkState
     {
-        
-
 
         public LinkAttackDownState()
         {
             
         }
 
+        //Invalid states from the current state
         public void Attack() { }
-
         public void ThrowProjectile() { }
-
         public void MoveUp() { }
-
         public void MoveDown() { }
-
         public void MoveLeft() { }
-
         public void MoveRight() { }
 
         public void Redraw()

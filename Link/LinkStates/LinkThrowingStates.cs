@@ -11,39 +11,20 @@ namespace States
 {
     public class LinkThrowingRightState : ILinkState
     {
-        
-
+       
         public LinkThrowingRightState()
         {
             
         }
 
-        public void Attack()
-        {
-            // Can't attack while throwing
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw twice
-        }
-
-        public void MoveUp()
-        {
-            // Can't move while throwing
-        }
-
-        public void MoveDown()
-        {            
-        }
-
-        public void MoveLeft()
-        {            
-        }
-
-        public void MoveRight()
-        {            
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        public void MoveDown() { }
+        public void MoveLeft() { }
+        public void MoveRight() { }
+       
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(Link.Instance.currentPosition,
@@ -64,40 +45,19 @@ namespace States
 
     public class LinkThrowingLeftState : ILinkState
     {
-        
-
-     
+  
         public LinkThrowingLeftState()
         {
             
         }
 
-        public void Attack()
-        {
-            // Can't attack while throwing
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw twice
-        }
-
-        public void MoveUp()
-        {
-            // Can't move while throwing
-        }
-
-        public void MoveDown()
-        {
-        }
-
-        public void MoveLeft()
-        {
-        }
-
-        public void MoveRight()
-        {
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        public void MoveDown() { }
+        public void MoveLeft() { }
+        public void MoveRight() { }
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(Link.Instance.currentPosition,
@@ -118,40 +78,17 @@ namespace States
     }
     public class LinkThrowingUpState : ILinkState
     {
-
-        
-
-
         public LinkThrowingUpState()
         {
             
         }
-        public void Attack()
-        {
-            // Can't attack while throwing
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw twice
-        }
-
-        public void MoveUp()
-        {
-            // Can't move while throwing
-        }
-
-        public void MoveDown()
-        {
-        }
-
-        public void MoveLeft()
-        {
-        }
-
-        public void MoveRight()
-        {
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        public void MoveDown() { }
+        public void MoveLeft() { }
+        public void MoveRight() { }
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(Link.Instance.currentPosition,
@@ -173,40 +110,18 @@ namespace States
     public class LinkThrowingDownState : ILinkState
     {
 
-        
-
- 
         public LinkThrowingDownState()
         {
             
         }
-
-        public void Attack()
-        {
-            // Can't attack while throwing
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw twice
-        }
-
-        public void MoveUp()
-        {
-            // Can't move while throwing
-        }
-
-        public void MoveDown()
-        {
-        }
-
-        public void MoveLeft()
-        {
-        }
-
-        public void MoveRight()
-        {
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        public void MoveDown() { }
+        public void MoveLeft() { }
+        public void MoveRight() { }
+       
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(Link.Instance.currentPosition,

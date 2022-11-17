@@ -18,21 +18,11 @@ namespace States
             
         }
 
-        public void Attack()
-        {
-            // Can't attack while moving
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw while moving
-        }
-
-        public void MoveUp()
-        {
-            // Already walking
-        }
-
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveUp() { }
+        
         public void MoveDown()
         {
 
@@ -83,26 +73,16 @@ namespace States
             
         }
 
-        public void Attack()
-        {
-            // Can't attack while moving
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw while moving
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveDown() { }
 
         public void MoveUp()
         {
             Link.Instance.UpdatePosition();
             Link.Instance.currentState = new LinkWalkingUpState();
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance.currentPosition, Link.Instance.isDamaged);
-        }
-
-        public void MoveDown()
-        {           
-            // Already moving down
         }
 
         public void MoveLeft()
@@ -146,16 +126,11 @@ namespace States
             
         }
 
-        public void Attack()
-        {
-            // Can't attack while moving
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw while moving
-        }
-
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveLeft() { }
+      
         public void MoveUp()
         {
             Link.Instance.UpdatePosition();
@@ -169,11 +144,6 @@ namespace States
             Link.Instance.currentState = new LinkWalkingDownState();
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(Link.Instance.currentPosition, Link.Instance.isDamaged);
 
-        }
-
-        public void MoveLeft()
-        {
-            // Already moving left
         }
 
         public void MoveRight()
@@ -204,23 +174,16 @@ namespace States
 
     public class LinkIdleWalkingRightState : ILinkState
     {
-        
-
-
+       
         public LinkIdleWalkingRightState()
         {
             
         }
 
-        public void Attack()
-        {
-            // Can't attack
-        }
-
-        public void ThrowProjectile()
-        {
-            // Can't throw
-        }
+        //Invalid states from the current state
+        public void Attack() { }
+        public void ThrowProjectile() { }
+        public void MoveRight() { }
 
         public void MoveUp()
         {
@@ -241,11 +204,6 @@ namespace States
             Link.Instance.UpdatePosition();
             Link.Instance.currentState = new LinkWalkingLeftState();
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(Link.Instance.currentPosition, Link.Instance.isDamaged);
-        }
-
-        public void MoveRight()
-        {
-            // Already going right
         }
 
         public void NoInput()
