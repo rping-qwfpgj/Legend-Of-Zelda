@@ -14,8 +14,7 @@ namespace LegendofZelda.SpriteFactories
         private Texture2D oldManSpriteSheet;
         private Texture2D bossSpriteSheet;
         private Texture2D dyingSpriteSheet;
-        private SpriteFont font;
-
+        
         private static EnemyAndNPCSpriteFactory instance = new();
         public static EnemyAndNPCSpriteFactory Instance
         {
@@ -35,7 +34,6 @@ namespace LegendofZelda.SpriteFactories
             oldManSpriteSheet = content.Load<Texture2D>("oldman");
             bossSpriteSheet = content.Load<Texture2D>("bosses");
             dyingSpriteSheet = content.Load<Texture2D>("enemy_death");
-            font = content.Load<SpriteFont>("Times New Roman");
         }
 
         public IEnemy CreateEnemyOrNPC(Vector2 location, string name)
@@ -66,7 +64,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OldMan":
 
-                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y + inventoryHeight, font);
+                    return new OldManSprite(oldManSpriteSheet, location.X, location.Y + inventoryHeight);
 
                 case "Wallmaster":
 
