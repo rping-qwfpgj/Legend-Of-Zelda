@@ -11,16 +11,18 @@ namespace Sprint0
     public class Background : IBackground
     {
         private readonly Texture2D texture;
+
+        private Rectangle sourceRectangle;
         private List<Rectangle> sourceRectangles;
         private Rectangle destinationRectangle;
-        private Rectangle sourceRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
         private readonly int width = 256;
         private readonly int height = 176;
+
         private readonly Vector2 backgroundLocation;
         private string direction;
         private bool transitioning;
-
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         public bool IsTransitioning { get => transitioning; }
         public Background(Texture2D backgroundTexture, int roomNumber)
         {
@@ -60,7 +62,6 @@ namespace Sprint0
           
             switch (direction)
             {
-
                 case "right":
                     sourceRectangle.Offset(-width, 0);
                     break;
@@ -73,14 +74,11 @@ namespace Sprint0
                 case "down":
                     sourceRectangle.Offset(0, -height);
                     break;
-
             }
-
         }
 
         public void Update()
         {
-            
             if (!(sourceRectangle.X == backgroundLocation.X && sourceRectangle.Y == backgroundLocation.Y))
             {
                 switch (direction)
@@ -108,14 +106,7 @@ namespace Sprint0
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            if (Link.Instance.game.gameStateController.gameState is GameOverState)
-            {
-                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.Red);
-            } else
-            {
-                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            }
-            
+            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
         }
 
@@ -124,7 +115,6 @@ namespace Sprint0
             return destinationRectangle;
         }
     }
-
 }
 
 

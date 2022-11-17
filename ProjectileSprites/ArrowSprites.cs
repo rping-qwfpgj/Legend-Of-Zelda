@@ -27,7 +27,6 @@ namespace Sprites
         private bool isDone;
         public bool IsDone { get => isDone;}
         
-
         public ArrowUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;

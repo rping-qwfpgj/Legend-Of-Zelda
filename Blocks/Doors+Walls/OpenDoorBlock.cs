@@ -8,17 +8,16 @@ namespace LegendofZelda.Blocks
     public class OpenDoorBlock : IBlock
     {
         private Texture2D texture;
+
         private Rectangle sourceRectangle;
-        private static int sourceWidth = 32;
-        private static int sourceHeight = 22;
-        private Rectangle[] sourceRectangles = { new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1), new Rectangle(73, 7, 1, 1) };
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        
         private int direction;
         private int xPos;
         private int yPos;
-        private int destinationWidth = sourceWidth * 2;
-        private int destinationHeight = sourceHeight * 2;
+        private int destinationWidth = 64;
+        private int destinationHeight = 44;
 
         public OpenDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
@@ -26,8 +25,7 @@ namespace LegendofZelda.Blocks
             xPos = x;
             yPos = y;
             this.direction = direction;
-            // for source rectangles 0 = top, 1 = left, 2 = right, 3 = bottom
-            sourceRectangle = sourceRectangles[direction];
+            sourceRectangle = new Rectangle(73, 7, 1, 1);
 
             if (direction == 0 || direction == 3)
                 destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
@@ -36,7 +34,6 @@ namespace LegendofZelda.Blocks
         }
         public void Update()
         {
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -63,13 +60,9 @@ namespace LegendofZelda.Blocks
                     return "bottom";
                 default:
                     return "INVALID DIRECTION NUM PASSED";
-
             }
         }
-
     }
-
-
 }
 
 

@@ -46,7 +46,7 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-        private int prevdirection = 1;
+        //private int prevdirection = 1;
         private float xPos;
         private float yPos;
         private Rectangle destinationRectangle = new Rectangle(100, 100, 0, 0);

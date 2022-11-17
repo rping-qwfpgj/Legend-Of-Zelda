@@ -1,26 +1,32 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.Blocks
 {
-    public class LockedDoorBlock : IBlock
+    public class BombableDoorBlock : IBlock
     {
         private Texture2D texture;
-        private Rectangle sourceRectangle;
+        
         private static int sourceWidth = 32;
-        private static int sourceHeight = 22;
-        private Rectangle[] sourceRectangles = { new Rectangle(103, 21, 32, 22), new Rectangle(115, 44, 22, 31), new Rectangle(103, 77, 22, 32), new Rectangle(103, 110, 32, 22) };
+        private static int sourceHeight = 32;
+        private int destinationWidth = sourceWidth * 2;
+        private int destinationHeight = sourceHeight * 2;
+
+        private Rectangle[] sourceRectangles = { 
+            new Rectangle(37, 11, sourceWidth, sourceHeight), 
+            new Rectangle(37, 44, sourceHeight, sourceWidth), 
+            new Rectangle(37, 77, sourceHeight, sourceWidth), 
+            new Rectangle(37, 110, sourceWidth, sourceHeight) };
+        private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private int direction;
         private int xPos;
         private int yPos;
-        private int destinationWidth = sourceWidth * 3;
-        private int destinationHeight = sourceHeight * 3;
-
-        public LockedDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+        
+        public BombableDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
             xPos = x;
@@ -36,7 +42,6 @@ namespace LegendofZelda.Blocks
         }
         public void Update()
         {
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -63,13 +68,9 @@ namespace LegendofZelda.Blocks
                     return "bottom";
                 default:
                     return "INVALID DIRECTION NUM PASSED";
-
             }
         }
-
     }
-
-
 }
 
 

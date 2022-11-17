@@ -17,6 +17,7 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 480;
         private int deathFrames = 0;
+
         private int health = 3;
         private bool isDamaged = false;
         private int damagedCounter = 0;
@@ -24,7 +25,6 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
-        private SoundEffect enemyHit;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -46,24 +46,23 @@ namespace Sprites
         private TopDragonAttackOrbSprite topAttackOrb;
         private MiddleDragonAttackOrbSprite middleAttackOrb;
         private BottomDragonAttackOrbSprite bottomAttackOrb;
-        
-        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public DragonBossSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
-            this.dyingTexture = texture2;
+            dyingTexture = texture2;
 
-            this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
-            this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
-            this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
+            topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+            middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+            bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
         }
 
         public void Update()
         {
             if (!isDead)
             {
+                // keeps track of how long sprite stays red
                 if (isDamaged)
                 {
                     damagedCounter++;
@@ -78,37 +77,31 @@ namespace Sprites
                 {
                     direction *= -1;
                 }
-
+                currFrames += 5;
                 // Reset motion if at max
                 if (currFrames == maxFrames)
                 {
                     currFrames = 0;
-                    this.topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
-                    this.middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
-                    this.bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
-                }
-                else
-                {
-                    currFrames += 5;
+                    topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition);
+                    middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition);
+                    bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition);
                 }
 
                 // Update the x position
-                this.xPosition += 1 * direction;
+                xPosition += 1 * direction;
             } else
             {
                 deathFrames++;
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             Rectangle dragonSourceRectangle = new Rectangle(1, 11, 24, 32);
 
             if (!isDead)
             {
-                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 96, 128);
+                dragonDestinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 96, 128);
 
                 if (currFrames <= maxFrames / 8)
                 {
@@ -134,10 +127,10 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if (isDamaged)
                 {
-                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
+                    spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f)); 
                 } else
                 {
-                    spriteBatch.Draw(texture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                    spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
 
                 }
                 spriteBatch.End();
@@ -146,7 +139,7 @@ namespace Sprites
             else
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                this.dragonDestinationRectangle = new Rectangle((int)this.xPosition + 48, (int)this.yPosition + 64, 60, 60);
+                dragonDestinationRectangle = new Rectangle((int)xPosition + 48, (int)yPosition + 64, 60, 60);
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
                     dragonSourceRectangle = new Rectangle(0, 0, 15, 16);
@@ -168,28 +161,25 @@ namespace Sprites
                 }
                 else
                 {
-                    this.dyingComplete = true;
+                    dyingComplete = true;
                 }
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, this.dragonDestinationRectangle, dragonSourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
                 }
 
                 spriteBatch.End();
             }
 
-            //spriteBatch.End();
-
-
         }
 
         public Rectangle GetHitbox()
-       {
+        {
             // TEMPORARY, working on what to put here
-            return this.dragonDestinationRectangle;
-       }
+            return dragonDestinationRectangle;
+        }
 
-       public void TurnAround(string side)
+        public void TurnAround(string side)
        {
 
        }
@@ -207,12 +197,12 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-            enemyHit.Play();
-            this.isDamaged = true;
-            this.health -= 1;
-            if (this.health <= 0)
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
+            isDamaged = true;
+            health -= 1;
+            if (health <= 0)
             {
-                this.isDead = true;
+                isDead = true;
             }
         }
 
@@ -222,7 +212,7 @@ namespace Sprites
             {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(xPosition, yPosition - 150), droppableItems[rand]);
             }
             else
             {
@@ -271,16 +261,16 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.originalX = this.xPosition;
-            this.originalY = this.yPosition;
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            originalX = (int)xPosition;
+            originalY = (int)yPosition;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
 
-            this.currOrb = 0;
-            this.attackOrbs.Add(blueOrb);
-            this.attackOrbs.Add(orangeOrb);
-            this.attackOrbs.Add(greenOrb);
-            this.attackOrbs.Add(multicolorOrb);
-            this.keepThrowing = true;
+            currOrb = 0;
+            attackOrbs.Add(blueOrb);
+            attackOrbs.Add(orangeOrb);
+            attackOrbs.Add(greenOrb);
+            attackOrbs.Add(multicolorOrb);
+            keepThrowing = true;
         }
         public void Update()
         {
@@ -288,8 +278,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 //currFrames = 0;
-                //this.xPosition = this.originalX;
-                this.yPosition = this.originalY;
+                //xPosition = originalX;
+                yPosition = originalY;
             }
             else
             {
@@ -299,41 +289,41 @@ namespace Sprites
             // Update current orb
             currFrames += 5;
             if(currFrames % 500 == 0) { 
-                ++this.currOrb;
+                ++currOrb;
             }
-            if(this.currOrb >= this.attackOrbs.Count)
+            if(currOrb >= attackOrbs.Count)
             {
-                this.currOrb = 0;
+                currOrb = 0;
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition -= 2; 
+            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            yPosition -= 2; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 32, 40);
+            destinationRectangle = new((int)xPosition, (int)yPosition, 32, 40);
 
         }
 
          public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
+             if(currFrames < maxFrames) { 
                 spriteBatch.Begin();
-                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, attackOrbs[currOrb], Color.White);
                 spriteBatch.End();
             } 
         }
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
 
         }
 
         public void collide()
         {
-           this.currFrames = maxFrames;
-           this.keepThrowing = false;
+           currFrames = maxFrames;
+           keepThrowing = false;
            
         }
 
@@ -376,16 +366,16 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.originalX = this.xPosition;
-            this.originalY = this.yPosition;
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            originalX = (int)xPosition;
+            originalY = (int)yPosition;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
 
-            this.currOrb = 0;
-            this.attackOrbs.Add(blueOrb);
-            this.attackOrbs.Add(orangeOrb);
-            this.attackOrbs.Add(greenOrb);
-            this.attackOrbs.Add(multicolorOrb);
-            this.keepThrowing = true;
+            currOrb = 0;
+            attackOrbs.Add(blueOrb);
+            attackOrbs.Add(orangeOrb);
+            attackOrbs.Add(greenOrb);
+            attackOrbs.Add(multicolorOrb);
+            keepThrowing = true;
         }
         public void Update()
         {
@@ -394,8 +384,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
-                this.xPosition = this.originalX;
-                this.yPosition = this.originalY;
+                xPosition = originalX;
+                yPosition = originalY;
             }
             else
             {
@@ -405,41 +395,41 @@ namespace Sprites
             // Update current orb
             currFrames+=10;
             if(currFrames % 10 == 0) { 
-                ++this.currOrb;
+                ++currOrb;
             }
-            if(this.currOrb >= this.attackOrbs.Count)
+            if(currOrb >= attackOrbs.Count)
             {
-                this.currOrb = 0;
+                currOrb = 0;
             } 
             
             // Update just x so that this orb goes towards the left in a horizontal line
-            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
            
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) {
+             if(currFrames < maxFrames) {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, attackOrbs[currOrb], Color.White);
                 spriteBatch.End();
             } 
         }
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
 
         }
 
         public void collide()
         {
-            this.currFrames = maxFrames;
-            this.keepThrowing = false;
+            currFrames = maxFrames;
+            keepThrowing = false;
         }
 
     }
@@ -466,11 +456,11 @@ namespace Sprites
         
 
         // Orbs will rapidly swap between 4 different version
-        private List<Rectangle> attackOrbs = new List<Rectangle>();
-        private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
-        private Rectangle orangeOrb = new Rectangle(119, 14, 8, 10);
-        private Rectangle greenOrb = new Rectangle(110, 14, 8, 10);
-        private Rectangle multicolorOrb = new Rectangle(101, 14, 8, 10);
+        private List<Rectangle> attackOrbs = new();
+        private Rectangle blueOrb = new(128, 14, 8, 10);
+        private Rectangle orangeOrb = new(119, 14, 8, 10);
+        private Rectangle greenOrb = new(110, 14, 8, 10);
+        private Rectangle multicolorOrb = new(101, 14, 8, 10);
         private int currOrb; // Represents which orb from the list to draw
 
         // On Screen location
@@ -482,16 +472,16 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            this.originalX = this.xPosition;
-            this.originalY = this.yPosition;
-            this.destinationRectangle = new Rectangle(this.xPosition, this.yPosition, 32, 40);
+            originalX = (int)xPosition;
+            originalY = (int)yPosition;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
 
-            this.currOrb = 0;
-            this.attackOrbs.Add(blueOrb);
-            this.attackOrbs.Add(orangeOrb);
-            this.attackOrbs.Add(greenOrb);
-            this.attackOrbs.Add(multicolorOrb);
-            this.keepThrowing = true;
+            currOrb = 0;
+            attackOrbs.Add(blueOrb);
+            attackOrbs.Add(orangeOrb);
+            attackOrbs.Add(greenOrb);
+            attackOrbs.Add(multicolorOrb);
+            keepThrowing = true;
         }
         public void Update()
         {
@@ -499,8 +489,8 @@ namespace Sprites
             if (currFrames == maxFrames)
             {
                 currFrames = 0;
-                this.xPosition = this.originalX;
-                this.yPosition = this.originalY;
+                xPosition = originalX;
+                yPosition = originalY;
             }
             else
             {
@@ -510,34 +500,34 @@ namespace Sprites
             currFrames += 10;
             // Update current orb
             if(currFrames % 10 == 0) { 
-            ++this.currOrb;
+            ++currOrb;
             }
-            if(this.currOrb >= this.attackOrbs.Count)
+            if(currOrb >= attackOrbs.Count)
             {
-                this.currOrb = 0;
+                currOrb = 0;
             } 
             
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            this.xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
-            this.yPosition += 2; 
+            xPosition -= 2; // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
+            yPosition += 2; 
 
             // Update the full location of the orb
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 40);
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if(this.currFrames < maxFrames) { 
+             if(currFrames < maxFrames) { 
                 spriteBatch.Begin();
-                spriteBatch.Draw(texture, this.destinationRectangle, attackOrbs[this.currOrb], Color.White);
+                spriteBatch.Draw(texture, destinationRectangle, attackOrbs[currOrb], Color.White);
                 spriteBatch.End();
             } 
         }
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
 
         }
 
@@ -548,8 +538,8 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = maxFrames;
-            this.keepThrowing = false;
+            currFrames = maxFrames;
+            keepThrowing = false;
         }
 
     }

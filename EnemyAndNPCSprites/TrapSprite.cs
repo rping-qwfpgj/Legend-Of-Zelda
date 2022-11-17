@@ -41,10 +41,10 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
-            this.trapState = TrapStates.Sitting;
-            this.initialLocation = this.destinationRectangle;
-            this.lastLocation = this.lastLocation;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
+            trapState = TrapStates.Sitting;
+            initialLocation = destinationRectangle;
+            //lastLocation = this.lastLocation;
         }
 
         public void Update()
@@ -52,47 +52,47 @@ namespace Sprites
              Vector2 linkLocation = Link.Instance.currentPosition;
 
             // Compare to link's position if its just sitting
-            if(this.trapState == TrapStates.Sitting)
+            if(trapState == TrapStates.Sitting)
             {
                
                 // Change to a new state by comparing link's position to the trap
-                this.swapState(linkLocation);
+                swapState(linkLocation);
 
                 // If no longer sitting, change the final location
-                if(this.trapState != TrapStates.Sitting)
+                if(trapState != TrapStates.Sitting)
                 {
-                    this.lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
+                    lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
                 }
             } else
             {
                 // Change location based on the current state and last location
-                TrapStates currState = this.trapState;
+                TrapStates currState = trapState;
 
                 if(currState == TrapStates.MoveUp)
                 {
-                    this.yPosition -= 3;
+                    yPosition -= 3;
                     
                     
                 } else if (currState == TrapStates.MoveDown)
                 {
-                    this.yPosition += 3;
+                    yPosition += 3;
 
                     
                 } else if (currState == TrapStates.MoveLeft)
                 {
-                    this.xPosition -= 2;
+                    xPosition -= 2;
 
                     
                 } else if(currState == TrapStates.MoveRight)
                 {
-                    this.xPosition += 2;
+                    xPosition += 2;
 
                     
                 }
 
                 
 
-                //this.swapToOpposite(linkLocation);
+                //swapToOpposite(linkLocation);
 
                 
             }
@@ -105,9 +105,9 @@ namespace Sprites
         {
 
             Rectangle sourceRectangle = new Rectangle(164, 59, 16, 16);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
 
             
@@ -115,12 +115,12 @@ namespace Sprites
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
         }
 
         public void TurnAround(string side)
         {
-            this.trapState = TrapStates.Sitting;
+            trapState = TrapStates.Sitting;
         }
 
         public void TakeDamage(string side)
@@ -135,31 +135,27 @@ namespace Sprites
 
         private void swapState(Vector2 linkLocation)
         {
-           int xRange = (int)Math.Abs(linkLocation.X - this.xPosition);
-           int yRange = (int)Math.Abs(linkLocation.Y - this.YPosition);
-           if(xRange <= 20 && linkLocation.Y < this.YPosition)
+           int xRange = (int)Math.Abs(linkLocation.X - xPosition);
+           int yRange = (int)Math.Abs(linkLocation.Y - YPosition);
+           if(xRange <= 20 && linkLocation.Y < YPosition)
             {                
-                this.trapState = TrapStates.MoveUp;
-            } else if(xRange <= 20 && linkLocation.Y > this.YPosition)
+                trapState = TrapStates.MoveUp;
+            } else if(xRange <= 20 && linkLocation.Y > YPosition)
             {
-                this.trapState = TrapStates.MoveDown;
-            } else if(linkLocation.X < this.xPosition && yRange <= 20)
+                trapState = TrapStates.MoveDown;
+            } else if(linkLocation.X < xPosition && yRange <= 20)
             {
-                this.trapState = TrapStates.MoveLeft;
-            }  else if(linkLocation.X > this.xPosition && yRange <= 20)
+                trapState = TrapStates.MoveLeft;
+            }  else if(linkLocation.X > xPosition && yRange <= 20)
             {
-                this.trapState = TrapStates.MoveRight;
+                trapState = TrapStates.MoveRight;
             } else
             {
-                this.trapState = TrapStates.Sitting;
+                trapState = TrapStates.Sitting;
             }
            
         }
 
-        public void Die()
-        {
-
-        }
     }
 }
 

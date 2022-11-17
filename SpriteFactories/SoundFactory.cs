@@ -18,6 +18,7 @@ namespace LegendofZelda.SpriteFactories
         SoundEffect link_damage;
         SoundEffect throw_projectile;
         SoundEffect link_death;
+        SoundEffect winning;
 
         public static SoundFactory Instance
         {
@@ -40,7 +41,7 @@ namespace LegendofZelda.SpriteFactories
             link_damage = content.Load<SoundEffect>("link_damage");
             throw_projectile = content.Load<SoundEffect>("throw_projectile");
             link_death = content.Load<SoundEffect>("link_death");
-
+            winning = content.Load<SoundEffect>("winning_sound");
         }
 
 
@@ -75,6 +76,10 @@ namespace LegendofZelda.SpriteFactories
                 case "LinkDeath":
 
                     return link_death;
+
+                case "Winning":
+
+                    return winning;
 
                 default:
 

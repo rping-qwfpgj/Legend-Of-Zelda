@@ -1,0 +1,11 @@
+﻿Author of the code review: Lisha Nawani
+Date of the code review: 11/14/22
+Sprint number: 4
+Name of the .cs file being reviewed: LockedDoorBlock.cs
+Author of the .cs file being reviewed: Vishal Kumar
+Number of minutes taken to complete the review: 3 minutes
+Specific comments on what is readable and what is not: 
+	- having an array of source rectangles makes the code much cleaner to read
+	- having each direction mapped to a certain int also makes the code cleaner
+	- would be nice to have comments explaining how the destination rectangles are set based on direction
+	- since the class uses a texture atlas, makes setting the source width and height much easier

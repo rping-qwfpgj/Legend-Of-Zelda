@@ -8,43 +8,43 @@ public class GameStateController
     public IGameState gameState;
     public GameStateController(Game1 game)
     {
-        this.gameState = new GamePlayState(this, game);
+        gameState = new GamePlayState(this, game);
     }
     public void GamePlay()
     {
-        this.gameState.GamePlay();
+        gameState.GamePlay();
     }
     public void Inventory()
     {
-        this.gameState.Inventory();
+        gameState.Inventory();
     }
     public void GameOver()
     {
-        this.gameState.GameOver();
+        gameState.GameOver();
     }
     public void Pause()
     {
-        this.gameState.Pause();
+        gameState.Pause();
     }
     public void WinGame()
     {
-        this.gameState.WinGame();
+        gameState.WinGame();
     }
     public void TransitionUp()
     {
-        this.gameState.TransitionUp();
+        gameState.TransitionUp();
     }
     public void TransitionDown()
     {
-        this.gameState.TransitionDown();
+        gameState.TransitionDown();
     }
     public void TransitionLeft()
     {
-        this.gameState.TransitionLeft();
+        gameState.TransitionLeft();
     }
     public void TransitionRight()
     {
-        this.gameState.TransitionRight();
+        gameState.TransitionRight();
     }
     
 }

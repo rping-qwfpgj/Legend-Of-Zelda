@@ -9,33 +9,33 @@ using Sprites;
 namespace LegendofZelda.SpriteFactories
 {
     public class MapPieceSpriteFactory : ISpriteFactory
+    {
+
+        private Texture2D spriteSheet;
+        private readonly static MapPieceSpriteFactory instance = new();
+
+        public static MapPieceSpriteFactory Instance
         {
-
-            private Texture2D spriteSheet;
-            private readonly static MapPieceSpriteFactory instance = new();
-
-            public static MapPieceSpriteFactory Instance
+            get
             {
-                get
-                {
-                    return instance;
-                }
+                return instance;
             }
-            private MapPieceSpriteFactory()
-            {
-            }
-
-            public void loadContent(ContentManager content)
-            {
-                spriteSheet = content.Load<Texture2D>("actual_hud_sprites");
-               
-            }
-
-            public ISprite CreateMapPiece(Vector2 location, int roomNumber)
-            {
-                return new MapSprite(roomNumber, spriteSheet);
-                
-            }
-
         }
+        private MapPieceSpriteFactory()
+        {
+        }
+
+        public void loadContent(ContentManager content)
+        {
+            spriteSheet = content.Load<Texture2D>("actual_hud_sprites");
+               
+        }
+
+        public ISprite CreateMapPiece(Vector2 location, int roomNumber)
+        {
+            return new MapSprite(roomNumber, spriteSheet);
+                
+        }
+
+    }
 }

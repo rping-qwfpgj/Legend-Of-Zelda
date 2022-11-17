@@ -20,13 +20,9 @@ namespace Sprites
 
         private Color color = Color.White;
 
-        // Get information about screen dimensions
         private Rectangle linkSourceRectangle;
-        private Rectangle triforceSourceRectangle;
-
-        // Screen location
+        
         private Rectangle linkDestinationRectangle;
-        private Rectangle triforceDestinationRectangle;
         private ISprite triforce; 
 
         public Rectangle DestinationRectangle { get => new Rectangle(linkDestinationRectangle.X - (linkDestinationRectangle.Width / 2), linkDestinationRectangle.Y - (linkDestinationRectangle.Height / 2), linkDestinationRectangle.Width, linkDestinationRectangle.Height); set => linkDestinationRectangle = value; }
@@ -45,6 +41,7 @@ namespace Sprites
     }
         public void Update()
         {
+            triforce.Update();
         }
 
 

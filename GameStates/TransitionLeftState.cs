@@ -23,32 +23,32 @@ namespace GameStates
         public void GamePlay()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(new(670, 390), false);
-            this.controller.gameState = new GamePlayState(this.controller, this.game);
+            controller.gameState = new GamePlayState(controller, game);
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
-            Debug.WriteLine("goofy ah");
+            controller.gameState = new InventoryState(controller, game, game.hud);
+            
         }
         public void GameOver()
         {
-            this.controller.gameState = new GameOverState(this.controller, this.game);
+            controller.gameState = new GameOverState(controller, game);
         }
         public void Pause()
         {
-            this.controller.gameState = new PauseState(this.controller, this.game);
+            controller.gameState = new PauseState(controller, game);
         }
         public void WinGame()
         {
-            this.controller.gameState = new WinGameState(this.controller, this.game);
+            controller.gameState = new WinGameState(controller, game);
         }
         public void TransitionUp()
         {
-            this.controller.gameState = new TransitionUpState(this.controller, this.game);
+            controller.gameState = new TransitionUpState(controller, game);
         }
         public void TransitionDown()
         {
-            this.controller.gameState = new TransitionDownState(this.controller, this.game);
+            controller.gameState = new TransitionDownState(controller, game);
         }
         public void TransitionLeft()
         {
@@ -56,11 +56,11 @@ namespace GameStates
         }
         public void TransitionRight()
         {
-            this.controller.gameState = new TransitionRightState(this.controller, this.game);
+            controller.gameState = new TransitionRightState(controller, game);
         }
         public void Update()
         {
-            var background = this.game.currentRoom.Background as IBackground;
+            var background = game.currentRoom.Background as IBackground;
             background.Update();
 
             if (!background.IsTransitioning)
@@ -71,9 +71,9 @@ namespace GameStates
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            this.game.GraphicsDevice.Clear(Color.Black);
-            this.game.currentRoom.Draw(_spriteBatch);
-            this.game.hud.Draw(_spriteBatch);
+            game.GraphicsDevice.Clear(Color.Black);
+            game.currentRoom.Draw(_spriteBatch);
+            game.hud.Draw(_spriteBatch);
         }
     }
 }

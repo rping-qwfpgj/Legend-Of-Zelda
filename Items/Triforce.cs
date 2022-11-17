@@ -15,8 +15,7 @@ namespace LegendofZelda.Items
         private int width = 10;
         private int height = 10;
         private int currFrames = 0;
-        private int maxFrames = 100;
-
+        
         public Triforce(Texture2D itemTexture, int x, int y)
         {
             texture = itemTexture;
@@ -28,6 +27,14 @@ namespace LegendofZelda.Items
 
         public void Update()
         {
+            currFrames++;
+            if ((currFrames / 10) % 2 == 0)
+            {
+                sourceRectangle = new Rectangle(275, 19, width, height);
+            } else
+            {
+                sourceRectangle = new Rectangle(275, 3, width, height);
+            }
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

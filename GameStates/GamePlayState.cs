@@ -23,55 +23,51 @@ namespace GameStates
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
-            Debug.WriteLine("goofy ah");
+            controller.gameState = new InventoryState(controller, game, game.hud);
         }
         public void GameOver()
         {
-            this.controller.gameState = new GameOverState(this.controller, this.game);
+            controller.gameState = new GameOverState(controller, game);
         }
         public void Pause()
         {
-            this.controller.gameState = new PauseState(this.controller, this.game);
+            controller.gameState = new PauseState(controller, game);
         }
         public void WinGame()
         {
-            this.controller.gameState = new WinGameState(this.controller, this.game);
+            controller.gameState = new WinGameState(controller, game);
         }
         public void TransitionUp()
         {
-            this.controller.gameState = new TransitionUpState(this.controller, this.game);
+            controller.gameState = new TransitionUpState(controller, game);
         }
         public void TransitionDown()
         {
-            this.controller.gameState = new TransitionDownState(this.controller, this.game);
+            controller.gameState = new TransitionDownState(controller, game);
         }
         public void TransitionLeft()
         {
-            this.controller.gameState = new TransitionLeftState(this.controller, this.game);
+            controller.gameState = new TransitionLeftState(controller, game);
         }
         public void TransitionRight()
         {
-            this.controller.gameState = new TransitionRightState(this.controller, this.game);
+            controller.gameState = new TransitionRightState(controller, game);
         }
         public void Update()
         {
-            
-
             Link.Instance.Update();
-            this.game.mouseController.Update();
-            this.game.collisionDetector.Update();
-            this.game.keyboardController.Update();
-            this.game.currentRoom.Update();
-            this.game.hud.Update();            
+            game.mouseController.Update();
+            game.collisionDetector.Update();
+            game.keyboardController.Update();
+            game.currentRoom.Update();
+            game.hud.Update();            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            
-            this.game.GraphicsDevice.Clear(Color.Black);
-            this.game.currentRoom.Draw(_spriteBatch);
+            game.GraphicsDevice.Clear(Color.Black);
+            game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
-            this.game.hud.Draw(_spriteBatch);
+            game.hud.Draw(_spriteBatch);
         }
     }
 }

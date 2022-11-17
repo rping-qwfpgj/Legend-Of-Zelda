@@ -9,101 +9,101 @@ using Sprint0;
 namespace LegendofZelda.SpriteFactories
 {
     public class ItemSpriteFactory : ISpriteFactory
+    {
+
+        private Texture2D spriteSheet;
+        private Texture2D fireTexture;
+        private readonly static ItemSpriteFactory instance = new();
+
+        public static ItemSpriteFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        private ItemSpriteFactory()
+        {
+        }
+
+        public void loadContent(ContentManager content)
+        {
+            spriteSheet = content.Load<Texture2D>("itemsandweapons");
+            fireTexture = content.Load<Texture2D>("LinkandProjectileSprites");
+        }
+
+        public ISprite CreateItem(Vector2 location, string name)
         {
 
-            private Texture2D spriteSheet;
-            private Texture2D fireTexture;
-            private readonly static ItemSpriteFactory instance = new();
+        int inventoryHeight = 150;
+            switch (name)
 
-            public static ItemSpriteFactory Instance
             {
-                get
-                {
-                    return instance;
-                }
-            }
-            private ItemSpriteFactory()
-            {
-            }
+                case "PurpleGemstone":
 
-            public void loadContent(ContentManager content)
-            {
-                spriteSheet = content.Load<Texture2D>("itemsandweapons");
-            fireTexture = content.Load<Texture2D>("LinkandProjectileSprites");
-            }
+                    return new PurpleGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-            public ISprite CreateItem(Vector2 location, string name)
-            {
+                case "OrangeGemstone":
 
-            int inventoryHeight = 150;
-                switch (name)
+                    return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                {
-                    case "PurpleGemstone":
+                case "Triforce":
 
-                        return new PurpleGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Triforce(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "OrangeGemstone":
+                case "OrangeMap":
 
-                        return new OrangeGemstone(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new OrangeMap(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Triforce":
+                case "SmallRedHeart":
 
-                        return new Triforce(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new SmallRedHeart(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "OrangeMap":
+                case "SmallBlueHeart":
 
-                        return new OrangeMap(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new SmallBlueHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
-                    case "SmallRedHeart":
+                case "BigHeart":
 
-                        return new SmallRedHeart(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new BigHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
 
-                    case "SmallBlueHeart":
+                case "Fairy":
 
-                        return new SmallBlueHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
+                    return new Fairy(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight); 
 
-                    case "BigHeart":
+                case "Compass":
 
-                        return new BigHeart(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight);
+                    return new Compass(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Fairy":
+                case "Clock":
 
-                        return new Fairy(spriteSheet, (int)location.X, (int)location.Y+inventoryHeight); 
+                    return new Clock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Compass":
+                case "Bow":
 
-                        return new Compass(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Bow(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Clock":
+                case "Boomerang":
 
-                        return new Clock(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Boomerang(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Bow":
+                case "Bomb":
 
-                        return new Bow(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Bomb(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
-                    case "Boomerang":
+                case "Fire":
 
-                        return new Boomerang(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
 
-                    case "Bomb":
+                case "Key":
 
-                        return new Bomb(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
-
-                    case "Fire":
-
-                        return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
-
-                    case "Key":
-
-                        return new Key(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+                    return new Key(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
                 default:
 
-                        return null;
-                }
+                    return null;
             }
-
         }
+
+    }
 }

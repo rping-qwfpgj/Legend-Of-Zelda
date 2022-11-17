@@ -39,7 +39,7 @@ namespace Sprites
             this.xPosition = (int)xPos;
             this.yPosition = (int)yPos;
             this.isDamaged = isDamaged;
-            this.isAttack = true;
+            isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 109, 16, 16));
             sourceRectangles.Add(new Rectangle(18, 97, 16, 28));
@@ -56,7 +56,7 @@ namespace Sprites
             // If frames are past max,no longer attacking
             if (currFrames >= maxFrames)
             {
-                this.isAttack = false;
+                isAttack = false;
             }
 
         }
@@ -99,17 +99,17 @@ namespace Sprites
         }
          public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
         }
 
         public bool isAttacking()
         {
-            return this.isAttack;
+            return isAttack;
         }
 
         public string getSide()
         {
-            return this.side;
+            return side;
         }
     }
 
@@ -143,10 +143,10 @@ namespace Sprites
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = (int)xPos;
-            this.yPosition = (int)yPos;
+            xPosition = (int)xPos;
+            yPosition = (int)yPos;
             this.isDamaged = isDamaged;
-            this.isAttack = true;
+            isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 47, 16, 15));
             sourceRectangles.Add(new Rectangle(18, 47, 16, 27));
@@ -163,7 +163,7 @@ namespace Sprites
             // If frames are past max,no longer attacking
             if (currFrames >= maxFrames)
             {
-                this.isAttack = false;
+                isAttack = false;
             }
         }
 
@@ -212,12 +212,12 @@ namespace Sprites
 
         public bool isAttacking()
         {
-            return this.isAttack;
+            return isAttack;
         }
 
          public string getSide()
         {
-            return this.side;
+            return side;
         }
     }
 
@@ -251,10 +251,10 @@ namespace Sprites
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = (int)xPos;
-            this.yPosition = (int)yPos;
+            xPosition = (int)xPos;
+            yPosition = (int)yPos;
             this.isDamaged = isDamaged;
-            this.isAttack = true;
+            isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
             sourceRectangles.Add(new Rectangle(18, 78, 27, 15));
@@ -271,7 +271,7 @@ namespace Sprites
             // If frames are past max,no longer attacking
             if (currFrames >= maxFrames)
             {
-                this.isAttack = false;
+                isAttack = false;
             }
 
         }
@@ -313,17 +313,17 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
         }
 
         public bool isAttacking()
         {
-            return this.isAttack;
+            return isAttack;
         }
 
         public string getSide()
         {
-            return this.side;
+            return side;
         }
     }
 
@@ -358,10 +358,10 @@ namespace Sprites
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = (int)xPos;
-            this.yPosition = (int)yPos;
+            xPosition = (int)xPos;
+            yPosition = (int)yPos;
             this.isDamaged = isDamaged;
-            this.isAttack = true;
+            isAttack = true;
             sourceRectangles = new List<Rectangle>();
             sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
             sourceRectangles.Add(new Rectangle(18, 78, 27, 15));
@@ -377,7 +377,7 @@ namespace Sprites
             // If frames are past max, no longer attacking
             if (currFrames >= maxFrames)
             {
-                this.isAttack = false;
+                isAttack = false;
             }
         }
 
@@ -424,11 +424,11 @@ namespace Sprites
 
         public bool isAttacking()
         {
-            return this.isAttack;
+            return isAttack;
         }
          public string getSide()
         {
-            return this.side;
+            return side;
         }
     }
   }

@@ -1,0 +1,15 @@
+@Author Tuhin Patel
+Date: 11/14/2022
+Sprint4
+File under review: Graph.cs
+Author of file under review: Brittaney Jin
+5 Minutes to complete review
+
+*Reviewing for maintainability*
+
+I find this code quite maintainable. It is very easy to update the graph as every
+possible type of combination of rooms can be added easily. I do think that the visited
+array could be tricky to work with, and it may be better to make the edges/tuples
+their own type with a field called "visited." The way it is now could cause major errors if
+the value of visited in an index i does not match what the correpsonding room should have as
+its visited.

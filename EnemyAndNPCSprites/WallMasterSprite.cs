@@ -17,8 +17,7 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 2000;
         private int deathFrames = 0;
-        private SoundEffect enemyHit;
-
+        
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
@@ -30,9 +29,6 @@ namespace Sprites
         public float YPosition { get => yPosition; set => yPosition = value; }
         private int direction = 1;
         public int Direction { get => direction; set => direction = value; }
-        private bool movingHorizontally = true;
-        private bool movingVertically = false;
-
         private Rectangle destinationRectangle;
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
@@ -46,25 +42,23 @@ namespace Sprites
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
        
-        public WallMasterSprite(Texture2D texture, float xPosition, float yPosition, SoundEffect sound, Texture2D texture2)
+        public WallMasterSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.enemyHit = sound;
-            this.dyingTexture = texture2;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 60, 60);
-            this.random = new Random();
-            this.currDirection = directions[random.Next(0, directions.Count)];
+            dyingTexture = texture2;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 60, 60);
+            random = new Random();
+            currDirection = directions[random.Next(0, directions.Count)];
         }
-
         public void Update()
         {
             if (!isDead)
             {
                 if (random.Next(0, maxFrames) <= (maxFrames / 50))
                 {
-                    this.currDirection = directions[random.Next(0, directions.Count)];
+                    currDirection = directions[random.Next(0, directions.Count)];
                 }
                 if (currFrames == maxFrames)
                 {
@@ -77,19 +71,19 @@ namespace Sprites
 
                 if (currDirection == Directions.UP)
                 {
-                    this.yPosition -= 1;
+                    yPosition -= 1;
                 }
                 else if (currDirection == Directions.LEFT)
                 {
-                    this.xPosition -= 1;
+                    xPosition -= 1;
                 }
                 else if (currDirection == Directions.RIGHT)
                 {
-                    this.xPosition += 1;
+                    xPosition += 1;
                 }
                 else // Direction is down
                 {
-                    this.yPosition += 1;
+                    yPosition += 1;
                 }
             } else
             {
@@ -104,7 +98,7 @@ namespace Sprites
             {
                 // By default, draw the hand without the pinch
 
-                this.destinationRectangle = new((int)this.xPosition, (int)this.yPosition, 60, 60);
+                destinationRectangle = new((int)xPosition, (int)yPosition, 60, 60);
 
                 // Otherwise, have it pinch
                 if (currFrames % 5 == 0)
@@ -140,11 +134,11 @@ namespace Sprites
                 }
                 else
                 {
-                    this.dyingComplete = true;
+                    dyingComplete = true;
                 }
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                 }
                 spriteBatch.End();
             }
@@ -155,12 +149,12 @@ namespace Sprites
 
         public Vector2 getPosition()
         {
-            return new Vector2(this.xPosition, this.yPosition);
+            return new Vector2(xPosition, yPosition);
         }
 
         public Rectangle GetHitbox()
         {
-            return this.destinationRectangle;
+            return destinationRectangle;
         }
 
         public void TurnAround(string side)
@@ -169,16 +163,16 @@ namespace Sprites
                 switch (side)
                 {
                     case "top":
-                        this.currDirection = Directions.DOWN;
+                        currDirection = Directions.DOWN;
                         break;
                     case "bottom":
-                        this.currDirection = Directions.UP;
+                        currDirection = Directions.UP;
                         break;
                     case "left":
-                        this.currDirection = Directions.RIGHT;
+                        currDirection = Directions.RIGHT;
                         break;
                     case "right":
-                        this.currDirection = Directions.LEFT;
+                        currDirection = Directions.LEFT;
                         break;
                     default:
                         break;
@@ -188,8 +182,8 @@ namespace Sprites
 
         public void TakeDamage(string side)
         {
-            enemyHit.Play();
-            this.isDead = true;
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
+            isDead = true;
         }
         public ISprite DropItem()
         {
@@ -197,7 +191,7 @@ namespace Sprites
             {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.xPosition, this.yPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(xPosition, yPosition - 150), droppableItems[rand]);
             }
             else
             {
@@ -205,10 +199,6 @@ namespace Sprites
             }
         }
 
-        public void Die()
-        {
-
-        }
     }
 }
 

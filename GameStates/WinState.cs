@@ -9,6 +9,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Sprites;
 using SharpDX.Direct2D1;
+using Microsoft.Xna.Framework;
 
 namespace GameStates
 
@@ -17,29 +18,32 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
+        private ISprite text;
+        private ISprite winGame;
         public WinGameState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWinning(Link.Instance.currentPosition);
+            text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(390, 250), "YAY!");
+            winGame = BackgroundSpriteFactory.Instance.WinGameScreen();
 
         }
         public void GamePlay()
         {
-            this.controller.gameState = new GamePlayState(this.controller, this.game);
+            controller.gameState = new GamePlayState(controller, game);
         }
         public void Inventory()
         {
-            this.controller.gameState = new InventoryState(this.controller, this.game);
-            Debug.WriteLine("goofy ah");
+            controller.gameState = new InventoryState(controller, game   , game.hud);
         }
         public void GameOver()
         {
-            this.controller.gameState = new GameOverState(this.controller, this.game);
+            controller.gameState = new GameOverState(controller, game);
         }
         public void Pause()
         {
-            this.controller.gameState = new PauseState(this.controller, this.game);
+            controller.gameState = new PauseState(controller, game);
         }
         public void WinGame()
         {
@@ -47,45 +51,33 @@ namespace GameStates
         }
         public void TransitionUp()
         {
-            this.controller.gameState = new TransitionUpState(this.controller, this.game);
+            controller.gameState = new TransitionUpState(controller, game);
         }
         public void TransitionDown()
         {
-            this.controller.gameState = new TransitionDownState(this.controller, this.game);
+            controller.gameState = new TransitionDownState(controller, game);
         }
         public void TransitionLeft()
         {
-            this.controller.gameState = new TransitionLeftState(this.controller, this.game);
+            controller.gameState = new TransitionLeftState(controller, game);
         }
         public void TransitionRight()
         {
-            this.controller.gameState = new TransitionRightState(this.controller, this.game);
+            controller.gameState = new TransitionRightState(controller, game);
         }
         public void Update()
         {
-            //LinkDyingSprite sprite = Link.Instance.currentLinkSprite as LinkDyingSprite;
-            //if (!sprite.isComplete)
-            //{
-            //Link.Instance.Update();
             Link.Instance.game.currentRoom.Update();
-            Link.Instance.currentLinkSprite.Update();
-            //}
-
+            Link.Instance.Update();
+            winGame.Update();
         }
         public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch _spriteBatch)
         {
-            //LinkWinningSprite sprite = Link.Instance.currentLinkSprite as LinkWinningSprite;
-            //if (!sprite.isComplete)
-            //{
-            //Link.Instance.Draw(_spriteBatch);
             Link.Instance.game.currentRoom.Draw(_spriteBatch);
-            Link.Instance.currentLinkSprite.Draw(_spriteBatch);
-            //}
-            //if (sprite.isComplete)
-            //{
-            //    ISprite gameOver = BackgroundSpriteFactory.Instance.GameOverScreen();
-            //    gameOver.Draw(_spriteBatch);
-            //}
+            winGame.Draw(_spriteBatch);
+            Link.Instance.Draw(_spriteBatch);
+            text.Draw(_spriteBatch);
+            
         }
     }
 }

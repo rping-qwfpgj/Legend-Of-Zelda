@@ -53,7 +53,7 @@ namespace Controllers
                                 if (typeField != keyBindings[key].GetType())
                                 {
                                     keyBindings[key].Execute();
-                                    Debug.WriteLine(keyBindings[key]);
+                                   
                                 }
                                 previousCommand = keyBindings[key];
                             }
@@ -70,7 +70,7 @@ namespace Controllers
                                     if (typeField != keyBindings[key].GetType())
                                     {
                                         keyBindings[key].Execute();
-                                        Debug.WriteLine(keyBindings[key]);
+                                        
                                     }
                                     previousCommand = keyBindings[key];
                                 }

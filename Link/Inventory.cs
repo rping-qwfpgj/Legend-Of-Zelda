@@ -37,9 +37,6 @@ namespace Sprint0
         public void addItem(IItem item)
         {
             int itemCount;
-
-            //this.inventory.TryGetValue(item.toString(), out itemCount);
-
             if (this.inventory.ContainsKey(item.toString()))
             {
                 itemCount = this.inventory[item.toString()];
@@ -58,16 +55,11 @@ namespace Sprint0
         public void removeItem(String itemStr)
         {
             int itemCount;
-
-            //this.inventory.TryGetValue(item.toString(), out itemCount);
-
             if (this.inventory.ContainsKey(itemStr))
             {
                 itemCount = this.inventory[itemStr];
                 inventory[itemStr] = itemCount - 1;
-                
             }
-
         }
     }
 }
