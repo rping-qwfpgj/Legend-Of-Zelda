@@ -142,7 +142,7 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackDownSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
             isDamaged = isDamaged;
@@ -250,7 +250,7 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackLeftSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
             isDamaged = isDamaged;
@@ -357,7 +357,7 @@ namespace Sprites
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
-            texture = texture;
+            this.texture = texture;
             xPosition = (int)xPos;
             yPosition = (int)yPos;
             isDamaged = isDamaged;
