@@ -1,13 +1,10 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using States;
 using Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
-using System.Diagnostics;
 using GameStates;
 
 namespace Sprint0
@@ -46,8 +43,7 @@ namespace Sprint0
         public Game1 game;
         public float health;
         private bool canBeDamaged;
-        private SoundEffect takeDamage;
-    
+        
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
