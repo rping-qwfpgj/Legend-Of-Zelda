@@ -45,5 +45,10 @@ namespace LegendofZelda.SpriteFactories
             return new GameOverScreen(gameOverBackground);
         }
 
+        public ISprite WinGameScreen()
+        {
+            return new WinGameScreen(gameOverBackground);
+        }
+
     }
 }

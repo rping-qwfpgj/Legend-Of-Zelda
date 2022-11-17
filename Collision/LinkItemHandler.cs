@@ -49,7 +49,7 @@ namespace Collision
 
 				case Triforce:
                     Link.Instance.health = 4.0f;
-					
+					SoundFactory.Instance.CreateSoundEffect("Winning").Play();
 					Link.Instance.game.gameStateController.gameState.WinGame();
 					// trigger the win game state
                     break;

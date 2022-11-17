@@ -9,6 +9,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using Sprites;
 using SharpDX.Direct2D1;
+using Microsoft.Xna.Framework;
 
 namespace GameStates
 
@@ -17,11 +18,16 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
+        private ISprite text;
+        private ISprite winGame;
         public WinGameState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWinning(Link.Instance.currentPosition);
+            text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(390, 250), "YAY!");
+            winGame = BackgroundSpriteFactory.Instance.WinGameScreen();
+
         }
         public void GamePlay()
         {
@@ -63,11 +69,15 @@ namespace GameStates
         {
             Link.Instance.game.currentRoom.Update();
             Link.Instance.Update();
+            winGame.Update();
         }
         public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch _spriteBatch)
         {
             Link.Instance.game.currentRoom.Draw(_spriteBatch);
+            winGame.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
+            text.Draw(_spriteBatch);
+            
         }
     }
 }

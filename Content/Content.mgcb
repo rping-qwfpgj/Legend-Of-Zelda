@@ -200,3 +200,9 @@
 /processorParam:TextureFormat=Compressed
 /build:Times New Roman.spritefont
 
+#begin winning_sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:winning_sound.wav
+
