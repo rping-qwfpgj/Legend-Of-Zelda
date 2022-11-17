@@ -40,7 +40,22 @@ namespace GameStates
         {
             
         }
-        
+        public void TransitionUp()
+        {
+            
+        }
+        public void TransitionDown()
+        {
+            
+        }
+        public void TransitionLeft()
+        {
+            
+        }
+        public void TransitionRight()
+        {
+            
+        }
         public void Update()
         {
             game.hud.Update();
