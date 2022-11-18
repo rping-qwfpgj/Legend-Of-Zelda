@@ -94,6 +94,10 @@ namespace Sprint0
 
         public void ThrowProjectile()
         {
+            if (this.throwable == Throwables.Bomb)
+            {
+                this.inventory.removeItem("bomb");
+            }
             SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
             this.UpdatePosition();
             currentState.ThrowProjectile();
