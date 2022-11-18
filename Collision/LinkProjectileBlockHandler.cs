@@ -20,6 +20,10 @@ namespace Collision
 
 		public static void handleCollision(ILinkProjectile projectile, IBlock block, Room room, Game1 game)
 		{
+			if(block is PlainDarkBlueBlock)
+			{
+				// do nothing
+			} else { 
 			projectile.collide();
 			room.RemoveObject(projectile);
 
@@ -49,5 +53,6 @@ namespace Collision
 		}
 
 	}
+			} 
 }
 }
