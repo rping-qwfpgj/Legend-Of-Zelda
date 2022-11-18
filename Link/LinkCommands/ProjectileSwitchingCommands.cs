@@ -19,7 +19,10 @@ namespace Commands
 
         public void Execute()
         {
-            Link.Instance.throwable = Link.Throwables.Bomb;
+            if (Link.Instance.inventory.getItemCount("bomb") > 0)
+            {
+                Link.Instance.throwable = Link.Throwables.Bomb;
+            }
         }
 
     }
