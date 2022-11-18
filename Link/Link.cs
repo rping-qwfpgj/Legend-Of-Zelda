@@ -43,7 +43,6 @@ namespace Sprint0
         public Inventory inventory;
         public Game1 game;
         public float health;
-        private bool canBeDamaged;
         public float maxHealth;
         private string side;
 
@@ -61,7 +60,6 @@ namespace Sprint0
             this.health = 3;
             this.maxHealth = 3;
             this.isDamaged = false;
-            this.canBeDamaged = true;
         }
 
         public void Reset()
@@ -77,7 +75,6 @@ namespace Sprint0
             this.health = 3;
             this.maxHealth = 3;
             this.isDamaged = false;
-            this.canBeDamaged = true;
 
             this.game.RoomloaderInit();
             this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
@@ -145,10 +142,9 @@ namespace Sprint0
         
         public void TakeDamage(string side)
         {
-            if (this.canBeDamaged && this.health > 0)
+            if (!this.isDamaged && this.health > 0)
             {
                 this.isDamaged = true;
-                this.canBeDamaged = false;
                 this.currentState.Redraw();
                 this.side = side;
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
@@ -211,7 +207,6 @@ namespace Sprint0
                 {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
-                    this.canBeDamaged = true;
                     this.UpdatePosition();
 
                     // Check if current sprite is an attacking sprite
