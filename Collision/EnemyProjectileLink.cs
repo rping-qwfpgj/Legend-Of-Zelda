@@ -20,10 +20,6 @@ namespace Collision
             projectile.collide();
             Link.Instance.TakeDamage(side);
 			room.RemoveObject(projectile);
-			
 		}
-
-        
-
 	}
 }

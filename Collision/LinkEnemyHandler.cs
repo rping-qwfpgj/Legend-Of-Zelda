@@ -16,7 +16,7 @@ namespace Collision
     public static class LinkEnemyHandler
 	{		
 
-		public static void handleCollision(IEnemy enemy, string side, Room room, Game1 game)
+		public static void handleCollision(IEnemy enemy, string side, Game1 game)
 		{
 			
 			if(Link.Instance.currentLinkSprite is IAttackingSprite)
@@ -27,16 +27,6 @@ namespace Collision
                     side = reverseSide(side);
                     enemy.TakeDamage(side);
                 }     
-                    
-                    /*
-                     
-                    */
-                    /*
-					 * for future:
-					 * if enemy.health <= 0
-					 * game/room.remove(enemy)
-					 */
-                
             } else
 			{
                 if(enemy is WallMasterSprite)
@@ -49,12 +39,6 @@ namespace Collision
                 } else { 
 				    Link.Instance.TakeDamage(side);
                 }
-                
-                /*
-				 * for future:
-				 * if Link.Instancehealth <= 0
-				 * game over 
-				 */
             }
         }
 
@@ -66,21 +50,15 @@ namespace Collision
             {
                  case "top":
                       return "bottom";
-                      
                  case "bottom":
                       return "top";
-                      
                  case "left":
-                      return "right";
-                      
+                      return "right";    
                  case "right":
-                      return "left";
-                      
+                      return "left"; 
                  default:
-                      return "error no cases chosen";
-                      
+                      return "error no cases chosen"; 
             }
 		}
-
 	}
 }
