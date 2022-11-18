@@ -57,11 +57,13 @@ namespace GameStates
             mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
             cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
 
-            selectedItems = new();
-            selectedItems.Add(selectedBoomerang);
-            selectedItems.Add(selectedBomb);
-            selectedItems.Add(selectedFire);
-            selectedItems.Add(selectedArrow);
+            selectedItems = new()
+            {
+                selectedBoomerang,
+                selectedBomb,
+                selectedFire,
+                selectedArrow
+            };
 
             selectedItem = selectedBoomerang;
 
@@ -78,11 +80,13 @@ namespace GameStates
             cursor.Update();
             game.keyboardController.Update();
 
-            List<Link.Throwables> inventoryItems = new();
-            inventoryItems.Add(Link.Throwables.Boomerang);
-            inventoryItems.Add(Link.Throwables.Bomb);
-            inventoryItems.Add(Link.Throwables.Fire);
-            inventoryItems.Add(Link.Throwables.Arrow);
+            List<Link.Throwables> inventoryItems = new()
+            {
+                Link.Throwables.Boomerang,
+                Link.Throwables.Bomb,
+                Link.Throwables.Fire,
+                Link.Throwables.Arrow
+            };
             var newRect = cursor.DestinationRectangle;
 
             for (int i = 0; i < 4; i++)

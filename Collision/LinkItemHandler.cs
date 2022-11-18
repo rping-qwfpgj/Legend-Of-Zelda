@@ -29,22 +29,24 @@ namespace Collision
 			{
 				case SmallRedHeart:
                     Link.Instance.health += 1.0f;
-					if(Link.Instance.health > 3)
+					if(Link.Instance.health > Link.Instance.maxHealth)
 					{
-						Link.Instance.health = 3;
+						Link.Instance.health = Link.Instance.maxHealth;
 					}
 					break;
 				
 				case BigHeart:
                     Link.Instance.health += 1.0f;
-					if(Link.Instance.health > 3)
-					{
-						Link.Instance.health = 3;
-					}
+                    Link.Instance.maxHealth = 4;
+                    if (Link.Instance.health > Link.Instance.maxHealth)
+                    {
+                        Link.Instance.health = Link.Instance.maxHealth;
+                    }
+                    
 					break;
 
 				case Fairy:
-                    Link.Instance.health = 3.0f;
+                    Link.Instance.health = Link.Instance.maxHealth;
 					break;
 
 				case Triforce:

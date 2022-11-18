@@ -16,20 +16,20 @@ namespace HeadsUpDisplay
         // For setting the positions of the heart sprites. 
         private int x;
         private int y;
-        readonly private Vector2 heartOnePos, heartTwoPos, heartThreePos, backgroundPos;
+        readonly private Vector2 heartOnePos, heartTwoPos, heartThreePos, heartFourPos, backgroundPos;
 
         int bombCount, keyCount, gemstoneCount;
         ISprite bombCountText, keyCountText, gemstoneCountText;
         int mapCount;
         ISprite blueMap;
-        ISprite red1, red2, red3;
-        ISprite halfRed1, halfRed2, halfRed3;
-        ISprite pink1, pink2, pink3;
-        ISprite heart1, heart2, heart3;
+        ISprite red1, red2, red3, red4;
+        ISprite halfRed1, halfRed2, halfRed3, halfRed4;
+        ISprite pink1, pink2, pink3, pink4;
         private ISprite throwableSprite;
         public ISprite ThrowableSprite { set => throwableSprite = value; }
         ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
         float heartCount;
+        private List<ISprite> heartsList;
 
         public Hud(int xPos, int yPos)
         {
@@ -41,25 +41,30 @@ namespace HeadsUpDisplay
             heartOnePos = new Vector2(heartXPos, heartYPos);
             heartTwoPos = new Vector2(heartXPos + heartSpacing, heartYPos);
             heartThreePos = new Vector2(heartXPos + heartSpacing * 2, heartYPos);
+            heartFourPos = new Vector2(heartXPos + heartSpacing * 3, heartYPos);
             backgroundPos = new Vector2(x, y);
 
             heartCount = 3;
             red1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "RedHeartSprite");
             red2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "RedHeartSprite");
             red3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "RedHeartSprite");
+            red4 = HudSpriteFactory.Instance.CreateSprite(heartFourPos, "RedHeartSprite");
 
             halfRed1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "HalfRedHeartSprite");
             halfRed2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "HalfRedHeartSprite");
             halfRed3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "HalfRedHeartSprite");
+            halfRed4 = HudSpriteFactory.Instance.CreateSprite(heartFourPos, "HalfRedHeartSprite");
 
             pink1 = HudSpriteFactory.Instance.CreateSprite(heartOnePos, "PinkHeartSprite");
             pink2 = HudSpriteFactory.Instance.CreateSprite(heartTwoPos, "PinkHeartSprite");
             pink3 = HudSpriteFactory.Instance.CreateSprite(heartThreePos, "PinkHeartSprite");
+            pink4 = HudSpriteFactory.Instance.CreateSprite(heartFourPos, "PinkHeartSprite");
 
-            heart1 = red1;
-            heart2 = red2;
-            heart3 = red3;
-     
+            heartsList = new()
+            {
+                red1, red2, red3, red4
+            };
+
             blueMap = HudSpriteFactory.Instance.CreateSprite(new Vector2(x + 40, y + 55), "HudBlueMapSprite");
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(backgroundPos, "hudBackground"));
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(x + 472, y + 62), "LinkSwordSprite"));
@@ -87,39 +92,31 @@ namespace HeadsUpDisplay
             switch (heartCount)
             {
                 case 0:
-                    heart1 = pink1;
-                    heart2 = pink2;
-                    heart3 = pink3;
+                    heartsList = new() { pink1, pink2, pink3, pink4 };
                     break;
                 case .5f:
-                    heart1 = halfRed1;
-                    heart2 = pink2;
-                    heart3 = pink3;
+                    heartsList = new() { halfRed1, pink2, pink3, pink4 };
                     break;
-                case 1:              
-                    heart1 = red1;
-                    heart2 = pink2;
-                    heart3 = pink3;          
+                case 1:
+                    heartsList = new() { red1, pink2, pink3, pink4 };
                     break;
                 case 1.5f:               
-                    heart1 = red1;
-                    heart2 = halfRed2;
-                    heart3 = pink3;         
+                    heartsList = new() { red1, halfRed2, pink3, pink4 };
                     break;
                 case 2:               
-                    heart1 = red1;
-                    heart2 = red2;
-                    heart3 = pink3;            
+                    heartsList = new() { red1, red2, pink3, pink4 };
                     break;
                 case 2.5f:          
-                    heart1 = red1;
-                    heart2 = red2;
-                    heart3 = halfRed3;      
+                    heartsList = new() { red1, red2, halfRed3, pink4 };
                     break;
-                case 3:      
-                    heart1 = red1;
-                    heart2 = red2;
-                    heart3 = red3; 
+                case 3:
+                    heartsList = new() { red1, red2, red3, pink4 };
+                    break;
+                case 3.5f:
+                    heartsList = new() { red1, red2, red3, halfRed4 };
+                    break;
+                case 4:
+                    heartsList = new() { red1, red2, red3, red4};
                     break;
                 default:
                     break;
@@ -150,10 +147,14 @@ namespace HeadsUpDisplay
                 blueMap.Draw(_spriteBatch);
             }
 
-            heart1.Draw(_spriteBatch);
-            heart2.Draw(_spriteBatch);
-            heart3.Draw(_spriteBatch);
-
+            for (int i = 0; i < 3; i++)
+            {
+                heartsList[i].Draw(_spriteBatch);
+            }
+            if (Link.Instance.maxHealth == 4)
+            {
+                heartsList[3].Draw(_spriteBatch);
+            }
         }
 
         public void switchProjectile(int type)

@@ -43,6 +43,7 @@ namespace Sprint0
         public Game1 game;
         public float health;
         private bool canBeDamaged;
+        public float maxHealth;
         
         public Link()
         {
@@ -55,6 +56,7 @@ namespace Sprint0
             this.inventory = new Inventory();
 
             this.health = 3;
+            this.maxHealth = 3;
             this.isDamaged = false;
             this.canBeDamaged = true;
         }
@@ -70,6 +72,7 @@ namespace Sprint0
             this.inventory = new Inventory();
 
             this.health = 3;
+            this.maxHealth = 3;
             this.isDamaged = false;
             this.canBeDamaged = true;
 
