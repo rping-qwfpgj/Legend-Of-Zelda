@@ -6,6 +6,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
+using System.Windows.Forms;
 
 namespace Sprint0
 {
@@ -139,10 +140,12 @@ namespace Sprint0
             }
         }
 
+        
         public void TakeDamage(string side)
         {
-            if (this.canBeDamaged == true && this.health > 0)
+            if (this.canBeDamaged && this.health > 0)
             {
+                this.isDamaged = true;
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
                 this.health -= 0.5f;
                 if (health <= 0)
@@ -155,32 +158,7 @@ namespace Sprint0
                     this.isDamaged = true;
                     this.canBeDamaged = false;
                     this.currentState.Redraw();
-                    switch (side)
-                    {
-                        case "top":
-
-                            this.currentPosition.Y += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
-
-                            break;
-                        case "bottom":
-
-                            this.currentPosition.Y -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                            break;
-                        case "left":
-                            this.currentPosition.X -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(25, 0);
-                            break;
-                        case "right":
-                            this.currentPosition.X += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-
-
-                            break;
-                        default:
-                            break;
-                    }
+                    this.side = side;
                 }
             }
         }
