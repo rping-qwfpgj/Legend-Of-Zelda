@@ -96,7 +96,16 @@ namespace Sprint0
         {
             if (this.throwable == Throwables.Bomb)
             {
-                this.inventory.removeItem("bomb");
+                if (this.inventory.getItemCount("bomb") > 0)
+                {
+                    this.inventory.removeItem("bomb");
+                    SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
+                    this.UpdatePosition();
+                    currentState.ThrowProjectile();
+                } else
+                {
+                    this.throwable = Throwables.None;
+                }
             }
             SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
             this.UpdatePosition();
