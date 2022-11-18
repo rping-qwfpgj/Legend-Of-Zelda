@@ -45,6 +45,8 @@ namespace Sprint0
         public float health;
         private bool canBeDamaged;
         public float maxHealth;
+        private string side;
+
         
         public Link()
         {
@@ -146,6 +148,9 @@ namespace Sprint0
             if (this.canBeDamaged && this.health > 0)
             {
                 this.isDamaged = true;
+                this.canBeDamaged = false;
+                this.currentState.Redraw();
+                this.side = side;
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
                 this.health -= 0.5f;
                 if (health <= 0)
@@ -156,9 +161,7 @@ namespace Sprint0
                 else
                 {
                     this.isDamaged = true;
-                    this.canBeDamaged = false;
-                    this.currentState.Redraw();
-                    this.side = side;
+                    
                 }
             }
         }
@@ -181,7 +184,7 @@ namespace Sprint0
                 {
                     int knockbackDistance = 10;
                     switch(this.side)
-                    {   
+                    {
                     case "top":
                         this.currentPosition.Y += knockbackDistance;
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
@@ -208,6 +211,7 @@ namespace Sprint0
                 {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
+                    this.canBeDamaged = true;
                     this.UpdatePosition();
 
                     // Check if current sprite is an attacking sprite
