@@ -24,23 +24,21 @@ using Interfaces;
 // Vishal "good teamate" Kumar
 public class Game1 : Game
 {
-    // Sprite sheet from which all sprites are obtained from
-    public IItem currentItem;
-    public IEnemy enemy;
+    public GraphicsDeviceManager _graphics;
+    public SpriteBatch _spriteBatch;
+
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
-    public CollisionDetector collisionDetector;
-    public ISprite background;
+    public Graph roomsGraph;
+
     public KeyboardController keyboardController;
     public MouseController mouseController;
+    public GameStateController gameStateController;
+
+    public CollisionDetector collisionDetector;
     public Hud hud;
     public Song backgroundMusic;
-    public Graph roomsGraph;
-    public GameStateController gameStateController;
-    public GraphicsDeviceManager _graphics;
-    public SpriteBatch _spriteBatch;
-        
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -52,13 +50,16 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        gameStateController = new GameStateController(this);
+
         SpriteFactoriesInit();
         RoomloaderInit();
         GraphInit();
         ControllersInit();
+
         hud = new Hud(20, -19);
+        gameStateController = new GameStateController(this);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
+
         base.Initialize();
     }
     protected override void LoadContent()
@@ -71,10 +72,9 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
         if (gameStateController.gameState is ITransitionGameState) { 
-        var gameState = gameStateController.gameState as ITransitionGameState;
-        gameState.Update(gameTime, gameTime.TotalGameTime);
-        }
-        else
+            var gameState = gameStateController.gameState as ITransitionGameState;
+            gameState.Update(gameTime, gameTime.TotalGameTime);
+        } else
         {
             gameStateController.gameState.Update();
         }
@@ -93,6 +93,7 @@ public class Game1 : Game
     private void ControllersInit()
     {
         keyboardController = new KeyboardController(new NoInputCommand());
+
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(gameStateController));
         keyboardController.AddCommand(Keys.Up, new WalkUpCommand(gameStateController));
         keyboardController.AddCommand(Keys.S, new WalkDownCommand(gameStateController));
@@ -101,18 +102,21 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
+        
         keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
-        keyboardController.AddCommand(Keys.N, new AttackCommand());
+        
         keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
         keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand());
         keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand());
         keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand());
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
+
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
         keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
+        
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
         mouseController = new(this, center);
@@ -120,6 +124,7 @@ public class Game1 : Game
     private void GraphInit()
     {
         roomsGraph = new();
+
         roomsGraph.AddLeftRightEdge(17, 16);
         roomsGraph.AddLeftRightEdge(16, 15);
         roomsGraph.AddLeftRightEdge(12, 13);
