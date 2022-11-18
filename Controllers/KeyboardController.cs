@@ -42,38 +42,11 @@ namespace Controllers
                     // Loop through the bindings. If a key is down, execute its command.
                     if (!(Link.Instance.game.gameStateController.gameState is PauseState))
                     {
-                    //foreach (Keys key in keyBindings.Keys)
-                    //{
-                    //    if (kstate.IsKeyDown(key))
-                    //    {
-                    //        Type typeField = previousCommand.GetType();
-                    //        if (typeField != keyBindings[key].GetType())
-                    //        {
-                    //            keyBindings[key].Execute();
-
-                    //        }
-                    //        previousCommand = keyBindings[key];
-                    //    }
-                    //}
-                    handleInput();
+                        handleInput();
                     } else
                     {
                         if (kstate.GetPressedKeys().Contains(Keys.H))
                         {
-                            
-                            //foreach (Keys key in keyBindings.Keys)
-                            //{
-                            //    if (kstate.IsKeyDown(key))
-                            //    {
-                            //        Type typeField = previousCommand.GetType();
-                            //        if (typeField != keyBindings[key].GetType())
-                            //        {
-                            //            keyBindings[key].Execute();
-                                        
-                            //        }
-                            //        previousCommand = keyBindings[key];
-                            //    }
-                            //}
                             handleInput();
                         }
                     }
