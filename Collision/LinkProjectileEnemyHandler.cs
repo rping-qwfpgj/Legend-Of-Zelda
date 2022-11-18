@@ -21,11 +21,6 @@ namespace Collision
             projectile.collide();
             room.RemoveObject(projectile);
             enemy.TakeDamage(side);
-            
-
         }
-
-        
-
 	}
 }
