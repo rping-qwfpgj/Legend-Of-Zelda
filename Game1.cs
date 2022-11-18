@@ -51,13 +51,14 @@ public class Game1 : Game
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        gameStateController = new GameStateController(this);
         SpriteFactoriesInit();
         RoomloaderInit();
         GraphInit();
         ControllersInit();
 
         hud = new Hud(20, -19);
-        gameStateController = new GameStateController(this);
+        
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
         base.Initialize();
