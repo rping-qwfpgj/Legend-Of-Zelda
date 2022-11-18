@@ -189,27 +189,54 @@ namespace Sprint0
         {
             this.UpdatePosition();
             this.currentLinkSprite.Update();
-            foreach (var projectile in currentProjectiles)
-            {
+            foreach (var projectile in currentProjectiles) { 
                 projectile.Update();
             }
 
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
-            {
+            {   
                 this.isDamagedCounter++;
-                if (this.isDamagedCounter > 60)
+
+                // Take knockback for the first 20 frames
+                if(this.isDamagedCounter < 20)
                 {
-                    this.canBeDamaged = true;
+                    int knockbackDistance = 10;
+                    switch(this.side)
+                    {   
+                    case "top":
+                        this.currentPosition.Y += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    case "left":
+                        this.currentPosition.X += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        
+                        break;
+                    case "right":
+                        this.currentPosition.X -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        break;
+                    default:
+                    break;
+                    }
+                }
+                
+                if (this.isDamagedCounter > 180)
+                {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
                     this.UpdatePosition();
 
-                    //Check if current sprite is an attacking sprite
+                    // Check if current sprite is an attacking sprite
                     if (currentLinkSprite is IAttackingSprite)
                     {
                         IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                        if (!currSprite.isAttacking())
+                        if (!(currSprite.isAttacking()))
                         {
                             this.currentState.Redraw();
                         }
