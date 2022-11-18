@@ -19,7 +19,8 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        private int mapCount, compassCount, bowCount;
+        private int mapCount, compassCount;
+        private ISprite map, compass;
 
         private ISprite boomerang, bomb, fire, arrow;
         private ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
@@ -51,13 +52,11 @@ namespace GameStates
             arrow = HudSpriteFactory.Instance.CreateSprite(new Vector2(412 + 3 * 50, 122), "HudBowSprite");
 
             Vector2 selectedItemLocation = new(220, 122);
-
             selectedBoomerang = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBoomerangSprite");
             selectedBomb = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBombSprite");
             selectedFire = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudFireSprite");
             selectedArrow = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBowSprite");
           
-
             itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
             mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
             cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
@@ -86,10 +85,12 @@ namespace GameStates
             {
                 for (int j = 0; j < 1; j++)
                 {
-                 inventory.Add(new Vector2(400 + (i * newRect.Width), 122 + (j * newRect.Height)), throwablesList[i]);
+                    inventory.Add(new Vector2(400 + (i * newRect.Width), 122 + (j * newRect.Height)), throwablesList[i]);
                 }
             }
 
+            map = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 135), "OrangeMap");
+            compass = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 250), "Compass");
         }
         public void GamePlay()
         {
@@ -100,6 +101,7 @@ namespace GameStates
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
             cursor.Update();
+            hud.Update();
             game.keyboardController.Update();
 
             currentThrowable = inventory[new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)];
@@ -110,7 +112,6 @@ namespace GameStates
                 inGameHud.switchProjectile(currentThrowable);
                 selectedItem = selectedItemDict[currentThrowable];
             }
-       
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -136,7 +137,6 @@ namespace GameStates
             {
                 arrow.Draw(_spriteBatch);
             }
-
             if (Link.Instance.inventory.getThrowableCount(currentThrowable) > 0)
             {
                 selectedItem.Draw(_spriteBatch);
@@ -152,19 +152,11 @@ namespace GameStates
 
             if (mapCount > 0)
             {
-                ISprite map = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 135), "OrangeMap");
                 map.Draw(_spriteBatch);
             }
             if (compassCount > 0)
             {
-                ISprite compass = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 250), "Compass");
                 compass.Draw(_spriteBatch);
-            }
-         
-            if (bowCount > 0)
-            {
-                ISprite bow = HudSpriteFactory.Instance.CreateSprite(new Vector2(460, 122), "HudBowSprite");
-                bow.Draw(_spriteBatch);
             }
         }
 
