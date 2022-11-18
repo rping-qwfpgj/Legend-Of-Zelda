@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Sprint0;
 using Commands;
 using Controllers;
@@ -14,7 +13,6 @@ using LegendofZelda.SpriteFactories;
 using System;
 using LegendofZelda.Interfaces;
 using HeadsUpDisplay;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
 
