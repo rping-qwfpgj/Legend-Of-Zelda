@@ -13,7 +13,8 @@ namespace Controllers
 		private Dictionary<Keys, ICommand> keyBindings = new();
 		private ICommand noInput;
 		private ICommand previousCommand;
-		
+        private KeyboardState kstate;
+
 
         // Pass the noInput command into the keyboard controller in Game1's initialize function
         public KeyboardController(ICommand command) 
@@ -29,7 +30,7 @@ namespace Controllers
 
 		public void Update()
 		{ 
-			KeyboardState kstate = Keyboard.GetState();
+			kstate = Keyboard.GetState();
 
 			if(kstate.GetPressedKeyCount() == 0)
 			{
@@ -38,44 +39,63 @@ namespace Controllers
 			} 
 			else if(kstate.GetPressedKeyCount() == 1)
 			{
-                //if (Link.Instance.game.gameStateController.gameState is PauseState && kstate.GetPressedKeys().Contains(Keys.H))
                     // Loop through the bindings. If a key is down, execute its command.
                     if (!(Link.Instance.game.gameStateController.gameState is PauseState))
                     {
-                        foreach (Keys key in keyBindings.Keys)
-                        {
-                            if (kstate.IsKeyDown(key))
-                            {
-                                Type typeField = previousCommand.GetType();
-                                if (typeField != keyBindings[key].GetType())
-                                {
-                                    keyBindings[key].Execute();
-                                   
-                                }
-                                previousCommand = keyBindings[key];
-                            }
-                        }
+                    //foreach (Keys key in keyBindings.Keys)
+                    //{
+                    //    if (kstate.IsKeyDown(key))
+                    //    {
+                    //        Type typeField = previousCommand.GetType();
+                    //        if (typeField != keyBindings[key].GetType())
+                    //        {
+                    //            keyBindings[key].Execute();
+
+                    //        }
+                    //        previousCommand = keyBindings[key];
+                    //    }
+                    //}
+                    handleInput();
                     } else
                     {
                         if (kstate.GetPressedKeys().Contains(Keys.H))
                         {
-                            foreach (Keys key in keyBindings.Keys)
-                            {
-                                if (kstate.IsKeyDown(key))
-                                {
-                                    Type typeField = previousCommand.GetType();
-                                    if (typeField != keyBindings[key].GetType())
-                                    {
-                                        keyBindings[key].Execute();
+                            
+                            //foreach (Keys key in keyBindings.Keys)
+                            //{
+                            //    if (kstate.IsKeyDown(key))
+                            //    {
+                            //        Type typeField = previousCommand.GetType();
+                            //        if (typeField != keyBindings[key].GetType())
+                            //        {
+                            //            keyBindings[key].Execute();
                                         
-                                    }
-                                    previousCommand = keyBindings[key];
-                                }
-                            }
+                            //        }
+                            //        previousCommand = keyBindings[key];
+                            //    }
+                            //}
+                            handleInput();
                         }
                     }
             }			
 		}
+
+        private void handleInput()
+        {
+            foreach (Keys key in keyBindings.Keys)
+            {
+                if (kstate.IsKeyDown(key))
+                {
+                    Type typeField = previousCommand.GetType();
+                    if (typeField != keyBindings[key].GetType())
+                    {
+                        keyBindings[key].Execute();
+
+                    }
+                    previousCommand = keyBindings[key];
+                }
+            }
+        }
     }
     
 }
