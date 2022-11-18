@@ -27,13 +27,8 @@ using Interfaces;
 public class Game1 : Game
 {
     // Sprite sheet from which all sprites are obtained from
-    public Texture2D linkSpriteSheet;
-    public Texture2D blockSpriteSheet;
     public IItem currentItem;
-    public Texture2D itemSpriteSheet;
     public IEnemy enemy;
-    public Texture2D enemySpriteSheet;
-    public Texture2D doorSpriteSheet;    
     public List<Room> rooms;
     public Room currentRoom;
     public int currentRoomIndex;
@@ -42,19 +37,11 @@ public class Game1 : Game
     public KeyboardController keyboardController;
     public MouseController mouseController;
     public Hud hud;
-    public SoundEffect enemyHit;
     public Song backgroundMusic;
     public Graph roomsGraph;
     public GameStateController gameStateController;
-
-    // Font for on screen text , the text to display and the class to store it in
-    public SpriteFont font;
-    public string onScreenText;
-    //public TextSprite textSprite;
-
     public GraphicsDeviceManager _graphics;
     public SpriteBatch _spriteBatch;
-        
         
     public Game1()
     {
@@ -62,11 +49,8 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
-  
-
     protected override void Initialize()
     {
-
         _graphics.PreferredBackBufferHeight += 150;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -77,46 +61,32 @@ public class Game1 : Game
         ControllersInit();
         hud = new Hud(20, -19);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
-        
         base.Initialize();
     }
-
-
     protected override void LoadContent()
     {
         backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 0.4f;
         MediaPlayer.Play(backgroundMusic);
-
     }
-
     protected override void Update(GameTime gameTime)
     {
         if (gameStateController.gameState is ITransitionGameState) { 
         var gameState = gameStateController.gameState as ITransitionGameState;
         gameState.Update(gameTime, gameTime.TotalGameTime);
-
         }
         else
         {
             gameStateController.gameState.Update();
         }
-
         base.Update(gameTime);
     }
-
-
     protected override void Draw(GameTime gameTime)
     {
         gameStateController.gameState.Draw(_spriteBatch);
-        
         base.Draw(gameTime);
     }
-
-
-
-
 
 
 
@@ -124,9 +94,7 @@ public class Game1 : Game
     //--------HELPER METHODS---------//
     private void ControllersInit()
     {
-
         keyboardController = new KeyboardController(new NoInputCommand());
-
         keyboardController.AddCommand(Keys.W, new WalkUpCommand(gameStateController));
         keyboardController.AddCommand(Keys.Up, new WalkUpCommand(gameStateController));
         keyboardController.AddCommand(Keys.S, new WalkDownCommand(gameStateController));
@@ -145,24 +113,15 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
         keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        //keyboardController.AddCommand(Keys.J, new LeftRoomCommand(this, roomsGraph, gameStateController));
-        //keyboardController.AddCommand(Keys.K, new RightRoomCommand(this, roomsGraph, gameStateController));
-        //keyboardController.AddCommand(Keys.I, new UpRoomCommand(this, roomsGraph, gameStateController));
-        //keyboardController.AddCommand(Keys.M, new DownRoomCommand(this, roomsGraph, gameStateController));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
         keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
-
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
         mouseController = new(this, center);
-
     }
-
     private void GraphInit()
     {
         roomsGraph = new();
-
-
         roomsGraph.AddLeftRightEdge(17, 16);
         roomsGraph.AddLeftRightEdge(16, 15);
         roomsGraph.AddLeftRightEdge(12, 13);
@@ -184,7 +143,6 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(6, 10);
         roomsGraph.AddDownUpEdge(11, 12);
     }
-
     public void RoomloaderInit()
     {
         rooms = new();
@@ -192,7 +150,6 @@ public class Game1 : Game
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-
 
         for (int i = 0; i <= 18; i++)
         {
@@ -205,11 +162,7 @@ public class Game1 : Game
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);
-
     }
-
-
-
     private void SpriteFactoriesInit()
     {
         HudSpriteFactory.Instance.loadContent(Content);
@@ -223,5 +176,4 @@ public class Game1 : Game
         TextSpriteFactory.Instance.loadContent(Content);
         MapPieceSpriteFactory.Instance.loadContent(Content);
     }
-
 }
