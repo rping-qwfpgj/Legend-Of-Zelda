@@ -127,7 +127,7 @@ namespace Collision
                 if(otherObj is IBlock)// linkProj - Block
                 {
                     IBlock block = otherObj as IBlock;
-                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, this.room);
+                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, this.room, this.game);
                 }else if (otherObj is IEnemy) // linkProj-enemy
                 {
                     IEnemy enemy = otherObj as IEnemy;                    
