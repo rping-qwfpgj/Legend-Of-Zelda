@@ -36,119 +36,12 @@ namespace Collision
 		public void handleCollision(ISprite obj, ISprite otherObj)
 		{
             string side = determineSide(obj, otherObj);
-            
-            if (obj is IEnemyProjectile) {
-                IEnemyProjectile projectile = obj as IEnemyProjectile;
-                if (otherObj is IBlock) // enemyProj - block
-                {
-                    IBlock block = otherObj as IBlock;
-                    EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
-                }
-                if (otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // enemyProj - Link
-                {
-                    side = determineSide(otherObj, obj);
-                    EnemyProjectileLinkHandler.handleCollision(projectile,side, this.room);
-                }
-
-            } else if (obj is ILinkProjectile)
-            {
-                ILinkProjectile linkProjectile = obj as ILinkProjectile;
-                if(otherObj is IBlock)// linkProj - Block
-                {
-                    IBlock block = otherObj as IBlock;
-                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, room);
-                }else if (otherObj is IEnemy) // linkProj-enemy
-                {
-                    IEnemy enemy = otherObj as IEnemy;                    
-                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, room);
-                }
-            } else if (obj is IEnemy)
-            {
-                IEnemy enemy = obj as IEnemy;
-                if(otherObj is IBlock) // enemy-block
-                {
-                    IBlock block = otherObj as IBlock;
-                    Rectangle collisionRect = new Rectangle();
-                    collisionRectangle(ref obj,  ref otherObj, ref collisionRect);
-                    EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
-                }
-
-                else if (otherObj is ILinkProjectile) // LinkProj - enemy
-                {
-                    ILinkProjectile linkProjectile = otherObj as ILinkProjectile;
-                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, room);
-
-                }
-                else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
-                {
-                    side = determineSide(otherObj, obj);
-                    LinkEnemyHandler.handleCollision(enemy, side, room, game);
-                }
-
-
-            } else if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
-            {
-                if(otherObj is IEnemy)// link enemy # 1
-                {
-                    IEnemy enemy = otherObj as IEnemy;
-                    LinkEnemyHandler.handleCollision(enemy, side, room, game);
-
-                } else if (otherObj is IBlock && obj is INonAttackingSprite) // link block, link is not attacking
-                {
-                    IBlock block = otherObj as IBlock;
-                    Rectangle collisionRect = new();
-                    collisionRectangle(ref obj, ref otherObj, ref collisionRect);
-                    LinkBlockHandler.handleCollision(block, this.room, side, collisionRect);
-                } else if(otherObj is IEnemyProjectile) // enemy projectile - link
-                {
-                    IEnemyProjectile enemyProj = otherObj as IEnemyProjectile;
-                    EnemyProjectileLinkHandler.handleCollision(enemyProj,side, this.room);
-                } else if(otherObj is IItem)
-                {
-                    IItem item = otherObj as IItem;
-                    LinkItemHandler.handleCollision( item, this.room, this.game);
-                }
-
-            }                   
-                else if (obj is IBlock)
-                {
-                    side = determineSide(otherObj, obj);
-                    IBlock block = obj as IBlock;
-                    if(otherObj is INonAttackingSprite) // otherObj is Link that is not attacking: Link- block
-                    {
-                            Rectangle collisionRect = new Rectangle();
-                            collisionRectangle (ref obj, ref Link.Instance.currentLinkSprite, ref collisionRect);
-                            LinkBlockHandler.handleCollision(block, this.room, side, collisionRect);                                                           
-                    } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
-                    {
-                        IEnemyProjectile projectile = otherObj as IEnemyProjectile;
-                        EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
-                    } else if (otherObj is ILinkProjectile) // LinkProj - block
-                    {
-                        ILinkProjectile projectile = otherObj as ILinkProjectile;
-                        LinkProjectileBlockHandler.handleCollision(projectile, (IBlock)obj, room);
-                    } else if (otherObj is IEnemy) // Enemy - Block
-                    {
-                        IEnemy enemy = otherObj as IEnemy;
-                        Rectangle collisionRect = new Rectangle();
-                        collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
-                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
-                    }
-                } /*else if (obj is IEnemyProjectile) 
-                {
-                    IEnemyProjectile projectile = obj as IEnemyProjectile;
-                    if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // enemyProj - Link
-                    {
-                        EnemyProjectileLinkHandler.handleCollision(projectile, Link.Instance, side);
-                    }
-                } else */ if (obj is IItem) 
-                {
-                    IItem item = obj as IItem;
-                    if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // Link - Item
-                    {
-                        LinkItemHandler.handleCollision(item, this.room, this.game);
-                    }
-                }
+            firstObjEnemyProj(obj, otherObj, side);
+            firstObjLinkProj(obj, otherObj, side);
+            firstObjEnemy(obj, otherObj, side);
+            firstObjLink(obj, otherObj, side);
+            firstObjBlock(obj, otherObj, side);
+            firstObjItem(obj, otherObj, side);
                                                                                    
 		}
 
@@ -206,6 +99,139 @@ namespace Collision
             Rectangle rectangle1 = obj.DestinationRectangle;
             Rectangle rectangle2 = otherObj.DestinationRectangle;
             Rectangle.Intersect(ref rectangle1, ref rectangle2, out collisionRect);
+        }
+
+        private void firstObjEnemyProj(ISprite obj, ISprite otherObj, string side)
+        {
+                if (obj is IEnemyProjectile) {
+                IEnemyProjectile projectile = obj as IEnemyProjectile;
+                if (otherObj is IBlock) // enemyProj - block
+                {
+                    IBlock block = otherObj as IBlock;
+                    EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
+                }
+                if (otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // enemyProj - Link
+                {
+                    side = determineSide(otherObj, obj);
+                    EnemyProjectileLinkHandler.handleCollision(projectile,side, this.room);
+                }
+
+            } 
+        }
+
+        private void firstObjLinkProj(ISprite obj, ISprite otherObj, string side)
+        {
+            if (obj is ILinkProjectile)
+            {
+                ILinkProjectile linkProjectile = obj as ILinkProjectile;
+                if(otherObj is IBlock)// linkProj - Block
+                {
+                    IBlock block = otherObj as IBlock;
+                    LinkProjectileBlockHandler.handleCollision(linkProjectile, block, this.room);
+                }else if (otherObj is IEnemy) // linkProj-enemy
+                {
+                    IEnemy enemy = otherObj as IEnemy;                    
+                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, this.room);
+                }
+            }
+        }
+
+        private void firstObjEnemy(ISprite obj, ISprite otherObj, string side)
+        {
+            if (obj is IEnemy)
+            {
+                IEnemy enemy = obj as IEnemy;
+                if(otherObj is IBlock) // enemy-block
+                {
+                    IBlock block = otherObj as IBlock;
+                    Rectangle collisionRect = new Rectangle();
+                    collisionRectangle(ref obj,  ref otherObj, ref collisionRect);
+                    EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
+                }
+
+                else if (otherObj is ILinkProjectile) // LinkProj - enemy
+                {
+                    ILinkProjectile linkProjectile = otherObj as ILinkProjectile;
+                    LinkProjectileEnemyHandler.handleCollision(linkProjectile, enemy, side, this.room);
+
+                }
+                else if (otherObj is INonAttackingSprite || otherObj is IAttackingSprite) // Link-enemy # 2
+                {
+                    side = determineSide(otherObj, obj);
+                    LinkEnemyHandler.handleCollision(enemy, side, this.room, this.game);
+                }
+
+
+            }
+        }
+
+        private void firstObjLink(ISprite obj, ISprite otherObj, string side)
+        {
+            if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
+            {
+                if(otherObj is IEnemy)// link enemy # 1
+                {
+                    IEnemy enemy = otherObj as IEnemy;
+                    LinkEnemyHandler.handleCollision(enemy, side, this.room, this.game);
+
+                } else if (otherObj is IBlock && obj is INonAttackingSprite) // link block, link is not attacking
+                {
+                    IBlock block = otherObj as IBlock;
+                    Rectangle collisionRect = new();
+                    collisionRectangle(ref obj, ref otherObj, ref collisionRect);
+                    LinkBlockHandler.handleCollision(block, this.room, side, collisionRect);
+                } else if(otherObj is IEnemyProjectile) // enemy projectile - link
+                {
+                    IEnemyProjectile enemyProj = otherObj as IEnemyProjectile;
+                    EnemyProjectileLinkHandler.handleCollision(enemyProj,side, this.room);
+                } else if(otherObj is IItem)
+                {
+                    IItem item = otherObj as IItem;
+                    LinkItemHandler.handleCollision( item, this.room, this.game);
+                }
+
+            }
+        }
+
+        private void firstObjBlock(ISprite obj, ISprite otherObj, string side)
+        {
+             if (obj is IBlock)
+                {
+                    side = determineSide(otherObj, obj);
+                    IBlock block = obj as IBlock;
+                    if(otherObj is INonAttackingSprite) // otherObj is Link that is not attacking: Link- block
+                    {
+                            Rectangle collisionRect = new Rectangle();
+                            collisionRectangle (ref obj, ref Link.Instance.currentLinkSprite, ref collisionRect);
+                            LinkBlockHandler.handleCollision(block, this.room, side, collisionRect);                                                           
+                    } else if (otherObj is IEnemyProjectile) // Enemy-Proj - block
+                    {
+                        IEnemyProjectile projectile = otherObj as IEnemyProjectile;
+                        EnemyProjectileBlockHandler.handleCollision(projectile, block, side, this.room);
+                    } else if (otherObj is ILinkProjectile) // LinkProj - block
+                    {
+                        ILinkProjectile projectile = otherObj as ILinkProjectile;
+                        LinkProjectileBlockHandler.handleCollision(projectile, (IBlock)obj, room);
+                    } else if (otherObj is IEnemy) // Enemy - Block
+                    {
+                        IEnemy enemy = otherObj as IEnemy;
+                        Rectangle collisionRect = new Rectangle();
+                        collisionRectangle( ref obj,  ref otherObj, ref collisionRect);
+                        EnemyBlockHandler.handleCollision(enemy, block, side, collisionRect);
+                    }
+             } 
+        }
+
+        private void firstObjItem(ISprite obj, ISprite otherObj, string side)
+        {
+             if (obj is IItem) 
+             {
+                    IItem item = obj as IItem;
+                    if(otherObj is IAttackingSprite || otherObj is INonAttackingSprite) // Link - Item
+                    {
+                        LinkItemHandler.handleCollision(item, this.room, this.game);
+                    }
+             }
         }
     }
 }
