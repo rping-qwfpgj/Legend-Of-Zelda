@@ -1,22 +1,14 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Sprint0;
-using Sprites;
 using LegendofZelda;
-using System.Diagnostics;
 using LegendofZelda.Interfaces;
-using SharpDX.Direct2D1;
 
 namespace Collision
 {
     public class CollisionDetector
 	{
-
-		//private Link currLink;
-		private Game1 currGame;
+        private Game1 currGame;
 		private List<ISprite> objects;
 		private List<ISprite> alreadyChecked;
 		private CollisionDelegator handler;
@@ -25,23 +17,19 @@ namespace Collision
 		public CollisionDetector(Room room, Game1 game)
 		{
 			this.currGame = game;
-			
 
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
 			this.alreadyChecked = new List<ISprite>();
 			this.handler = new CollisionDelegator(room, game);
-			
-		
+
 		}
 
 		public bool detectCollision(ISprite obj, ISprite otherObj)
 		{
 			Rectangle objectRec = obj.DestinationRectangle;
 			Rectangle otherRec = otherObj.DestinationRectangle;
-
-			
 			return objectRec.Intersects(otherRec);
 		}
 		
@@ -64,25 +52,31 @@ namespace Collision
 			{
 				foreach (ISprite otherObj in this.objects)
 				{
-					if (obj == otherObj)
-					{
-						continue;
-					}
-
-					if (!alreadyChecked.Contains(otherObj)) { // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
-						if (detectCollision(obj, otherObj))
-						{
-							
-                            this.handler.handleCollision(obj, otherObj);
-							// pass some stuff and let the handler handle it from here
-						}
-					}
+					checkForCollision(obj, otherObj);
 				}
-				// now that we've checked all the possible collision interactions with this object, we don't need to agian for now
+				// now that we've checked all the possible collision interactions with this object, we don't need to again for now
 				this.alreadyChecked.Add(obj);
 			}
            this.objects.Remove(currLinkSprite);
-
         }
+	
+		private void checkForCollision(ISprite obj, ISprite otherObj)
+		{
+			if (obj != otherObj)
+			{
+				if (!alreadyChecked.Contains(otherObj))
+				{ // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
+					if (detectCollision(obj, otherObj))
+					{
+						this.handler.handleCollision(obj, otherObj);
+						// pass some stuff and let the handler handle it from here
+					}
+				}
+			}
+        }
+	
+	
 	}
+
+
 }
