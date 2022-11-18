@@ -25,38 +25,9 @@ namespace GameStates
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(400, 260), false);
             controller.gameState = new GamePlayState(controller, game);
         }
-        public void Inventory()
-        {
-            controller.gameState = new InventoryState(controller, game, game.hud);
-           
-        }
-        public void GameOver()
-        {
-            controller.gameState = new GameOverState(controller, game);
-        }
         public void Pause()
         {
             controller.gameState = new PauseState(controller, game);
-        }
-        public void WinGame()
-        {
-            controller.gameState = new WinGameState(controller, game);
-        }
-        public void TransitionUp()
-        {
-            controller.gameState = new TransitionUpState(controller, game);
-        }
-        public void TransitionDown()
-        {
-            
-        }
-        public void TransitionLeft()
-        {
-            controller.gameState = new TransitionLeftState(controller, game);
-        }
-        public void TransitionRight()
-        {
-            controller.gameState = new TransitionRightState(controller, game);
         }
         public void Update()
         {
@@ -75,6 +46,15 @@ namespace GameStates
             game.currentRoom.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
         }
+
+        //none of these are valid states from TransitionDownState
+        public void Inventory() { }
+        public void GameOver() { }
+        public void WinGame() { }
+        public void TransitionUp() { }
+        public void TransitionDown() { }
+        public void TransitionLeft() { }
+        public void TransitionRight() { }
     }
 }
 

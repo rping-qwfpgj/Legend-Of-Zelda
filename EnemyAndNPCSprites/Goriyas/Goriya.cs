@@ -33,7 +33,7 @@ namespace Sprites
 
         private Random rand = new Random();
 
-        private List<string> droppableItems = new List<string> { "BigHeart", "OrangeGemstone", "Bomb" };
+        private List<string> droppableItems = new List<string> { "SmallRedHeart", "SmallBlueHeart", "OrangeGemstone", "Bomb" };
 
 
         private Texture2D texture;

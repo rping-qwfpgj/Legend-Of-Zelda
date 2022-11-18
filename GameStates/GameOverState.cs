@@ -20,42 +20,12 @@ namespace GameStates
             this.game = game;
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkDying(Link.Instance.currentPosition);
         }
-        public void GamePlay()
-        {
-            
-        }
-        public void Inventory()
-        {
-            
-        }
-        public void GameOver()
-        {
-            
-        }
+        
         public void Pause()
         {
-            
+            controller.gameState = new PauseState(controller, game);
         }
-        public void WinGame()
-        {
-            
-        }
-        public void TransitionUp()
-        {
-            
-        }
-        public void TransitionDown()
-        {
-            
-        }
-        public void TransitionLeft()
-        {
-            
-        }
-        public void TransitionRight()
-        {
-            
-        }
+      
         public void Update()
         {
             game.hud.Update();
@@ -91,6 +61,18 @@ namespace GameStates
                 Link.Instance.Reset();
             }
         }
+
+
+        //all invalid states from the current state
+        public void Inventory() { }
+        public void GameOver() { }
+        public void GamePlay() { }
+        public void WinGame() { }
+        public void TransitionUp() { }
+        public void TransitionDown() { }
+        public void TransitionLeft() { }
+        public void TransitionRight() { }
+
     }
 }
 

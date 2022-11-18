@@ -19,20 +19,24 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        int mapCount, compassCount, bowCount;
+        private int mapCount, compassCount, bowCount;
 
-        ISprite boomerang, bomb, fire, arrow;
-        ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
+        private ISprite boomerang, bomb, fire, arrow;
+        private ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
 
-        List<ISprite> selectedItems;
-        ISprite selectedItem;
+        private List<ISprite> selectedItems;
+        private ISprite selectedItem;
 
-        ISprite itemSelectionBackground;
-        ISprite mapDisplayBackground;
+        private ISprite itemSelectionBackground;
+        private ISprite mapDisplayBackground;
         public ISprite cursor;
+        public Link.Throwables currentThrowable;
 
-        Hud hud;
-        Hud inGameHud;
+        private Dictionary<Vector2, Link.Throwables> inventory;
+        private Dictionary<Link.Throwables, ISprite> selectedItemDict;
+
+        private Hud hud;
+        private Hud inGameHud;
         public InventoryState(GameStateController controller, Game1 game, Hud inGameHud)
         {
 
@@ -52,83 +56,61 @@ namespace GameStates
             selectedBomb = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBombSprite");
             selectedFire = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudFireSprite");
             selectedArrow = HudSpriteFactory.Instance.CreateSprite(selectedItemLocation, "HudBowSprite");
+          
 
             itemSelectionBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 0), "InventorySelectionSprite");
             mapDisplayBackground = HudSpriteFactory.Instance.CreateSprite(new Vector2(0, 230), "MapDisplaySprite");
             cursor = HudSpriteFactory.Instance.CreateSprite(new Vector2(400, 122), "HudSelectionCursor");
 
-            selectedItems = new();
-            selectedItems.Add(selectedBoomerang);
-            selectedItems.Add(selectedBomb);
-            selectedItems.Add(selectedFire);
-            selectedItems.Add(selectedArrow);
+            selectedItemDict= new()
+            {
+                { Link.Throwables.Boomerang, selectedBoomerang },
+                { Link.Throwables.Bomb,  selectedBomb},
+                { Link.Throwables.Fire, selectedFire},
+                { Link.Throwables.Arrow, selectedArrow}
+            };
 
-            selectedItem = selectedBoomerang;
+            List<Link.Throwables> throwablesList = new()
+            {
+                Link.Throwables.Boomerang,
+                Link.Throwables.Bomb,
+                Link.Throwables.Fire,
+                Link.Throwables.Arrow
+            };
+            selectedItem = selectedFire;
+            currentThrowable = Link.Throwables.Fire;
+
+            inventory = new();
+            var newRect = cursor.DestinationRectangle;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                 inventory.Add(new Vector2(400 + (i * newRect.Width), 122 + (j * newRect.Height)), throwablesList[i]);
+                }
+            }
 
         }
         public void GamePlay()
         {
             controller.gameState = new GamePlayState(controller, game);
         }
-        public void Inventory()
-        {
-            //already in inventory state
-        }
-        public void GameOver()
-        {
-            controller.gameState = new GameOverState(controller, game);
-        }
-        public void Pause()
-        {
-            controller.gameState = new PauseState(controller, game);
-        }
-        public void WinGame()
-        {
-            controller.gameState = new WinGameState(controller, game);
-        }
-        public void TransitionUp()
-        {
-            controller.gameState = new TransitionUpState(controller, game);
-        }
-        public void TransitionDown()
-        {
-            controller.gameState = new TransitionDownState(controller, game);
-        }
-        public void TransitionLeft()
-        {
-            controller.gameState = new TransitionLeftState(controller, game);
-        }
-        public void TransitionRight()
-        {
-            controller.gameState = new TransitionRightState(controller, game);
-        }
         public void Update()
         {
             mapCount = Link.Instance.inventory.getItemCount("orange map");
             compassCount = Link.Instance.inventory.getItemCount("compass");
-            bowCount = Link.Instance.inventory.getItemCount("bow");
             cursor.Update();
             game.keyboardController.Update();
 
-            List<Link.Throwables> inventoryItems = new();
-            inventoryItems.Add(Link.Throwables.Boomerang);
-            inventoryItems.Add(Link.Throwables.Bomb);
-            inventoryItems.Add(Link.Throwables.Fire);
-            inventoryItems.Add(Link.Throwables.Arrow);
-            var newRect = cursor.DestinationRectangle;
-
-            for (int i = 0; i < 4; i++)
+            currentThrowable = inventory[new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)];
+            Debug.WriteLine(currentThrowable);
+            if (Link.Instance.inventory.getThrowableCount(currentThrowable) > 0)
             {
-                for (int j = 0; j < 1; j++)
-                {
-                    if ((newRect.X == 400 + (i * newRect.Width)) && (newRect.Y == 122 + (j * newRect.Height)))
-                    {
-                        Link.Instance.throwable = inventoryItems[i];
-                        selectedItem = selectedItems[i];
-                        inGameHud.switchProjectile(i);
-                    }
-                }
+                Link.Instance.throwable = currentThrowable;
+                inGameHud.switchProjectile(currentThrowable);
+                selectedItem = selectedItemDict[currentThrowable];
             }
+       
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -138,11 +120,27 @@ namespace GameStates
             hud.Draw(_spriteBatch);
             cursor.Draw(_spriteBatch);
 
-            bomb.Draw(_spriteBatch);
-            arrow.Draw(_spriteBatch);
-            boomerang.Draw(_spriteBatch);
-            fire.Draw(_spriteBatch);
-            selectedItem.Draw(_spriteBatch);
+            if (Link.Instance.inventory.getThrowableCount(Link.Throwables.Bomb) > 0)
+            { 
+                bomb.Draw(_spriteBatch);
+            }
+            if (Link.Instance.inventory.getThrowableCount(Link.Throwables.Fire) > 0)
+            {
+                fire.Draw(_spriteBatch);
+            }
+            if (Link.Instance.inventory.getThrowableCount(Link.Throwables.Boomerang) > 0)
+            {
+                boomerang.Draw(_spriteBatch);
+            }
+            if (Link.Instance.inventory.getThrowableCount(Link.Throwables.Arrow) > 0)
+            {
+                arrow.Draw(_spriteBatch);
+            }
+
+            if (Link.Instance.inventory.getThrowableCount(currentThrowable) > 0)
+            {
+                selectedItem.Draw(_spriteBatch);
+            }
 
             for (int i = 0; i < 18; i++)
             {
@@ -169,6 +167,17 @@ namespace GameStates
                 bow.Draw(_spriteBatch);
             }
         }
+
+        //all invalid states from the current state
+        public void Inventory() { }
+        public void GameOver() { }
+        public void WinGame() { }
+        public void TransitionUp() { }
+        public void TransitionDown() { }
+        public void TransitionLeft() { }
+        public void TransitionRight() { }
+        public void Pause() { }
+       
     }
 }
 

@@ -10,7 +10,7 @@ namespace Sprites
 {
     public class WallMasterSprite : IEnemy
     {
-        private List<string> droppableItems = new List<string> { "BigHeart", "OrangeGemstone", "Fairy" };
+        private List<string> droppableItems = new List<string> { "SmallRedHeart", "SmallBlueHeart", "OrangeGemstone", "Fairy" };
 
 
         // Keep track of frames

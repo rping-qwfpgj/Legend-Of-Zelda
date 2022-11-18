@@ -11,12 +11,13 @@ namespace Sprites
 {
     public class StalfosSprite : IEnemy
     {
-        private List<string> droppableItems = new List<string> {"BigHeart", "OrangeGemstone" };
+        private List<string> droppableItems = new List<string> {"SmallRedHeart", "SmallBlueHeart", "OrangeGemstone" };
         
         // Keep track of frames
         private int currFrames = 0;
         private int maxFrames = 2000;
         private int deathFrames = 0;
+        private int maxDeathFrames = 20;
         
         // Texture to take sprites from
         private Texture2D texture;
@@ -33,9 +34,9 @@ namespace Sprites
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        
-        //private bool movingHorizontally = true;
-        //private bool movingVertically = false;
+    
+        private List<Rectangle> sourceRectangles;
+        private Rectangle sourceRectangle;
 
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
@@ -43,6 +44,7 @@ namespace Sprites
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
+
         public StalfosSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
@@ -50,7 +52,12 @@ namespace Sprites
             this.yPosition = yPosition;
             dyingTexture = texture2;
             currDirection = directions[random.Next(0, directions.Count)];
-
+            sourceRectangles = new();
+            sourceRectangles.Add(new Rectangle(2, 59, 15, 16));
+            sourceRectangles.Add(new Rectangle(0, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
+            sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
+            sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
         }
 
         public void Update()
@@ -94,8 +101,8 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle sourceRectangle = new Rectangle(2, 59, 15, 16);
-
+          
+            sourceRectangle = sourceRectangles[0];
             if (!isDead)
             {
                 destinationRectangle = new((int)xPosition, (int)yPosition, 30, 32);
@@ -114,31 +121,20 @@ namespace Sprites
             }
             else
             {
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
-                if (deathFrames >= 0 && deathFrames <= 5)
+                for (int i = 0; i < 4; i++)
                 {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
-
+                    if (deathFrames > (i * maxDeathFrames) / 4 && deathFrames <= ((i + 1) * maxDeathFrames) / 4)
+                    {
+                        sourceRectangle = sourceRectangles[i + 1];
+                    }
+                    else if (deathFrames > maxDeathFrames)
+                    {
+                        dyingComplete = true;
+                    }
                 }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    dyingComplete = true;
-                }
+             
                 if (!dyingComplete)
                 {
                     spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);

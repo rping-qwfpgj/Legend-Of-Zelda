@@ -12,13 +12,18 @@ using System.Runtime.CompilerServices;
 using LegendofZelda.Blocks;
 using LegendofZelda.SpriteFactories;
 
+
 namespace Collision
 {
     public static class LinkProjectileBlockHandler
 	{		
 
-		public static void handleCollision(ILinkProjectile projectile, IBlock block, Room room)
+		public static void handleCollision(ILinkProjectile projectile, IBlock block, Room room, Game1 game)
 		{
+			if(block is PlainDarkBlueBlock)
+			{
+				// do nothing
+			} else { 
 			projectile.collide();
 			room.RemoveObject(projectile);
 
@@ -26,46 +31,28 @@ namespace Collision
 			{
 				room.RemoveObject(block);
 
+				Graph currRoomGraph = game.roomsGraph;
+				int currRoom = game.currentRoomIndex;
 				// Need to remove the bombable wall on the other side
-				int roomToEdit;
-				switch (Link.Instance.game.currentRoomIndex) { 
-						case 4:
-							roomToEdit = 7;
-							break;
-						case 7:
-							roomToEdit = 4;
-							break;
-						case 6:
-							roomToEdit = 10;
-							break;
-						case 10:
-							roomToEdit = 6;
-							break;
-						default:
-							roomToEdit = 0;
-							break;
-				}
+				List<int> roomsToEdit = new List<int>{currRoomGraph.GetUpRoom(currRoom), currRoomGraph.GetDownRoom(currRoom)};
 
-				// Get the room 
-				List<ISprite> otherRoomSprites = Link.Instance.game.rooms[roomToEdit].sprites;
+				foreach(var roomToEdit in roomsToEdit) {
+					List<ISprite> otherRoomSprites = game.rooms[roomToEdit].sprites;
 
-				foreach (var sprite in otherRoomSprites)
-					{
-						if(sprite is BombableDoorBlock)
+					foreach (var sprite in otherRoomSprites)
 						{
-							otherRoomSprites.Remove(sprite);
-							break;
+							if(sprite is BombableDoorBlock)
+							{
+								otherRoomSprites.Remove(sprite);
+								break;
+							}
 						}
-					}
-
-				
-
-
-				
+				}
 			}
 
 		}
 
 	}
+			} 
 }
 }
