@@ -19,10 +19,8 @@ namespace Collision
 {
     public static class LinkBlockHandler
 	{		
-		
 		public static void handleCollision(IBlock block, Room currRoom, string side, Rectangle collisionRect)
 		{
-
             switch (side)
             {
                 case "top":
@@ -34,10 +32,7 @@ namespace Collision
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
                     } else if (!(block is OpenDoorBlock)) {
-                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
-                        Link.Instance.currentState = new LinkIdleWalkingUpState();
-                        Link.Instance.currentPosition.Y += collisionRect.Height;
-                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                        linkIdleWalk(side, collisionRect);
                     }
                     else if (block is OpenDoorBlock)
                     {
@@ -56,10 +51,7 @@ namespace Collision
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
                     } else if (!(block is OpenDoorBlock)) {
-                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
-                        Link.Instance.currentState = new LinkIdleWalkingDownState();
-                        Link.Instance.currentPosition.Y -= collisionRect.Height;
-                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                        linkIdleWalk(side, collisionRect);
                     }
                     else if (block is OpenDoorBlock)
                     {
@@ -74,28 +66,21 @@ namespace Collision
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
                     } else if (!(block is OpenDoorBlock)) {
-                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
-                        Link.Instance.currentState = new LinkIdleWalkingLeftState();
-                        Link.Instance.currentPosition.X += collisionRect.Width;
-                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                        linkIdleWalk(side, collisionRect);
                     } else if (block is OpenDoorBlock)
                     {
                         var myGame = Link.Instance.game;
                         var command = new LeftRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
                     }
-
-                     
                     break;
+
                 case "right":
                     if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
                     } else if(!(block is OpenDoorBlock)) { 
-                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
-					    Link.Instance.currentState = new LinkIdleWalkingRightState();
-                        Link.Instance.currentPosition.X -= collisionRect.Width;
-					    Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                        linkIdleWalk(side, collisionRect);
                     }
                     else if (block is OpenDoorBlock)
                     {
@@ -103,15 +88,44 @@ namespace Collision
                         var command = new RightRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
                     }
-
                     break;
+
                 default:
                     break;
 
-
 			}
-
         }
 
+        // process which makes link stop at block
+        private static void linkIdleWalk(string side, Rectangle collisionRect)
+        {
+            switch (side)
+            {
+                case "top":
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingUpState();
+                        Link.Instance.currentPosition.Y += collisionRect.Height;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                    break;
+                case "bottom":
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingDownState();
+                        Link.Instance.currentPosition.Y -= collisionRect.Height;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                    break;
+                case "left":
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+                        Link.Instance.currentState = new LinkIdleWalkingLeftState();
+                        Link.Instance.currentPosition.X += collisionRect.Width;
+                        Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                    break;
+                case "right":
+                        Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkIdleWalkingSprite(Link.Instance.currentPosition, Link.Instance.isDamaged, side);
+					    Link.Instance.currentState = new LinkIdleWalkingRightState();
+                        Link.Instance.currentPosition.X -= collisionRect.Width;
+					    Link.Instance.currentLinkSprite.DestinationRectangle = new((int)Link.Instance.currentPosition.X, (int)Link.Instance.currentPosition.Y, 38, 40);
+                    break;
+            }
+        }
 	}
 }
