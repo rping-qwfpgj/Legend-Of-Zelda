@@ -34,8 +34,14 @@ namespace Collision
 						Link.Instance.health = Link.Instance.maxHealth;
 					}
 					break;
-				
-				case BigHeart:
+                case SmallBlueHeart:
+                    Link.Instance.health += 1.0f;
+                    if (Link.Instance.health > Link.Instance.maxHealth)
+                    {
+                        Link.Instance.health = Link.Instance.maxHealth;
+                    }
+                    break;
+                case BigHeart:
                     Link.Instance.health += 1.0f;
                     Link.Instance.maxHealth = 4;
                     if (Link.Instance.health > Link.Instance.maxHealth)

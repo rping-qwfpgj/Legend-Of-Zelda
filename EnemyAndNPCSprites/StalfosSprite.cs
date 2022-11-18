@@ -11,7 +11,7 @@ namespace Sprites
 {
     public class StalfosSprite : IEnemy
     {
-        private List<string> droppableItems = new List<string> {"BigHeart", "OrangeGemstone" };
+        private List<string> droppableItems = new List<string> {"SmallRedHeart", "SmallBlueHeart", "OrangeGemstone" };
         
         // Keep track of frames
         private int currFrames = 0;
