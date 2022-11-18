@@ -146,7 +146,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
-        keyboardController.AddCommand(Keys.V, new ThrowRightCommand());
+        keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
         //keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
         keyboardController.AddCommand(Keys.N, new AttackCommand());

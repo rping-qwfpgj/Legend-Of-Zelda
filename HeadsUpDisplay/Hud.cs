@@ -74,7 +74,7 @@ namespace HeadsUpDisplay
             selectedBomb = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudBombSprite");
             selectedFire = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudFireSprite");
             selectedArrow = HudSpriteFactory.Instance.CreateSprite(hudSelectedItemLocation, "HudBowSprite");
-            throwableSprite = selectedBoomerang;
+            throwableSprite = selectedFire;
         }
 
         public void Update()
@@ -157,21 +157,21 @@ namespace HeadsUpDisplay
             }
         }
 
-        public void switchProjectile(int type)
-        {
+        public void switchProjectile(Link.Throwables type)
+        {   
             sprites.Remove(throwableSprite);
             switch (type)
             {
-                case 0:
+                case Link.Throwables.Boomerang:
                     throwableSprite = selectedBoomerang;
                     break;
-                case 1:
+                case Link.Throwables.Bomb:
                     throwableSprite = selectedBomb;
                     break;
-                case 2:
+                case Link.Throwables.Fire:
                     throwableSprite = selectedFire;           
                     break;
-                case 3:
+                case Link.Throwables.Arrow:
                     throwableSprite = selectedArrow;
                     break;
             }

@@ -51,7 +51,7 @@ namespace Sprint0
             this.currentState = new LinkFacingUpState();
             this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
             
-            this.throwable = Throwables.Boomerang;
+            this.throwable = Throwables.None;
             this.currentProjectiles = new();
             this.inventory = new Inventory();
 
