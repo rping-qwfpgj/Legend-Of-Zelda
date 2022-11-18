@@ -18,12 +18,10 @@ namespace Collision
 			
 		}
 
-		public static void handleCollision(IEnemyProjectile projectile, IBlock block, string side, Room room)
+		public static void handleCollision(IEnemyProjectile projectile, Room room)
 		{
-			//have the projectile set it's currFrame to its last frame of animation
 			projectile.collide();
 			room.RemoveObject(projectile);
-			
 		}        
 	}
 }
