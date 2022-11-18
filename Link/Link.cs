@@ -191,8 +191,7 @@ namespace Sprint0
                         break;
                     case "left":
                         this.currentPosition.X += knockbackDistance;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
-                        
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);                        
                         break;
                     case "right":
                         this.currentPosition.X -= knockbackDistance;
@@ -203,7 +202,7 @@ namespace Sprint0
                     }
                 }
                 
-                if (this.isDamagedCounter > 180)
+                if (this.isDamagedCounter > 90)
                 {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
