@@ -17,22 +17,12 @@ namespace Collision
 		public CollisionDetector(Room room, Game1 game)
 		{
 			this.currGame = game;
-
 			// initialize room instance and also get the current collideable objects from it
 			this.currRoom = room;
 			this.objects = room.ReturnObjects();
 			this.alreadyChecked = new List<ISprite>();
 			this.handler = new CollisionDelegator(room, game);
-
 		}
-
-		public bool detectCollision(ISprite obj, ISprite otherObj)
-		{
-			Rectangle objectRec = obj.DestinationRectangle;
-			Rectangle otherRec = otherObj.DestinationRectangle;
-			return objectRec.Intersects(otherRec);
-		}
-		
 
 		/*
 		 *  Update method will constantly be checking all objects for a collision
@@ -57,26 +47,26 @@ namespace Collision
 				// now that we've checked all the possible collision interactions with this object, we don't need to again for now
 				this.alreadyChecked.Add(obj);
 			}
-           this.objects.Remove(currLinkSprite);
+            this.objects.Remove(currLinkSprite);
         }
 	
 		private void checkForCollision(ISprite obj, ISprite otherObj)
 		{
-			if (obj != otherObj)
-			{
-				if (!alreadyChecked.Contains(otherObj))
-				{ // only check for collision if object has not already been compared to all other objects (there may be a better way to do this?)
-					if (detectCollision(obj, otherObj))
-					{
-						this.handler.handleCollision(obj, otherObj);
-						// pass some stuff and let the handler handle it from here
-					}
+			if (obj != otherObj && !alreadyChecked.Contains(otherObj))
+			{   
+				// only check for collision if object has not already been compared to all other objects
+				if (detectCollision(obj, otherObj))
+				{
+                    // pass some stuff and let the handler handle it from here
+                    this.handler.handleCollision(obj, otherObj);
 				}
 			}
         }
-	
-	
-	}
-
-
+        private bool detectCollision(ISprite obj, ISprite otherObj)
+        {
+            Rectangle objectRec = obj.DestinationRectangle;
+            Rectangle otherRec = otherObj.DestinationRectangle;
+            return objectRec.Intersects(otherRec);
+        }
+    }
 }
