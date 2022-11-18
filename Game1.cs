@@ -93,13 +93,6 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-
-        // Link.Instance.Update();
-        // mouseController.Update();
-        //collisionDetector.Update();
-        //keyboardController.Update();
-        //currentRoom.Update(); 
-        //hud.Update();
         if (gameStateController.gameState is ITransitionGameState) { 
         var gameState = gameStateController.gameState as ITransitionGameState;
         gameState.Update(gameTime, gameTime.TotalGameTime);
@@ -116,10 +109,6 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        //GraphicsDevice.Clear(Color.Black);
-        //currentRoom.Draw(_spriteBatch);
-        //Link.Instance.Draw(_spriteBatch); 
-        //hud.Draw(_spriteBatch);
         gameStateController.gameState.Draw(_spriteBatch);
         
         base.Draw(gameTime);
@@ -147,7 +136,6 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
-        //keyboardController.AddCommand(Keys.E, new TakeDamageCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
         keyboardController.AddCommand(Keys.N, new AttackCommand());
         keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
