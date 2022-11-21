@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
-using System.Diagnostics;
 using LegendofZelda.Interfaces;
 
 namespace Sprites
@@ -13,18 +12,19 @@ namespace Sprites
         // Texture to take sprites from
         private readonly Texture2D texture;
         private Texture2D dyingTexture;
+
+        // Keep track of frames
         private int frameCounter = 0;
         private int timingCounter = 0;
         private int maxFrames = 20;
         private int deathFrames = 0;
+
         public bool isComplete = false;
+        private Color color = Color.White;
 
         // X and Y positions of the sprite
         private readonly int xPosition;
         private readonly int yPosition;
-
-        private Color color = Color.White;
-        
 
         // Get information about screen dimensions
         private Rectangle sourceRectangle;
@@ -37,15 +37,13 @@ namespace Sprites
         public LinkDyingSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition;
-            this.yPosition = (int)yPosition;
+            xPosition = (int)xPosition;
+            yPosition = (int)yPosition;
             dyingTexture = texture2;
-            
 
             // Create source and destination rectangles
             sourceRectangle = new Rectangle(1, 11, 15, 16); // Store the current location on the spritesheet to get a sprite from
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2); // Where to draw on screen
-
         }
         public void Update()
         {
@@ -75,7 +73,6 @@ namespace Sprites
                 if (deathFrames >= 0 && deathFrames <= 5)
                 {
                     sourceRectangle = new Rectangle(0, 0, 15, 16);
-
                 }
                 else if (deathFrames > 5 && deathFrames < 10)
                 {
@@ -93,12 +90,10 @@ namespace Sprites
                 } else if (deathFrames >= 20)
                 {
                     isComplete = true;
-                    
                 }
             }
         }
 
-        // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the sprite
@@ -122,7 +117,6 @@ namespace Sprites
             }
             spriteBatch.End();
         }
-
         public Rectangle GetHitbox()
         {
             return destinationRectangle;

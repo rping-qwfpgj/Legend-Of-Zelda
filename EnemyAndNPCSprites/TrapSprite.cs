@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using System.Diagnostics;
 using System.ComponentModel.Design.Serialization;
 
@@ -19,8 +19,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
@@ -42,9 +40,9 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
-            trapState = TrapStates.Sitting;
-            initialLocation = destinationRectangle;
-            //lastLocation = this.lastLocation;
+            this.trapState = TrapStates.Sitting;
+            this.initialLocation = destinationRectangle;
+           
         }
 
         public void Update()
@@ -61,7 +59,7 @@ namespace Sprites
                 // If no longer sitting, change the final location
                 if(trapState != TrapStates.Sitting)
                 {
-                    lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
+                    this.lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
                 }
             } else
             {
@@ -70,12 +68,12 @@ namespace Sprites
 
                 if(currState == TrapStates.MoveUp)
                 {
-                    yPosition -= 3;
+                    yPosition -= 2;
                     
                     
                 } else if (currState == TrapStates.MoveDown)
                 {
-                    yPosition += 3;
+                    yPosition += 2;
 
                     
                 } else if (currState == TrapStates.MoveLeft)
@@ -92,7 +90,7 @@ namespace Sprites
 
                 
 
-                //swapToOpposite(linkLocation);
+                
 
                 
             }

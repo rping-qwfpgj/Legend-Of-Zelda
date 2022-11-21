@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0;
+using LegendofZelda;
 using Commands;
 using Controllers;
 using System.IO;
@@ -15,6 +15,7 @@ using LegendofZelda.Interfaces;
 using HeadsUpDisplay;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
+using GameStates;
 
 
 // Creator: Tuhin Patel
@@ -78,6 +79,10 @@ public class Game1 : Game
         } else
         {
             gameStateController.gameState.Update();
+        }
+        if (gameStateController.gameState is WinGameState || gameStateController.gameState is GameOverState)
+        {
+            MediaPlayer.Stop();
         }
         base.Update(gameTime);
     }

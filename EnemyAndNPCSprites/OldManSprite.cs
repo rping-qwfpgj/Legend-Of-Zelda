@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using LegendofZelda.SpriteFactories;
 
 namespace Sprites
@@ -18,8 +18,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
         private string message = "EASTMOST PENNINSULA IS THE SECRET.";
         private int messageOffsetX = 180;
         private int messageOffsetY = 38;

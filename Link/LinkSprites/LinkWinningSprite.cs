@@ -5,7 +5,7 @@ using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
-using Sprint0;
+using LegendofZelda;
 
 namespace Sprites
 {

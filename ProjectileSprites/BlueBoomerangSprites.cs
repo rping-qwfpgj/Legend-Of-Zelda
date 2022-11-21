@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 

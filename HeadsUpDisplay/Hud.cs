@@ -5,7 +5,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 
 using System.Diagnostics;
-using Sprint0;
+using LegendofZelda;
 using Sprites;
 
 namespace HeadsUpDisplay

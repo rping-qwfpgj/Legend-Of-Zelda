@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using GameStates;
 using System.Linq;
 

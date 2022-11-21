@@ -24,8 +24,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;

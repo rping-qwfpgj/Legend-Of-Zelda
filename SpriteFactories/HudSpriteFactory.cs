@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using static Sprint0.Link;
+using static LegendofZelda.Link;
 using Sprites;
-using Sprint0;
+using LegendofZelda;
 using LegendofZelda.Interfaces;
 using LegendofZelda.Backgrounds;
 using System.Diagnostics;
@@ -59,10 +59,6 @@ namespace LegendofZelda.SpriteFactories
                 case "PinkHeartSprite":                    
                     
                     return new PinkHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
-                
-                case "BigTriforceSprite":
-                    
-                    return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);
                 
                 case "InventorySelectionSprite":
                     

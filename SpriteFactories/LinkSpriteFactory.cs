@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0;
+using LegendofZelda;
 using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
