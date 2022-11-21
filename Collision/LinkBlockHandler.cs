@@ -24,40 +24,39 @@ namespace Collision
             switch (side)
             {
                 case "top":
-                    if (block is IPushableBlock)
+                    if (block is IPushableBlock) // pushable block
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
-                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) {
+                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) { // locked door
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if (!(block is OpenDoorBlock)) {
-                        linkIdleWalk(side, collisionRect);
-                    }
-                    else if (block is OpenDoorBlock)
+                    } else if (block is OpenDoorBlock) // room transition block
                     {
                         var myGame = Link.Instance.game;
                         var command = new UpRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
+                    } else {
+                        linkIdleWalk(side, collisionRect);
                     }
 
                     break;
                 case "bottom":
-                    if (block is IPushableBlock)
+                    if (block is IPushableBlock) // pushable block
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("top");
-                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) {
+                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) { // locked door
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if (!(block is OpenDoorBlock)) {
-                        linkIdleWalk(side, collisionRect);
-                    }
+                    } 
                     else if (block is OpenDoorBlock)
                     {
                         var myGame = Link.Instance.game;
                         var command = new DownRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
+                    } else {
+                        linkIdleWalk(side, collisionRect);
                     }
 
                     break;
@@ -65,13 +64,13 @@ namespace Collision
                     if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) {
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if (!(block is OpenDoorBlock)) {
-                        linkIdleWalk(side, collisionRect);
                     } else if (block is OpenDoorBlock)
                     {
                         var myGame = Link.Instance.game;
                         var command = new LeftRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
+                    } else {
+                        linkIdleWalk(side, collisionRect);
                     }
                     break;
 
@@ -79,14 +78,13 @@ namespace Collision
                     if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if(!(block is OpenDoorBlock)) { 
-                        linkIdleWalk(side, collisionRect);
-                    }
-                    else if (block is OpenDoorBlock)
+                    } else if (block is OpenDoorBlock)
                     {
                         var myGame = Link.Instance.game;
                         var command = new RightRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
+                    } else {
+                        linkIdleWalk(side, collisionRect);
                     }
                     break;
 
@@ -98,6 +96,7 @@ namespace Collision
 
         // process which makes link stop at block
         private static void linkIdleWalk(string side, Rectangle collisionRect)
+
         {
             switch (side)
             {
