@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LegendofZelda.Interfaces
+﻿namespace LegendofZelda.Interfaces
 {
     public interface IGoriya : IEnemy
     {
+        public float XPosition { get; set; }
+        public float YPosition { get; set; }
         public bool IsDamaged { get; set; }
     }
 }
