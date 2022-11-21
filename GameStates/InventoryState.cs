@@ -1,12 +1,7 @@
-﻿using System;
-using Interfaces;
+﻿using Interfaces;
 using Sprint0;
 using Microsoft.Xna.Framework.Graphics;
-using Color = Microsoft.Xna.Framework.Color;
-using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
 using LegendofZelda.SpriteFactories;
-using Sprites;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -25,7 +20,7 @@ namespace GameStates
         private ISprite boomerang, bomb, fire, arrow;
         private ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
 
-        private List<ISprite> selectedItems;
+        //private List<ISprite> selectedItems;
         private ISprite selectedItem;
 
         private ISprite itemSelectionBackground;
@@ -105,7 +100,6 @@ namespace GameStates
             game.keyboardController.Update();
 
             currentThrowable = inventory[new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)];
-            Debug.WriteLine(currentThrowable);
             if (Link.Instance.inventory.getThrowableCount(currentThrowable) > 0)
             {
                 Link.Instance.throwable = currentThrowable;
@@ -114,8 +108,7 @@ namespace GameStates
             }
         }
         public void Draw(SpriteBatch _spriteBatch)
-        {
-            
+        {  
             itemSelectionBackground.Draw(_spriteBatch);
             mapDisplayBackground.Draw(_spriteBatch);
             hud.Draw(_spriteBatch);
@@ -172,5 +165,3 @@ namespace GameStates
        
     }
 }
-
-//ISprite text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(100, 100), "fucking hell");
