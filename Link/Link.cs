@@ -69,6 +69,7 @@ namespace LegendofZelda
             this.canBeDamaged = true;
             this.isDamagedCounter = 0;
 
+            this.game.BackgroundMusicInit();
             this.game.RoomloaderInit();
             this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
         }
