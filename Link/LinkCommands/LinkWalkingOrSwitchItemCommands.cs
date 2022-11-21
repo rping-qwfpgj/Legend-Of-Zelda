@@ -1,6 +1,6 @@
 ﻿using GameStates;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 
 namespace Commands
 {

@@ -1,5 +1,5 @@
 ﻿using Interfaces;
-using Sprint0;
+using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprites;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 
 namespace Sprites
 {

@@ -1,6 +1,6 @@
 ﻿using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
-using Sprint0;
+using LegendofZelda;
 using LegendofZelda;
 
 namespace Collision

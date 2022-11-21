@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using static Sprint0.Link;
+using static LegendofZelda.Link;
 using Sprites;
-using Sprint0;
+using LegendofZelda;
 using LegendofZelda.Interfaces;
 using LegendofZelda.Blocks;
 

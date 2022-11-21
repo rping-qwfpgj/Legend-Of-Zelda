@@ -2,9 +2,9 @@ using System;
 using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0;
+using LegendofZelda;
 
-namespace Sprint0
+namespace LegendofZelda
 {
     public class TextSprite : ISprite
     {

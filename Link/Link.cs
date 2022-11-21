@@ -7,7 +7,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
 
-namespace Sprint0
+namespace LegendofZelda
 {
     public class Link
     {

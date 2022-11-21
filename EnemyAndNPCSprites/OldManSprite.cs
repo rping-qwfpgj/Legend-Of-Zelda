@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using LegendofZelda.SpriteFactories;
 
 namespace Sprites

@@ -1,7 +1,7 @@
 ﻿using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace LegendofZelda
 {
     public class Inventory
     {

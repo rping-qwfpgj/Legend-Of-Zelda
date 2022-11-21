@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using GameStates;
 
-namespace Sprint0
+namespace LegendofZelda
 {
 
     public class Background : IBackground

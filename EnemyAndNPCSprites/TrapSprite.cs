@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendofZelda.Interfaces;
-using Sprint0;
+using LegendofZelda;
 using System.Diagnostics;
 using System.ComponentModel.Design.Serialization;
 
