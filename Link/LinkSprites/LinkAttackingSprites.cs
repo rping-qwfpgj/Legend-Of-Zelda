@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 
@@ -36,18 +34,19 @@ namespace Sprites
         public LinkAttackUpSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
         {
             this.texture = texture;
-            this.xPosition = (int)xPos;
-            this.yPosition = (int)yPos;
+            xPosition = (int)xPos;
+            yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             isAttack = true;
-            sourceRectangles = new List<Rectangle>();
-            sourceRectangles.Add(new Rectangle(1, 109, 16, 16));
-            sourceRectangles.Add(new Rectangle(18, 97, 16, 28));
-            sourceRectangles.Add(new Rectangle(37, 98, 12, 27));
-            sourceRectangles.Add(new Rectangle(54, 106, 12, 19));
+            sourceRectangles = new List<Rectangle>
+            {
+                new Rectangle(1, 109, 16, 16),
+                new Rectangle(18, 97, 16, 28),
+                new Rectangle(37, 98, 12, 27),
+                new Rectangle(54, 106, 12, 19)
+            };
             currentFrameIndex = 0;
         }
-
         public void Update()
         {
             // Update frames
@@ -58,12 +57,9 @@ namespace Sprites
             {
                 isAttack = false;
             }
-
         }
-        
         public void Draw(SpriteBatch spriteBatch)
         {
-
             // Frame logic
             if(currFrames >= 0 && currFrames <= maxFrames/4)
             {
@@ -89,7 +85,6 @@ namespace Sprites
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             {
@@ -97,23 +92,19 @@ namespace Sprites
             }
             spriteBatch.End();
         }
-         public Rectangle GetHitbox()
+        public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
-
         public bool isAttacking()
         {
             return isAttack;
         }
-
         public string getSide()
         {
             return side;
         }
     }
-
-
     public class LinkAttackDownSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -147,14 +138,15 @@ namespace Sprites
             yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             isAttack = true;
-            sourceRectangles = new List<Rectangle>();
-            sourceRectangles.Add(new Rectangle(1, 47, 16, 15));
-            sourceRectangles.Add(new Rectangle(18, 47, 16, 27));
-            sourceRectangles.Add(new Rectangle(35, 47, 15, 23));
-            sourceRectangles.Add(new Rectangle(53, 47, 13, 19));
+            sourceRectangles = new List<Rectangle>
+            {
+                new Rectangle(1, 47, 16, 15),
+                new Rectangle(18, 47, 16, 27),
+                new Rectangle(35, 47, 15, 23),
+                new Rectangle(53, 47, 13, 19)
+            };
             currentFrameIndex = 0;
         }
-
         public void Update()
         {
             // Update frames
@@ -166,11 +158,8 @@ namespace Sprites
                 isAttack = false;
             }
         }
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
-
             // Frame logic
             if (currFrames >= 0 && currFrames <= maxFrames / 4)
             {
@@ -196,7 +185,6 @@ namespace Sprites
             if (isDamaged)
             {
                 spriteBatch.Draw(texture, destinationRectangle, currentFrame, Color.Lerp(Color.White, Color.Red, 0.3f), 0, new Vector2(currentFrame.Width / 2, currentFrame.Height / 2), SpriteEffects.None, 1);
-
             }
             else
             {
@@ -204,23 +192,19 @@ namespace Sprites
             }
             spriteBatch.End();
         }
-
         public Rectangle GetHitbox()
         {
             return destinationRectangle;
         }
-
         public bool isAttacking()
         {
             return isAttack;
         }
-
-         public string getSide()
+        public string getSide()
         {
             return side;
         }
     }
-
     public class LinkAttackLeftSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -255,11 +239,13 @@ namespace Sprites
             yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             isAttack = true;
-            sourceRectangles = new List<Rectangle>();
-            sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
-            sourceRectangles.Add(new Rectangle(18, 78, 27, 15));
-            sourceRectangles.Add(new Rectangle(46, 78, 23, 15));
-            sourceRectangles.Add(new Rectangle(70, 77, 19, 16));
+            sourceRectangles = new List<Rectangle>
+            {
+                new Rectangle(1, 78, 15, 15),
+                new Rectangle(18, 78, 27, 15),
+                new Rectangle(46, 78, 23, 15),
+                new Rectangle(70, 77, 19, 16)
+            };
             currentFrameIndex = 0;
         }
 
@@ -273,12 +259,9 @@ namespace Sprites
             {
                 isAttack = false;
             }
-
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-
             // Frame logic
             if (currFrames >= 0 && currFrames <= maxFrames / 4)
             {
@@ -315,18 +298,15 @@ namespace Sprites
         {
             return destinationRectangle;
         }
-
         public bool isAttacking()
         {
             return isAttack;
         }
-
         public string getSide()
         {
             return side;
         }
     }
-
     public class LinkAttackRightSprite : IAttackingSprite
     {
         // Keep track of frames
@@ -348,11 +328,9 @@ namespace Sprites
         public string side = "right";
 
         // On screen location
-
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
         private int currentFrameIndex;
-
         public Rectangle DestinationRectangle { get => new Rectangle(destinationRectangle.X-(destinationRectangle.Width/2), destinationRectangle.Y-(destinationRectangle.Height/2), destinationRectangle.Width, destinationRectangle.Height); set => destinationRectangle = value;}
         public Vector2 Position { get => new(xPosition, yPosition); }
         public LinkAttackRightSprite(Texture2D texture, float xPos, float yPos, bool isDamaged)
@@ -362,11 +340,13 @@ namespace Sprites
             yPosition = (int)yPos;
             this.isDamaged = isDamaged;
             isAttack = true;
-            sourceRectangles = new List<Rectangle>();
-            sourceRectangles.Add(new Rectangle(1, 78, 15, 15));
-            sourceRectangles.Add(new Rectangle(18, 78, 27, 15));
-            sourceRectangles.Add(new Rectangle(46, 78, 23, 15));
-            sourceRectangles.Add(new Rectangle(70, 77, 19, 16));
+            sourceRectangles = new List<Rectangle>
+            {
+                new Rectangle(1, 78, 15, 15),
+                new Rectangle(18, 78, 27, 15),
+                new Rectangle(46, 78, 23, 15),
+                new Rectangle(70, 77, 19, 16)
+            };
             currentFrameIndex = 0;
         }
         public void Update()
@@ -380,10 +360,8 @@ namespace Sprites
                 isAttack = false;
             }
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-
             // Frame logic
             if (currFrames >= 0 && currFrames <= maxFrames / 4)
             {
@@ -421,15 +399,14 @@ namespace Sprites
         {
             return destinationRectangle;
         }
-
         public bool isAttacking()
         {
             return isAttack;
         }
-         public string getSide()
+        public string getSide()
         {
             return side;
         }
     }
-  }
+}
 
