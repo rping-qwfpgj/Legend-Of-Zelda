@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using HeadsUpDisplay;
 
 namespace GameStates
-
 {
     public class InventoryState : IGameState
     {
