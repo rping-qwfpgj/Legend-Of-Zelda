@@ -1,23 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using States;
-using Interfaces;
-using Microsoft.Xna.Framework.Graphics;
-using LegendofZelda.SpriteFactories;
-using LegendofZelda.Interfaces;
+﻿using LegendofZelda.Interfaces;
 using System;
 using System.Collections.Generic;
-using LegendofZelda;
-using LegendofZelda.Items;
-using SharpDX.DirectWrite;
-using System.ComponentModel.DataAnnotations;
 
 namespace Sprint0
 {
     public class Inventory
     {
         private Dictionary<string, int> inventory = new();
-        private Dictionary<Link.Throwables, int> throwables= new();
-
         public Inventory()
         {
             this.inventory.Add("bomb", 0);
@@ -32,39 +21,29 @@ namespace Sprint0
             this.inventory.Add("small red heart", 0);
             this.inventory.Add("small blue heart", 0);
         }
-
-        public int getItemCount(String itemStr)
+        public int getItemCount(string itemStr)
         {   
             return this.inventory[itemStr];
         }
-
         public int getThrowableCount(Link.Throwables throwable)
         {
             int returner = 0;
             switch (throwable) {
-
                 case Link.Throwables.Boomerang:
                     returner = inventory["boomerang"];
                     break;
-               
                 case Link.Throwables.Bomb:
                     returner = inventory["bomb"];
                     break;
-
                 case Link.Throwables.Fire:
                     returner =  1;
                     break;
-
                 case Link.Throwables.Arrow:
                     returner = inventory["bow"];
                     break;
             }
-
             return returner;
-
         }
-
-
         public void addItem(IItem item)
         {
             int itemCount;
@@ -80,10 +59,8 @@ namespace Sprint0
                     inventory[item.toString()] = itemCount + 1;
                 }
             }
-
         }
-
-        public void removeItem(String itemStr)
+        public void removeItem(string itemStr)
         {
             int itemCount;
             if (this.inventory.ContainsKey(itemStr))
