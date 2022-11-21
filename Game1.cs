@@ -103,7 +103,6 @@ public class Game1 : Game
         MediaPlayer.Volume = 0.4f;
         MediaPlayer.Play(backgroundMusic);
     }
-    
     private void ControllersInit()
     {
         keyboardController = new KeyboardController(new NoInputCommand());
