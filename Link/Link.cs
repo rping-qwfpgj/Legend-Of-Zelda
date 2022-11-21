@@ -11,7 +11,6 @@ namespace Sprint0
 {
     public class Link
     {
-
         private static Link instance = new();
         public static Link Instance
         {
@@ -22,29 +21,22 @@ namespace Sprint0
         }
         public enum Throwables
         {
-            BlueBoomerang,
-            Boomerang,
-            BlueArrow,
-            Arrow,
-            Bomb,
-            Fire,
-            None
+            BlueBoomerang, Boomerang, BlueArrow, Arrow, Bomb, Fire, None
         }
 
         //Fields
         public ISprite currentLinkSprite;
-        public List<ISprite> currentProjectiles;
         public ILinkState currentState;
         public Vector2 currentPosition;
-        public bool isDamaged;
+        public List<ISprite> currentProjectiles;
         public Throwables throwable;
-        private int isDamagedCounter = 0;
+
+        public float health, maxHealth;
+        public bool isDamaged, canBeDamaged;
+        private int isDamagedCounter;
+
         public Inventory inventory;
         public Game1 game;
-        public float health;
-        private bool canBeDamaged;
-        public float maxHealth;
-        
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
@@ -59,8 +51,8 @@ namespace Sprint0
             this.maxHealth = 3;
             this.isDamaged = false;
             this.canBeDamaged = true;
+            this.isDamagedCounter = 0;
         }
-
         public void Reset()
         {
             this.currentPosition = new Vector2(400, 240);
@@ -75,11 +67,11 @@ namespace Sprint0
             this.maxHealth = 3;
             this.isDamaged = false;
             this.canBeDamaged = true;
+            this.isDamagedCounter = 0;
 
             this.game.RoomloaderInit();
             this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
         }
-
         public void UpdatePosition()
         {
             Rectangle rectangle = currentLinkSprite.GetHitbox();
@@ -91,7 +83,6 @@ namespace Sprint0
             this.UpdatePosition();
             currentState.Attack();
         }
-
         public void ThrowProjectile()
         {
             if (this.throwable == Throwables.Bomb)
@@ -111,25 +102,21 @@ namespace Sprint0
             this.UpdatePosition();
             currentState.ThrowProjectile();
         }
-
         public void MoveUp()
         {
             this.UpdatePosition();
             currentState.MoveUp();
         }
-
         public void MoveDown()
         {
             this.UpdatePosition();
             currentState.MoveDown();
         }
-
         public void MoveLeft()
         {
             this.UpdatePosition();
             currentState.MoveLeft();
         }
-
         public void MoveRight()
         {
             this.UpdatePosition();
@@ -151,7 +138,6 @@ namespace Sprint0
                 currentState.NoInput();
             }
         }
-
         public void TakeDamage(string side)
         {
             if (this.canBeDamaged == true && this.health > 0)
@@ -161,7 +147,6 @@ namespace Sprint0
                 if (health <= 0)
                 {
                     this.Die();
-
                 }
                 else
                 {
@@ -171,13 +156,10 @@ namespace Sprint0
                     switch (side)
                     {
                         case "top":
-
                             this.currentPosition.Y += 25;
                             this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
-
                             break;
                         case "bottom":
-
                             this.currentPosition.Y -= 25;
                             this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
                             break;
@@ -188,8 +170,6 @@ namespace Sprint0
                         case "right":
                             this.currentPosition.X += 25;
                             this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-
-
                             break;
                         default:
                             break;
@@ -197,7 +177,6 @@ namespace Sprint0
                 }
             }
         }
-
         public void Update()
         {
             this.UpdatePosition();
@@ -206,7 +185,6 @@ namespace Sprint0
             {
                 projectile.Update();
             }
-
             // This can be refactored using a decorator pattern
             if (this.isDamaged)
             {
@@ -217,24 +195,10 @@ namespace Sprint0
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
                     this.UpdatePosition();
-
-                    //Check if current sprite is an attacking sprite
-                    if (currentLinkSprite is IAttackingSprite)
-                    {
-                        IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
-                        if (!currSprite.isAttacking())
-                        {
-                            this.currentState.Redraw();
-                        }
-                    }
-                    else
-                    {
-                        this.currentState.Redraw();
-                    }
+                    this.currentState.Redraw();
                 }
             }
         }
-
         public void Draw(SpriteBatch _spriteBatch)
         {
             currentLinkSprite.Draw(_spriteBatch);
@@ -243,22 +207,14 @@ namespace Sprint0
                 projectile.Draw(_spriteBatch);
             }
         }
-
         public void Die()
         {
             SoundFactory.Instance.CreateSoundEffect("LinkDeath").Play();
             this.game.gameStateController.GameOver();
         }
-
         public void getGame(Game1 game)
         {
             this.game = game;
-            
         }
-
-       
     }
 }
-    
-
-

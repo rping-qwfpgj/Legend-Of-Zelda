@@ -60,10 +60,6 @@ namespace LegendofZelda.SpriteFactories
                     
                     return new PinkHeartSprite(spriteSheet, (int)location.X, (int)location.Y);
                 
-                case "BigTriforceSprite":
-                    
-                    return new BigTriforceSprite(spriteSheet, (int)location.X, (int)location.Y);
-                
                 case "InventorySelectionSprite":
                     
                     return new InventorySelectionSprite(spriteSheet, (int)location.X, (int)location.Y);
