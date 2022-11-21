@@ -1,9 +1,4 @@
 ﻿using Sprint0;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Interfaces;
 using LegendofZelda.SpriteFactories;
 
@@ -11,10 +6,8 @@ namespace States
 {
     public class LinkThrowingRightState : ILinkState
     {
-       
         public LinkThrowingRightState()
         {
-            
         }
 
         //Invalid states from the current state
@@ -31,7 +24,6 @@ namespace States
                 Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkFacingRightState();
         }
-
         public void Redraw()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingRight(Link.Instance.currentPosition,
@@ -45,10 +37,8 @@ namespace States
 
     public class LinkThrowingLeftState : ILinkState
     {
-  
         public LinkThrowingLeftState()
-        {
-            
+        { 
         }
 
         //Invalid states from the current state
@@ -58,13 +48,13 @@ namespace States
         public void MoveDown() { }
         public void MoveLeft() { }
         public void MoveRight() { }
+        
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(Link.Instance.currentPosition,
             Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkFacingLeftState();
         }
-
         public void Redraw()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingLeft(Link.Instance.currentPosition,
@@ -74,14 +64,13 @@ namespace States
         {
             return "left";
         }
-
     }
     public class LinkThrowingUpState : ILinkState
     {
         public LinkThrowingUpState()
-        {
-            
+        { 
         }
+
         //Invalid states from the current state
         public void Attack() { }
         public void ThrowProjectile() { }
@@ -89,13 +78,13 @@ namespace States
         public void MoveDown() { }
         public void MoveLeft() { }
         public void MoveRight() { }
+        
         public void NoInput()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(Link.Instance.currentPosition,
             Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkFacingUpState();
         }
-
         public void Redraw()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingUp(Link.Instance.currentPosition,
@@ -105,15 +94,13 @@ namespace States
         {
             return "top";
         }
-
     }
     public class LinkThrowingDownState : ILinkState
     {
-
         public LinkThrowingDownState()
-        {
-            
+        { 
         }
+
         //Invalid states from the current state
         public void Attack() { }
         public void ThrowProjectile() { }
@@ -128,7 +115,6 @@ namespace States
                 Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkFacingDownState();
         }
-
         public void Redraw()
         {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkThrowingDown(Link.Instance.currentPosition,
