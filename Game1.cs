@@ -68,7 +68,7 @@ public class Game1 : Game
     {
         backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
         MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.Volume = 0.2f;
         MediaPlayer.Play(backgroundMusic);
     }
     protected override void Update(GameTime gameTime)
