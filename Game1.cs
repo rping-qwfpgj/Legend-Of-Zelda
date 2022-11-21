@@ -96,6 +96,13 @@ public class Game1 : Game
 
 
     //--------HELPER METHODS---------//
+    public void BackgroundMusicInit()
+    {
+        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.Play(backgroundMusic);
+    }
     private void ControllersInit()
     {
         keyboardController = new KeyboardController(new NoInputCommand());
