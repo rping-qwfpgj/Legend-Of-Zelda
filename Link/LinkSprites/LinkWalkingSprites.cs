@@ -86,8 +86,8 @@ namespace Sprites
         }
         public Rectangle GetHitbox()
         {
-            var returner = destinationRectangle;
-            return returner;
+            return this.destinationRectangle;
+            
         }
             
     }
@@ -345,8 +345,8 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
 
-            var hitBox = destinationRectangle;
-            return destinationRectangle;
+            
+            return this.destinationRectangle;
         }
     }
 }
