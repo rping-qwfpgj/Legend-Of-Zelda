@@ -93,6 +93,10 @@ namespace LegendofZelda.SpriteFactories
 
                     return new Key(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
 
+                case "MasterSword":
+
+                    return new MasterSword(spriteSheet, (int)location.X, (int)location.Y + inventoryHeight);
+
                 default:
 
                     return null;

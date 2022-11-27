@@ -27,7 +27,7 @@
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
+			<ObjectName>Stalfos</ObjectName>
 			<Location>150 150</Location>
 		</Item>
 

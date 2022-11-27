@@ -24,12 +24,27 @@
 			<ObjectName>OpenDoorBlockBottom</ObjectName>
 			<Location>350 400</Location>
 		</Item>
-		<!--  Enemies  -->
-		<Item>
-			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
-			<Location>150 150</Location>
-		</Item>
+	<!--  Enemies  -->
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Trap</ObjectName>
+		<Location>105 92</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Trap</ObjectName>
+		<Location>105 356</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Trap</ObjectName>
+		<Location>664 92</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Trap</ObjectName>
+		<Location>664 356</Location>
+	</Item>
 
 	<!--  Bounding  -->
 	<Item>

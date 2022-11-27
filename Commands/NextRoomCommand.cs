@@ -16,7 +16,7 @@ namespace Commands
         public void Execute()
         {
 
-            if (myGame.currentRoomIndex == 19)
+            if (myGame.currentRoomIndex == 22)
             {
                 myGame.currentRoomIndex = 0;
             }

@@ -167,7 +167,7 @@ public class Game1 : Game
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
 
-        for (int i = 0; i <= 19; i++)
+        for (int i = 0; i <= 22; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
@@ -175,7 +175,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
-        currentRoomIndex = 19;
+        currentRoomIndex = 21;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);
     }

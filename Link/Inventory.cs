@@ -19,6 +19,7 @@ namespace LegendofZelda
             this.inventory.Add("boomerang", 0);
             this.inventory.Add("small red heart", 0);
             this.inventory.Add("small blue heart", 0);
+            this.inventory.Add("master sword", 0);
         }
         public int getItemCount(string itemStr)
         {   

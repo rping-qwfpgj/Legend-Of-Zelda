@@ -25,7 +25,7 @@ namespace Commands
 
             if (myGame.currentRoomIndex == 0)
             {
-                myGame.currentRoomIndex = 18;
+                myGame.currentRoomIndex = 22;
             }
             else
             {

@@ -34,6 +34,10 @@ namespace LegendofZelda.Blocks
         public void Update()
         {
             currFrames += 34;
+            if (currFrames >= 2000)
+            {
+                currFrames = 0;
+            }
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
