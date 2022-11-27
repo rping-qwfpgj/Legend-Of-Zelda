@@ -18,8 +18,8 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private string message = "EASTMOST PENNINSULA IS THE SECRET.";
-        private int messageOffsetX = 180;
+        private string message = "ONLY A TRUE HERO IS FIT FOR THE TRIALS ABOVE!";
+        private int messageOffsetX = 252;
         private int messageOffsetY = 38;
         private ISprite text;
 

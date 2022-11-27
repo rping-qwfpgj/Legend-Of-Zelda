@@ -14,6 +14,8 @@ namespace LegendofZelda.SpriteFactories
 
         private Texture2D spriteSheet;
         private Texture2D doorSpriteSheet;
+        private Texture2D whiteDoorSpriteSheet;
+        private Texture2D fireTexture;
         private readonly static BlockSpriteFactory instance = new();
 
         public static BlockSpriteFactory Instance
@@ -30,7 +32,9 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("blocks");
+            fireTexture = content.Load<Texture2D>("LinkandProjectileSprites");
             doorSpriteSheet = content.Load<Texture2D>("doors");
+            whiteDoorSpriteSheet = content.Load<Texture2D>("WhiteDoors");
         }
 
         public ISprite CreateBlock(Vector2 location, string name)
@@ -142,6 +146,26 @@ namespace LegendofZelda.SpriteFactories
                 case "BombableDoorBlockBottom":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+
+                case "LockedWhiteDoorBlockTop":
+
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                
+                case "LockedWhiteDoorBlockLeft":
+
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+
+                case "LockedWhiteDoorBlockRight":
+
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+
+                case "LockedWhiteDoorBlockBottom":
+
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+                
+                case "Fire":
+
+                    return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
 
                 default:
 

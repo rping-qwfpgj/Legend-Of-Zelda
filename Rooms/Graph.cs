@@ -21,8 +21,8 @@ namespace LegendofZelda
         {
             leftRightAdj = new List<Tuple<int, int>>();
             upDownAdj = new List<Tuple<int, int>>();
-            visited = new bool[18];
-            for (int i = 1; i < 18; i++)
+            visited = new bool[19];
+            for (int i = 1; i < 19; i++)
             {
                 visited[i] = false;
             }

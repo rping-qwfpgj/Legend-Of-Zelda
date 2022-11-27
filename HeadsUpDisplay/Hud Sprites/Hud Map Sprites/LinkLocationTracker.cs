@@ -46,6 +46,7 @@ namespace Sprites
             linkLocations.Add(new Vector2(x + 38, y + 2)); //room 16
             linkLocations.Add(new Vector2(x + 38, y + 2)); //room 17
             linkLocations.Add(new Vector2(x, y)); //room 18
+            linkLocations.Add(new Vector2(x, y)); //room 19
             this.location = linkLocations[Link.Instance.game.currentRoomIndex];
             this.destinationRectangle = new((int)this.location.X, (int)this.location.Y, width * 6, height * 6);
         }

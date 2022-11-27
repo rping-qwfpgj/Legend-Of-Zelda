@@ -14,6 +14,7 @@ namespace LegendofZelda.SpriteFactories
 
         private Texture2D spriteSheet;
         private Texture2D gameOverBackground;
+        private Texture2D whiteRooms;
         private readonly static BackgroundSpriteFactory instance = new();
 
         public static BackgroundSpriteFactory Instance
@@ -30,14 +31,20 @@ namespace LegendofZelda.SpriteFactories
         public void loadContent(ContentManager content)
         {
             spriteSheet = content.Load<Texture2D>("allbackgrounds");
+            whiteRooms = content.Load<Texture2D>("WhiteRooms");
             gameOverBackground = content.Load<Texture2D>("game_over");
         }
 
         public ISprite CreateBackground(string name)
         {
             var split= name.Split('d');
-            return new Background(spriteSheet, int.Parse(split[1]));
-
+            int roomNum = int.Parse(split[1]);
+            if (roomNum <= 18) { 
+                return new Background(spriteSheet, roomNum);
+            }
+            else {
+                return new Background(whiteRooms, roomNum);
+            }
         }
 
         public ISprite GameOverScreen()

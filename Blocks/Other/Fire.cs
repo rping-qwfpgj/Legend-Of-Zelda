@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
 
 
-namespace LegendofZelda.Items
+namespace LegendofZelda.Blocks
 {
-    public class Fire : IItem
+    public class Fire : IBlock
     {
         // frame count for animating the fire
         private int currFrames = 0;

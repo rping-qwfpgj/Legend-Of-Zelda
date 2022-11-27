@@ -13,6 +13,11 @@
 			<ObjectName>OpenDoorBlockRight</ObjectName>
 			<Location>700 200</Location>
 		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>OpenDoorBlockTop</ObjectName>
+			<Location>350 15</Location>
+		</Item>
 		
 		<!--  Enemies  -->
 		<Item>
@@ -23,12 +28,12 @@
 
 		<!--  Items  -->
 		<Item>
-			<ObjectType>Item</ObjectType>
+			<ObjectType>Block</ObjectType>
 			<ObjectName>Fire</ObjectName>
 			<Location>200 140</Location>
 		</Item>
 		<Item>
-			<ObjectType>Item</ObjectType>
+			<ObjectType>Block</ObjectType>
 			<ObjectName>Fire</ObjectName>
 			<Location>520 140</Location>
 		</Item>
@@ -39,16 +44,16 @@
 			<ObjectName>VerticalBoundingBlock</ObjectName>
 			<Location>50 44</Location>
 		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>HorizontalBoundingBlock</ObjectName>
-			<Location>50 44</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>HorizontalBoundingBlock</ObjectName>
-			<Location>50 392</Location>
-		</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+		<Location>50 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
+		<Location>435 44</Location>
+	</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>VerticalHalfBoundingBlock</ObjectName>
@@ -58,11 +63,6 @@
 			<ObjectType>Block</ObjectType>
 			<ObjectName>VerticalHalfBoundingBlock</ObjectName>
 			<Location>700 264</Location>
-		</Item>
-		<Item>
-			<ObjectType>Block</ObjectType>
-			<ObjectName>HorizontalBoundingBlock</ObjectName>
-			<Location>50 170</Location>
 		</Item>
 
 </XnaContent>

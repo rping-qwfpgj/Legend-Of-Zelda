@@ -31,7 +31,7 @@ namespace LegendofZelda.Blocks
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
+            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White * 0.00f );
             _spriteBatch.End();
         }
 
