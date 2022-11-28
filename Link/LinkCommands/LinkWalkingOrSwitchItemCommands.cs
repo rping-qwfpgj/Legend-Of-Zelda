@@ -19,9 +19,7 @@ namespace Commands
                 var oldRect = inventory.cursor.DestinationRectangle;
                 if (oldRect.X < 400+oldRect.Width*5)
                 {
-                    
                    inventory.cursor.DestinationRectangle = new(oldRect.X + oldRect.Width, oldRect.Y, oldRect.Width, oldRect.Height);
-                    
                 }
             }
             else
