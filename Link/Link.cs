@@ -6,6 +6,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
+using System.Windows.Forms;
 
 namespace LegendofZelda
 {
@@ -37,6 +38,11 @@ namespace LegendofZelda
 
         public Inventory inventory;
         public Game1 game;
+        public float health;
+        public float maxHealth;
+        private string side;
+
+        
         public Link()
         {
             this.currentPosition = new Vector2(400, 240);
@@ -47,11 +53,9 @@ namespace LegendofZelda
             this.currentProjectiles = new();
             this.inventory = new Inventory();
 
-            this.health = 3;
-            this.maxHealth = 3;
+            this.health = 100;
+            this.maxHealth = 100;
             this.isDamaged = false;
-            this.canBeDamaged = true;
-            this.isDamagedCounter = 0;
         }
         public void Reset()
         {
@@ -66,8 +70,6 @@ namespace LegendofZelda
             this.health = 3;
             this.maxHealth = 3;
             this.isDamaged = false;
-            this.canBeDamaged = true;
-            this.isDamagedCounter = 0;
 
             this.game.BackgroundMusicInit();
             this.game.RoomloaderInit();
@@ -141,39 +143,58 @@ namespace LegendofZelda
         }
         public void TakeDamage(string side)
         {
-            if (this.canBeDamaged == true && this.health > 0)
+            if (!this.isDamaged && this.health > 0)
             {
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.side = side;
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
                 this.health -= 0.5f;
                 if (health <= 0)
                 {
                     this.Die();
-                }
-                else
+
+                }                              
+            }
+        }
+
+        public void Update()
+        {
+            this.UpdatePosition();
+            this.currentLinkSprite.Update();
+            foreach (var projectile in currentProjectiles) { 
+                projectile.Update();
+            }
+
+            // This can be refactored using a decorator pattern
+            if (this.isDamaged)
+            {   
+                this.isDamagedCounter++;
+
+                // Take knockback for the first x frames
+                if(this.isDamagedCounter < 15)
                 {
-                    this.isDamaged = true;
-                    this.canBeDamaged = false;
-                    this.currentState.Redraw();
-                    switch (side)
+                    int knockbackDistance = 10;
+                    switch(this.side)
                     {
-                        case "top":
-                            this.currentPosition.Y += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
-                            break;
-                        case "bottom":
-                            this.currentPosition.Y -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                            break;
-                        case "left":
-                            this.currentPosition.X -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(25, 0);
-                            break;
-                        case "right":
-                            this.currentPosition.X += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                            break;
-                        default:
-                            break;
+                    case "top":
+                        this.currentPosition.Y += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    case "left":
+                        this.currentPosition.X += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
+                        break;
+                    case "right":
+                        this.currentPosition.X -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    default:
+                    break;
                     }
                 }
             }
@@ -192,7 +213,6 @@ namespace LegendofZelda
                 this.isDamagedCounter++;
                 if (this.isDamagedCounter > 60)
                 {
-                    this.canBeDamaged = true;
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;
                     this.UpdatePosition();
