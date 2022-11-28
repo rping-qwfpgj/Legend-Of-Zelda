@@ -29,6 +29,7 @@ namespace LegendofZelda
         private int maxSpelunkingFrames;
         private float tint;
         private List<float> tintList;
+        private int roomNumber;
         public bool IsTransitioning { get => transitioning; }
         public Background(Texture2D backgroundTexture, int roomNumber)
         {
@@ -54,6 +55,7 @@ namespace LegendofZelda
             sourceRectangles.Add(new(258, 1, width, height));
             sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
+
             sourceRectangles.Add(new(1543, 532, width, height)); // white boss room
             sourceRectangles.Add(new(1285, 178, width, height)); // master sword room
 
@@ -66,6 +68,7 @@ namespace LegendofZelda
             {
                 0.2f, 0.4f, 0.6f,  1, 0.6f, 0.3f, 0
             };
+            this.roomNumber = roomNumber;
 
         }
 
@@ -129,11 +132,18 @@ namespace LegendofZelda
                     tint = tintList[i];
                     if (i < 4)
                     {
-                        sourceRectangle = sourceRectangles[16];
+                        if(roomNumber == 9)
+                        {
+                            sourceRectangle = sourceRectangles[20]; //master sword room
+                        }
+                        else
+                        {
+                            sourceRectangle = sourceRectangles[roomNumber - 1];
+                        }
                     }
                     else
                     {
-                        sourceRectangle = sourceRectangles[17];
+                        sourceRectangle = sourceRectangles[roomNumber];
                     }
                 }
                 else if (spelunkingFrames > maxSpelunkingFrames)
