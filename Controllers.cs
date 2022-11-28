@@ -31,7 +31,7 @@ namespace Controllers
 		}
 
 		public void Update()
-		{ 
+		{
 			KeyboardState kstate = Keyboard.GetState();
 
 			if(kstate.GetPressedKeyCount() == 0)
@@ -43,7 +43,7 @@ namespace Controllers
 			{
                 //if (Link.Instance.game.gameStateController.gameState is PauseState && kstate.GetPressedKeys().Contains(Keys.H))
                     // Loop through the bindings. If a key is down, execute its command.
-                    if (!(Link.Instance.game.gameStateController.gameState is PauseState))
+                    if (!(Link.Instance.game.gameStateController.gameState is PauseState) && !(Link.Instance.isDamaged && Link.Instance.isDamagedCounter < 15))
                     {
                         foreach (Keys key in keyBindings.Keys)
                         {
@@ -60,8 +60,8 @@ namespace Controllers
                         }
                     } else
                     {
-                        if (kstate.GetPressedKeys().Contains(Keys.H))
-                        {
+                        //if (kstate.GetPressedKeys().Contains(Keys.H))
+                        //{
                             foreach (Keys key in keyBindings.Keys)
                             {
                                 if (kstate.IsKeyDown(key))
@@ -74,7 +74,7 @@ namespace Controllers
                                     previousCommand = keyBindings[key];
                                 }
                             }
-                        }
+                        //}
                     }
             }			
 		}

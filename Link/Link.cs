@@ -39,7 +39,7 @@ namespace Sprint0
         public Vector2 currentPosition;
         public bool isDamaged;
         public Throwables throwable;
-        private int isDamagedCounter = 0;
+        public int isDamagedCounter = 0;
         public Inventory inventory;
         public Game1 game;
         public float health;
@@ -57,8 +57,8 @@ namespace Sprint0
             this.currentProjectiles = new();
             this.inventory = new Inventory();
 
-            this.health = 3;
-            this.maxHealth = 3;
+            this.health = 100;
+            this.maxHealth = 100;
             this.isDamaged = false;
         }
 
@@ -184,7 +184,7 @@ namespace Sprint0
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "left":
-                        xxthis.currentPosition.X += knockbackDistance;
+                        this.currentPosition.X += knockbackDistance;
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
                         break;
                     case "right":
@@ -195,6 +195,7 @@ namespace Sprint0
                     break;
                     }
                 }
+                this.UpdatePosition();
                 
                 if (this.isDamagedCounter > 90)
                 {
