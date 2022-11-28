@@ -158,6 +158,7 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(14, 15);
         roomsGraph.AddDownUpEdge(6, 10);
         roomsGraph.AddDownUpEdge(11, 12);
+        roomsGraph.AddDownUpEdge(17, 16);
     }
     public void RoomloaderInit()
     {

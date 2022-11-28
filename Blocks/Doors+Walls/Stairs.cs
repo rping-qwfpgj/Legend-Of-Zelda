@@ -1,25 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using LegendofZelda.Interfaces;
 
 namespace LegendofZelda.Blocks
 {
-    public class OpenDoorBlock : IBlock
+    public class StairsBlock : IBlock
     {
         private Texture2D texture;
 
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        
+
         private int direction;
         private int xPos;
         private int yPos;
-        private int destinationWidth = 64;
+        private int destinationWidth = 50;
         private int destinationHeight = 44;
 
-        public OpenDoorBlock(Texture2D doorTexture, int x, int y, int direction)
+        public StairsBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
             xPos = x;
@@ -38,7 +37,7 @@ namespace LegendofZelda.Blocks
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White *0.00f);
+            _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White * 0.00f);
             _spriteBatch.End();
         }
 

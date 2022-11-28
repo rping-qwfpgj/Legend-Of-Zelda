@@ -20,15 +20,21 @@ namespace Commands
 
         public void Execute()
         {
-
             myStateController.gameState.TransitionDown();
             myGame.currentRoomIndex = myGraph.GetDownRoom(myGame.currentRoomIndex);
             myGraph.AddToVisited(myGame.currentRoomIndex);
             myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
             var background = myGame.currentRoom.Background as IBackground;
-            background.SetTransitionDirection("down");
+            if (myGame.currentRoomIndex == 17) //cave room
+            {
+                background.SetTransitionDirection("cave");
+            }
+            else
+            {
+                background.SetTransitionDirection("down");
 
+            }
         }
     }
 

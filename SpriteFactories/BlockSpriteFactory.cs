@@ -166,6 +166,9 @@ namespace LegendofZelda.SpriteFactories
                 case "Fire":
 
                     return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
+                case "StairsBlock":
+
+                    return new StairsBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
 
                 default:
 
