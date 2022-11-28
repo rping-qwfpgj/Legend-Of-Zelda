@@ -40,6 +40,10 @@ public class Game1 : Game
     public CollisionDetector collisionDetector;
     public Hud hud;
     public Song backgroundMusic;
+    public Song bossRushMusic;
+    public Song shrineMusic;
+    public string currentSong; // keep track of the current song bieng played since media player doesn't do that (smh my head)
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -67,9 +71,12 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         backgroundMusic = Content.Load<Song>("Undertale");
+        bossRushMusic = Content.Load<Song>("coconut_mall_mp3");
+        shrineMusic = Content.Load<Song>("Shrine");
         MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.2f;
+        MediaPlayer.Volume = 0.3f;
         MediaPlayer.Play(backgroundMusic);
+        currentSong = "Undertale";
     }
     protected override void Update(GameTime gameTime)
     {
@@ -80,6 +87,24 @@ public class Game1 : Game
         {
             gameStateController.gameState.Update();
         }
+
+        if(currentRoomIndex < 19 && currentSong != "Undertale")
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(backgroundMusic);
+            currentSong = "Undertale";
+        } else if(currentRoomIndex >= 19 && currentRoomIndex < 22 && currentSong != "coconut_mall_mp3")
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(bossRushMusic);
+            currentSong = "coconut_mall_mp3";
+        } else if (currentRoomIndex == 22 && currentSong != "Shrine")
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(shrineMusic);
+            currentSong = "Shrine";
+        }
+
         if (gameStateController.gameState is WinGameState || gameStateController.gameState is GameOverState)
         {
             MediaPlayer.Stop();
@@ -92,15 +117,12 @@ public class Game1 : Game
         base.Draw(gameTime);
     }
 
-
-
-
     //--------HELPER METHODS---------//
     public void BackgroundMusicInit()
     {
-        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
+        backgroundMusic = Content.Load<Song>("Undertale");
         MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.Volume = 0.2f;
         MediaPlayer.Play(backgroundMusic);
     }
     private void ControllersInit()
@@ -119,12 +141,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
         
-        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
-        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand());
-        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand());
-        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand());
-        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
-        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
+        
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));

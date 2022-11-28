@@ -51,6 +51,11 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
+		<Location>50 392</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>435 44</Location>
 	</Item>
