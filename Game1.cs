@@ -74,7 +74,7 @@ public class Game1 : Game
         bossRushMusic = Content.Load<Song>("coconut_mall_mp3");
         shrineMusic = Content.Load<Song>("Shrine");
         MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.2f;
+        MediaPlayer.Volume = 0.3f;
         MediaPlayer.Play(backgroundMusic);
         currentSong = "Undertale";
     }
