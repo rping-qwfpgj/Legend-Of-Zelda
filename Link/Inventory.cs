@@ -9,7 +9,7 @@ namespace LegendofZelda
         public Inventory()
         {
             this.inventory.Add("bomb", 0);
-            this.inventory.Add("key", 0);
+            this.inventory.Add("key", 5);
             this.inventory.Add("orange map", 0);
             this.inventory.Add("compass", 0);
             this.inventory.Add("fairy", 0); // may remove fairies from dungeon 1

@@ -21,8 +21,8 @@ namespace LegendofZelda
         {
             leftRightAdj = new List<Tuple<int, int>>();
             upDownAdj = new List<Tuple<int, int>>();
-            visited = new bool[22];
-            for (int i = 1; i < 22; i++)
+            visited = new bool[23];
+            for (int i = 1; i < 23; i++)
             {
                 visited[i] = false;
             }
@@ -119,7 +119,7 @@ namespace LegendofZelda
         }
 
         public void AddToVisited(int roomNumber)
-        {
+        { 
             visited[roomNumber] = true;
         }
 
