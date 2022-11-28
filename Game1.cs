@@ -141,12 +141,7 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
         
-        keyboardController.AddCommand(Keys.D1, new SwitchToBoomerangCommand());
-        keyboardController.AddCommand(Keys.D2, new SwitchToBlueBoomerangCommand());
-        keyboardController.AddCommand(Keys.D3, new SwitchToArrowCommand());
-        keyboardController.AddCommand(Keys.D4, new SwitchToBlueArrowCommand());
-        keyboardController.AddCommand(Keys.D5, new SwitchToFireCommand());
-        keyboardController.AddCommand(Keys.D6, new SwitchToBombCommand());
+        
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));

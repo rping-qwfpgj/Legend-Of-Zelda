@@ -13,6 +13,7 @@ namespace LegendofZelda
     public class Link
     {
         private static Link instance = new();
+        private static Link instance2 = new();
         public static Link Instance
         {
             get
@@ -20,6 +21,15 @@ namespace LegendofZelda
                 return instance;
             }
         }
+
+        public static Link Instance2
+        {
+            get
+            {
+                return instance2;
+            }
+        }
+
         public enum Throwables
         {
             BlueBoomerang, Boomerang, BlueArrow, Arrow, Bomb, Fire, None
