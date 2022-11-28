@@ -98,10 +98,14 @@ namespace LegendofZelda
                 {
                     throwable = Throwables.None;
                 }
-            }
-            SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
-            UpdatePosition();
-            currentState.ThrowProjectile();
+            } else if(throwable == Throwables.None)
+            {
+                // do nothing
+            } else { 
+                SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
+                UpdatePosition();
+                currentState.ThrowProjectile();
+            } 
         }
         public void MoveUp()
         {
