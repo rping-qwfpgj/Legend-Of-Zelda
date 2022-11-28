@@ -66,7 +66,7 @@ public class Game1 : Game
     }
     protected override void LoadContent()
     {
-        backgroundMusic = Content.Load<Song>("coconut_mall_mp3");
+        backgroundMusic = Content.Load<Song>("Undertale");
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 0.2f;
         MediaPlayer.Play(backgroundMusic);
