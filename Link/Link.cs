@@ -194,7 +194,8 @@ namespace LegendofZelda
                     case "top":
                         this.currentPosition.Y += knockbackDistance;
                         if(this.currentPosition.Y < 238) { 
-                            this.currentPosition.Y = 238;
+                            this.currentPosition.Y = 300;
+                            this.isDamagedCounter = 10;
                         }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
@@ -202,13 +203,15 @@ namespace LegendofZelda
                         this.currentPosition.Y -= knockbackDistance;
                         if(this.currentPosition.Y > 542 - currentLinkSprite.DestinationRectangle.Height) { 
                             this.currentPosition.Y = 542 - currentLinkSprite.DestinationRectangle.Height;
+                            this.isDamagedCounter = 10;
                         }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "left":
-                        this.currentPosition.Y += knockbackDistance;
+                        this.currentPosition.X += knockbackDistance;
                         if(this.currentPosition.X < 100) { 
                             this.currentPosition.X = 100;
+                            this.isDamagedCounter = 10;
                         }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
                         break;
@@ -216,6 +219,7 @@ namespace LegendofZelda
                         this.currentPosition.X -= knockbackDistance;
                         if(this.currentPosition.X > 700 - currentLinkSprite.DestinationRectangle.Width) { 
                             this.currentPosition.X = 700 - currentLinkSprite.DestinationRectangle.Width;
+                            this.isDamagedCounter = 10;
                         }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
