@@ -18,7 +18,7 @@
 
 		<Item>
 			<ObjectType>Block</ObjectType>
-			<ObjectName>OpenDoorBlockRight</ObjectName>
+			<ObjectName>StairsBlock</ObjectName>
 			<Location>415 200</Location>
 		</Item>
 	

@@ -30,7 +30,6 @@ namespace LegendofZelda
             
         }
 
-
         public void AddLeftRightEdge(int room1, int room2)
         {
 

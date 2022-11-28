@@ -69,21 +69,32 @@ namespace Collision
                         var myGame = Link.Instance.game;
                         var command = new LeftRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
-                    } else {
+                    } 
+                    
+                    else {
                         linkIdleWalk(side, collisionRect);
                     }
                     break;
 
                 case "right":
-                    if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0){
+                    if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0)
+                    {
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if (block is OpenDoorBlock)
+                    }
+                    else if (block is OpenDoorBlock)
                     {
                         var myGame = Link.Instance.game;
                         var command = new RightRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
-                    } else {
+                    }
+                    else if (block is StairsBlock)
+                    {
+                        var myGame = Link.Instance.game;
+                        var command = new DownRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
+                        command.Execute();
+                    }
+                     else {
                         linkIdleWalk(side, collisionRect);
                     }
                     break;

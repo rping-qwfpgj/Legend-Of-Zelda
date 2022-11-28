@@ -180,6 +180,13 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(14, 15);
         roomsGraph.AddDownUpEdge(6, 10);
         roomsGraph.AddDownUpEdge(11, 12);
+        roomsGraph.AddDownUpEdge(17, 16);
+
+        roomsGraph.AddDownUpEdge(9, 19);
+        roomsGraph.AddDownUpEdge(19, 20);
+        roomsGraph.AddDownUpEdge(20, 21);
+        roomsGraph.AddDownUpEdge(21, 22);
+        roomsGraph.AddDownUpEdge(22, 9);
     }
     public void RoomloaderInit()
     {
