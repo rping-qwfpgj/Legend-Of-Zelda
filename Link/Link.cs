@@ -39,39 +39,38 @@ namespace LegendofZelda
         public Game1 game;
         public Link()
         {
-            this.currentPosition = new Vector2(400, 240);
-            this.currentState = new LinkFacingUpState();
-            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
+            currentPosition = new Vector2(400, 240);
+            currentState = new LinkFacingUpState();
+            currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
             
-            this.throwable = Throwables.None;
-            this.currentProjectiles = new();
-            this.inventory = new Inventory();
+            throwable = Throwables.None;
+            currentProjectiles = new();
+            inventory = new Inventory();
 
-            this.health = 3;
-            this.maxHealth = 3;
-            this.isDamaged = false;
-            this.canBeDamaged = true;
-            this.isDamagedCounter = 0;
+            health = 700000000;
+            maxHealth = 700000000;
+            canBeDamaged = true;
+            isDamagedCounter = 0;
         }
         public void Reset()
         {
-            this.currentPosition = new Vector2(400, 240);
-            this.currentState = new LinkFacingUpState();
-            this.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(this.currentPosition, this.isDamaged);
+            currentPosition = new Vector2(400, 240);
+            currentState = new LinkFacingUpState();
+            currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
 
-            this.throwable = Throwables.Boomerang;
-            this.currentProjectiles = new();
-            this.inventory = new Inventory();
+            throwable = Throwables.Boomerang;
+            currentProjectiles = new();
+            inventory = new Inventory();
 
-            this.health = 3;
-            this.maxHealth = 3;
-            this.isDamaged = false;
-            this.canBeDamaged = true;
-            this.isDamagedCounter = 0;
+            health = 3;
+            maxHealth = 3;
+            isDamaged = false;
+            canBeDamaged = true;
+            isDamagedCounter = 0;
 
-            this.game.BackgroundMusicInit();
-            this.game.RoomloaderInit();
-            this.game.gameStateController.gameState = new GamePlayState(this.game.gameStateController, this.game);
+            game.BackgroundMusicInit();
+            game.RoomloaderInit();
+            game.gameStateController.gameState = new GamePlayState(game.gameStateController, game);
         }
         public void UpdatePosition()
         {
@@ -81,51 +80,50 @@ namespace LegendofZelda
         public void Attack()
         {
             SoundFactory.Instance.CreateSoundEffect("LinkAttack").Play();
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.Attack();
         }
         public void ThrowProjectile()
         {
-            if (this.throwable == Throwables.Bomb)
+            if (throwable == Throwables.Bomb)
             {
-                if (this.inventory.getItemCount("bomb") > 0)
+                if (inventory.getItemCount("bomb") > 0)
                 {
-                    this.inventory.removeItem("bomb");
+                    inventory.removeItem("bomb");
                     SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
-                    this.UpdatePosition();
+                    UpdatePosition();
                     currentState.ThrowProjectile();
                 } else
                 {
-                    this.throwable = Throwables.None;
+                    throwable = Throwables.None;
                 }
             }
             SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.ThrowProjectile();
         }
         public void MoveUp()
         {
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.MoveUp();
         }
         public void MoveDown()
         {
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.MoveDown();
         }
         public void MoveLeft()
         {
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.MoveLeft();
         }
         public void MoveRight()
         {
-            this.UpdatePosition();
+            UpdatePosition();
             currentState.MoveRight();
         }
         public void NoInput()
         {
-            this.UpdatePosition();
             if (currentLinkSprite is IAttackingSprite)
             {
                 IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
@@ -141,62 +139,62 @@ namespace LegendofZelda
         }
         public void TakeDamage(string side)
         {
-            if (this.canBeDamaged == true && this.health > 0)
+            if (canBeDamaged == true && health > 0)
             {
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
-                this.health -= 0.5f;
+                health -= 0.5f;
                 if (health <= 0)
                 {
-                    this.Die();
+                    Die();
                 }
                 else
                 {
-                    this.isDamaged = true;
-                    this.canBeDamaged = false;
-                    this.currentState.Redraw();
-                    switch (side)
-                    {
-                        case "top":
-                            this.currentPosition.Y += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, 25);
-                            break;
-                        case "bottom":
-                            this.currentPosition.Y -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                            break;
-                        case "left":
-                            this.currentPosition.X -= 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(25, 0);
-                            break;
-                        case "right":
-                            this.currentPosition.X += 25;
-                            this.currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                            break;
-                        default:
-                            break;
-                    }
+                    isDamaged = true;
+                    canBeDamaged = false;
+                    currentState.Redraw();
+                    //switch (side)
+                    //{
+                    //    case "top":
+                    //        currentPosition.Y += 25;
+                    //        currentLinkSprite.DestinationRectangle.Offset(0, 25);
+                    //        break;
+                    //    case "bottom":
+                    //        currentPosition.Y -= 25;
+                    //        currentLinkSprite.DestinationRectangle.Offset(0, -25);
+                    //        break;
+                    //    case "left":
+                    //        currentPosition.X -= 25;
+                    //        currentLinkSprite.DestinationRectangle.Offset(25, 0);
+                    //        break;
+                    //    case "right":
+                    //        currentPosition.X += 25;
+                    //        currentLinkSprite.DestinationRectangle.Offset(0, -25);
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
                 }
             }
         }
         public void Update()
         {
-            this.UpdatePosition();
-            this.currentLinkSprite.Update();
+            UpdatePosition();
+            currentLinkSprite.Update();
             foreach (var projectile in currentProjectiles)
             {
                 projectile.Update();
             }
             // This can be refactored using a decorator pattern
-            if (this.isDamaged)
+            if (isDamaged)
             {
-                this.isDamagedCounter++;
-                if (this.isDamagedCounter > 60)
+                isDamagedCounter++;
+                if (isDamagedCounter > 60)
                 {
-                    this.canBeDamaged = true;
-                    this.isDamagedCounter = 0;
-                    this.isDamaged = false;
-                    this.UpdatePosition();
-                    this.currentState.Redraw();
+                    canBeDamaged = true;
+                    isDamagedCounter = 0;
+                    isDamaged = false;
+                    UpdatePosition();
+                    currentState.Redraw();
                 }
             }
         }
@@ -211,7 +209,7 @@ namespace LegendofZelda
         public void Die()
         {
             SoundFactory.Instance.CreateSoundEffect("LinkDeath").Play();
-            this.game.gameStateController.GameOver();
+            game.gameStateController.GameOver();
         }
         public void getGame(Game1 game)
         {
