@@ -38,8 +38,6 @@ namespace LegendofZelda
 
         public Inventory inventory;
         public Game1 game;
-        public float health;
-        public float maxHealth;
         private string side;
 
         
@@ -172,9 +170,9 @@ namespace LegendofZelda
                 this.isDamagedCounter++;
 
                 // Take knockback for the first x frames
-                if(this.isDamagedCounter < 15)
+                if(this.isDamagedCounter < 30)
                 {
-                    int knockbackDistance = 10;
+                    int knockbackDistance = 3;
                     switch(this.side)
                     {
                     case "top":
@@ -197,20 +195,7 @@ namespace LegendofZelda
                     break;
                     }
                 }
-            }
-        }
-        public void Update()
-        {
-            this.UpdatePosition();
-            this.currentLinkSprite.Update();
-            foreach (var projectile in currentProjectiles)
-            {
-                projectile.Update();
-            }
-            // This can be refactored using a decorator pattern
-            if (this.isDamaged)
-            {
-                this.isDamagedCounter++;
+
                 if (this.isDamagedCounter > 60)
                 {
                     this.isDamagedCounter = 0;
@@ -220,6 +205,7 @@ namespace LegendofZelda
                 }
             }
         }
+        
         public void Draw(SpriteBatch _spriteBatch)
         {
             currentLinkSprite.Draw(_spriteBatch);
