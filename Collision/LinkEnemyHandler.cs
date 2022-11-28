@@ -26,10 +26,15 @@ namespace Collision
                 {
                     side = reverseSide(side);
                     enemy.TakeDamage(side);
-                }     
+                }else
+                {
+                    Link.Instance.TakeDamage(side);
+                }
             } else
-			{
-                if(enemy is WallMasterSprite)
+			{   
+                if(!(Link.Instance.isDamaged))
+                {
+                    if(enemy is WallMasterSprite)
                 {
                     game.currentRoomIndex = 0;
                     game.currentRoom = game.rooms[game.currentRoomIndex];
@@ -39,6 +44,7 @@ namespace Collision
                 } else { 
 				    Link.Instance.TakeDamage(side);
                 }
+                }                
             }
         }
 

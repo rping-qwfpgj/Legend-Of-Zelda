@@ -74,6 +74,7 @@ namespace Commands
             }
             else
             {
+                Link.Instance.UpdatePosition();
                 Link.Instance.MoveUp();
             }
         }
