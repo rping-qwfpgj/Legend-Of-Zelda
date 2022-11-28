@@ -57,7 +57,7 @@ namespace GameStates
 
             selectedItemDict= new()
             {
-                { Link.Throwables.Boomerang, selectedBoomerang },
+                { Link.Throwables.Boomerang, selectedBoomerang},
                 { Link.Throwables.Bomb,  selectedBomb},
                 { Link.Throwables.Fire, selectedFire},
                 { Link.Throwables.Arrow, selectedArrow}
