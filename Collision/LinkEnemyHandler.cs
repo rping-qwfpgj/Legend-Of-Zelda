@@ -15,13 +15,11 @@ namespace Collision
 {
     public static class LinkEnemyHandler
 	{		
-
 		public static void handleCollision(IEnemy enemy, string side, Game1 game)
 		{
-			
 			if(Link.Instance.currentLinkSprite is IAttackingSprite)
 			{
-                IAttackingSprite currLinkSprite = (IAttackingSprite)Link.Instance.currentLinkSprite;
+                IAttackingSprite currLinkSprite = (IAttackingSprite) Link.Instance.currentLinkSprite;
                 if (currLinkSprite.getSide() == side)
                 {
                     side = reverseSide(side);

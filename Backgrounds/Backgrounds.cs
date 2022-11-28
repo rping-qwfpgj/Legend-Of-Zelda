@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using GameStates;
+using System.Diagnostics;
 
 namespace LegendofZelda
 {
@@ -23,6 +24,12 @@ namespace LegendofZelda
         private readonly Vector2 backgroundLocation;
         private string direction;
         private bool transitioning;
+        private bool spelunking;
+        private int spelunkingFrames;
+        private int maxSpelunkingFrames;
+        private float tint;
+        private List<float> tintList;
+        private int roomNumber;
         public bool IsTransitioning { get => transitioning; }
         public Background(Texture2D backgroundTexture, int roomNumber)
         {
@@ -48,6 +55,7 @@ namespace LegendofZelda
             sourceRectangles.Add(new(258, 1, width, height));
             sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
+
             sourceRectangles.Add(new(1543, 532, width, height)); // white boss room
             sourceRectangles.Add(new(1285, 178, width, height)); // master sword room
 
@@ -55,13 +63,19 @@ namespace LegendofZelda
             backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);
             destinationRectangle = new(0, 150, 800, 480);
             direction = "";
+            maxSpelunkingFrames = 100;
+            tintList = new()
+            {
+                0.2f, 0.4f, 0.6f,  1, 0.6f, 0.3f, 0
+            };
+            this.roomNumber = roomNumber;
+
         }
 
         public void SetTransitionDirection(String direction)
         {
             this.direction = direction;
             transitioning = true;
-          
             switch (direction)
             {
                 case "right":
@@ -76,10 +90,78 @@ namespace LegendofZelda
                 case "down":
                     sourceRectangle.Offset(0, -height);
                     break;
+                case "cave":
+                    spelunking = true;
+                    break;
             }
         }
 
         public void Update()
+        {
+            if (spelunking)
+            {
+                Spelunk();
+            }
+            else
+            {
+                NormalRoomTransition();
+            }
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            if (spelunking)
+            {
+                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.Lerp(Color.White, Color.Black, tint));
+            }
+            else
+            {
+                _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+            _spriteBatch.End();
+        }
+
+        //helper mehthods
+        private void Spelunk()
+        {
+            spelunkingFrames++;
+            for (int i = 0; i < 6; i++)
+            {
+                if (spelunkingFrames > i * maxSpelunkingFrames / 6 && spelunkingFrames <= (i + 1) * maxSpelunkingFrames / 6)
+                {
+                    tint = tintList[i];
+                    Debug.WriteLine(roomNumber);
+                    if (i < 4)
+                    {
+                        if(roomNumber == 9)
+                        {
+                            sourceRectangle = sourceRectangles[20]; //master sword room
+                        }
+                        else if(roomNumber == 16)
+                        {
+                            sourceRectangle = sourceRectangles[17];
+                        }
+                        else
+                        {
+                            sourceRectangle = sourceRectangles[roomNumber - 1];
+                        }
+                    }
+                    else
+                    {
+                        sourceRectangle = sourceRectangles[roomNumber];
+                    }
+                }
+                else if (spelunkingFrames > maxSpelunkingFrames)
+                {
+                    tint = 0;
+                    spelunking = false;
+                    transitioning = false;
+                    spelunkingFrames = 0;
+                }
+            }
+        }
+
+        private void NormalRoomTransition()
         {
             if (!(sourceRectangle.X == backgroundLocation.X && sourceRectangle.Y == backgroundLocation.Y))
             {
@@ -104,14 +186,6 @@ namespace LegendofZelda
                 transitioning = false;
             }
         }
-
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
-            _spriteBatch.End();
-        }
-
         public Rectangle GetHitbox()
         {
             return destinationRectangle;
@@ -124,7 +198,7 @@ namespace LegendofZelda
 
 
 
-    
+
 
 
 

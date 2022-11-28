@@ -22,7 +22,14 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(400, 260), false);
+            if (game.currentRoomIndex ==17) // cave room
+            {
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(180, 180), false);
+            }
+            else
+            {
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(400, 260), false);
+            }
             controller.gameState = new GamePlayState(controller, game);
         }
         public void Pause()

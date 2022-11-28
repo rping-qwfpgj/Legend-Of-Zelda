@@ -57,7 +57,7 @@ namespace GameStates
 
             selectedItemDict= new()
             {
-                { Link.Throwables.Boomerang, selectedBoomerang },
+                { Link.Throwables.Boomerang, selectedBoomerang},
                 { Link.Throwables.Bomb,  selectedBomb},
                 { Link.Throwables.Fire, selectedFire},
                 { Link.Throwables.Arrow, selectedArrow}
@@ -97,8 +97,10 @@ namespace GameStates
             cursor.Update();
             hud.Update();
             game.keyboardController.Update();
-
-            currentThrowable = inventory[new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)];
+            if (inventory.ContainsKey(new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)))
+            {
+                currentThrowable = inventory[new(cursor.DestinationRectangle.X, cursor.DestinationRectangle.Y)];
+            }
             if (Link.Instance.inventory.getThrowableCount(currentThrowable) > 0)
             {
                 Link.Instance.throwable = currentThrowable;

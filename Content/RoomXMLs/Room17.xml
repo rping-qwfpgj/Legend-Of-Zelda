@@ -133,5 +133,10 @@
 		<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 		<Location>380 140</Location>
 	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>StairsBlock</ObjectName>
+		<Location>170 -50</Location>
+	</Item>
 	
 </XnaContent>
