@@ -6,6 +6,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
+using System.Windows.Forms;
 
 namespace LegendofZelda
 {
@@ -37,6 +38,9 @@ namespace LegendofZelda
 
         public Inventory inventory;
         public Game1 game;
+        private string side;
+
+        
         public Link()
         {
             currentPosition = new Vector2(400, 240);
@@ -47,10 +51,9 @@ namespace LegendofZelda
             currentProjectiles = new();
             inventory = new Inventory();
 
-            health = 700000000;
-            maxHealth = 700000000;
-            canBeDamaged = true;
-            isDamagedCounter = 0;
+            this.health = 100;
+            this.maxHealth = 100;
+            this.isDamaged = false;
         }
         public void Reset()
         {
@@ -62,11 +65,9 @@ namespace LegendofZelda
             currentProjectiles = new();
             inventory = new Inventory();
 
-            health = 3;
-            maxHealth = 3;
-            isDamaged = false;
-            canBeDamaged = true;
-            isDamagedCounter = 0;
+            this.health = 3;
+            this.maxHealth = 3;
+            this.isDamaged = false;
 
             game.BackgroundMusicInit();
             game.RoomloaderInit();
@@ -139,65 +140,71 @@ namespace LegendofZelda
         }
         public void TakeDamage(string side)
         {
-            if (canBeDamaged == true && health > 0)
+            if (!this.isDamaged && this.health > 0)
             {
+                this.isDamaged = true;
+                this.currentState.Redraw();
+                this.side = side;
                 SoundFactory.Instance.CreateSoundEffect("LinkDamage").Play();
                 health -= 0.5f;
                 if (health <= 0)
                 {
-                    Die();
-                }
-                else
-                {
-                    isDamaged = true;
-                    canBeDamaged = false;
-                    currentState.Redraw();
-                    //switch (side)
-                    //{
-                    //    case "top":
-                    //        currentPosition.Y += 25;
-                    //        currentLinkSprite.DestinationRectangle.Offset(0, 25);
-                    //        break;
-                    //    case "bottom":
-                    //        currentPosition.Y -= 25;
-                    //        currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                    //        break;
-                    //    case "left":
-                    //        currentPosition.X -= 25;
-                    //        currentLinkSprite.DestinationRectangle.Offset(25, 0);
-                    //        break;
-                    //    case "right":
-                    //        currentPosition.X += 25;
-                    //        currentLinkSprite.DestinationRectangle.Offset(0, -25);
-                    //        break;
-                    //    default:
-                    //        break;
-                    //}
-                }
+                    this.Die();
+
+                }                              
             }
         }
+
         public void Update()
         {
-            UpdatePosition();
-            currentLinkSprite.Update();
-            foreach (var projectile in currentProjectiles)
-            {
+            this.UpdatePosition();
+            this.currentLinkSprite.Update();
+            foreach (var projectile in currentProjectiles) { 
                 projectile.Update();
             }
+
             // This can be refactored using a decorator pattern
-            if (isDamaged)
-            {
-                isDamagedCounter++;
-                if (isDamagedCounter > 60)
+            if (this.isDamaged)
+            {   
+                this.isDamagedCounter++;
+
+                // Take knockback for the first x frames
+                if(this.isDamagedCounter < 30)
                 {
-                    canBeDamaged = true;
-                    isDamagedCounter = 0;
-                    isDamaged = false;
-                    UpdatePosition();
-                    currentState.Redraw();
+                    int knockbackDistance = 3;
+                    switch(this.side)
+                    {
+                    case "top":
+                        this.currentPosition.Y += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    case "bottom":
+                        this.currentPosition.Y -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    case "left":
+                        this.currentPosition.X += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
+                        break;
+                    case "right":
+                        this.currentPosition.X -= knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
+                        break;
+                    default:
+                    break;
+                    }
+                }
+
+                if (this.isDamagedCounter > 60)
+                {
+                    this.isDamagedCounter = 0;
+                    this.isDamaged = false;
+                    this.UpdatePosition();
+                    this.currentState.Redraw();
                 }
             }
         }
+        
         public void Draw(SpriteBatch _spriteBatch)
         {
             currentLinkSprite.Draw(_spriteBatch);
