@@ -69,8 +69,7 @@ namespace Controllers
                                     Type typeField = previousCommand.GetType();
                                     if (typeField != keyBindings[key].GetType())
                                     {
-                                        keyBindings[key].Execute();
-                                        
+                                        keyBindings[key].Execute();                                        
                                     }
                                     previousCommand = keyBindings[key];
                                 }

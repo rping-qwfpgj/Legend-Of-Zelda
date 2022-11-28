@@ -138,7 +138,6 @@ namespace Sprint0
                 currentState.NoInput();
             }
         }
-
         
         public void TakeDamage(string side)
         {
@@ -153,12 +152,7 @@ namespace Sprint0
                 {
                     this.Die();
 
-                }
-                else
-                {
-                    this.isDamaged = true;
-                    
-                }
+                }                              
             }
         }
 
@@ -175,27 +169,27 @@ namespace Sprint0
             {   
                 this.isDamagedCounter++;
 
-                // Take knockback for the first 20 frames
-                if(this.isDamagedCounter < 20)
+                // Take knockback for the first x frames
+                if(this.isDamagedCounter < 15)
                 {
                     int knockbackDistance = 10;
                     switch(this.side)
                     {
                     case "top":
                         this.currentPosition.Y += knockbackDistance;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "bottom":
                         this.currentPosition.Y -= knockbackDistance;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "left":
-                        this.currentPosition.X += knockbackDistance;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);                        
+                        xxthis.currentPosition.X += knockbackDistance;
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
                         break;
                     case "right":
                         this.currentPosition.X -= knockbackDistance;
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 40, 42);
+                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     default:
                     break;
