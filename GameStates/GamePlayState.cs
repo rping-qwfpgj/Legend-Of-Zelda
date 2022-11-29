@@ -56,6 +56,7 @@ namespace GameStates
         public void Update()
         {
             Link.Instance.Update();
+            Link.Instance2.Update();
             game.mouseController.Update();
             game.collisionDetector.Update();
             game.keyboardController.Update();

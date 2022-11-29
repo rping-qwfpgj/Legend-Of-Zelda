@@ -129,13 +129,13 @@ public class Game1 : Game
     {
         keyboardController = new KeyboardController(new NoInputCommand());
 
-        keyboardController.AddCommand(Keys.W, new WalkUpCommand(gameStateController));
+        keyboardController.AddCommand(Keys.W, new P2WalkUpCommand(gameStateController));
         keyboardController.AddCommand(Keys.Up, new WalkUpCommand(gameStateController));
-        keyboardController.AddCommand(Keys.S, new WalkDownCommand(gameStateController));
+        keyboardController.AddCommand(Keys.S, new P2WalkDownCommand(gameStateController));
         keyboardController.AddCommand(Keys.Down, new WalkDownCommand(gameStateController));
-        keyboardController.AddCommand(Keys.A, new WalkLeftCommand(gameStateController));
+        keyboardController.AddCommand(Keys.A, new P2WalkLeftCommand(gameStateController));
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
-        keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
+        keyboardController.AddCommand(Keys.D, new P2WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         
         keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
@@ -199,7 +199,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
-        currentRoomIndex = 21;
+        currentRoomIndex = 5;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);
     }

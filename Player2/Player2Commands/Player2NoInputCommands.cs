@@ -3,14 +3,13 @@ using LegendofZelda;
 
 namespace Commands
 {
-    public class NoInputCommand : ICommand
+    public class Player2NoInputCommand : ICommand
     {
-        public NoInputCommand()
+        public Player2NoInputCommand()
         {
         }
         public void Execute()
         {
-            Link.Instance.NoInput();
             Link.Instance2.NoInput();
         }
     }

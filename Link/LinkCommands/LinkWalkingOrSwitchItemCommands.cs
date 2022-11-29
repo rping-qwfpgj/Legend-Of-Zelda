@@ -85,6 +85,7 @@ namespace Commands
     public class WalkDownCommand : ICommand
     {
         private GameStateController controller;
+        
         public WalkDownCommand(GameStateController controller)
         {
              this.controller = controller;

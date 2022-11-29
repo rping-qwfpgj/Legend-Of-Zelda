@@ -37,7 +37,7 @@ namespace Controllers
 				noInput.Execute();
 				previousCommand = noInput;
 			} 
-			else if(kstate.GetPressedKeyCount() == 1)
+			else if(kstate.GetPressedKeyCount() >= 1)
 			{
                     // Loop through the bindings. If a key is down, execute its command.
                     if (!(Link.Instance.game.gameStateController.gameState is PauseState))
@@ -60,7 +60,7 @@ namespace Controllers
                 if (kstate.IsKeyDown(key))
                 {
                     Type typeField = previousCommand.GetType();
-                    if (typeField != keyBindings[key].GetType())
+                    if (true)
                     {
                         keyBindings[key].Execute();
 

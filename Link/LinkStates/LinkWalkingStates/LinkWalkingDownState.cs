@@ -8,6 +8,7 @@ namespace States
     {
         public LinkWalkingDownState()
         { 
+            
         }
 
         //Invalid states from the current state
