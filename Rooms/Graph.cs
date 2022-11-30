@@ -120,7 +120,10 @@ namespace LegendofZelda
 
         public void AddToVisited(int roomNumber)
         {
-            visited[roomNumber] = true;
+            if (roomNumber < 19)
+            {
+                visited[roomNumber] = true;
+            }
         }
 
         public void Draw()

@@ -22,7 +22,10 @@ namespace Commands
         {
             myStateController.gameState.TransitionUp();
             myGame.currentRoomIndex = myGraph.GetUpRoom(myGame.currentRoomIndex);
-            myGraph.AddToVisited(myGame.currentRoomIndex);
+            if (myGame.currentRoomIndex < 18)
+            {
+                myGraph.AddToVisited(myGame.currentRoomIndex);
+            }
             myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
             var background = myGame.currentRoom.Background as IBackground;
