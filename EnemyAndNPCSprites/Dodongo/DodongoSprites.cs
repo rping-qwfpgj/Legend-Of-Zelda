@@ -44,7 +44,7 @@ namespace Sprites
 
         public void Update()
         {
-            yPosition -= 1;
+            if (!isDamaged) { yPosition -= 1; }
             currentFrame++;
             destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             if (isDamaged)
@@ -52,7 +52,7 @@ namespace Sprites
                 damagedCounter++;
                 sourceRectangle = new Rectangle(52, 58, 16, 16);
                 destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
-                if (damagedCounter > 120)
+                if (damagedCounter > 240)
                 {
                     damagedCounter = 0;
                     isDamaged = false;
@@ -128,7 +128,7 @@ namespace Sprites
 
         public void Update()
         {
-            yPosition += 1;
+            if (!isDamaged) { yPosition += 1; }
             destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             currentFrame++;
             if (isDamaged)
@@ -208,7 +208,7 @@ namespace Sprites
         }
         public void Update()
         {
-            xPosition += 1;
+            if (!isDamaged) { xPosition += 1; }
             currentFrame++;
             if (isDamaged)
             {
@@ -294,7 +294,7 @@ namespace Sprites
 
         public void Update()
         {
-            xPosition -= 1;
+            if (!isDamaged) { xPosition -= 1; }
             currentFrame++;
             if (isDamaged)
             {

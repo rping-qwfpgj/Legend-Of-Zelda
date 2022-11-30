@@ -29,7 +29,7 @@ namespace Sprites
 
         List<DodongoActions> dodongoActions = new List<DodongoActions> {DodongoActions.MovingUp, DodongoActions.MovingDown,
         DodongoActions.MovingRight, DodongoActions.MovingLeft};
-
+        private List<Rectangle> damageSources = new();
 
         private Random rand = new Random();
 
@@ -61,6 +61,9 @@ namespace Sprites
             this.dyingTexture = texture2;
             this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
             this.currentDodongo = new DodongoMovingRightSprite(texture, this.xPos, this.yPos);
+            this.damageSources.Add(new Rectangle(52, 58, 16, 16));
+            this.damageSources.Add(new Rectangle(1, 58, 15, 16));
+            this.damageSources.Add(new Rectangle(69, 59, 28, 15));
         }
 
         public void Update()
@@ -79,10 +82,13 @@ namespace Sprites
                         damagedCounter = 0;
                     }
                 }
-                if (switchCounter >= 400)
+                else
                 {
-                    this.switchAction();
-                    switchCounter = 0;
+                    if (switchCounter >= 400)
+                    {
+                        this.switchAction();
+                        switchCounter = 0;
+                    }
                 }
                 currentDodongo.Update();
                 this.destinationRectangle = currentDodongo.DestinationRectangle;
@@ -109,26 +115,40 @@ namespace Sprites
             {
                 spriteBatch.Begin();
                 this.destinationRectangle = new Rectangle((int)this.currentDodongo.XPosition, (int)this.currentDodongo.YPosition, 30, 30);
-                if (deathFrames >= 0 && deathFrames <= 5)
+                if (deathFrames >= 0 && deathFrames < 60)
+                {
+                    if (currentDodongo is DodongoMovingUpSprite)
+                    {
+                        sourceRectangle = damageSources[0];
+                    }
+                    else if (currentDodongo is DodongoMovingDownSprite)
+                    {
+                        sourceRectangle = damageSources[1];
+                    }
+                    else if (currentDodongo is DodongoMovingRightSprite || currentDodongo is DodongoMovingLeftSprite)
+                    {
+                        sourceRectangle = damageSources[2];
+                    }
+                }
+                else if (deathFrames >= 60 && deathFrames <= 65)
                 {
                     sourceRectangle = new Rectangle(0, 0, 15, 16);
 
                 }
-                else if (deathFrames > 5 && deathFrames < 10)
+                else if (deathFrames > 65 && deathFrames < 70)
                 {
                     sourceRectangle = new Rectangle(16, 0, 15, 16);
                 }
-                else if (deathFrames >= 10 && deathFrames < 15)
+                else if (deathFrames >= 75 && deathFrames < 80)
                 {
                     sourceRectangle = new Rectangle(35, 3, 9, 10);
 
                 }
-                else if (deathFrames >= 15 && deathFrames < 20)
+                else if (deathFrames >= 85 && deathFrames < 90)
                 {
                     sourceRectangle = new Rectangle(51, 3, 9, 10);
-
                 }
-                else
+                else if (deathFrames >= 90)
                 {
                     this.dyingComplete = true;
                 }
