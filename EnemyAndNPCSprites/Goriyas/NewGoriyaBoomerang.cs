@@ -35,9 +35,9 @@ namespace Sprites
         public GoriyaBoomerangUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
+            originalXPosition = (int)xPosition+20;
             originalYPosition = (int)yPosition;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition+20;
             this.yPosition = (int)yPosition;
             keepThrowing = true;
             returning = false;
@@ -154,9 +154,9 @@ namespace Sprites
         public GoriyaBoomerangDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
+            originalXPosition = (int)xPosition+20;
             originalYPosition = (int)yPosition+10;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition+20;
             this.yPosition = (int)yPosition+10;
             keepThrowing = true;
 
@@ -276,10 +276,10 @@ namespace Sprites
         public GoriyaBoomerangRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
-            originalYPosition = (int)yPosition;
-            this.xPosition = (int)xPosition;
-            this.yPosition = (int)yPosition + 10;
+            originalXPosition = (int)xPosition+20;
+            originalYPosition = (int)yPosition+10;
+            this.xPosition = (int)xPosition+20;
+            this.yPosition = (int)yPosition +10;
             keepThrowing = true;
 
             returning = false;
@@ -396,9 +396,9 @@ namespace Sprites
         public GoriyaBoomerangLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            originalXPosition = (int)xPosition;
+            originalXPosition = (int)xPosition+20;
             originalYPosition = (int)yPosition + 10;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition+20;
             this.yPosition = (int)yPosition + 10;
             keepThrowing = true;
 

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
+using System.Diagnostics;
 
 namespace Sprites
 {
@@ -46,7 +47,7 @@ namespace Sprites
             yPos = yPosition;
             dyingTexture = texture2;
             destinationRectangle = new();
-            currentGoriya = new GoriyaThrowingRightSprite(texture, xPos, yPos);
+            currentGoriya = new GoriyaMovingRightSprite(texture, xPos, yPos);
             currentBoomerang = null;
             sourceRectangles = new();
             sourceRectangles.Add(new(0, 0, 15, 16));
@@ -74,7 +75,22 @@ namespace Sprites
                 }
                 if ((rand.Next(0, 1000)) % 100 == 0)
                 {
-                    switchAction();
+                    if(currentGoriya is GoriyaThrowingRightSprite|| currentGoriya is GoriyaThrowingLeftSprite|| currentGoriya is GoriyaThrowingDownSprite|| currentGoriya is GoriyaThrowingUpSprite)
+                    {
+                        if (currentBoomerang != null)
+                        {
+                            if (!currentBoomerang.keepThrowing)
+                            {
+                                switchAction();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine("hi");
+                        switchAction();
+                    }
+
                 }
                 destinationRectangle = currentGoriya.DestinationRectangle;
             }

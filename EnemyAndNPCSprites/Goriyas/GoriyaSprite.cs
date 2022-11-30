@@ -548,9 +548,7 @@ namespace Sprites
                 goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-
             spriteBatch.End();
-
 
         }
 
