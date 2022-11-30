@@ -140,7 +140,7 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Wallmaster</ObjectName>
-			<Location>90 200</Location>
+			<Location>400 200</Location>
 		</Item>
 
 		<!--  Bounding  -->

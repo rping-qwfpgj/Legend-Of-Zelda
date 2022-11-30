@@ -45,6 +45,11 @@
 			<ObjectName>Gel</ObjectName>
 			<Location>300 250</Location>
 		</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Dodongo</ObjectName>
+		<Location>200 300</Location>
+	</Item>
 
 
 	<!--  Items  -->

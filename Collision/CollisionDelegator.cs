@@ -128,7 +128,7 @@ namespace Collision
         private void firstObjLink(ISprite obj, ISprite otherObj, string side)
         {
             if(obj is INonAttackingSprite || obj is IAttackingSprite) // obj is Link's sprite
-            {
+            {   
                 if(otherObj is IEnemy)// link enemy # 1
                 {
                     IEnemy enemy = otherObj as IEnemy;

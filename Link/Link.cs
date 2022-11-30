@@ -43,8 +43,8 @@ namespace LegendofZelda
         public Throwables throwable;
 
         public float health, maxHealth;
-        public bool isDamaged, canBeDamaged;
-        private int isDamagedCounter;
+        public bool isDamaged;
+        public int isDamagedCounter;
 
         public Inventory inventory;
         public Game1 game;
@@ -63,6 +63,7 @@ namespace LegendofZelda
 
             this.health = 100;
             this.maxHealth = 100;
+            this.isDamagedCounter = 0;
             this.isDamaged = false;
         }
         public void Reset()
@@ -75,7 +76,7 @@ namespace LegendofZelda
             currentProjectiles = new();
             inventory = new Inventory();
 
-            this.health = 3;
+            this.health = 600;
             this.maxHealth = 3;
             this.isDamaged = false;
 
@@ -154,8 +155,10 @@ namespace LegendofZelda
         }
         public void TakeDamage(string side)
         {
+            this.NoInput();
             if (!this.isDamaged && this.health > 0)
-            {
+            {   
+                this.UpdatePosition();
                 this.isDamaged = true;
                 this.currentState.Redraw();
                 this.side = side;
@@ -183,33 +186,50 @@ namespace LegendofZelda
                 this.isDamagedCounter++;
 
                 // Take knockback for the first x frames
-                if(this.isDamagedCounter < 30)
+                if(this.isDamagedCounter < 10)
                 {
-                    int knockbackDistance = 3;
+                    int knockbackDistance = 5;
                     switch(this.side)
                     {
                     case "top":
                         this.currentPosition.Y += knockbackDistance;
+                        if(this.currentPosition.Y < 238) { 
+                            this.currentPosition.Y = 300;
+                            this.isDamagedCounter = 10;
+                        }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "bottom":
                         this.currentPosition.Y -= knockbackDistance;
+                        if(this.currentPosition.Y > 542 - currentLinkSprite.DestinationRectangle.Height) { 
+                            this.currentPosition.Y = 542 - currentLinkSprite.DestinationRectangle.Height;
+                            this.isDamagedCounter = 10;
+                        }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     case "left":
                         this.currentPosition.X += knockbackDistance;
+                        if(this.currentPosition.X < 100) { 
+                            this.currentPosition.X = 100;
+                            this.isDamagedCounter = 10;
+                        }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
                         break;
                     case "right":
                         this.currentPosition.X -= knockbackDistance;
+                        if(this.currentPosition.X > 700 - currentLinkSprite.DestinationRectangle.Width) { 
+                            this.currentPosition.X = 700 - currentLinkSprite.DestinationRectangle.Width;
+                            this.isDamagedCounter = 10;
+                        }
                         this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
                         break;
                     default:
                     break;
                     }
+                    this.UpdatePosition();
                 }
-
-                if (this.isDamagedCounter > 60)
+                
+                if (this.isDamagedCounter > 120)
                 {
                     this.isDamagedCounter = 0;
                     this.isDamaged = false;

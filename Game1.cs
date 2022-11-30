@@ -199,7 +199,7 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
-        currentRoomIndex = 21;
+        currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);
     }
