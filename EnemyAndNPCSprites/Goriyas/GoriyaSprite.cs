@@ -76,7 +76,6 @@ namespace Sprites
         {
 
         }
-
         public void TakeDamage(string side)
         {
             switch (side)
@@ -131,7 +130,6 @@ namespace Sprites
             this.yPosition = yPosition;
             this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
         }
-
         public void Update()
         {
             yPosition += 1;
@@ -164,7 +162,6 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
-
         public void TurnAround(string side)
         {
 

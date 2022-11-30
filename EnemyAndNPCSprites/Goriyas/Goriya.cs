@@ -75,19 +75,16 @@ namespace Sprites
                 }
                 if ((rand.Next(0, 1000)) % 100 == 0)
                 {
-                    if(currentGoriya is GoriyaThrowingRightSprite|| currentGoriya is GoriyaThrowingLeftSprite|| currentGoriya is GoriyaThrowingDownSprite|| currentGoriya is GoriyaThrowingUpSprite)
+                    if (currentGoriya is GoriyaThrowingRightSprite || currentGoriya is GoriyaThrowingLeftSprite || currentGoriya is GoriyaThrowingDownSprite || currentGoriya is GoriyaThrowingUpSprite)
                     {
-                        if (currentBoomerang != null)
+                        if (!currentBoomerang.keepThrowing)
                         {
-                            if (!currentBoomerang.keepThrowing)
-                            {
-                                switchAction();
-                            }
+                            switchAction();
                         }
+
                     }
                     else
                     {
-                        Debug.WriteLine("hi");
                         switchAction();
                     }
 
