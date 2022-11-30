@@ -2,8 +2,6 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
-using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
 
@@ -11,56 +9,50 @@ namespace Sprites
 {
     public class GoriyaSprite : IEnemy
     {
+        private enum GoriyaActions
+        {
+            MovingUp, MovingDown, MovingRight, MovingLeft,
+            ThrowingUp, ThrowingRight, ThrowingLeft, ThrowingDown
+        };
+        public bool IsDead { get => isDead; set => isDead = value; }
+        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
         private IGoriya currentGoriya;
         private IEnemyProjectile currentBoomerang;
-        private bool isDead = false;
-        private int health = 3;
-        private int deathFrames = 0;
-        private bool isDamaged = false;
-        private int damagedCounter = 0;
-        public bool IsDead { get => isDead; set => isDead = value; }
-        private bool dyingComplete = false;
-        public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        private int currFrames = 0;
-
-        private enum GoriyaActions { MovingUp, MovingDown, MovingRight, MovingLeft, ThrowingUp, ThrowingRight,
-            ThrowingLeft, ThrowingDown };
-
-        List<GoriyaActions> goriyaActions = new List<GoriyaActions> {GoriyaActions.MovingUp, GoriyaActions.MovingDown,
-        GoriyaActions.MovingRight, GoriyaActions.MovingLeft, GoriyaActions.ThrowingUp, GoriyaActions.ThrowingRight,
-        GoriyaActions.ThrowingLeft};
-
-
-        private Random rand = new Random();
-
+        private int health, deathFrames, damagedCounter;
+        private bool isDamaged, dyingComplete, isDead;
+        private float xPos, yPos;
+        private Random rand;
         private List<string> droppableItems = new List<string> { "SmallRedHeart", "SmallBlueHeart", "OrangeGemstone", "Bomb" };
-
-
-        private Texture2D texture;
-        private Texture2D dyingTexture;
-
-        //  Obsolete variables
-        private float xPosition;
-        public float XPosition { get => xPosition; set => xPosition = value; }
-        private float yPosition;
-        public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
-        //private int prevdirection = 1;
-        private float xPos;
-        private float yPos;
-        private Rectangle destinationRectangle = new Rectangle(100, 100, 0, 0);
-        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        private Texture2D texture, dyingTexture;
+        private Rectangle destinationRectangle, sourceRectangle;
+        private List<Rectangle> sourceRectangles;
+        List<GoriyaActions> goriyaActions = new List<GoriyaActions> {
+            GoriyaActions.MovingUp, GoriyaActions.MovingDown,GoriyaActions.MovingRight, GoriyaActions.MovingLeft,
+            GoriyaActions.ThrowingUp, GoriyaActions.ThrowingRight, GoriyaActions.ThrowingLeft, GoriyaActions.ThrowingDown};
 
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
+            isDamaged = false;
+            dyingComplete = false;
+            isDead = false;
+            health = 3;
+            deathFrames = 0;
+            damagedCounter = 0;
+            rand = new();
             this.texture = texture;
-            this.xPos = xPosition;
-            this.yPos = yPosition;
-            this.dyingTexture = texture2;
-            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
-            this.currentGoriya = new GoriyaThrowingRightSprite(texture, this.xPos, this.yPos);
-            this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, (int)xPosition, (int)yPosition);
+            xPos = xPosition;
+            yPos = yPosition;
+            dyingTexture = texture2;
+            destinationRectangle = new();
+            currentGoriya = new GoriyaThrowingRightSprite(texture, xPos, yPos);
+            currentBoomerang = null;
+            sourceRectangles = new();
+            sourceRectangles.Add(new(0, 0, 15, 16));
+            sourceRectangles.Add(new(16, 0, 15, 16));
+            sourceRectangles.Add(new(35, 3, 9, 10));
+            sourceRectangles.Add(new(51, 3, 9, 10));
         }
 
         public void Update()
@@ -68,90 +60,63 @@ namespace Sprites
             // Decided if the goriya should change its current action
             if (!isDead)
             {
-                ++currFrames;
+                currentGoriya.Update();
+
                 if (isDamaged)
                 {
                     damagedCounter++;
                     if (damagedCounter >= 60)
                     {
                         isDamaged = false;
-                        this.currentGoriya.IsDamaged = false;
+                        currentGoriya.IsDamaged = false;
                         damagedCounter = 0;
                     }
                 }
                 if ((rand.Next(0, 1000)) % 100 == 0)
                 {
-                    this.switchAction();
+                    switchAction();
                 }
-                else
-                {
-
-                    currentGoriya.Update();
-                }
-
-                this.destinationRectangle = currentGoriya.DestinationRectangle;
-            } else
+                destinationRectangle = currentGoriya.DestinationRectangle;
+            }
+            else
             {
                 deathFrames++;
             }
-
-            //currentBoomerang.Update();
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle sourceRectangle = new Rectangle(0, 0, 15, 16);
+            int maxDeathFrames = 20;
             if (!isDead)
             {
-                //spriteBatch.Begin();
                 currentGoriya.Draw(spriteBatch);
             }
             else
             {
                 spriteBatch.Begin();
-                this.destinationRectangle = new Rectangle((int)this.currentGoriya.XPosition, (int)this.currentGoriya.YPosition, 30, 30);
-                if (deathFrames >= 0 && deathFrames <= 5)
+                for (int i = 0; i < 4; i++)
                 {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
-
-                }
-                else if (deathFrames > 5 && deathFrames < 10)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 10 && deathFrames < 15)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 15 && deathFrames < 20)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-
-                }
-                else
-                {
-                    this.dyingComplete = true;
+                    if (deathFrames > (i * maxDeathFrames) / 4 && deathFrames <= ((i + 1) * maxDeathFrames) / 4)
+                    {
+                        sourceRectangle = sourceRectangles[i];
+                    }
+                    else if (deathFrames > maxDeathFrames)
+                    {
+                        dyingComplete = true;
+                    }
                 }
                 if (!dyingComplete)
                 {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Color.White);
+                    destinationRectangle = new Rectangle((int)currentGoriya.XPosition, (int)currentGoriya.YPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
+                    spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                 }
-
                 spriteBatch.End();
             }
-            //currentBoomerang.Draw(spriteBatch);
-            //spriteBatch.End();
         }
-
-
 
         public Rectangle GetHitbox()
         {
             Rectangle hitbox = currentGoriya.GetHitbox();
-
             return hitbox;
         }
 
@@ -159,108 +124,98 @@ namespace Sprites
         {
             // Get the hitbox of the current goriya
             Rectangle currentLocation = currentGoriya.GetHitbox();
-            this.xPos = (float)currentLocation.X;
-            this.yPos = (float)currentLocation.Y;
+            xPos = (float)currentLocation.X;
+            yPos = (float)currentLocation.Y;
 
             // Randomly select a goriya state to make
             switch (goriyaActions[rand.Next(0, goriyaActions.Count)])
             {
                 case GoriyaActions.MovingUp:
-                    this.currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingUpSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.MovingDown:
-                    this.currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingDownSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.MovingLeft:
-                    this.currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingLeftSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.MovingRight:
-                    this.currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingRightSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.ThrowingUp:
-                    this.currentGoriya = new GoriyaThrowingUpSprite(this.texture, this.xPos, this.yPos);
-                    this.currentBoomerang = new GoriyaBoomerangUpSprite(texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaThrowingUpSprite(texture, xPos, yPos);
+                    currentBoomerang = new GoriyaBoomerangUpSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.ThrowingDown:
-                    this.currentGoriya = new GoriyaThrowingDownSprite(this.texture,this.xPos, this.yPos);
-                    this.currentBoomerang = new GoriyaBoomerangDownSprite(texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaThrowingDownSprite(texture, xPos, yPos);
+                    currentBoomerang = new GoriyaBoomerangDownSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.ThrowingLeft:
-                    this.currentGoriya = new GoriyaThrowingLeftSprite(this.texture, this.xPos, this.yPos);
-                    this.currentBoomerang = new GoriyaBoomerangLeftSprite(texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaThrowingLeftSprite(texture, xPos, yPos);
+                    currentBoomerang = new GoriyaBoomerangLeftSprite(texture, xPos, yPos);
                     break;
                 case GoriyaActions.ThrowingRight:
-                    this.currentGoriya = new GoriyaThrowingRightSprite(this.texture, this.xPos, this.yPos);
-                    this.currentBoomerang = new GoriyaBoomerangRightSprite(texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaThrowingRightSprite(texture, xPos, yPos);
+                    currentBoomerang = new GoriyaBoomerangRightSprite(texture, xPos, yPos);
                     break;
                 default:
                     break;
             }
         }
-
         public void TurnAround(string side)
         {
             // Get the hitbox of the current goriya
             Rectangle currentLocation = currentGoriya.GetHitbox();
-            this.xPos = (float)currentLocation.X;
-            this.yPos = (float)currentLocation.Y;
+            xPos = (float)currentLocation.X;
+            yPos = (float)currentLocation.Y;
 
             // Have the Goriya turn around based on what wall it is running into
             switch (side)
             {
                 case "top":
-                    this.currentGoriya = new GoriyaMovingDownSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingDownSprite(texture, xPos, yPos);
                     break;
                 case "bottom":
-                    this.currentGoriya = new GoriyaMovingUpSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingUpSprite(texture, xPos, yPos);
                     break;
                 case "left":
-                    this.currentGoriya = new GoriyaMovingRightSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingRightSprite(texture, xPos, yPos);
                     break;
                 case "right":
-                    this.currentGoriya = new GoriyaMovingLeftSprite(this.texture, this.xPos, this.yPos);
+                    currentGoriya = new GoriyaMovingLeftSprite(texture, xPos, yPos);
                     break;
                 default:
                     break;
 
             }
-
         }
-
         public IEnemyProjectile GetCurrentBoomerang()
         {
-            return this.currentBoomerang;
+            return currentBoomerang;
         }
-
         public void TakeDamage(string side)
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-            this.health -= 1;
-            this.isDamaged = true;
-            this.currentGoriya.IsDamaged = true;
-            if (this.health <= 0)
+            health -= 1;
+            isDamaged = true;
+            currentGoriya.IsDamaged = true;
+            if (health <= 0)
             {
-                this.isDead = true;
+                isDead = true;
             }
         }
-
         public ISprite DropItem()
         {
             if (dyingComplete)
             {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.currentGoriya.XPosition, this.currentGoriya.YPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(currentGoriya.XPosition, currentGoriya.YPosition - 150), droppableItems[rand]);
             }
             else
             {
                 return null;
             }
-        }
-
-        public void Die()
-        {
-
         }
     }
 }

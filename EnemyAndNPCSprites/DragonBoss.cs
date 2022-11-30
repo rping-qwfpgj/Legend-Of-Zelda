@@ -271,25 +271,21 @@ namespace Sprites
         { 
             // Update current orb
             currFrames += 1;
-            if(currFrames % 10 == 0) { 
+            if(currFrames % 2 == 0) { 
                 ++currOrb;
             }
             if(currOrb >= attackOrbs.Count)
             {
                 currOrb = 0;
-            } 
-            
+            }
+
             // Update x and y so that this orb goes towards the upper left in a diagonal line
-            
-           // Curr frames is used as it is a consistently changing number that lets the orb move in a smooth motion
-            if (currFrames % 8 == 0)
-            {
-                yPosition -= 1;
-            }
+
+            // Curr frames is used as it is a consistently changing number that lets the orb move in a smooth motion
             if (currFrames % 3 == 0)
-            {
-                xPosition -= 1;
-            }
+                yPosition -= 5;
+                xPosition -= 5;
+            
 
             // Update the full location of the orb
             destinationRectangle = new((int)xPosition, (int)yPosition, 32, 40);
@@ -373,7 +369,7 @@ namespace Sprites
           
             // Update current orb
             currFrames+=1;
-            if(currFrames % 10 == 0) { 
+            if(currFrames % 2 == 0) { 
                 ++currOrb;
             }
             if(currOrb >= attackOrbs.Count)
@@ -384,10 +380,9 @@ namespace Sprites
             // Update just x so that this orb goes towards the left in a horizontal line
          // Curr frames is used as it  is a consistently changing number that lets the orb move in a smooth motion
            
-            if (currFrames % 3 == 0)
-            {
-                xPosition -= 1;
-            }
+           
+                xPosition -= 5;
+            
 
             // Update the full location of the orb
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);
@@ -471,7 +466,7 @@ namespace Sprites
           
             currFrames += 1;
             // Update current orb
-            if(currFrames % 10 == 0) { 
+            if(currFrames % 2 == 0) { 
             ++currOrb;
             }
             if(currOrb >= attackOrbs.Count)
@@ -482,14 +477,13 @@ namespace Sprites
             // Update x and y so that this orb goes towards the upper left in a diagonal line
         
 
-            if (currFrames % 8 == 0)
-            {
-                yPosition += 1;
-            }
-            if (currFrames % 3 == 0)
-            {
-                xPosition -= 1;
-            }
+          
+                if(currFrames % 3==0)
+                    yPosition += 5;
+            
+            
+                xPosition -= 5;
+            
 
             // Update the full location of the orb
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 40);

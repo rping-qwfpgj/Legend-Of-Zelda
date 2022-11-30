@@ -17,11 +17,13 @@ namespace Collision
 		{
 			
 		}
-
 		public static void handleCollision(IEnemyProjectile projectile, Room room)
 		{
 			projectile.collide();
-			room.RemoveObject(projectile);
+			if (projectile is BottomDragonAttackOrbSprite || projectile is TopDragonAttackOrbSprite || projectile is MiddleDragonAttackOrbSprite)
+			{
+				room.RemoveObject(projectile);
+			}
 		}        
 	}
 }

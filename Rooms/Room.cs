@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Sprites;
 using LegendofZelda.SpriteFactories;
-
+using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LegendofZelda
 {
@@ -11,8 +12,7 @@ namespace LegendofZelda
     {
         public List<ISprite> sprites;
         private ISprite background;
-        public ISprite Background {get => background; set=>background=value; }
-
+        public ISprite Background { get => background; set => background = value; }
         public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;
@@ -33,17 +33,17 @@ namespace LegendofZelda
                         sprite.Draw(spriteBatch);
                     }
                 }
-            }  
+            }
         }
 
-        public void Update() 
+        public void Update()
         {
-            List<ISprite> copy = new List<ISprite>(this.sprites);
+            List<ISprite> copy = new List<ISprite>(sprites);
             background.Update();
 
             var ibackground = background as IBackground;
-            if (!ibackground.IsTransitioning) { 
-            
+            if (!ibackground.IsTransitioning)
+            {
                 foreach (var sprite in copy)
                 {
                     DealWithEnemies(sprite);
@@ -51,6 +51,28 @@ namespace LegendofZelda
                     sprite.Update();
                 }
             }
+
+            int gcounter = 0;
+            foreach (var test in sprites)
+            {
+                if (test is GoriyaBoomerangDownSprite || test is GoriyaBoomerangUpSprite || test is GoriyaBoomerangRightSprite || test is GoriyaBoomerangLeftSprite)
+                {
+                    gcounter++;
+                }
+            }
+            Debug.WriteLine("goriya");
+            Debug.WriteLine(gcounter);
+
+            int counter = 0;
+            foreach (var test in sprites)
+            {
+                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite)
+                {
+                    counter++;
+                }
+            }
+            Debug.WriteLine("dragon");
+            Debug.WriteLine(counter);
         }
 
         public List<ISprite> ReturnObjects()
@@ -59,21 +81,22 @@ namespace LegendofZelda
             return copyOfSprites;
         }
 
-       public void RemoveObject(ISprite sprite)
-       { 
+        public void RemoveObject(ISprite sprite)
+        {
             sprites.Remove(sprite);
-       }
 
-       public void AddObject(ISprite sprite)
-       {
+        }
+
+        public void AddObject(ISprite sprite)
+        {
             sprites.Add(sprite);
-       }
+        }
 
         private void DealWithLinkProjectiles(ISprite sprite)
         {
             List<ISprite> toRemove = new();
-            
-            if(sprite is ILinkProjectile)
+
+            if (sprite is ILinkProjectile)
             {
                 var projectile = sprite as ILinkProjectile;
                 if (projectile.IsDone)
@@ -89,40 +112,51 @@ namespace LegendofZelda
         }
         private void DealWithEnemies(ISprite sprite)
         {
-            List<ISprite> toRemove = new();
-            List<ISprite> toAdd = new();
-            if (sprite is IEnemy)
+            HashSet<ISprite> toRemove = new();
+            HashSet<ISprite> toAdd = new();
+            if (sprite is IEnemy && sprite!=null)
             {
                 IEnemy enemy = sprite as IEnemy;
 
-                 if (enemy is DragonBossSprite)
-                 {
+                if (enemy is DragonBossSprite)
+                {
                     DragonBossSprite dragonBoss = enemy as DragonBossSprite;
                     List<ISprite> dragonOrbs = dragonBoss.getEnemyProjectiles();
 
-                    foreach(IEnemyProjectile orb in dragonOrbs)
+                    foreach (IEnemyProjectile orb in dragonOrbs)
                     {
-                        if(orb.keepThrowing)
+                        if (orb.keepThrowing)
                         {
-                            toAdd.Add(orb);
-                        } else
+                            if (!sprites.Contains(orb))
+                                toAdd.Add(orb);
+                        }
+                        else
                         {
                             toRemove.Add(orb);
                         }
                     }
-                 } else if (enemy is GoriyaSprite)
-                 {
-                    GoriyaSprite goriya = enemy as GoriyaSprite;
-                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
 
-                    if(currBoomerang.keepThrowing)
+
+                }
+                else if (enemy is GoriyaSprite)
+                {
+                    GoriyaSprite goriya = (GoriyaSprite)enemy;
+                    IEnemyProjectile currBoomerang = goriya.GetCurrentBoomerang();
+                    if (currBoomerang != null)
                     {
-                        toAdd.Add(currBoomerang);
-                    } else
-                    {
-                        toRemove.Add(currBoomerang);
+                        if (currBoomerang.keepThrowing)
+                        {
+                            if (!sprites.Contains(currBoomerang))
+                                toAdd.Add(currBoomerang);
+                        }
+                        else
+                        {
+                            toRemove.Add(currBoomerang);
+                        }
                     }
-                } 
+                }
+
+
                 if (enemy.DyingComplete == true)
                 {
                     toRemove.Add(sprite);
@@ -131,7 +165,6 @@ namespace LegendofZelda
                     {
                         SoundFactory.Instance.CreateSoundEffect("ItemDrop").Play();
                         toAdd.Add(item);
-
                     }
                 }
             }
@@ -140,6 +173,7 @@ namespace LegendofZelda
             {
                 RemoveObject(spr);
             }
+
             foreach (var spr in toAdd)
             {
                 AddObject(spr);
