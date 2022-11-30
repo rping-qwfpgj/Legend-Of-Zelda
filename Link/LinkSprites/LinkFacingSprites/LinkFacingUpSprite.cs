@@ -7,7 +7,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class LinkFacingUpSprite : INonAttackingSprite
+    public class LinkFacingUpSprite : ILinkNonAttackingSprite
     {
         // Texture to take sprites from
         private readonly Texture2D texture;

@@ -4,7 +4,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class LinkThrowingRightSprite : IAttackingSprite
+    public class LinkThrowingRightSprite : ILinkAttackingSprite
     {
         // Keep track of frames
         private int currFrames = 0;

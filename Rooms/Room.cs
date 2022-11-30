@@ -28,7 +28,7 @@ namespace LegendofZelda
                 foreach (var sprite in sprites)
                 {
                     //If the object is link , then don't draw it, will cause duplicates otherwise
-                    if (!(sprite is IAttackingSprite) && !(sprite is INonAttackingSprite))
+                    if (!(sprite is ILinkAttackingSprite) && !(sprite is ILinkNonAttackingSprite))
                     {
                         sprite.Draw(spriteBatch);
                     }

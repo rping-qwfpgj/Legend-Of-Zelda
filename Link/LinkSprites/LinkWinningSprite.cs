@@ -9,7 +9,7 @@ using LegendofZelda;
 
 namespace Sprites
 {
-    public class LinkWinningSprite : INonAttackingSprite
+    public class LinkWinningSprite : ILinkNonAttackingSprite
     {
         // Texture to take sprites from
         private readonly Texture2D texture;

@@ -13,6 +13,7 @@ namespace Commands
             if (Link.Instance.inventory.getItemCount("bomb") > 0)
             {
                 Link.Instance.throwable = Link.Throwables.Bomb;
+                Link.Instance2.throwable = Link.Throwables.Bomb;
             }
         }
     }
@@ -27,6 +28,7 @@ namespace Commands
             if (Link.Instance.inventory.getItemCount("boomerang") > 0)
             {
                 Link.Instance.throwable = Link.Throwables.Boomerang;
+                 Link.Instance2.throwable = Link.Throwables.Boomerang;
             }
         }
     }
@@ -41,6 +43,7 @@ namespace Commands
             if (Link.Instance.inventory.getItemCount("boomerang") > 0)
             {
                 Link.Instance.throwable = Link.Throwables.BlueBoomerang;
+                 Link.Instance2.throwable = Link.Throwables.BlueBoomerang;
             }
         }
     }
@@ -55,6 +58,7 @@ namespace Commands
             if (Link.Instance.inventory.getItemCount("bow") == 1)
             {
                 Link.Instance.throwable = Link.Throwables.Arrow;
+                 Link.Instance2.throwable = Link.Throwables.Arrow;
             }
         }
     }
@@ -68,6 +72,7 @@ namespace Commands
             if (Link.Instance.inventory.getItemCount("bow") == 1)
             {
                 Link.Instance.throwable = Link.Throwables.BlueArrow;
+                 Link.Instance2.throwable = Link.Throwables.BlueArrow;
             }
         }
     }
@@ -80,6 +85,7 @@ namespace Commands
         public void Execute()
         {
             Link.Instance.throwable = Link.Throwables.Fire;
+             Link.Instance2.throwable = Link.Throwables.Fire;
         }
     }
 }

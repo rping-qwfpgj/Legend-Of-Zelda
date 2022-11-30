@@ -141,9 +141,9 @@ namespace LegendofZelda
         }
         public void NoInput()
         {
-            if (this.currentLinkSprite is IAttackingSprite)
+            if (this.currentLinkSprite is ILinkAttackingSprite)
             {
-                IAttackingSprite currSprite = currentLinkSprite as IAttackingSprite;
+                ILinkAttackingSprite currSprite = currentLinkSprite as ILinkAttackingSprite;
                 if (!(currSprite.isAttacking()))
                 {
                     this.currentState.NoInput();

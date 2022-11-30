@@ -3,7 +3,7 @@ using System;
 using Microsoft.Xna.Framework;
 namespace LegendofZelda.Interfaces
 {
-    public interface IAttackingSprite : ISprite
+    public interface IPlayer2AttackingSprite : ISprite
     {
         bool isAttacking();
         string getSide();

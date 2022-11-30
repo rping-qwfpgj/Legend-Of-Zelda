@@ -17,9 +17,9 @@ namespace Collision
 	{		
 		public static void handleCollision(IEnemy enemy, string side, Game1 game)
 		{
-			if(Link.Instance.currentLinkSprite is IAttackingSprite)
+			if(Link.Instance.currentLinkSprite is ILinkAttackingSprite)
 			{
-                IAttackingSprite currLinkSprite = (IAttackingSprite) Link.Instance.currentLinkSprite;
+                ILinkAttackingSprite currLinkSprite = (ILinkAttackingSprite) Link.Instance.currentLinkSprite;
                 if (currLinkSprite.getSide() == side)
                 {
                     side = reverseSide(side);
@@ -35,7 +35,7 @@ namespace Collision
                 } else if(enemy is TrapSprite) {
                     Link.Instance.health = 0f;
                     Link.Instance.Die();
-                } else { 
+                } else {
 				    Link.Instance.TakeDamage(side);
                 }
             }

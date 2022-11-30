@@ -27,7 +27,7 @@ namespace States
         public void MoveUp()
         {
             Link.Instance2.UpdatePosition();
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance2.currentPosition,
+            Link.Instance2.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(Link.Instance2.currentPosition,
                     Link.Instance2.isDamaged);
             Link.Instance.currentState = new LinkWalkingUpState();
         }

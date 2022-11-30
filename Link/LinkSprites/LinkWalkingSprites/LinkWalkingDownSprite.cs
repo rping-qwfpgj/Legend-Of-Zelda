@@ -5,7 +5,7 @@ using LegendofZelda.Interfaces;
 
 namespace Sprites
 {
-    public class LinkWalkingDownSprite : INonAttackingSprite
+    public class LinkWalkingDownSprite : ILinkNonAttackingSprite
     {
         // Keep track of frames
         private int currFrames = 0;
