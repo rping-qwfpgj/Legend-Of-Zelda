@@ -89,6 +89,7 @@ namespace LegendofZelda
         }
         private void DealWithEnemies(ISprite sprite)
         {
+
             List<ISprite> toRemove = new();
             List<ISprite> toAdd = new();
             if (sprite is IEnemy)
