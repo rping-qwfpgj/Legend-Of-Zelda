@@ -74,6 +74,10 @@ namespace LegendofZelda.SpriteFactories
 
                     return new TrapSprite(enemySpriteSheet, location.X, location.Y + inventoryHeight);
 
+                case "Dodongo":
+
+                    return new DodongoSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
+                
                 default:
 
                     return null;

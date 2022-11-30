@@ -127,7 +127,7 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>DragonBoss</ObjectName>
-			<Location>400 160</Location>
+			<Location>450 160</Location>
 		</Item>
 
 		<!--  Bounding  -->

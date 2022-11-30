@@ -21,7 +21,16 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(new(400, 520), false);
+            if (game.currentRoomIndex == 16)
+            { //coming out of the cave room
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(380, 380), false);
+
+            }
+            else
+            {
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(new(400, 520), false);
+
+            }
             controller.gameState = new GamePlayState(controller, game);
         }
       

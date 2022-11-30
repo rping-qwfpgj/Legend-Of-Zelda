@@ -132,11 +132,16 @@ namespace LegendofZelda
                 if (spelunkingFrames > i * maxSpelunkingFrames / 6 && spelunkingFrames <= (i + 1) * maxSpelunkingFrames / 6)
                 {
                     tint = tintList[i];
+                    Debug.WriteLine(roomNumber);
                     if (i < 4)
                     {
                         if(roomNumber == 9)
                         {
                             sourceRectangle = sourceRectangles[20]; //master sword room
+                        }
+                        else if(roomNumber == 16)
+                        {
+                            sourceRectangle = sourceRectangles[17];
                         }
                         else
                         {

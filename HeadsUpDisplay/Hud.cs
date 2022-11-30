@@ -65,6 +65,19 @@ namespace HeadsUpDisplay
                 red1, red2, red3, red4
             };
 
+        //    heartsList = new()
+        //    {
+        //        {0,  new() { pink1, pink2, pink3, pink4 } },
+        //        {0.5f, new() { halfRed1, pink2, pink3, pink4 } },
+        //        {1.0f,  new() { red1, pink2, pink3, pink4 } },
+        //        {1.5f,  new(0){ red1, halfRed2, pink3, pink4 } },
+        //        {2.0f, new() { red1, red2, pink3, pink4 } },
+        //        {2.5f, new() { red1, red2, halfRed3, pink4 } },
+        //        {3.0f,  new() { red1, red2, red3, pink4 }},
+        //        {3.5f,  new() { red1, red2, red3, halfRed4 } },
+        //        {4.0f,  new() { red1, red2, red3, red4 } }
+        //};
+
             blueMap = HudSpriteFactory.Instance.CreateSprite(new Vector2(x + 40, y + 55), "HudBlueMapSprite");
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(backgroundPos, "hudBackground"));
             sprites.Add(HudSpriteFactory.Instance.CreateSprite(new Vector2(x + 472, y + 62), "LinkSwordSprite"));

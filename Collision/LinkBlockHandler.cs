@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,15 +28,26 @@ namespace Collision
                     {
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
-                    } else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0) { // locked door
+                    }
+                    else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0)
+                    { // locked door
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
-                    } else if (block is OpenDoorBlock) // room transition block
+                    }
+                    else if (block is OpenDoorBlock) // room transition block
                     {
                         var myGame = Link.Instance.game;
                         var command = new UpRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
                         command.Execute();
-                    } else {
+                    }
+                    else if (block is StairsBlock)
+                    {
+                        var myGame = Link.Instance.game;
+                        var command = new UpRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);
+                        command.Execute();
+                    }
+                    else
+                    {
                         linkIdleWalk(side, collisionRect);
                     }
 

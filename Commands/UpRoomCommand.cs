@@ -29,7 +29,7 @@ namespace Commands
             myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
 
             var background = myGame.currentRoom.Background as IBackground;
-            if(myGame.currentRoomIndex == 9)
+            if(myGame.currentRoomIndex == 9 || myGame.currentRoomIndex == 16)
             {
                 background.SetTransitionDirection("cave");
             }
