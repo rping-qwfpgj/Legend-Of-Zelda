@@ -95,5 +95,10 @@
 		<ObjectName>Compass</ObjectName>
 		<Location>420 270</Location>
 	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bomb</ObjectName>
+		<Location>500 200</Location>
+	</Item>
 	
 </XnaContent>

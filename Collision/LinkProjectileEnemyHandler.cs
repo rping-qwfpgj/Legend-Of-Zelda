@@ -21,14 +21,53 @@ namespace Collision
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
             room.RemoveObject(projectile);
-            enemy.TakeDamage(side);
-
-            if(enemy is Digdogger && projectile is BoomerangDownSprite || projectile is BoomerangLeftSprite
-                || projectile is BoomerangRightSprite || projectile is BoomerangUpSprite)
+            if(enemy is Digdogger)
             {
-                Digdogger digdogger = enemy as Digdogger;
-                digdogger.switchAction(Digdogger.DigdoggerActions.SmallStunned);
+                if (IsBoomerang(projectile))
+                {
+                    Digdogger digdogger = enemy as Digdogger;
+                    digdogger.switchAction(Digdogger.DigdoggerActions.SmallStunned);
+                }
             }
+            else if (enemy is DodongoSprite)
+            {
+                if (IsFacingCorrectDirection((IDodongo)enemy, side))
+                {
+                    enemy.TakeDamage(side);
+                }
+            } 
+            else
+            {
+                enemy.TakeDamage(side);
+            }
+        }
+
+        private static bool IsBomb(ILinkProjectile proj)
+        {
+            return proj is BombUpSprite || proj is BombDownSprite || proj is BombRightSprite || proj is BombLeftSprite;
+        }
+
+        private static bool IsBoomerang(ILinkProjectile projectile)
+        {
+            return projectile is BoomerangDownSprite || projectile is BoomerangLeftSprite
+                || projectile is BoomerangRightSprite || projectile is BoomerangUpSprite;
+        }
+
+        private static bool IsFacingCorrectDirection(IDodongo enemy, string side)
+        {
+            switch(side)
+            {
+                case "top":
+                    return enemy is DodongoMovingDownSprite;
+                case "bottom":
+                    return enemy is DodongoMovingUpSprite; 
+                case "right":
+                    return enemy is DodongoMovingLeftSprite;
+                case "left":
+                    return enemy is DodongoMovingRightSprite;
+                default: 
+                    return false;
+            } 
         }
 	}
 }
