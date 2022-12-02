@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Sprites;
 using System.Collections.Generic;
 using LegendofZelda;
 using Sprites;
@@ -21,6 +22,13 @@ namespace Collision
             projectile.collide();
             room.RemoveObject(projectile);
             enemy.TakeDamage(side);
+
+            if(enemy is Digdogger && projectile is BoomerangDownSprite || projectile is BoomerangLeftSprite
+                || projectile is BoomerangRightSprite || projectile is BoomerangUpSprite)
+            {
+                Digdogger digdogger = enemy as Digdogger;
+                digdogger.switchAction(Digdogger.DigdoggerActions.SmallStunned);
+            }
         }
 	}
 }

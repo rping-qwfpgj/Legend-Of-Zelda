@@ -77,6 +77,11 @@ namespace LegendofZelda.SpriteFactories
                 case "Dodongo":
 
                     return new DodongoSprite(bossSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
+                
+                case "Digdogger":
+                    
+                    return new Digdogger(bossSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);
+
 
                  case "OldManBoss":
 
