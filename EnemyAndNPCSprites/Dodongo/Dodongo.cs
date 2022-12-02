@@ -11,6 +11,7 @@ namespace Sprites
     public class DodongoSprite : IEnemy
     {
         private IDodongo currentDodongo;
+        public IDodongo CurrentDodongo { get => currentDodongo; }
         private int health = 2;
         private int deathFrames = 0;
         private bool isDamaged = false;

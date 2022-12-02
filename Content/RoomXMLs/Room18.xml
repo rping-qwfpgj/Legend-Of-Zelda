@@ -23,6 +23,21 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>550 220</Location>
 		</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
+		<Location>50 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
+		<Location>50 392</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>VerticalBoundingBlock</ObjectName>
+		<Location>50 88</Location>
+	</Item>
 
 		<!--  Enemies  -->
 		<Item>

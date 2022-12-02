@@ -21,6 +21,7 @@ namespace Collision
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
             room.RemoveObject(projectile);
+            Debug.WriteLine(side);
             if(enemy is Digdogger)
             {
                 if (IsBoomerang(projectile))
@@ -31,7 +32,7 @@ namespace Collision
             }
             else if (enemy is DodongoSprite)
             {
-                if (IsFacingCorrectDirection((IDodongo)enemy, side))
+                if (IsBomb(projectile) && IsFacingCorrectDirection(enemy, side))
                 {
                     enemy.TakeDamage(side);
                 }
@@ -53,18 +54,19 @@ namespace Collision
                 || projectile is BoomerangRightSprite || projectile is BoomerangUpSprite;
         }
 
-        private static bool IsFacingCorrectDirection(IDodongo enemy, string side)
+        private static bool IsFacingCorrectDirection(IEnemy enemy, string side)
         {
+            DodongoSprite d =  enemy as DodongoSprite;
             switch(side)
             {
                 case "top":
-                    return enemy is DodongoMovingDownSprite;
+                    return d.CurrentDodongo is DodongoMovingUpSprite;
                 case "bottom":
-                    return enemy is DodongoMovingUpSprite; 
+                    return d.CurrentDodongo is DodongoMovingDownSprite; 
                 case "right":
-                    return enemy is DodongoMovingLeftSprite;
+                    return d.CurrentDodongo is DodongoMovingRightSprite;
                 case "left":
-                    return enemy is DodongoMovingRightSprite;
+                    return d.CurrentDodongo is DodongoMovingLeftSprite;
                 default: 
                     return false;
             } 
