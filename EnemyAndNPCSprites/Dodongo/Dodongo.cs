@@ -63,7 +63,7 @@ namespace Sprites
             this.currentDodongo = new DodongoMovingRightSprite(texture, this.xPos, this.yPos);
             this.damageSources.Add(new Rectangle(52, 58, 16, 16));
             this.damageSources.Add(new Rectangle(1, 58, 15, 16));
-            this.damageSources.Add(new Rectangle(69, 59, 28, 15));
+            this.damageSources.Add(new Rectangle(135, 58, 32, 16));
         }
 
         public void Update()
@@ -120,43 +120,48 @@ namespace Sprites
                     if (currentDodongo is DodongoMovingUpSprite)
                     {
                         sourceRectangle = damageSources[0];
+                        destinationRectangle = new Rectangle((int)this.currentDodongo.XPosition, (int)this.currentDodongo.YPosition, 32, 32);
                     }
                     else if (currentDodongo is DodongoMovingDownSprite)
                     {
                         sourceRectangle = damageSources[1];
+                        destinationRectangle = new Rectangle((int)this.currentDodongo.XPosition, (int)this.currentDodongo.YPosition, 32, 32);
                     }
                     else if (currentDodongo is DodongoMovingRightSprite || currentDodongo is DodongoMovingLeftSprite)
                     {
                         sourceRectangle = damageSources[2];
+                        destinationRectangle = new Rectangle((int)this.currentDodongo.XPosition, (int)this.currentDodongo.YPosition, 64, 32);
+                    }
+                    spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Microsoft.Xna.Framework.Color.White);
+
+                } else {
+                    if (deathFrames >= 60 && deathFrames <= 65)
+                    {
+                        sourceRectangle = new Rectangle(0, 0, 15, 16);
+
+                    }
+                    else if (deathFrames > 65 && deathFrames < 70)
+                    {
+                        sourceRectangle = new Rectangle(16, 0, 15, 16);
+                    }
+                    else if (deathFrames >= 75 && deathFrames < 80)
+                    {
+                        sourceRectangle = new Rectangle(35, 3, 9, 10);
+
+                    }
+                    else if (deathFrames >= 85 && deathFrames < 90)
+                    {
+                        sourceRectangle = new Rectangle(51, 3, 9, 10);
+                    }
+                    else if (deathFrames >= 90)
+                    {
+                        this.dyingComplete = true;
+                    }
+                    if (!dyingComplete)
+                    {
+                        spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Microsoft.Xna.Framework.Color.White);
                     }
                 }
-                else if (deathFrames >= 60 && deathFrames <= 65)
-                {
-                    sourceRectangle = new Rectangle(0, 0, 15, 16);
-
-                }
-                else if (deathFrames > 65 && deathFrames < 70)
-                {
-                    sourceRectangle = new Rectangle(16, 0, 15, 16);
-                }
-                else if (deathFrames >= 75 && deathFrames < 80)
-                {
-                    sourceRectangle = new Rectangle(35, 3, 9, 10);
-
-                }
-                else if (deathFrames >= 85 && deathFrames < 90)
-                {
-                    sourceRectangle = new Rectangle(51, 3, 9, 10);
-                }
-                else if (deathFrames >= 90)
-                {
-                    this.dyingComplete = true;
-                }
-                if (!dyingComplete)
-                {
-                    spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangle, Microsoft.Xna.Framework.Color.White);
-                }
-
                 spriteBatch.End();
             }
         }
