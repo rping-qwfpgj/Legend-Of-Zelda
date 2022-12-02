@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using LegendofZelda;
 using LegendofZelda;
 using LegendofZelda.Interfaces;
+using System.Diagnostics;
+using Sprites;
 
 namespace Collision
 {
@@ -65,7 +67,7 @@ namespace Collision
         private bool detectCollision(ISprite obj, ISprite otherObj)
         {
             Rectangle objectRec = obj.DestinationRectangle;
-            Rectangle otherRec = otherObj.DestinationRectangle;
+			Rectangle otherRec = otherObj.DestinationRectangle;
             return objectRec.Intersects(otherRec);
         }
     }
