@@ -55,6 +55,7 @@ namespace GameStates
         public void GameOver() { }
         public void GamePlay() { }
         public void WinGame() { }
+        public void BossRush() { }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }
