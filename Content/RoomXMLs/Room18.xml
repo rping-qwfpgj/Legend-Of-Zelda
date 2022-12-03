@@ -23,6 +23,21 @@
 			<ObjectName>DepthBlock</ObjectName>
 			<Location>550 220</Location>
 		</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
+		<Location>50 44</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HorizontalBoundingBlock</ObjectName>
+		<Location>50 392</Location>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>VerticalBoundingBlock</ObjectName>
+		<Location>50 88</Location>
+	</Item>
 
 		<!--  Enemies  -->
 		<Item>
@@ -51,6 +66,8 @@
 		<Location>200 300</Location>
 	</Item>
 
+	
+	
 
 	<!--  Items  -->
 	<Item>
@@ -92,6 +109,11 @@
 		<ObjectType>Item</ObjectType>
 		<ObjectName>Compass</ObjectName>
 		<Location>420 270</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bomb</ObjectName>
+		<Location>500 200</Location>
 	</Item>
 	
 </XnaContent>

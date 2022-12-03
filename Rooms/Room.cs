@@ -60,8 +60,8 @@ namespace LegendofZelda
                     gcounter++;
                 }
             }
-            Debug.WriteLine("goriya");
-            Debug.WriteLine(gcounter);
+            //Debug.WriteLine("goriya");
+            //Debug.WriteLine(gcounter);
 
             int counter = 0;
             foreach (var test in sprites)
@@ -71,8 +71,8 @@ namespace LegendofZelda
                     counter++;
                 }
             }
-            Debug.WriteLine("dragon");
-            Debug.WriteLine(counter);
+            //Debug.WriteLine("dragon");
+            //Debug.WriteLine(counter);
         }
 
         public List<ISprite> ReturnObjects()
