@@ -138,10 +138,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         
-        keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
+        keyboardController.AddCommand(Keys.B, new ThrowCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
-        
-        
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
