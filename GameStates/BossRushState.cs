@@ -7,19 +7,19 @@ using System.Diagnostics;
 
 namespace GameStates
 
-{   
-    public class GamePlayState : IGameState
+{
+    public class BossRushState : IGameState
     {
         private GameStateController controller;
         private Game1 game;
-        public GamePlayState(GameStateController controller, Game1 game)
+        public BossRushState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
         }
         public void GamePlay()
         {
-             // Already in gameplay state
+            controller.gameState = new GamePlayState(controller, game);
         }
         public void Inventory()
         {
@@ -39,7 +39,7 @@ namespace GameStates
         }
         public void BossRush()
         {
-            controller.gameState = new BossRushState(controller, game);
+            // already in boss rush state
         }
         public void TransitionUp()
         {
@@ -64,7 +64,7 @@ namespace GameStates
             game.collisionDetector.Update();
             game.keyboardController.Update();
             game.currentRoom.Update();
-            game.hud.Update();            
+            game.hud.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
