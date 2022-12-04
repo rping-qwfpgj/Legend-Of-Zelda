@@ -21,7 +21,7 @@ namespace Collision
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
             room.RemoveObject(projectile);
-            Debug.WriteLine(side);
+          
             if(enemy is Digdogger)
             {
                 if (IsBoomerang(projectile))

@@ -16,6 +16,7 @@ using HeadsUpDisplay;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
+using System.Diagnostics;
 
 
 // Creator: Tuhin Patel
@@ -113,6 +114,7 @@ public class Game1 : Game
     }
     protected override void Draw(GameTime gameTime)
     {
+      
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }

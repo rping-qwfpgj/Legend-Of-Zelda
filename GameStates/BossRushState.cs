@@ -4,6 +4,7 @@ using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
+using LegendofZelda.Interfaces;
 
 namespace GameStates
 
@@ -12,10 +13,16 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
+        RoomGenerator roomGen;
+        bool isComplete;
         public BossRushState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
             this.game = game;
+            roomGen = new();
+            isComplete = true;
+            game.currentRoomIndex = 19;
+           
         }
         public void GamePlay()
         {
@@ -59,12 +66,23 @@ namespace GameStates
         }
         public void Update()
         {
+            if (isComplete)
+            {
+                isComplete = false;
+                game.currentRoom = roomGen.NewRoom();
+            
+            }
+
             Link.Instance.Update();
             game.mouseController.Update();
             game.collisionDetector.Update();
             game.keyboardController.Update();
             game.currentRoom.Update();
             game.hud.Update();
+
+            isComplete = CheckIfFinished();
+            Debug.WriteLine(isComplete);
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -73,6 +91,19 @@ namespace GameStates
             Link.Instance.Draw(_spriteBatch);
             Link.Instance2.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
+        }
+
+        private bool CheckIfFinished()
+        {
+            foreach (var sprite in game.currentRoom.sprites)
+            {
+                if (sprite is IEnemy)
+                {
+                    Debug.WriteLine(sprite);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
