@@ -48,7 +48,7 @@
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>OldManBoss</ObjectName>
-		<Location>350 200</Location>
+		<Location>350 115</Location>
 	</Item>
 
 	<!--  Bounding  -->

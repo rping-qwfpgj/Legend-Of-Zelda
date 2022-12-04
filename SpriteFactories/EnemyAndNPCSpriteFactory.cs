@@ -84,7 +84,7 @@ namespace LegendofZelda.SpriteFactories
 
                  case "OldManBoss":
 
-                    return new OldManBoss(oldManSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);               
+                    return new OldManBoss(oldManSpriteSheet, bossSpriteSheet, location.X, location.Y + inventoryHeight, dyingSpriteSheet);               
                 default:
 
                     return null;

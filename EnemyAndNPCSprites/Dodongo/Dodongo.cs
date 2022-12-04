@@ -26,8 +26,10 @@ namespace Sprites
         };
         List<DodongoActions> dodongoActions = new List<DodongoActions> {DodongoActions.MovingUp, DodongoActions.MovingDown, DodongoActions.MovingRight, DodongoActions.MovingLeft};
         private Random rand = new Random();
-        private List<string> droppableItems = new List<string> { "SmallRedHeart", "SmallBlueHeart", "OrangeGemstone", "Bomb" };
-        
+
+        private List<string> droppableItems = new List<string> { "Key" };
+
+
         private Texture2D texture;
         private Texture2D dyingTexture;
 
