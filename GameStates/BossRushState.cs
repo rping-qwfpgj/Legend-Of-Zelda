@@ -14,13 +14,15 @@ namespace GameStates
         private GameStateController controller;
         private Game1 game;
         RoomGenerator roomGen;
-        bool isComplete;
+        bool roomIsComplete;
+        int roomsRemaining;
         public BossRushState(GameStateController controller, Game1 game)
         {
+            roomsRemaining = 5;
             this.controller = controller;
             this.game = game;
             roomGen = new();
-            isComplete = true;
+            roomIsComplete = true;
             game.currentRoomIndex = 19;
            
         }
@@ -66,11 +68,18 @@ namespace GameStates
         }
         public void Update()
         {
-            if (isComplete)
+            if (roomIsComplete)
             {
-                isComplete = false;
+                roomIsComplete = false;
                 game.currentRoom = roomGen.NewRoom();
-            
+                roomsRemaining--;
+            }
+
+            if (roomsRemaining ==0)
+            {
+                controller.gameState.GamePlay();
+                game.currentRoom = game.rooms[22];
+                game.currentRoomIndex = 22;
             }
 
             Link.Instance.Update();
@@ -80,9 +89,7 @@ namespace GameStates
             game.currentRoom.Update();
             game.hud.Update();
 
-            isComplete = CheckIfFinished();
-            Debug.WriteLine(isComplete);
-
+            roomIsComplete = CheckIfFinished();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -95,11 +102,10 @@ namespace GameStates
 
         private bool CheckIfFinished()
         {
-            foreach (var sprite in game.currentRoom.sprites)
+            foreach (var sprite in game.currentRoom.ReturnObjects())
             {
                 if (sprite is IEnemy)
                 {
-                    Debug.WriteLine(sprite);
                     return false;
                 }
             }

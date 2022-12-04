@@ -110,6 +110,11 @@ public class Game1 : Game
         {
             MediaPlayer.Stop();
         }
+
+        if(currentRoomIndex == 19)
+        {
+            gameStateController.gameState.BossRush();
+        }
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)

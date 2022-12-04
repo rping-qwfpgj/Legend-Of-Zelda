@@ -8,8 +8,8 @@ public class GameStateController
     public IGameState gameState;
     public GameStateController(Game1 game)
     {
-        //gameState = new GamePlayState(this, game);
-        gameState = new BossRushState(this, game);
+        gameState = new GamePlayState(this, game);
+        //gameState = new BoshRushState(this, game);
     }
     public void GamePlay()
     {

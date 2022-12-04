@@ -32,6 +32,7 @@ namespace LegendofZelda
             enemyList.Add("Goriya");
             enemyList.Add("Stalfos");
             enemyList.Add("Keese");
+            enemyList.Add("Dodongo");
 
             blockList = new();
             blockList.Add("StatueOneBlock");
@@ -41,7 +42,6 @@ namespace LegendofZelda
             blockLocations = new();
             makeCoordinates();
             sprites = new();
-
         }
 
         public Room NewRoom()
@@ -73,8 +73,6 @@ namespace LegendofZelda
                 int enemyType = rnd.Next(enemyList.Count);
                 sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemyList[enemyType]));
             }
-
-            Debug.WriteLine(numOfEnemies);
             return new Room(sprites, BackgroundSpriteFactory.Instance.CreateBackground("Background21"));
         }
 
