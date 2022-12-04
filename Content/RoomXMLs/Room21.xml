@@ -45,6 +45,11 @@
 		<ObjectName>Trap</ObjectName>
 		<Location>664 356</Location>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>OldManBoss</ObjectName>
+		<Location>350 200</Location>
+	</Item>
 
 	<!--  Bounding  -->
 	<Item>

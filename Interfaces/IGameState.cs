@@ -9,6 +9,7 @@ namespace Interfaces
         void GameOver();
         void Pause();
         void WinGame();
+        void BossRush();
         void TransitionUp();
         void TransitionDown();
         void TransitionLeft();

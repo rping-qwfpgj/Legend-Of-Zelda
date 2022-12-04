@@ -52,7 +52,7 @@ namespace Sprites
                 damagedCounter++;
                 sourceRectangle = new Rectangle(52, 58, 16, 16);
                 destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
-                if (damagedCounter > 240)
+                if (damagedCounter > 60)
                 {
                     damagedCounter = 0;
                     isDamaged = false;
@@ -136,7 +136,7 @@ namespace Sprites
                 damagedCounter++;
                 sourceRectangle = new Rectangle(18, 58, 16, 16);
                 destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
-                if (damagedCounter > 120)
+                if (damagedCounter > 60)
                 {
                     damagedCounter = 0;
                     isDamaged = false;
@@ -215,7 +215,7 @@ namespace Sprites
                 damagedCounter++;
                 sourceRectangle = new Rectangle(135, 58, 32, 16);
                 destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
-                if (damagedCounter > 120)
+                if (damagedCounter > 60)
                 {
                     damagedCounter = 0;
                     isDamaged = false;
@@ -301,7 +301,7 @@ namespace Sprites
                 damagedCounter++;
                 sourceRectangle = new Rectangle(135, 58, 32, 16);
                 destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
-                if (damagedCounter > 120)
+                if (damagedCounter > 60)
                 {
                     damagedCounter = 0;
                     isDamaged = false;

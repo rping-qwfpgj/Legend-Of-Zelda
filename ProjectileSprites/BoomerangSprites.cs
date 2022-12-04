@@ -34,7 +34,7 @@ namespace Sprites
         private Rectangle destinationRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
     
-        public bool IsDone { get => returned; }
+        public bool IsDone { get => returned;}
         public BoomerangUpSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -132,11 +132,6 @@ namespace Sprites
         {
             returning = true;
         }
-        public bool isReturned()
-        {
-            return returned;
-        }
-
      
     }
 
@@ -173,7 +168,7 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
       
-        public bool IsDone { get => returned; }
+        public bool IsDone { get => returned;}
         public BoomerangDownSprite(Texture2D texture, float xPosition, float yPosition, Link link)
         {
             this.texture = texture;
@@ -272,11 +267,6 @@ namespace Sprites
         {
             returning = true;
 
-        }
-
-        public bool isReturned()
-        {
-            return returned;
         }
 
     
@@ -412,10 +402,6 @@ namespace Sprites
 
         }
 
-        public bool isReturned()
-        {
-            return returned;
-        }
 
     }
 
@@ -544,10 +530,7 @@ namespace Sprites
             returning = true;
         }
 
-        public bool isReturned()
-        {
-            return returned;
-        }
+  
 
        
     }
