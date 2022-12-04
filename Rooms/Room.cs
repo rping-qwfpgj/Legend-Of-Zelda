@@ -66,7 +66,7 @@ namespace LegendofZelda
             int counter = 0;
             foreach (var test in sprites)
             {
-                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite)
+                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite || test is FrontOldManOrb || test is RightOldManOrb || test is LeftOldManOrb)
                 {
                     counter++;
                 }
@@ -152,6 +152,24 @@ namespace LegendofZelda
                         else
                         {
                             toRemove.Add(currBoomerang);
+                        }
+                    }
+                } 
+                else if (enemy is OldManBoss)
+                {
+                    OldManBoss oldMan = enemy as OldManBoss;
+                    List<ISprite> dragonOrbs = oldMan.getEnemyProjectiles();
+
+                    foreach (IEnemyProjectile orb in dragonOrbs)
+                    {
+                        if (orb.keepThrowing)
+                        {
+                            if (!sprites.Contains(orb))
+                                toAdd.Add(orb);
+                        }
+                        else
+                        {
+                            toRemove.Add(orb);
                         }
                     }
                 }

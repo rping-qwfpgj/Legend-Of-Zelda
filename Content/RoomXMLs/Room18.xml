@@ -43,13 +43,28 @@
 		<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Gel</ObjectName>
-			<Location>300 250</Location>
+			<Location>0 200</Location>
 		</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
-		<ObjectName>Dodongo</ObjectName>
-		<Location>200 300</Location>
+		<ObjectName>Gel</ObjectName>
+		<Location>50 200</Location>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>100 200</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>150 200</Location>
+	</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Dodongo</ObjectName>
+			<Location>350 100</Location>
+		</Item>
 
 	
 	
