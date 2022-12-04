@@ -28,7 +28,7 @@ namespace GameStates
             }
             else
             {
-                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingUp(new(400, 520), false);
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(new(400, 520), false);
 
             }
             controller.gameState = new GamePlayState(controller, game);

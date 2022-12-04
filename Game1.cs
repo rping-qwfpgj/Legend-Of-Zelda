@@ -192,17 +192,24 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
+        RoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
 
-        for (int i = 0; i <= 22; i++)
+        for (int i = 0; i <= 19; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
         }
+
+        for(int i = 19; i < 24; i++)
+        {
+            rooms.Add(roomGenerator.NewRoom());
+        }
+      
 
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];

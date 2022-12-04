@@ -24,11 +24,11 @@ namespace GameStates
         {
             if (game.currentRoomIndex ==17) // cave room
             {
-                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(180, 180), false);
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(new(180, 180), false);
             }
             else
             {
-                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingDown(new(400, 260), false);
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(new(400, 260), false);
             }
             controller.gameState = new GamePlayState(controller, game);
         }

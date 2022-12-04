@@ -44,7 +44,6 @@ namespace LegendofZelda
 
         }
 
-
         public int GetRightRoom(int currentRoomIndex)
         {
             int returner = currentRoomIndex;

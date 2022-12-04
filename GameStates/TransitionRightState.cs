@@ -26,10 +26,8 @@ namespace GameStates
         }
         public void GamePlay()
         {
-
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(new(130, 395), false);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
             controller.gameState = new GamePlayState(controller, game);
-            
         }
       
         public void Pause()

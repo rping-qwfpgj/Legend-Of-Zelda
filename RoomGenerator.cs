@@ -23,7 +23,7 @@ namespace LegendofZelda
         private readonly int wallHeight = 88;
         private readonly int wallWidth = 100;
         private List<ISprite> sprites;
-  
+
 
         public RoomGenerator()
         {
@@ -49,8 +49,8 @@ namespace LegendofZelda
             makeCoordinates();
             countDown--;
             Random rnd = new Random();
-            int numOfEnemies = rnd.Next(2)+1;
-            int numOfBlocks = rnd.Next(20)+3;
+            int numOfEnemies = rnd.Next(2) + 1;
+            int numOfBlocks = rnd.Next(20) + 3;
             sprites.Clear();
 
             sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 264), "VerticalHalfBoundingBlock"));
@@ -91,5 +91,54 @@ namespace LegendofZelda
             }
 
         }
+
+
+        private void makeDoors()
+        {
+
+            Graph randomGraph = new Graph();
+            Random rnd = new Random();
+            List<string> directions = new()
+            {
+                "left",
+                "right",
+                "top",
+                "bottom"
+            };
+
+
+            int doors = rnd.Next(4);
+
+            for (int j = 0; j < doors; j++)
+            {
+                var directionIndex = rnd.Next(doors);
+
+                switch (directions[directionIndex])
+                {
+
+                    case "left":
+
+                        break;
+                    case "right":
+
+                        break;
+                    case "top":
+
+                        break;
+                    case "bottom":
+
+                        break;
+
+                }
+
+                directions.RemoveAt(directionIndex);
+
+
+            }
+
+        }
+
+
+
     }
 }

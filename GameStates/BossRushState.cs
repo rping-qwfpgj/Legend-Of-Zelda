@@ -24,7 +24,8 @@ namespace GameStates
             roomGen = new();
             roomIsComplete = true;
             game.currentRoomIndex = 19;
-           
+            GraphGenerator graphGenerator = new(5, 19);
+            game.roomsGraph = graphGenerator.newGraph();
         }
         public void GamePlay()
         {
