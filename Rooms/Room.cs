@@ -174,8 +174,7 @@ namespace LegendofZelda
                     }
                 }
 
-
-                if (enemy.DyingComplete == true)
+                if (enemy.DyingComplete)
                 {
                     toRemove.Add(sprite);
                     ISprite item = enemy.DropItem();

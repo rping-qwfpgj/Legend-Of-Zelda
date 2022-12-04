@@ -38,7 +38,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.sourceRectangle = new Rectangle(198, 58, 28, 32);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             this.damagedCounter = 0;
         }
 
@@ -46,12 +46,12 @@ namespace Sprites
         {
             if (!isDamaged) { yPosition -= 1; }
             currentFrame++;
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             if (isDamaged)
             {
                 damagedCounter++;
-                sourceRectangle = new Rectangle(52, 58, 16, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
+                
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
                 if (damagedCounter > 240)
                 {
                     damagedCounter = 0;
@@ -62,14 +62,10 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            if ((currentFrame / 10) % 2 == 0)
-            {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-            }
+            
+            
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+           
             spriteBatch.End();
         }
 
@@ -122,20 +118,20 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.sourceRectangle = new Rectangle(198, 58, 28, 32);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             this.damagedCounter = 0;
         }
 
         public void Update()
         {
             if (!isDamaged) { yPosition += 1; }
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             currentFrame++;
             if (isDamaged)
             {
                 damagedCounter++;
-                sourceRectangle = new Rectangle(18, 58, 16, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
+                
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
                 if (damagedCounter > 120)
                 {
                     damagedCounter = 0;
@@ -146,14 +142,9 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            if ((currentFrame / 10) % 2 == 0)
-            {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-            }
+
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+
             spriteBatch.End();
         }
         public Rectangle GetHitbox()
@@ -204,7 +195,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.sourceRectangle = new Rectangle(264, 58, 28, 32);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 30);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             this.damagedCounter = 0;
         }
         public void Update()
@@ -214,8 +205,8 @@ namespace Sprites
             if (isDamaged)
             {
                 damagedCounter++;
-                sourceRectangle = new Rectangle(135, 58, 32, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
+                
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
                 if (damagedCounter > 120)
                 {
                     damagedCounter = 0;
@@ -224,22 +215,17 @@ namespace Sprites
             }
             else
             {
-                if ((currentFrame / 10) % 2 == 0)
-                {
-                    sourceRectangle = new Rectangle(69, 59, 28, 15);
-                    destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 30);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle(102, 58, 28, 16);
-                    destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 32);
-                }
+               
+              destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
+
+               
+                
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
         public Rectangle GetHitbox()
@@ -289,7 +275,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.sourceRectangle = new Rectangle(297, 58, 28, 32);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
             this.damagedCounter = 0;
         }
 
@@ -300,8 +286,8 @@ namespace Sprites
             if (isDamaged)
             {
                 damagedCounter++;
-                sourceRectangle = new Rectangle(297, 58, 32, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 64, 32);
+               
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
                 if (damagedCounter > 120)
                 {
                     damagedCounter = 0;
@@ -310,22 +296,17 @@ namespace Sprites
             }
             else
             {
-                if ((currentFrame / 10) % 2 == 0)
-                {
-                    sourceRectangle = new Rectangle(69, 59, 28, 15);
-                    destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 30);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle(102, 58, 28, 16);
-                    destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 32);
-                }
+               
+
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 56, 64);
+                
+               
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
         public Rectangle GetHitbox()
@@ -400,7 +381,7 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
         public Rectangle GetHitbox()

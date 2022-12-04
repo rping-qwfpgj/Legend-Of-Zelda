@@ -52,7 +52,8 @@ namespace GameStates
         //all invalid states from the current state
         public void Inventory() { }
         public void GameOver() { }      
-        public void WinGame() { }       
+        public void WinGame() { }
+        public void BossRush() { }
         public void TransitionUp() { }      
         public void TransitionDown() { }      
         public void TransitionLeft() { }

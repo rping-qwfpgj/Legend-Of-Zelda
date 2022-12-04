@@ -34,6 +34,7 @@ namespace GameStates
         public void Draw(SpriteBatch _spriteBatch) {}
         public void Pause() {}
         public void WinGame() {}
+        public void BossRush() { }
         public void TransitionUp() {}
         public void TransitionDown() {}
         public void TransitionLeft() {}
