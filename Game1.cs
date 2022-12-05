@@ -16,6 +16,7 @@ using HeadsUpDisplay;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
+using System.Diagnostics;
 
 
 // Creator: Tuhin Patel
@@ -109,10 +110,16 @@ public class Game1 : Game
         {
             MediaPlayer.Stop();
         }
+
+        if(currentRoomIndex == 19)
+        {
+            gameStateController.gameState.BossRush();
+        }
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
+      
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -138,10 +145,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
         
-        keyboardController.AddCommand(Keys.B, new ThrowRightCommand());
+        keyboardController.AddCommand(Keys.B, new ThrowCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
-        
-        
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));

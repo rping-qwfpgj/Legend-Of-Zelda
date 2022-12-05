@@ -27,9 +27,39 @@
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Gel</ObjectName>
-			<Location>150 150</Location>
+			<ObjectName>Dodongo</ObjectName>
+			<Location>350 150</Location>
 		</Item>
+		<Item>
+			<ObjectType>Enemy</ObjectType>
+			<ObjectName>Gel</ObjectName>
+			<Location>100 150</Location>
+		</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>100 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>600 150</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>600 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>100 200</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<Location>600 200</Location>
+	</Item>
 
 	<!--  Bounding  -->
 	<Item>

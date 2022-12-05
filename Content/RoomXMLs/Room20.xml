@@ -27,9 +27,40 @@
 		<!--  Enemies  -->
 		<Item>
 			<ObjectType>Enemy</ObjectType>
-			<ObjectName>Stalfos</ObjectName>
-			<Location>150 150</Location>
+			<ObjectName>Digdogger</ObjectName>
+			<Location>350 150</Location>
 		</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>100 150</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>100 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>600 150</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>600 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>100 200</Location>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<Location>600 200</Location>
+	</Item>
+
 
 	<!--  Bounding  -->
 	<Item>

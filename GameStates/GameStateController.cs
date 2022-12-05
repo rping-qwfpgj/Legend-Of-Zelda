@@ -9,6 +9,7 @@ public class GameStateController
     public GameStateController(Game1 game)
     {
         gameState = new GamePlayState(this, game);
+        //gameState = new BoshRushState(this, game);
     }
     public void GamePlay()
     {

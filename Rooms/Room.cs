@@ -60,19 +60,19 @@ namespace LegendofZelda
                     gcounter++;
                 }
             }
-            Debug.WriteLine("goriya");
-            Debug.WriteLine(gcounter);
+            //Debug.WriteLine("goriya");
+            //Debug.WriteLine(gcounter);
 
             int counter = 0;
             foreach (var test in sprites)
             {
-                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite)
+                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite || test is FrontOldManOrb || test is RightOldManOrb || test is LeftOldManOrb)
                 {
                     counter++;
                 }
             }
-            Debug.WriteLine("dragon");
-            Debug.WriteLine(counter);
+            //Debug.WriteLine("dragon");
+            //Debug.WriteLine(counter);
         }
 
         public List<ISprite> ReturnObjects()
@@ -154,10 +154,27 @@ namespace LegendofZelda
                             toRemove.Add(currBoomerang);
                         }
                     }
+                } 
+                else if (enemy is OldManBoss)
+                {
+                    OldManBoss oldMan = enemy as OldManBoss;
+                    List<ISprite> dragonOrbs = oldMan.getEnemyProjectiles();
+
+                    foreach (IEnemyProjectile orb in dragonOrbs)
+                    {
+                        if (orb.keepThrowing)
+                        {
+                            if (!sprites.Contains(orb))
+                                toAdd.Add(orb);
+                        }
+                        else
+                        {
+                            toRemove.Add(orb);
+                        }
+                    }
                 }
 
-
-                if (enemy.DyingComplete == true)
+                if (enemy.DyingComplete)
                 {
                     toRemove.Add(sprite);
                     ISprite item = enemy.DropItem();
