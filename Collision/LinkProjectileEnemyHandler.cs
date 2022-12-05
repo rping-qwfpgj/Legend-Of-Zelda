@@ -26,8 +26,7 @@ namespace Collision
             {
                 if (IsBoomerang(projectile))
                 {
-                    Digdogger digdogger = enemy as Digdogger;
-                    digdogger.switchAction(Digdogger.DigdoggerActions.SmallStunned);
+                    enemy.TurnAround("stunned");
                 }
             }
             else if (enemy is DodongoSprite)

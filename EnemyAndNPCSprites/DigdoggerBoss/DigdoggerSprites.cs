@@ -356,7 +356,7 @@ namespace Sprites
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             this.sourceRectangle = new Rectangle(361, 58, 16, 16);
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 32, 32);
             this.damagedCounter = 0;
         }
 
