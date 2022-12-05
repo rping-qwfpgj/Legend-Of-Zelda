@@ -67,7 +67,6 @@ namespace GameStates
             game.GraphicsDevice.Clear(Color.Black);
             game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
-            Link.Instance2.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
         }
     }

@@ -13,20 +13,11 @@ namespace LegendofZelda
     public class Link
     {
         private static Link instance = new();
-        private static Link instance2 = new();
         public static Link Instance
         {
             get
             {
                 return instance;
-            }
-        }
-
-        public static Link Instance2
-        {
-            get
-            {
-                return instance2;
             }
         }
 
@@ -65,6 +56,7 @@ namespace LegendofZelda
             this.maxHealth = 100;
             this.isDamagedCounter = 0;
             this.isDamaged = false;
+
         }
         public void Reset()
         {
