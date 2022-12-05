@@ -36,14 +36,14 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
         }
 
         public void Update()
         {
             yPosition -= 1;
             sourceRectangle = new Rectangle(241, 11, 13, 16);
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             currentFrame++;
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -128,13 +128,13 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
         }
         public void Update()
         {
             yPosition += 1;
             sourceRectangle = new Rectangle(224, 11, 13, 16);
-            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             currentFrame++;
 
         }
@@ -220,7 +220,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
         }
         public void Update()
         {
@@ -229,12 +229,12 @@ namespace Sprites
             if ((currentFrame / 10) % 2 == 0)
             {
                 sourceRectangle = new Rectangle(257, 11, 13, 16);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
             else
             {
                 sourceRectangle = new Rectangle(275, 12, 14, 15);
-                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -314,7 +314,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.destinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
         }
 
         public void Update()
@@ -326,12 +326,12 @@ namespace Sprites
             if ((currentFrame / 10) % 2 == 0)
             {
                 sourceRectangle = new Rectangle(257, 11, 13, 16);
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 39, 48);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
             }
             else
             {
                 sourceRectangle = new Rectangle(275, 12, 14, 15);
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 39, 48);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -412,7 +412,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
            
         }
         public void Update()
@@ -431,12 +431,12 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
 
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
@@ -512,7 +512,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
         }
 
         public void Update()
@@ -537,12 +537,12 @@ namespace Sprites
             if ((currFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(257, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(275, 12, 14, 15);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             }
             spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             spriteBatch.End();
@@ -613,7 +613,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
             
         }
 
@@ -632,13 +632,13 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(224, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }
@@ -710,7 +710,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+            this.goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
            
         }
 
@@ -730,13 +730,13 @@ namespace Sprites
             if ((goriyaFrames / 10) % 2 == 0)
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color);
             }
             else
             {
                 goriyaSourceRectangle = new Rectangle(241, 11, 13, 16);
-                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 39, 48);
+                goriyaDestinationRectangle = new Rectangle((int)this.xPosition, (int)this.yPosition, 30, 32);
                 spriteBatch.Draw(texture, goriyaDestinationRectangle, goriyaSourceRectangle, color, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
             }

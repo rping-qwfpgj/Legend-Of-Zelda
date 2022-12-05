@@ -111,7 +111,7 @@ namespace Sprites
 
             if (!isDead)
             {
-                dragonDestinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 96, 128);
+                dragonDestinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 80, 100);
 
                 if (currFrames <= maxFrames / 8)
                 {
