@@ -50,7 +50,6 @@ namespace LegendofZelda
             throwable = Throwables.None;
             currentProjectiles = new();
             inventory = new Inventory();
-            this.health = 100;
             this.maxHealth = 100;
             this.isDamagedCounter = 0;
             this.isDamaged = false;
@@ -62,7 +61,7 @@ namespace LegendofZelda
             currentState = new LinkFacingUpState();
             currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
 
-            throwable = Throwables.Boomerang;
+            throwable = Throwables.None;
             currentProjectiles = new();
             inventory = new Inventory();
 
