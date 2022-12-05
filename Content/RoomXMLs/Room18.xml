@@ -137,6 +137,16 @@
 	</Item>
 	<Item>
 		<ObjectType>Item</ObjectType>
+		<ObjectName>Bomb</ObjectName>
+		<Location>550 270</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bomb</ObjectName>
+		<Location>550 290</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
 		<ObjectName>Boomerang</ObjectName>
 		<Location>600 300</Location>
 	</Item>
@@ -145,6 +155,21 @@
 		<ObjectType>Item</ObjectType>
 		<ObjectName>Bow</ObjectName>
 		<Location>650 350</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Key</ObjectName>
+		<Location>630 350</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Key</ObjectName>
+		<Location>610 350</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Key</ObjectName>
+		<Location>590 350</Location>
 	</Item>
 
 	
