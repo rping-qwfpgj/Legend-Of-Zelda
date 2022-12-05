@@ -23,25 +23,27 @@ namespace Sprites
 
             this.texture = texture;
             sourceRectangle = new();
-            sourceRectangles = new();
-            sourceRectangles.Add(new(618 , 108, 8, 8));
-            sourceRectangles.Add(new(528, 108, 8, 8));
-            sourceRectangles.Add(new(537, 108, 8, 8));
-            sourceRectangles.Add(new(627, 108, 8, 8));
-            sourceRectangles.Add(new(654, 108, 8, 8));
-            sourceRectangles.Add(new(600, 108, 8, 8));
-            sourceRectangles.Add(new(609, 108, 8, 8));
-            sourceRectangles.Add(new(654, 108, 8, 8));
-            sourceRectangles.Add(new(582, 108, 8, 8));
-            sourceRectangles.Add(new(528, 108, 8, 8));
-            sourceRectangles.Add(new(582, 108, 8, 8));
-            sourceRectangles.Add(new(609, 108, 8, 8));
-            sourceRectangles.Add(new(564, 108, 8, 8));
-            sourceRectangles.Add(new(537, 108, 8, 8));
-            sourceRectangles.Add(new(627, 108, 8, 8));
-            sourceRectangles.Add(new(573, 108, 8, 8));
-            sourceRectangles.Add(new(528, 108, 8, 8));
-            sourceRectangles.Add(new(519, 108, 8, 8));
+            sourceRectangles = new()
+            {
+                new(618, 108, 8, 8),
+                new(528, 108, 8, 8),
+                new(537, 108, 8, 8),
+                new(627, 108, 8, 8),
+                new(654, 108, 8, 8),
+                new(600, 108, 8, 8),
+                new(609, 108, 8, 8),
+                new(654, 108, 8, 8),
+                new(582, 108, 8, 8),
+                new(528, 108, 8, 8),
+                new(582, 108, 8, 8),
+                new(609, 108, 8, 8),
+                new(564, 108, 8, 8),
+                new(537, 108, 8, 8),
+                new(627, 108, 8, 8),
+                new(573, 108, 8, 8),
+                new(528, 108, 8, 8),
+                new(519, 108, 8, 8)
+            };
 
             destinationLocation = new();
             origin = new(475, 400);

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprites;
 using LegendofZelda.Interfaces;
-
+using LegendofZelda;
 
 namespace Sprites
 {
@@ -20,6 +20,7 @@ namespace Sprites
         private readonly int width = 48;
         private readonly int height = 28;
         private LinkLocationTracker tracker;
+        private TriforceLocation triforce;
         
         public HudBlueMapSprite(Texture2D texture, int x, int y)
         {
@@ -27,6 +28,7 @@ namespace Sprites
             this.sourceRectangle = new(697, 104, width, height);
             this.destinationRectangle = new(x, y, 168, 98);
             tracker = new LinkLocationTracker(texture, x, y);
+            triforce = new TriforceLocation(texture, x, y);
             
         }
 
@@ -40,6 +42,10 @@ namespace Sprites
             _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
             tracker.Draw(_spriteBatch);
+            if (Link.Instance.inventory.getItemCount("compass") > 0)
+            {
+                triforce.Draw(_spriteBatch);
+            }
 
         }
 
