@@ -85,19 +85,19 @@ namespace LegendofZelda.SpriteFactories
 
                 case "LockedDoorBlockTop":
 
-                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                    return new LockedDoorBlock(doorSpriteSheet,350,22 + inventoryHeight, 0);
                 
                 case "LockedDoorBlockLeft":
 
-                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                    return new LockedDoorBlock(doorSpriteSheet, 33, 195 + inventoryHeight, 1);
 
                 case "LockedDoorBlockRight":
 
-                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                    return new LockedDoorBlock(doorSpriteSheet, 702, 200 + inventoryHeight, 2);
 
                 case "LockedDoorBlockBottom":
 
-                    return new LockedDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+                    return new LockedDoorBlock(doorSpriteSheet, 350, 395 + inventoryHeight, 3);
 
                 case "PuzzleDoorBlockTop":
 
@@ -117,23 +117,23 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OpenDoorBlockTop":
 
-                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                    return new OpenDoorBlock(doorSpriteSheet, 350, 15 + inventoryHeight, 0);
                 
                 case "OpenDoorBlockLeft":
 
-                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                    return new OpenDoorBlock(doorSpriteSheet,32, 199+ inventoryHeight, 1);
                 
                 case "OpenDoorBlockRight":
 
-                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                    return new OpenDoorBlock(doorSpriteSheet, 700, 200 + inventoryHeight, 2);
                 
                 case "OpenDoorBlockBottom":
 
-                    return new OpenDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+                    return new OpenDoorBlock(doorSpriteSheet, 350, 400 + inventoryHeight, 3);
 
                 case "BombableDoorBlockTop":
 
-                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                    return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y+inventoryHeight, 0);
                 
                 case "BombableDoorBlockLeft":
 
@@ -149,23 +149,24 @@ namespace LegendofZelda.SpriteFactories
 
                 case "LockedWhiteDoorBlockTop":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 0);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 22 + inventoryHeight, 0);
                 
                 case "LockedWhiteDoorBlockLeft":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 1);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 33, 195 + inventoryHeight, 1);
 
                 case "LockedWhiteDoorBlockRight":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 702, 200 + inventoryHeight, 2);
 
                 case "LockedWhiteDoorBlockBottom":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 3);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 395 + inventoryHeight, 3);
                 
                 case "Fire":
 
                     return new Fire(fireTexture, location.X, location.Y + inventoryHeight);
+
                 case "StairsBlock":
 
                     return new StairsBlock(doorSpriteSheet, (int)location.X, (int)location.Y + inventoryHeight, 2);

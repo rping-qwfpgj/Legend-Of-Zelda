@@ -25,13 +25,12 @@ namespace Commands
 
             if (myGame.currentRoomIndex == 0)
             {
-                myGame.currentRoomIndex = 22;
+                myGame.currentRoomIndex = 23;
             }
             else
             {
                 myGame.currentRoomIndex--;
             }
-
             myGame.currentRoom = myGame.rooms[myGame.currentRoomIndex];
         }
 

@@ -14,6 +14,8 @@ namespace GameStates
         private GameStateController controller;
         private Game1 game;
         RoomGenerator roomGen;
+        GraphGenerator graphGenerator;
+        Graph newGraph;
         bool roomIsComplete;
         int roomsRemaining;
         public BossRushState(GameStateController controller, Game1 game)
@@ -21,11 +23,7 @@ namespace GameStates
             roomsRemaining = 5;
             this.controller = controller;
             this.game = game;
-            roomGen = new();
             roomIsComplete = true;
-            game.currentRoomIndex = 19;
-            GraphGenerator graphGenerator = new(5, 19);
-            game.roomsGraph = graphGenerator.newGraph();
         }
         public void GamePlay()
         {
@@ -69,19 +67,21 @@ namespace GameStates
         }
         public void Update()
         {
-            if (roomIsComplete)
-            {
-                roomIsComplete = false;
-                game.currentRoom = roomGen.NewRoom();
-                roomsRemaining--;
-            }
+            game.roomsGraph = newGraph;
+            
+            //if (roomIsComplete)
+            //{
+            //    roomIsComplete = false;
+            //    game.currentRoom = roomGen.NewRoom();
+            //    roomsRemaining--;
+            //}
 
-            if (roomsRemaining ==0)
-            {
-                controller.gameState.GamePlay();
-                game.currentRoom = game.rooms[22];
-                game.currentRoomIndex = 22;
-            }
+            //if (roomsRemaining == 0)
+            //{
+            //    controller.gameState.GamePlay();
+            //    game.currentRoom = game.rooms[22];
+            //    game.currentRoomIndex = 22;
+            //}
 
             Link.Instance.Update();
             game.mouseController.Update();

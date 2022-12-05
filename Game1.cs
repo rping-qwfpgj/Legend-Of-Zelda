@@ -59,8 +59,8 @@ public class Game1 : Game
 
         gameStateController = new GameStateController(this);
         SpriteFactoriesInit();
-        RoomloaderInit();
         GraphInit();
+        RoomloaderInit();
         ControllersInit();
 
         hud = new Hud(20, -19);
@@ -192,24 +192,27 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
+        GraphGenerator graphGenerator = new(5, 19, this);
         RoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-
-        for (int i = 0; i <= 19; i++)
+        
+        for (int i = 0; i < 19; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
         }
-
+        var roomsDoors = graphGenerator.newGraph();
+        
         for(int i = 19; i < 24; i++)
         {
-            rooms.Add(roomGenerator.NewRoom());
+            rooms.Add(roomGenerator.NewRoom(roomsDoors[i]));
         }
       
+        Debug.WriteLine(rooms.Count);
 
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
