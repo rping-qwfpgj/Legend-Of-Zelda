@@ -5,6 +5,7 @@ using System;
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
+using System.Diagnostics;
 
 namespace Sprites
 {

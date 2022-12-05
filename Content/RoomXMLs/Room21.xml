@@ -24,6 +24,8 @@
 			<ObjectName>OpenDoorBlockBottom</ObjectName>
 			<Location>350 400</Location>
 		</Item>
+		
+	
 	<!--  Enemies  -->
 	<Item>
 		<ObjectType>Enemy</ObjectType>

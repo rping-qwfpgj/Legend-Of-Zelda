@@ -39,6 +39,7 @@ namespace Collision
             } 
             else
             {
+                Debug.WriteLine("enemy hit by projectile!");
                 enemy.TakeDamage(side);
             }
         }
