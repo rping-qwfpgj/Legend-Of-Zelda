@@ -24,6 +24,7 @@ namespace Collision
                 {
                     side = reverseSide(side);
                     enemy.TakeDamage(side);
+                    Debug.WriteLine("enemy hit by sword!");
                 }else
                 {
                     Link.Instance.TakeDamage(side);
