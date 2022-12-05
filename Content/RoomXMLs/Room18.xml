@@ -130,5 +130,23 @@
 		<ObjectName>Bomb</ObjectName>
 		<Location>500 200</Location>
 	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bomb</ObjectName>
+		<Location>550 250</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Boomerang</ObjectName>
+		<Location>600 300</Location>
+	</Item>
+
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bow</ObjectName>
+		<Location>650 350</Location>
+	</Item>
+
+	
 	
 </XnaContent>
