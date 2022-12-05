@@ -15,7 +15,7 @@ namespace LegendofZelda
         private int rushRoomIndex;
         private int totalNumOfRooms;
         private Game1 game;
-    
+
         public GraphGenerator(int numOfRooms, int rushRoomIndex, Game1 game)
         {
             this.numOfRooms = numOfRooms;
@@ -29,14 +29,14 @@ namespace LegendofZelda
 
             var roomsDoors = new Dictionary<int, List<string>>();
 
-            for(int i = rushRoomIndex; i < rushRoomIndex+numOfRooms; i++)
+            for (int i = rushRoomIndex; i < rushRoomIndex + numOfRooms; i++)
             {
                 roomsDoors.Add(i, new List<string>());
             }
 
-            for (int currentRoomIndex = rushRoomIndex; totalNumOfRooms < rushRoomIndex + numOfRooms-1; currentRoomIndex++)
+            for (int currentRoomIndex = rushRoomIndex; totalNumOfRooms < rushRoomIndex + numOfRooms - 1; currentRoomIndex++)
             {
-                Debug.WriteLine("currentRoom" + currentRoomIndex);
+              //  Debug.WriteLine("currentRoom" + currentRoomIndex);
                 List<string> directionsChosen = new();
                 List<string> directions = new()
                 {
@@ -50,46 +50,56 @@ namespace LegendofZelda
                     directions.Remove(door);
                 }
                 int numOfDoors;
-                if (totalNumOfRooms-rushRoomIndex >= 4)
+                if (totalNumOfRooms - rushRoomIndex >= 4)
                 {
-                    numOfDoors = rnd.Next(1, directions.Count+1);
+                    numOfDoors = rnd.Next(1, directions.Count + 1);
                 }
                 else
                 {
-                    numOfDoors = rnd.Next(1, rushRoomIndex + numOfRooms-currentRoomIndex+1);
+                    if (directions.Count > rushRoomIndex + numOfRooms - currentRoomIndex)
+                    {
+                        numOfDoors = rnd.Next(1, rushRoomIndex + numOfRooms - currentRoomIndex + 1);
+                    }
+                    else
+                    {
+                        numOfDoors = rnd.Next(1, directions.Count+1);
+
+                    }
                 }
-                Debug.WriteLine("numofDoors" + numOfDoors);
                 for (int j = 0; j < numOfDoors; j++)
                 {
-                    var directionIndex = rnd.Next(directions.Count);
+                    var directionIndex = rnd.Next(0, directions.Count);
+                    //Debug.WriteLine(directions[directionIndex]);
                     switch (directions[directionIndex])
                     {
                         case "left":
                             game.roomsGraph.AddLeftRightEdge(++totalNumOfRooms, currentRoomIndex);
+                            //Debug.WriteLine("leftright" + totalNumOfRooms + "," + currentRoomIndex);
                             directionsChosen.Add("left");
                             roomsDoors[totalNumOfRooms].Add("right");
                             break;
                         case "right":
                             game.roomsGraph.AddLeftRightEdge(currentRoomIndex, ++totalNumOfRooms);
+                            //Debug.WriteLine("leftright" + currentRoomIndex + "," + totalNumOfRooms);
                             directionsChosen.Add("right");
                             roomsDoors[totalNumOfRooms].Add("left");
                             break;
                         case "top":
                             game.roomsGraph.AddDownUpEdge(currentRoomIndex, ++totalNumOfRooms);
+                            //Debug.WriteLine("downup" + currentRoomIndex + "," + totalNumOfRooms);
                             directionsChosen.Add("top");
                             roomsDoors[totalNumOfRooms].Add("bottom");
                             break;
                         case "bottom":
                             game.roomsGraph.AddDownUpEdge(++totalNumOfRooms, currentRoomIndex);
+                            //Debug.WriteLine("downup" + totalNumOfRooms + "," + currentRoomIndex);
                             directionsChosen.Add("bottom");
-                            roomsDoors[totalNumOfRooms].Add("up");
+                            roomsDoors[totalNumOfRooms].Add("top");
                             break;
                     }
-                    Debug.WriteLine("totalNumOfRooms"+totalNumOfRooms);
                     directions.RemoveAt(directionIndex);
                 }
                 roomsDoors[currentRoomIndex].AddRange(directionsChosen);
-                currentRoomIndex = totalNumOfRooms;
 
             }
             return roomsDoors;

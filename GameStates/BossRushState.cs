@@ -67,7 +67,7 @@ namespace GameStates
         }
         public void Update()
         {
-            game.roomsGraph = newGraph;
+            //game.roomsGraph = newGraph;
             
             //if (roomIsComplete)
             //{

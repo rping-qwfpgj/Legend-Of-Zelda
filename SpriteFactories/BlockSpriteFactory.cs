@@ -121,7 +121,7 @@ namespace LegendofZelda.SpriteFactories
                 
                 case "OpenDoorBlockLeft":
 
-                    return new OpenDoorBlock(doorSpriteSheet,32, 199+ inventoryHeight, 1);
+                    return new OpenDoorBlock(doorSpriteSheet,32, 199 + inventoryHeight, 1);
                 
                 case "OpenDoorBlockRight":
 
@@ -157,12 +157,28 @@ namespace LegendofZelda.SpriteFactories
 
                 case "LockedWhiteDoorBlockRight":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 702, 200 + inventoryHeight, 2);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 695, 200 + inventoryHeight, 2);
 
                 case "LockedWhiteDoorBlockBottom":
 
                     return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 395 + inventoryHeight, 3);
-                
+
+                case "OpenWhiteDoorBlockTop":
+
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 350, 15 + inventoryHeight, 0);
+
+                case "OpenWhiteDoorBlockLeft":
+
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 33, 199 + inventoryHeight, 1);
+
+                case "OpenWhiteDoorBlockRight":
+
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 70, 200 + inventoryHeight, 2);
+
+                case "OpenWhiteDoorBlockBottom":
+
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 350, 400 + inventoryHeight, 3);
+
                 case "Fire":
 
                     return new Fire(fireTexture, location.X, location.Y + inventoryHeight);

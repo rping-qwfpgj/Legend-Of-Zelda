@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
 using System.Diagnostics;
+using SharpDX.Multimedia;
 
 
 // Creator: Tuhin Patel
@@ -111,10 +112,10 @@ public class Game1 : Game
             MediaPlayer.Stop();
         }
 
-        if(currentRoomIndex == 19)
-        {
-            gameStateController.gameState.BossRush();
-        }
+        //if(currentRoomIndex == 19)
+        //{
+        //    gameStateController.gameState.BossRush();
+        //}
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
@@ -197,21 +198,42 @@ public class Game1 : Game
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
+        int rushRoomsIndex = 19;
+        int numOfRandomGeneratedRooms = 5;
         
-        for (int i = 0; i < 19; i++)
+        for (int i = 0; i < rushRoomsIndex; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
         }
+
         var roomsDoors = graphGenerator.newGraph();
         
-        for(int i = 19; i < 24; i++)
+        foreach(var set in roomsDoors)
+        {
+            Debug.WriteLine("key"+set.Key);
+            foreach (var door in set.Value)
+            {
+                Debug.WriteLine(door);
+            }
+        }
+
+        for(int i = rushRoomsIndex; i < rushRoomsIndex+numOfRandomGeneratedRooms; i++)
         {
             rooms.Add(roomGenerator.NewRoom(roomsDoors[i]));
         }
-      
+
+        string specialRooms = "\\Content\\RoomXMLs\\";
+        var bossPath = directory + specialRooms+ "OldManBoss" + ".xml";
+        XDocument xml1 = XDocument.Load(bossPath);
+        rooms.Add(roomloader.ParseXML(xml1));
+
+        var swordPath = directory + specialRooms + "BossSword" + ".xml";
+        XDocument xml2 = XDocument.Load(swordPath);
+        rooms.Add(roomloader.ParseXML(xml2));
+
         Debug.WriteLine(rooms.Count);
 
         currentRoomIndex = 0;
