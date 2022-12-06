@@ -23,7 +23,7 @@ namespace GameStates
             roomsRemaining = 5;
             this.controller = controller;
             this.game = game;
-            roomIsComplete = true;
+            roomIsComplete = false;
         }
         public void GamePlay()
         {
@@ -67,21 +67,19 @@ namespace GameStates
         }
         public void Update()
         {
-            //game.roomsGraph = newGraph;
-            
-            //if (roomIsComplete)
-            //{
-            //    roomIsComplete = false;
-            //    game.currentRoom = roomGen.NewRoom();
-            //    roomsRemaining--;
-            //}
+            if (roomIsComplete)
+            {
+                
+                roomIsComplete = false;
+                roomsRemaining--;
+            }
 
-            //if (roomsRemaining == 0)
-            //{
-            //    controller.gameState.GamePlay();
-            //    game.currentRoom = game.rooms[22];
-            //    game.currentRoomIndex = 22;
-            //}
+            if (roomsRemaining == 0)
+            {
+                controller.gameState.GamePlay();
+                game.currentRoom = game.rooms[21];
+                game.currentRoomIndex = 21;
+            }
 
             Link.Instance.Update();
             game.mouseController.Update();

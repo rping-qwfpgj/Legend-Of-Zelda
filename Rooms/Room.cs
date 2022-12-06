@@ -10,7 +10,7 @@ namespace LegendofZelda
 {
     public class Room
     {
-        public List<ISprite> sprites;
+        private List<ISprite> sprites;
         private ISprite background;
         public ISprite Background { get => background; set => background = value; }
         public Room(List<ISprite> sprites, ISprite background)
@@ -51,28 +51,6 @@ namespace LegendofZelda
                     sprite.Update();
                 }
             }
-
-            int gcounter = 0;
-            foreach (var test in sprites)
-            {
-                if (test is GoriyaBoomerangDownSprite || test is GoriyaBoomerangUpSprite || test is GoriyaBoomerangRightSprite || test is GoriyaBoomerangLeftSprite)
-                {
-                    gcounter++;
-                }
-            }
-            //Debug.WriteLine("goriya");
-            //Debug.WriteLine(gcounter);
-
-            int counter = 0;
-            foreach (var test in sprites)
-            {
-                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite || test is FrontOldManOrb || test is RightOldManOrb || test is LeftOldManOrb)
-                {
-                    counter++;
-                }
-            }
-            //Debug.WriteLine("dragon");
-            //Debug.WriteLine(counter);
         }
 
         public List<ISprite> ReturnObjects()
@@ -84,7 +62,6 @@ namespace LegendofZelda
         public void RemoveObject(ISprite sprite)
         {
             sprites.Remove(sprite);
-
         }
 
         public void AddObject(ISprite sprite)
@@ -95,7 +72,6 @@ namespace LegendofZelda
         private void DealWithLinkProjectiles(ISprite sprite)
         {
             List<ISprite> toRemove = new();
-
             if (sprite is ILinkProjectile)
             {
                 var projectile = sprite as ILinkProjectile;
@@ -104,12 +80,12 @@ namespace LegendofZelda
                     toRemove.Add(sprite);
                 }
             }
-
             foreach (var spr in toRemove)
             {
                 RemoveObject(spr);
             }
         }
+
         private void DealWithEnemies(ISprite sprite)
         {
             HashSet<ISprite> toRemove = new();
@@ -135,7 +111,6 @@ namespace LegendofZelda
                             toRemove.Add(orb);
                         }
                     }
-
 
                 }
                 else if (enemy is GoriyaSprite)
@@ -173,7 +148,6 @@ namespace LegendofZelda
                         }
                     }
                 }
-
                 if (enemy.DyingComplete)
                 {
                     toRemove.Add(sprite);

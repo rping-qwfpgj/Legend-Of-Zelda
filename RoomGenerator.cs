@@ -14,7 +14,7 @@ namespace LegendofZelda
 {
     public class RoomGenerator
     {
-        private int countDown;
+      
         private List<String> enemyList;
         private List<String> blockList;
         private readonly int blockHeight = 44;
@@ -26,7 +26,6 @@ namespace LegendofZelda
 
         public RoomGenerator()
         {
-            countDown = 10;
             enemyList = new();
             enemyList.Add("Goriya");
             enemyList.Add("Stalfos");
@@ -48,7 +47,6 @@ namespace LegendofZelda
         {
             List < ISprite > sprites = new();
             makeCoordinates();
-            countDown--;
             Random rnd = new Random();
             int numOfEnemies = rnd.Next(1, 4);
             int numOfBlocks = rnd.Next(4, 5);
