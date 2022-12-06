@@ -192,7 +192,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 3200;
+            this.currFrames = maxFrames;
         }
 
     }
@@ -295,7 +295,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 3200;
+            this.currFrames = maxFrames;
         }
 
 
@@ -392,7 +392,7 @@ namespace Sprites
         }
         public void collide()
         {
-            this.currFrames = 3200;
+            this.currFrames = maxFrames;
         }
 
     }
