@@ -106,7 +106,9 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private readonly int maxFrames = 3500;
+        private readonly int maxFrames = 1600;
+        private int timingCounter = 0;
+        private int maxTime = 4800;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -118,7 +120,7 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
-
+        Rectangle sourceRectangle = new Rectangle();
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
@@ -141,34 +143,39 @@ namespace Sprites
 
             if (!isDone)
             {
-                currFrames += 100;
+                timingCounter++;
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
+                currFrames += 50;
+                this.yPosition += 1;
+                if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[0];
+                }
+                else if ((currFrames / 100) % 4 == 1)
+                {
+                    sourceRectangle = sourceRectangles[1];
+                }
+                else if ((currFrames / 100) % 4 == 2)
+                {
+                    sourceRectangle = sourceRectangles[2];
+                }
+                else if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[3];
+                }
+                else if (currFrames >= maxFrames)
+                {
+                    currFrames = 0;
+                }
             }
-            if (currFrames <= 3200)
-            {
-                this.yPosition += 4;
-            }
-            if (currFrames >= maxFrames)
-            {
-                isDone = true;
-            }
+            //else, master sword explosion sprite.update()
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            Rectangle sourceRectangle = new Rectangle();
-
-            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
-            {
-                sourceRectangle = sourceRectangles[0];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
-            {
-                sourceRectangle = sourceRectangles[1];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-
             if (!isDone)
             {
 
@@ -176,6 +183,7 @@ namespace Sprites
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
                 spriteBatch.End();
             }
+            //else, master sword explosion sprite.draw()
         }
         public Rectangle GetHitbox()
         {
@@ -195,7 +203,9 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private readonly int maxFrames = 3500;
+        private readonly int maxFrames = 1600;
+        private int timingCounter = 0;
+        private int maxTime = 4800;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -208,6 +218,8 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
+
+        Rectangle sourceRectangle = new Rectangle();
 
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
@@ -232,35 +244,40 @@ namespace Sprites
             // Update frames
             if (!isDone)
             {
-                currFrames += 100;
+                timingCounter++;
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
+                currFrames += 50;
+                this.xPosition += 1;
+                if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[0];
+                }
+                else if ((currFrames / 100) % 4 == 1)
+                {
+                    sourceRectangle = sourceRectangles[1];
+                }
+                else if ((currFrames / 100) % 4 == 2)
+                {
+                    sourceRectangle = sourceRectangles[2];
+                }
+                else if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[3];
+                }
+                else if (currFrames >= maxFrames)
+                {
+                    currFrames = 0;
+                }
             }
-            if (currFrames <= 3200)
-            {
-                this.xPosition += 4;
-            }
-            if (currFrames >= maxFrames)
-            {
-                isDone = true;
-            }
+            //else, master sword explosion sprite.update()
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            Rectangle sourceRectangle = new Rectangle();
-
-            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
-            {
-                sourceRectangle = sourceRectangles[0];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
-            {
-                sourceRectangle = sourceRectangles[1];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-
             if (!isDone)
             {
 
@@ -290,7 +307,9 @@ namespace Sprites
 
         // Keep track of frames
         private int currFrames = 0;
-        private readonly int maxFrames = 3500;
+        private readonly int maxFrames = 1600;
+        private int timingCounter = 0;
+        private int maxTime = 4800;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -302,6 +321,7 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
+        Rectangle sourceRectangle = new Rectangle();
 
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
@@ -325,40 +345,45 @@ namespace Sprites
             // Update frames
             if (!isDone)
             {
-                currFrames += 100;
-            }
-            if (currFrames <= 3200)
-            {
-                this.xPosition -= 4;
-            }
-            if (currFrames >= maxFrames)
-            {
-                isDone = true;
-            }
+                timingCounter++;
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
+                currFrames += 50;
+                this.xPosition -= 1;
+                if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[0];
+                }
+                else if ((currFrames / 100) % 4 == 1)
+                {
+                    sourceRectangle = sourceRectangles[1];
+                }
+                else if ((currFrames / 100) % 4 == 2)
+                {
+                    sourceRectangle = sourceRectangles[2];
+                }
+                else if ((currFrames / 100) % 4 == 0)
+                {
+                    sourceRectangle = sourceRectangles[3];
+                }
+                else if (currFrames >= maxFrames)
+                {
+                    currFrames = 0;
+                }
+            }//else, master sword explosion sprite.update()
         }
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            Rectangle sourceRectangle = new Rectangle();
-
-            if (currFrames >= 0 && currFrames <= 8 * maxFrames / 9)
-            {
-                sourceRectangle = sourceRectangles[0];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-            else if (currFrames >= 8 * maxFrames / 9 && currFrames <= maxFrames)
-            {
-                sourceRectangle = sourceRectangles[1];
-                destinationRectangle = new Rectangle(xPosition, yPosition, (int)((float)sourceRectangle.Width * 2.5), (int)((float)sourceRectangle.Height * 2.5));
-            }
-
             if (!isDone)
             {
-
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 spriteBatch.End();
             }
+            //else, master sword explosion sprite.draw()
         }
 
         public Rectangle GetHitbox()
