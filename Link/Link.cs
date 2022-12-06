@@ -45,7 +45,7 @@ namespace LegendofZelda
         
         public Link()
         {
-            currentPosition = new Vector2(400, 240);
+            currentPosition = new Vector2(400, 540);
             currentState = new LinkFacingUpState();
             currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);            
             throwable = Throwables.None;
@@ -59,7 +59,7 @@ namespace LegendofZelda
         }
         public void Reset()
         {
-            currentPosition = new Vector2(400, 240);
+            currentPosition = new Vector2(400, 540);
             currentState = new LinkFacingUpState();
             currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
 
