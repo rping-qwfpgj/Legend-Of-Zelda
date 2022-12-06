@@ -186,7 +186,7 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
-        RushRoomsGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
+        RushDungeonGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
         RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;

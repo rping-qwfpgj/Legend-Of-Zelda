@@ -7,6 +7,7 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
 using System.Windows.Forms;
+using LegendofZelda.Collision;
 
 namespace LegendofZelda
 {

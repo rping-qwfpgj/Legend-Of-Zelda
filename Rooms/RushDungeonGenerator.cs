@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace LegendofZelda.Rooms
 {
-    public class RushRoomsGenerator
+    public class RushDungeonGenerator
     {
         private int numOfRooms;
         private int rushRoomIndex;
         private int totalNumOfRooms;
         private Game1 game;
 
-        public RushRoomsGenerator(int numOfRooms, int rushRoomIndex, Game1 game)
+        public RushDungeonGenerator(int numOfRooms, int rushRoomIndex, Game1 game)
         {
             this.numOfRooms = numOfRooms;
             this.rushRoomIndex = rushRoomIndex;

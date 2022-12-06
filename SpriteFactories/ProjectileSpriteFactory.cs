@@ -51,9 +51,6 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireUpSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
-
                 default:
                     return null;
             }
@@ -81,9 +78,6 @@ namespace LegendofZelda.SpriteFactories
 
                 case Throwables.Fire:
                     return new FireDownSprite(spriteSheet, linkPosition.X, linkPosition.Y);
-
-                case Throwables.None:
-                    return new NoneSprite();
 
                 default:
                     return null;
@@ -113,9 +107,6 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireRightSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
-
                 default:
                     return null;
             }
@@ -143,8 +134,6 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
 
                 default:
                     return null;
