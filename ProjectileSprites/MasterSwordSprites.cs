@@ -27,6 +27,7 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
+        //private master sword sprite - create from projectile factory
 
         public MasterSwordUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -71,6 +72,7 @@ namespace Sprites
                     currFrames = 0;
                 }
             }
+            //else, master sword explosion sprite.update()
             
 
         }
@@ -82,6 +84,8 @@ namespace Sprites
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
+            //else, master sword explosion sprite.draw()
+
         }
 
         public Rectangle GetHitbox()
@@ -91,7 +95,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = 3200;
+            this.currFrames = maxFrames;
         }
 
 
