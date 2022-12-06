@@ -29,7 +29,7 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangleList = new();
-        private <List<List<Rectangle>> sourceRectanglesLists = new();
+        private List<List<Rectangle>> sourceRectanglesLists = new();
         Rectangle sourceRectangle = new Rectangle();
         List<Rectangle> brown = new(){
                 new Rectangle(311, 150, 8, 10),
