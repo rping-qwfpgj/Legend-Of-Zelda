@@ -10,6 +10,7 @@ using LegendofZelda.SpriteFactories;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using CommonReferences;
 
 namespace GameStates
 
@@ -23,6 +24,11 @@ namespace GameStates
         {
             this.controller = controller;
             this.game = game;
+        }
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
+            controller.gameState = game.bossRushState;
         }
         public void GamePlay()
         {
@@ -42,17 +48,15 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < 19)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex)
                 {
                     GamePlay();
                 }
-                else if (game.currentRoomIndex >18)
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex - 1)
                 {
                     BossRush();
                 }
             }
-
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -66,11 +70,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() {
-
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
-            controller.gameState = game.bossRushState;
-        }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }

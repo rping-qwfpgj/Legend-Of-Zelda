@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using GameStates;
 using System.Diagnostics;
+using CommonReferences;
 
 namespace LegendofZelda
 {
@@ -63,7 +64,7 @@ namespace LegendofZelda
 
             sourceRectangle = sourceRectangles[roomNumber];
             backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);
-            destinationRectangle = new(0, 150, 800, 480);
+            destinationRectangle = new(0, Common.Instance.heightOfInventory, 800, 480);
             direction = "";
             maxSpelunkingFrames = 100;
             tintList = new()

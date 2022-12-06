@@ -6,7 +6,6 @@ using Commands;
 using Controllers;
 using System.IO;
 using System.Xml.Linq;
-using LegendofZelda;
 using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
@@ -17,8 +16,7 @@ using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
 using System.Diagnostics;
-using SharpDX.Multimedia;
-using SharpDX.XInput;
+using CommonReferences;
 
 
 // Creator: Tuhin Patel
@@ -56,7 +54,7 @@ public class Game1 : Game
     }
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferHeight += 150;
+        _graphics.PreferredBackBufferHeight += Common.Instance.heightOfInventory;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -67,7 +65,6 @@ public class Game1 : Game
         RoomloaderInit();
         ControllersInit();
 
-      
         hud = new Hud(20, -19);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
@@ -93,17 +90,17 @@ public class Game1 : Game
             gameStateController.gameState.Update();
         }
 
-        if(currentRoomIndex < 19 && currentSong != "Undertale")
+        if(currentRoomIndex < Common.Instance.rushRoomsIndex && currentSong != "Undertale")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(backgroundMusic);
             currentSong = "Undertale";
-        } else if(currentRoomIndex >= 19 && currentRoomIndex < 22 && currentSong != "coconut_mall_mp3")
+        } else if(currentRoomIndex >= Common.Instance.rushRoomsIndex && currentRoomIndex < Common.Instance.masterSwordRoomIndex && currentSong != "coconut_mall_mp3")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(bossRushMusic);
             currentSong = "coconut_mall_mp3";
-        } else if (currentRoomIndex == 22 && currentSong != "Shrine")
+        } else if (currentRoomIndex == Common.Instance.masterSwordRoomIndex && currentSong != "Shrine")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(shrineMusic);
@@ -188,15 +185,13 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
-        GraphGenerator graphGenerator = new(5, 19, this);
+        GraphGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
         RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-        int rushRoomsIndex = 19;
-        int numOfRandomGeneratedRooms = 5;
         
-        for (int i = 0; i < rushRoomsIndex; i++)
+        for (int i = 0; i < Common.Instance.rushRoomsIndex; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
@@ -215,7 +210,7 @@ public class Game1 : Game
             }
         }
 
-        for(int i = rushRoomsIndex; i < rushRoomsIndex+numOfRandomGeneratedRooms; i++)
+        for(int i = Common.Instance.rushRoomsIndex; i < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms; i++)
         {
             rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i]));
         }

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
+using CommonReferences;
 
 namespace GameStates
 
@@ -20,9 +21,16 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
         }
+
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(new(400, 260), false);
+            controller.gameState = game.bossRushState;
+        }
+
         public void GamePlay()
         {
-            if (game.currentRoomIndex ==17) // cave room
+            if (game.currentRoomIndex == Common.Instance.caveRoomsIndex)
             {
                 Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(new(180, 180), false);
             }
@@ -36,6 +44,7 @@ namespace GameStates
         {
             controller.gameState = new PauseState(controller, game);
         }
+
         public void Update()
         {
             var background = game.currentRoom.Background as IBackground;
@@ -43,17 +52,15 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < 19)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex)
                 {
                     GamePlay();
                 }
-                else if(game.currentRoomIndex >18)
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex - 1)
                 {
                     BossRush();
                 }
             }
-
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -66,12 +73,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() {
-
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingDown(new(400, 260), false);
-            controller.gameState = game.bossRushState;
-
-        }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }
