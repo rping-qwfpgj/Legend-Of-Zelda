@@ -22,9 +22,9 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
-            {
-                GamePlay();
+            if (game.currentRoomIndex == Common.Instance.caveRoomsIndex-1)
+            { 
+                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(380, 380), false);
             }
             else
             {

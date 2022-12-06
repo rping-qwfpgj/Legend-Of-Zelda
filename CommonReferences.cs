@@ -9,6 +9,7 @@ namespace CommonReferences
     public class Common
     {
         private static Common instance = new();
+
         public readonly int rushRoomsIndex = 19;
         public readonly int masterSwordRoomIndex = 25;
         public readonly int numOfRushRooms = 5;

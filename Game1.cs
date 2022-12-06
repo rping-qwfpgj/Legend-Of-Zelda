@@ -64,7 +64,6 @@ public class Game1 : Game
         GraphInit();
         RoomloaderInit();
         ControllersInit();
-
         hud = new Hud(20, -19);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
@@ -82,10 +81,15 @@ public class Game1 : Game
     }
     protected override void Update(GameTime gameTime)
     {
-        
         gameStateController.gameState.Update();
-        
-        if(currentRoomIndex < Common.Instance.rushRoomsIndex && currentSong != "Undertale")
+
+        //music logic
+        if (gameStateController.gameState is WinGameState || gameStateController.gameState is GameOverState)
+        {
+            MediaPlayer.Stop();
+        }
+
+        if (currentRoomIndex < Common.Instance.rushRoomsIndex && currentSong != "Undertale")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(backgroundMusic);
@@ -101,16 +105,11 @@ public class Game1 : Game
             MediaPlayer.Play(shrineMusic);
             currentSong = "Shrine";
         }
-
-        if (gameStateController.gameState is WinGameState || gameStateController.gameState is GameOverState)
-        {
-            MediaPlayer.Stop();
-        }
+      
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
-        Debug.WriteLine(gameStateController.gameState);
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }

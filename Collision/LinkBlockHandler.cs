@@ -29,12 +29,12 @@ namespace Collision
                         IPushableBlock bloc = block as IPushableBlock;
                         bloc.Move("bottom");
                     }
-                    else if ((block is LockedDoorBlock || block is PuzzleDoorBlock) && Link.Instance.inventory.getItemCount("key") > 0)
+                    else if ((block is LockedDoorBlock ) && Link.Instance.inventory.getItemCount("key") > 0)
                     { // locked door
                         currRoom.RemoveObject(block);
                         Link.Instance.inventory.removeItem("key");
                     }
-                    else if (block is OpenDoorBlock) // room transition block
+                    else if (block is OpenDoorBlock || block is PuzzleDoorBlock) // room transition block
                     {
                         var myGame = Link.Instance.game;
                         var command = new UpRoomCommand(myGame, myGame.roomsGraph, myGame.gameStateController);

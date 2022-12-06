@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using CommonReferences;
+using LegendofZelda.Blocks;
+using Microsoft.Xna.Framework;
+using LegendofZelda.SpriteFactories;
 
 namespace GameStates
 
@@ -14,12 +17,14 @@ namespace GameStates
         private GameStateController controller;
         private Game1 game;
         private int roomsRemaining;
+        bool alreadyChecked;
    
         public BossRushState(GameStateController controller, Game1 game)
         {
-            roomsRemaining = 2;
+            roomsRemaining = 1;
             this.controller = controller;
             this.game = game;
+            alreadyChecked = false;
     
         }
         public void GamePlay()
@@ -64,19 +69,21 @@ namespace GameStates
         }
         public void Update()
         {
-            Debug.WriteLine(roomsRemaining);
             if(game.currentRoom.isFinished && !game.currentRoom.externallyChecked)
             {
                 game.currentRoom.externallyChecked = true;
                 roomsRemaining--;
             }
-            if (roomsRemaining == 0)
+
+            if (roomsRemaining == 0 && !alreadyChecked)
             {
-                game.currentRoom = game.rooms[24];
-                game.currentRoomIndex = 24;
+                alreadyChecked = true;
+                game.roomsGraph.RemoveDownUpEdge(24);
+                game.roomsGraph.AddDownUpEdge(game.currentRoomIndex, 24);
+                game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,200),"PuzzleDoorBlockTop"));
             }
 
-            if (game.currentRoomIndex < 19 || game.currentRoomIndex==Common.Instance.masterSwordRoomIndex)
+            if (game.currentRoomIndex < 19 || game.currentRoomIndex==Common.Instance.masterSwordRoomIndex|| game.currentRoomIndex==24)
             {
                 GamePlay();
             }

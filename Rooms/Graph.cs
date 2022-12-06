@@ -13,14 +13,14 @@ namespace LegendofZelda
     {
        
         private List<Tuple<int, int>> leftRightAdj;
-        private List<Tuple<int, int>> upDownAdj;
+        private List<Tuple<int, int>> downUpAdj;
         private bool[] visited;
         public bool[] Visited { get => visited; }
 
         public Graph()
         {
             leftRightAdj = new List<Tuple<int, int>>();
-            upDownAdj = new List<Tuple<int, int>>();
+            downUpAdj = new List<Tuple<int, int>>();
             visited = new bool[23];
             for (int i = 1; i < 23; i++)
             {
@@ -32,16 +32,17 @@ namespace LegendofZelda
 
         public void AddLeftRightEdge(int room1, int room2)
         {
-
             leftRightAdj.Add(new Tuple<int, int>(room1, room2));
+        }
 
+        public void RemoveDownUpEdge(int room1)
+        {
+            downUpAdj.RemoveAll(item => item.Item1 == room1);
         }
 
         public void AddDownUpEdge(int room1, int room2)
         {
-
-            upDownAdj.Add(new Tuple<int, int>(room1, room2));
-
+            downUpAdj.Add(new Tuple<int, int>(room1, room2));
         }
 
         public int GetRightRoom(int currentRoomIndex)
@@ -85,7 +86,7 @@ namespace LegendofZelda
         {
             int returner = currentRoomIndex;
 
-            foreach (var tuple in upDownAdj)
+            foreach (var tuple in downUpAdj)
             {
 
                 if (tuple.Item1 == currentRoomIndex)
@@ -103,7 +104,7 @@ namespace LegendofZelda
         {
             int returner = currentRoomIndex;
 
-            foreach (var tuple in upDownAdj)
+            foreach (var tuple in downUpAdj)
             {
 
                 if (tuple.Item2 == currentRoomIndex)

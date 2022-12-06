@@ -29,6 +29,7 @@ namespace LegendofZelda.Rooms
             enemyList.Add("Stalfos");
             enemyList.Add("Keese");
             enemyList.Add("Dodongo");
+            enemyList.Add("Gel");
             //enemyList.Add("Gohma");
 
             blockList = new();
@@ -76,7 +77,6 @@ namespace LegendofZelda.Rooms
 
             foreach (var direction in directions)
             {
-                Debug.WriteLine("roomGenerator" + direction);
                 switch (direction)
                 {
                     case "left":
