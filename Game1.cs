@@ -17,6 +17,7 @@ using Interfaces;
 using GameStates;
 using System.Diagnostics;
 using CommonReferences;
+using LegendofZelda.Rooms;
 
 
 // Creator: Tuhin Patel
@@ -185,7 +186,7 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
-        GraphGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
+        RushRoomsGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
         RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;

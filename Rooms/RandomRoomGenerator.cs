@@ -10,11 +10,10 @@ using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Security.AccessControl;
 
-namespace LegendofZelda
+namespace LegendofZelda.Rooms
 {
     public class RandomRoomGenerator
     {
-      
         private List<string> enemyList;
         private List<string> blockList;
         private List<Vector2> blockLocations;
@@ -37,12 +36,12 @@ namespace LegendofZelda
             blockList.Add("StatueTwoBlock");
             blockList.Add("DepthBlock");
             makeCoordinates();
-          
+
         }
 
         public Room NewRandomRoom(List<string> directions)
         {
-            List < ISprite > sprites = new();
+            List<ISprite> sprites = new();
             makeCoordinates();
             Random rnd = new Random();
             int numOfEnemies = rnd.Next(1, 4);
@@ -75,10 +74,11 @@ namespace LegendofZelda
                 sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemyList[enemyType]));
             }
 
-            foreach(var direction in directions)
+            foreach (var direction in directions)
             {
-                Debug.WriteLine("roomGenerator"+direction);
-                switch (direction){
+                Debug.WriteLine("roomGenerator" + direction);
+                switch (direction)
+                {
                     case "left":
                         sprites.Remove(leftBoundBlock);
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 264), "VerticalHalfBoundingBlock"));
