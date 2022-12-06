@@ -5,6 +5,7 @@ using static LegendofZelda.Link;
 using Sprites;
 using LegendofZelda.Interfaces;
 using LegendofZelda;
+using System.Linq.Expressions;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -138,6 +139,27 @@ namespace LegendofZelda.SpriteFactories
                 default:
                     return null;
             }
+        }
+
+        public ISprite CreateMasterSwordUp(Vector2 position)
+        {
+            return new MasterSwordUpSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordDown(Vector2 position)
+        {
+            return new MasterSwordDownSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordRight(Vector2 position)
+        {
+            return new MasterSwordRightSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordLeft(Vector2 position)
+        {
+            return new MasterSwordLeftSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordExplosion(Vector2 position)
+        {
+            return new MasterSwordExplosionSprite(spriteSheet, position.X, position.Y);
         }
     }
 }

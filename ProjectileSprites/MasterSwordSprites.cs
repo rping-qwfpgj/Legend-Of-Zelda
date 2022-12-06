@@ -1,4 +1,5 @@
 ﻿using LegendofZelda.Interfaces;
+using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
-        //private master sword sprite - create from projectile factory
+        private int explosionCreationCount = 1;
+        private ISprite masterSwordExplosion;
 
         public MasterSwordUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -35,11 +37,13 @@ namespace Sprites
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition - 30;
             isDone = false;
-            sourceRectangles = new();
-            sourceRectangles.Add(new Rectangle(1, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(36, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(71, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(106, 154, 7, 16));
+            sourceRectangles = new()
+            {
+                new Rectangle(1, 154, 7, 16),
+                new Rectangle(36, 154, 7, 16),
+                new Rectangle(71, 154, 7, 16),
+                new Rectangle(106, 154, 7, 16)
+            };
         }
 
         public void Update()
@@ -52,6 +56,11 @@ namespace Sprites
                 if (timingCounter >= maxTime)
                 {
                     isDone = true;
+                    if (explosionCreationCount > 0)
+                    {
+                        masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                        explosionCreationCount--;
+                    }
                 }
                 currFrames += 50;
                 this.yPosition -= 1;
@@ -71,10 +80,10 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
+            } else
+            {
+                masterSwordExplosion.Update();
             }
-            //else, master sword explosion sprite.update()
-            
-
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -83,9 +92,10 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
+            } else
+            {
+                masterSwordExplosion.Draw(spriteBatch);
             }
-            //else, master sword explosion sprite.draw()
-
         }
 
         public Rectangle GetHitbox()
@@ -124,17 +134,21 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
+        private int explosionCreationCount = 1;
+        private ISprite masterSwordExplosion;
         public MasterSwordDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
             isDone = false;
-            sourceRectangles = new();
-            sourceRectangles.Add(new Rectangle(1, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(36, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(71, 154, 7, 16));
-            sourceRectangles.Add(new Rectangle(106, 154, 7, 16));
+            sourceRectangles = new()
+            {
+                new Rectangle(1, 154, 7, 16),
+                new Rectangle(36, 154, 7, 16),
+                new Rectangle(71, 154, 7, 16),
+                new Rectangle(106, 154, 7, 16)
+            };
 
         }
 
@@ -147,6 +161,11 @@ namespace Sprites
                 if (timingCounter >= maxTime)
                 {
                     isDone = true;
+                    if (explosionCreationCount > 0)
+                    {
+                        masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                        explosionCreationCount--;
+                    }
                 }
                 currFrames += 50;
                 this.yPosition += 1;
@@ -170,8 +189,10 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
+            } else
+            {
+                masterSwordExplosion.Update();
             }
-            //else, master sword explosion sprite.update()
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -224,17 +245,21 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
+        private int explosionCreationCount = 1;
+        private ISprite masterSwordExplosion;
         public MasterSwordRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
             isDone = false;
-            sourceRectangles = new();
-            sourceRectangles.Add(new Rectangle(10, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(45, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(80, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(115, 159, 16, 7));
+            sourceRectangles = new()
+            {
+                new Rectangle(10, 159, 16, 7),
+                new Rectangle(45, 159, 16, 7),
+                new Rectangle(80, 159, 16, 7),
+                new Rectangle(115, 159, 16, 7)
+            };
 
         }
 
@@ -248,6 +273,11 @@ namespace Sprites
                 if (timingCounter >= maxTime)
                 {
                     isDone = true;
+                    if (explosionCreationCount > 0)
+                    {
+                        masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                        explosionCreationCount--;
+                    }
                 }
                 currFrames += 50;
                 this.xPosition += 1;
@@ -271,8 +301,10 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
+            } else
+            {
+                masterSwordExplosion.Update();
             }
-            //else, master sword explosion sprite.update()
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
@@ -284,6 +316,9 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
+            } else
+            {
+                masterSwordExplosion.Draw(spriteBatch);
             }
         }
 
@@ -326,17 +361,21 @@ namespace Sprites
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
+        private int explosionCreationCount = 1;
+        private ISprite masterSwordExplosion;
         public MasterSwordLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
             this.xPosition = (int)xPosition - 30;
             this.yPosition = (int)yPosition;
             isDone = false;
-            sourceRectangles = new();
-            sourceRectangles.Add(new Rectangle(10, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(45, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(80, 159, 16, 7));
-            sourceRectangles.Add(new Rectangle(115, 159, 16, 7));
+            sourceRectangles = new()
+            {
+                new Rectangle(10, 159, 16, 7),
+                new Rectangle(45, 159, 16, 7),
+                new Rectangle(80, 159, 16, 7),
+                new Rectangle(115, 159, 16, 7)
+            };
         }
 
         public void Update()
@@ -349,6 +388,11 @@ namespace Sprites
                 if (timingCounter >= maxTime)
                 {
                     isDone = true;
+                    if (explosionCreationCount > 0)
+                    {
+                        masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                        explosionCreationCount--;
+                    }
                 }
                 currFrames += 50;
                 this.xPosition -= 1;
@@ -372,7 +416,10 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
-            }//else, master sword explosion sprite.update()
+            } else
+            {
+                masterSwordExplosion.Update();
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -382,8 +429,10 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 spriteBatch.End();
+            } else
+            {
+                masterSwordExplosion.Draw(spriteBatch); 
             }
-            //else, master sword explosion sprite.draw()
         }
 
         public Rectangle GetHitbox()

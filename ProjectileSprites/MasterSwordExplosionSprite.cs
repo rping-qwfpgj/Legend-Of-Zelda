@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 
-namespace LegendofZelda.ProjectileSprites
+namespace Sprites
 {
     public class MasterSwordExplosionSprite : ILinkProjectile
     {
