@@ -5,18 +5,24 @@ using Sprites;
 using LegendofZelda.SpriteFactories;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
+using LegendofZelda.Blocks;
+using SharpDX.Win32;
+using System.Linq;
 
 namespace LegendofZelda
 {
     public class Room
     {
-        private List<ISprite> sprites;
+        public List<ISprite> sprites;
         private ISprite background;
         public ISprite Background { get => background; set => background = value; }
+        List<ISprite> doors;
         public Room(List<ISprite> sprites, ISprite background)
         {
             this.sprites = sprites;
             this.background = background;
+            doors = new();
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -35,7 +41,22 @@ namespace LegendofZelda
                 }
             }
         }
-
+        public  void RemoveDoors()
+        {
+            foreach (var sprite in sprites.ToList())
+            {
+                if (sprite is OpenDoorBlock || sprite is LockedDoorBlock)
+                {
+                    doors.Add(sprite);
+                    sprites.Remove(sprite);
+                }
+            }
+        }
+        public void AddDoors()
+        {
+            sprites.AddRange(doors);
+           
+        }
         public void Update()
         {
             List<ISprite> copy = new List<ISprite>(sprites);
@@ -90,7 +111,7 @@ namespace LegendofZelda
         {
             HashSet<ISprite> toRemove = new();
             HashSet<ISprite> toAdd = new();
-            if (sprite is IEnemy && sprite!=null)
+            if (sprite is IEnemy && sprite != null)
             {
                 IEnemy enemy = sprite as IEnemy;
 
@@ -129,7 +150,7 @@ namespace LegendofZelda
                             toRemove.Add(currBoomerang);
                         }
                     }
-                } 
+                }
                 else if (enemy is OldManBoss)
                 {
                     OldManBoss oldMan = enemy as OldManBoss;

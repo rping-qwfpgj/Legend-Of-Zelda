@@ -88,7 +88,14 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            controller.gameState = new GamePlayState(controller, game);
+            if (game.currentRoomIndex < 19)
+            {
+                controller.gameState = new GamePlayState(controller, game);
+            }
+            else
+            {
+                controller.gameState = new BossRushState(controller, game);
+            }
         }
         public void Update()
         {

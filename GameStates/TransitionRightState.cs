@@ -39,12 +39,20 @@ namespace GameStates
         {
             var background = game.currentRoom.Background as IBackground;
             background.Update();
-            
+
             if (!background.IsTransitioning)
             {
-                GamePlay();
+                if (game.currentRoomIndex < 19)
+                {
+                    GamePlay();
+                }
+                else
+                {
+                    BossRush();
+                }
             }
-            
+
+
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -58,7 +66,11 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() { }
+        public void BossRush() {
+
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
+            controller.gameState = new BossRushState(controller, game);
+        }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }

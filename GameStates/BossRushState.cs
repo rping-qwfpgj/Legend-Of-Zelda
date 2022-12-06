@@ -3,8 +3,10 @@ using Interfaces;
 using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
-using System.Diagnostics;
 using LegendofZelda.Interfaces;
+using LegendofZelda.Blocks;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GameStates
 
@@ -13,17 +15,12 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        RoomGenerator roomGen;
-        GraphGenerator graphGenerator;
-        Graph newGraph;
-        bool roomIsComplete;
-        int roomsRemaining;
+        private int roomsRemaining;
         public BossRushState(GameStateController controller, Game1 game)
         {
             roomsRemaining = 5;
             this.controller = controller;
             this.game = game;
-            roomIsComplete = false;
         }
         public void GamePlay()
         {
@@ -67,18 +64,23 @@ namespace GameStates
         }
         public void Update()
         {
-            if (roomIsComplete)
-            {
-                
-                roomIsComplete = false;
-                roomsRemaining--;
-            }
-
             if (roomsRemaining == 0)
             {
                 controller.gameState.GamePlay();
                 game.currentRoom = game.rooms[21];
                 game.currentRoomIndex = 21;
+            }
+
+            //add logic that removes doors from the room itself.
+            List<ISprite> addBack = new();
+
+            if (CheckIfFinished())
+            {
+                game.currentRoom.AddDoors();
+            }
+            else
+            {
+                game.currentRoom.RemoveDoors(); 
             }
 
             Link.Instance.Update();
@@ -88,7 +90,6 @@ namespace GameStates
             game.currentRoom.Update();
             game.hud.Update();
 
-            roomIsComplete = CheckIfFinished();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
