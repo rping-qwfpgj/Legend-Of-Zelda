@@ -125,7 +125,7 @@ namespace Sprites
         }
         private void switchAction()
         {
-            // Get the hitbox of the current goriya
+            // Get the hitbox of the current dodongo
             Rectangle currentLocation = currentDodongo.GetHitbox();
             this.xPos = (float)currentLocation.X;
             this.yPos = (float)currentLocation.Y;
@@ -151,7 +151,7 @@ namespace Sprites
         }
         public void TurnAround(string side)
         {
-            // Get the hitbox of the current goriya
+            // Get the hitbox of the current dodongo
             Rectangle currentLocation = currentDodongo.GetHitbox();
             
             // Have the Dodongo turn around based on what wall it is running into

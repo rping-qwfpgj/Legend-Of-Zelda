@@ -50,7 +50,7 @@ namespace LegendofZelda
             throwable = Throwables.None;
             currentProjectiles = new();
             inventory = new Inventory();
-            this.health = 600;
+            this.health = 3;
             this.maxHealth = 3;
             this.isDamagedCounter = 0;
             this.isDamaged = false;
