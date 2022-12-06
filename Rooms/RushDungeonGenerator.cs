@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LegendofZelda
+namespace LegendofZelda.Rooms
 {
-    public class GraphGenerator
+    public class RushDungeonGenerator
     {
         private int numOfRooms;
         private int rushRoomIndex;
         private int totalNumOfRooms;
         private Game1 game;
 
-        public GraphGenerator(int numOfRooms, int rushRoomIndex, Game1 game)
+        public RushDungeonGenerator(int numOfRooms, int rushRoomIndex, Game1 game)
         {
             this.numOfRooms = numOfRooms;
             this.rushRoomIndex = rushRoomIndex;
@@ -35,7 +35,7 @@ namespace LegendofZelda
                 roomsDoors.Add(i, new List<string>());
             }
 
-            for (int currentRoomIndex = rushRoomIndex; roomsAdded<4; currentRoomIndex++)
+            for (int currentRoomIndex = rushRoomIndex; roomsAdded < 4; currentRoomIndex++)
             {
                 List<string> directionsChosen = new();
                 List<string> directions = new()

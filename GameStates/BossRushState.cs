@@ -1,12 +1,10 @@
-﻿using System;
+﻿
 using Interfaces;
 using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
-using LegendofZelda.Interfaces;
-using LegendofZelda.Blocks;
-using System.Collections.Generic;
 using System.Diagnostics;
+using CommonReferences;
 
 namespace GameStates
 
@@ -78,7 +76,7 @@ namespace GameStates
                 game.currentRoomIndex = 24;
             }
 
-            if (game.currentRoomIndex < 19)
+            if (game.currentRoomIndex < 19 || game.currentRoomIndex==Common.Instance.masterSwordRoomIndex)
             {
                 GamePlay();
             }

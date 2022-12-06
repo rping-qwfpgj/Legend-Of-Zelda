@@ -6,6 +6,7 @@ using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
+using CommonReferences;
 
 namespace GameStates
 
@@ -21,10 +22,9 @@ namespace GameStates
         }
         public void GamePlay()
         {
-            if (game.currentRoomIndex == 16)
-            { //coming out of the cave room
-                Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(380, 380), false);
-
+            if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
+            {
+                GamePlay();
             }
             else
             {
@@ -33,7 +33,12 @@ namespace GameStates
             }
             controller.gameState = new GamePlayState(controller, game);
         }
-      
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(new(400, 520), false);
+            controller.gameState = game.bossRushState;
+        }
+
         public void Pause()
         {
             controller.gameState = new PauseState(controller, game);
@@ -46,16 +51,15 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < 19)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex)
                 {
                     GamePlay();
                 }
-                else if (game.currentRoomIndex >18)
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex-1)
                 {
                     BossRush();
                 }
             }
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -69,11 +73,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() {
-
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(new(400, 520), false);
-            controller.gameState = game.bossRushState;
-        }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }

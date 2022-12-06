@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
+using CommonReferences;
 
 namespace GameStates
 
@@ -19,6 +20,11 @@ namespace GameStates
         {
             this.controller = controller;
             this.game = game;
+        }
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(670, 390), false);
+            controller.gameState = game.bossRushState;
         }
         public void GamePlay()
         {
@@ -38,11 +44,11 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < 19)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
                 {
                     GamePlay();
                 }
-                else if (game.currentRoomIndex > 18)
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex - 1)
                 {
                     BossRush();
                 }
@@ -59,10 +65,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }      
         public void WinGame() { }
-        public void BossRush() {
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(670, 390), false);
-            controller.gameState = game.bossRushState;
-        }
         public void TransitionUp() { }      
         public void TransitionDown() { }      
         public void TransitionLeft() { }

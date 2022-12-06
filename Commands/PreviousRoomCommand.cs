@@ -1,11 +1,7 @@
-﻿using LegendofZelda;
-using System.Collections.Generic;
-using System;
-using System.Diagnostics;
-using Microsoft.Xna.Framework;
+﻿
 using LegendofZelda.Interfaces;
-using System.Runtime.CompilerServices;
-using LegendofZelda.SpriteFactories;
+using CommonReferences;
+
 
 namespace Commands
 {
@@ -25,7 +21,7 @@ namespace Commands
 
             if (myGame.currentRoomIndex == 0)
             {
-                myGame.currentRoomIndex = 25;
+                myGame.currentRoomIndex = Common.Instance.masterSwordRoomIndex;
             }
             else
             {
