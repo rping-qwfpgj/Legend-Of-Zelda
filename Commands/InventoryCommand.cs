@@ -15,7 +15,6 @@ namespace Commands
         }
         public void Execute()
         {
-
             if (controller.gameState is InventoryState)
             {
                 if (game.currentRoomIndex< 19)

@@ -14,21 +14,22 @@ namespace LegendofZelda
         private List<ISprite> sprites;
         private ISprite background;
         private readonly List<ISprite> doors;
-        public ISprite Background { get => background; set => background = value; }
-       
-        public bool isFinished { get; set; }
         private bool alreadyChecked;
         private readonly ISprite topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
         private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
         private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
         private readonly ISprite rightBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalBoundingBlock");
 
+        public ISprite Background { get => background; set => background = value; }
+        public bool isFinished { get; set; }
+        public bool externallyChecked { get; set; }
         public Room(List<ISprite> sprites, ISprite background, bool isBoshRushRoom)
         {
             this.sprites = sprites;
             this.background = background;
             doors = new();
             isFinished = false;
+            externallyChecked = false;
             alreadyChecked = false;
             if (isBoshRushRoom)
                 RushRoomIncomplete();
