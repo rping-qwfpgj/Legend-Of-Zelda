@@ -50,6 +50,11 @@
 			<ObjectName>Stalfos</ObjectName>
 			<Location>280 130</Location>
 		</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gohma</ObjectName>
+		<Location>280 130</Location>
+	</Item>
 		<!--<Item>
 			<ObjectType>Enemy</ObjectType>
 			<ObjectName>Goriya</ObjectName>
