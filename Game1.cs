@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
-using LegendofZelda.Interfaces;
 using HeadsUpDisplay;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
@@ -83,14 +82,9 @@ public class Game1 : Game
     }
     protected override void Update(GameTime gameTime)
     {
-        if (gameStateController.gameState is ITransitionGameState) { 
-            var gameState = gameStateController.gameState as ITransitionGameState;
-            gameState.Update(gameTime, gameTime.TotalGameTime);
-        } else
-        {
-            gameStateController.gameState.Update();
-        }
-
+        
+        gameStateController.gameState.Update();
+        
         if(currentRoomIndex < Common.Instance.rushRoomsIndex && currentSong != "Undertale")
         {
             MediaPlayer.Stop();
@@ -155,6 +149,7 @@ public class Game1 : Game
     {
         roomsGraph = new();
 
+        //leftRight Edges
         roomsGraph.AddLeftRightEdge(17, 16);
         roomsGraph.AddLeftRightEdge(16, 15);
         roomsGraph.AddLeftRightEdge(12, 13);
@@ -167,6 +162,7 @@ public class Game1 : Game
         roomsGraph.AddLeftRightEdge(1, 0);
         roomsGraph.AddLeftRightEdge(0, 2);
 
+        //DownUp Edges
         roomsGraph.AddDownUpEdge(5, 8);
         roomsGraph.AddDownUpEdge(0, 3);
         roomsGraph.AddDownUpEdge(3, 4);
@@ -177,6 +173,7 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(11, 12);
         roomsGraph.AddDownUpEdge(17, 16);
 
+        //rush rooms edges
         roomsGraph.AddDownUpEdge(9, 19);
         roomsGraph.AddDownUpEdge(23, 24);
         roomsGraph.AddDownUpEdge(24, 25);
@@ -186,12 +183,13 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
-        RushDungeonGenerator graphGenerator = new(Common.Instance.numOfRushRooms, 19, this);
+        RushDungeonGenerator graphGenerator = new(Common.Instance.numOfRushRooms, Common.Instance.rushRoomsIndex, this);
         RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
         
+        //generate normal dungeon rooms
         for (int i = 0; i < Common.Instance.rushRoomsIndex; i++)
         {
             var roomNumber = i.ToString();
@@ -200,31 +198,26 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
+        //generate random dungeon
         var roomsDoors = graphGenerator.newGraph();
-        
-        foreach(var set in roomsDoors)
-        {
-            Debug.WriteLine("key"+set.Key);
-            foreach (var door in set.Value)
-            {
-                Debug.WriteLine(door);
-            }
-        }
 
+        //generate random rooms
         for(int i = Common.Instance.rushRoomsIndex; i < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms; i++)
         {
             rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i]));
         }
 
+        //generate the old man boss and master sword rooms
         string specialRooms = "\\Content\\RoomXMLs\\";
         var bossPath = directory + specialRooms+ "OldManBoss" + ".xml";
-        XDocument xml1 = XDocument.Load(bossPath);
-        rooms.Add(roomloader.ParseXML(xml1));
+        XDocument bossXml = XDocument.Load(bossPath);
+        rooms.Add(roomloader.ParseXML(bossXml));
 
         var swordPath = directory + specialRooms + "BossSword" + ".xml";
-        XDocument xml2 = XDocument.Load(swordPath);
-        rooms.Add(roomloader.ParseXML(xml2));
+        XDocument swordXml= XDocument.Load(swordPath);
+        rooms.Add(roomloader.ParseXML(swordXml));
 
+        //set current room
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);

@@ -1,11 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using static LegendofZelda.Link;
-using Sprites;
-using LegendofZelda;
 using LegendofZelda.Interfaces;
 using LegendofZelda.Backgrounds;
+using CommonReferences;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -39,7 +37,7 @@ namespace LegendofZelda.SpriteFactories
         {
             var split= name.Split('d');
             int roomNum = int.Parse(split[1]);
-            if (roomNum <= 18) { 
+            if (roomNum < Common.Instance.rushRoomsIndex) { 
                 return new Background(spriteSheet, roomNum);
             }
             else {
