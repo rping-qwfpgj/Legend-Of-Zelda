@@ -42,13 +42,11 @@ namespace GameStates
                 {
                     GamePlay();
                 }
-                else
+                else if (game.currentRoomIndex > 18)
                 {
                     BossRush();
                 }
             }
-
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -63,8 +61,7 @@ namespace GameStates
         public void WinGame() { }
         public void BossRush() {
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(670, 390), false);
-
-            controller.gameState = new BossRushState(controller, game);
+            controller.gameState = game.bossRushState;
         }
         public void TransitionUp() { }      
         public void TransitionDown() { }      

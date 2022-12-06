@@ -15,14 +15,13 @@ namespace LegendofZelda
     public class RandomRoomGenerator
     {
       
-        private List<String> enemyList;
-        private List<String> blockList;
+        private List<string> enemyList;
+        private List<string> blockList;
+        private List<Vector2> blockLocations;
         private readonly int blockHeight = 44;
         private readonly int blockWidth = 50;
-        private List<Vector2> blockLocations;
         private readonly int wallHeight = 88;
         private readonly int wallWidth = 100;
-      
 
         public RandomRoomGenerator()
         {
@@ -37,7 +36,6 @@ namespace LegendofZelda
             blockList.Add("StatueOneBlock");
             blockList.Add("StatueTwoBlock");
             blockList.Add("DepthBlock");
-            blockLocations = new();
             makeCoordinates();
           
         }
@@ -86,7 +84,7 @@ namespace LegendofZelda
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 264), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockLeft"));
-                       // sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockLeft"));
+                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockLeft"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockLeft"));
                         break;
                     case "right":
@@ -94,7 +92,7 @@ namespace LegendofZelda
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 264), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockRight"));
-                       // sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockRight"));
+                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockRight"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockRight"));
                         break;
                     case "top":
@@ -120,7 +118,7 @@ namespace LegendofZelda
 
         private void makeCoordinates()
         {
-            blockLocations.Clear();
+            blockLocations = new();
             int numOfBlocksX = 12;
             int numOfBlocksY = 7;
 

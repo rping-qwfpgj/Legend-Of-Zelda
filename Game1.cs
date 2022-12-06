@@ -18,6 +18,7 @@ using Interfaces;
 using GameStates;
 using System.Diagnostics;
 using SharpDX.Multimedia;
+using SharpDX.XInput;
 
 
 // Creator: Tuhin Patel
@@ -44,6 +45,7 @@ public class Game1 : Game
     public Song backgroundMusic;
     public Song bossRushMusic;
     public Song shrineMusic;
+    public IGameState bossRushState; 
     public string currentSong; // keep track of the current song bieng played since media player doesn't do that (smh my head)
 
     public Game1()
@@ -59,13 +61,14 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         gameStateController = new GameStateController(this);
+        bossRushState = new BossRushState(gameStateController, this);
         SpriteFactoriesInit();
         GraphInit();
         RoomloaderInit();
         ControllersInit();
 
+      
         hud = new Hud(20, -19);
-        
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
         base.Initialize();
@@ -111,12 +114,11 @@ public class Game1 : Game
         {
             MediaPlayer.Stop();
         }
-
-       
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
+        Debug.WriteLine(gameStateController.gameState);
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -141,10 +143,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
-        
         keyboardController.AddCommand(Keys.B, new ThrowCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
-
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
         keyboardController.AddCommand(Keys.L, new InventoryCommand(gameStateController, this));
         keyboardController.AddCommand(Keys.H, new PauseCommand(gameStateController));
@@ -180,10 +180,9 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(17, 16);
 
         roomsGraph.AddDownUpEdge(9, 19);
-        roomsGraph.AddDownUpEdge(19, 20);
-        roomsGraph.AddDownUpEdge(20, 21);
-        roomsGraph.AddDownUpEdge(21, 22);
-        roomsGraph.AddDownUpEdge(22, 9);
+        roomsGraph.AddDownUpEdge(23, 24);
+        roomsGraph.AddDownUpEdge(24, 25);
+        roomsGraph.AddDownUpEdge(25, 9);
     }
     public void RoomloaderInit()
     {

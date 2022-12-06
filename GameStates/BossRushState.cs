@@ -16,12 +16,13 @@ namespace GameStates
         private GameStateController controller;
         private Game1 game;
         private int roomsRemaining;
-        bool alreadyComplete, alreadyIncomplete;
+   
         public BossRushState(GameStateController controller, Game1 game)
         {
-            roomsRemaining = 5;
+            roomsRemaining = 2;
             this.controller = controller;
             this.game = game;
+    
         }
         public void GamePlay()
         {
@@ -65,11 +66,16 @@ namespace GameStates
         }
         public void Update()
         {
+            Debug.WriteLine(roomsRemaining);
+            if(game.currentRoom.isFinished && !game.currentRoom.externallyChecked)
+            {
+                game.currentRoom.externallyChecked = true;
+                roomsRemaining--;
+            }
             if (roomsRemaining == 0)
             {
-                controller.gameState.GamePlay();
-                game.currentRoom = game.rooms[21];
-                game.currentRoomIndex = 21;
+                game.currentRoom = game.rooms[24];
+                game.currentRoomIndex = 24;
             }
 
             if (game.currentRoomIndex < 19)

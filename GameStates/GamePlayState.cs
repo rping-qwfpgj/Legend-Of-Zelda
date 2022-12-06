@@ -39,7 +39,7 @@ namespace GameStates
         }
         public void BossRush()
         {
-            controller.gameState = new BossRushState(controller, game);
+            controller.gameState = game.bossRushState;
         }
         public void TransitionUp()
         {
@@ -59,7 +59,7 @@ namespace GameStates
         }
         public void Update()
         {
-            if (game.currentRoomIndex > 18)
+            if (game.currentRoomIndex == 19)
             {
                 BossRush();
             }
