@@ -134,6 +134,11 @@
 			<ObjectName>HorizontalHalfBoundingBlock</ObjectName>
 			<Location>435 392</Location>
 		</Item>
+		<Item>
+			<ObjectType>Block</ObjectType>
+			<ObjectName>HorizontalBoundingBlock</ObjectName>
+			<Location>50 406</Location>
+		</Item>
 
 		
 </XnaContent>
