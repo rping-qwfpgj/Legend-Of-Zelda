@@ -3,8 +3,10 @@ using Interfaces;
 using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
-using System.Diagnostics;
 using LegendofZelda.Interfaces;
+using LegendofZelda.Blocks;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GameStates
 
@@ -13,18 +15,13 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        RoomGenerator roomGen;
-        bool roomIsComplete;
-        int roomsRemaining;
+        private int roomsRemaining;
+        bool alreadyComplete, alreadyIncomplete;
         public BossRushState(GameStateController controller, Game1 game)
         {
             roomsRemaining = 5;
             this.controller = controller;
             this.game = game;
-            roomGen = new();
-            roomIsComplete = true;
-            game.currentRoomIndex = 19;
-           
         }
         public void GamePlay()
         {
@@ -68,18 +65,16 @@ namespace GameStates
         }
         public void Update()
         {
-            if (roomIsComplete)
-            {
-                roomIsComplete = false;
-                game.currentRoom = roomGen.NewRoom();
-                roomsRemaining--;
-            }
-
-            if (roomsRemaining ==0)
+            if (roomsRemaining == 0)
             {
                 controller.gameState.GamePlay();
-                game.currentRoom = game.rooms[22];
-                game.currentRoomIndex = 22;
+                game.currentRoom = game.rooms[21];
+                game.currentRoomIndex = 21;
+            }
+
+            if (game.currentRoomIndex < 19)
+            {
+                GamePlay();
             }
 
             Link.Instance.Update();
@@ -89,7 +84,6 @@ namespace GameStates
             game.currentRoom.Update();
             game.hud.Update();
 
-            roomIsComplete = CheckIfFinished();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -99,17 +93,6 @@ namespace GameStates
             game.hud.Draw(_spriteBatch);
         }
 
-        private bool CheckIfFinished()
-        {
-            foreach (var sprite in game.currentRoom.ReturnObjects())
-            {
-                if (sprite is IEnemy)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 }
 

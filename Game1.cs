@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
 using System.Diagnostics;
+using SharpDX.Multimedia;
 
 
 // Creator: Tuhin Patel
@@ -59,8 +60,8 @@ public class Game1 : Game
 
         gameStateController = new GameStateController(this);
         SpriteFactoriesInit();
-        RoomloaderInit();
         GraphInit();
+        RoomloaderInit();
         ControllersInit();
 
         hud = new Hud(20, -19);
@@ -111,15 +112,11 @@ public class Game1 : Game
             MediaPlayer.Stop();
         }
 
-        if(currentRoomIndex == 19)
-        {
-            gameStateController.gameState.BossRush();
-        }
+       
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
-      
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -149,8 +146,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
-        keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
+        keyboardController.AddCommand(Keys.L, new InventoryCommand(gameStateController, this));
+        keyboardController.AddCommand(Keys.H, new PauseCommand(gameStateController));
         
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
@@ -192,17 +189,46 @@ public class Game1 : Game
     {
         rooms = new();
         RoomLoader roomloader = new();
+        GraphGenerator graphGenerator = new(5, 19, this);
+        RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-
-        for (int i = 0; i <= 22; i++)
+        int rushRoomsIndex = 19;
+        int numOfRandomGeneratedRooms = 5;
+        
+        for (int i = 0; i < rushRoomsIndex; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
             XDocument xml = XDocument.Load(FilePath);
             rooms.Add(roomloader.ParseXML(xml));
         }
+
+        var roomsDoors = graphGenerator.newGraph();
+        
+        foreach(var set in roomsDoors)
+        {
+            Debug.WriteLine("key"+set.Key);
+            foreach (var door in set.Value)
+            {
+                Debug.WriteLine(door);
+            }
+        }
+
+        for(int i = rushRoomsIndex; i < rushRoomsIndex+numOfRandomGeneratedRooms; i++)
+        {
+            rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i]));
+        }
+
+        string specialRooms = "\\Content\\RoomXMLs\\";
+        var bossPath = directory + specialRooms+ "OldManBoss" + ".xml";
+        XDocument xml1 = XDocument.Load(bossPath);
+        rooms.Add(roomloader.ParseXML(xml1));
+
+        var swordPath = directory + specialRooms + "BossSword" + ".xml";
+        XDocument xml2 = XDocument.Load(swordPath);
+        rooms.Add(roomloader.ParseXML(xml2));
 
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];

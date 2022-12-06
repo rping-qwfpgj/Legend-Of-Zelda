@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Sprites;
 using LegendofZelda.SpriteFactories;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
+using LegendofZelda.Blocks;
+using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace LegendofZelda
 {
@@ -13,10 +14,24 @@ namespace LegendofZelda
         public List<ISprite> sprites;
         private ISprite background;
         public ISprite Background { get => background; set => background = value; }
-        public Room(List<ISprite> sprites, ISprite background)
+        private readonly List<ISprite> doors;
+        public bool isFinished { get; set; }
+        private bool alreadyChecked;
+
+        private readonly ISprite topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
+        private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
+        private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
+        private readonly ISprite rightBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalBoundingBlock");
+
+        public Room(List<ISprite> sprites, ISprite background, bool isBoshRushRoom)
         {
             this.sprites = sprites;
             this.background = background;
+            doors = new();
+            isFinished = false;
+            alreadyChecked = false;
+            if (isBoshRushRoom)
+                RoomIncomplete();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -41,6 +56,11 @@ namespace LegendofZelda
             List<ISprite> copy = new List<ISprite>(sprites);
             background.Update();
 
+            if (CheckIfFinished() && !alreadyChecked)
+            {
+                alreadyChecked = true;
+                RoomComplete();
+            }
             var ibackground = background as IBackground;
             if (!ibackground.IsTransitioning)
             {
@@ -51,28 +71,41 @@ namespace LegendofZelda
                     sprite.Update();
                 }
             }
-
-            int gcounter = 0;
-            foreach (var test in sprites)
+        }
+        private void RoomIncomplete()
+        {
+            sprites.Add(topBoundBlock);
+            sprites.Add(bottomBoundBlock);
+            sprites.Add(rightBoundBlock);
+            sprites.Add(leftBoundBlock);
+            foreach (var sprite in sprites.ToList())
             {
-                if (test is GoriyaBoomerangDownSprite || test is GoriyaBoomerangUpSprite || test is GoriyaBoomerangRightSprite || test is GoriyaBoomerangLeftSprite)
+                if (sprite is OpenDoorBlock || sprite is LockedDoorBlock)
                 {
-                    gcounter++;
+                    doors.Add(sprite);
+                    sprites.Remove(sprite);
                 }
             }
-            //Debug.WriteLine("goriya");
-            //Debug.WriteLine(gcounter);
-
-            int counter = 0;
-            foreach (var test in sprites)
+        }
+        private void RoomComplete()
+        {
+            sprites.Remove(topBoundBlock);
+            sprites.Remove(bottomBoundBlock);
+            sprites.Remove(rightBoundBlock);
+            sprites.Remove(leftBoundBlock);
+            sprites.AddRange(doors);
+        }
+        private bool CheckIfFinished()
+        {
+            foreach (var sprite in sprites.ToList())
             {
-                if (test is BottomDragonAttackOrbSprite || test is MiddleDragonAttackOrbSprite || test is TopDragonAttackOrbSprite || test is FrontOldManOrb || test is RightOldManOrb || test is LeftOldManOrb)
+                if (sprite is IEnemy)
                 {
-                    counter++;
+                    return false;
                 }
             }
-            //Debug.WriteLine("dragon");
-            //Debug.WriteLine(counter);
+            isFinished = true;
+            return true;
         }
 
         public List<ISprite> ReturnObjects()
@@ -84,7 +117,6 @@ namespace LegendofZelda
         public void RemoveObject(ISprite sprite)
         {
             sprites.Remove(sprite);
-
         }
 
         public void AddObject(ISprite sprite)
@@ -95,7 +127,6 @@ namespace LegendofZelda
         private void DealWithLinkProjectiles(ISprite sprite)
         {
             List<ISprite> toRemove = new();
-
             if (sprite is ILinkProjectile)
             {
                 var projectile = sprite as ILinkProjectile;
@@ -104,17 +135,17 @@ namespace LegendofZelda
                     toRemove.Add(sprite);
                 }
             }
-
             foreach (var spr in toRemove)
             {
                 RemoveObject(spr);
             }
         }
+
         private void DealWithEnemies(ISprite sprite)
         {
             HashSet<ISprite> toRemove = new();
             HashSet<ISprite> toAdd = new();
-            if (sprite is IEnemy && sprite!=null)
+            if (sprite is IEnemy && sprite != null)
             {
                 IEnemy enemy = sprite as IEnemy;
 
@@ -136,7 +167,6 @@ namespace LegendofZelda
                         }
                     }
 
-
                 }
                 else if (enemy is GoriyaSprite)
                 {
@@ -154,7 +184,7 @@ namespace LegendofZelda
                             toRemove.Add(currBoomerang);
                         }
                     }
-                } 
+                }
                 else if (enemy is OldManBoss)
                 {
                     OldManBoss oldMan = enemy as OldManBoss;
@@ -173,7 +203,6 @@ namespace LegendofZelda
                         }
                     }
                 }
-
                 if (enemy.DyingComplete)
                 {
                     toRemove.Add(sprite);

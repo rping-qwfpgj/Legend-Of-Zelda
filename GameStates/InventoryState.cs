@@ -86,8 +86,12 @@ namespace GameStates
             map = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 135), "OrangeMap");
             compass = ItemSpriteFactory.Instance.CreateItem(new Vector2(150, 250), "Compass");
         }
+
+        public void BossRush() {
+            controller.gameState = new BossRushState(controller, game);
+        }
         public void GamePlay()
-        {
+        {    
             controller.gameState = new GamePlayState(controller, game);
         }
         public void Update()
@@ -158,7 +162,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() { }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }
