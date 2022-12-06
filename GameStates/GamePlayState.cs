@@ -63,6 +63,7 @@ namespace GameStates
             {
                 BossRush();
             }
+
             Link.Instance.Update();
             game.mouseController.Update();
             game.collisionDetector.Update();

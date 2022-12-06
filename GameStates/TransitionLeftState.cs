@@ -44,7 +44,7 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
                 {
                     GamePlay();
                 }

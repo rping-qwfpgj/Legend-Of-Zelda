@@ -1,4 +1,5 @@
 ﻿using LegendofZelda.Interfaces;
+using CommonReferences;
 
 namespace Commands
 {
@@ -16,7 +17,7 @@ namespace Commands
         public void Execute()
         {
 
-            if (myGame.currentRoomIndex == 25)
+            if (myGame.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
             {
                 myGame.currentRoomIndex = 0;
             }
