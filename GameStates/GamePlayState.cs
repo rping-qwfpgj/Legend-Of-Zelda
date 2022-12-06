@@ -59,6 +59,10 @@ namespace GameStates
         }
         public void Update()
         {
+            if (game.currentRoomIndex > 18)
+            {
+                BossRush();
+            }
             Link.Instance.Update();
             game.mouseController.Update();
             game.collisionDetector.Update();

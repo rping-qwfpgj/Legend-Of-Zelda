@@ -16,6 +16,7 @@ namespace GameStates
         private GameStateController controller;
         private Game1 game;
         private int roomsRemaining;
+        bool alreadyComplete, alreadyIncomplete;
         public BossRushState(GameStateController controller, Game1 game)
         {
             roomsRemaining = 5;
@@ -71,16 +72,9 @@ namespace GameStates
                 game.currentRoomIndex = 21;
             }
 
-            //add logic that removes doors from the room itself.
-            List<ISprite> addBack = new();
-
-            if (CheckIfFinished())
+            if (game.currentRoomIndex < 19)
             {
-                game.currentRoom.AddDoors();
-            }
-            else
-            {
-                game.currentRoom.RemoveDoors(); 
+                GamePlay();
             }
 
             Link.Instance.Update();
@@ -99,17 +93,6 @@ namespace GameStates
             game.hud.Draw(_spriteBatch);
         }
 
-        private bool CheckIfFinished()
-        {
-            foreach (var sprite in game.currentRoom.ReturnObjects())
-            {
-                if (sprite is IEnemy)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 }
 

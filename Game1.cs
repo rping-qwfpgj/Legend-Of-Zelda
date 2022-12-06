@@ -112,20 +112,11 @@ public class Game1 : Game
             MediaPlayer.Stop();
         }
 
-        if (currentRoomIndex > 18)
-        {
-            gameStateController.gameState.BossRush();
-        }
-        else
-        {
-
-            gameStateController.gameState.GamePlay();
-        }
+       
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
-      
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -155,8 +146,8 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
 
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
-        keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
+        keyboardController.AddCommand(Keys.L, new InventoryCommand(gameStateController, this));
+        keyboardController.AddCommand(Keys.H, new PauseCommand(gameStateController));
         
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
@@ -199,7 +190,7 @@ public class Game1 : Game
         rooms = new();
         RoomLoader roomloader = new();
         GraphGenerator graphGenerator = new(5, 19, this);
-        RoomGenerator roomGenerator = new();
+        RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
@@ -227,7 +218,7 @@ public class Game1 : Game
 
         for(int i = rushRoomsIndex; i < rushRoomsIndex+numOfRandomGeneratedRooms; i++)
         {
-            rooms.Add(roomGenerator.NewRoom(roomsDoors[i]));
+            rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i]));
         }
 
         string specialRooms = "\\Content\\RoomXMLs\\";
@@ -238,8 +229,6 @@ public class Game1 : Game
         var swordPath = directory + specialRooms + "BossSword" + ".xml";
         XDocument xml2 = XDocument.Load(swordPath);
         rooms.Add(roomloader.ParseXML(xml2));
-
-        Debug.WriteLine(rooms.Count);
 
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];

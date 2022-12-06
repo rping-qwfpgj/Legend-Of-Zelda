@@ -161,7 +161,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "LockedWhiteDoorBlockBottom":
 
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 395 + inventoryHeight, 3);
+                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 390 + inventoryHeight, 3);
 
                 case "OpenWhiteDoorBlockTop":
 

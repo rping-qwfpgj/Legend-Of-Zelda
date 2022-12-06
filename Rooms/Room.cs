@@ -3,11 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Sprites;
 using LegendofZelda.SpriteFactories;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
 using LegendofZelda.Blocks;
-using SharpDX.Win32;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace LegendofZelda
 {
@@ -16,13 +14,24 @@ namespace LegendofZelda
         public List<ISprite> sprites;
         private ISprite background;
         public ISprite Background { get => background; set => background = value; }
-        List<ISprite> doors;
-        public Room(List<ISprite> sprites, ISprite background)
+        private readonly List<ISprite> doors;
+        public bool isFinished { get; set; }
+        private bool alreadyChecked;
+
+        private readonly ISprite topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
+        private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
+        private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
+        private readonly ISprite rightBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalBoundingBlock");
+
+        public Room(List<ISprite> sprites, ISprite background, bool isBoshRushRoom)
         {
             this.sprites = sprites;
             this.background = background;
             doors = new();
-            
+            isFinished = false;
+            alreadyChecked = false;
+            if (isBoshRushRoom)
+                RoomIncomplete();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -41,27 +50,17 @@ namespace LegendofZelda
                 }
             }
         }
-        public  void RemoveDoors()
-        {
-            foreach (var sprite in sprites.ToList())
-            {
-                if (sprite is OpenDoorBlock || sprite is LockedDoorBlock)
-                {
-                    doors.Add(sprite);
-                    sprites.Remove(sprite);
-                }
-            }
-        }
-        public void AddDoors()
-        {
-            sprites.AddRange(doors);
-           
-        }
+
         public void Update()
         {
             List<ISprite> copy = new List<ISprite>(sprites);
             background.Update();
 
+            if (CheckIfFinished() && !alreadyChecked)
+            {
+                alreadyChecked = true;
+                RoomComplete();
+            }
             var ibackground = background as IBackground;
             if (!ibackground.IsTransitioning)
             {
@@ -72,6 +71,41 @@ namespace LegendofZelda
                     sprite.Update();
                 }
             }
+        }
+        private void RoomIncomplete()
+        {
+            sprites.Add(topBoundBlock);
+            sprites.Add(bottomBoundBlock);
+            sprites.Add(rightBoundBlock);
+            sprites.Add(leftBoundBlock);
+            foreach (var sprite in sprites.ToList())
+            {
+                if (sprite is OpenDoorBlock || sprite is LockedDoorBlock)
+                {
+                    doors.Add(sprite);
+                    sprites.Remove(sprite);
+                }
+            }
+        }
+        private void RoomComplete()
+        {
+            sprites.Remove(topBoundBlock);
+            sprites.Remove(bottomBoundBlock);
+            sprites.Remove(rightBoundBlock);
+            sprites.Remove(leftBoundBlock);
+            sprites.AddRange(doors);
+        }
+        private bool CheckIfFinished()
+        {
+            foreach (var sprite in sprites.ToList())
+            {
+                if (sprite is IEnemy)
+                {
+                    return false;
+                }
+            }
+            isFinished = true;
+            return true;
         }
 
         public List<ISprite> ReturnObjects()
