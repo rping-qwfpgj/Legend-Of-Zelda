@@ -110,7 +110,19 @@ namespace LegendofZelda
                 {
                     throwable = Throwables.None;
                 }
-            } else if(throwable == Throwables.None)
+            } else if(throwable == Throwables.Arrow) { 
+            
+                if (inventory.getItemCount("orange gemstone") > 0) 
+                {
+                    inventory.removeItem("orange gemstone");
+                    SoundFactory.Instance.CreateSoundEffect("ThrowProjectile").Play();
+                    UpdatePosition();
+                    currentState.ThrowProjectile();
+                } else
+                {
+                    throwable = Throwables.None;
+                }
+            }else if(throwable == Throwables.None)
             {
                 // do nothing
             } else { 
