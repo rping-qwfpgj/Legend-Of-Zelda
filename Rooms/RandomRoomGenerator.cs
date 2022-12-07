@@ -1,7 +1,7 @@
 ﻿using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
-
+using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +13,7 @@ namespace LegendofZelda.Rooms
     public class RandomRoomGenerator
     {
         private List<string> enemyList;
-        private List<Vector2> locations;
+        public Dictionary<int, Vector2> locations;
         private readonly int blockHeight = 44;
         private readonly int blockWidth = 50;
         private readonly int wallHeight = 88;
@@ -27,11 +27,10 @@ namespace LegendofZelda.Rooms
             enemyList.Add("Keese");
             enemyList.Add("Dodongo");
             enemyList.Add("Gel");
-
             //enemyList.Add("DigDogger");
             //enemyList.Add("Gohma");
             makeCoordinates();
-            roomLoader = new(locations);
+            roomLoader = new(this);
 
         }
 
@@ -39,10 +38,11 @@ namespace LegendofZelda.Rooms
         {
             List<ISprite> sprites = new();
             makeCoordinates();
+            roomLoader = new(this);
             Random rnd = new Random();
-            int numOfEnemies = rnd.Next(1);
+
+            int numOfEnemies = rnd.Next(1, 5);
             int blockConfiguration = rnd.Next(0, 6);
-            sprites.Clear();
             var enviroment = Environment.CurrentDirectory;
             string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
             string rushRoomsFolder = "\\Content\\RoomXMLs\\RushRooms";
@@ -61,11 +61,16 @@ namespace LegendofZelda.Rooms
             sprites.Add(rightBoundBlock);
             sprites.Add(leftBoundBlock);
 
-            for (int i = 0; i < numOfEnemies; i++)
-            {
-                var location = locations[rnd.Next(locations.Count)];
-                int enemyType = rnd.Next(enemyList.Count);
-                sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemyList[enemyType]));
+            int enemiesAdded = 0;
+            while (enemiesAdded!=numOfEnemies) {
+                int rndLocation = rnd.Next(locations.Count);
+                if (locations.ContainsKey(rndLocation))
+                {
+                    var location = locations[rndLocation];
+                    int enemyType = rnd.Next(enemyList.Count);
+                    sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemyList[enemyType]));
+                    enemiesAdded++;
+                }
             }
 
             foreach (var direction in directions)
@@ -111,12 +116,14 @@ namespace LegendofZelda.Rooms
             locations = new();
             int numOfBlocksX = 12;
             int numOfBlocksY = 7;
+            int counter = 0;
 
             for (int i = 0; i < numOfBlocksY; i++)
             {
                 for (int j = 0; j < numOfBlocksX; j++)
                 {
-                    locations.Add(new Vector2(j * blockWidth + wallWidth, i * blockHeight + wallHeight));
+                    locations.Add(counter, new Vector2(j * blockWidth + wallWidth, i * blockHeight + wallHeight));
+                    counter++;
                 }
             }
         }
