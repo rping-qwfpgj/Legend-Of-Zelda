@@ -13,7 +13,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 90;
+        private int maxTime = 120;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -56,7 +56,7 @@ namespace Sprites
             // Update frames
             if (!throwDone)
             {
-                if (timingCounter >= 60)
+                if (timingCounter >= 90)
                 {
                     throwDone= true;
                     if (explosionCreationCount > 0)
@@ -65,19 +65,19 @@ namespace Sprites
                         explosionCreationCount--;
                     }
                 }
-                currFrames += 10;
+                currFrames += 1;
                 this.yPosition -= 2;
                 this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 14, 32);
-                if ((currFrames / 100) % 4 == 0)
+                if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[0];
-                } else if ((currFrames / 100) % 4 == 1)
+                } else if ((currFrames / 10) % 4 == 1)
                 {
                     sourceRectangle = sourceRectangles[1];
-                } else if ((currFrames / 100) % 4 == 2)
+                } else if ((currFrames / 10) % 4 == 2)
                 {
                     sourceRectangle = sourceRectangles[2];
-                } else if ((currFrames / 100) % 4 == 0)
+                } else if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[3];
                 } else if (currFrames >= maxFrames)
@@ -116,6 +116,11 @@ namespace Sprites
         public void collide()
         {
             this.throwDone = true;
+            if (explosionCreationCount > 0)
+            {
+                masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                explosionCreationCount--;
+            }
         }
 
 
@@ -146,6 +151,7 @@ namespace Sprites
         public bool IsDone { get => isDone; }
         private int explosionCreationCount = 1;
         private ISprite masterSwordExplosion;
+        private bool throwDone = false;
         public MasterSwordDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -164,34 +170,36 @@ namespace Sprites
 
         public void Update()
         {
+            timingCounter++;
 
-            if (!isDone)
+            // Update frames
+            if (!throwDone)
             {
-                timingCounter++;
-                if (timingCounter >= maxTime)
+                if (timingCounter >= 90)
                 {
-                    isDone = true;
-                    if (explosionCreationCount > 0)
-                    {
+                    throwDone = true;
+                    //if (explosionCreationCount > 0)
+                    //{
                         masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
                         explosionCreationCount--;
-                    }
+                    //}
                 }
-                currFrames += 50;
-                this.yPosition += 1;
-                if ((currFrames / 100) % 4 == 0)
+                currFrames += 1;
+                this.yPosition += 2;
+                this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 14, 32);
+                if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[0];
                 }
-                else if ((currFrames / 100) % 4 == 1)
+                else if ((currFrames / 10) % 4 == 1)
                 {
                     sourceRectangle = sourceRectangles[1];
                 }
-                else if ((currFrames / 100) % 4 == 2)
+                else if ((currFrames / 10) % 4 == 2)
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 100) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }
@@ -199,22 +207,32 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
-            } else
+            }
+            else
             {
-                masterSwordExplosion.Update();
+                if (masterSwordExplosion != null)
+                    masterSwordExplosion.Update();
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDone)
+            if (!throwDone)
             {
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 1);
                 spriteBatch.End();
             }
-            //else, master sword explosion sprite.draw()
+            else
+            {
+                if (masterSwordExplosion != null)
+                    masterSwordExplosion.Draw(spriteBatch);
+            }
         }
         public Rectangle GetHitbox()
         {
@@ -223,7 +241,12 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = maxFrames;
+            this.throwDone = true;
+            if (explosionCreationCount > 0)
+            {
+                masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                explosionCreationCount--;
+            }
         }
 
     }
@@ -257,6 +280,7 @@ namespace Sprites
         public bool IsDone { get => isDone; }
         private int explosionCreationCount = 1;
         private ISprite masterSwordExplosion;
+        private bool throwDone = false;
         public MasterSwordRightSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -275,35 +299,36 @@ namespace Sprites
 
         public void Update()
         {
+            timingCounter++;
 
             // Update frames
-            if (!isDone)
+            if (!throwDone)
             {
-                timingCounter++;
-                if (timingCounter >= maxTime)
+                if (timingCounter >= 90)
                 {
-                    isDone = true;
+                    throwDone = true;
                     if (explosionCreationCount > 0)
                     {
                         masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
                         explosionCreationCount--;
                     }
                 }
-                currFrames += 50;
-                this.xPosition += 1;
-                if ((currFrames / 100) % 4 == 0)
+                currFrames += 1;
+                this.xPosition += 2;
+                this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 14);
+                if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[0];
                 }
-                else if ((currFrames / 100) % 4 == 1)
+                else if ((currFrames / 10) % 4 == 1)
                 {
                     sourceRectangle = sourceRectangles[1];
                 }
-                else if ((currFrames / 100) % 4 == 2)
+                else if ((currFrames / 10) % 4 == 2)
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 100) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }
@@ -311,25 +336,33 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
-            } else
+            }
+            else
             {
-                masterSwordExplosion.Update();
+                if (masterSwordExplosion != null)
+                    masterSwordExplosion.Update();
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
             }
         }
 
         // NOTE: All of these source Rectangles are using placeholder values for now
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDone)
+            if (!throwDone)
             {
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             } else
-            {
-                masterSwordExplosion.Draw(spriteBatch);
-            }
+                {
+                    if (masterSwordExplosion != null)
+                        masterSwordExplosion.Draw(spriteBatch);
+                }
+            
         }
 
         public Rectangle GetHitbox()
@@ -340,7 +373,12 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = maxFrames;
+            this.throwDone = true;
+            if (explosionCreationCount > 0)
+            {
+                masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                explosionCreationCount--;
+            }
         }
 
 
@@ -373,6 +411,7 @@ namespace Sprites
         public bool IsDone { get => isDone; }
         private int explosionCreationCount = 1;
         private ISprite masterSwordExplosion;
+        private bool throwDone = false;
         public MasterSwordLeftSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
@@ -390,35 +429,36 @@ namespace Sprites
 
         public void Update()
         {
+            timingCounter++;
 
             // Update frames
-            if (!isDone)
+            if (!throwDone)
             {
-                timingCounter++;
-                if (timingCounter >= maxTime)
+                if (timingCounter >= 90)
                 {
-                    isDone = true;
+                    throwDone = true;
                     if (explosionCreationCount > 0)
                     {
                         masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
                         explosionCreationCount--;
                     }
                 }
-                currFrames += 50;
-                this.xPosition -= 1;
-                if ((currFrames / 100) % 4 == 0)
+                currFrames += 1;
+                this.xPosition -= 2;
+                this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 32, 14);
+                if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[0];
                 }
-                else if ((currFrames / 100) % 4 == 1)
+                else if ((currFrames / 10) % 4 == 1)
                 {
                     sourceRectangle = sourceRectangles[1];
                 }
-                else if ((currFrames / 100) % 4 == 2)
+                else if ((currFrames / 10) % 4 == 2)
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 100) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }
@@ -426,22 +466,30 @@ namespace Sprites
                 {
                     currFrames = 0;
                 }
-            } else
+            }
+            else
             {
-                masterSwordExplosion.Update();
+                if (masterSwordExplosion != null)
+                    masterSwordExplosion.Update();
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            if (!isDone)
+            if (!throwDone)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, this.destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 spriteBatch.End();
-            } else
+            }
+            else
             {
-                masterSwordExplosion.Draw(spriteBatch); 
+                if (masterSwordExplosion != null)
+                    masterSwordExplosion.Draw(spriteBatch);
             }
         }
 
@@ -451,7 +499,12 @@ namespace Sprites
         }
         public void collide()
         {
-            this.currFrames = maxFrames;
+            this.throwDone = true;
+            if (explosionCreationCount > 0)
+            {
+                masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
+                explosionCreationCount--;
+            }
         }
 
     }
