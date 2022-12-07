@@ -219,7 +219,7 @@ public class Game1 : Game
         rooms.Add(roomloader.ParseXML(swordXml));
 
         //set current room
-        currentRoomIndex = 0;
+        currentRoomIndex = Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);
     }

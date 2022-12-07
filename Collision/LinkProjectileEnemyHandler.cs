@@ -39,6 +39,13 @@ namespace Collision
                     enemy.TakeDamage(side);
                 }
             } 
+            else if (enemy is GohmaSprite)
+            {
+                if (IsArrow(projectile))
+                {
+                    enemy.TakeDamage(side);
+                }
+            }
             else
             {
                 Debug.WriteLine("enemy hit by projectile!");
@@ -61,6 +68,12 @@ namespace Collision
         {
             return projectile is MasterSwordUpSprite || projectile is MasterSwordDownSprite
                 || projectile is MasterSwordLeftSprite || projectile is MasterSwordRightSprite;
+        }
+
+        private static bool IsArrow(ILinkProjectile projectile)
+        {
+            return projectile is ArrowUpSprite || projectile is ArrowDownSprite
+                || projectile is ArrowLeftSprite || projectile is ArrowRightSprite;
         }
 
         private static bool IsFacingCorrectDirection(IEnemy enemy, string side)

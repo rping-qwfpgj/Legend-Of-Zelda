@@ -77,7 +77,7 @@ namespace Sprites
                 } else if ((currFrames / 10) % 4 == 2)
                 {
                     sourceRectangle = sourceRectangles[2];
-                } else if ((currFrames / 10) % 4 == 0)
+                } else if ((currFrames / 10) % 4 == 3)
                 {
                     sourceRectangle = sourceRectangles[3];
                 } else if (currFrames >= maxFrames)
@@ -199,7 +199,7 @@ namespace Sprites
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 10) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 3)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }
@@ -328,7 +328,7 @@ namespace Sprites
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 10) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 3)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }
@@ -458,7 +458,7 @@ namespace Sprites
                 {
                     sourceRectangle = sourceRectangles[2];
                 }
-                else if ((currFrames / 10) % 4 == 0)
+                else if ((currFrames / 10) % 4 == 3)
                 {
                     sourceRectangle = sourceRectangles[3];
                 }

@@ -19,7 +19,7 @@ namespace Sprites
         private int deathFrames = 0;
         private int maxDeathFrames = 40;
         
-        private int health = 10;
+        private int health = 4;
         private bool isDamaged = false;
         private int damagedCounter = 0;
 
