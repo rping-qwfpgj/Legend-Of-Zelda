@@ -30,7 +30,7 @@ namespace HeadsUpDisplay
         ISprite selectedBoomerang, selectedBomb, selectedFire, selectedArrow;
         float heartCount;
         private List<ISprite> heartsList;
-
+        private ISprite levelText;
         public Hud(int xPos, int yPos)
         {
             x = xPos;
@@ -64,6 +64,7 @@ namespace HeadsUpDisplay
             {
                 red1, red2, red3, red4
             };
+            levelText = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(xPos + 65, yPos + 20), "LEVEL-1");
 
         //    heartsList = new()
         //    {
@@ -168,6 +169,7 @@ namespace HeadsUpDisplay
             {
                 heartsList[3].Draw(_spriteBatch);
             }
+            levelText.Draw(_spriteBatch);
         }
 
         public void switchProjectile(Link.Throwables type)
