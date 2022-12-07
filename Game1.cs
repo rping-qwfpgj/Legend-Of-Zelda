@@ -217,9 +217,6 @@ public class Game1 : Game
         XDocument swordXml= XDocument.Load(swordPath);
         rooms.Add(roomloader.ParseXML(swordXml));
 
-        rooms.Add(rooms[18]); //test room
-        rooms.RemoveAt(18); //test room
-
         //set current room
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];

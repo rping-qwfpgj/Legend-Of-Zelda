@@ -34,7 +34,7 @@ namespace Sprites
 		DigdoggerActions.BigMovingRight, DigdoggerActions.BigMovingLeft, DigdoggerActions.SmallStunned};
 		DigdoggerActions currAction;
 
-		private List<string> droppableItems = new List<string> { "Key" };
+		private List<string> droppableItems = new List<string> { "BigHeart" };
 
 
 		private Texture2D texture;
