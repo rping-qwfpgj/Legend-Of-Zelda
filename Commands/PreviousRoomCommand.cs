@@ -21,7 +21,7 @@ namespace Commands
 
             if (myGame.currentRoomIndex == 0)
             {
-                myGame.currentRoomIndex = Common.Instance.masterSwordRoomIndex;
+                myGame.currentRoomIndex = Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1 ;
             }
             else
             {

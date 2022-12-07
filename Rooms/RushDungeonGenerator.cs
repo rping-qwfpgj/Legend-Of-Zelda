@@ -45,6 +45,10 @@ namespace LegendofZelda.Rooms
                     "top",
                     "bottom"
                 };
+
+                if (currentRoomIndex == rushRoomIndex)
+                    directions.Remove("bottom");
+
                 foreach (var door in roomsDoors[currentRoomIndex])
                 {
                     directions.Remove(door);

@@ -51,7 +51,7 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex)
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.rushRoomsIndex+ Common.Instance.numOfRushRooms|| game.currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
                 {
                     GamePlay();
                 }

@@ -94,12 +94,12 @@ public class Game1 : Game
             MediaPlayer.Stop();
             MediaPlayer.Play(backgroundMusic);
             currentSong = "Undertale";
-        } else if(currentRoomIndex >= Common.Instance.rushRoomsIndex && currentRoomIndex < Common.Instance.masterSwordRoomIndex && currentSong != "coconut_mall_mp3")
+        } else if(currentRoomIndex >= Common.Instance.rushRoomsIndex && currentRoomIndex < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms && currentSong != "coconut_mall_mp3")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(bossRushMusic);
             currentSong = "coconut_mall_mp3";
-        } else if (currentRoomIndex == Common.Instance.masterSwordRoomIndex && currentSong != "Shrine")
+        } else if (currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms && currentSong != "Shrine")
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(shrineMusic);
@@ -110,6 +110,7 @@ public class Game1 : Game
     }
     protected override void Draw(GameTime gameTime)
     {
+      //  Debug.WriteLine(currentRoomIndex);
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -173,10 +174,10 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(17, 16);
 
         //rush rooms edges
-        roomsGraph.AddDownUpEdge(9, 19);
-        roomsGraph.AddDownUpEdge(23, 24);
-        roomsGraph.AddDownUpEdge(24, 25);
-        roomsGraph.AddDownUpEdge(25, 9);
+        roomsGraph.AddDownUpEdge(9, Common.Instance.rushRoomsIndex);
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1 );
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+2);
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1, 9);
     }
     public void RoomloaderInit()
     {
@@ -203,7 +204,7 @@ public class Game1 : Game
         //generate random rooms
         for(int i = Common.Instance.rushRoomsIndex; i < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms; i++)
         {
-            rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i]));
+            rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i], i));
         }
 
         //generate the old man boss and master sword rooms

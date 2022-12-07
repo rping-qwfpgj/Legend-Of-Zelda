@@ -40,7 +40,7 @@ namespace LegendofZelda.Rooms
 
         }
 
-        public Room NewRandomRoom(List<string> directions)
+        public Room NewRandomRoom(List<string> directions, int backgroundNumber)
         {
             List<ISprite> sprites = new();
             makeCoordinates();
@@ -110,7 +110,7 @@ namespace LegendofZelda.Rooms
                         break;
                 }
             }
-            return new Room(sprites, BackgroundSpriteFactory.Instance.CreateBackground("Background21"), true);
+            return new Room(sprites, BackgroundSpriteFactory.Instance.CreateBackground("Background"+backgroundNumber.ToString()) , true);
         }
 
         private void makeCoordinates()

@@ -21,7 +21,8 @@ namespace GameStates
    
         public BossRushState(GameStateController controller, Game1 game)
         {
-            roomsRemaining = Common.Instance.numOfRushRooms;
+            //roomsRemaining = Common.Instance.numOfRushRooms;
+            roomsRemaining = 1;
             this.controller = controller;
             this.game = game;
             alreadyChecked = false;
@@ -77,12 +78,13 @@ namespace GameStates
             if (roomsRemaining == 0 && !alreadyChecked)
             {
                 alreadyChecked = true;
-                game.roomsGraph.RemoveDownUpEdge(24);
-                game.roomsGraph.AddDownUpEdge(game.currentRoomIndex, 24);
-                game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,200),"PuzzleDoorBlockTop"));
+                game.roomsGraph.RemoveDownUpEdge(game.currentRoomIndex);
+                Debug.WriteLine(game.currentRoomIndex+" "+(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms));
+                game.roomsGraph.AddDownUpEdge(game.currentRoomIndex, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms);
+                game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,40),"PuzzleDoorBlockTop"));
             }
 
-            if (game.currentRoomIndex < 19 || game.currentRoomIndex==Common.Instance.masterSwordRoomIndex|| game.currentRoomIndex==24)
+            if (game.currentRoomIndex < 19 || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
             {
                 GamePlay();
             }

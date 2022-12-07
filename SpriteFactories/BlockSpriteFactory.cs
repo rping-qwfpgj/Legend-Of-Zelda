@@ -99,7 +99,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "PuzzleDoorBlockTop":
 
-                    return new PuzzleDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + Common.Instance.heightOfInventory, 0);
+                    return new PuzzleDoorBlock(whiteDoorSpriteSheet, (int)location.X, (int)location.Y + Common.Instance.heightOfInventory, 0);
                 
                 case "PuzzleDoorBlockLeft":
 

@@ -17,7 +17,7 @@ namespace Commands
         public void Execute()
         {
 
-            if (myGame.currentRoomIndex == Common.Instance.masterSwordRoomIndex)
+            if (myGame.currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
             {
                 myGame.currentRoomIndex = 0;
             }

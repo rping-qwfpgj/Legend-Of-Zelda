@@ -56,17 +56,11 @@ namespace LegendofZelda
             sourceRectangles.Add(new(258, 1, width, height));
             sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
-
-            //sourceRectangles.Add(new(772, 886, width, height)); // old man room
-            sourceRectangles.Add(new(772, 532, width, height));// middle
-            sourceRectangles.Add(new(772, 532, width, height));
-            sourceRectangles.Add(new(772, 532, width, height));
-            sourceRectangles.Add(new(772, 532, width, height));
-            sourceRectangles.Add(new(772, 532, width, height));
-            //sourceRectangles.Add(new(515, 532, width, height)); //left
-            //sourceRectangles.Add(new(1029,532, width, height)); //right
-            //sourceRectangles.Add(new(772,355, width, height)); // up
-            //sourceRectangles.Add(new(772,709, width, height)); // down
+            sourceRectangles.Add(new(772, 709, width, height)); //19
+            for(int i = 0; i < Common.Instance.numOfRushRooms - 1; i++)
+            {
+                sourceRectangles.Add(new(772, 532, width, height)); //middle
+            }
             sourceRectangles.Add(new(772,178, width, height)); //bullet hell room
             sourceRectangles.Add(new(772,1, width, height)); //master sword room
 
@@ -144,13 +138,13 @@ namespace LegendofZelda
                  
                     if (i < 4)
                     {
-                        if(roomNumber == 9)
-                        {
-                            sourceRectangle = sourceRectangles[20]; //master sword room
-                        }
-                        else if(roomNumber == 16)
+                        if (roomNumber == 16)
                         {
                             sourceRectangle = sourceRectangles[17];
+                        }
+                        else if (roomNumber == 9)
+                        {
+                            sourceRectangle = new Rectangle(sourceRectangles[9].X, sourceRectangles[9].Y- sourceRectangles[9].Height, sourceRectangles[9].Width, sourceRectangles[9].Height);
                         }
                         else
                         {
