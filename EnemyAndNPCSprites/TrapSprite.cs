@@ -69,8 +69,7 @@ namespace Sprites
                 if(currState == TrapStates.MoveUp)
                 {
                     yPosition -= 2;
-                    
-                    
+                   
                 } else if (currState == TrapStates.MoveDown)
                 {
                     yPosition += 2;
@@ -87,17 +86,9 @@ namespace Sprites
 
                     
                 }
-
-                
-
-                
-
-                
+              
             }
-
-
-
-        }
+      }
 
         public void Draw(SpriteBatch spriteBatch)
         {

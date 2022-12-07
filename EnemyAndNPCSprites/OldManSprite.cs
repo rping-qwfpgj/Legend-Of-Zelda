@@ -37,28 +37,17 @@ namespace Sprites
             this.text = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(this.xPosition - this.messageOffsetX, this.yPosition - this.messageOffsetY), message);
         }
 
-        public void Update()
-        {
-            
-        }
-
+        public void Update(){ }
+        
         public void Draw(SpriteBatch spriteBatch)
         {
-
             Rectangle sourceRectangle = new Rectangle(0, 0, 16, 16);
             Rectangle destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 64, 64);
-
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
             text.Draw(spriteBatch);
         }
-
-        public Vector2 getPosition()
-        {
-            return new Vector2(xPosition, yPosition);
-        }
-        
         public Rectangle GetHitbox()
         {
             // change this to destination rectangle

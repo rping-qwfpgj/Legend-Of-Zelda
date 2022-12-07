@@ -123,7 +123,6 @@ namespace Sprites
                 else if (deathFrames >= 15 && deathFrames < 20)
                 {
                     sourceRectangle = new Rectangle(51, 3, 9, 10);
-
                 }
                 else
                 {
@@ -139,12 +138,6 @@ namespace Sprites
             
         }
     
-
-        public Vector2 getPosition()
-        {
-            return new Vector2(xPosition, yPosition);
-        }
-
         public Rectangle GetHitbox()
         {
             return destinationRectangle;
