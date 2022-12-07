@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Security.AccessControl;
+using System.Xml.Linq;
 
 namespace LegendofZelda.Rooms
 {
@@ -16,27 +18,24 @@ namespace LegendofZelda.Rooms
     {
         private List<string> enemyList;
         private List<string> blockList;
-        private List<Vector2> blockLocations;
+        private List<Vector2> locations;
         private readonly int blockHeight = 44;
         private readonly int blockWidth = 50;
         private readonly int wallHeight = 88;
         private readonly int wallWidth = 100;
-
+        List<List<ISprite>> configurations;
+        RushRoomLoader roomLoader;
         public RandomRoomGenerator()
         {
             enemyList = new();
-            //enemyList.Add("Goriya");
-            //enemyList.Add("Stalfos");
-            //enemyList.Add("Keese");
-            //enemyList.Add("Dodongo");
+            enemyList.Add("Goriya");
+            enemyList.Add("Stalfos");
+            enemyList.Add("Keese");
+            enemyList.Add("Dodongo");
             enemyList.Add("Gel");
             //enemyList.Add("Gohma");
-
-            blockList = new();
-            blockList.Add("StatueOneBlock");
-            blockList.Add("StatueTwoBlock");
-            blockList.Add("DepthBlock");
             makeCoordinates();
+            roomLoader = new(locations);
 
         }
 
@@ -45,9 +44,18 @@ namespace LegendofZelda.Rooms
             List<ISprite> sprites = new();
             makeCoordinates();
             Random rnd = new Random();
-            int numOfEnemies = rnd.Next(1, 1);
-            int numOfBlocks = rnd.Next(1, 1);
+            int numOfEnemies = rnd.Next(1, 5);
+            int blockConfiguration = rnd.Next(0, 2);
             sprites.Clear();
+            var enviroment = Environment.CurrentDirectory;
+            string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
+            string rushRoomsFolder = "\\Content\\RoomXMLs\\RushRooms";
+        
+
+            var path = directory + rushRoomsFolder + blockConfiguration.ToString() + ".xml";
+            XDocument xml = XDocument.Load(path);
+
+            sprites.AddRange(roomLoader.ParseXML(xml));
 
             var topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
             var bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
@@ -59,18 +67,9 @@ namespace LegendofZelda.Rooms
             sprites.Add(rightBoundBlock);
             sprites.Add(leftBoundBlock);
 
-            for (int i = 0; i < numOfBlocks; i++)
-            {
-                var randomIndex = rnd.Next(blockLocations.Count);
-                var location = blockLocations[randomIndex];
-                blockLocations.RemoveAt(randomIndex);
-                int blockType = rnd.Next(blockList.Count);
-                sprites.Add(BlockSpriteFactory.Instance.CreateBlock(location, blockList[blockType]));
-            }
-
             for (int i = 0; i < numOfEnemies; i++)
             {
-                var location = blockLocations[rnd.Next(blockLocations.Count)];
+                var location = locations[rnd.Next(locations.Count)];
                 int enemyType = rnd.Next(enemyList.Count);
                 sprites.Add(EnemyAndNPCSpriteFactory.Instance.CreateEnemyOrNPC(location, enemyList[enemyType]));
             }
@@ -115,15 +114,15 @@ namespace LegendofZelda.Rooms
 
         private void makeCoordinates()
         {
-            blockLocations = new();
+            locations = new();
             int numOfBlocksX = 12;
             int numOfBlocksY = 7;
 
-            for (int i = 0; i < numOfBlocksX; i++)
+            for (int i = 0; i < numOfBlocksY; i++)
             {
-                for (int j = 0; j < numOfBlocksY; j++)
+                for (int j = 0; j < numOfBlocksX; j++)
                 {
-                    blockLocations.Add(new Vector2(i * blockWidth + wallWidth, j * blockHeight + wallHeight));
+                    locations.Add(new Vector2(j * blockWidth + wallWidth, i * blockHeight + wallHeight));
                 }
             }
         }
