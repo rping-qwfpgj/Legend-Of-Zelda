@@ -77,6 +77,9 @@ namespace LegendofZelda
             game.BackgroundMusicInit();
             game.RoomloaderInit();
             game.gameStateController.gameState = new GamePlayState(game.gameStateController, game);
+            game.bossRushState = new BossRushState(game.gameStateController, game);
+
+
         }
         public void UpdatePosition()
         {
