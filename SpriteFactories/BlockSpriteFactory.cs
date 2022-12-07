@@ -168,6 +168,10 @@ namespace LegendofZelda.SpriteFactories
 
                     return new StairsBlock(doorSpriteSheet, (int)location.X, (int)location.Y + Common.Instance.heightOfInventory, 2);
 
+                case "WhiteDepthBlock":
+
+                     return new WhiteDepthBlock(spriteSheet, (int)location.X, (int)location.Y+Common.Instance.heightOfInventory);
+
                 default:
 
                     return null;
