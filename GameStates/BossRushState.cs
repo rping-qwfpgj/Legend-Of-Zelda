@@ -79,7 +79,6 @@ namespace GameStates
             {
                 alreadyChecked = true;
                 game.roomsGraph.RemoveDownUpEdge(game.currentRoomIndex);
-                Debug.WriteLine(game.currentRoomIndex+" "+(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms));
                 game.roomsGraph.AddDownUpEdge(game.currentRoomIndex, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms);
                 game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,40),"PuzzleDoorBlockTop"));
             }

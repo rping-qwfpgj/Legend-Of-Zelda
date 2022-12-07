@@ -6,6 +6,7 @@ using LegendofZelda.SpriteFactories;
 using LegendofZelda.Blocks;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace LegendofZelda
 {
@@ -19,10 +20,11 @@ namespace LegendofZelda
         private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
         private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
         private readonly ISprite rightBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalBoundingBlock");
-
+        private bool isBoshRushRoom;
         public ISprite Background { get => background; set => background = value; }
         public bool isFinished { get; set; }
         public bool externallyChecked { get; set; }
+
         public Room(List<ISprite> sprites, ISprite background, bool isBoshRushRoom)
         {
             this.sprites = sprites;
@@ -31,6 +33,7 @@ namespace LegendofZelda
             isFinished = false;
             externallyChecked = false;
             alreadyChecked = false;
+            this.isBoshRushRoom = isBoshRushRoom;
             if (isBoshRushRoom)
                 RushRoomIncomplete();
         }
@@ -55,10 +58,14 @@ namespace LegendofZelda
 
         public void Update()
         {
-            if (CheckIfFinished() && !alreadyChecked)
+            if (isBoshRushRoom)
             {
-                alreadyChecked = true;
-                RushRoomComplete();
+                if (CheckIfFinished() && !alreadyChecked)
+                {
+                    Debug.WriteLine("fin");
+                    alreadyChecked = true;
+                    RushRoomComplete();
+                }
             }
 
             background.Update();
@@ -82,6 +89,7 @@ namespace LegendofZelda
         //rush rooms methods//
         private void RushRoomIncomplete()
         {
+           
             sprites.Add(topBoundBlock);
             sprites.Add(bottomBoundBlock);
             sprites.Add(rightBoundBlock);
@@ -108,7 +116,7 @@ namespace LegendofZelda
         {
             foreach (var sprite in sprites.ToList())
             {
-                if (sprite is IEnemy)
+                if (sprite is IEnemy && !(sprite is TrapSprite))
                 {
                     return false;
                 }
@@ -134,18 +142,18 @@ namespace LegendofZelda
             else if (enemy is DragonBossSprite)
                 enemyProjectiles = ((DragonBossSprite)enemy).getEnemyProjectiles();
 
-            foreach (IEnemyProjectile orb in enemyProjectiles.ToList())
+            foreach (IEnemyProjectile projectile in enemyProjectiles.ToList())
             {
-                if (orb != null)
+                if (projectile != null)
                 {
-                    if (orb.keepThrowing)
+                    if (projectile.keepThrowing)
                     {
-                        if (!sprites.Contains(orb))
-                            sprites.Add(orb);
+                        if (!sprites.Contains(projectile))
+                            sprites.Add(projectile);
                     }
                     else
                     {
-                        sprites.Remove(orb);
+                        sprites.Remove(projectile);
                     }
                 }
             }

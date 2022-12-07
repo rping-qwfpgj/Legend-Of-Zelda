@@ -1,6 +1,7 @@
 ﻿using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
+using Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,16 @@ namespace LegendofZelda
                     }
                 }
             }
-            return new Room(sprites, backgroundSprite, false);
+
+            if (sprites.OfType<OldManBoss>().Any())
+            {
+                return new Room(sprites, backgroundSprite, true);
+            }
+            else
+            {
+                return new Room(sprites, backgroundSprite, false);
+            }
+               
         }
 
     }

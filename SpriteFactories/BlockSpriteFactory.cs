@@ -144,23 +144,6 @@ namespace LegendofZelda.SpriteFactories
                 case "BombableDoorBlockBottom":
 
                     return new BombableDoorBlock(doorSpriteSheet, (int)location.X, (int)location.Y + Common.Instance.heightOfInventory, 3);
-
-                case "LockedWhiteDoorBlockTop":
-
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 22 + Common.Instance.heightOfInventory, 0);
-                
-                case "LockedWhiteDoorBlockLeft":
-
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 33, 195 + Common.Instance.heightOfInventory, 1);
-
-                case "LockedWhiteDoorBlockRight":
-
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 695, 200 + Common.Instance.heightOfInventory, 2);
-
-                case "LockedWhiteDoorBlockBottom":
-
-                    return new LockedDoorBlock(whiteDoorSpriteSheet, 350, 390 + Common.Instance.heightOfInventory, 3);
-
                 case "OpenWhiteDoorBlockTop":
 
                     return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 350, 22 + Common.Instance.heightOfInventory, 0);
