@@ -20,7 +20,10 @@ namespace Collision
 		{
             // have the projectile set it's currFrame to its last frame of animation
             projectile.collide();
-            room.RemoveObject(projectile);
+            if (!IsMasterSword(projectile))
+            {
+                room.RemoveObject(projectile);
+            }
           
             if(enemy is Digdogger)
             {
@@ -52,6 +55,12 @@ namespace Collision
         {
             return projectile is BoomerangDownSprite || projectile is BoomerangLeftSprite
                 || projectile is BoomerangRightSprite || projectile is BoomerangUpSprite;
+        }
+
+        private static bool IsMasterSword(ILinkProjectile projectile)
+        {
+            return projectile is MasterSwordUpSprite || projectile is MasterSwordDownSprite
+                || projectile is MasterSwordLeftSprite || projectile is MasterSwordRightSprite;
         }
 
         private static bool IsFacingCorrectDirection(IEnemy enemy, string side)

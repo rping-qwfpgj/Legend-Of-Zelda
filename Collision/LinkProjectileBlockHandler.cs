@@ -25,9 +25,12 @@ namespace Collision
 				// do nothing
 			} else { 
 				projectile.collide();
-				room.RemoveObject(projectile);
+                if (!IsMasterSword(projectile))
+                {
+                    room.RemoveObject(projectile);
+                }
 
-				if(block is BombableDoorBlock && (projectile is BombDownSprite || projectile is BombLeftSprite | projectile is BombRightSprite || projectile is BombUpSprite )) 
+                if (block is BombableDoorBlock && (projectile is BombDownSprite || projectile is BombLeftSprite | projectile is BombRightSprite || projectile is BombUpSprite )) 
 				{ 
 					room.RemoveObject(block);
 
@@ -55,6 +58,12 @@ namespace Collision
                     break;
                 }
             }
+        }
+
+        private static bool IsMasterSword(ILinkProjectile projectile)
+        {
+            return projectile is MasterSwordUpSprite || projectile is MasterSwordDownSprite
+                || projectile is MasterSwordLeftSprite || projectile is MasterSwordRightSprite;
         }
     }
 }
