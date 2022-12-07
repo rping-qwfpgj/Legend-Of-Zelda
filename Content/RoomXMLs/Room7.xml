@@ -27,12 +27,12 @@
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>BombableDoorBlockBottom</ObjectName>
-			<Location>360 390</Location>
+			<Location>353 393</Location>
 			</Item>
 		<Item>
 			<ObjectType>Block</ObjectType>
 			<ObjectName>OpenDoorBlockTop</ObjectName>
-			<Location>350 22</Location>
+			<Location>353 0</Location>
 		</Item>
 	
 		<!--  Top Left Blocks  -->
