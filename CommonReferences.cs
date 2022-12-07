@@ -11,7 +11,7 @@ namespace CommonReferences
         private static Common instance = new();
 
         public readonly int rushRoomsIndex = 19;
-        public readonly int numOfRushRooms = 2;
+        public readonly int numOfRushRooms = 5;
         public readonly int caveRoomsIndex = 17;
         public readonly int heightOfInventory = 150;
         

@@ -17,13 +17,11 @@ namespace LegendofZelda.Rooms
     public class RandomRoomGenerator
     {
         private List<string> enemyList;
-        private List<string> blockList;
         private List<Vector2> locations;
         private readonly int blockHeight = 44;
         private readonly int blockWidth = 50;
         private readonly int wallHeight = 88;
         private readonly int wallWidth = 100;
-        List<List<ISprite>> configurations;
         RushRoomLoader roomLoader;
         public RandomRoomGenerator()
         {
@@ -45,7 +43,7 @@ namespace LegendofZelda.Rooms
             makeCoordinates();
             Random rnd = new Random();
             int numOfEnemies = rnd.Next(1, 5);
-            int blockConfiguration = rnd.Next(0, 3);
+            int blockConfiguration = rnd.Next(0, 6);
             sprites.Clear();
             var enviroment = Environment.CurrentDirectory;
             string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
