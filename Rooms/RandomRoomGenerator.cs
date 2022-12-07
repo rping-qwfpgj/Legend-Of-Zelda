@@ -40,7 +40,7 @@ namespace LegendofZelda.Rooms
             List<ISprite> sprites = new();
             makeCoordinates();
             Random rnd = new Random();
-            int numOfEnemies = rnd.Next(1, 5);
+            int numOfEnemies = rnd.Next(1);
             int blockConfiguration = rnd.Next(0, 6);
             sprites.Clear();
             var enviroment = Environment.CurrentDirectory;
