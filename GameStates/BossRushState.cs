@@ -21,11 +21,10 @@ namespace GameStates
    
         public BossRushState(GameStateController controller, Game1 game)
         {
-            roomsRemaining = 1;
+            roomsRemaining = Common.Instance.numOfRushRooms;
             this.controller = controller;
             this.game = game;
             alreadyChecked = false;
-    
         }
         public void GamePlay()
         {

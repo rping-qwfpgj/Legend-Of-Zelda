@@ -25,10 +25,10 @@ namespace LegendofZelda.Rooms
         public RandomRoomGenerator()
         {
             enemyList = new();
-            enemyList.Add("Goriya");
-            enemyList.Add("Stalfos");
-            enemyList.Add("Keese");
-            enemyList.Add("Dodongo");
+            //enemyList.Add("Goriya");
+            //enemyList.Add("Stalfos");
+            //enemyList.Add("Keese");
+            //enemyList.Add("Dodongo");
             enemyList.Add("Gel");
             //enemyList.Add("Gohma");
 
@@ -45,8 +45,8 @@ namespace LegendofZelda.Rooms
             List<ISprite> sprites = new();
             makeCoordinates();
             Random rnd = new Random();
-            int numOfEnemies = rnd.Next(1, 4);
-            int numOfBlocks = rnd.Next(4, 5);
+            int numOfEnemies = rnd.Next(1, 1);
+            int numOfBlocks = rnd.Next(1, 1);
             sprites.Clear();
 
             var topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
@@ -84,32 +84,33 @@ namespace LegendofZelda.Rooms
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 264), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockLeft"));
-                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockLeft"));
-                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockLeft"));
+                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockLeft"));
+                       
+                       // sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockLeft"));
                         break;
                     case "right":
                         sprites.Remove(rightBoundBlock);
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 264), "VerticalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(700, 44), "VerticalHalfBoundingBlock"));
+                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockRight"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockRight"));
-                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockRight"));
-                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockRight"));
+                       // sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockRight"));
                         break;
                     case "top":
                         sprites.Remove(topBoundBlock);
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(435, 44), "HorizontalHalfBoundingBlock"));
+                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockTop"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockTop"));
-                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockTop"));
-                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockTop"));
+                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockTop"));
                         break;
                     case "bottom":
                         sprites.Remove(bottomBoundBlock);
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalHalfBoundingBlock"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(435, 392), "HorizontalHalfBoundingBlock"));
+                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockBottom"));
                         sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenDoorBlockBottom"));
-                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "OpenWhiteDoorBlockBottom"));
-                        sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockBottom"));
+                        //sprites.Add(BlockSpriteFactory.Instance.CreateBlock(new Vector2(0, 0), "LockedWhiteDoorBlockBottom"));
                         break;
                 }
             }

@@ -163,19 +163,19 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OpenWhiteDoorBlockTop":
 
-                    return new OpenDoorBlock(whiteDoorSpriteSheet, 350, 15 + Common.Instance.heightOfInventory, 0);
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 350, 22 + Common.Instance.heightOfInventory, 0);
 
                 case "OpenWhiteDoorBlockLeft":
 
-                    return new OpenDoorBlock(whiteDoorSpriteSheet, 33, 199 + Common.Instance.heightOfInventory, 1);
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 33, 195 + Common.Instance.heightOfInventory, 1);
 
                 case "OpenWhiteDoorBlockRight":
 
-                    return new OpenDoorBlock(whiteDoorSpriteSheet, 70, 200 + Common.Instance.heightOfInventory, 2);
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 695, 200 + Common.Instance.heightOfInventory, 2);
 
                 case "OpenWhiteDoorBlockBottom":
 
-                    return new OpenDoorBlock(whiteDoorSpriteSheet, 350, 400 + Common.Instance.heightOfInventory, 3);
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 350, 390 + Common.Instance.heightOfInventory, 3);
 
                 case "Fire":
 

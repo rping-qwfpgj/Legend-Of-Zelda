@@ -57,10 +57,18 @@ namespace LegendofZelda
             sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
 
-            sourceRectangles.Add(new(1543, 532, width, height)); // background 19
-            sourceRectangles.Add(new(1543, 355, width, height)); // background 20
-            sourceRectangles.Add(new(1543, 178, width, height)); // background 21
-            sourceRectangles.Add(new(1543, 1, width, height)); // master sword room
+            //sourceRectangles.Add(new(772, 886, width, height)); // old man room
+            sourceRectangles.Add(new(772, 532, width, height));// middle
+            sourceRectangles.Add(new(772, 532, width, height));
+            sourceRectangles.Add(new(772, 532, width, height));
+            sourceRectangles.Add(new(772, 532, width, height));
+            sourceRectangles.Add(new(772, 532, width, height));
+            //sourceRectangles.Add(new(515, 532, width, height)); //left
+            //sourceRectangles.Add(new(1029,532, width, height)); //right
+            //sourceRectangles.Add(new(772,355, width, height)); // up
+            //sourceRectangles.Add(new(772,709, width, height)); // down
+            sourceRectangles.Add(new(772,178, width, height)); //bullet hell room
+            sourceRectangles.Add(new(772,1, width, height)); //master sword room
 
             sourceRectangle = sourceRectangles[roomNumber];
             backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);

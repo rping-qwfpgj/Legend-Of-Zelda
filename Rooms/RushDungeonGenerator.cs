@@ -35,7 +35,7 @@ namespace LegendofZelda.Rooms
                 roomsDoors.Add(i, new List<string>());
             }
 
-            for (int currentRoomIndex = rushRoomIndex; roomsAdded < 4; currentRoomIndex++)
+            for (int currentRoomIndex = rushRoomIndex; roomsAdded < numOfRooms-1; currentRoomIndex++)
             {
                 List<string> directionsChosen = new();
                 List<string> directions = new()
