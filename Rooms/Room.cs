@@ -94,10 +94,12 @@ namespace LegendofZelda
                 foreach (var sprite in sprites.ToList())
                 {
 
-                    if (sprite is IEnemy) { // Enemies dont update when the clock is active
+                    if (sprite is IEnemy) { 
+                     // Enemies dont update when the clock is active
+                    }
+                    else
                     {
-                    } else { 
-                    
+
                         if (sprite is ILinkProjectile)
                         {
                             DealWithLinkProjectiles((ILinkProjectile)sprite);
