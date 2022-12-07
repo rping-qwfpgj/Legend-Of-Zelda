@@ -22,9 +22,8 @@ namespace Collision
                 IAttackingSprite currLinkSprite = (IAttackingSprite) Link.Instance.currentLinkSprite;
                 if (currLinkSprite.getSide() == side)
                 {
-                    side = reverseSide(side);
+                    side = reverseSide(side); // flip the side so it is in the perspective of the enemy
                     enemy.TakeDamage(side);
-                    Debug.WriteLine("enemy hit by sword!");
                 }else
                 {
                     Link.Instance.TakeDamage(side);

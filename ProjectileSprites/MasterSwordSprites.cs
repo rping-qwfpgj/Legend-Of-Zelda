@@ -3,6 +3,7 @@ using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sprites
 {
@@ -12,7 +13,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 4800;
+        private int maxTime = 90;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -24,12 +25,13 @@ namespace Sprites
         // On screen location
         private Rectangle destinationRectangle;
         private List<Rectangle> sourceRectangles;
-        Rectangle sourceRectangle = new Rectangle();
+        private Rectangle sourceRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         private bool isDone;
         public bool IsDone { get => isDone; }
         private int explosionCreationCount = 1;
         private ISprite masterSwordExplosion;
+        private bool throwDone=false;
 
         public MasterSwordUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
@@ -44,26 +46,28 @@ namespace Sprites
                 new Rectangle(71, 154, 7, 16),
                 new Rectangle(106, 154, 7, 16)
             };
+            this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 14, 32);
         }
 
         public void Update()
         {
+            timingCounter++;
 
             // Update frames
-            if (!isDone)
+            if (!throwDone)
             {
-                timingCounter++;
-                if (timingCounter >= maxTime)
+                if (timingCounter >= 60)
                 {
-                    isDone = true;
+                    throwDone= true;
                     if (explosionCreationCount > 0)
                     {
                         masterSwordExplosion = ProjectileSpriteFactory.Instance.CreateMasterSwordExplosion(new Vector2(xPosition, yPosition));
                         explosionCreationCount--;
                     }
                 }
-                currFrames += 50;
-                this.yPosition -= 1;
+                currFrames += 10;
+                this.yPosition -= 2;
+                this.destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 14, 32);
                 if ((currFrames / 100) % 4 == 0)
                 {
                     sourceRectangle = sourceRectangles[0];
@@ -82,19 +86,25 @@ namespace Sprites
                 }
             } else
             {
-                masterSwordExplosion.Update();
+                if (masterSwordExplosion!= null) 
+                    masterSwordExplosion.Update();
+                if (timingCounter >= maxTime)
+                {
+                    isDone = true;
+                }
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDone)
+            if (!throwDone)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             } else
             {
-                masterSwordExplosion.Draw(spriteBatch);
+                if (masterSwordExplosion!= null)
+                    masterSwordExplosion.Draw(spriteBatch);
             }
         }
 
@@ -105,7 +115,7 @@ namespace Sprites
 
         public void collide()
         {
-            this.currFrames = maxFrames;
+            this.throwDone = true;
         }
 
 
@@ -118,7 +128,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 4800;
+        private int maxTime = 120;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -226,7 +236,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 4800;
+        private int maxTime = 120;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -344,7 +354,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 4800;
+        private int maxTime = 120;
 
         // Texture to take sprites from
         public Texture2D texture;

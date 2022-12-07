@@ -259,9 +259,13 @@ namespace Sprites
 		public void TakeDamage(string side)
 		{
 			SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-			this.health -= 1;
-			this.isDamaged = true;
-			this.currentDigdogger.IsDamaged = true;
+			if (!isDamaged)
+			{
+                this.health -= 1;
+                this.isDamaged = true;
+                this.currentDigdogger.IsDamaged = true;
+            }
+
 			if (this.health <= 0)
 			{
 				this.isDead = true;

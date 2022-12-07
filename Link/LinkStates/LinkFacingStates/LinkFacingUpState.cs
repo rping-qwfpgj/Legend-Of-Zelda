@@ -1,6 +1,7 @@
 ﻿using LegendofZelda;
 using Interfaces;
 using LegendofZelda.SpriteFactories;
+using System.Diagnostics;
 
 namespace States
 {
@@ -14,6 +15,16 @@ namespace States
             Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingUp(Link.Instance.currentPosition,
                     Link.Instance.isDamaged);
             Link.Instance.currentState = new LinkAttackUpState();
+        }
+        public void MasterSwordAttack() 
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkAttackingUp(Link.Instance.currentPosition,
+                Link.Instance.isDamaged);
+            Link.Instance.currentState = new LinkAttackUpState();
+            var projectileSprite = ProjectileSpriteFactory.Instance.CreateMasterSwordUp(Link.Instance.currentPosition);
+            Link.Instance.currentProjectiles.Add(projectileSprite);
+            Link.Instance.game.currentRoom.AddObject(projectileSprite);
+            Debug.WriteLine(Link.Instance.currentProjectiles[0]);
         }
         public void ThrowProjectile()
         {

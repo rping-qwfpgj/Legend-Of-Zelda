@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using GameStates;
 using System.Windows.Forms;
 using LegendofZelda.Collision;
+using System.Diagnostics;
 
 namespace LegendofZelda
 {
@@ -39,6 +40,7 @@ namespace LegendofZelda
         public int isDamagedCounter;
 
         public Inventory inventory;
+        public bool masterSwordEquipped;
         public Game1 game;
         public string side;
 
@@ -51,6 +53,7 @@ namespace LegendofZelda
             throwable = Throwables.None;
             currentProjectiles = new();
             inventory = new Inventory();
+            masterSwordEquipped = true;
             this.health = 3;
             this.maxHealth = 3;
             this.isDamagedCounter = 0;
@@ -84,7 +87,14 @@ namespace LegendofZelda
         {
             SoundFactory.Instance.CreateSoundEffect("LinkAttack").Play();
             UpdatePosition();
-            currentState.Attack();
+            if (masterSwordEquipped)
+            {
+                currentState.MasterSwordAttack();
+            }
+            else
+            {
+                currentState.Attack();
+            }
         }
         public void ThrowProjectile()
         {

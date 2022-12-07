@@ -209,9 +209,13 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-            health -= 1;
-            isDamaged = true;
-            currentGoriya.IsDamaged = true;
+
+            if (!isDamaged)
+            {
+                health -= 1;
+                isDamaged = true;
+                currentGoriya.IsDamaged = true;
+            }
             if (health <= 0)
             {
                 isDead = true;
