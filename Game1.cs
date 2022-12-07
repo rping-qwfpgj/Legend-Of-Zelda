@@ -206,13 +206,13 @@ public class Game1 : Game
         {
             rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i], i));
         }
-
+       
         //generate the old man boss and master sword rooms
         string specialRooms = "\\Content\\RoomXMLs\\";
         var bossPath = directory + specialRooms+ "OldManBoss" + ".xml";
         XDocument bossXml = XDocument.Load(bossPath);
         rooms.Add(roomloader.ParseXML(bossXml));
-
+ 
         var swordPath = directory + specialRooms + "BossSword" + ".xml";
         XDocument swordXml= XDocument.Load(swordPath);
         rooms.Add(roomloader.ParseXML(swordXml));

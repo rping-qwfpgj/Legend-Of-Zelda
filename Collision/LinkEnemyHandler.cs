@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using LegendofZelda;
 using Sprites;
-
 using LegendofZelda;
 using LegendofZelda.Interfaces;
 using System.Diagnostics;
@@ -24,7 +23,11 @@ namespace Collision
                 if (currLinkSprite.getSide() == side)
                 {
                     side = reverseSide(side); // flip the side so it is in the perspective of the enemy
-                    enemy.TakeDamage(side);
+                    if (enemy is not GohmaSprite)
+                    {
+                        enemy.TakeDamage(side);
+                    }
+                    
                 }else
                 {
                     Link.Instance.TakeDamage(side);
