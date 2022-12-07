@@ -56,6 +56,11 @@ namespace GameStates
         {
             controller.gameState = new TransitionRightState(controller, game);
         }
+
+        public  void EnemiesPause()
+        {
+            controller.gameState = new EnemiesPausedState(controller, game);
+        }
         public void Update()
         {
             if (game.currentRoomIndex == Common.Instance.rushRoomsIndex)

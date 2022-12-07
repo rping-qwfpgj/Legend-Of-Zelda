@@ -47,5 +47,10 @@ public class GameStateController
     {
         gameState.TransitionRight();
     }
+
+    public void EnemiesPause() { 
+       gameState.EnemiesPause();
+    }
     
 }
+

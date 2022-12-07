@@ -39,6 +39,7 @@ namespace GameStates
         public void TransitionDown() {}
         public void TransitionLeft() {}
         public void TransitionRight() {}
+        public void EnemiesPause() { }
        
     }
 }

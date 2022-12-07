@@ -11,7 +11,7 @@ namespace Sprites
 {
     public class OldManBoss : IEnemy
     {
-        private List<string> droppableItems = new List<string> { "Key" };
+        private List<string> droppableItems = new List<string> { "Fairy" };
 
         // Keep track of frames
         private int currFrames = 0;
@@ -19,7 +19,7 @@ namespace Sprites
         private int deathFrames = 0;
         private int maxDeathFrames = 40;
         
-        private int health = 1;
+        private int health = 10;
         private bool isDamaged = false;
         private int damagedCounter = 0;
 

@@ -167,6 +167,8 @@ namespace GameStates
         public void TransitionLeft() { }
         public void TransitionRight() { }
         public void Pause() { }
+        public void EnemiesPause() { }
+       
        
     }
 }

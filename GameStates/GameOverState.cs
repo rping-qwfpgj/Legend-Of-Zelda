@@ -25,6 +25,11 @@ namespace GameStates
         {
             controller.gameState = new PauseState(controller, game);
         }
+
+        public void EnemiesPause()
+        {
+            controller.gameState = new EnemiesPausedState(controller, game);
+        }
       
         public void Update()
         {

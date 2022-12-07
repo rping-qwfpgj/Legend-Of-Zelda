@@ -5,6 +5,7 @@ namespace Interfaces
     public interface IGameState
     {
         void GamePlay();
+        void EnemiesPause();    
         void Inventory();
         void GameOver();
         void Pause();
