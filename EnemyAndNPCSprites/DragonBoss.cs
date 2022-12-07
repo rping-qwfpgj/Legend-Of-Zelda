@@ -6,6 +6,7 @@ using LegendofZelda.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using LegendofZelda.SpriteFactories;
 using System.Runtime.CompilerServices;
+using CommonReferences;
 
 namespace Sprites
 {
@@ -111,7 +112,7 @@ namespace Sprites
 
             if (!isDead)
             {
-                dragonDestinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 96, 128);
+                dragonDestinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 80, 100);
 
                 if (currFrames <= maxFrames / 8)
                 {
@@ -142,7 +143,6 @@ namespace Sprites
                 else
                 {
                     spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.White);
-
                 }
                 spriteBatch.End();
 
@@ -209,7 +209,7 @@ namespace Sprites
             {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(xPosition, yPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(xPosition, yPosition - Common.Instance.heightOfInventory), droppableItems[rand]);
             }
             else
             {

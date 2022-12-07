@@ -10,6 +10,7 @@ using LegendofZelda.SpriteFactories;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using CommonReferences;
 
 namespace GameStates
 
@@ -24,12 +25,15 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
         }
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
+            controller.gameState = game.bossRushState;
+        }
         public void GamePlay()
         {
-
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingRight(new(130, 395), false);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingRight(new(130, 395), false);
             controller.gameState = new GamePlayState(controller, game);
-            
         }
       
         public void Pause()
@@ -41,12 +45,18 @@ namespace GameStates
         {
             var background = game.currentRoom.Background as IBackground;
             background.Update();
-            
+
             if (!background.IsTransitioning)
             {
-                GamePlay();
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms)
+                {
+                    GamePlay();
+                }
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex - 1)
+                {
+                    BossRush();
+                }
             }
-            
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -60,7 +70,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }
         public void WinGame() { }
-        public void BossRush() { }
         public void TransitionUp() { }
         public void TransitionDown() { }
         public void TransitionLeft() { }

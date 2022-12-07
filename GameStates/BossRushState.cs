@@ -1,10 +1,13 @@
-﻿using System;
+﻿
 using Interfaces;
 using LegendofZelda;
 using Microsoft.Xna.Framework.Graphics;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Diagnostics;
-using LegendofZelda.Interfaces;
+using CommonReferences;
+using LegendofZelda.Blocks;
+using Microsoft.Xna.Framework;
+using LegendofZelda.SpriteFactories;
 
 namespace GameStates
 
@@ -13,18 +16,16 @@ namespace GameStates
     {
         private GameStateController controller;
         private Game1 game;
-        RoomGenerator roomGen;
-        bool roomIsComplete;
-        int roomsRemaining;
+        private int roomsRemaining;
+        bool alreadyChecked;
+   
         public BossRushState(GameStateController controller, Game1 game)
         {
-            roomsRemaining = 5;
+            //roomsRemaining = Common.Instance.numOfRushRooms;
+            roomsRemaining = 1;
             this.controller = controller;
             this.game = game;
-            roomGen = new();
-            roomIsComplete = true;
-            game.currentRoomIndex = 19;
-           
+            alreadyChecked = false;
         }
         public void GamePlay()
         {
@@ -68,18 +69,24 @@ namespace GameStates
         }
         public void Update()
         {
-            if (roomIsComplete)
+            if(game.currentRoom.isFinished && !game.currentRoom.externallyChecked)
             {
-                roomIsComplete = false;
-                game.currentRoom = roomGen.NewRoom();
+                game.currentRoom.externallyChecked = true;
                 roomsRemaining--;
             }
 
-            if (roomsRemaining ==0)
+            if (roomsRemaining == 0 && !alreadyChecked)
             {
-                controller.gameState.GamePlay();
-                game.currentRoom = game.rooms[22];
-                game.currentRoomIndex = 22;
+                alreadyChecked = true;
+                game.roomsGraph.RemoveDownUpEdge(game.currentRoomIndex);
+                Debug.WriteLine(game.currentRoomIndex+" "+(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms));
+                game.roomsGraph.AddDownUpEdge(game.currentRoomIndex, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms);
+                game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,40),"PuzzleDoorBlockTop"));
+            }
+
+            if (game.currentRoomIndex < 19 || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
+            {
+                GamePlay();
             }
 
             Link.Instance.Update();
@@ -89,28 +96,15 @@ namespace GameStates
             game.currentRoom.Update();
             game.hud.Update();
 
-            roomIsComplete = CheckIfFinished();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             game.GraphicsDevice.Clear(Color.Black);
             game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
-            Link.Instance2.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
         }
 
-        private bool CheckIfFinished()
-        {
-            foreach (var sprite in game.currentRoom.ReturnObjects())
-            {
-                if (sprite is IEnemy)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 }
 

@@ -7,26 +7,18 @@ using LegendofZelda.Interfaces;
 using System.Collections.Generic;
 using GameStates;
 using System.Windows.Forms;
+using LegendofZelda.Collision;
 
 namespace LegendofZelda
 {
     public class Link
     {
         private static Link instance = new();
-        private static Link instance2 = new();
         public static Link Instance
         {
             get
             {
                 return instance;
-            }
-        }
-
-        public static Link Instance2
-        {
-            get
-            {
-                return instance2;
             }
         }
 
@@ -48,35 +40,34 @@ namespace LegendofZelda
 
         public Inventory inventory;
         public Game1 game;
-        private string side;
+        public string side;
 
         
         public Link()
         {
-            currentPosition = new Vector2(400, 240);
+            currentPosition = new Vector2(400, 540);
+            currentState = new LinkFacingUpState();
+            currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);            
+            throwable = Throwables.None;
+            currentProjectiles = new();
+            inventory = new Inventory();
+            this.health = 3;
+            this.maxHealth = 3;
+            this.isDamagedCounter = 0;
+            this.isDamaged = false;
+            
+        }
+        public void Reset()
+        {
+            currentPosition = new Vector2(400, 540);
             currentState = new LinkFacingUpState();
             currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
-            
+
             throwable = Throwables.None;
             currentProjectiles = new();
             inventory = new Inventory();
 
-            this.health = 100;
-            this.maxHealth = 100;
-            this.isDamagedCounter = 0;
-            this.isDamaged = false;
-        }
-        public void Reset()
-        {
-            currentPosition = new Vector2(400, 240);
-            currentState = new LinkFacingUpState();
-            currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingUp(currentPosition, isDamaged);
-
-            throwable = Throwables.Boomerang;
-            currentProjectiles = new();
-            inventory = new Inventory();
-
-            this.health = 600;
+            this.health = 3;
             this.maxHealth = 3;
             this.isDamaged = false;
 
@@ -179,64 +170,7 @@ namespace LegendofZelda
             foreach (var projectile in currentProjectiles) { 
                 projectile.Update();
             }
-
-            // This can be refactored using a decorator pattern
-            if (this.isDamaged)
-            {   
-                this.isDamagedCounter++;
-
-                // Take knockback for the first x frames
-                if(this.isDamagedCounter < 10)
-                {
-                    int knockbackDistance = 5;
-                    switch(this.side)
-                    {
-                    case "top":
-                        this.currentPosition.Y += knockbackDistance;
-                        if(this.currentPosition.Y < 238) { 
-                            this.currentPosition.Y = 300;
-                            this.isDamagedCounter = 10;
-                        }
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
-                        break;
-                    case "bottom":
-                        this.currentPosition.Y -= knockbackDistance;
-                        if(this.currentPosition.Y > 542 - currentLinkSprite.DestinationRectangle.Height) { 
-                            this.currentPosition.Y = 542 - currentLinkSprite.DestinationRectangle.Height;
-                            this.isDamagedCounter = 10;
-                        }
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
-                        break;
-                    case "left":
-                        this.currentPosition.X += knockbackDistance;
-                        if(this.currentPosition.X < 100) { 
-                            this.currentPosition.X = 100;
-                            this.isDamagedCounter = 10;
-                        }
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);                        
-                        break;
-                    case "right":
-                        this.currentPosition.X -= knockbackDistance;
-                        if(this.currentPosition.X > 700 - currentLinkSprite.DestinationRectangle.Width) { 
-                            this.currentPosition.X = 700 - currentLinkSprite.DestinationRectangle.Width;
-                            this.isDamagedCounter = 10;
-                        }
-                        this.currentLinkSprite.DestinationRectangle = new((int)this.currentPosition.X, (int)this.currentPosition.Y, 24, 32);
-                        break;
-                    default:
-                    break;
-                    }
-                    this.UpdatePosition();
-                }
-                
-                if (this.isDamagedCounter > 120)
-                {
-                    this.isDamagedCounter = 0;
-                    this.isDamaged = false;
-                    this.UpdatePosition();
-                    this.currentState.Redraw();
-                }
-            }
+            LinkKnockBackHandler.TakeKnockBack();
         }
         
         public void Draw(SpriteBatch _spriteBatch)

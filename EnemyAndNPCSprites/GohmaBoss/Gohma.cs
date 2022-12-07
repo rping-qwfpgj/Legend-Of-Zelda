@@ -9,10 +9,10 @@ using System.Diagnostics;
 
 namespace Sprites
 {
-    public class DodongoSprite : IEnemy
+    public class Gohma : IEnemy
     {
-        private IDodongo currentDodongo;
-        public IDodongo CurrentDodongo { get => currentDodongo; }
+        private IGohma currentDodongo;
+        public IGohma CurrentDodongo { get => currentDodongo; }
         private int health = 2;
         private int deathFrames = 0;
         private bool isDamaged = false;
@@ -25,7 +25,7 @@ namespace Sprites
         {
             MovingUp, MovingDown, MovingRight, MovingLeft
         };
-        List<DodongoActions> dodongoActions = new List<DodongoActions> {DodongoActions.MovingUp, DodongoActions.MovingDown, DodongoActions.MovingRight, DodongoActions.MovingLeft};
+        List<DodongoActions> dodongoActions = new List<DodongoActions> { DodongoActions.MovingUp, DodongoActions.MovingDown, DodongoActions.MovingRight, DodongoActions.MovingLeft };
         private Random rand = new Random();
 
         private List<string> droppableItems = new List<string> { "Key" };
@@ -39,14 +39,14 @@ namespace Sprites
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
-        public DodongoSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
+        public Gohma(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
             this.dyingTexture = texture2;
             this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
-            this.currentDodongo = new DodongoMovingRightSprite(texture, this.xPos, this.yPos);
+            this.currentDodongo = new GohmaMovingUpSprite(texture, this.xPos, this.yPos);
         }
         public void Update()
         {
@@ -87,7 +87,9 @@ namespace Sprites
                 if (deathFrames >= 0 && deathFrames < 60)
                 {
                     currentDodongo.Draw(spriteBatch);
-                } else {
+                }
+                else
+                {
                     spriteBatch.Begin();
                     if (deathFrames >= 60 && deathFrames <= 65)
                     {
@@ -125,7 +127,7 @@ namespace Sprites
         }
         private void switchAction()
         {
-            // Get the hitbox of the current goriya
+            // Get the hitbox of the current dodongo
             Rectangle currentLocation = currentDodongo.GetHitbox();
             this.xPos = (float)currentLocation.X;
             this.yPos = (float)currentLocation.Y;
@@ -134,16 +136,16 @@ namespace Sprites
             switch (dodongoActions[rand.Next(0, dodongoActions.Count)])
             {
                 case DodongoActions.MovingUp:
-                    this.currentDodongo = new DodongoMovingUpSprite(this.texture, this.xPos, this.yPos);
+                    this.currentDodongo = new GohmaMovingUpSprite(this.texture, this.xPos, this.yPos);
                     break;
                 case DodongoActions.MovingDown:
-                    this.currentDodongo = new DodongoMovingDownSprite(this.texture, this.xPos, this.yPos);
+                    this.currentDodongo = new GohmaMovingDownSprite(this.texture, this.xPos, this.yPos);
                     break;
                 case DodongoActions.MovingLeft:
-                    this.currentDodongo = new DodongoMovingLeftSprite(this.texture, this.xPos, this.yPos);
+                    this.currentDodongo = new GohmaMovingLeftSprite(this.texture, this.xPos, this.yPos);
                     break;
                 case DodongoActions.MovingRight:
-                    this.currentDodongo = new DodongoMovingRightSprite(this.texture, this.xPos, this.yPos);
+                    this.currentDodongo = new GohmaMovingRightSprite(this.texture, this.xPos, this.yPos);
                     break;
                 default:
                     break;
@@ -151,23 +153,23 @@ namespace Sprites
         }
         public void TurnAround(string side)
         {
-            // Get the hitbox of the current goriya
+            // Get the hitbox of the current dodongo
             Rectangle currentLocation = currentDodongo.GetHitbox();
-            
+
             // Have the Dodongo turn around based on what wall it is running into
             switch (side)
             {
                 case "top":
-                    this.currentDodongo = new DodongoMovingDownSprite(this.texture, currentLocation.X, currentLocation.Y);
+                    this.currentDodongo = new GohmaMovingDownSprite(this.texture, currentLocation.X, currentLocation.Y);
                     break;
                 case "bottom":
-                    this.currentDodongo = new DodongoMovingUpSprite(this.texture, currentLocation.X, currentLocation.Y);
+                    this.currentDodongo = new GohmaMovingUpSprite(this.texture, currentLocation.X, currentLocation.Y);
                     break;
                 case "left":
-                    this.currentDodongo = new DodongoMovingRightSprite(this.texture, currentLocation.X, currentLocation.Y);
+                    this.currentDodongo = new GohmaMovingRightSprite(this.texture, currentLocation.X, currentLocation.Y);
                     break;
                 case "right":
-                    this.currentDodongo = new DodongoMovingLeftSprite(this.texture, currentLocation.X, currentLocation.Y);
+                    this.currentDodongo = new GohmaMovingLeftSprite(this.texture, currentLocation.X, currentLocation.Y);
                     break;
                 default:
                     break;
@@ -176,12 +178,9 @@ namespace Sprites
         public void TakeDamage(string side)
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-            if (!isDamaged)
-            {
-                this.health -= 1;
-                this.isDamaged = true;
-                this.currentDodongo.IsDamaged = true;
-            }
+            this.health -= 1;
+            this.isDamaged = true;
+            this.currentDodongo.IsDamaged = true;
             if (this.health <= 0)
             {
                 this.isDead = true;

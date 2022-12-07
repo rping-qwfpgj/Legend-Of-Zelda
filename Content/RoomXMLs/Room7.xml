@@ -137,6 +137,12 @@
 			<Location>550 210</Location>
 		</Item>
 
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Key</ObjectName>
+		<Location>600 210</Location>
+	</Item>
+
 
 		<!--  Bounding  -->
 		<Item>

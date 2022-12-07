@@ -6,21 +6,30 @@ namespace Commands
     public class InventoryCommand : ICommand
     {
         private GameStateController controller;
+        private Game1 game;
 
-        public InventoryCommand(GameStateController controller)
+        public InventoryCommand(GameStateController controller, Game1 game)
         {
             this.controller = controller;
+            this.game = game;
         }
         public void Execute()
         {
-
-            if (this.controller.gameState is InventoryState)
+            if (controller.gameState is InventoryState)
             {
-                this.controller.gameState.GamePlay();
+                if (game.currentRoomIndex< 19)
+                {
+                    controller.gameState.GamePlay();
+                }
+                else
+                {
+                    controller.gameState.BossRush();
+                }
+               
             }
-            else
+            else if(controller.gameState is GamePlayState || controller.gameState is BossRushState)
             {
-                this.controller.gameState.Inventory();
+                controller.gameState.Inventory();
             }
         }
     }

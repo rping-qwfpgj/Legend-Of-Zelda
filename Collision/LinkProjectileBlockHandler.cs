@@ -46,12 +46,12 @@ namespace Collision
 
         private static void editRoom(int roomToEdit, Game1 game)
         {
-            List<ISprite> otherRoomSprites = game.rooms[roomToEdit].sprites;
+            List<ISprite> otherRoomSprites = game.rooms[roomToEdit].ReturnObjects();
             foreach (var sprite in otherRoomSprites)
             {
                 if (sprite is BombableDoorBlock)
                 {
-                    otherRoomSprites.Remove(sprite);
+					game.rooms[roomToEdit].RemoveObject(sprite);
                     break;
                 }
             }

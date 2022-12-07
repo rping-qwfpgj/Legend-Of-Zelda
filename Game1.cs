@@ -6,17 +6,17 @@ using Commands;
 using Controllers;
 using System.IO;
 using System.Xml.Linq;
-using LegendofZelda;
 using System.Collections.Generic;
 using Collision;
 using LegendofZelda.SpriteFactories;
 using System;
-using LegendofZelda.Interfaces;
 using HeadsUpDisplay;
 using Microsoft.Xna.Framework.Media;
 using Interfaces;
 using GameStates;
 using System.Diagnostics;
+using CommonReferences;
+using LegendofZelda.Rooms;
 
 
 // Creator: Tuhin Patel
@@ -43,6 +43,7 @@ public class Game1 : Game
     public Song backgroundMusic;
     public Song bossRushMusic;
     public Song shrineMusic;
+    public IGameState bossRushState; 
     public string currentSong; // keep track of the current song bieng played since media player doesn't do that (smh my head)
 
     public Game1()
@@ -53,18 +54,17 @@ public class Game1 : Game
     }
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferHeight += 150;
+        _graphics.PreferredBackBufferHeight += Common.Instance.heightOfInventory;
         _graphics.ApplyChanges();
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         gameStateController = new GameStateController(this);
+        bossRushState = new BossRushState(gameStateController, this);
         SpriteFactoriesInit();
-        RoomloaderInit();
         GraphInit();
+        RoomloaderInit();
         ControllersInit();
-
         hud = new Hud(20, -19);
-        
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
         base.Initialize();
@@ -81,45 +81,36 @@ public class Game1 : Game
     }
     protected override void Update(GameTime gameTime)
     {
-        if (gameStateController.gameState is ITransitionGameState) { 
-            var gameState = gameStateController.gameState as ITransitionGameState;
-            gameState.Update(gameTime, gameTime.TotalGameTime);
-        } else
-        {
-            gameStateController.gameState.Update();
-        }
+        gameStateController.gameState.Update();
 
-        if(currentRoomIndex < 19 && currentSong != "Undertale")
-        {
-            MediaPlayer.Stop();
-            MediaPlayer.Play(backgroundMusic);
-            currentSong = "Undertale";
-        } else if(currentRoomIndex >= 19 && currentRoomIndex < 22 && currentSong != "coconut_mall_mp3")
-        {
-            MediaPlayer.Stop();
-            MediaPlayer.Play(bossRushMusic);
-            currentSong = "coconut_mall_mp3";
-        } else if (currentRoomIndex == 22 && currentSong != "Shrine")
-        {
-            MediaPlayer.Stop();
-            MediaPlayer.Play(shrineMusic);
-            currentSong = "Shrine";
-        }
-
+        //music logic
         if (gameStateController.gameState is WinGameState || gameStateController.gameState is GameOverState)
         {
             MediaPlayer.Stop();
         }
 
-        if(currentRoomIndex == 19)
+        if (currentRoomIndex < Common.Instance.rushRoomsIndex && currentSong != "Undertale")
         {
-            gameStateController.gameState.BossRush();
+            MediaPlayer.Stop();
+            MediaPlayer.Play(backgroundMusic);
+            currentSong = "Undertale";
+        } else if(currentRoomIndex >= Common.Instance.rushRoomsIndex && currentRoomIndex < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms && currentSong != "coconut_mall_mp3")
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(bossRushMusic);
+            currentSong = "coconut_mall_mp3";
+        } else if (currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms && currentSong != "Shrine")
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(shrineMusic);
+            currentSong = "Shrine";
         }
+      
         base.Update(gameTime);
     }
     protected override void Draw(GameTime gameTime)
     {
-      
+      //  Debug.WriteLine(currentRoomIndex);
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
@@ -144,13 +135,11 @@ public class Game1 : Game
         keyboardController.AddCommand(Keys.Left, new WalkLeftCommand(gameStateController));
         keyboardController.AddCommand(Keys.D, new WalkRightCommand(gameStateController));
         keyboardController.AddCommand(Keys.Right, new WalkRightCommand(gameStateController));
-        
         keyboardController.AddCommand(Keys.B, new ThrowCommand());
         keyboardController.AddCommand(Keys.Z, new AttackCommand());
-
         keyboardController.AddCommand(Keys.Q, new QuitCommand(this));
-        keyboardController.AddCommand(Keys.L, new InventoryCommand(this.gameStateController));
-        keyboardController.AddCommand(Keys.H, new PauseCommand(this.gameStateController));
+        keyboardController.AddCommand(Keys.L, new InventoryCommand(gameStateController, this));
+        keyboardController.AddCommand(Keys.H, new PauseCommand(gameStateController));
         
         Vector2 center = new(_graphics.PreferredBackBufferWidth / 2,
           _graphics.PreferredBackBufferHeight / 2);
@@ -160,6 +149,7 @@ public class Game1 : Game
     {
         roomsGraph = new();
 
+        //leftRight Edges
         roomsGraph.AddLeftRightEdge(17, 16);
         roomsGraph.AddLeftRightEdge(16, 15);
         roomsGraph.AddLeftRightEdge(12, 13);
@@ -172,6 +162,7 @@ public class Game1 : Game
         roomsGraph.AddLeftRightEdge(1, 0);
         roomsGraph.AddLeftRightEdge(0, 2);
 
+        //DownUp Edges
         roomsGraph.AddDownUpEdge(5, 8);
         roomsGraph.AddDownUpEdge(0, 3);
         roomsGraph.AddDownUpEdge(3, 4);
@@ -182,21 +173,24 @@ public class Game1 : Game
         roomsGraph.AddDownUpEdge(11, 12);
         roomsGraph.AddDownUpEdge(17, 16);
 
-        roomsGraph.AddDownUpEdge(9, 19);
-        roomsGraph.AddDownUpEdge(19, 20);
-        roomsGraph.AddDownUpEdge(20, 21);
-        roomsGraph.AddDownUpEdge(21, 22);
-        roomsGraph.AddDownUpEdge(22, 9);
+        //rush rooms edges
+        roomsGraph.AddDownUpEdge(9, Common.Instance.rushRoomsIndex);
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1 );
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1, Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+2);
+        roomsGraph.AddDownUpEdge(Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1, 9);
     }
     public void RoomloaderInit()
     {
         rooms = new();
         RoomLoader roomloader = new();
+        RushDungeonGenerator graphGenerator = new(Common.Instance.numOfRushRooms, Common.Instance.rushRoomsIndex, this);
+        RandomRoomGenerator roomGenerator = new();
         string fileFolder = "\\Content\\RoomXMLs\\Room";
         var enviroment = Environment.CurrentDirectory;
         string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
-
-        for (int i = 0; i <= 22; i++)
+        
+        //generate normal dungeon rooms
+        for (int i = 0; i < Common.Instance.rushRoomsIndex; i++)
         {
             var roomNumber = i.ToString();
             var FilePath = directory + fileFolder + roomNumber + ".xml";
@@ -204,6 +198,26 @@ public class Game1 : Game
             rooms.Add(roomloader.ParseXML(xml));
         }
 
+        //generate random dungeon
+        var roomsDoors = graphGenerator.newGraph();
+
+        //generate random rooms
+        for(int i = Common.Instance.rushRoomsIndex; i < Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms; i++)
+        {
+            rooms.Add(roomGenerator.NewRandomRoom(roomsDoors[i], i));
+        }
+
+        //generate the old man boss and master sword rooms
+        string specialRooms = "\\Content\\RoomXMLs\\";
+        var bossPath = directory + specialRooms+ "OldManBoss" + ".xml";
+        XDocument bossXml = XDocument.Load(bossPath);
+        rooms.Add(roomloader.ParseXML(bossXml));
+
+        var swordPath = directory + specialRooms + "BossSword" + ".xml";
+        XDocument swordXml= XDocument.Load(swordPath);
+        rooms.Add(roomloader.ParseXML(swordXml));
+
+        //set current room
         currentRoomIndex = 0;
         currentRoom = rooms[currentRoomIndex];
         Link.Instance.getGame(this);

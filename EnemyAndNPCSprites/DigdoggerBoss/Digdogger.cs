@@ -32,7 +32,7 @@ namespace Sprites
 
 		List<DigdoggerActions> digDoggerActions = new List<DigdoggerActions> {DigdoggerActions.BigMovingUp, DigdoggerActions.BigMovingDown,
 		DigdoggerActions.BigMovingRight, DigdoggerActions.BigMovingLeft, DigdoggerActions.SmallStunned};
-
+		DigdoggerActions currAction;
 
 		private List<string> droppableItems = new List<string> { "Key" };
 
@@ -60,6 +60,7 @@ namespace Sprites
 			this.yPos = yPosition;
 			this.dyingTexture = texture2;
 			this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
+			this.currAction = DigdoggerActions.BigMovingDown;
 			this.currentDigdogger = new DigdoggerGoingDownSprite(texture, this.xPos, this.yPos);
 			
 		}
@@ -67,12 +68,12 @@ namespace Sprites
 		public void Update()
 		{
 
-			Debug.WriteLine(this.DestinationRectangle);
+			
 
 			// Decided if the digdogger should change its current action
 			if (!isDead)
 			{
-				++currFrames;
+				++this.currFrames;
 				if (isDamaged)
 				{
 					damagedCounter++;
@@ -89,32 +90,36 @@ namespace Sprites
 				this.destinationRectangle = currentDigdogger.DestinationRectangle;
 				// Pick an action to take based on where link is
 				Vector2 linkLocation = Link.Instance.currentPosition;
-				DigdoggerActions nextAction;
-				if (linkLocation.Y > this.currentDigdogger.YPosition)
+				
+				if (!(this.currentDigdogger is DigdoggerSmallStunnedSprite)) {
+					if (linkLocation.Y > this.currentDigdogger.YPosition)
+					{
+						this.currAction = DigdoggerActions.BigMovingDown;
+					}
+					else if (linkLocation.X > this.currentDigdogger.XPosition)
+					{
+						this.currAction = DigdoggerActions.BigMovingRight;
+					}
+					else if (linkLocation.Y < this.currentDigdogger.YPosition)
+					{
+						this.currAction = DigdoggerActions.BigMovingUp;
+					}
+					else
+					{
+						this.currAction = DigdoggerActions.BigMovingLeft;
+					}
+				} else
 				{
-					nextAction = DigdoggerActions.BigMovingDown;
-				}
-				else if (linkLocation.X > this.currentDigdogger.XPosition)
-				{
-					nextAction = DigdoggerActions.BigMovingRight;
-				}
-				else if (linkLocation.Y < this.currentDigdogger.YPosition)
-				{
-					nextAction = DigdoggerActions.BigMovingUp;
-				}
-				else
-				{
-					nextAction = DigdoggerActions.BigMovingLeft;
+					if((this.currFrames % 180) == 0)
+					{
+						this.currAction = DigdoggerActions.BigMovingDown;
+					}
 				}
 
-				if (this.currentDigdogger is DigdoggerSmallStunnedSprite && this.currFrames % 500 != 0)
-				{
-
-				}
-				else
-				{
-					this.switchAction(nextAction);
-				}
+				Debug.WriteLine(this.currAction);
+				this.switchAction(this.currAction);
+				
+				
 			}
 
 
@@ -225,15 +230,23 @@ namespace Sprites
 			{
 				case "top":
 					this.currentDigdogger = new DigdoggerGoingDownSprite(this.texture, this.xPos, this.yPos);
+					this.currAction = DigdoggerActions.BigMovingDown;
 					break;
 				case "bottom":
 					this.currentDigdogger = new DigdoggerGoingUpSprite(this.texture, this.xPos, this.yPos);
-					break;
+                    this.currAction = DigdoggerActions.BigMovingUp;
+                    break;
 				case "left":
 					this.currentDigdogger = new DigdoggerGoingRightSprite(this.texture, this.xPos, this.yPos);
-					break;
+                    this.currAction = DigdoggerActions.BigMovingRight;
+                    break;
 				case "right":
 					this.currentDigdogger = new DigdoggerGoingLeftSprite(this.texture, this.xPos, this.yPos);
+                    this.currAction = DigdoggerActions.BigMovingLeft;
+                    break;
+				case "stunned":
+					this.currentDigdogger = new DigdoggerSmallStunnedSprite(this.texture, this.xPos, this.yPos);
+					this.currAction = DigdoggerActions.SmallStunned;
 					break;
 				default:
 					break;

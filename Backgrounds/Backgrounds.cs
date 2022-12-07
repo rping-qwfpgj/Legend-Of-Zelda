@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LegendofZelda.Interfaces;
 using GameStates;
 using System.Diagnostics;
+using CommonReferences;
 
 namespace LegendofZelda
 {
@@ -55,15 +56,17 @@ namespace LegendofZelda
             sourceRectangles.Add(new(258, 1, width, height));
             sourceRectangles.Add(new(1, 1, width, height - 16));
             sourceRectangles.Add(new(258, 886, width, height));
-
-            sourceRectangles.Add(new(1543, 532, width, height)); // background 19
-            sourceRectangles.Add(new(1543, 355, width, height)); // background 20
-            sourceRectangles.Add(new(1543, 178, width, height)); // background 21
-            sourceRectangles.Add(new(1543, 1, width, height)); // master sword room
+            sourceRectangles.Add(new(772, 709, width, height)); //19
+            for(int i = 0; i < Common.Instance.numOfRushRooms - 1; i++)
+            {
+                sourceRectangles.Add(new(772, 532, width, height)); //middle
+            }
+            sourceRectangles.Add(new(772,178, width, height)); //bullet hell room
+            sourceRectangles.Add(new(772,1, width, height)); //master sword room
 
             sourceRectangle = sourceRectangles[roomNumber];
             backgroundLocation = new(sourceRectangle.X, sourceRectangle.Y);
-            destinationRectangle = new(0, 150, 800, 480);
+            destinationRectangle = new(0, Common.Instance.heightOfInventory, 800, 480);
             direction = "";
             maxSpelunkingFrames = 100;
             tintList = new()
@@ -135,13 +138,13 @@ namespace LegendofZelda
                  
                     if (i < 4)
                     {
-                        if(roomNumber == 9)
-                        {
-                            sourceRectangle = sourceRectangles[20]; //master sword room
-                        }
-                        else if(roomNumber == 16)
+                        if (roomNumber == 16)
                         {
                             sourceRectangle = sourceRectangles[17];
+                        }
+                        else if (roomNumber == 9)
+                        {
+                            sourceRectangle = new Rectangle(sourceRectangles[9].X, sourceRectangles[9].Y- sourceRectangles[9].Height, sourceRectangles[9].Width, sourceRectangles[9].Height);
                         }
                         else
                         {

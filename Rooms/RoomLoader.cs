@@ -28,7 +28,6 @@ namespace LegendofZelda
             //for each sprite type to create (block, enemy, or item)
             foreach (var spriteString in spriteStrings)
             {
-
                 //spritesToCreate is a list of XElements
                 var spritesToCreate = from c in xml.Root.Descendants("Item")
                                       where c.Element("ObjectType").Value == spriteString
@@ -53,7 +52,7 @@ namespace LegendofZelda
                     }
                 }
             }
-            return new Room(sprites, backgroundSprite);
+            return new Room(sprites, backgroundSprite, false);
         }
 
     }

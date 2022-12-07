@@ -1,17 +1,16 @@
-﻿using System;
-using Interfaces;
+﻿using Interfaces;
 using LegendofZelda;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Color = Microsoft.Xna.Framework.Color;
-using System.Diagnostics;
+using CommonReferences;
 
 namespace GameStates
 
-{   
+{
     public class GamePlayState : IGameState
     {
-        private GameStateController controller;
-        private Game1 game;
+        private readonly GameStateController controller;
+        private readonly Game1 game;
         public GamePlayState(GameStateController controller, Game1 game)
         {
             this.controller = controller;
@@ -19,7 +18,7 @@ namespace GameStates
         }
         public void GamePlay()
         {
-             // Already in gameplay state
+            // Already in gameplay state
         }
         public void Inventory()
         {
@@ -39,7 +38,7 @@ namespace GameStates
         }
         public void BossRush()
         {
-            controller.gameState = new BossRushState(controller, game);
+            controller.gameState = game.bossRushState;
         }
         public void TransitionUp()
         {
@@ -59,19 +58,23 @@ namespace GameStates
         }
         public void Update()
         {
+            if (game.currentRoomIndex == Common.Instance.rushRoomsIndex)
+            {
+                BossRush();
+            }
+
             Link.Instance.Update();
             game.mouseController.Update();
             game.collisionDetector.Update();
             game.keyboardController.Update();
             game.currentRoom.Update();
-            game.hud.Update();            
+            game.hud.Update();
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
             game.GraphicsDevice.Clear(Color.Black);
             game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
-            Link.Instance2.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
         }
     }

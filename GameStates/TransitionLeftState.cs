@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
+using CommonReferences;
 
 namespace GameStates
 
@@ -20,9 +21,14 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
         }
+        public void BossRush()
+        {
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(670, 390), false);
+            controller.gameState = game.bossRushState;
+        }
         public void GamePlay()
         {
-            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkWalkingLeft(new(670, 390), false);
+            Link.Instance.currentLinkSprite = LinkSpriteFactory.Instance.CreateLinkFacingLeft(new(670, 390), false);
             controller.gameState = new GamePlayState(controller, game);
         }
      
@@ -38,9 +44,15 @@ namespace GameStates
 
             if (!background.IsTransitioning)
             {
-                GamePlay();
+                if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex == Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms)
+                {
+                    GamePlay();
+                }
+                else if (game.currentRoomIndex > Common.Instance.rushRoomsIndex - 1)
+                {
+                    BossRush();
+                }
             }
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -53,7 +65,6 @@ namespace GameStates
         public void Inventory() { }
         public void GameOver() { }      
         public void WinGame() { }
-        public void BossRush() { }
         public void TransitionUp() { }      
         public void TransitionDown() { }      
         public void TransitionLeft() { }

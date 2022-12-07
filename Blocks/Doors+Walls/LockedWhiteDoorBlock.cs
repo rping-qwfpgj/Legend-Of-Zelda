@@ -24,22 +24,19 @@ namespace LegendofZelda.Blocks
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
         
         private int direction;
-        private int xPos;
-        private int yPos;
-        
+
         public LockedWhiteDoorBlock(Texture2D doorTexture, int x, int y, int direction)
         {
             texture = doorTexture;
-            xPos = x;
-            yPos = y;
+  
             this.direction = direction;
             // for source rectangles 0 = top, 1 = left, 2 = right, 3 = bottom
             sourceRectangle = sourceRectangles[direction];
 
             if (direction == 0 || direction == 3)
-                destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+                destinationRectangle = new Rectangle(x, y, destinationWidth, destinationHeight);
             else
-                destinationRectangle = new Rectangle(xPos, yPos, destinationHeight, destinationWidth);
+                destinationRectangle = new Rectangle(x, y, destinationHeight, destinationWidth);
         }
         public void Update()
         {

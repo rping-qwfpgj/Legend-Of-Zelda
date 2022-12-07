@@ -5,6 +5,7 @@ using static LegendofZelda.Link;
 using Sprites;
 using LegendofZelda.Interfaces;
 using LegendofZelda;
+using System.Linq.Expressions;
 
 namespace LegendofZelda.SpriteFactories
 {
@@ -51,9 +52,6 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireUpSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
-
                 default:
                     return null;
             }
@@ -81,9 +79,6 @@ namespace LegendofZelda.SpriteFactories
 
                 case Throwables.Fire:
                     return new FireDownSprite(spriteSheet, linkPosition.X, linkPosition.Y);
-
-                case Throwables.None:
-                    return new NoneSprite();
 
                 default:
                     return null;
@@ -113,9 +108,6 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireRightSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
-
                 default:
                     return null;
             }
@@ -143,12 +135,31 @@ namespace LegendofZelda.SpriteFactories
                 case Throwables.Fire:
                     return new FireLeftSprite(spriteSheet, linkPosition.X, linkPosition.Y);
 
-                case Throwables.None:
-                    return new NoneSprite();
 
                 default:
                     return null;
             }
+        }
+
+        public ISprite CreateMasterSwordUp(Vector2 position)
+        {
+            return new MasterSwordUpSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordDown(Vector2 position)
+        {
+            return new MasterSwordDownSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordRight(Vector2 position)
+        {
+            return new MasterSwordRightSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordLeft(Vector2 position)
+        {
+            return new MasterSwordLeftSprite(spriteSheet, position.X, position.Y);
+        }
+        public ISprite CreateMasterSwordExplosion(Vector2 position)
+        {
+            return new MasterSwordExplosionSprite(spriteSheet, position.X, position.Y);
         }
     }
 }
