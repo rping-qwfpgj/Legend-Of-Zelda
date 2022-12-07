@@ -108,7 +108,7 @@ namespace Sprites
                 {
                     sourceRectangleList = sourceRectanglesLists[2];
                 }
-                else if ((currFrames / 100) % 4 == 0)
+                else if ((currFrames / 100) % 4 == 3)
                 {
                     sourceRectangleList = sourceRectanglesLists[3];
                 }
