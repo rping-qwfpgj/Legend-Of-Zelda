@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct2D1;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Sprites
         private int currFrames = 0;
         private readonly int maxFrames = 1600;
         private int timingCounter = 0;
-        private int maxTime = 4800;
+        private int maxTime = 30;
 
         // Texture to take sprites from
         public Texture2D texture;
@@ -122,12 +123,17 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            for (int i = 0; i < 4; i++)
+            if (!isDone)
             {
-                spriteBatch.Draw(texture, destinationRectangles[i], sourceRectangleList[i], Color.White);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                for (int i = 0; i <= 3; i++)
+                {
+                    Debug.WriteLine(sourceRectangleList[0] + "  " + destinationRectangles[0]);
+
+                    spriteBatch.Draw(texture, destinationRectangles[i], sourceRectangleList[i], Color.White);
+                }
+                spriteBatch.End();
             }
-            spriteBatch.End();
 
         }
 

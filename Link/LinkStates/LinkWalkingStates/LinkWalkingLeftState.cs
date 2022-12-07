@@ -12,6 +12,7 @@ namespace States
 
         //Invalid states from the current state
         public void Attack() { }
+        public void MasterSwordAttack() { }
         public void ThrowProjectile() { }
         public void MoveLeft() { }
 

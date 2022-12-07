@@ -3,6 +3,7 @@
     public interface ILinkState
     {
         void Attack();
+        void MasterSwordAttack();
         void ThrowProjectile();
         void MoveUp();
         void MoveDown();
