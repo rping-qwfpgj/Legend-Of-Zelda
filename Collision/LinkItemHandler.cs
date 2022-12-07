@@ -45,7 +45,9 @@ namespace Collision
 					SoundFactory.Instance.CreateSoundEffect("Winning").Play();
 					Link.Instance.game.gameStateController.gameState.WinGame();
 					break;
-
+				case MasterSword:
+					Link.Instance.masterSwordEquipped = true;
+					break;
                 default:
 					break;
 
