@@ -36,7 +36,7 @@ namespace Sprites
         public MasterSwordUpSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition - 8;
             this.yPosition = (int)yPosition - 30;
             isDone = false;
             sourceRectangles = new()
@@ -155,7 +155,7 @@ namespace Sprites
         public MasterSwordDownSprite(Texture2D texture, float xPosition, float yPosition)
         {
             this.texture = texture;
-            this.xPosition = (int)xPosition;
+            this.xPosition = (int)xPosition - 8;
             this.yPosition = (int)yPosition;
             isDone = false;
             sourceRectangles = new()
@@ -285,7 +285,7 @@ namespace Sprites
         {
             this.texture = texture;
             this.xPosition = (int)xPosition;
-            this.yPosition = (int)yPosition;
+            this.yPosition = (int)yPosition - 3;
             isDone = false;
             sourceRectangles = new()
             {
@@ -416,7 +416,7 @@ namespace Sprites
         {
             this.texture = texture;
             this.xPosition = (int)xPosition - 30;
-            this.yPosition = (int)yPosition;
+            this.yPosition = (int)yPosition - 3;
             isDone = false;
             sourceRectangles = new()
             {
