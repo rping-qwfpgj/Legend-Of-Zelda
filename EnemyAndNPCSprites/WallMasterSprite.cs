@@ -24,9 +24,7 @@ namespace Sprites
 
         // X and Y positions of the sprite
         private float xPosition;
-        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
-        public float YPosition { get => yPosition; set => yPosition = value; }
         private Rectangle destinationRectangle;
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
@@ -58,13 +56,13 @@ namespace Sprites
                 {
                     currDirection = directions[random.Next(0, directions.Count)];
                 }
-                if (currFrames == maxFrames)
+                if (currFrames == 20)
                 {
                     currFrames = 0;
                 }
                 else
                 {
-                    currFrames += 10;
+                    currFrames += 1;
                 }
 
                 if (currDirection == Directions.UP)
@@ -94,12 +92,9 @@ namespace Sprites
             Rectangle sourceRectangle = new Rectangle(393, 11, 16, 16);
             if (!isDead)
             {
-                // By default, draw the hand without the pinch
-
+                
                 destinationRectangle = new((int)xPosition, (int)yPosition, 60, 60);
-
-                // Otherwise, have it pinch
-                if (currFrames % 5 == 0)
+                if (currFrames <10)
                 {
                     sourceRectangle = new Rectangle(410, 12, 14, 15);
 
