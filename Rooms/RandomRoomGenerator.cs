@@ -60,7 +60,7 @@ namespace LegendofZelda.Rooms
             var path = directory + rushRoomsFolder + blockConfiguration.ToString() + ".xml";
             XDocument xml = XDocument.Load(path);
           
-            //add blocls
+            //add blocks
             sprites.AddRange(roomLoader.ParseXML(xml));
          
             //add bounding initially
@@ -83,7 +83,6 @@ namespace LegendofZelda.Rooms
             }
 
             //add boss
-           
             bool bossAdded = false;
             while (!bossAdded && bossList.Count!=0)
             {

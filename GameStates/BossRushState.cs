@@ -8,6 +8,7 @@ using CommonReferences;
 using LegendofZelda.Blocks;
 using Microsoft.Xna.Framework;
 using LegendofZelda.SpriteFactories;
+using LegendofZelda.Interfaces;
 
 namespace GameStates
 
@@ -18,6 +19,7 @@ namespace GameStates
         private Game1 game;
         private int roomsRemaining;
         bool alreadyChecked;
+        ISprite textSprite;
    
         public BossRushState(GameStateController controller, Game1 game)
         {
@@ -26,6 +28,7 @@ namespace GameStates
             this.controller = controller;
             this.game = game;
             alreadyChecked = false;
+            textSprite = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(530,115 ), "Rooms Remaining: "+roomsRemaining.ToString());
         }
         public void GamePlay()
         {
@@ -76,7 +79,8 @@ namespace GameStates
 
         public void Update()
         {
-            if(game.currentRoom.isFinished && !game.currentRoom.externallyChecked)
+            textSprite = TextSpriteFactory.Instance.CreateTextSprite(new Vector2(530, 115), "Rooms Remaining: "+roomsRemaining.ToString());
+            if (game.currentRoom.isFinished && !game.currentRoom.externallyChecked)
             {
                 game.currentRoom.externallyChecked = true;
                 roomsRemaining--;
@@ -90,8 +94,9 @@ namespace GameStates
                 game.currentRoom.AddObject(BlockSpriteFactory.Instance.CreateBlock(new Vector2(350,40),"PuzzleDoorBlockTop"));
             }
 
-            if (game.currentRoomIndex < 19 || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
+            if (game.currentRoomIndex < Common.Instance.rushRoomsIndex || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms || game.currentRoomIndex== Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1)
             {
+                
                 GamePlay();
             }
 
@@ -101,14 +106,15 @@ namespace GameStates
             game.keyboardController.Update();
             game.currentRoom.Update();
             game.hud.Update();
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
+           
             game.GraphicsDevice.Clear(Color.Black);
             game.currentRoom.Draw(_spriteBatch);
             Link.Instance.Draw(_spriteBatch);
             game.hud.Draw(_spriteBatch);
+            textSprite.Draw(_spriteBatch);
         }
 
     }

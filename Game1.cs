@@ -59,11 +59,12 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         gameStateController = new GameStateController(this);
-        bossRushState = new BossRushState(gameStateController, this);
+       
         SpriteFactoriesInit();
         GraphInit();
         RoomloaderInit();
         ControllersInit();
+        bossRushState = new BossRushState(gameStateController, this);
         hud = new Hud(20, -19);
         collisionDetector = new CollisionDetector(rooms[currentRoomIndex], this);
 
@@ -110,7 +111,7 @@ public class Game1 : Game
     }
     protected override void Draw(GameTime gameTime)
     {
-      //  Debug.WriteLine(currentRoomIndex);
+     
         gameStateController.gameState.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
