@@ -86,7 +86,8 @@ namespace Sprites
                 }
             } else
             {
-                masterSwordExplosion.Update();
+                if (masterSwordExplosion!= null) 
+                    masterSwordExplosion.Update();
                 if (timingCounter >= maxTime)
                 {
                     isDone = true;
