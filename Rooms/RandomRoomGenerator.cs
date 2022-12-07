@@ -45,7 +45,7 @@ namespace LegendofZelda.Rooms
             makeCoordinates();
             Random rnd = new Random();
             int numOfEnemies = rnd.Next(1, 5);
-            int blockConfiguration = rnd.Next(0, 2);
+            int blockConfiguration = rnd.Next(0, 3);
             sprites.Clear();
             var enviroment = Environment.CurrentDirectory;
             string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
