@@ -171,7 +171,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "OpenWhiteDoorBlockRight":
 
-                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 695, 200 + Common.Instance.heightOfInventory, 2);
+                    return new OpenWhiteDoorBlock(whiteDoorSpriteSheet, 700, 200 + Common.Instance.heightOfInventory, 2);
 
                 case "OpenWhiteDoorBlockBottom":
 

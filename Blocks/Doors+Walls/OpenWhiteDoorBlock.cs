@@ -16,7 +16,7 @@ namespace LegendofZelda.Blocks
 
         private Rectangle[] sourceRectangles = { 
             new Rectangle(70, 21, sourceWidth, sourceHeight), 
-            new Rectangle(70, 44, sourceHeight, sourceWidth), 
+            new Rectangle(80,44, sourceHeight, sourceWidth), 
             new Rectangle(70, 77, sourceHeight, sourceWidth), 
             new Rectangle(70, 110, sourceWidth, sourceHeight) };
         private Rectangle sourceRectangle;

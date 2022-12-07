@@ -87,7 +87,7 @@ namespace LegendofZelda
             sprites.Add(leftBoundBlock);
             foreach (var sprite in sprites.ToList())
             {
-                if (sprite is OpenDoorBlock || sprite is LockedDoorBlock)
+                if (sprite is OpenDoorBlock || sprite is OpenWhiteDoorBlock)
                 {
                     doors.Add(sprite);
                     sprites.Remove(sprite);
