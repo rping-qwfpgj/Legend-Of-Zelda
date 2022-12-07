@@ -27,7 +27,9 @@ namespace LegendofZelda.Rooms
             enemyList.Add("Keese");
             enemyList.Add("Dodongo");
             enemyList.Add("Gel");
-            //enemyList.Add("DigDogger");
+            
+
+            enemyList.Add("Digdogger");
             //enemyList.Add("Gohma");
             makeCoordinates();
             roomLoader = new(this);

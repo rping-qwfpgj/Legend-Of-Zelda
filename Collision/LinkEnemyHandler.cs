@@ -19,6 +19,7 @@ namespace Collision
 		{
 			if(Link.Instance.currentLinkSprite is IAttackingSprite)
 			{
+
                 IAttackingSprite currLinkSprite = (IAttackingSprite) Link.Instance.currentLinkSprite;
                 if (currLinkSprite.getSide() == side)
                 {
