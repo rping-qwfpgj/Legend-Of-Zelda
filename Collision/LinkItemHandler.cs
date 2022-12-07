@@ -48,6 +48,10 @@ namespace Collision
 				case MasterSword:
 					Link.Instance.masterSwordEquipped = true;
 					break;
+
+				case Clock:
+					Link.Instance.game.gameStateController.gameState.EnemiesPause();
+					break;
                 default:
 					break;
 

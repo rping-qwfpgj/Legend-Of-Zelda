@@ -61,7 +61,6 @@ namespace LegendofZelda
             {
                 if (CheckIfFinished() && !alreadyChecked)
                 {
-                    Debug.WriteLine("fin");
                     alreadyChecked = true;
                     RushRoomComplete();
                 }
@@ -80,6 +79,30 @@ namespace LegendofZelda
                     else if (sprite is ILinkProjectile)
                     {
                         DealWithLinkProjectiles((ILinkProjectile)sprite);
+                    }
+                }
+            }
+        }
+
+        // Only called in EnemiesPaused state
+        public void ClockUpdate()
+        {
+            
+            background.Update();
+            if (!((IBackground)background).IsTransitioning)
+            {
+                foreach (var sprite in sprites.ToList())
+                {
+
+                    if (sprite is IEnemy) { // Enemies dont update when the clock is active
+                    {
+                    } else { 
+                    
+                        if (sprite is ILinkProjectile)
+                        {
+                            DealWithLinkProjectiles((ILinkProjectile)sprite);
+                        }
+
                     }
                 }
             }

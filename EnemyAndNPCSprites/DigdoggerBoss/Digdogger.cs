@@ -116,7 +116,7 @@ namespace Sprites
 					}
 				}
 
-				Debug.WriteLine(this.currAction);
+				
 				this.switchAction(this.currAction);
 				
 				

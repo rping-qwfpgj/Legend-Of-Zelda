@@ -67,6 +67,13 @@ namespace GameStates
         {
             controller.gameState = new TransitionRightState(controller, game);
         }
+
+        public void EnemiesPause()
+        {
+            controller.gameState = new EnemiesPausedState(controller, game);
+        }
+
+
         public void Update()
         {
             if(game.currentRoom.isFinished && !game.currentRoom.externallyChecked)

@@ -176,6 +176,11 @@
 		<ObjectName>Key</ObjectName>
 		<Location>590 350</Location>
 	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Clock</ObjectName>
+		<Location>200 250</Location>
+	</Item>
 
 	
 	
