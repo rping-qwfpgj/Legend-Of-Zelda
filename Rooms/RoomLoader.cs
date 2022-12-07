@@ -1,4 +1,6 @@
-﻿using LegendofZelda.Interfaces;
+﻿using CommonReferences;
+using LegendofZelda.Interfaces;
+using LegendofZelda.Items;
 using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
 using Sprites;
@@ -56,7 +58,10 @@ namespace LegendofZelda
 
             if (sprites.OfType<OldManBoss>().Any())
             {
-                return new Room(sprites, backgroundSprite, true);
+                return new Room(sprites, BackgroundSpriteFactory.Instance.CreateBackground("Background"+(Common.Instance.rushRoomsIndex+ Common.Instance.numOfRushRooms).ToString()), true);
+            }else if (sprites.OfType<MasterSword>().Any())
+            {
+                return new Room(sprites, BackgroundSpriteFactory.Instance.CreateBackground("Background" + (Common.Instance.rushRoomsIndex + Common.Instance.numOfRushRooms+1).ToString()), false);
             }
             else
             {

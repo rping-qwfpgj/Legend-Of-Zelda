@@ -1,15 +1,11 @@
 ﻿using LegendofZelda.Interfaces;
 using LegendofZelda.SpriteFactories;
 using Microsoft.Xna.Framework;
-using SharpDX.MediaFoundation;
-using SharpDX.Win32;
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Drawing.Drawing2D;
+
 using System.IO;
-using System.Security.AccessControl;
 using System.Xml.Linq;
 
 namespace LegendofZelda.Rooms
@@ -31,6 +27,8 @@ namespace LegendofZelda.Rooms
             enemyList.Add("Keese");
             enemyList.Add("Dodongo");
             enemyList.Add("Gel");
+
+            //enemyList.Add("DigDogger");
             //enemyList.Add("Gohma");
             makeCoordinates();
             roomLoader = new(locations);
@@ -48,8 +46,6 @@ namespace LegendofZelda.Rooms
             var enviroment = Environment.CurrentDirectory;
             string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
             string rushRoomsFolder = "\\Content\\RoomXMLs\\RushRooms";
-        
-
             var path = directory + rushRoomsFolder + blockConfiguration.ToString() + ".xml";
             XDocument xml = XDocument.Load(path);
 
