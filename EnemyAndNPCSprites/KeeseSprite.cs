@@ -15,6 +15,10 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 2000;
 
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(235, 204, 16, 16), new Rectangle(252, 204, 16, 16), new Rectangle(269, 204, 16, 16) };
+
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
@@ -63,34 +67,49 @@ namespace Sprites
         {
             if (!isDead)
             {
-                if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                if (poofCounter >= maxPoofCounter)
                 {
-                    currDirection = directions[random.Next(0, directions.Count)];
-                }
-                if (currFrames == maxFrames)
-                {
-                    currFrames = 0;
+                    if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                    {
+                        currDirection = directions[random.Next(0, directions.Count)];
+                    }
+                    if (currFrames == maxFrames)
+                    {
+                        currFrames = 0;
+                    }
+                    else
+                    {
+                        currFrames += 10;
+                    }
+
+                    if (currDirection == Directions.UP)
+                    {
+                        yPosition -= 1;
+                    }
+                    else if (currDirection == Directions.LEFT)
+                    {
+                        xPosition -= 1;
+                    }
+                    else if (currDirection == Directions.RIGHT)
+                    {
+                        xPosition += 1;
+                    }
+                    else // Direction is down
+                    {
+                        yPosition += 1;
+                    }
+
                 }
                 else
                 {
-                    currFrames += 10;
-                }
-
-                if (currDirection == Directions.UP)
-                {
-                    yPosition -= 1;
-                }
-                else if (currDirection == Directions.LEFT)
-                {
-                    xPosition -= 1;
-                }
-                else if (currDirection == Directions.RIGHT)
-                {
-                    xPosition += 1;
-                }
-                else // Direction is down
-                {
-                    yPosition += 1;
+                    poofCounter++;
+                    for (int i = 0; i < poofRectangles.Count; i++)
+                    {
+                        if (poofCounter > i * maxPoofCounter / poofRectangles.Count && poofCounter <= (i + 1) * maxPoofCounter / poofRectangles.Count)
+                        {
+                            sourceRectangle = poofRectangles[i];
+                        }
+                    }
                 }
             }
             else
@@ -101,15 +120,12 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isPoofed)
-            {
-                isPoofed = true;
-                PoofIn(spriteBatch);
-            }
-            Debug.WriteLine("bruh");
             if (!isDead)
             {
-                sourceRectangle = sourceRectangles[(currFrames / 100) % 2];
+                if (poofCounter >= maxPoofCounter)
+                {
+                    sourceRectangle = sourceRectangles[(currFrames / 100) % 2];
+                }
                 destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);

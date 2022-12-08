@@ -14,6 +14,22 @@ namespace Sprites
         private int currFrames = 0, maxFrames = 2000, deathFrames =0, maxDeathFrames = 20;
         private Texture2D texture, dyingTexture, orbTexture;
 
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 2000;
+        private int deathFrames = 0;
+        private int maxDeathFrames = 20;
+
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(235, 204, 16, 16), new Rectangle(252, 204, 16, 16), new Rectangle(269, 204, 16, 16) };
+
+        // Texture to take sprites from
+        private Texture2D texture;
+        private Texture2D dyingTexture;
+        private Texture2D orbTexture;
+
+        // X and Y positions of the sprite
         private float xPosition;
         private float yPosition;
         private bool isDead = false;
@@ -56,61 +72,74 @@ namespace Sprites
         {
             if (!isDead)
             {
-                if (isDamaged)
+                if (poofCounter >= maxPoofCounter)
                 {
-                    damagedCounter++;
-                    if (damagedCounter > 60)
+                    if (isDamaged)
                     {
-                        isDamaged = false;
-                        damagedCounter = 0;
+                        damagedCounter++;
+                        if (damagedCounter > 60)
+                        {
+                            isDamaged = false;
+                            damagedCounter = 0;
+                        }
                     }
-                }
-                eyeOpenCounter++;
-                if (random.Next(0, maxFrames) <= (maxFrames / 50))
-                {
-                    currDirection = directions[random.Next(0, directions.Count)];
-                }
-                currFrames += 10;
-                if (currFrames == maxFrames)
-                {
-                    currFrames = 0;
-                    eyeOpenCounter= 0;
-                    eyeOpen = false;
-                    orb = new GohmaOrb(orbTexture, xPosition, yPosition);
-                }
-                if ((currFrames / 100) % 4 == 0)
-                {
-                    sourceRectangle = sourceRectangles[0];
-                }
-                else if ((currFrames / 100) % 4 == 1)
-                {
-                    sourceRectangle = sourceRectangles[1];
-                }
-                else if ((currFrames / 100) % 4 == 2)
-                {
-                    sourceRectangle = sourceRectangles[2];
-                }
-                else if ((currFrames / 100) % 4 == 3 && eyeOpenCounter >= 120)
-                {
-                    sourceRectangle = sourceRectangles[3];
-                    eyeOpen = true;
-                }
+                    eyeOpenCounter++;
+                    if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                    {
+                        currDirection = directions[random.Next(0, directions.Count)];
+                    }
+                    currFrames += 10;
+                    if (currFrames == maxFrames)
+                    {
+                        currFrames = 0;
+                        eyeOpenCounter = 0;
+                        eyeOpen = false;
+                        orb = new GohmaOrb(orbTexture, xPosition, yPosition);
+                    }
+                    if ((currFrames / 100) % 4 == 0)
+                    {
+                        sourceRectangle = sourceRectangles[0];
+                    }
+                    else if ((currFrames / 100) % 4 == 1)
+                    {
+                        sourceRectangle = sourceRectangles[1];
+                    }
+                    else if ((currFrames / 100) % 4 == 2)
+                    {
+                        sourceRectangle = sourceRectangles[2];
+                    }
+                    else if ((currFrames / 100) % 4 == 3 && eyeOpenCounter >= 120)
+                    {
+                        sourceRectangle = sourceRectangles[3];
+                        eyeOpen = true;
+                    }
 
-                if (currDirection == Directions.UP)
+                    if (currDirection == Directions.UP)
+                    {
+                        yPosition -= 1;
+                    }
+                    else if (currDirection == Directions.LEFT)
+                    {
+                        xPosition -= 1;
+                    }
+                    else if (currDirection == Directions.RIGHT)
+                    {
+                        xPosition += 1;
+                    }
+                    else // Direction is down
+                    {
+                        yPosition += 1;
+                    }
+                } else
                 {
-                    yPosition -= 1;
-                }
-                else if (currDirection == Directions.LEFT)
-                {
-                    xPosition -= 1;
-                }
-                else if (currDirection == Directions.RIGHT)
-                {
-                    xPosition += 1;
-                }
-                else // Direction is down
-                {
-                    yPosition += 1;
+                    poofCounter++;
+                    for (int i = 0; i < poofRectangles.Count; i++)
+                    {
+                        if (poofCounter > i * maxPoofCounter / poofRectangles.Count && poofCounter <= (i + 1) * maxPoofCounter / poofRectangles.Count)
+                        {
+                            sourceRectangle = poofRectangles[i];
+                        }
+                    }
                 }
             }
             else

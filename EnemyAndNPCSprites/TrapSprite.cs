@@ -5,6 +5,7 @@ using LegendofZelda.Interfaces;
 using LegendofZelda;
 using System.Diagnostics;
 using System.ComponentModel.Design.Serialization;
+using System.Collections.Generic;
 
 namespace Sprites
 {
@@ -13,6 +14,11 @@ namespace Sprites
 
         // Texture to take sprites from
         private Texture2D texture;
+
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(235, 204, 16, 16), new Rectangle(252, 204, 16, 16), new Rectangle(269, 204, 16, 16) };
+
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -31,6 +37,7 @@ namespace Sprites
         private Rectangle initialLocation;
         private Rectangle lastLocation;
         // Location on screen
+        Rectangle sourceRectangle;
         Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value;}
 
@@ -47,50 +54,70 @@ namespace Sprites
 
         public void Update()
         {
-             Vector2 linkLocation = Link.Instance.currentPosition;
-
-            // Compare to link's position if its just sitting
-            if(trapState == TrapStates.Sitting)
+            if (poofCounter >= maxPoofCounter)
             {
-               
-                // Change to a new state by comparing link's position to the trap
-                swapState(linkLocation);
+                Vector2 linkLocation = Link.Instance.currentPosition;
 
-                // If no longer sitting, change the final location
-                if(trapState != TrapStates.Sitting)
+                // Compare to link's position if its just sitting
+                if (trapState == TrapStates.Sitting)
                 {
-                    this.lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
+
+                    // Change to a new state by comparing link's position to the trap
+                    swapState(linkLocation);
+
+                    // If no longer sitting, change the final location
+                    if (trapState != TrapStates.Sitting)
+                    {
+                        this.lastLocation = new Rectangle((int)linkLocation.X, (int)linkLocation.Y, 12, 16);
+                    }
                 }
-            } else
-            {
-                // Change location based on the current state and last location
-                TrapStates currState = trapState;
+                else
+                {
+                    // Change location based on the current state and last location
+                    TrapStates currState = trapState;
 
-                if(currState == TrapStates.MoveUp)
-                {
-                    yPosition -= 2;
-                   
-                } else if (currState == TrapStates.MoveDown)
-                {
-                    yPosition += 2;
+                    if (currState == TrapStates.MoveUp)
+                    {
+                        yPosition -= 2;
 
-                    
-                } else if (currState == TrapStates.MoveLeft)
-                {
-                    xPosition -= 2;
+                    }
+                    else if (currState == TrapStates.MoveDown)
+                    {
+                        yPosition += 2;
 
-                    
-                } else if(currState == TrapStates.MoveRight)
-                {
-                    xPosition += 2;
+
+                    }
+                    else if (currState == TrapStates.MoveLeft)
+                    {
+                        xPosition -= 2;
+
+
+                    }
+                    else if (currState == TrapStates.MoveRight)
+                    {
+                        xPosition += 2;
+                    }
                 }
             }
-      }
+            else
+            {
+                poofCounter++;
+                for (int i = 0; i < poofRectangles.Count; i++)
+                {
+                    if (poofCounter > i * maxPoofCounter / poofRectangles.Count && poofCounter <= (i + 1) * maxPoofCounter / poofRectangles.Count)
+                    {
+                        sourceRectangle = poofRectangles[i];
+                    }
+                }
+            }
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            Rectangle sourceRectangle = new Rectangle(164, 59, 16, 16);
+            if (poofCounter >= maxPoofCounter)
+            {
+                sourceRectangle = new Rectangle(164, 59, 16, 16);
+            }
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 32);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
@@ -141,8 +168,7 @@ namespace Sprites
             }
            
         }
-        public void PoofIn(SpriteBatch spriteBatch) {}
-
+        
     }
 }
 
