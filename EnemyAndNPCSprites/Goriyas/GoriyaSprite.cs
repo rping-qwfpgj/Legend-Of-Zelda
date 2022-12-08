@@ -100,8 +100,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class GoriyaMovingDownSprite : IGoriya
@@ -168,7 +167,6 @@ namespace Sprites
         {
 
         }
-
         public void TakeDamage(string side)
         {
             switch (side)
@@ -194,8 +192,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class GoriyaMovingRightSprite : IGoriya
@@ -285,8 +282,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
 
     }
 
@@ -380,8 +376,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     /* ------- THROWING SPRITES -------*/
@@ -481,8 +476,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
 
     }
 
@@ -587,7 +581,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class GoriyaThrowingDownSprite : IGoriya
@@ -687,8 +681,7 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
 
     }
 
@@ -785,8 +778,6 @@ namespace Sprites
         {
             return null;
         }
-
-        public void PoofIn() { }
-
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }

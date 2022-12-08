@@ -80,7 +80,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class DigdoggerGoingDownSprite : IDigdogger
@@ -152,7 +152,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
     public class DigdoggerGoingRightSprite : IDigdogger
     {
@@ -225,7 +225,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class DigdoggerGoingLeftSprite : IDigdogger
@@ -299,7 +299,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class DigdoggerSmallStunnedSprite : IDigdogger
@@ -369,7 +369,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) {}
     }
 
 }

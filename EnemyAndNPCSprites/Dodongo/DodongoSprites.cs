@@ -89,7 +89,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class DodongoMovingDownSprite : IDodongo
@@ -166,7 +166,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
     public class DodongoMovingRightSprite : IDodongo
     {
@@ -247,8 +247,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
-
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
     public class DodongoMovingLeftSprite : IDodongo
@@ -330,7 +329,7 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 
 }

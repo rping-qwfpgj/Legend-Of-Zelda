@@ -234,7 +234,6 @@ namespace Sprites
                 return null;
             }
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }

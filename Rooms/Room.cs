@@ -208,13 +208,13 @@ namespace LegendofZelda
             return copyOfSprites;
         }
 
-        public void PoofIn()
+        public void PoofIn(SpriteBatch spriteBatch)
         {
             foreach(var sprite in sprites)
             {
                 if(sprite is IEnemy)
                 {
-                    ((IEnemy)sprite).PoofIn();
+                    ((IEnemy)sprite).PoofIn(spriteBatch);
                 }
             }
         }

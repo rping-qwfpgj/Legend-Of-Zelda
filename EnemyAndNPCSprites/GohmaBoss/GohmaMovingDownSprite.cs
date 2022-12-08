@@ -19,9 +19,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
-
         private int currentFrame = 0;
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
@@ -86,8 +83,6 @@ namespace Sprites
         {
             return null;
         }
-        public void PoofIn()
-        {
-        }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }
