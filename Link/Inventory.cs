@@ -54,7 +54,7 @@ namespace LegendofZelda
                 {
                     inventory[item.toString()] = itemCount + 4;
                 }
-                if (item.toString() == "orange gemstone")
+                else if (item.toString() == "orange gemstone")
                 {
                     inventory[item.toString()] = itemCount + 3;
                 }
