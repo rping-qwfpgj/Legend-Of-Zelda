@@ -14,16 +14,10 @@ namespace Sprites
     public class Digdogger : IEnemy
     {
         private IDigdogger currentDigdogger;
-
-        private bool isDead = false;
-        private int health = 3;
-        private int deathFrames = 0;
-        private bool isDamaged = false;
-        private int damagedCounter = 0;
+        private bool isDead = false, isDamaged = false, dyingComplete = false;
+        private int health = 3, damagedCounter = 0, deathFrames = 0, currFrames = 0;
         public bool IsDead { get => isDead; set => isDead = value; }
-        private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
-        private int currFrames = 0;
 
         public enum DigdoggerActions
         {
@@ -35,12 +29,8 @@ namespace Sprites
         DigdoggerActions currAction;
 
         private List<string> droppableItems = new List<string> { "BigHeart" };
-        private Texture2D texture;
-        private Texture2D dyingTexture;
-
-        //private int prevdirection = 1;
-        private float xPos;
-        private float yPos;
+        private Texture2D texture, dyingTexture;
+        private float xPos, yPos;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
 
@@ -49,78 +39,64 @@ namespace Sprites
             this.texture = texture;
             this.xPos = xPosition;
             this.yPos = yPosition;
-            this.dyingTexture = texture2;
-            this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
-            this.currAction = DigdoggerActions.BigMovingDown;
-            this.currentDigdogger = new DigdoggerGoingDownSprite(texture, this.xPos, this.yPos);
+            dyingTexture = texture2;
+            destinationRectangle = new Rectangle((int)xPos, (int)yPos, 39, 48);
+            currAction = DigdoggerActions.BigMovingDown;
+            currentDigdogger = new DigdoggerGoingDownSprite(texture, xPos, yPos);
 
         }
 
         public void Update()
         {
-
-
-
             // Decided if the digdogger should change its current action
             if (!isDead)
             {
-                ++this.currFrames;
+                ++currFrames;
                 if (isDamaged)
                 {
                     damagedCounter++;
                     if (damagedCounter >= 60)
                     {
                         isDamaged = false;
-                        this.currentDigdogger.IsDamaged = false;
+                        currentDigdogger.IsDamaged = false;
                         damagedCounter = 0;
                     }
                 }
 
-
-                this.currentDigdogger.Update();
-                this.destinationRectangle = currentDigdogger.DestinationRectangle;
+                currentDigdogger.Update();
+                destinationRectangle = currentDigdogger.DestinationRectangle;
                 // Pick an action to take based on where link is
                 Vector2 linkLocation = Link.Instance.currentPosition;
 
-                if (!(this.currentDigdogger is DigdoggerSmallStunnedSprite))
+                if (!(currentDigdogger is DigdoggerSmallStunnedSprite))
                 {
-                    if (linkLocation.Y > this.currentDigdogger.YPosition)
+                    if (linkLocation.Y > currentDigdogger.YPosition)
                     {
-                        this.currAction = DigdoggerActions.BigMovingDown;
+                        currAction = DigdoggerActions.BigMovingDown;
                     }
-                    else if (linkLocation.X > this.currentDigdogger.XPosition)
+                    else if (linkLocation.X > currentDigdogger.XPosition)
                     {
-                        this.currAction = DigdoggerActions.BigMovingRight;
+                        currAction = DigdoggerActions.BigMovingRight;
                     }
-                    else if (linkLocation.Y < this.currentDigdogger.YPosition)
+                    else if (linkLocation.Y < currentDigdogger.YPosition)
                     {
-                        this.currAction = DigdoggerActions.BigMovingUp;
+                        currAction = DigdoggerActions.BigMovingUp;
                     }
                     else
                     {
-                        this.currAction = DigdoggerActions.BigMovingLeft;
+                        currAction = DigdoggerActions.BigMovingLeft;
                     }
                 }
                 else
                 {
-                    if ((this.currFrames % 180) == 0)
+                    if ((currFrames % 180) == 0)
                     {
-                        this.currAction = DigdoggerActions.BigMovingDown;
+                        currAction = DigdoggerActions.BigMovingDown;
                     }
                 }
-
-
-                this.switchAction(this.currAction);
-
-
+                switchAction(currAction);
             }
-
-
-
-            else
-            {
-                deathFrames++;
-            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -132,6 +108,7 @@ namespace Sprites
             }
             else
             {
+                deathFrames++;
                 int maxDeathFrames = 20;
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 var sourceRectangles = new List<Rectangle>();
@@ -139,13 +116,13 @@ namespace Sprites
                 sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
                 sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
                 sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
-                this.destinationRectangle = new Rectangle((int)this.currentDigdogger.XPosition, (int)this.currentDigdogger.YPosition, 30, 30);
+                destinationRectangle = new Rectangle((int)currentDigdogger.XPosition, (int)currentDigdogger.YPosition, 30, 30);
                 for(int i= 0; i < sourceRectangles.Count; i++){
                     if(deathFrames>i * maxDeathFrames / sourceRectangles.Count && deathFrames<= (i +1)* maxDeathFrames / sourceRectangles.Count)
                     {
                         if (!dyingComplete)
                         {
-                            spriteBatch.Draw(dyingTexture, this.destinationRectangle, sourceRectangles[i], Color.White);
+                            spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
                         }
                     }
                 }
@@ -156,34 +133,33 @@ namespace Sprites
         public Rectangle GetHitbox()
         {
             Rectangle hitbox = currentDigdogger.GetHitbox();
-
             return hitbox;
         }
 
         public void switchAction(DigdoggerActions actionToTake)
         {
-            // Get the hitbox of the current goriya
+            // Get the hitbox of the current digdogger
             Rectangle currentLocation = currentDigdogger.GetHitbox();
-            this.xPos = (float)currentLocation.X;
-            this.yPos = (float)currentLocation.Y;
+            xPos = (float)currentLocation.X;
+            yPos = (float)currentLocation.Y;
 
-            // Randomly select a goriya state to make
+            // Randomly select a digdogger state to make
             switch (actionToTake)
             {
                 case DigdoggerActions.BigMovingUp:
-                    this.currentDigdogger = new DigdoggerGoingUpSprite(this.texture, this.xPos, this.yPos);
+                    currentDigdogger = new DigdoggerGoingUpSprite(texture, xPos, yPos);
                     break;
                 case DigdoggerActions.BigMovingDown:
-                    this.currentDigdogger = new DigdoggerGoingDownSprite(this.texture, this.xPos, this.yPos);
+                    currentDigdogger = new DigdoggerGoingDownSprite(texture, xPos, yPos);
                     break;
                 case DigdoggerActions.BigMovingLeft:
-                    this.currentDigdogger = new DigdoggerGoingLeftSprite(this.texture, this.xPos, this.yPos);
+                    currentDigdogger = new DigdoggerGoingLeftSprite(texture, xPos, yPos);
                     break;
                 case DigdoggerActions.BigMovingRight:
-                    this.currentDigdogger = new DigdoggerGoingRightSprite(this.texture, this.xPos, this.yPos);
+                    currentDigdogger = new DigdoggerGoingRightSprite(texture, xPos, yPos);
                     break;
                 case DigdoggerActions.SmallStunned:
-                    this.currentDigdogger = new DigdoggerSmallStunnedSprite(this.texture, this.xPos, this.yPos);
+                    currentDigdogger = new DigdoggerSmallStunnedSprite(texture, xPos, yPos);
                     break;
                 default:
                     break;
@@ -194,37 +170,35 @@ namespace Sprites
         {
             // Get the hitbox of the current goriya
             Rectangle currentLocation = currentDigdogger.GetHitbox();
-            this.xPos = (float)currentLocation.X;
-            this.yPos = (float)currentLocation.Y;
+            xPos = (float)currentLocation.X;
+            yPos = (float)currentLocation.Y;
 
             // Have the Digdogger turn around based on what wall it is running into
             switch (side)
             {
                 case "top":
-                    this.currentDigdogger = new DigdoggerGoingDownSprite(this.texture, this.xPos, this.yPos);
-                    this.currAction = DigdoggerActions.BigMovingDown;
+                    currentDigdogger = new DigdoggerGoingDownSprite(texture, xPos, yPos);
+                    currAction = DigdoggerActions.BigMovingDown;
                     break;
                 case "bottom":
-                    this.currentDigdogger = new DigdoggerGoingUpSprite(this.texture, this.xPos, this.yPos);
-                    this.currAction = DigdoggerActions.BigMovingUp;
+                    currentDigdogger = new DigdoggerGoingUpSprite(texture, xPos, yPos);
+                    currAction = DigdoggerActions.BigMovingUp;
                     break;
                 case "left":
-                    this.currentDigdogger = new DigdoggerGoingRightSprite(this.texture, this.xPos, this.yPos);
-                    this.currAction = DigdoggerActions.BigMovingRight;
+                    currentDigdogger = new DigdoggerGoingRightSprite(texture, xPos, yPos);
+                    currAction = DigdoggerActions.BigMovingRight;
                     break;
                 case "right":
-                    this.currentDigdogger = new DigdoggerGoingLeftSprite(this.texture, this.xPos, this.yPos);
-                    this.currAction = DigdoggerActions.BigMovingLeft;
+                    currentDigdogger = new DigdoggerGoingLeftSprite(texture, xPos, yPos);
+                    currAction = DigdoggerActions.BigMovingLeft;
                     break;
                 case "stunned":
-                    this.currentDigdogger = new DigdoggerSmallStunnedSprite(this.texture, this.xPos, this.yPos);
-                    this.currAction = DigdoggerActions.SmallStunned;
+                    currentDigdogger = new DigdoggerSmallStunnedSprite(texture, xPos, yPos);
+                    currAction = DigdoggerActions.SmallStunned;
                     break;
                 default:
                     break;
-
             }
-
         }
 
 
@@ -233,14 +207,13 @@ namespace Sprites
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             if (!isDamaged)
             {
-                this.health -= 1;
-                this.isDamaged = true;
-                this.currentDigdogger.IsDamaged = true;
+                health -= 1;
+                isDamaged = true;
+                currentDigdogger.IsDamaged = true;
             }
-
-            if (this.health <= 0)
+            if (health <= 0)
             {
-                this.isDead = true;
+                isDead = true;
             }
         }
 
@@ -250,7 +223,7 @@ namespace Sprites
             {
                 Random random = new Random();
                 int rand = random.Next(0, droppableItems.Count);
-                return ItemSpriteFactory.Instance.CreateItem(new Vector2(this.currentDigdogger.XPosition, this.currentDigdogger.YPosition - 150), droppableItems[rand]);
+                return ItemSpriteFactory.Instance.CreateItem(new Vector2(currentDigdogger.XPosition, currentDigdogger.YPosition - 150), droppableItems[rand]);
             }
             else
             {
@@ -258,6 +231,8 @@ namespace Sprites
             }
         }
 
-        public void PoofIn(SpriteBatch spriteBatch) { }
+        public void PoofIn(SpriteBatch spriteBatch)
+        {
+        }
     }
 }
