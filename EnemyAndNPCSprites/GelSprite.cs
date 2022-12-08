@@ -102,7 +102,7 @@ namespace Sprites
                     {
                         if (poofCounter > i*maxPoofCounter/poofRectangles.Count && poofCounter <= (i+1) * maxPoofCounter / poofRectangles.Count)
                         {
-                            sourceRectangle = poofRectangles[0];
+                            sourceRectangle = poofRectangles[i];
                         }
                     }
                 }
@@ -191,5 +191,7 @@ namespace Sprites
         {
             return null;
         }
+
+        
     }
 }
