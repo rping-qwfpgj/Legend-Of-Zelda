@@ -18,7 +18,12 @@ namespace Sprites
         private int maxFrames = 480;
         private int deathFrames = 0;
         private int maxDeathFrames = 40;
-        
+
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(236, 270, 16, 16), new Rectangle(253, 270, 16, 16), new Rectangle(272, 272, 16, 16) };
+
+
         private int health = 4;
         private bool isDamaged = false;
         private int damagedCounter = 0;
@@ -79,51 +84,67 @@ namespace Sprites
         {
             if (!isDead)
             {
-                // keeps track of how long sprite stays red
-                if (isDamaged)
+                if (poofCounter >= maxPoofCounter)
                 {
-                    damagedCounter++;
-                    if (damagedCounter > 60)
+                    // keeps track of how long sprite stays red
+                    if (isDamaged)
                     {
-                        isDamaged = false;
-                        damagedCounter = 0;
+                        damagedCounter++;
+                        if (damagedCounter > 60)
+                        {
+                            isDamaged = false;
+                            damagedCounter = 0;
+                        }
                     }
-                }
 
-                // pick a direction
-                if (random.Next(0, maxFrames) <= (maxFrames / 50))
-                {
-                    currDirection = directions[random.Next(0, directions.Count)];
-                }
+                    // pick a direction
+                    if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                    {
+                        currDirection = directions[random.Next(0, directions.Count)];
+                    }
 
-                // update animation
-                if (currFrames == maxFrames)
-                {
-                    currFrames = 0;
-                    frontOrb = new FrontOldManOrb(orbTexture, xPosition, yPosition + 15);
-                    leftOrb = new LeftOldManOrb(orbTexture, xPosition, yPosition + 15);
-                    rightOrb = new RightOldManOrb(orbTexture, xPosition, yPosition + 15);
-                } else
-                {
-                    currFrames += 5;
-                }
+                    // update animation
+                    if (currFrames == maxFrames)
+                    {
+                        currFrames = 0;
+                        frontOrb = new FrontOldManOrb(orbTexture, xPosition, yPosition + 15);
+                        leftOrb = new LeftOldManOrb(orbTexture, xPosition, yPosition + 15);
+                        rightOrb = new RightOldManOrb(orbTexture, xPosition, yPosition + 15);
+                    }
+                    else
+                    {
+                        currFrames += 5;
+                    }
 
-                // move old man in a direction
-                if (currDirection == Directions.UP)
-                {
-                    yPosition -= 1;
-                }
-                else if (currDirection == Directions.LEFT)
-                {
-                    xPosition -= 1;
-                }
-                else if (currDirection == Directions.RIGHT)
-                {
-                    xPosition += 1;
+                    // move old man in a direction
+                    if (currDirection == Directions.UP)
+                    {
+                        yPosition -= 1;
+                    }
+                    else if (currDirection == Directions.LEFT)
+                    {
+                        xPosition -= 1;
+                    }
+                    else if (currDirection == Directions.RIGHT)
+                    {
+                        xPosition += 1;
+                    }
+                    else
+                    {
+                        yPosition += 1;
+                    }
+
                 }
                 else
                 {
-                    yPosition += 1;
+                    poofCounter++;
+                    for (int i = 0; i < poofRectangles.Count; i++)
+                    {
+                        if (poofCounter > i * maxPoofCounter / poofRectangles.Count && poofCounter <= (i + 1) * maxPoofCounter / poofRectangles.Count)
+                        {
+                            sourceRectangle = poofRectangles[i];
+                        }
+                    }
                 }
             }
             else
@@ -134,8 +155,10 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            sourceRectangle = sourceRectangles[0];
+            if (poofCounter >= maxPoofCounter)
+            {
+                sourceRectangle = sourceRectangles[0];
+            }
             if (!isDead)
             {
                 this.destinationRectangle = new((int)xPosition, (int)yPosition, 15*3, 15*3);

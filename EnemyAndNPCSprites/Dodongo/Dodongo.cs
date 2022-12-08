@@ -39,6 +39,7 @@ namespace Sprites
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+        
         public DodongoSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
@@ -52,18 +53,22 @@ namespace Sprites
         {
             if (!isDead)
             {
-                switchCounter += rand.Next(0, 10);
-                if (!isDamaged && switchCounter >= 400)
-                {
-                    this.switchAction();
-                    switchCounter = 0;
-                }
-                if (isDamaged && !currentDodongo.IsDamaged)
-                {
-                    isDamaged = false;
-                }
-                currentDodongo.Update();
-                this.destinationRectangle = currentDodongo.DestinationRectangle;
+                
+                    switchCounter += rand.Next(0, 10);
+                    if (!isDamaged && switchCounter >= 400)
+                    {
+                        this.switchAction();
+                        switchCounter = 0;
+                    }
+                    if (isDamaged && !currentDodongo.IsDamaged)
+                    {
+                        isDamaged = false;
+                    }
+                    currentDodongo.Update();
+                    this.destinationRectangle = currentDodongo.DestinationRectangle;
+                
+            
+            
             }
             else
             {
@@ -77,7 +82,8 @@ namespace Sprites
         public void Draw(SpriteBatch spriteBatch)
         {
             sourceRectangle = new Rectangle(0, 0, 15, 16);
-            if (!isDead)
+            
+                if (!isDead)
             {
                 currentDodongo.Draw(spriteBatch);
             }
