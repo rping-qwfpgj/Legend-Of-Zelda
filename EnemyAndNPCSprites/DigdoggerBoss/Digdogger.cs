@@ -124,11 +124,11 @@ namespace Sprites
                         {
                             spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
                         }
-                        else
+                      
+                    }  else if(deathFrames>maxDeathFrames)
                         {
                             dyingComplete = true;
                         }
-                    }
                 }
                 spriteBatch.End();
             }

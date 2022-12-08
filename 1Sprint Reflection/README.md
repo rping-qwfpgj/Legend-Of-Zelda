@@ -10,6 +10,9 @@ in addition to being able to use the numerical keys to swap the current projecti
 -H is to pause/unpause
 -L is to open the inventory/close the inventory.
 
+NOTE: Using mouse room switching can let you get to a room with all of the items in the game(room 18) to
+have all items available.
+
 
 BUGS:
 
@@ -23,6 +26,7 @@ will make doors to other rooms appear. Stepping in a new room will always lock L
 rooms always stay unlocked. Once Link has defeated all 5 rooms, a white puzzle door appears in whatever room
 he is in currently. Going through that door leads to a special boss against the Old Man. Defeating the old
 man gives Link access to the Master Sword, which grants him the sword beams for his normal attacks.
+
 
 INFO ON NEW ENEMIES:
 DIGDOGGER:Has an implementation to follow Link around. Will be stunned for a bit of time when hit by a
