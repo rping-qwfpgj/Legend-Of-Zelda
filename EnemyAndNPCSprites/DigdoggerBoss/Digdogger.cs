@@ -133,16 +133,14 @@ namespace Sprites
             else
             {
                 int maxDeathFrames = 20;
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 var sourceRectangles = new List<Rectangle>();
                 sourceRectangles.Add(new Rectangle(0, 0, 15, 16));
                 sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
                 sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
                 sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
                 this.destinationRectangle = new Rectangle((int)this.currentDigdogger.XPosition, (int)this.currentDigdogger.YPosition, 30, 30);
-                deathFrames++;
-
-                for(int i= 0; i < maxDeathFrames; i++){
+                for(int i= 0; i < sourceRectangles.Count; i++){
                     if(deathFrames>i * maxDeathFrames / sourceRectangles.Count && deathFrames<= (i +1)* maxDeathFrames / sourceRectangles.Count)
                     {
                         if (!dyingComplete)
