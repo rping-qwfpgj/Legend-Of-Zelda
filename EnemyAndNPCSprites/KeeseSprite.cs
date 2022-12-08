@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using LegendofZelda.SpriteFactories;
+using System.Diagnostics;
 
 namespace Sprites
 {
@@ -174,8 +175,12 @@ namespace Sprites
             {
                 return null;
             }
-           
+
+        public void PoofIn()
+        {
+            Debug.WriteLine("poof");
         }
+    }
     }
 
 

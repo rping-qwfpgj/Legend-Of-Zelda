@@ -100,6 +100,8 @@ namespace Sprites
         {
             return null;
         }
+
+        public void PoofIn() { }
     }
 
     public class GoriyaMovingDownSprite : IGoriya
@@ -192,6 +194,8 @@ namespace Sprites
         {
             return null;
         }
+
+        public void PoofIn() { }
     }
 
     public class GoriyaMovingRightSprite : IGoriya
@@ -207,8 +211,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
@@ -258,7 +260,6 @@ namespace Sprites
         {
 
         }
-
         public void TakeDamage(string side)
         {
             switch (side)
@@ -285,6 +286,8 @@ namespace Sprites
             return null;
         }
 
+        public void PoofIn() { }
+
     }
 
     public class GoriyaMovingLeftSprite : IGoriya
@@ -301,8 +304,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
-        public int Direction { get => direction; set => direction = value; }
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
@@ -379,6 +380,8 @@ namespace Sprites
         {
             return null;
         }
+
+        public void PoofIn() { }
     }
 
     /* ------- THROWING SPRITES -------*/
@@ -397,7 +400,6 @@ namespace Sprites
         public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
         public float YPosition { get => yPosition; set => yPosition = value; }
-        private int direction = 1;
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
@@ -479,6 +481,8 @@ namespace Sprites
         {
             return null;
         }
+
+        public void PoofIn() { }
 
     }
 
@@ -583,6 +587,7 @@ namespace Sprites
         {
             return null;
         }
+        public void PoofIn() { }
     }
 
     public class GoriyaThrowingDownSprite : IGoriya
@@ -682,7 +687,9 @@ namespace Sprites
         {
             return null;
         }
-       
+
+        public void PoofIn() { }
+
     }
 
     public class GoriyaThrowingUpSprite : IGoriya
@@ -778,6 +785,8 @@ namespace Sprites
         {
             return null;
         }
- 
+
+        public void PoofIn() { }
+
     }
 }

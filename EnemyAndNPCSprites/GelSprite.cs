@@ -18,12 +18,11 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
-        
+
         // X and Y positions of the sprite
         private float xPosition;
-        public float XPosition { get => xPosition; set => xPosition = value; }
         private float yPosition;
-        public float YPosition { get => yPosition; set => yPosition = value; }
+
         private bool isDead = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
@@ -91,14 +90,15 @@ namespace Sprites
                 {
                     yPosition += 1;
                 }
-            } else
+            }
+            else
             {
                 deathFrames++;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-           
+
             if (!isDead)
             {
 
@@ -112,7 +112,7 @@ namespace Sprites
                     currFrameIndex = 1;
                 }
                 sourceRectangle = sourceRectangles[currFrameIndex];
-                destinationRectangle = new((int)xPosition, (int)yPosition, sourceRectangle.Width*3, sourceRectangle.Height*3);
+                destinationRectangle = new((int)xPosition, (int)yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
             }
@@ -121,17 +121,17 @@ namespace Sprites
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 for (int i = 0; i < 4; i++)
                 {
-                    if (deathFrames >= i*maxDeathFrames/4 && deathFrames < (i+1)* maxDeathFrames / 4)
+                    if (deathFrames >= i * maxDeathFrames / 4 && deathFrames < (i + 1) * maxDeathFrames / 4)
                     {
                         currFrameIndex = i + 2;
                     }
-                    else if(deathFrames>=maxDeathFrames)
+                    else if (deathFrames >= maxDeathFrames)
                     {
                         dyingComplete = true;
                     }
                 }
                 sourceRectangle = sourceRectangles[currFrameIndex];
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width*2, sourceRectangle.Height*2);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
                 if (!dyingComplete)
                 {
                     spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
@@ -140,47 +140,47 @@ namespace Sprites
                 spriteBatch.End();
             }
         }
-            public Rectangle GetHitbox()
-            {
-                return this.destinationRectangle;
-            }
-
-            public void TurnAround(string side)
-            {
-                // Have the Gel turn around based on what wall it is running into
-                switch (side)
-                {
-                    case "top":
-                        currDirection = Directions.DOWN;
-                        break;
-                    case "bottom":
-                        currDirection = Directions.UP;
-                        break;
-                    case "left":
-                        currDirection = Directions.RIGHT;
-                        break;
-                    case "right":
-                        currDirection = Directions.LEFT;
-                        break;
-                    default:
-                        break;
-
-                }
-
-            }
-            public void TakeDamage(string side)
-            {
-                SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-                isDead = true;
-            }
-
-            public ISprite DropItem()
-            {
-                return null;
-            }
-
-           
+        public Rectangle GetHitbox()
+        {
+            return this.destinationRectangle;
         }
+
+        public void TurnAround(string side)
+        {
+            // Have the Gel turn around based on what wall it is running into
+            switch (side)
+            {
+                case "top":
+                    currDirection = Directions.DOWN;
+                    break;
+                case "bottom":
+                    currDirection = Directions.UP;
+                    break;
+                case "left":
+                    currDirection = Directions.RIGHT;
+                    break;
+                case "right":
+                    currDirection = Directions.LEFT;
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+        public void TakeDamage(string side)
+        {
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
+            isDead = true;
+        }
+
+        public ISprite DropItem()
+        {
+            return null;
+        }
+
+        public void PoofIn() { }
     }
+}
 
 

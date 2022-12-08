@@ -7,5 +7,6 @@ namespace LegendofZelda.Interfaces
         public bool IsDead { get; set; }
         public bool DyingComplete { get; set; }
         ISprite DropItem();
+        void PoofIn();
     }
 }

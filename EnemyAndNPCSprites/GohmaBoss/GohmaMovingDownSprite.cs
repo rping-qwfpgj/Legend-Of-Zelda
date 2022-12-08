@@ -75,7 +75,6 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
-
         public void TurnAround(string side)
         {
         }
@@ -87,7 +86,7 @@ namespace Sprites
         {
             return null;
         }
-        public void Die()
+        public void PoofIn()
         {
         }
     }

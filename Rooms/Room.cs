@@ -104,7 +104,6 @@ namespace LegendofZelda
                         {
                             DealWithLinkProjectiles((ILinkProjectile)sprite);
                         }
-
                     }
                 }
             }
@@ -164,7 +163,6 @@ namespace LegendofZelda
                 enemyProjectiles.Add(((GoriyaSprite)enemy).GetCurrentBoomerang());
             else if (enemy is DragonBossSprite)
                 enemyProjectiles = ((DragonBossSprite)enemy).getEnemyProjectiles();
-
             foreach (IEnemyProjectile projectile in enemyProjectiles.ToList())
             {
                 if (projectile != null)
@@ -196,6 +194,17 @@ namespace LegendofZelda
         {
             List<ISprite> copyOfSprites = new List<ISprite>(sprites);
             return copyOfSprites;
+        }
+
+        public void PoofIn()
+        {
+            foreach(var sprite in sprites)
+            {
+                if(sprite is IEnemy)
+                {
+                    ((IEnemy)sprite).PoofIn();
+                }
+            }
         }
 
         public void RemoveObject(ISprite sprite){sprites.Remove(sprite);}

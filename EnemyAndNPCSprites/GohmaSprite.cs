@@ -232,8 +232,9 @@ namespace Sprites
             {
                 return null;
             }
-
         }
+
+        public void PoofIn() { }
 
     }
 }
