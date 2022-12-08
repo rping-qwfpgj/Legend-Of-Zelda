@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendofZelda.Interfaces;
+using System;
+using System.Diagnostics;
 
 namespace LegendofZelda.Blocks
 {
@@ -16,6 +18,8 @@ namespace LegendofZelda.Blocks
         private int sourceHeight = 16;
         private int destinationWidth = 50;
         private int destinationHeight = 44;
+        private int triggerPosition;
+        public Boolean isPushed;
 
         public DepthPushableBlock(Texture2D blockTexture, int x, int y)
         {
@@ -24,10 +28,16 @@ namespace LegendofZelda.Blocks
             yPos = y;
             sourceRectangle = new Rectangle(20, 11, sourceWidth, sourceHeight);
             destinationRectangle = new Rectangle(xPos, yPos, destinationWidth, destinationHeight);
+            this.isPushed = false;
+            triggerPosition = y-44;
         }
 
         public void Update()
         {
+            if (yPos == triggerPosition) // 50 is the height of one block
+            {
+                this.isPushed = true;
+            }
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
