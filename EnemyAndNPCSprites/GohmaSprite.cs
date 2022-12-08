@@ -14,20 +14,9 @@ namespace Sprites
         private int currFrames = 0, maxFrames = 2000, deathFrames =0, maxDeathFrames = 20;
         private Texture2D texture, dyingTexture, orbTexture;
 
-        // Keep track of frames
-        private int currFrames = 0;
-        private int maxFrames = 2000;
-        private int deathFrames = 0;
-        private int maxDeathFrames = 20;
-
         private int poofCounter = 0;
         private int maxPoofCounter = 15;
         private List<Rectangle> poofRectangles = new() { new Rectangle(235, 204, 16, 16), new Rectangle(252, 204, 16, 16), new Rectangle(269, 204, 16, 16) };
-
-        // Texture to take sprites from
-        private Texture2D texture;
-        private Texture2D dyingTexture;
-        private Texture2D orbTexture;
 
         // X and Y positions of the sprite
         private float xPosition;

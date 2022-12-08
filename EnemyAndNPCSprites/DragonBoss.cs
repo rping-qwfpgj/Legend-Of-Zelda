@@ -24,7 +24,7 @@ namespace Sprites
         private List<Rectangle> poofRectangles = new() { new Rectangle(236, 270, 16, 16), new Rectangle(253, 270, 16, 16), new Rectangle(272, 272, 16, 16) };
 
         private int health = 3;
-        private bool isDamaged = false;
+        private bool isDamaged = false, isDead = false, dyingComplete = false;
         private int damagedCounter = 0;
 
         // Texture to take sprites from
