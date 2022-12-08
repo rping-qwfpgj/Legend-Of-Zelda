@@ -92,7 +92,77 @@
 	<!--  Items  -->
 	<Item>
 		<ObjectType>Item</ObjectType>
-		<ObjectName>PurpleGemstone</ObjectName>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
+		<Location>300 300</Location>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>OrangeGemstone</ObjectName>
 		<Location>300 300</Location>
 	</Item>
 	<Item>
