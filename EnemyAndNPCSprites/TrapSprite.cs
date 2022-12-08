@@ -145,6 +145,8 @@ namespace Sprites
            
         }
 
+        public void PoofIn() { }
+
     }
 }
 

@@ -244,6 +244,8 @@ namespace Sprites
             }
         }
 
+        public void PoofIn() { }
+
     }
 
     public class LeftOldManOrb : IEnemyProjectile

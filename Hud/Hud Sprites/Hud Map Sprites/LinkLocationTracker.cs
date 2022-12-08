@@ -45,38 +45,21 @@ namespace Sprites
             linkLocations.Add(new Vector2(x + 66, y + 2)); //room 15
             linkLocations.Add(new Vector2(x + 38, y + 2)); //room 16
             linkLocations.Add(new Vector2(x + 38, y + 2)); //room 17
-            linkLocations.Add(new Vector2(x, y)); //room 18
-            linkLocations.Add(new Vector2(x, y)); //room 19
-            linkLocations.Add(new Vector2(x, y)); //room 20
-            linkLocations.Add(new Vector2(x, y)); //room 21
-            linkLocations.Add(new Vector2(x, y)); //room 22
-            linkLocations.Add(new Vector2(x, y)); //room 23
-            linkLocations.Add(new Vector2(x, y)); //room 24
-            linkLocations.Add(new Vector2(x, y)); //room 25
 
-            linkLocations.Add(new Vector2(x, y)); //room 18
-            linkLocations.Add(new Vector2(x, y)); //room 19
-            linkLocations.Add(new Vector2(x, y)); //room 20
-            linkLocations.Add(new Vector2(x, y)); //room 21
-            linkLocations.Add(new Vector2(x, y)); //room 22
-            linkLocations.Add(new Vector2(x, y)); //room 23
-            linkLocations.Add(new Vector2(x, y)); //room 24
 
-            linkLocations.Add(new Vector2(x, y)); //room 18
-            linkLocations.Add(new Vector2(x, y)); //room 19
-            linkLocations.Add(new Vector2(x, y)); //room 20
-            linkLocations.Add(new Vector2(x, y)); //room 21
-            linkLocations.Add(new Vector2(x, y)); //room 22
-            linkLocations.Add(new Vector2(x, y)); //room 23
-            linkLocations.Add(new Vector2(x, y)); //room 24
-
-            this.location = linkLocations[Link.Instance.game.currentRoomIndex];
+            if (Link.Instance.game.currentRoomIndex < 18)
+            {
+                location = linkLocations[Link.Instance.game.currentRoomIndex];
+            }
             this.destinationRectangle = new((int)this.location.X, (int)this.location.Y, width * 6, height * 6);
         }
 
         public void Update()
         {
-            this.location = linkLocations[Link.Instance.game.currentRoomIndex];
+            if (Link.Instance.game.currentRoomIndex < 18)
+            {
+                location = linkLocations[Link.Instance.game.currentRoomIndex];
+            }
             this.destinationRectangle = new((int)this.location.X, (int)this.location.Y, width * 6, height * 6);
         }
         public void Draw(SpriteBatch _spriteBatch)
@@ -84,11 +67,6 @@ namespace Sprites
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             _spriteBatch.Draw(this.texture, destinationRectangle, sourceRectangle, Color.White);
             _spriteBatch.End();
-        }
-
-        public void setPos(int x, int y)
-        {
-            this.DestinationRectangle = new(x, y, width * 4, height * 4);
         }
 
         public Rectangle GetHitbox()

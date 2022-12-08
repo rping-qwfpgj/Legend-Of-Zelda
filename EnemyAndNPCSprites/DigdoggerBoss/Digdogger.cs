@@ -35,18 +35,9 @@ namespace Sprites
 		DigdoggerActions currAction;
 
 		private List<string> droppableItems = new List<string> { "BigHeart" };
-
-
 		private Texture2D texture;
 		private Texture2D dyingTexture;
 
-		//  Obsolete variables
-		private float xPosition;
-		public float XPosition { get => xPosition; set => xPosition = value; }
-		private float yPosition;
-		public float YPosition { get => yPosition; set => yPosition = value; }
-		private int direction = 1;
-		public int Direction { get => direction; set => direction = value; }
 		//private int prevdirection = 1;
 		private float xPos;
 		private float yPos;
@@ -286,9 +277,6 @@ namespace Sprites
 			}
 		}
 
-		public void Die()
-		{
-
-		}
-	}
+        public void PoofIn() { }
+    }
 }

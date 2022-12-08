@@ -215,6 +215,8 @@ namespace Sprites
             }
         }
 
+        public void PoofIn() { }
+
     }
 
     public class TopDragonAttackOrbSprite : IEnemyProjectile
