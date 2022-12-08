@@ -15,6 +15,10 @@ namespace Sprites
         private int currFrames = 0;
         private int maxFrames = 2000;
 
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(235, 204, 16, 16), new Rectangle(252, 204, 16, 16), new Rectangle(269, 204, 16, 16)};
+
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
@@ -56,39 +60,51 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
             currFrameIndex = 0;
         }
-
         public void Update()
         {
             if (!isDead)
             {
-                if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                if (poofCounter >= maxPoofCounter)
                 {
-                    currDirection = directions[random.Next(0, directions.Count)];
-                }
-                if (currFrames > maxFrames)
-                {
-                    currFrames = 0;
-                }
-                else
-                {
-                    currFrames += 10;
-                }
+                    if (random.Next(0, maxFrames) <= (maxFrames / 50))
+                    {
+                        currDirection = directions[random.Next(0, directions.Count)];
+                    }
+                    if (currFrames > maxFrames)
+                    {
+                        currFrames = 0;
+                    }
+                    else
+                    {
+                        currFrames += 10;
+                    }
 
-                if (currDirection == Directions.UP)
+                    if (currDirection == Directions.UP)
+                    {
+                        yPosition -= 1;
+                    }
+                    else if (currDirection == Directions.LEFT)
+                    {
+                        xPosition -= 1;
+                    }
+                    else if (currDirection == Directions.RIGHT)
+                    {
+                        xPosition += 1;
+                    }
+                    else // Direction is down
+                    {
+                        yPosition += 1;
+                    }
+                } else
                 {
-                    yPosition -= 1;
-                }
-                else if (currDirection == Directions.LEFT)
-                {
-                    xPosition -= 1;
-                }
-                else if (currDirection == Directions.RIGHT)
-                {
-                    xPosition += 1;
-                }
-                else // Direction is down
-                {
-                    yPosition += 1;
+                    poofCounter++; 
+                    for(int i= 0; i < poofRectangles.Count; i++)
+                    {
+                        if (poofCounter > i*maxPoofCounter/poofRectangles.Count && poofCounter <= (i+1) * maxPoofCounter / poofRectangles.Count)
+                        {
+                            sourceRectangle = poofRectangles[0];
+                        }
+                    }
                 }
             }
             else
@@ -98,10 +114,8 @@ namespace Sprites
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-
             if (!isDead)
             {
-
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if ((currFrames / 100) % 2 != 0)
                 {
@@ -111,7 +125,10 @@ namespace Sprites
                 {
                     currFrameIndex = 1;
                 }
-                sourceRectangle = sourceRectangles[currFrameIndex];
+                if (poofCounter >= maxPoofCounter)
+                {
+                    sourceRectangle = sourceRectangles[currFrameIndex];
+                }
                 destinationRectangle = new((int)xPosition, (int)yPosition, sourceRectangle.Width * 3, sourceRectangle.Height * 3);
                 spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.End();
@@ -136,7 +153,6 @@ namespace Sprites
                 {
                     spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangle, Color.White);
                 }
-
                 spriteBatch.End();
             }
         }
@@ -144,7 +160,6 @@ namespace Sprites
         {
             return this.destinationRectangle;
         }
-
         public void TurnAround(string side)
         {
             // Have the Gel turn around based on what wall it is running into
@@ -166,20 +181,15 @@ namespace Sprites
                     break;
 
             }
-
         }
         public void TakeDamage(string side)
         {
             SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
             isDead = true;
         }
-
         public ISprite DropItem()
         {
             return null;
         }
-        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }
-
-
