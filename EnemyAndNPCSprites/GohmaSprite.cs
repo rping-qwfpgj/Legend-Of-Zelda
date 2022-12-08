@@ -22,6 +22,7 @@ namespace Sprites
         // Texture to take sprites from
         private Texture2D texture;
         private Texture2D dyingTexture;
+        private Texture2D orbTexture;
 
         // X and Y positions of the sprite
         private float xPosition;
@@ -45,10 +46,12 @@ namespace Sprites
         private bool isDamaged;
         private int health = 3;
         private int damagedCounter = 0;
+        private GohmaOrb orb;
 
-        public GohmaSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
+        public GohmaSprite(Texture2D texture, Texture2D orbTexture, float xPosition, float yPosition, Texture2D texture2)
         {
             this.texture = texture;
+            this.orbTexture = orbTexture;
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             dyingTexture = texture2;
@@ -62,6 +65,7 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(16, 0, 15, 16));
             sourceRectangles.Add(new Rectangle(35, 3, 9, 10));
             sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
+            orb = new GohmaOrb(orbTexture, xPosition, yPosition);
         }
 
         public void Update()
@@ -88,6 +92,7 @@ namespace Sprites
                     currFrames = 0;
                     eyeOpenCounter= 0;
                     eyeOpen = false;
+                    orb = new GohmaOrb(orbTexture, xPosition, yPosition);
                 }
                 if ((currFrames / 100) % 4 == 0)
                 {
@@ -128,6 +133,7 @@ namespace Sprites
             {
                 deathFrames++;
             }
+            orb.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -149,6 +155,7 @@ namespace Sprites
                     spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 1);
                 }
                 spriteBatch.End();
+                orb.Draw(spriteBatch);
             }
             else
             {
@@ -233,6 +240,98 @@ namespace Sprites
                 return null;
             }
 
+        }
+
+    }
+
+    public class GohmaOrb : IEnemyProjectile
+    {
+        // Keep track of frames
+        private int currFrames = 0;
+        private int maxFrames = 10000;
+
+        // Texture to take sprites from
+        private Texture2D texture;
+
+        // X and Y positions of the sprite
+        private int xPosition;
+        private int yPosition;
+
+        // Original positions to reset to
+        private int originalX;
+        private int originalY;
+
+        // Keeps track of if the projectile should keep going
+        public bool keepThrowing { get; set; }
+
+        // Orbs will rapidly swap between 4 different version
+        private List<Rectangle> attackOrbs = new List<Rectangle>();
+        private Rectangle blueOrb = new Rectangle(128, 14, 8, 10);
+        private Rectangle orangeOrb = new Rectangle(119, 14, 8, 10);
+        private Rectangle greenOrb = new Rectangle(110, 14, 8, 10);
+        private Rectangle multicolorOrb = new Rectangle(101, 14, 8, 10);
+        private int currOrb; // Represents which orb from the list to draw
+
+        // On Screen location
+        private Rectangle destinationRectangle;
+        public Rectangle DestinationRectangle { get => destinationRectangle; set => destinationRectangle = value; }
+
+        public GohmaOrb(Texture2D texture, float xPosition, float yPosition)
+        {
+            this.texture = texture;
+            this.xPosition = (int)xPosition;
+            this.yPosition = (int)yPosition;
+            originalX = (int)xPosition;
+            originalY = (int)yPosition;
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
+
+            currOrb = 0;
+            attackOrbs.Add(blueOrb);
+            attackOrbs.Add(orangeOrb);
+            attackOrbs.Add(greenOrb);
+            attackOrbs.Add(multicolorOrb);
+            keepThrowing = true;
+        }
+        public void Update()
+        {
+
+            // Update current orb
+            currFrames += 1;
+            if ((currFrames/10) % 2 == 0)
+            {
+                ++currOrb;
+            }
+            if (currOrb >= attackOrbs.Count)
+            {
+                currOrb = 0;
+            }
+
+            //update position
+            yPosition += 1;
+
+            // Update the full location of the orb
+            destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            //if(currFrames < maxFrames) {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            spriteBatch.Draw(texture, destinationRectangle, attackOrbs[currOrb], Color.White);
+            spriteBatch.End();
+            //} 
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return destinationRectangle;
+
+        }
+        public void collide()
+        {
+            currFrames = maxFrames;
+            keepThrowing = false;
         }
 
     }
