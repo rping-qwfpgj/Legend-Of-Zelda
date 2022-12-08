@@ -24,6 +24,19 @@ rooms always stay unlocked. Once Link has defeated all 5 rooms, a white puzzle d
 he is in currently. Going through that door leads to a special boss against the Old Man. Defeating the old
 man gives Link access to the Master Sword, which grants him the sword beams for his normal attacks.
 
+INFO ON NEW ENEMIES:
+DIGDOGGER:Has an implementation to follow Link around. Will be stunned for a bit of time when hit by a
+boomerang. Can only be damaged by boomerang.
+
+DODONGO: Can only be damaged by sword/bombs. If a bomb is used, the Dodongo must be facing the direction
+of where the bomb is coming from to take damage. Two bomb hits will kill it.
+
+GOHMA: Only takes damage when the eye is open, only takes damage from sword/bows.
+
+OLD MAN BOSS: Is simply the old man sprite, but he now moves around and shoots out orb projectiles as 
+he moves.
+
+OTHER KEY DETAILS:
 Collision detector uses exhaustive checking to compare every object in room with every other object in room, once a collision is detected,
 the two objects are passed to the collision delegator.
 
