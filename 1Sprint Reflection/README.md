@@ -1,8 +1,8 @@
-#Sprint 4
+#Sprint 5
 
 CONTROLS: 
 -WASD and arrow keys are used to move, NOTE: When in the inventory, WASD and arrow keys are instead used to move the cursor around the inventory
--V is used to shoot a projectile, number keys 1-6 are used to switch between Link's projectiles.
+-B is used to use the item equipped to the B-button in the HUD.
 When pulling up the inventory, hovering the selector cursor over one of the projectiles and then exiting the inventory will equip it to link, 
 in addition to being able to use the numerical keys to swap the current projectile.
 -Clicking on the right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room.
@@ -12,12 +12,17 @@ in addition to being able to use the numerical keys to swap the current projecti
 
 
 BUGS:
-Room 17 transition still need work.
-Transitioning from room 10 to 6 also has some issues with moving over a pure green section for a moment
+
+- Knockback will sometimes have odd behavior and send Link out of bounds. Also he occasionally can get stuck on a corner.
 
 
 PERTINENT information about our implementation:
-The main things that were added in this sprint was sound, game states, link/enemy health, proper trap/wallmaster behavior, room transitions, the heads-up display/inventory, and enemy projectile collisions
+The main things that were added in this sprint was a boss rush mode. There is an entrance to new rooms
+at the top of the old man room.  It will  generate a random  graph of 5 random rooms. Defeating all enemies
+will make doors to other rooms appear. Stepping in a new room will always lock Link into that room. Defeated
+rooms always stay unlocked. Once Link has defeated all 5 rooms, a white puzzle door appears in whatever room
+he is in currently. Going through that door leads to a special boss against the Old Man. Defeating the old
+man gives Link access to the Master Sword, which grants him the sword beams for his normal attacks.
 
 Collision detector uses exhaustive checking to compare every object in room with every other object in room, once a collision is detected,
 the two objects are passed to the collision delegator.
@@ -36,7 +41,7 @@ we've also added a space at the top of the game which will display menu informat
 
 
 
-Reset has not been implemented yet(link will reset to the first room, but items and enemies do no respawn yet)
+
 
 Intentional omissions:
 
@@ -46,8 +51,5 @@ has also been changed to have a key.
 
 Items that are only displayed once a room has been cleared are now  displayed in the room pre-clear state.
 
-Clock Item is not in the game
-
-small red and blue hearts: replaced funcionality with big read hearts
 
 
