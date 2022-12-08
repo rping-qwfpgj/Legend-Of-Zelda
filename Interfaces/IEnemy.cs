@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework.Graphics;
+
 namespace LegendofZelda.Interfaces
 {
     public interface IEnemy:ISprite
@@ -7,6 +9,6 @@ namespace LegendofZelda.Interfaces
         public bool IsDead { get; set; }
         public bool DyingComplete { get; set; }
         ISprite DropItem();
-        void PoofIn();
+        void PoofIn(SpriteBatch spriteBatch);
     }
 }

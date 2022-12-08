@@ -41,7 +41,7 @@ namespace Sprites
         public enum Directions { UP, RIGHT, LEFT, DOWN };
         List<Directions> directions = new List<Directions> { Directions.UP, Directions.RIGHT, Directions.LEFT, Directions.DOWN };
         Directions currDirection;
-    
+
 
         public KeeseSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
@@ -59,8 +59,6 @@ namespace Sprites
             sourceRectangles.Add(new Rectangle(51, 3, 9, 10));
 
         }
-  
-
         public void Update()
         {
 
@@ -117,18 +115,18 @@ namespace Sprites
             }
             else
             {
-                for(int i = 0; i<4; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    if(deathFrames>(i*maxDeathFrames)/4 && deathFrames <= ((i + 1) * maxDeathFrames) / 4)
+                    if (deathFrames > (i * maxDeathFrames) / 4 && deathFrames <= ((i + 1) * maxDeathFrames) / 4)
                     {
                         sourceRectangle = sourceRectangles[i + 2];
                     }
-                    else if(deathFrames>maxDeathFrames)
+                    else if (deathFrames > maxDeathFrames)
                     {
                         dyingComplete = true;
                     }
                 }
-                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition,30, 30);
+                destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
                 if (!dyingComplete)
                 {
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -137,50 +135,60 @@ namespace Sprites
                 }
             }
         }
-            public Rectangle GetHitbox()
-            {
-                return destinationRectangle;
-            }
-
-            public void TurnAround(string side)
-            {
-                // Have the Keese turn around based on what wall it is running into
-                switch (side)
-                {
-                    case "top":
-                        currDirection = Directions.DOWN;
-                        break;
-                    case "bottom":
-                        currDirection = Directions.UP;
-                        break;
-                    case "left":
-                        currDirection = Directions.RIGHT;
-                        break;
-                    case "right":
-                        currDirection = Directions.LEFT;
-                        break;
-                    default:
-                        break;
-
-                }
-
-            }
-
-            public void TakeDamage(string side)
-            {
-                SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
-                isDead = true;
-            }
-            public ISprite DropItem()
-            {
-                return null;
-            }
-
-        public void PoofIn()
+        public Rectangle GetHitbox()
         {
-            Debug.WriteLine("poof");
+            return destinationRectangle;
+        }
+
+        public void TurnAround(string side)
+        {
+            // Have the Keese turn around based on what wall it is running into
+            switch (side)
+            {
+                case "top":
+                    currDirection = Directions.DOWN;
+                    break;
+                case "bottom":
+                    currDirection = Directions.UP;
+                    break;
+                case "left":
+                    currDirection = Directions.RIGHT;
+                    break;
+                case "right":
+                    currDirection = Directions.LEFT;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void TakeDamage(string side)
+        {
+            SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
+            isDead = true;
+        }
+        public ISprite DropItem()
+        {
+            return null;
+        }
+
+        public void PoofIn(SpriteBatch spriteBatch)
+        {
+            int maxPoofFrames = 20;
+            for (int poofFrames = 0; poofFrames < maxPoofFrames; poofFrames++)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (poofFrames > (i * maxPoofFrames) / 4 && poofFrames <= ((i + 1) * maxPoofFrames) / 4)
+                    {
+                        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                        spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
+                        spriteBatch.End();
+                    }
+                }
+            }
         }
     }
-    }
+}
 
 

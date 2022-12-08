@@ -15,7 +15,7 @@ namespace LegendofZelda
         private List<ISprite> sprites;
         private ISprite background;
         private List<ISprite> doors;
-        private bool alreadyChecked, isBoshRushRoom;
+        private bool alreadyChecked, isBoshRushRoom, hasEntered;
         private readonly ISprite topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
         private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
         private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
@@ -23,7 +23,6 @@ namespace LegendofZelda
         public ISprite Background { get => background; set => background = value; }
         public bool isFinished { get; set; }
         public bool externallyChecked { get; set; }
-
         public Room(List<ISprite> sprites, ISprite background, bool isBoshRushRoom)
         {
             this.sprites = sprites;
@@ -35,11 +34,17 @@ namespace LegendofZelda
             this.isBoshRushRoom = isBoshRushRoom;
             if (isBoshRushRoom)
                 RushRoomIncomplete();
+            hasEntered = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch);
+            if (!hasEntered)
+            {
+                hasEntered = true;
+                PoofIn(spriteBatch);
+            }
             var ibackground = background as IBackground;
             if (!ibackground.IsTransitioning)
             {
@@ -87,19 +92,15 @@ namespace LegendofZelda
         // Only called in EnemiesPaused state
         public void ClockUpdate()
         {
-            
             background.Update();
             if (!((IBackground)background).IsTransitioning)
             {
                 foreach (var sprite in sprites.ToList())
                 {
-
-                    if (sprite is IEnemy) { 
-                     // Enemies dont update when the clock is active
+                    if (sprite is IEnemy) {
                     }
                     else
                     {
-
                         if (sprite is ILinkProjectile)
                         {
                             DealWithLinkProjectiles((ILinkProjectile)sprite);
