@@ -1,9 +1,0 @@
-﻿Name: Brittaney Jin
-Reviewing LinkFacingStates for maintainability. 
-
-This class is extremely easy to understand. All methods in ILinkState are implemented
-except for NoInput(), because when we are in a "facing" or idle state 
-there is no need to be primed to accept a "no input" command as we are already in a no
-input state. The code will be very easy to change if needed as the functions being implemented are
-extremely short and don't have any complicated logic. Only thing that may be changed is the
-link field may need to be readonly.
