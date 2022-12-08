@@ -119,10 +119,6 @@ namespace Sprites
 			{
 				deathFrames++;
 			}
-
-			
-
-
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
@@ -277,6 +273,6 @@ namespace Sprites
 			}
 		}
 
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }

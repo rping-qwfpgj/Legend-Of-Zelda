@@ -243,8 +243,7 @@ namespace Sprites
                 return null;
             }
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) { }
 
     }
 
@@ -261,10 +260,7 @@ namespace Sprites
         private int xPosition;
         private int yPosition;
 
-        // Original positions to reset to
-        private int originalX;
-        private int originalY;
-
+ 
         public bool keepThrowing { get; set; }
 
         // Orbs will rapidly swap between 4 different version
@@ -284,8 +280,7 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            originalX = (int)xPosition;
-            originalY = (int)yPosition;
+ 
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
 
             currOrb = 0;
@@ -317,7 +312,6 @@ namespace Sprites
             destinationRectangle = new((int)xPosition, (int)yPosition, 30, 30);
 
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -339,7 +333,6 @@ namespace Sprites
             keepThrowing = false;
 
         }
-
     }
 
     public class FrontOldManOrb : IEnemyProjectile
@@ -447,10 +440,6 @@ namespace Sprites
         private int xPosition;
         private int yPosition;
 
-        // Original positions to reset to
-        private int originalX;
-        private int originalY;
-
         // Keep track of if the projectile should keep going
         public bool keepThrowing { get; set; }
 
@@ -472,8 +461,6 @@ namespace Sprites
             this.texture = texture;
             this.xPosition = (int)xPosition;
             this.yPosition = (int)yPosition;
-            originalX = (int)xPosition;
-            originalY = (int)yPosition;
             destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 30, 30);
 
             currOrb = 0;

@@ -83,10 +83,7 @@ namespace Sprites
                 } else if(currState == TrapStates.MoveRight)
                 {
                     xPosition += 2;
-
-                    
                 }
-              
             }
       }
 
@@ -144,8 +141,7 @@ namespace Sprites
             }
            
         }
-
-        public void PoofIn() { }
+        public void PoofIn(SpriteBatch spriteBatch) {}
 
     }
 }

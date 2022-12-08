@@ -185,8 +185,7 @@ namespace Sprites
             }
         }
 
-        public void PoofIn() { }
-
+        public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }
 

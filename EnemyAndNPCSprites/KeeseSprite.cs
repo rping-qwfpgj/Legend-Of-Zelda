@@ -104,7 +104,6 @@ namespace Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             if (!isDead)
             {
                 sourceRectangle = sourceRectangles[(currFrames / 100) % 2];
@@ -175,11 +174,16 @@ namespace Sprites
         public void PoofIn(SpriteBatch spriteBatch)
         {
             int maxPoofFrames = 20;
+            var sourceRectangles = new List<Rectangle>();
+            sourceRectangles.Add(new(235,204, 16, 16));
+            sourceRectangles.Add(new(252,204, 16, 16));
+            sourceRectangles.Add(new(269,204, 16, 16));
+
             for (int poofFrames = 0; poofFrames < maxPoofFrames; poofFrames++)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (poofFrames > (i * maxPoofFrames) / 4 && poofFrames <= ((i + 1) * maxPoofFrames) / 4)
+                    if (poofFrames > (i * maxPoofFrames) / 3 && poofFrames <= ((i + 1) * maxPoofFrames) / 3)
                     {
                         spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                         spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
