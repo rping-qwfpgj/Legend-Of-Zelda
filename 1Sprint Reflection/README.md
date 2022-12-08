@@ -8,7 +8,7 @@ in addition to being able to use the numerical keys to swap the current projecti
 -Clicking on the right half of the room switches to the next room, and clicking on the left half of the room switches to the previous room.
 -Keys Z and N are used to attack with the sword.
 -H is to pause/unpause
--L is to open the inventory/close the inventory
+-L is to open the inventory/close the inventory.
 
 
 BUGS:
