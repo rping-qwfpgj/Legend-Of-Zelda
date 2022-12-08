@@ -1,4 +1,27 @@
 
+Sprint5 Reflection
+Author: DJ Young
+
+The Sprint 5 burndown chart is the best that we've seen yet, with all work being correctly assigned at the beginning of 
+the sprint. The amount of work did not decrease during thanksgiving break, but began decreasing soon after. We also benefitted 
+from the extra time alloted for the sprint, which made it so that our work remaining didn't plunge as much towards the
+end of the sprint.
+
+We confirmed the work that we would complete for the sprint after break, but had no issues delegating the tasks because
+every person came up with the work that they would complete during the sprint. These tasks were clearly designated in 
+AzureDevOps.
+
+Because the team has been working with the MonoGame framework for a semester, we've become much more efficient at
+implementing new features. This was more readily apparent towards the end of the sprint as we were able to fix many 
+bugs while simultaneously implementing many miscellaneous features. Alongside creating 4 bosses, we created a boss rush
+feature with randomly generated rooms that provides a new challenge for players. 
+
+Ironically, we began to move back towards working on main, as the team generally struggled to merge branches that had
+finished new features, but that were very out of date compared to the master branch. Luckily, we did not encounter too
+many merge conflicts when pushing to the master branch. 
+
+
+
 Sprint3 Reflection
 Author: Brittaney Jin
 
@@ -45,3 +68,4 @@ features and functionalities.
 For the next sprint we will be using AzureDevOps to transparently delegate the work required from each teammate and set deadlines
 according the recommended deadlines. We will also split the work in such a way that no one person will need to understand the 
 inner workings of every piece of the program.
+
