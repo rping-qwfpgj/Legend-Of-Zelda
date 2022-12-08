@@ -20,6 +20,10 @@ namespace Sprites
         private int deathFrames = 0;
         private int maxDeathFrames = 40;
 
+        private int poofCounter = 0;
+        private int maxPoofCounter = 15;
+        private List<Rectangle> poofRectangles = new() { new Rectangle(236, 270, 16, 16), new Rectangle(253, 270, 16, 16), new Rectangle(272, 272, 16, 16) };
+
         private int health = 3;
         private bool isDamaged = false;
         private int damagedCounter = 0;
@@ -71,32 +75,47 @@ namespace Sprites
         {
             if (!isDead)
             {
-                // keeps track of how long sprite stays red
-                if (isDamaged)
+                if (poofCounter >= maxPoofCounter)
                 {
-                    damagedCounter++;
-                    if (damagedCounter > 60)
+                    // keeps track of how long sprite stays red
+                    if (isDamaged)
                     {
-                        isDamaged = false;
-                        damagedCounter = 0;
+                        damagedCounter++;
+                        if (damagedCounter > 60)
+                        {
+                            isDamaged = false;
+                            damagedCounter = 0;
+                        }
+                    }
+                    // Go the other direction halfway through
+                    if (currFrames == maxFrames / 2)
+                    {
+                        direction *= -1;
+                    }
+                    currFrames += 5;
+                    // Reset motion if at max
+                    if (currFrames == maxFrames)
+                    {
+                        currFrames = 0;
+                        topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
+                        middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
+                        bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
+                    }
+                    // Update the x position
+                    xPosition += 1 * direction;
+
+                }
+                else
+                {
+                    poofCounter++;
+                    for (int i = 0; i < poofRectangles.Count; i++)
+                    {
+                        if (poofCounter > i * maxPoofCounter / poofRectangles.Count && poofCounter <= (i + 1) * maxPoofCounter / poofRectangles.Count)
+                        {
+                            sourceRectangle = poofRectangles[i];
+                        }
                     }
                 }
-                // Go the other direction halfway through
-                if (currFrames == maxFrames / 2)
-                {
-                    direction *= -1;
-                }
-                currFrames += 5;
-                // Reset motion if at max
-                if (currFrames == maxFrames)
-                {
-                    currFrames = 0;
-                    topAttackOrb = new TopDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
-                    middleAttackOrb = new MiddleDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
-                    bottomAttackOrb = new BottomDragonAttackOrbSprite(texture, xPosition, yPosition + 30);
-                }
-                // Update the x position
-                xPosition += 1 * direction;
             }
             else
             {
@@ -134,6 +153,10 @@ namespace Sprites
                     dragonSourceRectangle = new Rectangle(76, 11, 24, 32);
                 }
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                if (poofCounter < maxPoofCounter)
+                {
+                    dragonSourceRectangle = sourceRectangle;
+                }
                 if (isDamaged)
                 {
                     spriteBatch.Draw(texture, dragonDestinationRectangle, dragonSourceRectangle, Color.Lerp(Color.White, Color.Red, 0.5f));

@@ -32,7 +32,7 @@ namespace Sprites
         List<GoriyaActions> goriyaActions = new List<GoriyaActions> {
             GoriyaActions.MovingUp, GoriyaActions.MovingDown,GoriyaActions.MovingRight, GoriyaActions.MovingLeft,
             GoriyaActions.ThrowingUp, GoriyaActions.ThrowingRight, GoriyaActions.ThrowingLeft, GoriyaActions.ThrowingDown};
-
+        
         public GoriyaSprite(Texture2D texture, float xPosition, float yPosition, Texture2D texture2)
         {
             isDamaged = false;
@@ -61,6 +61,7 @@ namespace Sprites
             // Decided if the goriya should change its current action
             if (!isDead)
             {
+
                 currentGoriya.Update();
 
                 if (isDamaged)
@@ -103,6 +104,7 @@ namespace Sprites
             if (!isDead)
             {
                 currentGoriya.Draw(spriteBatch);
+                
             }
             else
             {
