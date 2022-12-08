@@ -23,8 +23,7 @@ namespace GameStates
    
         public BossRushState(GameStateController controller, Game1 game)
         {
-            //roomsRemaining = Common.Instance.numOfRushRooms;
-            roomsRemaining = 1;
+            roomsRemaining = Common.Instance.numOfRushRooms;
             this.controller = controller;
             this.game = game;
             alreadyChecked = false;

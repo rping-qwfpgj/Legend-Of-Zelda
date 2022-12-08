@@ -32,7 +32,7 @@ namespace LegendofZelda.Rooms
             bossList = new();
             bossList.Add("Dodongo");
             bossList.Add("Digdogger");
-            bossList.Add("DragonBoss");
+            bossList.Add("Gohma");
 
             makeCoordinates();
             roomLoader = new(this);
@@ -51,9 +51,8 @@ namespace LegendofZelda.Rooms
             roomLoader = new(this);
             Random rnd = new Random();
 
-            int numOfEnemies = rnd.Next(1, 5);
-
-            int blockConfiguration = rnd.Next(0, 6);
+            int numOfEnemies = rnd.Next(3, 5);
+            int blockConfiguration = rnd.Next(4, 6);
             var enviroment = Environment.CurrentDirectory;
             string directory = Directory.GetParent(enviroment).Parent.Parent.FullName;
             string rushRoomsFolder = "\\Content\\RoomXMLs\\RushRooms";

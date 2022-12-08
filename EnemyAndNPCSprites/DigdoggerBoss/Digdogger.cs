@@ -124,6 +124,10 @@ namespace Sprites
                         {
                             spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
                         }
+                        else
+                        {
+                            dyingComplete = true;
+                        }
                     }
                 }
                 spriteBatch.End();

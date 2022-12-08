@@ -1,6 +1,6 @@
 ﻿@Author Brittaney Jin
-Date: 11/14/2022
-Sprint4
+Date: 12/7/2022
+Sprint5
 File under review: PauseState.cs
 Author of file under review: Lisha Nawani
 10 Minutes to complete review
@@ -15,5 +15,3 @@ that send you to different states given the current Pause state. However, there 
 a few things wrong with the logic. For example, the WinGame() method should be empty
 as you should not be able win the game immediately out of a pause state. WinGame should
 only be able to be accessed during the GamePlay() state. 
-
-
