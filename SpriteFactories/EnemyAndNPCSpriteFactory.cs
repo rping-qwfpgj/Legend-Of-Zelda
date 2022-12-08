@@ -87,7 +87,7 @@ namespace LegendofZelda.SpriteFactories
 
                 case "Gohma":
 
-                    return new GohmaSprite(bossSpriteSheet, location.X, location.Y + Common.Instance.heightOfInventory, dyingSpriteSheet); 
+                    return new GohmaSprite(bossSpriteSheet, bossSpriteSheet, location.X, location.Y + Common.Instance.heightOfInventory, dyingSpriteSheet); 
                 default:
 
                     return null;

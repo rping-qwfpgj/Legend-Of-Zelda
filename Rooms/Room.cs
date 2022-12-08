@@ -15,7 +15,7 @@ namespace LegendofZelda
         private List<ISprite> sprites;
         private ISprite background;
         private List<ISprite> doors;
-        private bool alreadyChecked, isBoshRushRoom, hasEntered;
+        private bool alreadyChecked, isBoshRushRoom, removePuzzleDoor, hasEntered;
         private readonly ISprite topBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "HorizontalBoundingBlock");
         private readonly ISprite bottomBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 392), "HorizontalBoundingBlock");
         private readonly ISprite leftBoundBlock = BlockSpriteFactory.Instance.CreateBlock(new Vector2(50, 44), "VerticalBoundingBlock");
@@ -31,6 +31,7 @@ namespace LegendofZelda
             isFinished = false;
             externallyChecked = false;
             alreadyChecked = false;
+            removePuzzleDoor = false;
             this.isBoshRushRoom = isBoshRushRoom;
             if (isBoshRushRoom)
                 RushRoomIncomplete();
@@ -84,6 +85,16 @@ namespace LegendofZelda
                     else if (sprite is ILinkProjectile)
                     {
                         DealWithLinkProjectiles((ILinkProjectile)sprite);
+                    } else if (sprite is DepthPushableBlock)
+                    {
+                        if (((DepthPushableBlock)sprite).isPushed)
+                        {
+                            removePuzzleDoor = true;
+                        }
+                    }
+                    if (sprite is PuzzleDoorBlock && removePuzzleDoor)
+                    {
+                        sprites.Remove(sprite);
                     }
                 }
             }
