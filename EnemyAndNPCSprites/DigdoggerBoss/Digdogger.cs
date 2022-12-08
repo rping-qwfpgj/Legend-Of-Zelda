@@ -14,7 +14,6 @@ namespace Sprites
 	public class Digdogger : IEnemy
 	{
 		private IDigdogger currentDigdogger;
-		
 		private bool isDead = false;
 		private int health = 3;
 		private int deathFrames = 0;
@@ -24,7 +23,6 @@ namespace Sprites
 		private bool dyingComplete = false;
 		public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
 		private int currFrames = 0;
-
 		public enum DigdoggerActions
 		{
 			BigMovingUp, BigMovingDown, BigMovingLeft, BigMovingRight, SmallStunned
@@ -52,15 +50,11 @@ namespace Sprites
 			this.dyingTexture = texture2;
 			this.destinationRectangle = new Rectangle((int)this.xPos, (int)this.yPos, 39, 48);
 			this.currAction = DigdoggerActions.BigMovingDown;
-			this.currentDigdogger = new DigdoggerGoingDownSprite(texture, this.xPos, this.yPos);
-			
+			this.currentDigdogger = new DigdoggerGoingDownSprite(texture, this.xPos, this.yPos);		
 		}
 
 		public void Update()
 		{
-
-			
-
 			// Decided if the digdogger should change its current action
 			if (!isDead)
 			{
@@ -76,7 +70,6 @@ namespace Sprites
 					}
 				}
 
-				
 				this.currentDigdogger.Update();
 				this.destinationRectangle = currentDigdogger.DestinationRectangle;
 				// Pick an action to take based on where link is
@@ -106,21 +99,14 @@ namespace Sprites
 						this.currAction = DigdoggerActions.BigMovingDown;
 					}
 				}
-
-				
 				this.switchAction(this.currAction);
 				
-				
 			}
-
-
-
 			else
 			{
 				deathFrames++;
 			}
 		}
-
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			Rectangle sourceRectangle = new Rectangle(0, 0, 15, 16);
@@ -204,7 +190,6 @@ namespace Sprites
 					break;
 			}
 		}
-
 		public void TurnAround(string side)
 		{
 			// Get the hitbox of the current goriya
@@ -239,10 +224,7 @@ namespace Sprites
 					break;
 
 			}
-
 		}
-
-
 		public void TakeDamage(string side)
 		{
 			SoundFactory.Instance.CreateSoundEffect("EnemyHit").Play();
@@ -252,13 +234,11 @@ namespace Sprites
                 this.isDamaged = true;
                 this.currentDigdogger.IsDamaged = true;
             }
-
 			if (this.health <= 0)
 			{
 				this.isDead = true;
 			}
 		}
-
 		public ISprite DropItem()
 		{
 			if (dyingComplete)
@@ -272,7 +252,6 @@ namespace Sprites
 				return null;
 			}
 		}
-
         public void PoofIn(SpriteBatch spriteBatch) { }
     }
 }

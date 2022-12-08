@@ -1,6 +1,6 @@
 ﻿Author of the code review: Lisha Nawani
 Date of the code review: 11/14/22
-Sprint number: 4
+Sprint number: 5
 Name of the .cs file being reviewed: BoomerangSprites.cs
 Author of the .cs file being reviewed: Brittaney Jin
 Specific comments on code quality: 
