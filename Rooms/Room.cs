@@ -41,11 +41,7 @@ namespace LegendofZelda
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch);
-            if (!hasEntered)
-            {
-                hasEntered = true;
-                PoofIn(spriteBatch);
-            }
+            
             var ibackground = background as IBackground;
             if (!ibackground.IsTransitioning)
             {
@@ -208,16 +204,6 @@ namespace LegendofZelda
             return copyOfSprites;
         }
 
-        public void PoofIn(SpriteBatch spriteBatch)
-        {
-            foreach(var sprite in sprites)
-            {
-                if(sprite is IEnemy)
-                {
-                    ((IEnemy)sprite).PoofIn(spriteBatch);
-                }
-            }
-        }
 
         public void RemoveObject(ISprite sprite){sprites.Remove(sprite);}
         public void AddObject(ISprite sprite){sprites.Add(sprite);}
