@@ -30,7 +30,9 @@ namespace Collision
                 if (IsBoomerang(projectile))
                 {
                     enemy.TurnAround("stunned");
+                    
                 }
+                enemy.TakeDamage(side);
             }
             else if (enemy is DodongoSprite)
             {
