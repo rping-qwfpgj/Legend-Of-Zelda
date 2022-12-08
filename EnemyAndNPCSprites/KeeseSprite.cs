@@ -25,7 +25,7 @@ namespace Sprites
         // X and Y positions of the sprite
         private float xPosition;
         private float yPosition;
-        private bool isDead = false;
+        private bool isDead = false, isPoofed = false;
         public bool IsDead { get => isDead; set => isDead = value; }
         private bool dyingComplete = false;
         public bool DyingComplete { get => dyingComplete; set => dyingComplete = value; }
@@ -61,7 +61,6 @@ namespace Sprites
         }
         public void Update()
         {
-
             if (!isDead)
             {
                 if (random.Next(0, maxFrames) <= (maxFrames / 50))
@@ -98,12 +97,16 @@ namespace Sprites
             {
                 deathFrames++;
             }
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (!isPoofed)
+            {
+                isPoofed = true;
+                PoofIn(spriteBatch);
+            }
+            Debug.WriteLine("bruh");
             if (!isDead)
             {
                 sourceRectangle = sourceRectangles[(currFrames / 100) % 2];
@@ -170,7 +173,6 @@ namespace Sprites
         {
             return null;
         }
-
         public void PoofIn(SpriteBatch spriteBatch)
         {
             int maxPoofFrames = 20;
@@ -178,6 +180,7 @@ namespace Sprites
             sourceRectangles.Add(new(235,204, 16, 16));
             sourceRectangles.Add(new(252,204, 16, 16));
             sourceRectangles.Add(new(269,204, 16, 16));
+            var destinationRectangle = new Rectangle((int)xPosition, (int)yPosition, 16 * 2, 16* 2);
 
             for (int poofFrames = 0; poofFrames < maxPoofFrames; poofFrames++)
             {
@@ -186,7 +189,7 @@ namespace Sprites
                     if (poofFrames > (i * maxPoofFrames) / 3 && poofFrames <= ((i + 1) * maxPoofFrames) / 3)
                     {
                         spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-                        spriteBatch.Draw(dyingTexture, destinationRectangle, sourceRectangles[i], Color.White);
+                        spriteBatch.Draw(texture, destinationRectangle, sourceRectangles[i], Color.White);
                         spriteBatch.End();
                     }
                 }
