@@ -11,8 +11,7 @@ in addition to being able to use the numerical keys to swap the current projecti
 -L is to open the inventory/close the inventory.
 
 NOTE: Using mouse room switching can let you get to a room with all of the items in the game(room 18) to
-have all items available.
-
+have all items available. Go here if you ever need more bombs, arrows(rupees), health, or bombs.
 
 BUGS:
 
@@ -35,7 +34,9 @@ boomerang. Can only be damaged by boomerang.
 DODONGO: Can only be damaged by sword/bombs. If a bomb is used, the Dodongo must be facing the direction
 of where the bomb is coming from to take damage. Two bomb hits will kill it.
 
-GOHMA: Only takes damage when the eye is open, only takes damage from sword/bows.
+GOHMA: Only takes damage when the eye is open, only takes damage from sword/bows. 
+NOTE: Can be kind of hard to defeat, recommend grabbing all of the rupees in room 18 to load up on ammo
+if needed to kill it for now.
 
 OLD MAN BOSS: Is simply the old man sprite, but he now moves around and shoots out orb projectiles as 
 he moves.
